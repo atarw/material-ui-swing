@@ -126,7 +126,7 @@ public class GUITheme {
 
   private static Font getFont (String fileName) {
     try {
-      return Font.createFont (Font.TRUETYPE_FONT, new FileInputStream (new File ("./resources/fonts/" + fileName))).deriveFont (14f);
+      return Font.createFont (Font.TRUETYPE_FONT, new FileInputStream (new File ("./fonts/" + fileName))).deriveFont (14f);
     }
     catch (IOException e) {
       System.out.println (fileName + " not found. set font directory in GUITheme class, getFont (), line 127");
