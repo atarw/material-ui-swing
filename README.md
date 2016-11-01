@@ -8,3 +8,5 @@ Screenshot in action below:
 ![Screenshot](http://i.imgur.com/WsprAM6.png?1)
 
 NOTE: Read comments at the top of `MaterialUIConfig.java` and `GUIState.java` file before use.
+
+For example of usage, see [here](https://github.com/atarw/washer-chess).
