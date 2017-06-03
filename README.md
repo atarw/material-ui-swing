@@ -7,6 +7,7 @@ Screenshot in action below:
 
 ![Screenshot](http://i.imgur.com/WsprAM6.png?1)
 
-NOTE: Read comments at the top of `MaterialUIConfig.java` and `GUIState.java` file before use.
+# Instructions
 
-For example of usage, see [here](https://github.com/atarw/washer-chess).
+Check `MaterialUISwingDemo.java` for a short example of how to use this library.
+For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
