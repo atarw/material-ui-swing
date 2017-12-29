@@ -43,5 +43,5 @@ public class MaterialUIDemo2 {
 }
 ````
 
-Check `mdlaf/MaterialUISwingDemo.java` for a slightly longer example of how to use this library.
+Check `mdlaf/MaterialUISwingDemo.java` for a slightly longer example of how to use this library (and an explanation of what everything means/does).
 For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
