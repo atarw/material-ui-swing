@@ -7,7 +7,7 @@ Screenshot in action below (chessboard not included 😛):
 
 ![Screenshot](http://i.imgur.com/WsprAM6.png?1)
 
-# Instructions
+# Some Examples
 
 ````java
 import mdlaf.*;
