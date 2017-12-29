@@ -9,5 +9,39 @@ Screenshot in action below (chessboard not included 😛):
 
 # Instructions
 
-Check `MaterialUISwingDemo.java` for a short example of how to use this library.
+````java
+import mdlaf.*;
+import javax.swing.*;
+import java.awt.*;
+
+public class MaterialUIDemo2 {
+
+	public static void main (String[] args) {
+		try {
+			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+		}
+		catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace ();
+		}
+
+		JFrame frame = new JFrame ("Material Design UI for Swing by atharva washimkar");
+		frame.setMinimumSize (new Dimension (600, 400));
+
+		JButton button = new JButton ("PRESS ME");
+		button.setMaximumSize (new Dimension (200, 200));
+
+		JPanel content = new JPanel ();
+		content.add (button);
+		frame.add (content, BorderLayout.CENTER);
+
+		MaterialUIMovement animate2 = new MaterialUIMovement (new Color (34, 167, 240), 5, 1000 / 30);
+		animate2.add (button);
+
+		frame.pack ();
+		frame.setVisible (true);
+	}
+}
+````
+
+Check `mdlaf/MaterialUISwingDemo.java` for a slightly longer example of how to use this library.
 For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
