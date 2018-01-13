@@ -7,7 +7,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.BorderLayout;
@@ -50,16 +49,9 @@ public class MaterialUISwingDemo {
 		JPanel content = new JPanel ();
 		content.add (button);
 
-
-		JTextField textField = new JTextField (20);
-
-		JPanel content2 = new JPanel ();
-		content2.add (textField);
-
 		// add everything to the frame
 		frame.add (bar, BorderLayout.PAGE_START);
 		frame.add (content, BorderLayout.CENTER);
-		frame.add (content2, BorderLayout.PAGE_END);
 
 		// start animating!
 		// in the first example, new Color (230, 230, 230) is the color that the JComponent will transition to when the user hovers over it
