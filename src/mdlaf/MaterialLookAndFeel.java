@@ -1,6 +1,7 @@
 package mdlaf;
 
 import mdlaf.button.MaterialButtonUI;
+import mdlaf.textfield.MaterialTextFieldUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.UIDefaults;
@@ -11,8 +12,7 @@ import java.awt.Color;
 public class MaterialLookAndFeel extends BasicLookAndFeel {
 
 	private static final String buttonUI = MaterialButtonUI.class.getCanonicalName ();
-
-	private static final Color LIGHT_GRAY = new Color (230, 230, 230);
+	private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName ();
 
 	@Override
 
@@ -44,6 +44,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	protected void initClassDefaults (UIDefaults table) {
 		super.initClassDefaults (table);
 		table.put ("ButtonUI", buttonUI);
+		table.put ("TextFieldUI", textfieldUI);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ScrollPane.font", MaterialFonts.LIGHT);
 		table.put ("Table.font", MaterialFonts.LIGHT);
 		table.put ("TableHeader.font", MaterialFonts.LIGHT);
-		table.put ("TextField.font", MaterialFonts.LIGHT);
+		table.put ("TextField.font", MaterialFonts.MEDIUM);
 		table.put ("TextArea.font", MaterialFonts.MEDIUM);
 
 		Border menuBorder = new DropShadowBorder (Color.BLACK, 0, 5, 0.3f, 12, true, true, true, true);
@@ -80,14 +81,14 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("MenuItem.background", Color.WHITE);
 		table.put ("MenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put ("MenuItem.disabledForeground", new Color (0, 0, 0, 100));
-		table.put ("MenuItem.selectionBackground", LIGHT_GRAY);
+		table.put ("MenuItem.selectionBackground", MaterialColors.LIGHT_GRAY);
 		table.put ("MenuItem.selectionForeground", Color.BLACK);
 		table.put ("MenuItem.foreground", Color.BLACK);
 
-		table.put ("PopupMenu.border", BorderFactory.createLineBorder (LIGHT_GRAY, 1));
+		table.put ("PopupMenu.border", BorderFactory.createLineBorder (MaterialColors.LIGHT_GRAY, 1));
 		table.put ("PopupMenu.background", Color.WHITE);
 		table.put ("Menu.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
-		table.put ("Menu.selectionBackground", LIGHT_GRAY);
+		table.put ("Menu.selectionBackground", MaterialColors.LIGHT_GRAY);
 		table.put ("Menu.selectionForeground", Color.BLACK);
 		table.put ("Menu.disabledForeground", new Color (0, 0, 0, 100));
 		table.put ("Menu.background", Color.WHITE);
@@ -106,16 +107,18 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ScrollPane.background", Color.WHITE);
 		table.put ("ScrollPane.border", BorderFactory.createEmptyBorder ());
 
-		table.put ("TextArea.background", LIGHT_GRAY);
+		table.put ("TextField.background", MaterialColors.LIGHT_BLUE);
+
+		table.put ("TextArea.background", MaterialColors.LIGHT_GRAY);
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
 		table.put ("TextArea.foreground", Color.BLACK);
 
 		table.put ("OptionPane.background", Color.WHITE);
 		table.put ("OptionPane.border", defaultBorder);
 
-		table.put ("Button.background", new Color (25, 181, 254));
+		table.put ("Button.background", MaterialColors.LIGHT_BLUE);
 		table.put ("Button.foreground", Color.WHITE);
-		table.put ("Button.highlight", LIGHT_GRAY);
+		table.put ("Button.highlight", MaterialColors.LIGHT_GRAY);
 		//table.put ("Button.border", BorderFactory.createEmptyBorder (10, 10, 10, 10));
 	}
 }

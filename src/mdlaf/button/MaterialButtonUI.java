@@ -3,14 +3,19 @@ package mdlaf.button;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.Timer;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 public class MaterialButtonUI extends BasicButtonUI {
+
+	private Timer timer;
+	private AbstractButton button;
+	private Graphics g;
+	private int animationRadius = 0;
 
 	public static ComponentUI createUI (final JComponent c) {
 		return new MaterialButtonUI ();
@@ -33,12 +38,11 @@ public class MaterialButtonUI extends BasicButtonUI {
 	}
 
 	private void paintBackground (final Graphics g, final JComponent c) {
-		Dimension size = c.getSize ();
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 
 		g.setColor (c.getBackground ());
-		g.fillRoundRect (0, 0, size.width, size.height, 7, 7);
+		g.fillRoundRect (0, 0, c.getWidth (), c.getHeight (), 7, 7);
 	}
 }
