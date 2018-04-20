@@ -56,21 +56,24 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
+		System.setProperty ("awt.useSystemAAFontSettings", "lcd");
+		System.setProperty ("swing.aatext", "true");
+
 		table.put ("Button.font", MaterialFonts.MEDIUM);
-		table.put ("RadioButton.font", MaterialFonts.LIGHT);
-		table.put ("CheckBox.font", MaterialFonts.LIGHT);
-		table.put ("ComboBox.font", MaterialFonts.LIGHT);
-		table.put ("Label.font", MaterialFonts.LIGHT);
+		table.put ("RadioButton.font", MaterialFonts.REGULAR);
+		table.put ("CheckBox.font", MaterialFonts.REGULAR);
+		table.put ("ComboBox.font", MaterialFonts.REGULAR);
+		table.put ("Label.font", MaterialFonts.REGULAR);
 		table.put ("MenuBar.font", MaterialFonts.BOLD);
 		table.put ("MenuItem.font", MaterialFonts.MEDIUM);
 		table.put ("Menu.font", MaterialFonts.BOLD);
-		table.put ("OptionPane.font", MaterialFonts.LIGHT);
-		table.put ("Panel.font", MaterialFonts.LIGHT);
-		table.put ("ScrollPane.font", MaterialFonts.LIGHT);
-		table.put ("Table.font", MaterialFonts.LIGHT);
-		table.put ("TableHeader.font", MaterialFonts.LIGHT);
-		table.put ("TextField.font", MaterialFonts.MEDIUM);
-		table.put ("TextArea.font", MaterialFonts.MEDIUM);
+		table.put ("OptionPane.font", MaterialFonts.REGULAR);
+		table.put ("Panel.font", MaterialFonts.REGULAR);
+		table.put ("ScrollPane.font", MaterialFonts.REGULAR);
+		table.put ("Table.font", MaterialFonts.REGULAR);
+		table.put ("TableHeader.font", MaterialFonts.REGULAR);
+		table.put ("TextField.font", MaterialFonts.REGULAR);
+		table.put ("TextArea.font", MaterialFonts.REGULAR);
 
 		Border menuBorder = new DropShadowBorder (Color.BLACK, 0, 5, 0.3f, 12, true, true, true, true);
 		Border defaultBorder = new DropShadowBorder (Color.BLACK, 5, 5, 0.3f, 12, true, true, true, true);

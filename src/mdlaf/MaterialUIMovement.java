@@ -1,40 +1,22 @@
 package mdlaf;
 
 import javax.swing.JComponent;
-import javax.swing.Timer;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MaterialUIMovement {
 
-	private Color fadeColor; // color to fade to
-	private int steps; // number of steps to fade into fadeColor
-	private int interval; // timer interval
-	private Map<Color, List<Color>> backgroundColors = new HashMap<Color, List<Color>> ();
-
-	private List<Color> getColors (Color background) {
-		List<Color> o = backgroundColors.get (background);
-
-		if (o != null) {
-			return o;
-		}
-
+	private static List<Color> getColors (Color background, Color fadeTo, int steps) {
 		List<Color> colors = new ArrayList<Color> (steps + 1);
 		colors.add (background);
 
-		int rDelta = (background.getRed () - fadeColor.getRed ()) / steps;
-		int gDelta = (background.getGreen () - fadeColor.getGreen ()) / steps;
-		int bDelta = (background.getBlue () - fadeColor.getBlue ()) / steps;
-		int aDelta = (background.getAlpha () - fadeColor.getAlpha ()) / steps;
+		int rDelta = (background.getRed () - fadeTo.getRed ()) / steps;
+		int gDelta = (background.getGreen () - fadeTo.getGreen ()) / steps;
+		int bDelta = (background.getBlue () - fadeTo.getBlue ()) / steps;
+		int aDelta = (background.getAlpha () - fadeTo.getAlpha ()) / steps;
 
-		for (int i = 1; i < steps; i++) {
+		for (int i = 1; i < steps; ++i) {
 			int rValue = background.getRed () - (i * rDelta);
 			int gValue = background.getGreen () - (i * gDelta);
 			int bValue = background.getBlue () - (i * bDelta);
@@ -43,78 +25,14 @@ public class MaterialUIMovement {
 			colors.add (new Color (rValue, gValue, bValue, aValue));
 		}
 
-		colors.add (fadeColor);
-		backgroundColors.put (background, colors);
+		colors.add (fadeTo);
 
 		return colors;
 	}
 
-	public MaterialUIMovement add (JComponent component) {
-		List<Color> colors = getColors (component.getBackground ());
-		new MaterialUITimer (colors, component, interval);
-
-		return this;
+	public static void add (JComponent c, Color fadeTo, int steps, int interval) {
+		new MaterialUITimer (getColors (c.getBackground (), fadeTo, steps), c, interval);
 	}
 
-	public MaterialUIMovement (Color fadeColor, int steps, int interval) {
-		this.fadeColor = fadeColor;
-		this.steps = steps;
-		this.interval = interval;
-	}
-
-	private class MaterialUITimer implements MouseListener /*, FocusListener*/, ActionListener {
-
-		private List<Color> colors;
-		private JComponent component;
-		private Timer timer;
-		private int alpha;
-		private int increment;
-
-		public void mousePressed (MouseEvent me) {
-			alpha = steps;
-			increment = -1;
-			timer.start ();
-
-			alpha = 0;
-			increment = 1;
-			timer.start ();
-		}
-
-		public void mouseReleased (MouseEvent me) {
-
-		}
-
-		public void mouseClicked (MouseEvent me) {
-
-		}
-
-		public void mouseExited (MouseEvent me) {
-			alpha = steps;
-			increment = -1;
-			timer.start ();
-		}
-
-		public void mouseEntered (MouseEvent me) {
-			alpha = 0;
-			increment = 1;
-			timer.start ();
-		}
-
-		public void actionPerformed (ActionEvent e) {
-			alpha += increment;
-			component.setBackground (colors.get (alpha));
-
-			if (alpha == steps || alpha == 0) {
-				timer.stop ();
-			}
-		}
-
-		MaterialUITimer (List<Color> colors, JComponent component, int interval) {
-			this.colors = colors;
-			this.component = component;
-
-			component.addMouseListener (this);
-			timer = new Timer (interval, this);
-		}
-	}
+	private MaterialUIMovement () {}
 }
