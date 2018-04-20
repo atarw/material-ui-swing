@@ -17,6 +17,7 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 	private int alpha;
 	private int increment;
 
+	@Override
 	public void mousePressed (MouseEvent me) {
 		alpha = colors.size () - 1;
 		increment = -1;
@@ -27,26 +28,31 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 		timer.start ();
 	}
 
+	@Override
 	public void mouseReleased (MouseEvent me) {
 
 	}
 
+	@Override
 	public void mouseClicked (MouseEvent me) {
 
 	}
 
+	@Override
 	public void mouseExited (MouseEvent me) {
 		alpha = colors.size () - 1;
 		increment = -1;
 		timer.start ();
 	}
 
+	@Override
 	public void mouseEntered (MouseEvent me) {
 		alpha = 0;
 		increment = 1;
 		timer.start ();
 	}
 
+	@Override
 	public void actionPerformed (ActionEvent ae) {
 		alpha += increment;
 		component.setBackground (colors.get (alpha));
