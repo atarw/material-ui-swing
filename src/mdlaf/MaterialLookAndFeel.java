@@ -56,8 +56,9 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
-		System.setProperty ("awt.useSystemAAFontSettings", "lcd");
+		System.setProperty ("awt.useSystemAAFontSettings", "on");
 		System.setProperty ("swing.aatext", "true");
+		System.setProperty ("sun.java2d.xrender", "true");
 
 		table.put ("Button.font", MaterialFonts.MEDIUM);
 		table.put ("RadioButton.font", MaterialFonts.REGULAR);
