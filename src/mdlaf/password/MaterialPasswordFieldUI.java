@@ -1,4 +1,4 @@
-package mdlaf.textfield;
+package mdlaf.password;
 
 import mdlaf.MaterialColors;
 
@@ -6,11 +6,15 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import javax.swing.KeyStroke;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicTextFieldUI;
+import javax.swing.plaf.basic.BasicPasswordFieldUI;
+import javax.swing.text.Element;
+import javax.swing.text.PasswordView;
+import javax.swing.text.View;
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -20,7 +24,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 
-public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener {
+public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener {
 
 	private Color focusedBackground;
 	private Color unfocusedBackground;
@@ -28,14 +32,14 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	private Color unfocusedSelectedBackground;
 
 	public static ComponentUI createUI (final JComponent c) {
-		return new MaterialTextFieldUI ();
+		return new MaterialPasswordFieldUI ();
 	}
 
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JTextField textField = (JTextField) c;
+		JPasswordField textField = (JPasswordField) c;
 		textField.setOpaque (false);
 		textField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
 
@@ -107,7 +111,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 	@Override
 	public void paintSafely (Graphics g) {
-		JTextField c = (JTextField) getComponent ();
+		JPasswordField c = (JPasswordField) getComponent ();
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
@@ -144,6 +148,34 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 	@Override
 	public String getPropertyPrefix () {
-		return "TextField";
+		return "PasswordField";
+	}
+
+	@Override
+	public View create (Element elem) {
+		return new MaterialPasswordView (elem);
+	}
+
+	private static class MaterialPasswordView extends PasswordView {
+
+		// depreciated in Java 9 and above - replace method with float drawEchoCharacter(Graphics2D g, float x, float y, char c)
+		@Override
+		protected int drawEchoCharacter (Graphics g, int x, int y, char c) {
+			Graphics2D g2 = (Graphics2D) g.create ();
+			g2.setRenderingHint (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			FontMetrics fm = g2.getFontMetrics ();
+			int r = fm.charWidth (c) - 2;
+
+			g2.setPaint (Color.BLACK);
+			g2.fillOval (x + 1, y + 5 - fm.getAscent (), r, r);
+			g2.dispose ();
+
+			return x + fm.charWidth (c);
+		}
+
+		private MaterialPasswordView (Element elem) {
+			super (elem);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package mdlaf;
 
 import mdlaf.button.MaterialButtonUI;
+import mdlaf.password.MaterialPasswordFieldUI;
 import mdlaf.textfield.MaterialTextFieldUI;
 
 import javax.swing.BorderFactory;
@@ -13,6 +14,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
 	private static final String buttonUI = MaterialButtonUI.class.getCanonicalName ();
 	private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName ();
+	private static final String passwordFieldUI = MaterialPasswordFieldUI.class.getCanonicalName ();
 
 	@Override
 
@@ -45,6 +47,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		super.initClassDefaults (table);
 		table.put ("ButtonUI", buttonUI);
 		table.put ("TextFieldUI", textfieldUI);
+		table.put ("PasswordFieldUI", passwordFieldUI);
 	}
 
 	@Override
@@ -112,6 +115,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ScrollPane.border", BorderFactory.createEmptyBorder ());
 
 		table.put ("TextField.background", MaterialColors.LIGHT_BLUE);
+
+		table.put ("PasswordField.background", MaterialColors.LIGHT_BLUE);
 
 		table.put ("TextArea.background", MaterialColors.LIGHT_GRAY);
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
