@@ -34,5 +34,9 @@ public class MaterialUIMovement {
 		new MaterialUITimer (getColors (c.getBackground (), fadeTo, steps), c, interval);
 	}
 
+	public static void add (JComponent c, Color fadeTo) {
+		add (c, fadeTo, 5, 1000 / 30);
+	}
+
 	private MaterialUIMovement () {}
 }

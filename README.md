@@ -34,8 +34,8 @@ public class MaterialUIDemo2 {
 		content.add (button);
 		frame.add (content, BorderLayout.CENTER);
 
-		// on hover, button will change to a light blue at about 30 FPS with 5 intermediate color changes
-		MaterialUIMovement.add (button, new Color (34, 167, 240), 5, 1000 / 30);
+		// on hover, button will change to a light blue
+		MaterialUIMovement.add (button, new Color (34, 167, 240));
 
 		frame.pack ();
 		frame.setVisible (true);

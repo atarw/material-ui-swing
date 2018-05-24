@@ -55,15 +55,14 @@ public class MaterialUISwingDemo {
 
 		// start animating!
 		// here, 'gray' is the color that the JComponent will transition to when the user hovers over it
+		Color gray = new Color (230, 230, 230);
+		MaterialUIMovement.add (menu1, gray);
+		MaterialUIMovement.add (item1, gray);
+
+		// you can also pass in extra parameters indicating how many intermediate colors to display, as well as the "frame rate" of the animation
 		// there will be 5 intermediate colors displayed in the transition from the original component color to the new one specified
 		// the "frame rate" of the transition will be 1000 / 30, or 30 FPS
 		// the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
-		Color gray = new Color (230, 230, 230);
-		MaterialUIMovement.add (menu1, gray, 5, 1000 / 30);
-		MaterialUIMovement.add (item1, gray, 5, 1000 / 30);
-
-		// you can probably figure out what this does based on the explanation above
-		// the only difference is a new color
 		Color blue = new Color (34, 167, 240);
 		MaterialUIMovement.add (button, blue, 5, 1000 / 30);
 
