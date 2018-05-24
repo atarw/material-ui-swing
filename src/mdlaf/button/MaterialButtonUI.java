@@ -1,21 +1,19 @@
 package mdlaf.button;
 
+import mdlaf.MaterialColors;
+import mdlaf.MaterialFonts;
+
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.Timer;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 public class MaterialButtonUI extends BasicButtonUI {
-
-	private Timer timer;
-	private AbstractButton button;
-	private Graphics g;
-	private int animationRadius = 0;
 
 	public static ComponentUI createUI (final JComponent c) {
 		return new MaterialButtonUI ();
@@ -28,6 +26,10 @@ public class MaterialButtonUI extends BasicButtonUI {
 		AbstractButton button = (AbstractButton) c;
 		button.setOpaque (false);
 		button.setBorder (BorderFactory.createEmptyBorder (7, 17, 7, 17));
+
+		button.setBackground (MaterialColors.LIGHT_BLUE);
+		button.setForeground (Color.WHITE);
+		button.setFont (MaterialFonts.MEDIUM);
 	}
 
 	@Override

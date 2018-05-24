@@ -61,6 +61,7 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 	private boolean showLeftShadow;
 	private boolean showBottomShadow;
 	private boolean showRightShadow;
+
 	public DropShadowBorder () {
 		this (UIManager.getColor ("Control"), 1, 5);
 	}
@@ -98,7 +99,7 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 		Map<Position, BufferedImage> images = getImages (null);
 
 		//compute the edges of the component -- not including the border
-		//Insets borderInsets = getBorderInsets(c);
+		//Insets borderInsets = getBorderInsets (c);
 		// int leftEdge = x + borderInsets.left - lineWidth;
 		// int rightEdge = x + width - borderInsets.right;
 		// int topEdge = y + borderInsets.top - lineWidth;

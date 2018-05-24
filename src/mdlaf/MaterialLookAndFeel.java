@@ -2,11 +2,12 @@ package mdlaf;
 
 import mdlaf.button.MaterialButtonUI;
 import mdlaf.password.MaterialPasswordFieldUI;
+import mdlaf.table.MaterialTableHeaderUI;
+import mdlaf.table.MaterialTableUI;
 import mdlaf.textfield.MaterialTextFieldUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.UIDefaults;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.Color;
 
@@ -15,6 +16,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String buttonUI = MaterialButtonUI.class.getCanonicalName ();
 	private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName ();
 	private static final String passwordFieldUI = MaterialPasswordFieldUI.class.getCanonicalName ();
+	private static final String tableUI = MaterialTableUI.class.getCanonicalName ();
+	private static final String tableHeaderUI = MaterialTableHeaderUI.class.getCanonicalName ();
 
 	@Override
 
@@ -48,6 +51,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ButtonUI", buttonUI);
 		table.put ("TextFieldUI", textfieldUI);
 		table.put ("PasswordFieldUI", passwordFieldUI);
+		table.put ("TableUI", tableUI);
+		table.put ("TableHeaderUI", tableHeaderUI);
 	}
 
 	@Override
@@ -63,7 +68,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		System.setProperty ("swing.aatext", "true");
 		System.setProperty ("sun.java2d.xrender", "true");
 
-		table.put ("Button.font", MaterialFonts.MEDIUM);
 		table.put ("RadioButton.font", MaterialFonts.REGULAR);
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
@@ -74,13 +78,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
 		table.put ("Panel.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);
-		table.put ("Table.font", MaterialFonts.REGULAR);
-		table.put ("TableHeader.font", MaterialFonts.REGULAR);
-		table.put ("TextField.font", MaterialFonts.REGULAR);
 		table.put ("TextArea.font", MaterialFonts.REGULAR);
-
-		Border menuBorder = new DropShadowBorder (Color.BLACK, 0, 5, 0.3f, 12, true, true, true, true);
-		Border defaultBorder = new DropShadowBorder (Color.BLACK, 5, 5, 0.3f, 12, true, true, true, true);
 
 		table.put ("Panel.background", Color.WHITE);
 		table.put ("Panel.border", BorderFactory.createEmptyBorder ());
@@ -94,6 +92,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
 		table.put ("PopupMenu.border", BorderFactory.createLineBorder (MaterialColors.LIGHT_GRAY, 1));
 		table.put ("PopupMenu.background", Color.WHITE);
+
 		table.put ("Menu.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put ("Menu.selectionBackground", MaterialColors.LIGHT_GRAY);
 		table.put ("Menu.selectionForeground", Color.BLACK);
@@ -104,7 +103,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("Menu.menuPopupOffsetY", 10);
 
 		table.put ("MenuBar.background", Color.WHITE);
-		table.put ("MenuBar.border", menuBorder);
+		table.put ("MenuBar.border", MaterialBorders.LIGHT_SHADOW_BORDER);
 
 		table.put ("SplitPane.border", BorderFactory.createEmptyBorder ());
 		table.put ("SplitPane.background", Color.WHITE);
@@ -114,20 +113,13 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ScrollPane.background", Color.WHITE);
 		table.put ("ScrollPane.border", BorderFactory.createEmptyBorder ());
 
-		table.put ("TextField.background", MaterialColors.LIGHT_BLUE);
-
-		table.put ("PasswordField.background", MaterialColors.LIGHT_BLUE);
-
 		table.put ("TextArea.background", MaterialColors.LIGHT_GRAY);
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
 		table.put ("TextArea.foreground", Color.BLACK);
 
 		table.put ("OptionPane.background", Color.WHITE);
-		table.put ("OptionPane.border", defaultBorder);
+		table.put ("OptionPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
-		table.put ("Button.background", MaterialColors.LIGHT_BLUE);
-		table.put ("Button.foreground", Color.WHITE);
 		table.put ("Button.highlight", MaterialColors.LIGHT_GRAY);
-		//table.put ("Button.border", BorderFactory.createEmptyBorder (10, 10, 10, 10));
 	}
 }

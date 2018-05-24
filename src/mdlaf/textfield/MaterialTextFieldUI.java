@@ -1,6 +1,7 @@
 package mdlaf.textfield;
 
 import mdlaf.MaterialColors;
+import mdlaf.MaterialFonts;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -19,13 +20,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener {
+public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
 	private Color focusedBackground;
 	private Color unfocusedBackground;
-	private Color focusedSelectedBackground;
-	private Color unfocusedSelectedBackground;
+	private Color focusedSelectionBackground;
+	private Color unfocusedSelectionBackground;
 
 	public static ComponentUI createUI (final JComponent c) {
 		return new MaterialTextFieldUI ();
@@ -38,17 +41,20 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		JTextField textField = (JTextField) c;
 		textField.setOpaque (false);
 		textField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
+		textField.setBackground (MaterialColors.LIGHT_BLUE);
+		textField.setFont (MaterialFonts.REGULAR);
 
 		this.focusedBackground = textField.getBackground ();
 		this.unfocusedBackground = MaterialColors.LIGHT_GRAY;
 
-		this.focusedSelectedBackground = MaterialColors.bleach (focusedBackground, 0.3f);
-		this.unfocusedSelectedBackground = unfocusedBackground;
+		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
+		this.unfocusedSelectionBackground = unfocusedBackground;
 	}
 
 	@Override
 	protected void installListeners () {
 		getComponent ().addFocusListener (this);
+		getComponent ().addPropertyChangeListener (this);
 	}
 
 	@Override
@@ -112,17 +118,24 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 		g2.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 
+		Color lineColor;
+
 		if (getComponent ().hasFocus ()) {
-			c.setBackground (focusedBackground);
-			c.setSelectionColor (focusedSelectedBackground);
+			lineColor = focusedBackground;
+			c.setSelectionColor (focusedSelectionBackground);
 		}
 		else {
-			c.setBackground (unfocusedBackground);
-			c.setSelectionColor (unfocusedSelectedBackground);
+			lineColor = unfocusedBackground;
+			c.setSelectionColor (unfocusedSelectionBackground);
 		}
 
-		g.setColor (c.getBackground ());
-		g.fillRect (0, c.getHeight () - c.getY (), c.getWidth (), 2);
+		int x = getComponent ().getInsets ().left;
+		int y = getComponent ().getInsets ().top;
+		int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
+
+		g.setColor (lineColor);
+		getComponent ().setBackground (lineColor);
+		g.fillRect (x, c.getHeight () - y, w, 2);
 
 		super.paintSafely (g);
 	}
@@ -145,5 +158,17 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	@Override
 	public String getPropertyPrefix () {
 		return "TextField";
+	}
+
+	@Override
+	public void propertyChange (PropertyChangeEvent pce) {
+		if (pce.getPropertyName ().equals ("background")) {
+			Color newColor = (Color) pce.getNewValue ();
+
+			if (!newColor.equals (focusedBackground) && !newColor.equals (unfocusedBackground)) {
+				this.focusedBackground = (Color) pce.getNewValue ();
+				this.focusedSelectionBackground = MaterialColors.bleach (this.focusedBackground, 0.3f);
+			}
+		}
 	}
 }

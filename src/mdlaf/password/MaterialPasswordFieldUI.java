@@ -23,13 +23,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener {
+public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener, PropertyChangeListener {
 
 	private Color focusedBackground;
 	private Color unfocusedBackground;
-	private Color focusedSelectedBackground;
-	private Color unfocusedSelectedBackground;
+	private Color focusedSelectionBackground;
+	private Color unfocusedSelectionBackground;
 
 	public static ComponentUI createUI (final JComponent c) {
 		return new MaterialPasswordFieldUI ();
@@ -39,20 +41,22 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JPasswordField textField = (JPasswordField) c;
-		textField.setOpaque (false);
-		textField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
+		JPasswordField passwordField = (JPasswordField) c;
+		passwordField.setOpaque (false);
+		passwordField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
+		passwordField.setBackground (MaterialColors.LIGHT_BLUE);
 
-		this.focusedBackground = textField.getBackground ();
+		this.focusedBackground = passwordField.getBackground ();
 		this.unfocusedBackground = MaterialColors.LIGHT_GRAY;
 
-		this.focusedSelectedBackground = MaterialColors.bleach (focusedBackground, 0.3f);
-		this.unfocusedSelectedBackground = unfocusedBackground;
+		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
+		this.unfocusedSelectionBackground = unfocusedBackground;
 	}
 
 	@Override
 	protected void installListeners () {
 		getComponent ().addFocusListener (this);
+		getComponent ().addPropertyChangeListener (this);
 	}
 
 	@Override
@@ -118,15 +122,19 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 
 		if (getComponent ().hasFocus ()) {
 			c.setBackground (focusedBackground);
-			c.setSelectionColor (focusedSelectedBackground);
+			c.setSelectionColor (focusedSelectionBackground);
 		}
 		else {
 			c.setBackground (unfocusedBackground);
-			c.setSelectionColor (unfocusedSelectedBackground);
+			c.setSelectionColor (unfocusedSelectionBackground);
 		}
 
+		int x = getComponent ().getInsets ().left;
+		int y = getComponent ().getInsets ().top;
+		int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
+
 		g.setColor (c.getBackground ());
-		g.fillRect (0, c.getHeight () - c.getY (), c.getWidth (), 2);
+		g.fillRect (x, c.getHeight () - y, w, 2);
 
 		super.paintSafely (g);
 	}
@@ -149,6 +157,18 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 	@Override
 	public String getPropertyPrefix () {
 		return "PasswordField";
+	}
+
+	@Override
+	public void propertyChange (PropertyChangeEvent pce) {
+		if (pce.getPropertyName ().equals ("background")) {
+			Color newColor = (Color) pce.getNewValue ();
+
+			if (!newColor.equals (focusedBackground) && !newColor.equals (unfocusedBackground)) {
+				this.focusedBackground = (Color) pce.getNewValue ();
+				this.focusedSelectionBackground = MaterialColors.bleach (this.focusedBackground, 0.3f);
+			}
+		}
 	}
 
 	@Override

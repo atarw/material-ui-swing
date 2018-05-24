@@ -31,4 +31,6 @@ public class MaterialFonts {
 			throw new RuntimeException ("Font " + fontPath + " wasn't loaded");
 		}
 	}
+
+	private MaterialFonts () {}
 }
