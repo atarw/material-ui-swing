@@ -10,7 +10,7 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 	@Override
 	public Component getTableCellEditorComponent (JTable table, Object value, boolean isSelected, int rowIndex, int vColIndex) {
 		JTextField textField = (JTextField) super.getTableCellEditorComponent (table, value, isSelected, rowIndex, vColIndex);
-		textField.setText ((String) value);
+		textField.setText (value.toString ());
 
 		return textField;
 	}

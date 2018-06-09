@@ -146,12 +146,12 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 
 	@Override
 	public void focusGained (FocusEvent e) {
-		getComponent ().setBackground (focusedBackground);
+		e.getComponent ().setBackground (focusedBackground);
 	}
 
 	@Override
 	public void focusLost (FocusEvent e) {
-		getComponent ().setBackground (unfocusedBackground);
+		e.getComponent ().setBackground (unfocusedBackground);
 	}
 
 	@Override

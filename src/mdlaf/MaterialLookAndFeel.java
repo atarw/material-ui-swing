@@ -5,6 +5,7 @@ import mdlaf.password.MaterialPasswordFieldUI;
 import mdlaf.table.MaterialTableHeaderUI;
 import mdlaf.table.MaterialTableUI;
 import mdlaf.textfield.MaterialTextFieldUI;
+import mdlaf.tree.MaterialTreeUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.UIDefaults;
@@ -18,21 +19,22 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String passwordFieldUI = MaterialPasswordFieldUI.class.getCanonicalName ();
 	private static final String tableUI = MaterialTableUI.class.getCanonicalName ();
 	private static final String tableHeaderUI = MaterialTableHeaderUI.class.getCanonicalName ();
+	private static final String treeUI = MaterialTreeUI.class.getCanonicalName ();
 
 	@Override
 
 	public String getName () {
-		return "mdlaf.MaterialLookAndFeel";
+		return "Material Look And Feel";
 	}
 
 	@Override
 	public String getID () {
-		return "mdlaf.MaterialLookAndFeel";
+		return "MaterialLookAndFeel";
 	}
 
 	@Override
 	public String getDescription () {
-		return "A modern, Material Design UI for Java Swing";
+		return "A modern Material Design UI for Java Swing";
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("PasswordFieldUI", passwordFieldUI);
 		table.put ("TableUI", tableUI);
 		table.put ("TableHeaderUI", tableHeaderUI);
+		table.put ("TreeUI", treeUI);
 	}
 
 	@Override

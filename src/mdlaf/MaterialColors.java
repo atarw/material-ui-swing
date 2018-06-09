@@ -13,4 +13,6 @@ public class MaterialColors {
 		int blue = (int) ((color.getBlue () * (1 - amount) / 255 + amount) * 255);
 		return new Color (red, green, blue);
 	}
+
+	private MaterialColors () {}
 }
