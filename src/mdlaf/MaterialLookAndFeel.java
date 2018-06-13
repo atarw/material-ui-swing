@@ -1,6 +1,10 @@
 package mdlaf;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.label.MaterialLabelUI;
+import mdlaf.components.menu.MaterialMenuUI;
+import mdlaf.components.menubar.MaterialMenuBarUI;
+import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
@@ -27,6 +31,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String treeUI = MaterialTreeUI.class.getCanonicalName ();
 	private static final String spinnerUI = MaterialSpinnerUI.class.getCanonicalName ();
 	private static final String panelUI = MaterialPanelUI.class.getCanonicalName ();
+	private static final String labelUI = MaterialLabelUI.class.getCanonicalName ();
+	private static final String menuItemUI = MaterialMenuItemUI.class.getCanonicalName ();
+	private static final String menuBarUI = MaterialMenuBarUI.class.getCanonicalName ();
+	private static final String menuUI = MaterialMenuUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -64,6 +72,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("TreeUI", treeUI);
 		table.put ("SpinnerUI", spinnerUI);
 		table.put ("PanelUI", panelUI);
+		table.put ("LabelUI", labelUI);
+		table.put ("MenuItemUI", menuItemUI);
+		table.put ("MenuBarUI", menuBarUI);
+		table.put ("MenuUI", menuUI);
 	}
 
 	@Override
@@ -78,35 +90,21 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("RadioButton.font", MaterialFonts.REGULAR);
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
-		table.put ("Label.font", MaterialFonts.REGULAR);
-		table.put ("MenuBar.font", MaterialFonts.BOLD);
-		table.put ("MenuItem.font", MaterialFonts.MEDIUM);
-		table.put ("Menu.font", MaterialFonts.BOLD);
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);
 		table.put ("TextArea.font", MaterialFonts.REGULAR);
 
-		table.put ("MenuItem.background", Color.WHITE);
-		table.put ("MenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put ("MenuItem.disabledForeground", new Color (0, 0, 0, 100));
 		table.put ("MenuItem.selectionBackground", MaterialColors.LIGHT_GRAY);
 		table.put ("MenuItem.selectionForeground", Color.BLACK);
-		table.put ("MenuItem.foreground", Color.BLACK);
 
 		table.put ("PopupMenu.border", BorderFactory.createLineBorder (MaterialColors.LIGHT_GRAY, 1));
 		table.put ("PopupMenu.background", Color.WHITE);
 
-		table.put ("Menu.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put ("Menu.selectionBackground", MaterialColors.LIGHT_GRAY);
 		table.put ("Menu.selectionForeground", Color.BLACK);
 		table.put ("Menu.disabledForeground", new Color (0, 0, 0, 100));
-		table.put ("Menu.background", Color.WHITE);
-		table.put ("Menu.foreground", Color.BLACK);
-		table.put ("Menu.opaque", true);
-		table.put ("Menu.menuPopupOffsetY", 10);
-
-		table.put ("MenuBar.background", Color.WHITE);
-		table.put ("MenuBar.border", MaterialBorders.LIGHT_SHADOW_BORDER);
+		table.put ("Menu.menuPopupOffsetY", 3);
 
 		table.put ("SplitPane.border", BorderFactory.createEmptyBorder ());
 		table.put ("SplitPane.background", Color.WHITE);

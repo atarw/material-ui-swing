@@ -10,31 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialDrawingUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/label/MaterialLabelUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/menu/MaterialMenuUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuBarUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/material-ui-swing.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/material-ui-swing.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/DropShadowBorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/shadows/DropShadowBorder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialBorders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialBorders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialFonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialFonts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialUIMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUIMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialUITimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/button/MaterialButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/password/MaterialPasswordFieldUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/table/MaterialTableCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/table/MaterialTableCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/table/MaterialTableHeaderCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderCellRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/table/MaterialTableHeaderUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/table/MaterialTableUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/textfield/MaterialTextFieldUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,44 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MaterialUISwingDemo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialTreeUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialLookAndFeel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MaterialLookAndFeel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialSpinnerUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="313">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,11 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/MaterialUIMovement.java" />
-        <option value="$PROJECT_DIR$/src/MaterialLookAndFeel.java" />
-        <option value="$PROJECT_DIR$/src/MaterialButtonUI.java" />
-        <option value="$PROJECT_DIR$/src/laf/button/MaterialButtonUI.java" />
-        <option value="$PROJECT_DIR$/src/laf/MaterialUISwingDemo.java" />
         <option value="$PROJECT_DIR$/src/laf/MaterialFonts.java" />
         <option value="$PROJECT_DIR$/src/MaterialUIDemo2.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/MaterialUIMovement2.java" />
@@ -174,7 +118,6 @@
         <option value="$PROJECT_DIR$/src/mdlaf/textfield/MaterialTextFieldUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/MaterialDrawingUtils.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerEditorUI.java" />
@@ -185,7 +128,13 @@
         <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/label/MaterialLabelUI.java" />
         <option value="$PROJECT_DIR$/src/MaterialUISwingDemo.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuItemUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/menu/MaterialMenuUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuBarUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java" />
       </list>
     </option>
   </component>
@@ -211,7 +160,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,11 +170,6 @@
             <path>
               <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
               <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -241,42 +184,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="textfield" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="tree" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,19 +201,21 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="mdlaf.table" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="laf" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mdlaf.components.menu" />
+      <recent name="mdlaf.components.menubar" />
       <recent name="mdlaf.tree" />
       <recent name="mdlaf.table" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="mdlaf.table" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -369,12 +284,11 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.2540107" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.2540107" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913043" visible="true" weight="0.3046875" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913043" visible="true" weight="0.3046875" />
       <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
       <window_info anchor="right" id="SciView" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="3" sideWeight="0.5008696" side_tool="true" weight="0.3046875" />
@@ -387,6 +301,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,43 +322,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="75" column="50" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="79" selection-start-line="13" selection-start-column="79" selection-end-line="13" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -550,26 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialDrawingUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -608,30 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialBorders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -652,54 +486,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialSubtleTextFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-          <folding>
-            <element signature="e#1935#2063#0" expanded="true" />
-            <element signature="e#2062#2063#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialSubtleTextFieldUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerEditor.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -710,27 +498,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -747,9 +518,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialBorders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="18" column="15" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
+        <state relative-caret-position="353">
           <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -757,10 +576,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JMenuBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
+        <state relative-caret-position="427">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menu/MaterialMenuUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuBarUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/label/MaterialLabelUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
