@@ -11,10 +11,11 @@ Screenshot in action below (chessboard not included 😛):
 
 ````java
 import mdlaf.*;
+import mdlaf.animation.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class MaterialUIDemo2 {
+public class MaterialUISwingDemo {
 
 	public static void main (String[] args) {
 		try {
