@@ -1,8 +1,9 @@
-package mdlaf.table;
+package mdlaf.components.table;
 
-import mdlaf.MaterialBorders;
-import mdlaf.MaterialColors;
-import mdlaf.MaterialFonts;
+import mdlaf.resources.MaterialBorders;
+import mdlaf.resources.MaterialColors;
+import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -45,6 +46,6 @@ public class MaterialTableUI extends BasicTableUI {
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (g, c);
+		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 }

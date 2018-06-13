@@ -1,8 +1,8 @@
-package mdlaf.table;
+package mdlaf.components.table;
 
-import mdlaf.MaterialBorders;
-import mdlaf.MaterialColors;
-import mdlaf.MaterialFonts;
+import mdlaf.resources.MaterialBorders;
+import mdlaf.resources.MaterialColors;
+import mdlaf.resources.MaterialFonts;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;

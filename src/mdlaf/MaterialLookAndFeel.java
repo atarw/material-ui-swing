@@ -1,11 +1,16 @@
 package mdlaf;
 
-import mdlaf.button.MaterialButtonUI;
-import mdlaf.password.MaterialPasswordFieldUI;
-import mdlaf.table.MaterialTableHeaderUI;
-import mdlaf.table.MaterialTableUI;
-import mdlaf.textfield.MaterialTextFieldUI;
-import mdlaf.tree.MaterialTreeUI;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.panel.MaterialPanelUI;
+import mdlaf.components.password.MaterialPasswordFieldUI;
+import mdlaf.components.spinner.MaterialSpinnerUI;
+import mdlaf.components.table.MaterialTableHeaderUI;
+import mdlaf.components.table.MaterialTableUI;
+import mdlaf.components.textfield.MaterialTextFieldUI;
+import mdlaf.components.tree.MaterialTreeUI;
+import mdlaf.resources.MaterialBorders;
+import mdlaf.resources.MaterialColors;
+import mdlaf.resources.MaterialFonts;
 
 import javax.swing.BorderFactory;
 import javax.swing.UIDefaults;
@@ -20,9 +25,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String tableUI = MaterialTableUI.class.getCanonicalName ();
 	private static final String tableHeaderUI = MaterialTableHeaderUI.class.getCanonicalName ();
 	private static final String treeUI = MaterialTreeUI.class.getCanonicalName ();
+	private static final String spinnerUI = MaterialSpinnerUI.class.getCanonicalName ();
+	private static final String panelUI = MaterialPanelUI.class.getCanonicalName ();
 
 	@Override
-
 	public String getName () {
 		return "Material Look And Feel";
 	}
@@ -56,6 +62,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("TableUI", tableUI);
 		table.put ("TableHeaderUI", tableHeaderUI);
 		table.put ("TreeUI", treeUI);
+		table.put ("SpinnerUI", spinnerUI);
+		table.put ("PanelUI", panelUI);
 	}
 
 	@Override
@@ -67,10 +75,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
-		System.setProperty ("awt.useSystemAAFontSettings", "on");
-		System.setProperty ("swing.aatext", "true");
-		System.setProperty ("sun.java2d.xrender", "true");
-
 		table.put ("RadioButton.font", MaterialFonts.REGULAR);
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
@@ -79,12 +83,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("MenuItem.font", MaterialFonts.MEDIUM);
 		table.put ("Menu.font", MaterialFonts.BOLD);
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
-		table.put ("Panel.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);
 		table.put ("TextArea.font", MaterialFonts.REGULAR);
-
-		table.put ("Panel.background", Color.WHITE);
-		table.put ("Panel.border", BorderFactory.createEmptyBorder ());
 
 		table.put ("MenuItem.background", Color.WHITE);
 		table.put ("MenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));

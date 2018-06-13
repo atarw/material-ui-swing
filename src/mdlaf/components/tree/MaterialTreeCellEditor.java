@@ -1,4 +1,6 @@
-package mdlaf.tree;
+package mdlaf.components.tree;
+
+import mdlaf.components.textfield.MaterialTextFieldUI;
 
 import javax.swing.JTextField;
 import javax.swing.JTree;
@@ -15,6 +17,7 @@ public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 
 	private void init () {
 		textField = new JTextField ();
+		textField.setUI (new MaterialTextFieldUI ());
 
 		textField.addKeyListener (new KeyAdapter () {
 			@Override

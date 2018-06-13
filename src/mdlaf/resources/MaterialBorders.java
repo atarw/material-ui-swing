@@ -1,4 +1,6 @@
-package mdlaf;
+package mdlaf.resources;
+
+import mdlaf.shadows.DropShadowBorder;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;

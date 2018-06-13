@@ -1,23 +1,19 @@
-package mdlaf.password;
+package mdlaf.components.textfield;
 
-import mdlaf.MaterialColors;
+import mdlaf.resources.MaterialColors;
+import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.resources.MaterialFonts;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicPasswordFieldUI;
-import javax.swing.text.Element;
-import javax.swing.text.PasswordView;
-import javax.swing.text.View;
+import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -26,27 +22,36 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener, PropertyChangeListener {
+public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
 	private Color focusedBackground;
 	private Color unfocusedBackground;
 	private Color focusedSelectionBackground;
 	private Color unfocusedSelectionBackground;
+	private boolean drawLine;
 
 	public static ComponentUI createUI (final JComponent c) {
-		return new MaterialPasswordFieldUI ();
+		return new MaterialTextFieldUI ();
 	}
 
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JPasswordField passwordField = (JPasswordField) c;
-		passwordField.setOpaque (false);
-		passwordField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
-		passwordField.setBackground (MaterialColors.LIGHT_BLUE);
+		JTextField textField = (JTextField) c;
+		textField.setOpaque (false);
 
-		this.focusedBackground = passwordField.getBackground ();
+		if (drawLine) {
+			textField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
+		}
+		else {
+			textField.setBorder (BorderFactory.createEmptyBorder (2, 2, 2, 2));
+		}
+
+		textField.setBackground (MaterialColors.LIGHT_BLUE);
+		textField.setFont (MaterialFonts.REGULAR);
+
+		this.focusedBackground = textField.getBackground ();
 		this.unfocusedBackground = MaterialColors.LIGHT_GRAY;
 
 		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
@@ -115,33 +120,37 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 
 	@Override
 	public void paintSafely (Graphics g) {
-		JPasswordField c = (JPasswordField) getComponent ();
-		Graphics2D g2 = (Graphics2D) g;
+		JTextField c = (JTextField) getComponent ();
+		g = MaterialDrawingUtils.getAliasedGraphics (g);
 
-		g2.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+		Color lineColor;
 
 		if (getComponent ().hasFocus ()) {
-			c.setBackground (focusedBackground);
+			lineColor = focusedBackground;
 			c.setSelectionColor (focusedSelectionBackground);
 		}
 		else {
-			c.setBackground (unfocusedBackground);
+			lineColor = unfocusedBackground;
 			c.setSelectionColor (unfocusedSelectionBackground);
 		}
 
-		int x = getComponent ().getInsets ().left;
-		int y = getComponent ().getInsets ().top;
-		int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
+		g.setColor (lineColor);
+		getComponent ().setBackground (lineColor);
 
-		g.setColor (c.getBackground ());
-		g.fillRect (x, c.getHeight () - y, w, 2);
+		if (drawLine) {
+			int x = getComponent ().getInsets ().left;
+			int y = getComponent ().getInsets ().top;
+			int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
+
+			g.fillRect (x, c.getHeight () - y, w, 2);
+		}
 
 		super.paintSafely (g);
 	}
 
 	@Override
 	public void paintBackground (final Graphics g) {
-		super.paintBackground (g);
+		super.paintBackground (MaterialDrawingUtils.getAliasedGraphics (g));
 	}
 
 	@Override
@@ -156,7 +165,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 
 	@Override
 	public String getPropertyPrefix () {
-		return "PasswordField";
+		return "TextField";
 	}
 
 	@Override
@@ -171,31 +180,12 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 		}
 	}
 
-	@Override
-	public View create (Element elem) {
-		return new MaterialPasswordView (elem);
+	public MaterialTextFieldUI () {
+		this (true);
 	}
 
-	private static class MaterialPasswordView extends PasswordView {
-
-		// depreciated in Java 9 and above - replace method with float drawEchoCharacter(Graphics2D g, float x, float y, char c)
-		@Override
-		protected int drawEchoCharacter (Graphics g, int x, int y, char c) {
-			Graphics2D g2 = (Graphics2D) g.create ();
-			g2.setRenderingHint (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-			FontMetrics fm = g2.getFontMetrics ();
-			int r = fm.charWidth (c) - 2;
-
-			g2.setPaint (Color.BLACK);
-			g2.fillOval (x + 1, y + 5 - fm.getAscent (), r, r);
-			g2.dispose ();
-
-			return x + fm.charWidth (c);
-		}
-
-		private MaterialPasswordView (Element elem) {
-			super (elem);
-		}
+	public MaterialTextFieldUI (boolean drawLine) {
+		super ();
+		this.drawLine = drawLine;
 	}
 }

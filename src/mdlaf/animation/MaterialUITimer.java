@@ -1,4 +1,4 @@
-package mdlaf;
+package mdlaf.animation;
 
 import javax.swing.JComponent;
 import javax.swing.Timer;

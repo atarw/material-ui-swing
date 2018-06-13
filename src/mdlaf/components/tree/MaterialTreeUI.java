@@ -1,6 +1,7 @@
-package mdlaf.tree;
+package mdlaf.components.tree;
 
-import mdlaf.MaterialFonts;
+import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JTree;
@@ -8,6 +9,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
+import java.awt.Graphics;
 
 public class MaterialTreeUI extends BasicTreeUI {
 
@@ -33,5 +35,11 @@ public class MaterialTreeUI extends BasicTreeUI {
 		MaterialTreeUI ui = (MaterialTreeUI) tree.getUI ();
 		ui.setLeftChildIndent (10);
 		ui.setRightChildIndent (10);
+	}
+
+	@Override
+	public void paint (Graphics g, JComponent c) {
+		g = MaterialDrawingUtils.getAliasedGraphics (g);
+		super.paint (g, c);
 	}
 }

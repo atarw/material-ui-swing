@@ -1,4 +1,4 @@
-package mdlaf.table;
+package mdlaf.components.table;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;

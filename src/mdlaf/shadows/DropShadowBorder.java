@@ -1,5 +1,5 @@
-package mdlaf;/*
- * $Id: mdlaf.DropShadowBorder.java,v 1.10 2005/10/13 17:19:34 rbair Exp $
+package mdlaf.shadows;/*
+ * $Id: mdlaf.shadows.DropShadowBorder.java,v 1.10 2005/10/13 17:19:34 rbair Exp $
  *
  * Copyright 2004 Sun Microsystems, Inc., 4150 Network Circle,
  * Santa Clara, California 95054, U.S.A. All rights reserved.
@@ -41,9 +41,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Implements a DropShadow for components. In general, the mdlaf.DropShadowBorder will
+ * Implements a DropShadow for components. In general, the mdlaf.shadows.DropShadowBorder will
  * work with any rectangular components that do not have a default border installed
- * as part of the look and feel, or otherwise. For example, mdlaf.DropShadowBorder works
+ * as part of the look and feel, or otherwise. For example, mdlaf.shadows.DropShadowBorder works
  * wonderfully with JPanel, but horribly with JComboBox.
  *
  * @author rbair
@@ -98,7 +98,7 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 		 */
 		Map<Position, BufferedImage> images = getImages (null);
 
-		//compute the edges of the component -- not including the border
+		//compute the edges of the components -- not including the border
 		//Insets borderInsets = getBorderInsets (c);
 		// int leftEdge = x + borderInsets.left - lineWidth;
 		// int rightEdge = x + width - borderInsets.right;
@@ -109,10 +109,10 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 
 		//The location and size of the shadows depends on which shadows are being
 		//drawn. For instance, if the left & bottom shadows are being drawn, then
-		//the left shadow extends all the way down to the corner, a corner is drawn,
-		//and then the bottom shadow begins at the corner. If, however, only the
-		//bottom shadow is drawn, then the bottom-left corner is drawn to the
-		//right of the corner, and the bottom shadow is somewhat shorter than before.
+		//the left shadows extends all the way down to the corner, a corner is drawn,
+		//and then the bottom shadows begins at the corner. If, however, only the
+		//bottom shadows is drawn, then the bottom-left corner is drawn to the
+		//right of the corner, and the bottom shadows is somewhat shorter than before.
 
 		Point topLeftShadowPoint = null;
 		if (showLeftShadow || showTopShadow) {
@@ -212,13 +212,13 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 			images = new HashMap<Position, BufferedImage> ();
 
 			/*
-			 * Do draw a drop shadow, I have to:
+			 * Do draw a drop shadows, I have to:
 			 *  1) Create a rounded rectangle
 			 *  2) Create a BufferedImage to draw the rounded rect in
 			 *  3) Translate the graphics for the image, so that the rectangle
 			 *     is centered in the drawn space. The border around the rectangle
 			 *     needs to be shadowWidth wide, so that there is space for the
-			 *     shadow to be drawn.
+			 *     shadows to be drawn.
 			 *  4) Draw the rounded rect as black, with an opacity of 50%
 			 *  5) Create the BLUR_KERNEL
 			 *  6) Blur the image

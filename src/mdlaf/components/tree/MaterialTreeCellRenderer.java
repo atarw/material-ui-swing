@@ -1,8 +1,8 @@
-package mdlaf.tree;
+package mdlaf.components.tree;
 
-import mdlaf.MaterialColors;
-import mdlaf.MaterialFonts;
-import mdlaf.MaterialImages;
+import mdlaf.resources.MaterialColors;
+import mdlaf.resources.MaterialFonts;
+import mdlaf.resources.MaterialImages;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;

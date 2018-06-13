@@ -1,4 +1,4 @@
-package mdlaf;
+package mdlaf.resources;
 
 import java.awt.Color;
 

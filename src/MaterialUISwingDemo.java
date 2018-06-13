@@ -1,5 +1,5 @@
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.MaterialUIMovement;
+import mdlaf.animation.MaterialUIMovement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,7 +60,7 @@ public class MaterialUISwingDemo {
 		MaterialUIMovement.add (item1, gray);
 
 		// you can also pass in extra parameters indicating how many intermediate colors to display, as well as the "frame rate" of the animation
-		// there will be 5 intermediate colors displayed in the transition from the original component color to the new one specified
+		// there will be 5 intermediate colors displayed in the transition from the original components color to the new one specified
 		// the "frame rate" of the transition will be 1000 / 30, or 30 FPS
 		// the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
 		Color blue = new Color (34, 167, 240);

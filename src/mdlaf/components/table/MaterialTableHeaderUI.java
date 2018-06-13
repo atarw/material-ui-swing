@@ -1,4 +1,6 @@
-package mdlaf.table;
+package mdlaf.components.table;
+
+import mdlaf.resources.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
@@ -17,12 +19,11 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		super.installUI (c);
 
 		JTableHeader header = (JTableHeader) c;
-
 		header.setDefaultRenderer (new MaterialTableHeaderCellRenderer ());
 	}
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (g, c);
+		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 }
