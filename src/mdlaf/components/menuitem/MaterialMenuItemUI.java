@@ -14,7 +14,7 @@ import java.awt.Graphics;
 
 public class MaterialMenuItemUI extends BasicMenuItemUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuItemUI ();
 	}
 

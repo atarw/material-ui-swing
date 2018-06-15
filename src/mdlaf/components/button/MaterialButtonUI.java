@@ -43,9 +43,4 @@ public class MaterialButtonUI extends BasicButtonUI {
 		g.setColor (c.getBackground ());
 		g.fillRoundRect (0, 0, c.getWidth (), c.getHeight (), 7, 7);
 	}
-
-	@Override
-	public String getPropertyPrefix () {
-		return "Button";
-	}
 }

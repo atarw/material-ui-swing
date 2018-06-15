@@ -7,24 +7,43 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 public class MaterialUITimer implements MouseListener, ActionListener {
 
-	private List<Color> colors;
+	private Color from, to;
+	private boolean forward;
+	private int alpha, steps;
+	private int[] forwardDeltas, backwardDeltas;
+
 	private JComponent component;
 	private Timer timer;
-	private int alpha;
-	private int increment;
+
+	private Color nextColor () {
+		int rValue = from.getRed () - alpha * forwardDeltas[0];
+		int gValue = from.getGreen () - alpha * forwardDeltas[1];
+		int bValue = from.getBlue () - alpha * forwardDeltas[2];
+		int aValue = from.getAlpha () - alpha * forwardDeltas[3];
+
+		return new Color (rValue, gValue, bValue, aValue);
+	}
+
+	private Color previousColor () {
+		int rValue = to.getRed () - (steps - alpha) * backwardDeltas[0];
+		int gValue = to.getGreen () - (steps - alpha) * backwardDeltas[1];
+		int bValue = to.getBlue () - (steps - alpha) * backwardDeltas[2];
+		int aValue = to.getAlpha () - (steps - alpha) * backwardDeltas[3];
+
+		return new Color (rValue, gValue, bValue, aValue);
+	}
 
 	@Override
 	public void mousePressed (MouseEvent me) {
-		alpha = colors.size () - 1;
-		increment = -1;
+		alpha = steps - 1;
+		forward = false;
 		timer.start ();
 
 		alpha = 0;
-		increment = 1;
+		forward = true;
 		timer.start ();
 	}
 
@@ -40,32 +59,56 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseExited (MouseEvent me) {
-		alpha = colors.size () - 1;
-		increment = -1;
+		System.out.println ("bwd " + from);
+		alpha = steps - 1;
+		forward = false;
 		timer.start ();
 	}
 
 	@Override
 	public void mouseEntered (MouseEvent me) {
+		System.out.println ("fwd " + to);
 		alpha = 0;
-		increment = 1;
+		forward = true;
 		timer.start ();
 	}
 
 	@Override
 	public void actionPerformed (ActionEvent ae) {
-		alpha += increment;
-		component.setBackground (colors.get (alpha));
+		if (forward) {
+			component.setBackground (nextColor ());
+			++alpha;
+		}
+		else {
+			component.setBackground (previousColor ());
+			--alpha;
+		}
 
-		if (alpha == colors.size () - 1 || alpha == 0) {
+		if (alpha == steps + 1 || alpha == -1) {
 			timer.stop ();
 		}
 	}
 
-	protected MaterialUITimer (List<Color> colors, JComponent component, int interval) {
-		this.colors = colors;
-		this.component = component;
+	protected MaterialUITimer (JComponent component, Color to, int steps, int interval) {
+		this.from = component.getBackground ();
+		this.to = to;
 
+		this.forwardDeltas = new int[4];
+		this.backwardDeltas = new int[4];
+
+		forwardDeltas[0] = (from.getRed () - to.getRed ()) / steps;
+		forwardDeltas[1] = (from.getGreen () - to.getGreen ()) / steps;
+		forwardDeltas[2] = (from.getBlue () - to.getBlue ()) / steps;
+		forwardDeltas[3] = (from.getAlpha () - to.getAlpha ()) / steps;
+
+		backwardDeltas[0] = (to.getRed () - from.getRed ()) / steps;
+		backwardDeltas[1] = (to.getGreen () - from.getGreen ()) / steps;
+		backwardDeltas[2] = (to.getBlue () - from.getBlue ()) / steps;
+		backwardDeltas[3] = (to.getAlpha () - from.getAlpha ()) / steps;
+
+		this.steps = steps;
+
+		this.component = component;
 		this.component.addMouseListener (this);
 		timer = new Timer (interval, this);
 	}

@@ -34,7 +34,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 	private Color focusedSelectionBackground;
 	private Color unfocusedSelectionBackground;
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialPasswordFieldUI ();
 	}
 
@@ -151,11 +151,6 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 	@Override
 	public void focusLost (FocusEvent e) {
 		e.getComponent ().setBackground (unfocusedBackground);
-	}
-
-	@Override
-	public String getPropertyPrefix () {
-		return "PasswordField";
 	}
 
 	@Override

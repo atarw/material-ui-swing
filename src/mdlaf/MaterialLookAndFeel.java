@@ -1,6 +1,7 @@
 package mdlaf;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -35,6 +36,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String menuItemUI = MaterialMenuItemUI.class.getCanonicalName ();
 	private static final String menuBarUI = MaterialMenuBarUI.class.getCanonicalName ();
 	private static final String menuUI = MaterialMenuUI.class.getCanonicalName ();
+	private static final String checkBoxUI = MaterialCheckBoxUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -76,6 +78,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("MenuItemUI", menuItemUI);
 		table.put ("MenuBarUI", menuBarUI);
 		table.put ("MenuUI", menuUI);
+		table.put ("CheckBoxUI", checkBoxUI);
 	}
 
 	@Override
@@ -88,7 +91,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		super.initComponentDefaults (table);
 
 		table.put ("RadioButton.font", MaterialFonts.REGULAR);
-		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);

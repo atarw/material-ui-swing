@@ -30,7 +30,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	private Color unfocusedSelectionBackground;
 	private boolean drawLine;
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTextFieldUI ();
 	}
 
@@ -161,11 +161,6 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	@Override
 	public void focusLost (FocusEvent e) {
 		e.getComponent ().setBackground (unfocusedBackground);
-	}
-
-	@Override
-	public String getPropertyPrefix () {
-		return "TextField";
 	}
 
 	@Override

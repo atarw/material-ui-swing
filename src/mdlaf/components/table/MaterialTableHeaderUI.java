@@ -10,7 +10,7 @@ import java.awt.Graphics;
 
 public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableHeaderUI ();
 	}
 

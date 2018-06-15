@@ -14,7 +14,7 @@ import java.awt.Graphics;
 
 public class MaterialTableUI extends BasicTableUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();
 	}
 

@@ -13,7 +13,7 @@ import java.awt.Graphics;
 
 public class MaterialTreeUI extends BasicTreeUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTreeUI ();
 	}
 

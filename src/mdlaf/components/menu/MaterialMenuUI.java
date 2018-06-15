@@ -1,6 +1,5 @@
 package mdlaf.components.menu;
 
-import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.resources.MaterialDrawingUtils;
 import mdlaf.resources.MaterialFonts;
 
@@ -14,7 +13,7 @@ import java.awt.Graphics;
 
 public class MaterialMenuUI extends BasicMenuUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuUI ();
 	}
 

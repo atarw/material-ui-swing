@@ -13,7 +13,7 @@ import java.awt.Graphics;
 
 public class MaterialLabelUI extends BasicLabelUI {
 
-	public static ComponentUI createUI (final JComponent c) {
+	public static ComponentUI createUI (JComponent c) {
 		return new MaterialLabelUI ();
 	}
 
@@ -25,6 +25,7 @@ public class MaterialLabelUI extends BasicLabelUI {
 		label.setFont (MaterialFonts.REGULAR);
 		label.setBackground (Color.WHITE);
 		label.setForeground (Color.BLACK);
+		label.setOpaque (true);
 		label.setBorder (BorderFactory.createEmptyBorder ());
 	}
 
