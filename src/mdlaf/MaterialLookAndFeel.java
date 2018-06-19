@@ -8,6 +8,7 @@ import mdlaf.components.menubar.MaterialMenuBarUI;
 import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
+import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
@@ -37,6 +38,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String menuBarUI = MaterialMenuBarUI.class.getCanonicalName ();
 	private static final String menuUI = MaterialMenuUI.class.getCanonicalName ();
 	private static final String checkBoxUI = MaterialCheckBoxUI.class.getCanonicalName ();
+	private static final String radioButtonUI = MaterialRadioButtonUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -79,6 +81,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("MenuBarUI", menuBarUI);
 		table.put ("MenuUI", menuUI);
 		table.put ("CheckBoxUI", checkBoxUI);
+		table.put ("RadioButtonUI", radioButtonUI);
 	}
 
 	@Override
@@ -90,7 +93,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
-		table.put ("RadioButton.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);

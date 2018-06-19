@@ -13,6 +13,8 @@ public class MaterialImages {
 	public static final BufferedImage PAINTED_CHECKED_BOX = loadImg ("/imgs/painted_checked_box.png");
 	public static final BufferedImage OUTLINED_CHECKED_BOX = loadImg ("/imgs/outlined_checked_box.png");
 	public static final BufferedImage UNCHECKED_BOX = loadImg ("/imgs/unchecked_box.png");
+        public static final BufferedImage RADIO_BUTTON_ON = loadImg ("/imgs/radio_button_on.png");
+        public static final BufferedImage RADIO_BUTTON_OFF = loadImg ("/imgs/radio_button_off.png");
 
 	private static BufferedImage loadImg (String imgPath) {
 		try (InputStream inputStream = MaterialImages.class.getResourceAsStream (imgPath)) {

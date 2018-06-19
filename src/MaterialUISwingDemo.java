@@ -7,6 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.BorderLayout;
@@ -65,6 +66,9 @@ public class MaterialUISwingDemo {
 		// the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
 		Color blue = new Color (34, 167, 240);
 		MaterialUIMovement.add (button, blue, 5, 1000 / 30);
+
+		JRadioButton b = new JRadioButton ("test");
+		content.add (b);
 
 		// make everything visible to the world
 		frame.pack ();

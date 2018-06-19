@@ -59,7 +59,6 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseExited (MouseEvent me) {
-		System.out.println ("bwd " + from);
 		alpha = steps - 1;
 		forward = false;
 		timer.start ();
@@ -67,7 +66,6 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseEntered (MouseEvent me) {
-		System.out.println ("fwd " + to);
 		alpha = 0;
 		forward = true;
 		timer.start ();
