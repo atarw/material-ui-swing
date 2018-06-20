@@ -14,6 +14,7 @@ import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
 import mdlaf.components.textfield.MaterialTextFieldUI;
+import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
@@ -41,6 +42,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String checkBoxUI = MaterialCheckBoxUI.class.getCanonicalName ();
 	private static final String radioButtonUI = MaterialRadioButtonUI.class.getCanonicalName ();
 	private static final String tabbedPaneUI = MaterialTabbedPaneUI.class.getCanonicalName ();
+	private static final String toggleButtonUI = MaterialToggleButtonUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -85,6 +87,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("CheckBoxUI", checkBoxUI);
 		table.put ("RadioButtonUI", radioButtonUI);
 		table.put ("TabbedPaneUI", tabbedPaneUI);
+		table.put ("ToggleButtonUI", toggleButtonUI);
 	}
 
 	@Override

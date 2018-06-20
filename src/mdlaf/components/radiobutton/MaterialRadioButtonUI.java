@@ -12,7 +12,6 @@ import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
 /*
  * Contributed by https://github.com/downToHell
  * */
