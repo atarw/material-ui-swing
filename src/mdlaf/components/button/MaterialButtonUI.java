@@ -26,7 +26,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 		button.setOpaque (false);
 		button.setBorder (BorderFactory.createEmptyBorder (7, 17, 7, 17));
 
-		button.setBackground (MaterialColors.LIGHT_BLUE);
+		button.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button.setForeground (Color.WHITE);
 		button.setFont (MaterialFonts.MEDIUM);
 	}

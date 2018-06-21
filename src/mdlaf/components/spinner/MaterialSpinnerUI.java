@@ -54,7 +54,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 		JButton button = new JButton (new ImageIcon (MaterialImages.UP_ARROW));
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.LIGHT_GRAY);
+		button.setBackground (MaterialColors.GRAY_200);
 		button.setBorder (BorderFactory.createEmptyBorder ());
 		installNextButtonListeners (button);
 
@@ -66,7 +66,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 		JButton button = new JButton (new ImageIcon (MaterialImages.DOWN_ARROW));
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.LIGHT_GRAY);
+		button.setBackground (MaterialColors.GRAY_200);
 		button.setBorder (BorderFactory.createEmptyBorder ());
 		installPreviousButtonListeners (button);
 

@@ -24,7 +24,7 @@ public class MaterialTableUI extends BasicTableUI {
 
 		JTable table = (JTable) c;
 		table.setOpaque (false);
-		table.setSelectionBackground (MaterialColors.LIGHT_GRAY);
+		table.setSelectionBackground (MaterialColors.GRAY_200);
 		table.setSelectionForeground (Color.BLACK);
 		table.setBackground (Color.WHITE);
 		table.setFont (MaterialFonts.REGULAR);
@@ -36,9 +36,9 @@ public class MaterialTableUI extends BasicTableUI {
 		//table.setPreferredScrollableViewportSize (table.getPreferredSize ());
 
 		table.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
-		table.setGridColor (MaterialColors.LIGHT_GRAY);
+		table.setGridColor (MaterialColors.GRAY_200);
 
-		table.setSelectionBackground (MaterialColors.bleach (MaterialColors.LIGHT_GRAY, 0.5f));
+		table.setSelectionBackground (MaterialColors.bleach (MaterialColors.GRAY_200, 0.5f));
 
 		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());

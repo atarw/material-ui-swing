@@ -48,11 +48,11 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 			textField.setBorder (BorderFactory.createEmptyBorder (2, 2, 2, 2));
 		}
 
-		textField.setBackground (MaterialColors.LIGHT_BLUE);
+		textField.setBackground (MaterialColors.LIGHT_BLUE_400);
 		textField.setFont (MaterialFonts.REGULAR);
 
 		this.focusedBackground = textField.getBackground ();
-		this.unfocusedBackground = MaterialColors.LIGHT_GRAY;
+		this.unfocusedBackground = MaterialColors.GRAY_200;
 
 		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
 		this.unfocusedSelectionBackground = unfocusedBackground;
