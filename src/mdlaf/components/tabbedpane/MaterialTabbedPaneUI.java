@@ -32,7 +32,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 		darkShadow = null;
 		shadow = null;
-		lightHighlight = MaterialColors.LIGHT_GRAY;
+		lightHighlight = MaterialColors.GRAY_200;
 	}
 
 	@Override

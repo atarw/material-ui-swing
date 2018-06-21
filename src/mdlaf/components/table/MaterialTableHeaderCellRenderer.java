@@ -18,7 +18,7 @@ public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 		JComponent component = (JComponent) super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
 		component.setBorder (BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (10, 10, 10, 10)));
 		component.setFont (MaterialFonts.BOLD);
-		component.setBackground (MaterialColors.LIGHT_GRAY);
+		component.setBackground (MaterialColors.GRAY_200);
 
 		this.setHorizontalAlignment (SwingConstants.CENTER);
 		this.setVerticalAlignment (SwingConstants.CENTER);
