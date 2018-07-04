@@ -26,7 +26,7 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 		setTextSelectionColor (Color.BLACK);
 		setTextNonSelectionColor (Color.BLACK);
 
-		setBackgroundSelectionColor (MaterialColors.LIGHT_GRAY);
+		setBackgroundSelectionColor (MaterialColors.GRAY_200);
 		setBackgroundNonSelectionColor (Color.WHITE);
 
 		setBorderSelectionColor (null);

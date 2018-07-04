@@ -45,10 +45,10 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 		JPasswordField passwordField = (JPasswordField) c;
 		passwordField.setOpaque (false);
 		passwordField.setBorder (BorderFactory.createEmptyBorder (5, 2, 10, 0));
-		passwordField.setBackground (MaterialColors.LIGHT_BLUE);
+		passwordField.setBackground (MaterialColors.LIGHT_BLUE_400);
 
 		this.focusedBackground = passwordField.getBackground ();
-		this.unfocusedBackground = MaterialColors.LIGHT_GRAY;
+		this.unfocusedBackground = MaterialColors.GRAY_200;
 
 		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
 		this.unfocusedSelectionBackground = unfocusedBackground;
