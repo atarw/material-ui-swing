@@ -9,6 +9,7 @@ import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
+import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
@@ -43,6 +44,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String radioButtonUI = MaterialRadioButtonUI.class.getCanonicalName ();
 	private static final String tabbedPaneUI = MaterialTabbedPaneUI.class.getCanonicalName ();
 	private static final String toggleButtonUI = MaterialToggleButtonUI.class.getCanonicalName ();
+	private static final String scrollBarUI = MaterialScrollBarUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -88,11 +90,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("RadioButtonUI", radioButtonUI);
 		table.put ("TabbedPaneUI", tabbedPaneUI);
 		table.put ("ToggleButtonUI", toggleButtonUI);
-	}
-
-	@Override
-	protected void initSystemColorDefaults (UIDefaults table) {
-		super.initSystemColorDefaults (table);
+		table.put ("ScrollBarUI", scrollBarUI);
 	}
 
 	@Override
