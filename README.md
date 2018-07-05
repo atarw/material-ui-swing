@@ -36,7 +36,7 @@ public class MaterialUISwingDemo {
 		frame.add (content, BorderLayout.CENTER);
 
 		// on hover, button will change to a light blue
-		MaterialUIMovement.add (button, new Color (34, 167, 240));
+		MaterialUIMovement.add (button, MaterialColors.BLUE_400);
 
 		frame.pack ();
 		frame.setVisible (true);

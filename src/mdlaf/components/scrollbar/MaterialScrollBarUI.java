@@ -1,6 +1,5 @@
 package mdlaf.components.scrollbar;
 
-import javafx.scene.paint.Material;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
 import mdlaf.resources.MaterialFonts;
@@ -13,7 +12,6 @@ import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 /*
@@ -32,7 +30,8 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 		JScrollBar scrollBar = (JScrollBar) c;
 		scrollBar.setFont (MaterialFonts.REGULAR);
-		thumbColor = MaterialColors.LIGHT_GRAY;
+		trackColor = MaterialColors.GRAY_200;
+		thumbColor = thumbDarkShadowColor = thumbHighlightColor = thumbLightShadowColor = MaterialColors.GRAY_300;
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		JButton button = new JButton (new ImageIcon (MaterialImages.UP_ARROW));
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.LIGHT_GRAY);
+		button.setBackground (MaterialColors.GRAY_300);
 		button.setBorder (BorderFactory.createEmptyBorder ());
 
 		return button;
@@ -56,20 +55,9 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		JButton button = new JButton (new ImageIcon (MaterialImages.DOWN_ARROW));
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.LIGHT_GRAY);
+		button.setBackground (MaterialColors.GRAY_300);
 		button.setBorder (BorderFactory.createEmptyBorder ());
 
 		return button;
 	}
-
-	/*@Override
-	protected void paintTrack (Graphics g, JComponent c, Rectangle trackBounds) {
-		g.setColor (Color.RED);
-		g.fillRect (trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
-	}*/
-
-	/*@Override
-	protected void paintThumb (Graphics g, JComponent c, Rectangle thumbBounds) {
-
-	}*/
 }
