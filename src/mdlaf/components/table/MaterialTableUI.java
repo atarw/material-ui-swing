@@ -32,13 +32,9 @@ public class MaterialTableUI extends BasicTableUI {
 		table.getTableHeader ().setResizingAllowed (true);
 		table.setRowHeight (table.getRowHeight () + 25);
 
-		//table.setFillsViewportHeight (true);
-		//table.setPreferredScrollableViewportSize (table.getPreferredSize ());
-
 		table.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
 		table.setGridColor (MaterialColors.GRAY_200);
-
-		table.setSelectionBackground (MaterialColors.bleach (MaterialColors.GRAY_200, 0.5f));
+		table.setSelectionBackground (MaterialColors.GRAY_100);
 
 		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
