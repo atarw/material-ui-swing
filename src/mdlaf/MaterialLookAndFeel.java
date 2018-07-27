@@ -2,6 +2,8 @@ package mdlaf;
 
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
+import mdlaf.components.combobox.MaterialComboBoxRender;
+import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -16,6 +18,7 @@ import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.togglebutton.MaterialToggleButtonUI;
+import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
@@ -45,6 +48,17 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String tabbedPaneUI = MaterialTabbedPaneUI.class.getCanonicalName ();
 	private static final String toggleButtonUI = MaterialToggleButtonUI.class.getCanonicalName ();
 	private static final String scrollBarUI = MaterialScrollBarUI.class.getCanonicalName ();
+	//Add Vincenzo
+	private static final String toolBarUI = MaterialToolBarUI.class.getCanonicalName();
+	private static final String comboBoxUI = MaterialComboBoxUI.class.getCanonicalName();
+
+	public String getToolBarUI() {
+		return toolBarUI;
+	}
+	
+	public String getComboBoxUI() {
+		return comboBoxUI;
+	}
 
 	@Override
 	public String getName () {
@@ -91,6 +105,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("TabbedPaneUI", tabbedPaneUI);
 		table.put ("ToggleButtonUI", toggleButtonUI);
 		table.put ("ScrollBarUI", scrollBarUI);
+		table.put ("ToolBarUI", toolBarUI);
+		table.put ("ComboBoxUI", comboBoxUI);
 	}
 
 	@Override
