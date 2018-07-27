@@ -54,6 +54,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 
+	public String getToolBarUI() {
+		return toolBarUI;
+	}
+	
+	public String getComboBoxUI() {
+		return comboBoxUI;
+	}
+
 	@Override
 	public String getName () {
 		return "Material Look And Feel";
