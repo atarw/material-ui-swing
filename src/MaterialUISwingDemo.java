@@ -62,7 +62,7 @@ public class MaterialUISwingDemo {
 		// there will be 5 intermediate colors displayed in the transition from the original components color to the new one specified
 		// the "frame rate" of the transition will be 1000 / 30, or 30 FPS
 		// the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
-		MaterialUIMovement.add (button, MaterialColors.BLUE_400, 5, 1000 / 30);
+		MaterialUIMovement.add (button, MaterialColors.LIGHT_BLUE_500, 5, 1000 / 30);
 
 		// make everything visible to the world
 		frame.pack ();

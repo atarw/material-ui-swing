@@ -2,12 +2,14 @@ package mdlaf;
 
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
+import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
 import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
+import mdlaf.components.popupmenu.MaterialPopupMenuUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
@@ -16,6 +18,7 @@ import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.togglebutton.MaterialToggleButtonUI;
+import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
@@ -45,6 +48,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String tabbedPaneUI = MaterialTabbedPaneUI.class.getCanonicalName ();
 	private static final String toggleButtonUI = MaterialToggleButtonUI.class.getCanonicalName ();
 	private static final String scrollBarUI = MaterialScrollBarUI.class.getCanonicalName ();
+	private static final String comboBoxUI = MaterialComboBoxUI.class.getCanonicalName ();
+	private static final String popupMenuUI = MaterialPopupMenuUI.class.getCanonicalName ();
+	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
+	// private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -91,13 +98,16 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("TabbedPaneUI", tabbedPaneUI);
 		table.put ("ToggleButtonUI", toggleButtonUI);
 		table.put ("ScrollBarUI", scrollBarUI);
+		table.put ("ComboBoxUI", comboBoxUI);
+		table.put ("PopupMenuUI", popupMenuUI);
+		table.put ("ToolBarUI", toolbarUI);
+		// table.put ("SliderUI", sliderUI);
 	}
 
 	@Override
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
-		table.put ("ComboBox.font", MaterialFonts.REGULAR);
 		table.put ("OptionPane.font", MaterialFonts.REGULAR);
 		table.put ("ScrollPane.font", MaterialFonts.REGULAR);
 		table.put ("TextArea.font", MaterialFonts.REGULAR);
@@ -105,9 +115,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("MenuItem.disabledForeground", new Color (0, 0, 0, 100));
 		table.put ("MenuItem.selectionBackground", MaterialColors.GRAY_200);
 		table.put ("MenuItem.selectionForeground", Color.BLACK);
-
-		table.put ("PopupMenu.border", BorderFactory.createLineBorder (MaterialColors.GRAY_200, 1));
-		table.put ("PopupMenu.background", Color.WHITE);
 
 		table.put ("Menu.selectionBackground", MaterialColors.GRAY_200);
 		table.put ("Menu.selectionForeground", Color.BLACK);
