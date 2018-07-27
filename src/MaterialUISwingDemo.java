@@ -3,13 +3,19 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.resources.MaterialColors;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -48,6 +54,25 @@ public class MaterialUISwingDemo {
 
 		JPanel content = new JPanel ();
 		content.add (button);
+		
+		//configure JToolBar
+		JToolBar toolBar = new JToolBar();
+		toolBar.setRollover(true);
+	    JButton buttonOne = new JButton("button");
+	    toolBar.add(buttonOne);
+	    toolBar.addSeparator();
+	    toolBar.add(new JButton("button 2"));
+	    toolBar.add(new JComboBox(new String[]{"A","B","C"}));
+		content.add(toolBar);
+		
+		//Setting comboBox only
+		JLabel labelCombo = new JLabel();
+		labelCombo.setText("Combo");
+		JComboBox<String> comboTest = new JComboBox<String>();
+		comboTest.addItem("Prova uno");
+		comboTest.addItem("Prova due");
+		content.add(labelCombo);
+		content.add(comboTest);
 
 		// add everything to the frame
 		frame.add (bar, BorderLayout.PAGE_START);
