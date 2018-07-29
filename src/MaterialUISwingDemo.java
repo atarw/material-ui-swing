@@ -85,6 +85,12 @@ public class MaterialUISwingDemo {
 		comboTest.addItem("Prova due");
 		content.add(labelCombo);
 		content.add(comboTest);
+		
+		//settin Slider
+		JSlider slider = new JSlider();
+		JSlider sliderVertical = new JSlider(JSlider.VERTICAL);
+		content.add(slider);
+		content.add(sliderVertical);
 
 		// add everything to the frame
 		frame.add (bar, BorderLayout.PAGE_START);

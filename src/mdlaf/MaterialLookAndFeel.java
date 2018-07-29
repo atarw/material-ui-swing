@@ -54,6 +54,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 
+	public static String getSliderui() {
+		return sliderUI;
+	}
+
 	public String getToolBarUI() {
 		return toolBarUI;
 	}
@@ -262,4 +266,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Tree.openIcon", new ImageIcon (MaterialImages.DOWN_ARROW));
 		table.put ("Tree.selectionBorderColor", null);
 	}
+	
+	
 }
