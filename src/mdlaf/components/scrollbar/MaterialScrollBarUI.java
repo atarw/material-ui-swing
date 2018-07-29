@@ -19,6 +19,8 @@ import java.awt.Graphics;
  * */
 
 public class MaterialScrollBarUI extends BasicScrollBarUI {
+	
+	private static boolean DEBUG = false;
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialScrollBarUI ();
@@ -38,10 +40,23 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
-
+	
+	/**
+	 * @author https://github.com/vincenzopalazzo
+	 * The method takes an integer variable that for the createDecreaseButton 
+	 * method takes 7 if the scrollbar is horizontal and 1 if vertical
+	 */
 	@Override
 	protected JButton createDecreaseButton (int orientation) {
-		JButton button = new JButton (new ImageIcon (MaterialImages.UP_ARROW));
+		JButton button = new JButton ();
+		if(DEBUG == true) System.out.println("orientation decrese: " + orientation);
+		if(orientation == 7) {
+			if(DEBUG == true) System.out.println("orientation decrese down: " + orientation);
+			button = new JButton (new ImageIcon (MaterialImages.LEFTH_ARROW));
+		}else {
+			if(DEBUG == true) System.out.println("orientation decrese right: " + orientation);
+			button = new JButton (new ImageIcon (MaterialImages.UP_ARROW));
+		}
 
 		button.setOpaque (true);
 		button.setBackground (MaterialColors.GRAY_300);
@@ -50,10 +65,22 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		return button;
 	}
 
+	/**
+	 * @author https://github.com/vincenzopalazzo
+	 * The method takes an integer variable that for the createIncreaseButton 
+	 * method takes 5 if the scrollbar is horizontal and 3 if vertical
+	 */
 	@Override
 	protected JButton createIncreaseButton (int orientation) {
-		JButton button = new JButton (new ImageIcon (MaterialImages.DOWN_ARROW));
-
+		JButton button = new JButton ();
+		if(DEBUG == true) System.out.println("orientation increse: " + orientation);
+		if(orientation == 5) {
+			if(DEBUG == true) System.out.println("orientation decrese up: " + orientation);
+			button = new JButton (new ImageIcon (MaterialImages.DOWN_ARROW));
+		}else {
+			if(DEBUG == true) System.out.println("orientation decrese lefth: " + orientation);
+			button = new JButton (new ImageIcon (MaterialImages.RIGHT_ARROW));
+		}
 		button.setOpaque (true);
 		button.setBackground (MaterialColors.GRAY_300);
 		button.setBorder (BorderFactory.createEmptyBorder ());
