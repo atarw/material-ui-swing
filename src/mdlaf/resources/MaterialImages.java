@@ -1,6 +1,8 @@
 package mdlaf.resources;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +19,7 @@ public class MaterialImages {
 	public static final BufferedImage RADIO_BUTTON_OFF = loadImg ("/imgs/radio_button_off.png");
 	public static final BufferedImage TOGGLE_BUTTON_ON = loadImg ("/imgs/toggle_on.png");
 	public static final BufferedImage TOGGLE_BUTTON_OFF = loadImg ("/imgs/toggle_off.png");
+	public static final BufferedImage SLIDER_POINT = loadImg ("/imgs/slider_point.png");
 
 	private static BufferedImage loadImg (String imgPath) {
 		try (InputStream inputStream = MaterialImages.class.getResourceAsStream (imgPath)) {

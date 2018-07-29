@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -73,6 +74,12 @@ public class MaterialUISwingDemo {
 		comboTest.addItem("Prova due");
 		content.add(labelCombo);
 		content.add(comboTest);
+		
+		//settin Slider
+		JSlider slider = new JSlider();
+		JSlider sliderVertical = new JSlider(JSlider.VERTICAL);
+		content.add(slider);
+		content.add(sliderVertical);
 
 		// add everything to the frame
 		frame.add (bar, BorderLayout.PAGE_START);

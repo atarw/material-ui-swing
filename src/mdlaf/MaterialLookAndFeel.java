@@ -12,6 +12,7 @@ import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
+import mdlaf.components.slider.MaterialSliderUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
@@ -23,8 +24,10 @@ import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialFonts;
+import mdlaf.resources.MaterialImages;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.UIDefaults;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.Color;
@@ -48,9 +51,15 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String tabbedPaneUI = MaterialTabbedPaneUI.class.getCanonicalName ();
 	private static final String toggleButtonUI = MaterialToggleButtonUI.class.getCanonicalName ();
 	private static final String scrollBarUI = MaterialScrollBarUI.class.getCanonicalName ();
-	//Add Vincenzo
 	private static final String toolBarUI = MaterialToolBarUI.class.getCanonicalName();
 	private static final String comboBoxUI = MaterialComboBoxUI.class.getCanonicalName();
+	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName();
+	
+	
+
+	public static String getSliderui() {
+		return sliderUI;
+	}
 
 	public String getToolBarUI() {
 		return toolBarUI;
@@ -107,6 +116,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ScrollBarUI", scrollBarUI);
 		table.put ("ToolBarUI", toolBarUI);
 		table.put ("ComboBoxUI", comboBoxUI);
+		table.put ("SliderUI", sliderUI);
 	}
 
 	@Override
@@ -146,5 +156,12 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("OptionPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
 		table.put ("Button.highlight", MaterialColors.GRAY_200);
+		
+		table.put("Slider.trackWidth", 20); //Value tmp
+		table.put("Slider.majorTickLength", 20); //value tmp
+		table.put("Slider.horizontalThumbIcon", new ImageIcon(MaterialImages.SLIDER_POINT));
+		table.put("Slider.verticalThumbIcon", new ImageIcon(MaterialImages.SLIDER_POINT));
 	}
+	
+	
 }
