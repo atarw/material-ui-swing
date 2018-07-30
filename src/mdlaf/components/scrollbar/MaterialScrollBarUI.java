@@ -3,14 +3,13 @@ package mdlaf.components.scrollbar;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
 import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.Graphics;
 
@@ -41,7 +40,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	@Override
 	protected JButton createDecreaseButton (int orientation) {
-		JButton button = new JButton (new ImageIcon (MaterialImages.UP_ARROW));
+		JButton button = new BasicArrowButton (orientation);
 
 		button.setOpaque (true);
 		button.setBackground (MaterialColors.GRAY_300);
@@ -52,7 +51,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	@Override
 	protected JButton createIncreaseButton (int orientation) {
-		JButton button = new JButton (new ImageIcon (MaterialImages.DOWN_ARROW));
+		JButton button = new BasicArrowButton (orientation);
 
 		button.setOpaque (true);
 		button.setBackground (MaterialColors.GRAY_300);

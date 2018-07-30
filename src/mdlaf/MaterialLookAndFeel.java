@@ -12,6 +12,7 @@ import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.popupmenu.MaterialPopupMenuUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
+import mdlaf.components.slider.MaterialSliderUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
@@ -51,7 +52,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String comboBoxUI = MaterialComboBoxUI.class.getCanonicalName ();
 	private static final String popupMenuUI = MaterialPopupMenuUI.class.getCanonicalName ();
 	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
-	// private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
+	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {

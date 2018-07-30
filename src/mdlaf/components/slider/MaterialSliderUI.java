@@ -28,7 +28,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 
 		JSlider slider = (JSlider) c;
 		slider.setFont (MaterialFonts.REGULAR);
-		slider.setBackground (Color.WHITE);
+		slider.setBackground (Color.RED);
 		slider.setForeground (Color.BLACK);
 		slider.setBorder (BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (5, 5, 5, 5)));
 	}
