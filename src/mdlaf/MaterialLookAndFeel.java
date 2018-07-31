@@ -102,7 +102,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ComboBoxUI", comboBoxUI);
 		table.put ("PopupMenuUI", popupMenuUI);
 		table.put ("ToolBarUI", toolbarUI);
-		// table.put ("SliderUI", sliderUI);
+		table.put ("SliderUI", sliderUI);
 	}
 
 	@Override
