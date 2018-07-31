@@ -59,7 +59,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 		g.setColor (slider.getForeground ());
 		drawCircle (g, cx, cy, NORMAL_THUMB_RADIUS);
 
-		// need to draw loaded part of progress line
+		// need to redraw loaded part of progress line
 		Line loaded = getTrack (true);
 		g.drawLine (loaded.x1, loaded.y1, loaded.x2, loaded.y2);
 	}
