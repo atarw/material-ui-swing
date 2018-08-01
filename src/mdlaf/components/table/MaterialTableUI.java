@@ -1,15 +1,12 @@
 package mdlaf.components.table;
 
-import mdlaf.resources.MaterialBorders;
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialTableUI extends BasicTableUI {
@@ -24,17 +21,15 @@ public class MaterialTableUI extends BasicTableUI {
 
 		JTable table = (JTable) c;
 		table.setOpaque (false);
-		table.setSelectionBackground (MaterialColors.GRAY_200);
-		table.setSelectionForeground (Color.BLACK);
-		table.setBackground (Color.WHITE);
-		table.setFont (MaterialFonts.REGULAR);
+		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
+		table.setBackground (UIManager.getColor ("Table.background"));
+		table.setFont (UIManager.getFont ("Table.font"));
+		table.setBorder (UIManager.getBorder ("Table.border"));
+		table.setGridColor (UIManager.getColor ("Table.gridColor"));
+		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 
 		table.getTableHeader ().setResizingAllowed (true);
 		table.setRowHeight (table.getRowHeight () + 25);
-
-		table.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
-		table.setGridColor (MaterialColors.GRAY_200);
-		table.setSelectionBackground (MaterialColors.GRAY_100);
 
 		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());

@@ -1,10 +1,10 @@
 package mdlaf.components.tree;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -28,7 +28,7 @@ public class MaterialTreeUI extends BasicTreeUI {
 		tree.setCellRenderer (renderer);
 		tree.setCellEditor (editor);
 
-		tree.setFont (MaterialFonts.REGULAR);
+		tree.setFont (UIManager.getFont ("Tree.font"));
 		tree.setRowHeight (0);
 		tree.setInvokesStopCellEditing (true);
 

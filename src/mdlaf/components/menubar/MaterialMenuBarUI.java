@@ -1,14 +1,12 @@
 package mdlaf.components.menubar;
 
-import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JMenuBar;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuBarUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialMenuBarUI extends BasicMenuBarUI {
@@ -22,10 +20,10 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 		super.installUI (c);
 
 		JMenuBar menuBar = (JMenuBar) c;
-		menuBar.setFont (MaterialFonts.BOLD);
-		menuBar.setBackground (Color.WHITE);
-		menuBar.setBorder (MaterialBorders.LIGHT_SHADOW_BORDER);
-		menuBar.setForeground (Color.BLACK);
+		menuBar.setFont (UIManager.getFont ("MenuBar.font"));
+		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
+		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
+		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
 	}
 
 	@Override

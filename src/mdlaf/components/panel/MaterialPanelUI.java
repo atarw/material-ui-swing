@@ -1,14 +1,12 @@
 package mdlaf.components.panel;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPanelUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialPanelUI extends BasicPanelUI {
@@ -23,9 +21,9 @@ public class MaterialPanelUI extends BasicPanelUI {
 
 		JPanel panel = (JPanel) c;
 		panel.setOpaque (true);
-		panel.setFont (MaterialFonts.REGULAR);
-		panel.setBackground (Color.WHITE);
-		panel.setBorder (BorderFactory.createEmptyBorder ());
+		panel.setFont (UIManager.getFont ("Panel.font"));
+		panel.setBackground (UIManager.getColor ("Panel.background"));
+		panel.setBorder (UIManager.getBorder ("Panel.border"));
 	}
 
 	@Override

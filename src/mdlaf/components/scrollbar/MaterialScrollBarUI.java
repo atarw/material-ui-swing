@@ -1,13 +1,11 @@
 package mdlaf.components.scrollbar;
 
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -28,9 +26,12 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		super.installUI (c);
 
 		JScrollBar scrollBar = (JScrollBar) c;
-		scrollBar.setFont (MaterialFonts.REGULAR);
-		trackColor = MaterialColors.GRAY_200;
-		thumbColor = thumbDarkShadowColor = thumbHighlightColor = thumbLightShadowColor = MaterialColors.GRAY_300;
+		scrollBar.setFont (UIManager.getFont ("ScrollBar.font"));
+		trackColor = UIManager.getColor ("ScrollBar.track");
+		thumbColor = UIManager.getColor ("ScrollBar.thumb");
+		thumbDarkShadowColor = UIManager.getColor ("ScrollBar.thumbDarkShadow");
+		thumbHighlightColor = UIManager.getColor ("ScrollBar.thumbHighlight");
+		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
 	@Override
@@ -43,8 +44,8 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		JButton button = new BasicArrowButton (orientation);
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.GRAY_300);
-		button.setBorder (BorderFactory.createEmptyBorder ());
+		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
+		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 
 		return button;
 	}
@@ -54,8 +55,8 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		JButton button = new BasicArrowButton (orientation);
 
 		button.setOpaque (true);
-		button.setBackground (MaterialColors.GRAY_300);
-		button.setBorder (BorderFactory.createEmptyBorder ());
+		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
+		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 
 		return button;
 	}

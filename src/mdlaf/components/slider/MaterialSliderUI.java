@@ -1,16 +1,13 @@
 package mdlaf.components.slider;
 
-import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -33,10 +30,10 @@ public class MaterialSliderUI extends BasicSliderUI {
 		super.installUI (c);
 
 		JSlider slider = (JSlider) c;
-		slider.setFont (MaterialFonts.REGULAR);
-		slider.setBackground (Color.WHITE);
-		slider.setForeground (MaterialColors.LIGHT_BLUE_400);
-		slider.setBorder (BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (20, 20, 20, 20)));
+		slider.setFont (UIManager.getFont ("Slider.font"));
+		slider.setBackground (UIManager.getColor ("Slider.background"));
+		slider.setForeground (UIManager.getColor ("Slider.foreground"));
+		slider.setBorder (UIManager.getBorder ("Slider.border"));
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 	public void paintTrack (Graphics g) {
 		g = MaterialDrawingUtils.getAliasedGraphics (g);
 
-		g.setColor (Color.BLACK);
+		g.setColor (UIManager.getColor ("Slider.trackColor"));
 		Line unloaded = getTrack (false);
 		g.drawLine (unloaded.x1, unloaded.y1, unloaded.x2, unloaded.y2);
 

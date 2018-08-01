@@ -40,7 +40,8 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 		JTextField textField = (JTextField) c;
 		textField.setOpaque (false);
-		textField.setBorder (drawLine ? BorderFactory.createEmptyBorder (5, 2, 10, 0) :
+		textField.setBorder (drawLine ?
+		                     BorderFactory.createEmptyBorder (5, 2, 10, 0) :
 		                     BorderFactory.createEmptyBorder (2, 2, 2, 2));
 
 		textField.setBackground (MaterialColors.LIGHT_BLUE_400);

@@ -1,15 +1,12 @@
 package mdlaf.components.toolbar;
 
-import mdlaf.resources.MaterialBorders;
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
 import javax.swing.JComponent;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToolBarUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialToolBarUI extends BasicToolBarUI {
@@ -23,15 +20,15 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 		super.installUI (c);
 		JToolBar toolBar = (JToolBar) c;
 
-		toolBar.setFont (MaterialFonts.REGULAR);
-		toolBar.setBackground (Color.WHITE);
-		toolBar.setForeground (Color.BLACK);
-		toolBar.setBorder (MaterialBorders.LIGHT_SHADOW_BORDER);
+		toolBar.setFont (UIManager.getFont ("ToolBar.font"));
+		toolBar.setBackground (UIManager.getColor ("ToolBar.background"));
+		toolBar.setForeground (UIManager.getColor ("ToolBar.foreground"));
+		toolBar.setBorder (UIManager.getBorder ("ToolBar.border"));
 
 		this.dockingBorderColor = null;
 		this.floatingBorderColor = null;
-		this.dockingColor = MaterialColors.LIGHT_GREEN_A100;
-		this.floatingColor = MaterialColors.GRAY_200;
+		this.dockingColor = UIManager.getColor ("ToolBar.dockingBackground");
+		this.floatingColor = UIManager.getColor ("ToolBar.floatingBackground");
 	}
 
 	@Override

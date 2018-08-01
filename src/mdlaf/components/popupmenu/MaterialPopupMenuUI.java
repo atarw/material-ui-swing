@@ -1,13 +1,12 @@
 package mdlaf.components.popupmenu;
 
-import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialPopupMenuUI extends BasicPopupMenuUI {
@@ -21,9 +20,9 @@ public class MaterialPopupMenuUI extends BasicPopupMenuUI {
 		super.installUI (c);
 
 		JPopupMenu popupMenu = (JPopupMenu) c;
-		popupMenu.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
-		popupMenu.setBackground (Color.WHITE);
-		popupMenu.setForeground (Color.BLACK);
+		popupMenu.setBorder (UIManager.getBorder ("PopupMenu.border"));
+		popupMenu.setBackground (UIManager.getColor ("PopupMenu.background"));
+		popupMenu.setForeground (UIManager.getColor ("PopupMenu.foreground"));
 	}
 
 	@Override
