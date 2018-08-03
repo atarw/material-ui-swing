@@ -26,11 +26,10 @@ import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialFonts;
 import mdlaf.resources.MaterialImages;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.UIDefaults;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
-import java.awt.Color;
+import javax.swing.text.DefaultEditorKit;
+import java.awt.*;
 
 public class MaterialLookAndFeel extends BasicLookAndFeel {
 
@@ -233,6 +232,11 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
 		table.put ("TextArea.foreground", Color.BLACK);
 		table.put ("TextArea.font", MaterialFonts.REGULAR);
+		table.put("TextArea.focusInputMap", multilineInputMap);
+
+		table.put("TextPane.focusInputMap", multilineInputMap);
+
+		table.put("EditorPane.focusInputMap", multilineInputMap);
 
 		table.put ("ToggleButton.border", BorderFactory.createEmptyBorder ());
 		table.put ("ToggleButton.font", MaterialFonts.REGULAR);
@@ -257,4 +261,69 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("Tree.openIcon", new ImageIcon (MaterialImages.DOWN_ARROW));
 		table.put ("Tree.selectionBorderColor", null);
 	}
+
+	private Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[]{
+			"ctrl C", DefaultEditorKit.copyAction,
+			"ctrl V", DefaultEditorKit.pasteAction,
+			"ctrl X", DefaultEditorKit.cutAction,
+			"COPY", DefaultEditorKit.copyAction,
+			"PASTE", DefaultEditorKit.pasteAction,
+			"CUT", DefaultEditorKit.cutAction,
+			"control INSERT", DefaultEditorKit.copyAction,
+			"shift INSERT", DefaultEditorKit.pasteAction,
+			"shift DELETE", DefaultEditorKit.cutAction,
+			"shift LEFT", DefaultEditorKit.selectionBackwardAction,
+			"shift KP_LEFT", DefaultEditorKit.selectionBackwardAction,
+			"shift RIGHT", DefaultEditorKit.selectionForwardAction,
+			"shift KP_RIGHT", DefaultEditorKit.selectionForwardAction,
+			"ctrl LEFT", DefaultEditorKit.previousWordAction,
+			"ctrl KP_LEFT", DefaultEditorKit.previousWordAction,
+			"ctrl RIGHT", DefaultEditorKit.nextWordAction,
+			"ctrl KP_RIGHT", DefaultEditorKit.nextWordAction,
+			"ctrl shift LEFT", DefaultEditorKit.selectionPreviousWordAction,
+			"ctrl shift KP_LEFT", DefaultEditorKit.selectionPreviousWordAction,
+			"ctrl shift RIGHT", DefaultEditorKit.selectionNextWordAction,
+			"ctrl shift KP_RIGHT", DefaultEditorKit.selectionNextWordAction,
+			"ctrl A", DefaultEditorKit.selectAllAction,
+			"HOME", DefaultEditorKit.beginLineAction,
+			"END", DefaultEditorKit.endLineAction,
+			"shift HOME", DefaultEditorKit.selectionBeginLineAction,
+			"shift END", DefaultEditorKit.selectionEndLineAction,
+
+			"UP", DefaultEditorKit.upAction,
+			"KP_UP", DefaultEditorKit.upAction,
+			"DOWN", DefaultEditorKit.downAction,
+			"KP_DOWN", DefaultEditorKit.downAction,
+			"PAGE_UP", DefaultEditorKit.pageUpAction,
+			"PAGE_DOWN", DefaultEditorKit.pageDownAction,
+			"shift PAGE_UP", "selection-page-up",
+			"shift PAGE_DOWN", "selection-page-down",
+			"ctrl shift PAGE_UP", "selection-page-left",
+			"ctrl shift PAGE_DOWN", "selection-page-right",
+			"shift UP", DefaultEditorKit.selectionUpAction,
+			"shift KP_UP", DefaultEditorKit.selectionUpAction,
+			"shift DOWN", DefaultEditorKit.selectionDownAction,
+			"shift KP_DOWN", DefaultEditorKit.selectionDownAction,
+			"ENTER", DefaultEditorKit.insertBreakAction,
+			"BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+			"shift BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+			"ctrl H", DefaultEditorKit.deletePrevCharAction,
+			"DELETE", DefaultEditorKit.deleteNextCharAction,
+			"ctrl DELETE", DefaultEditorKit.deleteNextWordAction,
+			"ctrl BACK_SPACE", DefaultEditorKit.deletePrevWordAction,
+			"RIGHT", DefaultEditorKit.forwardAction,
+			"LEFT", DefaultEditorKit.backwardAction,
+			"KP_RIGHT", DefaultEditorKit.forwardAction,
+			"KP_LEFT", DefaultEditorKit.backwardAction,
+			"TAB", DefaultEditorKit.insertTabAction,
+			"ctrl BACK_SLASH", "unselect"/*DefaultEditorKit.unselectAction*/,
+			"ctrl HOME", DefaultEditorKit.beginAction,
+			"ctrl END", DefaultEditorKit.endAction,
+			"ctrl shift HOME", DefaultEditorKit.selectionBeginAction,
+			"ctrl shift END", DefaultEditorKit.selectionEndAction,
+			"ctrl T", "next-link-action",
+			"ctrl shift T", "previous-link-action",
+			"ctrl SPACE", "activate-link-action",
+			"control shift O", "toggle-componentOrientation"/*DefaultEditorKit.toggleComponentOrientation*/
+	});
 }

@@ -3,16 +3,11 @@ package mdlaf.components.spinner;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.resources.MaterialDrawingUtils;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JSpinner;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialSpinnerUI extends BasicSpinnerUI {
 
@@ -47,8 +42,13 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
 	@Override
 	protected Component createNextButton () {
-		JButton button = new BasicArrowButton (SwingConstants.NORTH);
-
+		Icon icon = UIManager.getIcon("Spinner.nextButtonIcon");
+		JButton button;
+		if (icon != null) {
+			button = new JButton(icon);
+		} else {
+			button = new BasicArrowButton(SwingConstants.NORTH);
+		}
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("Spinner.arrowButtonBackground"));
 		button.setBorder (UIManager.getBorder ("Spinner.arrowButtonBorder"));
@@ -59,7 +59,13 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
 	@Override
 	protected Component createPreviousButton () {
-		JButton button = new BasicArrowButton (SwingConstants.SOUTH);
+		Icon icon = UIManager.getIcon("Spinner.previousButtonIcon");
+		JButton button;
+		if (icon != null) {
+			button = new JButton(icon);
+		} else {
+			button = new BasicArrowButton(SwingConstants.SOUTH);
+		}
 
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("Spinner.arrowButtonBackground"));
