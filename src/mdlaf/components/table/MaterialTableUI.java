@@ -2,12 +2,10 @@ package mdlaf.components.table;
 
 import mdlaf.resources.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JTable;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialTableUI extends BasicTableUI {
 
@@ -29,7 +27,11 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 
 		table.getTableHeader ().setResizingAllowed (true);
-		table.setRowHeight (table.getRowHeight () + 25);
+		int rowHeight = UIManager.getInt("Table.rowHeight");
+		if (rowHeight > 0)
+			table.setRowHeight(rowHeight);
+		else
+			table.setRowHeight(table.getRowHeight() + 25);
 
 		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
