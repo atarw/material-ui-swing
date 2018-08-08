@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
@@ -91,6 +92,12 @@ public class MaterialUISwingDemo {
 		JSlider sliderVertical = new JSlider(JSlider.VERTICAL);
 		content.add(slider);
 		content.add(sliderVertical);
+		
+		//test Progressbar
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setMaximum(5);
+		progressBar.setValue(2);
+		content.add(progressBar);
 
 		// add everything to the frame
 		frame.add (bar, BorderLayout.PAGE_START);
