@@ -10,6 +10,7 @@ import mdlaf.components.menubar.MaterialMenuBarUI;
 import mdlaf.components.menuitem.MaterialMenuItemUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
+import mdlaf.components.progressbar.MaterialProgressBarUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.slider.MaterialSliderUI;
@@ -54,6 +55,13 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 	private static final String toolBarUI = MaterialToolBarUI.class.getCanonicalName();
 	private static final String comboBoxUI = MaterialComboBoxUI.class.getCanonicalName();
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName();
+	private static final String progressBarUI =  MaterialProgressBarUI.class.getCanonicalName();
+	
+	
+
+	public static String getProgressbarui() {
+		return progressBarUI;
+	}
 	
 	
 
@@ -117,6 +125,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 		table.put ("ToolBarUI", toolBarUI);
 		table.put ("ComboBoxUI", comboBoxUI);
 		table.put ("SliderUI", sliderUI);
+		table.put("ProgressBarUI", progressBarUI);
 	}
 
 	@Override
