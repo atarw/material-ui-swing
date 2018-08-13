@@ -11,10 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/material-ui-swing.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/material-ui-swing.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" afterDir="false" />
-<<<<<<< refs/remotes/upstream/master
       <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/components/checkbox/MaterialCheckBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/checkbox/MaterialCheckBoxUI.java" afterDir="false" />
@@ -38,11 +36,6 @@
       <change beforePath="$PROJECT_DIR$/src/mdlaf/components/toolbar/MaterialToolBarUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/toolbar/MaterialToolBarUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/scrollbar/MaterialScrollBarUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/scrollbar/MaterialScrollBarUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" afterDir="false" />
->>>>>>> fix support for jscrollbar
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,17 +49,7 @@
     <favorites_list name="material-ui-swing" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MaterialUISwingDemo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -109,21 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< refs/remotes/upstream/master
-=======
-        <option value="$PROJECT_DIR$/src/mdlaf/text/textfield/MaterialTextFieldUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/text/password/MaterialPasswordFieldUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/DropShadowBorder.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialShadows.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialBorders.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/table/MaterialTableHeaderCellRenderer.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialUIMovement.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialColors.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialImages.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/table/MaterialTableCellEditor.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/table/MaterialTableCellRenderer.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeCellEditor.java" />
->>>>>>> fix support for jscrollbar
         <option value="$PROJECT_DIR$/src/mdlaf/tree/MaterialTreeCellRenderer.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/MaterialFonts.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/table/MaterialTableHeaderUI.java" />
@@ -144,10 +112,6 @@
         <option value="$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java" />
-<<<<<<< refs/remotes/upstream/master
-=======
-        <option value="$PROJECT_DIR$/src/mdlaf/components/checkbox/MaterialCheckBoxUI.java" />
->>>>>>> fix support for jscrollbar
         <option value="$PROJECT_DIR$/src/mdlaf/components/label/MaterialLabelUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/animation/MaterialUIMovement.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java" />
@@ -156,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/radiobutton/MaterialRadioButtonUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java" />
-<<<<<<< refs/remotes/upstream/master
         <option value="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" />
@@ -180,16 +143,6 @@
         <option value="$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxRenderer.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxUI.java" />
-=======
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/scrollbar/MaterialScrollBarUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" />
-        <option value="$PROJECT_DIR$/src/MaterialUISwingDemo.java" />
-        <option value="$PROJECT_DIR$/README.md" />
->>>>>>> fix support for jscrollbar
       </list>
     </option>
   </component>
@@ -214,10 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< refs/remotes/upstream/master
-=======
-      <pane id="PackagesPane" />
->>>>>>> fix support for jscrollbar
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,44 +198,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-<<<<<<< refs/remotes/upstream/master
               <item name="combobox" type="462c0819:PsiDirectoryNode" />
-=======
-              <item name="scrollbar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="spinner" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="textfield" type="462c0819:PsiDirectoryNode" />
->>>>>>> fix support for jscrollbar
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-<<<<<<< refs/remotes/upstream/master
       <pane id="PackagesPane" />
-=======
->>>>>>> fix support for jscrollbar
       <pane id="Scope" />
     </panes>
   </component>
@@ -375,44 +293,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" />
-<<<<<<< refs/remotes/upstream/master
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32352942" />
-=======
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32486632" />
->>>>>>> fix support for jscrollbar
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-<<<<<<< refs/remotes/upstream/master
       <window_info anchor="bottom" id="Run" order="3" weight="0.13368984" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32907802" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72192514" visible="true" weight="0.3046875" />
-=======
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.2540107" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32907802" />
-      <window_info anchor="bottom" id="Thumbnails" weight="0.328877" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7259358" visible="true" weight="0.3046875" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.328877" />
->>>>>>> fix support for jscrollbar
       <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
       <window_info anchor="right" id="SciView" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-<<<<<<< refs/remotes/upstream/master
       <window_info id="Favorites" order="3" sideWeight="0.27807486" side_tool="true" weight="0.3046875" />
       <window_info anchor="bottom" id="Thumbnails" order="14" weight="0.328877" />
-=======
-      <window_info id="Favorites" order="3" sideWeight="0.27406418" side_tool="true" weight="0.3046875" />
->>>>>>> fix support for jscrollbar
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="12" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -421,10 +319,7 @@
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.328877" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-<<<<<<< refs/remotes/upstream/master
       <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
-=======
->>>>>>> fix support for jscrollbar
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,19 +340,12 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-<<<<<<< refs/remotes/upstream/master
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JTree.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/UIDefaults.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderCellRenderer.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/animation/MaterialUIMovement.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
@@ -502,7 +390,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -511,9 +398,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java">
-=======
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/imageio/ImageIO.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-129">
           <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
@@ -541,7 +425,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -550,9 +433,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialFonts.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
@@ -573,7 +453,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -582,18 +461,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuBarUI.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialSubtleTextFieldUI.java" />
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerEditor.java" />
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -602,9 +475,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialBorders.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
@@ -625,7 +495,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialBorders.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -642,16 +511,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/list/MaterialListCellRenderer.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellRenderer.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableHeaderUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeUI.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="13" column="13" selection-start-line="13" selection-end-line="14" />
@@ -665,7 +524,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menu/MaterialMenuUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -677,9 +535,6 @@
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/popupmenu/MaterialPopupMenuUI.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxEditor.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/button/MaterialButtonUI.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="41" column="5" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
@@ -694,7 +549,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< refs/remotes/upstream/master
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -703,9 +557,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/scrollbar/MaterialScrollBarUI.java">
-=======
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java">
->>>>>>> fix support for jscrollbar
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
@@ -715,41 +566,12 @@
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-<<<<<<< refs/remotes/upstream/master
           <caret line="19" selection-start-line="19" selection-end-line="19" />
-=======
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java">
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
->>>>>>> fix support for jscrollbar
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< refs/remotes/upstream/master
         <state relative-caret-position="278">
           <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
         </state>
@@ -802,136 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-=======
-        <state relative-caret-position="210">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialDrawingUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/radiobutton/MaterialRadioButtonUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="13" selection-end-line="40" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuBarUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/checkbox/MaterialCheckBoxUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="142" column="31" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="244" column="62" lean-forward="true" selection-start-line="244" selection-start-column="62" selection-end-line="244" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/scrollbar/MaterialScrollBarUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
->>>>>>> fix support for jscrollbar
         </state>
       </provider>
     </entry>
