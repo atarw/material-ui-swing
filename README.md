@@ -36,8 +36,11 @@ public class MaterialUISwingDemo {
 		frame.add (content, BorderLayout.CENTER);
 
 		// on hover, button will change to a light blue
+<<<<<<< refs/remotes/upstream/master
 		MaterialUIMovement.add (button, MaterialColors.LIGHT_BLUE_500);
+=======
 		MaterialUIMovement.add (button, MaterialColors.BLUE_400);
+>>>>>>> fix support for jscrollbar
 
 		frame.pack ();
 		frame.setVisible (true);
