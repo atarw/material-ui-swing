@@ -1,15 +1,12 @@
 package mdlaf.components.tabbedpane;
 
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -25,14 +22,14 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 		JTabbedPane tabbedPane = (JTabbedPane) c;
 		tabbedPane.setOpaque (false);
-		tabbedPane.setFont (MaterialFonts.REGULAR);
-		tabbedPane.setBackground (Color.WHITE);
-		tabbedPane.setForeground (Color.BLACK);
-		tabbedPane.setBorder (BorderFactory.createEmptyBorder ());
+		tabbedPane.setFont (UIManager.getFont ("TabbedPane.font"));
+		tabbedPane.setBackground (UIManager.getColor ("TabbedPane.background"));
+		tabbedPane.setForeground (UIManager.getColor ("TabbedPane.foreground"));
+		tabbedPane.setBorder (UIManager.getBorder ("TabbedPane.border"));
 
-		darkShadow = null;
-		shadow = null;
-		lightHighlight = MaterialColors.GRAY_200;
+		darkShadow = UIManager.getColor ("TabbedPane.darkShadow");
+		shadow = UIManager.getColor ("TabbedPane.shadow"); ;
+		lightHighlight = UIManager.getColor ("TabbedPane.highlight");
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 	@Override
 	protected void paintTabBorder (Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-		g.setColor (Color.LIGHT_GRAY);
+		g.setColor (UIManager.getColor ("TabbedPane.borderHighlightColor"));
 		g.drawRect (x, y, w, h);
 	}
 

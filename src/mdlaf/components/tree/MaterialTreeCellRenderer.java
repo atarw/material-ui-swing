@@ -1,15 +1,10 @@
 package mdlaf.components.tree;
 
-import mdlaf.resources.MaterialColors;
-import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
-
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import java.awt.Color;
 import java.awt.Component;
 
 public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
@@ -23,17 +18,17 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 	}
 
 	public MaterialTreeCellRenderer () {
-		setTextSelectionColor (Color.BLACK);
-		setTextNonSelectionColor (Color.BLACK);
+		setTextSelectionColor (UIManager.getColor ("Tree.selectionForeground"));
+		setTextNonSelectionColor (UIManager.getColor ("Tree.foreground"));
 
-		setBackgroundSelectionColor (MaterialColors.GRAY_200);
-		setBackgroundNonSelectionColor (Color.WHITE);
+		setBackgroundSelectionColor (UIManager.getColor ("Tree.selectionBackground"));
+		setBackgroundNonSelectionColor (UIManager.getColor ("Tree.background"));
 
-		setBorderSelectionColor (null);
+		setBorderSelectionColor (UIManager.getColor ("Tree.selectionBorderColor"));
 
-		setClosedIcon (new ImageIcon (MaterialImages.RIGHT_ARROW));
-		setOpenIcon (new ImageIcon (MaterialImages.DOWN_ARROW));
+		setClosedIcon (UIManager.getIcon ("Tree.closedIcon"));
+		setOpenIcon (UIManager.getIcon ("Tree.openIcon"));
 
-		setFont (MaterialFonts.REGULAR);
+		setFont (UIManager.getFont ("Tree.font"));
 	}
 }

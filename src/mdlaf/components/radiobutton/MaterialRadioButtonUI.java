@@ -1,15 +1,12 @@
 package mdlaf.components.radiobutton;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JRadioButton;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 /*
@@ -27,11 +24,11 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 		super.installUI (c);
 
 		JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setFont (MaterialFonts.REGULAR);
-		radioButton.setBackground (Color.WHITE);
-		radioButton.setForeground (Color.BLACK);
-		radioButton.setIcon (new ImageIcon (MaterialImages.RADIO_BUTTON_OFF));
-		radioButton.setSelectedIcon (new ImageIcon (MaterialImages.RADIO_BUTTON_ON));
+		radioButton.setFont (UIManager.getFont ("RadioButton.font"));
+		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
+		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));
+		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
+		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
 	}
 
 	@Override
