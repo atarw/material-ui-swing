@@ -12,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -107,12 +108,18 @@ public class MaterialUISwingDemo {
 		sp.setHorizontalScrollBarPolicy (JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+		JPanel pn = new JPanel();
 		JTabbedPane tp = new JTabbedPane ();
-		tp.addTab ("bleh1", new JPanel ());
+		tp.addTab ("bleh1", pn);
 		tp.addTab ("bleh", sp);
 
 		frame.add (tp, BorderLayout.CENTER);
-		//
+		
+		//test progressBar
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(6);
+		progressBar.setMaximum(12);
+		pn.add(progressBar);
 
 		// make everything visible to the world
 		frame.pack ();
