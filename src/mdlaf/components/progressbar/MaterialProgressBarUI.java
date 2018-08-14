@@ -7,6 +7,8 @@ import javax.swing.JProgressBar;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+import mdlaf.animation.MaterialUIMovement;
+import mdlaf.animation.MaterialUITimer;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
@@ -28,16 +30,14 @@ public class MaterialProgressBarUI extends BasicProgressBarUI {
 		super.installUI(c);
 		
 		JProgressBar progressBar = (JProgressBar) c;
-		c.setBorder(MaterialBorders.LIGHT_LINE_BORDER);
-		c.setBackground(MaterialColors.GRAY_200);
-		c.setForeground(MaterialColors.LIGHT_BLUE_400);
+		progressBar.setBorder(MaterialBorders.LIGHT_LINE_BORDER);
+		progressBar.setBackground(MaterialColors.GRAY_200);
+		progressBar.setForeground(MaterialColors.LIGHT_BLUE_400);
 	}
 
 	@Override
 	public void paint(Graphics g, JComponent c) {
 		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 	}
-	
-	
 
 }

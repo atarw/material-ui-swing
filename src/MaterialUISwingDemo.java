@@ -121,6 +121,12 @@ public class MaterialUISwingDemo {
 		progressBar.setMaximum(12);
 		pn.add(progressBar);
 
+		//test cange coloro maximum value progress bar
+		progressBar = new JProgressBar();
+		progressBar.setMaximum(5);
+		progressBar.setValue(5);
+		pn.add(progressBar);
+
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
