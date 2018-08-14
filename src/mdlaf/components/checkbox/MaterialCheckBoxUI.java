@@ -1,15 +1,12 @@
 package mdlaf.components.checkbox;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
 
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialCheckBoxUI extends BasicCheckBoxUI {
@@ -23,11 +20,11 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		super.installUI (c);
 
 		JCheckBox checkBox = (JCheckBox) c;
-		checkBox.setFont (MaterialFonts.REGULAR);
-		checkBox.setBackground (Color.WHITE);
-		checkBox.setForeground (Color.BLACK);
-		checkBox.setIcon (new ImageIcon (MaterialImages.UNCHECKED_BOX));
-		checkBox.setSelectedIcon (new ImageIcon (MaterialImages.PAINTED_CHECKED_BOX));
+		checkBox.setFont (UIManager.getFont ("CheckBox.font"));
+		checkBox.setBackground (UIManager.getColor ("CheckBox.background"));
+		checkBox.setForeground (UIManager.getColor ("CheckBox.foreground"));
+		checkBox.setIcon (UIManager.getIcon ("CheckBox.icon"));
+		checkBox.setSelectedIcon (UIManager.getIcon ("CheckBox.selectedIcon"));
 	}
 
 	@Override

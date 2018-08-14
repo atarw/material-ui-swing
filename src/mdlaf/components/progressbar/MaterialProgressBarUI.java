@@ -11,6 +11,12 @@ import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
 
+/**
+ * 
+ * @author https://github.com/vincenzopalazzo
+ *
+ */
+
 public class MaterialProgressBarUI extends BasicProgressBarUI {
 	
 	public static ComponentUI createUI(JComponent c) {
@@ -20,18 +26,15 @@ public class MaterialProgressBarUI extends BasicProgressBarUI {
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
-		if(c instanceof JProgressBar) {
-			JProgressBar progressBar = (JProgressBar)c;
-			progressBar.setBackground(MaterialColors.GRAY_300);
-			progressBar.setBorder(MaterialBorders.LIGHT_LINE_BORDER);
-			progressBar.setForeground(MaterialColors.LIGHT_BLUE_A400);
-		}
 		
+		JProgressBar progressBar = (JProgressBar) c;
+		c.setBorder(MaterialBorders.LIGHT_LINE_BORDER);
+		c.setBackground(MaterialColors.GRAY_200);
+		c.setForeground(MaterialColors.LIGHT_BLUE_400);
 	}
 
 	@Override
 	public void paint(Graphics g, JComponent c) {
-		// TODO Auto-generated method stub
 		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 	}
 	
