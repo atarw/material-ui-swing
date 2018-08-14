@@ -1,15 +1,12 @@
 package mdlaf.components.button;
 
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialButtonUI extends BasicButtonUI {
@@ -23,12 +20,11 @@ public class MaterialButtonUI extends BasicButtonUI {
 		super.installUI (c);
 
 		AbstractButton button = (AbstractButton) c;
-		button.setOpaque (false);
-		button.setBorder (BorderFactory.createEmptyBorder (7, 17, 7, 17));
-
-		button.setBackground (MaterialColors.LIGHT_BLUE_400);
-		button.setForeground (Color.WHITE);
-		button.setFont (MaterialFonts.MEDIUM);
+		button.setOpaque (UIManager.getBoolean ("Button.opaque"));
+		button.setBorder (UIManager.getBorder ("Button.border"));
+		button.setBackground (UIManager.getColor ("Button.background"));
+		button.setForeground (UIManager.getColor ("Button.foreground"));
+		button.setFont (UIManager.getFont ("Button.font"));
 	}
 
 	@Override

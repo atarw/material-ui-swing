@@ -1,15 +1,13 @@
 package mdlaf.components.menuitem;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuItemUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class MaterialMenuItemUI extends BasicMenuItemUI {
@@ -23,12 +21,12 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 		super.installUI (c);
 
 		JMenuItem menuItem = (JMenuItem) c;
-		menuItem.setFont (MaterialFonts.MEDIUM);
-		menuItem.setBackground (Color.WHITE);
-		menuItem.setForeground (Color.BLACK);
+		menuItem.setFont (UIManager.getFont ("MenuItem.font"));
+		menuItem.setBackground (UIManager.getColor ("MenuItem.background"));
+		menuItem.setForeground (UIManager.getColor ("MenuItem.foreground"));
 		menuItem.setHorizontalAlignment (SwingConstants.LEFT);
 		menuItem.setVerticalAlignment (SwingConstants.CENTER);
-		menuItem.setBorder (BorderFactory.createEmptyBorder (5, 0, 5, 0));
+		menuItem.setBorder (UIManager.getBorder ("MenuItem.border"));
 	}
 
 	@Override

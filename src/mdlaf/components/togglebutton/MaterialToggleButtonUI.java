@@ -1,16 +1,12 @@
 package mdlaf.components.togglebutton;
 
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JToggleButton;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-import java.awt.Color;
 import java.awt.Graphics;
 
 /*
@@ -27,13 +23,13 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JToggleButton button = (JToggleButton) c;
-		button.setBorder (BorderFactory.createEmptyBorder ());
-		button.setFont (MaterialFonts.REGULAR);
-		button.setBackground (Color.WHITE);
-		button.setForeground (Color.BLACK);
-		button.setIcon (new ImageIcon (MaterialImages.TOGGLE_BUTTON_OFF));
-		button.setSelectedIcon (new ImageIcon (MaterialImages.TOGGLE_BUTTON_ON));
+		JToggleButton toggleButton = (JToggleButton) c;
+		toggleButton.setBorder (UIManager.getBorder ("ToggleButton.border"));
+		toggleButton.setFont (UIManager.getFont ("ToggleButton.font"));
+		toggleButton.setBackground (UIManager.getColor ("ToggleButton.background"));
+		toggleButton.setForeground (UIManager.getColor ("ToggleButton.foreground"));
+		toggleButton.setIcon (UIManager.getIcon ("ToggleButton.icon"));
+		toggleButton.setSelectedIcon (UIManager.getIcon ("ToggleButton.selectedIcon"));
 	}
 
 	@Override
