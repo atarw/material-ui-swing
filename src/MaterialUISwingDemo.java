@@ -121,6 +121,10 @@ public class MaterialUISwingDemo {
 		pn.add(textPane);
 		pn.add(textPane1);
 
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setText("This theme is fantastic");
+		pn.add(editorPane);
+
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);

@@ -62,6 +62,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName();
 	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName();
 	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName();
+	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -116,6 +117,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("RadioButtonMenuItemUI", radioButtonMenuItemUI);
 		table.put("CheckBoxMenuItemUI", checkBoxMenuItemUI);
 		table.put("TextPaneUI", textPaneUI);
+		table.put("EditorPaneUI", editorPane);
 	}
 
 	@Override
@@ -290,5 +292,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("TextPane.font", MaterialFonts.BLACK_ITALIC);
+
+        table.put("EditorPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
+        table.put("EditorPane.background", MaterialColors.GRAY_50);
+        table.put("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
+        table.put("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
+        table.put("EditorPane.font", MaterialFonts.BLACK_ITALIC);
 	}
 }
