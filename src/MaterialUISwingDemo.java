@@ -2,30 +2,7 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.resources.MaterialColors;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.SpinnerListModel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -51,6 +28,11 @@ public class MaterialUISwingDemo {
 
 		JMenuItem item1 = new JMenuItem ("Item 1 (Animated)");
 		JMenuItem item2 = new JMenuItem ("Item 2 (Not animated)");
+
+		//Test RadioButtonMenuItem
+		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem();
+		jRadioButtonMenuItem.setText("prova RadioButtonMenuItem");
+		menu1.add(jRadioButtonMenuItem);
 
 		menu1.add (item1);
 		menu2.add (item2);
@@ -119,6 +101,12 @@ public class MaterialUISwingDemo {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setValue(6);
 		progressBar.setMaximum(12);
+		pn.add(progressBar);
+
+		//test cange coloro maximum value progress bar
+		progressBar = new JProgressBar();
+		progressBar.setMaximum(5);
+		progressBar.setValue(5);
 		pn.add(progressBar);
 
 		// make everything visible to the world
