@@ -1,14 +1,17 @@
 package mdlaf.components.radiobuttonmenuitem;
 
-import mdlaf.resources.MaterialBorders;
-import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialImages;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
 import java.awt.*;
+
+/**
+ *
+ * @author https://github.com/vincenzopalazzo
+ *
+ */
 
 public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 
