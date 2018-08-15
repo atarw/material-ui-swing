@@ -1,5 +1,6 @@
 package mdlaf;
 
+import javafx.scene.paint.Material;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkBoxMenuItem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
@@ -21,6 +22,7 @@ import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
 import mdlaf.components.textfield.MaterialTextFieldUI;
+import mdlaf.components.textpane.MaterialTextPaneUI;
 import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tree.MaterialTreeUI;
@@ -59,18 +61,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String progressBarUI = MaterialProgressBarUI.class.getCanonicalName();
 	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName();
 	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName();
-
-	public static String getCheckBoxMenuItemUI() {
-		return checkBoxMenuItemUI;
-	}
-
-	public static String getRadioButtonMenuItemUI() {
-		return radioButtonMenuItemUI;
-	}
-
-	public static String getProgressbarui() {
-		return progressBarUI;
-	}
+	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -124,6 +115,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("ProgressBarUI", progressBarUI);
 		table.put("RadioButtonMenuItemUI", radioButtonMenuItemUI);
 		table.put("CheckBoxMenuItemUI", checkBoxMenuItemUI);
+		table.put("TextPaneUI", textPaneUI);
 	}
 
 	@Override
@@ -292,5 +284,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImages.UNCHECKED_BOX));
 		table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.PAINTED_CHECKED_BOX));
+
+		table.put("TextPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
+        table.put("TextPane.background", MaterialColors.GRAY_50);
+        table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
+        table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
+        table.put("TextPane.font", MaterialFonts.BLACK_ITALIC);
 	}
 }
