@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+//TODO cambio grafica slider
 public class MaterialSliderUI extends BasicSliderUI {
 
 	private static final int NORMAL_THUMB_RADIUS = 7;

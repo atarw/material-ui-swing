@@ -268,7 +268,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Tree.openIcon", new ImageIcon (MaterialImages.DOWN_ARROW));
 		table.put ("Tree.selectionBorderColor", null);
 
-		//table.put("RadioButtonMenuItem.selectedIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
-		//table.put("RadioButtonMenuItem.icon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
+		//If it changes the background of the menuitem it must change this too, irrespective of its setting
+		table.put("RadioButtonMenuItem.background", UIManager.getColor ("MenuItem.background"));
+		table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
+		table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
 	}
 }
