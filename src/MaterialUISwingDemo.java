@@ -3,8 +3,8 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.resources.MaterialColors;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class MaterialUISwingDemo {
 
@@ -33,12 +33,12 @@ public class MaterialUISwingDemo {
 		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem();
 		jRadioButtonMenuItem.setText("prova RadioButtonMenuItem");
 		menu1.add(jRadioButtonMenuItem);
-
+		menu1.addSeparator();
 		//TestCheckBoxMenuItem
 		JCheckBoxMenuItem checkBoxMenuItem = new JCheckBoxMenuItem();
 		checkBoxMenuItem.setText("test");
 		menu1.add(checkBoxMenuItem);
-
+		menu1.addSeparator();
 		menu1.add (item1);
 		menu2.add (item2);
 
@@ -113,6 +113,18 @@ public class MaterialUISwingDemo {
 		progressBar.setMaximum(5);
 		progressBar.setValue(5);
 		pn.add(progressBar);
+
+		JTextPane textPane = new JTextPane();
+		textPane.setText("Hi I'm super sayan");
+		JTextPane textPane1 = new JTextPane();
+		textPane1.setText("Hi I'm super sayan");
+		textPane1.setEnabled(false);
+		pn.add(textPane);
+		pn.add(textPane1);
+
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setText("This theme is fantastic");
+		pn.add(editorPane);
 
 		// make everything visible to the world
 		frame.pack ();
