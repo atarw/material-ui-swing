@@ -16,6 +16,7 @@ import mdlaf.components.progressbar.MaterialProgressBarUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.radiobuttonmenuitem.MaterialRadioButtonMenuItemUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
+import mdlaf.components.separator.MaterialSeparatorUI;
 import mdlaf.components.slider.MaterialSliderUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
@@ -63,6 +64,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName();
 	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName();
 	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName();
+	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -118,6 +120,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("CheckBoxMenuItemUI", checkBoxMenuItemUI);
 		table.put("TextPaneUI", textPaneUI);
 		table.put("EditorPaneUI", editorPane);
+		table.put("SeparatorUI", separatorUI);
 	}
 
 	@Override
@@ -298,5 +301,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("EditorPane.font", MaterialFonts.BLACK_ITALIC);
+
+        table.put("Separator.background", MaterialColors.GRAY_300);
+        table.put("Separator.foreground", MaterialColors.GRAY_300);
 	}
 }
