@@ -1,6 +1,7 @@
 package mdlaf;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.checkBoxMenuItem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.label.MaterialLabelUI;
@@ -57,6 +58,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 	private static final String progressBarUI = MaterialProgressBarUI.class.getCanonicalName();
 	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName();
+	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName();
+
+	public static String getCheckBoxMenuItemUI() {
+		return checkBoxMenuItemUI;
+	}
 
 	public static String getRadioButtonMenuItemUI() {
 		return radioButtonMenuItemUI;
@@ -117,6 +123,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("SliderUI", sliderUI);
 		table.put("ProgressBarUI", progressBarUI);
 		table.put("RadioButtonMenuItemUI", radioButtonMenuItemUI);
+		table.put("CheckBoxMenuItemUI", checkBoxMenuItemUI);
 	}
 
 	@Override
@@ -268,9 +275,22 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Tree.openIcon", new ImageIcon (MaterialImages.DOWN_ARROW));
 		table.put ("Tree.selectionBorderColor", null);
 
+		table.put ("RadioButtonMenuItem.foreground", Color.BLACK);
+		table.put ("RadioButtonMenuItem.selectionForeground", Color.BLACK);
 		//If it changes the background of the menuitem it must change this too, irrespective of its setting
 		table.put("RadioButtonMenuItem.background", UIManager.getColor ("MenuItem.background"));
+		table.put("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
+		table.put ("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
 		table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
+
+		//If it changes the background of the menuitem it must change this too, irrespective of its setting
+		table.put("CheckBoxMenuItem.background", UIManager.getColor ("MenuItem.background"));
+		table.put("CheckBoxMenuItem.selectionBackground", MaterialColors.GRAY_200);
+		table.put ("CheckBoxMenuItem.foreground", Color.BLACK);
+		table.put ("CheckBoxMenuItem.selectionForeground", Color.BLACK);
+		table.put ("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
+		table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImages.UNCHECKED_BOX));
+		table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.PAINTED_CHECKED_BOX));
 	}
 }
