@@ -22,7 +22,6 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-//TODO al clic sulla jtextfield cancellare quello che c'e scritto.
 public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
 	private Color focusedBackground;
