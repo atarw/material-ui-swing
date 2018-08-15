@@ -12,6 +12,7 @@ import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.popupmenu.MaterialPopupMenuUI;
 import mdlaf.components.progressbar.MaterialProgressBarUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
+import mdlaf.components.radiobuttonmenuitem.MaterialRadioButtonMenuItemUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.slider.MaterialSliderUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
@@ -55,7 +56,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
 	private static final String progressBarUI = MaterialProgressBarUI.class.getCanonicalName();
-	
+	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName();
+
+	public static String getRadioButtonMenuItemUI() {
+		return radioButtonMenuItemUI;
+	}
+
 	public static String getProgressbarui() {
 		return progressBarUI;
 	}
@@ -110,6 +116,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("ToolBarUI", toolbarUI);
 		table.put ("SliderUI", sliderUI);
 		table.put("ProgressBarUI", progressBarUI);
+		table.put("RadioButtonMenuItemUI", radioButtonMenuItemUI);
 	}
 
 	@Override
@@ -260,5 +267,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Tree.closedIcon", new ImageIcon (MaterialImages.RIGHT_ARROW));
 		table.put ("Tree.openIcon", new ImageIcon (MaterialImages.DOWN_ARROW));
 		table.put ("Tree.selectionBorderColor", null);
+
+		//table.put("RadioButtonMenuItem.selectedIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
+		//table.put("RadioButtonMenuItem.icon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
 	}
 }
