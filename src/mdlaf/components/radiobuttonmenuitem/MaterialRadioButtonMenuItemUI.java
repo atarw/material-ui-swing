@@ -10,12 +10,6 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
 import java.awt.*;
 
-/**
- * 
- * @author https://github.com/vincenzopalazzo
- *
- */
-
 public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 
     public static ComponentUI createUI(JComponent c){
