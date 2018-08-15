@@ -9,6 +9,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
 import java.awt.Graphics;
 
+//TODO cambio colore icone combo box
 public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 
 	public static ComponentUI createUI (JComponent c) {
