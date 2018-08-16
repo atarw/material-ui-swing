@@ -3,6 +3,7 @@ package mdlaf;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
+import mdlaf.components.colorchooser.MaterialColorChooserUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.filechooser.MaterialFileChooserUI;
 import mdlaf.components.label.MaterialLabelUI;
@@ -26,6 +27,7 @@ import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.textpane.MaterialTextPaneUI;
 import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
+import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.resources.MaterialBorders;
 import mdlaf.resources.MaterialColors;
@@ -69,6 +71,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName ();
 	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
+	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
+	private static final String colorChooser = MaterialColorChooserUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -126,6 +130,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("EditorPaneUI", editorPane);
 		table.put ("SeparatorUI", separatorUI);
 		table.put ("FileChooserUI", fileChooserUI);
+		table.put ("ToolTipUI", toolTipUI);
+		table.put ("ColorChooserUI", colorChooser);
 	}
 
 	@Override
@@ -309,5 +315,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
 		table.put ("Separator.background", MaterialColors.GRAY_300);
 		table.put ("Separator.foreground", MaterialColors.GRAY_300);
+
+		table.put("ToolTip.background", MaterialColors.GRAY_500);
+		table.put("ToolTip.foreground", MaterialColors.GRAY_50);
+		table.put("ToolTip.border", BorderFactory.createEmptyBorder(5,5,5,5));
+
+		table.put("ColorChooser.background ", MaterialColors.WHITE);
+		table.put("ColorChooser.foreground ", MaterialColors.BLACK);
 	}
 }
