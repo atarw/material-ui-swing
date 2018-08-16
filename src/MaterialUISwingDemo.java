@@ -2,38 +2,14 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.resources.MaterialColors;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.SpinnerListModel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
+import javax.swing.event.ListDataListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MaterialUISwingDemo {
 
@@ -112,6 +88,25 @@ public class MaterialUISwingDemo {
 
 		JToolBar tb = new JToolBar ("toolbar");
 		JButton button1 = new JButton ("f");
+		class ActionTest extends AbstractAction{
+
+			public ActionTest(){
+				putValue(Action.NAME, "f");
+				putValue(Action.SHORT_DESCRIPTION, "Test tool tip");
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JDialog dialog = new JDialog();
+				JPanel jPanel = new JPanel();
+				jPanel.add(new JColorChooser());
+				dialog.setContentPane(jPanel);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+				dialog.pack();
+			}
+		}
+		button1.setAction(new ActionTest());
 		JButton button2 = new JButton ("e");
 		button1.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button1.setForeground (Color.WHITE);
