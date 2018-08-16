@@ -31,6 +31,15 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	private Color unfocusedSelectionBackground;
 	private boolean drawLine;
 
+	public MaterialTextFieldUI () {
+		this (true);
+	}
+
+	public MaterialTextFieldUI (boolean drawLine) {
+		super ();
+		this.drawLine = drawLine;
+	}
+
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTextFieldUI ();
 	}
@@ -182,14 +191,5 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 				this.focusedSelectionBackground = MaterialColors.bleach (this.focusedBackground, 0.3f);
 			}
 		}
-	}
-
-	public MaterialTextFieldUI () {
-		this (true);
-	}
-
-	public MaterialTextFieldUI (boolean drawLine) {
-		super ();
-		this.drawLine = drawLine;
 	}
 }

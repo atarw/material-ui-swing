@@ -261,13 +261,13 @@ public class MaterialColors {
 	public static final Color BLACK = new Color (0, 0, 0);
 	public static final Color WHITE = new Color (255, 255, 255);
 
+	private MaterialColors () {}
+
 	public static Color bleach (Color color, float amount) {
 		int red = (int) ((color.getRed () * (1 - amount) / 255 + amount) * 255);
 		int green = (int) ((color.getGreen () * (1 - amount) / 255 + amount) * 255);
 		int blue = (int) ((color.getBlue () * (1 - amount) / 255 + amount) * 255);
 		return new Color (red, green, blue);
 	}
-
-	private MaterialColors () {}
 
 }

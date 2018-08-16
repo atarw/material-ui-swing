@@ -18,6 +18,30 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 	private JComponent component;
 	private Timer timer;
 
+	protected MaterialUITimer (JComponent component, Color to, int steps, int interval) {
+		this.from = component.getBackground ();
+		this.to = to;
+
+		this.forwardDeltas = new int[4];
+		this.backwardDeltas = new int[4];
+
+		forwardDeltas[0] = (from.getRed () - to.getRed ()) / steps;
+		forwardDeltas[1] = (from.getGreen () - to.getGreen ()) / steps;
+		forwardDeltas[2] = (from.getBlue () - to.getBlue ()) / steps;
+		forwardDeltas[3] = (from.getAlpha () - to.getAlpha ()) / steps;
+
+		backwardDeltas[0] = (to.getRed () - from.getRed ()) / steps;
+		backwardDeltas[1] = (to.getGreen () - from.getGreen ()) / steps;
+		backwardDeltas[2] = (to.getBlue () - from.getBlue ()) / steps;
+		backwardDeltas[3] = (to.getAlpha () - from.getAlpha ()) / steps;
+
+		this.steps = steps;
+
+		this.component = component;
+		this.component.addMouseListener (this);
+		timer = new Timer (interval, this);
+	}
+
 	private Color nextColor () {
 		int rValue = from.getRed () - alpha * forwardDeltas[0];
 		int gValue = from.getGreen () - alpha * forwardDeltas[1];
@@ -85,29 +109,5 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 		if (alpha == steps + 1 || alpha == -1) {
 			timer.stop ();
 		}
-	}
-
-	protected MaterialUITimer (JComponent component, Color to, int steps, int interval) {
-		this.from = component.getBackground ();
-		this.to = to;
-
-		this.forwardDeltas = new int[4];
-		this.backwardDeltas = new int[4];
-
-		forwardDeltas[0] = (from.getRed () - to.getRed ()) / steps;
-		forwardDeltas[1] = (from.getGreen () - to.getGreen ()) / steps;
-		forwardDeltas[2] = (from.getBlue () - to.getBlue ()) / steps;
-		forwardDeltas[3] = (from.getAlpha () - to.getAlpha ()) / steps;
-
-		backwardDeltas[0] = (to.getRed () - from.getRed ()) / steps;
-		backwardDeltas[1] = (to.getGreen () - from.getGreen ()) / steps;
-		backwardDeltas[2] = (to.getBlue () - from.getBlue ()) / steps;
-		backwardDeltas[3] = (to.getAlpha () - from.getAlpha ()) / steps;
-
-		this.steps = steps;
-
-		this.component = component;
-		this.component.addMouseListener (this);
-		timer = new Timer (interval, this);
 	}
 }
