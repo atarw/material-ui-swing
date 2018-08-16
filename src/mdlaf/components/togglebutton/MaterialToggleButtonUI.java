@@ -28,8 +28,11 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 		toggleButton.setFont (UIManager.getFont ("ToggleButton.font"));
 		toggleButton.setBackground (UIManager.getColor ("ToggleButton.background"));
 		toggleButton.setForeground (UIManager.getColor ("ToggleButton.foreground"));
-		toggleButton.setIcon (UIManager.getIcon ("ToggleButton.icon"));
-		toggleButton.setSelectedIcon (UIManager.getIcon ("ToggleButton.selectedIcon"));
+
+		if (toggleButton.getIcon () == null && toggleButton.getSelectedIcon () == null) {
+			toggleButton.setIcon (UIManager.getIcon ("ToggleButton.icon"));
+			toggleButton.setSelectedIcon (UIManager.getIcon ("ToggleButton.selectedIcon"));
+		}
 	}
 
 	@Override

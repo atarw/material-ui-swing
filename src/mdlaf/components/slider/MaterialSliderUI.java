@@ -26,6 +26,10 @@ public class MaterialSliderUI extends BasicSliderUI {
 		return new MaterialSliderUI ((JSlider) c);
 	}
 
+	private static void drawCircle (Graphics g, int x, int y, int radius) {
+		g.fillOval (x - radius, y - radius, radius * 2, radius * 2);
+	}
+
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
@@ -73,10 +77,6 @@ public class MaterialSliderUI extends BasicSliderUI {
 		g.setColor (slider.getForeground ());
 		Line loaded = getTrack (true);
 		g.drawLine (loaded.x1, loaded.y1, loaded.x2, loaded.y2);
-	}
-
-	private static void drawCircle (Graphics g, int x, int y, int radius) {
-		g.fillOval (x - radius, y - radius, radius * 2, radius * 2);
 	}
 
 	private Line getTrack (boolean loaded) {

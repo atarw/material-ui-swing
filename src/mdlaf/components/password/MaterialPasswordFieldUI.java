@@ -172,6 +172,10 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 
 	private static class MaterialPasswordView extends PasswordView {
 
+		private MaterialPasswordView (Element elem) {
+			super (elem);
+		}
+
 		// depreciated in Java 9 and above - replace method with float drawEchoCharacter(Graphics2D g, float x, float y, char c)
 		@Override
 		protected int drawEchoCharacter (Graphics g, int x, int y, char c) {
@@ -186,10 +190,6 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 			g2.dispose ();
 
 			return x + fm.charWidth (c);
-		}
-
-		private MaterialPasswordView (Element elem) {
-			super (elem);
 		}
 	}
 }

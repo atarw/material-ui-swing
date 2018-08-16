@@ -9,6 +9,10 @@ import java.awt.Component;
 
 public class MaterialTableCellEditor extends DefaultCellEditor {
 
+	public MaterialTableCellEditor () {
+		super (init ());
+	}
+
 	private static JTextField init () {
 		JTextField textField = new JTextField ();
 		textField.setUI (new MaterialTextFieldUI (false));
@@ -22,9 +26,5 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 		textField.setText (value.toString ());
 
 		return textField;
-	}
-
-	public MaterialTableCellEditor () {
-		super (init ());
 	}
 }

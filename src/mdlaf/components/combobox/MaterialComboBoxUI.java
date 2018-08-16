@@ -2,11 +2,17 @@ package mdlaf.components.combobox;
 
 import mdlaf.resources.MaterialDrawingUtils;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
+import java.awt.Graphics;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
@@ -29,12 +35,13 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
 	@Override
 	protected JButton createArrowButton () {
-		Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
+		Icon icon = UIManager.getIcon ("ComboBox.buttonIcon");
 		JButton button;
 		if (icon != null) {
-			button = new JButton(icon);
-		} else {
-			button = new BasicArrowButton(SwingConstants.SOUTH);
+			button = new JButton (icon);
+		}
+		else {
+			button = new BasicArrowButton (SwingConstants.SOUTH);
 		}
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
