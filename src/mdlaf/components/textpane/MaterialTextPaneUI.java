@@ -1,6 +1,6 @@
 package mdlaf.components.textpane;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextPaneUI;
 
@@ -10,14 +10,12 @@ import javax.swing.plaf.basic.BasicTextPaneUI;
 
 public class MaterialTextPaneUI extends BasicTextPaneUI {
 
-    public static ComponentUI createUI(JComponent c){
-        return new MaterialTextPaneUI();
-    }
+	public static ComponentUI createUI (JComponent c) {
+		return new MaterialTextPaneUI ();
+	}
 
-    @Override
-    public void installUI(JComponent c) {
-        super.installUI(c);
-    }
-
-
+	@Override
+	public void installUI (JComponent c) {
+		super.installUI (c);
+	}
 }

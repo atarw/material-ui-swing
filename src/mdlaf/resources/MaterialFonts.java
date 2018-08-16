@@ -12,12 +12,6 @@ public class MaterialFonts {
 
 	private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object> ();
 
-	// executes after static block in MaterialLookAndFeel
-	static {
-		fontSettings.put (TextAttribute.SIZE, 14f);
-		fontSettings.put (TextAttribute.KERNING, TextAttribute.KERNING_ON);
-	}
-
 	public static final Font BLACK = loadFont ("/fonts/Roboto-Black.ttf");
 	public static final Font BLACK_ITALIC = loadFont ("/fonts/Roboto-BlackItalic.ttf");
 	public static final Font BOLD = loadFont ("/fonts/Roboto-Bold.ttf");
@@ -32,6 +26,11 @@ public class MaterialFonts {
 	public static final Font THIN_ITALIC = loadFont ("/fonts/Roboto-ThinItalic.ttf");
 
 	private static Font loadFont (String fontPath) {
+		if (fontSettings.isEmpty ()) {
+			fontSettings.put (TextAttribute.SIZE, 14f);
+			fontSettings.put (TextAttribute.KERNING, TextAttribute.KERNING_ON);
+		}
+
 		try (InputStream inputStream = MaterialFonts.class.getResourceAsStream (fontPath)) {
 			return Font.createFont (Font.TRUETYPE_FONT, inputStream).deriveFont (fontSettings);
 		}
@@ -40,6 +39,4 @@ public class MaterialFonts {
 			throw new RuntimeException ("Font " + fontPath + " wasn't loaded");
 		}
 	}
-
-	private MaterialFonts () {}
 }

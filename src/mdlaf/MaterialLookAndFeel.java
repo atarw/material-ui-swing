@@ -1,10 +1,10 @@
 package mdlaf;
 
-import javafx.scene.paint.Material;
 import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.components.checkBoxMenuItem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
+import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
+import mdlaf.components.filechooser.MaterialFileChooserUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -32,9 +32,12 @@ import mdlaf.resources.MaterialColors;
 import mdlaf.resources.MaterialFonts;
 import mdlaf.resources.MaterialImages;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import java.awt.*;
+import java.awt.Color;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
@@ -59,12 +62,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String popupMenuUI = MaterialPopupMenuUI.class.getCanonicalName ();
 	private static final String toolbarUI = MaterialToolBarUI.class.getCanonicalName ();
 	private static final String sliderUI = MaterialSliderUI.class.getCanonicalName ();
-	private static final String progressBarUI = MaterialProgressBarUI.class.getCanonicalName();
-	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName();
-	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName();
-	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName();
-	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName();
-	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName();
+	private static final String progressBarUI = MaterialProgressBarUI.class.getCanonicalName ();
+	private static final String radioButtonMenuItemUI = MaterialRadioButtonMenuItemUI.class.getCanonicalName ();
+	private static final String checkBoxMenuItemUI = MaterialCheckBoxMenuItemUI.class.getCanonicalName ();
+	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName ();
+	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName ();
+	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
+	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -115,12 +119,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("PopupMenuUI", popupMenuUI);
 		table.put ("ToolBarUI", toolbarUI);
 		table.put ("SliderUI", sliderUI);
-		table.put("ProgressBarUI", progressBarUI);
-		table.put("RadioButtonMenuItemUI", radioButtonMenuItemUI);
-		table.put("CheckBoxMenuItemUI", checkBoxMenuItemUI);
-		table.put("TextPaneUI", textPaneUI);
-		table.put("EditorPaneUI", editorPane);
-		table.put("SeparatorUI", separatorUI);
+		table.put ("ProgressBarUI", progressBarUI);
+		table.put ("RadioButtonMenuItemUI", radioButtonMenuItemUI);
+		table.put ("CheckBoxMenuItemUI", checkBoxMenuItemUI);
+		table.put ("TextPaneUI", textPaneUI);
+		table.put ("EditorPaneUI", editorPane);
+		table.put ("SeparatorUI", separatorUI);
+		table.put ("FileChooserUI", fileChooserUI);
 	}
 
 	@Override
@@ -130,8 +135,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Button.highlight", MaterialColors.GRAY_200);
 		table.put ("Button.opaque", false);
 		table.put ("Button.border", BorderFactory.createEmptyBorder (7, 17, 7, 17));
-		table.put ("Button.background", MaterialColors.LIGHT_BLUE_400);
-		table.put ("Button.foreground", Color.WHITE);
+		table.put ("Button.background", MaterialColors.WHITE);
+		table.put ("Button.foreground", Color.BLACK);
 		table.put ("Button.font", MaterialFonts.MEDIUM);
 
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
@@ -243,7 +248,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Table.gridColor", MaterialColors.GRAY_200);
 		table.put ("TableHeader.background", MaterialColors.GRAY_200);
 		table.put ("TableHeader.font", MaterialFonts.BOLD);
-		table.put ("TableHeader.cellBorder", BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (10, 10, 10, 10)));
+		table.put ("TableHeader.cellBorder", BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (5, 5, 5, 5)));
 
 		table.put ("TextArea.background", MaterialColors.GRAY_200);
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
@@ -275,34 +280,34 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("RadioButtonMenuItem.foreground", Color.BLACK);
 		table.put ("RadioButtonMenuItem.selectionForeground", Color.BLACK);
 		//If it changes the background of the menuitem it must change this too, irrespective of its setting
-		table.put("RadioButtonMenuItem.background", UIManager.getColor ("MenuItem.background"));
-		table.put("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
+		table.put ("RadioButtonMenuItem.background", UIManager.getColor ("MenuItem.background"));
+		table.put ("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
 		table.put ("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
-		table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
-		table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
+		table.put ("RadioButtonMenuItem.checkIcon", new ImageIcon (MaterialImages.RADIO_BUTTON_OFF));
+		table.put ("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon (MaterialImages.RADIO_BUTTON_ON));
 
 		//If it changes the background of the menuitem it must change this too, irrespective of its setting
-		table.put("CheckBoxMenuItem.background", UIManager.getColor ("MenuItem.background"));
-		table.put("CheckBoxMenuItem.selectionBackground", MaterialColors.GRAY_200);
+		table.put ("CheckBoxMenuItem.background", UIManager.getColor ("MenuItem.background"));
+		table.put ("CheckBoxMenuItem.selectionBackground", MaterialColors.GRAY_200);
 		table.put ("CheckBoxMenuItem.foreground", Color.BLACK);
 		table.put ("CheckBoxMenuItem.selectionForeground", Color.BLACK);
 		table.put ("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
-		table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImages.UNCHECKED_BOX));
-		table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.PAINTED_CHECKED_BOX));
+		table.put ("CheckBoxMenuItem.checkIcon", new ImageIcon (MaterialImages.UNCHECKED_BOX));
+		table.put ("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon (MaterialImages.PAINTED_CHECKED_BOX));
 
-		table.put("TextPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
-        table.put("TextPane.background", MaterialColors.GRAY_50);
-        table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
-        table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
-        table.put("TextPane.font", MaterialFonts.BLACK_ITALIC);
+		table.put ("TextPane.border", MaterialBorders.LIGHT_LINE_BORDER);
+		table.put ("TextPane.background", MaterialColors.GRAY_50);
+		table.put ("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
+		table.put ("TextPane.inactiveForeground", MaterialColors.GRAY_500);
+		table.put ("TextPane.font", MaterialFonts.REGULAR);
 
-        table.put("EditorPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
-        table.put("EditorPane.background", MaterialColors.GRAY_50);
-        table.put("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
-        table.put("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
-        table.put("EditorPane.font", MaterialFonts.BLACK_ITALIC);
+		table.put ("EditorPane.border", MaterialBorders.LIGHT_LINE_BORDER);
+		table.put ("EditorPane.background", MaterialColors.GRAY_50);
+		table.put ("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
+		table.put ("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
+		table.put ("EditorPane.font", MaterialFonts.REGULAR);
 
-        table.put("Separator.background", MaterialColors.GRAY_300);
-        table.put("Separator.foreground", MaterialColors.GRAY_300);
+		table.put ("Separator.background", MaterialColors.GRAY_300);
+		table.put ("Separator.foreground", MaterialColors.GRAY_300);
 	}
 }

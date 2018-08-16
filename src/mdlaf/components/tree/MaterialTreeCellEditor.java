@@ -15,6 +15,16 @@ public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 
 	private JTextField textField;
 
+	public MaterialTreeCellEditor (JTree tree, DefaultTreeCellRenderer renderer) {
+		super (tree, renderer);
+		init ();
+	}
+
+	public MaterialTreeCellEditor (JTree tree, DefaultTreeCellRenderer renderer, TreeCellEditor editor) {
+		super (tree, renderer, editor);
+		init ();
+	}
+
 	private void init () {
 		textField = new JTextField ();
 		textField.setUI (new MaterialTextFieldUI ());
@@ -37,15 +47,5 @@ public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 	@Override
 	public Object getCellEditorValue () {
 		return textField.getText ();
-	}
-
-	public MaterialTreeCellEditor (JTree tree, DefaultTreeCellRenderer renderer) {
-		super (tree, renderer);
-		init ();
-	}
-
-	public MaterialTreeCellEditor (JTree tree, DefaultTreeCellRenderer renderer, TreeCellEditor editor) {
-		super (tree, renderer, editor);
-		init ();
 	}
 }

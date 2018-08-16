@@ -9,14 +9,6 @@ import java.awt.Component;
 
 public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
-	@Override
-	public Component getTreeCellRendererComponent (JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-		JComponent component = (JComponent) super.getTreeCellRendererComponent (tree, value, isSelected, expanded, leaf, row, hasFocus);
-		component.setBorder (BorderFactory.createEmptyBorder (5, 2, 5, 2));
-
-		return component;
-	}
-
 	public MaterialTreeCellRenderer () {
 		setTextSelectionColor (UIManager.getColor ("Tree.selectionForeground"));
 		setTextNonSelectionColor (UIManager.getColor ("Tree.foreground"));
@@ -28,7 +20,17 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
 		setClosedIcon (UIManager.getIcon ("Tree.closedIcon"));
 		setOpenIcon (UIManager.getIcon ("Tree.openIcon"));
+		setLeafIcon (null);
+
 
 		setFont (UIManager.getFont ("Tree.font"));
+	}
+
+	@Override
+	public Component getTreeCellRendererComponent (JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+		JComponent component = (JComponent) super.getTreeCellRendererComponent (tree, value, isSelected, expanded, leaf, row, hasFocus);
+		component.setBorder (BorderFactory.createEmptyBorder (5, 2, 5, 2));
+
+		return component;
 	}
 }

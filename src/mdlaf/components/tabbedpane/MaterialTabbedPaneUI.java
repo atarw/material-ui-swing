@@ -28,7 +28,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		tabbedPane.setBorder (UIManager.getBorder ("TabbedPane.border"));
 
 		darkShadow = UIManager.getColor ("TabbedPane.darkShadow");
-		shadow = UIManager.getColor ("TabbedPane.shadow"); ;
+		shadow = UIManager.getColor ("TabbedPane.shadow");
 		lightHighlight = UIManager.getColor ("TabbedPane.highlight");
 	}
 

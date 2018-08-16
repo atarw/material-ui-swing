@@ -2,9 +2,38 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.resources.MaterialColors;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
+import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.SpinnerListModel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class MaterialUISwingDemo {
 
@@ -30,15 +59,15 @@ public class MaterialUISwingDemo {
 		JMenuItem item2 = new JMenuItem ("Item 2 (Not animated)");
 
 		//Test RadioButtonMenuItem
-		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem();
-		jRadioButtonMenuItem.setText("prova RadioButtonMenuItem");
-		menu1.add(jRadioButtonMenuItem);
-		menu1.addSeparator();
+		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem ();
+		jRadioButtonMenuItem.setText ("prova RadioButtonMenuItem");
+		menu1.add (jRadioButtonMenuItem);
+		menu1.addSeparator ();
 		//TestCheckBoxMenuItem
-		JCheckBoxMenuItem checkBoxMenuItem = new JCheckBoxMenuItem();
-		checkBoxMenuItem.setText("test");
-		menu1.add(checkBoxMenuItem);
-		menu1.addSeparator();
+		JCheckBoxMenuItem checkBoxMenuItem = new JCheckBoxMenuItem ();
+		checkBoxMenuItem.setText ("test");
+		menu1.add (checkBoxMenuItem);
+		menu1.addSeparator ();
 		menu1.add (item1);
 		menu2.add (item2);
 
@@ -47,6 +76,8 @@ public class MaterialUISwingDemo {
 
 		// configuring a simple JButton
 		JButton button = new JButton ("PRESS ME");
+		button.setBackground (MaterialColors.LIGHT_BLUE_400);
+		button.setForeground (Color.WHITE);
 		button.setMaximumSize (new Dimension (200, 200));
 
 		JPanel content = new JPanel ();
@@ -80,9 +111,15 @@ public class MaterialUISwingDemo {
 		content.add (new JToggleButton ("toggle"));
 
 		JToolBar tb = new JToolBar ("toolbar");
-		tb.add (new JButton ("f"));
+		JButton button1 = new JButton ("f");
+		JButton button2 = new JButton ("e");
+		button1.setBackground (MaterialColors.LIGHT_BLUE_400);
+		button1.setForeground (Color.WHITE);
+		button2.setBackground (MaterialColors.LIGHT_BLUE_400);
+		button2.setForeground (Color.WHITE);
+		tb.add (button1);
 		tb.addSeparator ();
-		tb.add (new JButton ("e"));
+		tb.add (button2);
 		tb.setFloatable (true);
 		content.add (tb);
 
@@ -95,39 +132,42 @@ public class MaterialUISwingDemo {
 		sp.setHorizontalScrollBarPolicy (JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-		JPanel pn = new JPanel();
+		JPanel pn = new JPanel ();
 		JTabbedPane tp = new JTabbedPane ();
 		tp.addTab ("bleh1", pn);
 		tp.addTab ("bleh", sp);
 
 		frame.add (tp, BorderLayout.CENTER);
-		
+
 		//test progressBar
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(6);
-		progressBar.setMaximum(12);
-		pn.add(progressBar);
+		JProgressBar progressBar = new JProgressBar ();
+		progressBar.setValue (6);
+		progressBar.setMaximum (12);
+		pn.add (progressBar);
 
 		//test cange coloro maximum value progress bar
-		progressBar = new JProgressBar();
-		progressBar.setMaximum(5);
-		progressBar.setValue(5);
-		pn.add(progressBar);
+		progressBar = new JProgressBar ();
+		progressBar.setMaximum (5);
+		progressBar.setValue (5);
+		pn.add (progressBar);
 
-		JTextPane textPane = new JTextPane();
-		textPane.setText("Hi I'm super sayan");
-		JTextPane textPane1 = new JTextPane();
-		textPane1.setText("Hi I'm super sayan");
-		textPane1.setEnabled(false);
-		pn.add(textPane);
-		pn.add(textPane1);
+		JTextPane textPane = new JTextPane ();
+		textPane.setText ("Hi I'm super sayan");
+		JTextPane textPane1 = new JTextPane ();
+		textPane1.setText ("Hi I'm super sayan");
+		textPane1.setEnabled (false);
+		pn.add (textPane);
+		pn.add (textPane1);
 
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setText("This theme is fantastic");
-		pn.add(editorPane);
+		JEditorPane editorPane = new JEditorPane ();
+		editorPane.setText ("This theme is fantastic");
+		pn.add (editorPane);
 
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
+
+		JFileChooser fileChooser = new JFileChooser ();
+		fileChooser.showOpenDialog (frame);
 	}
 }
