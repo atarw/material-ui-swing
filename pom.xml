@@ -17,7 +17,7 @@
             </releases>
             <id>mlaf.material-swing</id>
             <name>material-ui-swing</name>
-            <url>http://dom-ain.org/maven2</url>
+            <url>https://github.com/vincenzopalazzo/material-ui-swing/tree/maven-repo/maven2</url>
             <layout>default</layout>
         </repository>
     </repositories>
