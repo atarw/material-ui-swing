@@ -6,6 +6,7 @@
     <packaging>jar</packaging>
     <version>0.9.3</version>
     <name>material-ui-swing</name>
+    <url>https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/lib/material-ui-swing.jar</url>
 
     <properties>
         <github.global.server>github</github.global.server>
@@ -19,12 +20,14 @@
         </repository>
     </distributionManagement>
 
+
     <build>
         <plugins>
+
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.9</version>
+                <version>0.12</version>
                 <configuration>
                     <message>Maven artifacts for ${project.version}</message>
                     <noJekyll>true</noJekyll>
@@ -34,8 +37,8 @@
                     <includes>
                         <include>**/*</include>
                     </includes>
-                    <repositoryName>pengyifan-commons</repositoryName>
-                    <repositoryOwner>yfpeng</repositoryOwner>
+                    <repositoryName>material-ui-swing</repositoryName>
+                    <repositoryOwner>vincenzopalazzo</repositoryOwner>
                     <server>github</server>
                 </configuration>
                 <executions>
@@ -46,6 +49,16 @@
                         <phase>deploy</phase>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>
+                        internal.repo::default::file://${project.build.directory}/mvn-repo
+                    </altDeploymentRepository>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -73,6 +86,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
