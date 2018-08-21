@@ -3,7 +3,6 @@ package mdlaf;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
-import mdlaf.components.colorchooser.MaterialColorChooserUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.filechooser.MaterialFileChooserUI;
 import mdlaf.components.label.MaterialLabelUI;
@@ -72,7 +71,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
-	private static final String colorChooser = MaterialColorChooserUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -131,7 +129,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("SeparatorUI", separatorUI);
 		table.put ("FileChooserUI", fileChooserUI);
 		table.put ("ToolTipUI", toolTipUI);
-		table.put ("ColorChooserUI", colorChooser);
 	}
 
 	@Override
@@ -141,7 +138,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Button.highlight", MaterialColors.GRAY_200);
 		table.put ("Button.opaque", false);
 		table.put ("Button.border", BorderFactory.createEmptyBorder (7, 17, 7, 17));
-		table.put ("Button.background", MaterialColors.WHITE);
+		table.put ("Button.background", MaterialColors.GRAY_300);
 		table.put ("Button.foreground", Color.BLACK);
 		table.put ("Button.font", MaterialFonts.MEDIUM);
 
@@ -320,7 +317,5 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("ToolTip.foreground", MaterialColors.GRAY_50);
 		table.put("ToolTip.border", BorderFactory.createEmptyBorder(5,5,5,5));
 
-		table.put("ColorChooser.background ", MaterialColors.WHITE);
-		table.put("ColorChooser.foreground ", MaterialColors.BLACK);
 	}
 }

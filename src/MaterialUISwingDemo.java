@@ -4,12 +4,8 @@ import mdlaf.resources.MaterialColors;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MaterialUISwingDemo {
 
@@ -158,6 +154,8 @@ public class MaterialUISwingDemo {
 		editorPane.setText ("This theme is fantastic");
 		pn.add (editorPane);
 
+		JButton buttonTwoo = new JButton("Original");
+		pn.add(buttonTwoo);
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
