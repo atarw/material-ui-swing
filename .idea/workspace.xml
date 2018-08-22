@@ -6,51 +6,84 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java" line="83" />
+    <bookmark url="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java" line="111" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooserUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/material-ui-swing.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/material-ui-swing.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MaterialUISwingDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUIMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUIMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/checkBoxMenuItem/MaterialCheckBoxMenuItemUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/checkboxmenuitem/MaterialCheckBoxMenuItemUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/editorpane/MaterialEditorPaneUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/editorpane/MaterialEditorPaneUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/progressbar/MaterialProgressBarUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/progressbar/MaterialProgressBarUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/radiobuttonmenuitem/MaterialRadioButtonMenuItemUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/radiobuttonmenuitem/MaterialRadioButtonMenuItemUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/separator/MaterialSeparatorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/separator/MaterialSeparatorUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/slider/MaterialSliderUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/slider/MaterialSliderUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/spinner/MaterialSpinnerUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/textpane/MaterialTextPaneUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/textpane/MaterialTextPaneUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/resources/MaterialFonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialFonts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/material_ui_swing$MaterialUISwingDemo.ic" NAME="MaterialUISwingDemo Coverage Results" MODIFIED="1534875119003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="287" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="761813894">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="5" />
+          <entry key="xml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="5" />
+          <entry key="XML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="96" />
+          <entry key="xml" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="96" />
+          <entry key="XML" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="material-ui-swing" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -98,10 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialSubtleTextFieldUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellEditor.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/menubar/MaterialMenuItemUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/menu/MaterialMenuUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/menuitem/MaterialMenuItemUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/panel/MaterialPanelUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java" />
@@ -135,7 +164,6 @@
         <option value="$PROJECT_DIR$/src/mdlaf/components/editorpane/MaterialEditorPaneUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/checkboxmenuitem/MaterialCheckBoxMenuItemUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileViewUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/dialog/MaterialDialogUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/dialog/MaterialDialog.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooser.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/rootpane/MaterialRootPaneUI.java" />
@@ -143,12 +171,17 @@
         <option value="$PROJECT_DIR$/src/mdlaf/components/tree/MaterialTreeCellRenderer.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/resources/MaterialImages.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/togglebutton/MaterialToggleButtonUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooserUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableUI.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/list/MaterialListUI.java" />
-        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
-        <option value="$PROJECT_DIR$/src/MaterialUISwingDemo.java" />
         <option value="$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/tooltip/MaterialToolTipUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/dialog/MaterialDialogUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/colorchooser/MaterialColorChooserUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooserUI.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeelDarkBlue.java" />
+        <option value="$PROJECT_DIR$/src/MaterialUISwingDemo.java" />
+        <option value="$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -158,10 +191,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="327" />
+    <option name="y" value="100" />
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -173,7 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,22 +238,19 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="filechooser" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="tabbedpane" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534457307847" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.1488189" />
@@ -232,22 +260,22 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="mdlaf.table" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="laf" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mdlaf" />
       <recent name="mdlaf.components.list" />
       <recent name="mdlaf.components.combobox" />
       <recent name="mdlaf.components.menu" />
       <recent name="mdlaf.components.menubar" />
-      <recent name="mdlaf.tree" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="mdlaf.table" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -265,40 +293,47 @@
   <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="MaterialUISwingDemo" type="Application" factoryName="Application" singleton="true" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MaterialUISwingDemo" />
       <module name="material-ui-swing" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="MaterialUISwingDemo" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
@@ -306,36 +341,99 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1534423066324</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534423066324</updated>
+      <workItem from="1534423072960" duration="114000" />
+      <workItem from="1534448992698" duration="8342000" />
+      <workItem from="1534457402502" duration="50000" />
+      <workItem from="1534496296177" duration="751000" />
+      <workItem from="1534522147336" duration="22000" />
+      <workItem from="1534873606655" duration="3822000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4764000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32352942" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.23796791" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.42513368" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72192514" visible="true" weight="0.3046875" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="SciView" order="5" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.72192514" visible="true" weight="0.32870865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.27807486" side_tool="true" weight="0.3046875" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Thumbnails" order="14" weight="0.328877" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" order="12" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.328877" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.6331169" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.23796791" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3225108" />
+      <window_info anchor="bottom" id="Application Servers" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Thumbnails" order="14" weight="0.328877" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="right" id="Palette" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32977587" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72192514" visible="true" weight="0.31163287" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Favorites" order="3" sideWeight="0.27807486" side_tool="true" weight="0.3046875" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.328877" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.42424244" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.23796791" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32352942" />
+      <window_info anchor="bottom" id="Application Servers" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Thumbnails" order="14" weight="0.328877" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="right" id="Palette" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -349,26 +447,7 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/password/MaterialPasswordFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/label/MaterialLabelUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/animation/MaterialUITimer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -418,20 +497,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="2751" column="16" selection-start-line="2751" selection-start-column="16" selection-end-line="2751" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/rt.jar!/sun/lwawt/macosx/CPrinterGraphics.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/rt.jar!/sun/lwawt/macosx/CPrinterGraphics.class" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/list/MaterialListCellRenderer.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/table/MaterialTableCellEditor.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -450,13 +517,7 @@
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/popupmenu/MaterialPopupMenuUI.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/combobox/MaterialComboBoxEditor.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/toolbar/MaterialToolBarUI.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/awt/event/ActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/awt/event/ActionListener.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/textfield/MaterialTextFieldUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -553,13 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialDrawingUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -623,33 +677,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooserUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/list/MaterialListUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="49" lean-forward="true" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="236" column="26" selection-start-line="236" selection-start-column="26" selection-end-line="236" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/list/MaterialListUI.java" />
     <entry file="file://$PROJECT_DIR$/src/mdlaf/components/tabbedpane/MaterialTabbedPaneUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
@@ -657,10 +685,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/resources/MaterialColors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5681">
+          <caret line="247" column="64" selection-start-line="247" selection-start-column="64" selection-end-line="247" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/java/jdk1.8.0_171/src.zip!/javax/swing/plaf/metal/MetalFileChooserUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="375" column="8" selection-start-line="375" selection-start-column="8" selection-end-line="379" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/components/filechooser/MaterialFileChooserUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MaterialUISwingDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="116" column="21" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
+        <state relative-caret-position="1340">
+          <caret line="156" column="41" lean-forward="true" selection-start-line="156" selection-start-column="41" selection-end-line="156" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mdlaf/MaterialLookAndFeel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="245" column="71" selection-start-line="245" selection-start-column="63" selection-end-line="245" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
         </state>
       </provider>
     </entry>
