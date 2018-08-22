@@ -4,21 +4,57 @@
     <groupId>mlaf.material-swing</groupId>
     <artifactId>material-ui-swing</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.3</version>
+    <version>0.9.3.1</version>
+
     <name>material-ui-swing</name>
-    <url>https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/lib/material-ui-swing.jar</url>
+    <url>https://github.com/vincenzopalazzo/material-ui-swing</url>
 
-    <properties>
-        <github.global.server>github</github.global.server>
-    </properties>
+    <build>
+        <finalName>${artifactId}-${version}</finalName>
+        <sourceDirectory>src</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>./src</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
 
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Temporary Staging Repository</name>
-            <url>file://${project.build.directory}/mvn-repo</url>
-        </repository>
-    </distributionManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>mdlaf.MaterialLookAndFeel</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
