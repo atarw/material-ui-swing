@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/vincenzopalazzo/material-ui-swing.svg)](https://jitpack.io/#vincenzopalazzo/material-ui-swing)
+
 # material-ui-swing
 A modern, Material Design UI for Java Swing
 
