@@ -20,82 +20,11 @@
         </repository>
     </distributionManagement>
 
-
-    <build>
-        <plugins>
-
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.12</version>
-                <configuration>
-                    <message>Maven artifacts for ${project.version}</message>
-                    <noJekyll>true</noJekyll>
-                    <outputDirectory>${project.build.directory}/mvn-repo
-                    </outputDirectory>
-                    <branch>refs/heads/mvn-repo</branch>
-                    <includes>
-                        <include>**/*</include>
-                    </includes>
-                    <repositoryName>material-ui-swing</repositoryName>
-                    <repositoryOwner>vincenzopalazzo</repositoryOwner>
-                    <server>github</server>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.1</version>
-                <configuration>
-                    <altDeploymentRepository>
-                        internal.repo::default::file://${project.build.directory}/mvn-repo
-                    </altDeploymentRepository>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>7</source>
-                    <target>7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 </project>
