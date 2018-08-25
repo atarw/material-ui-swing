@@ -1,6 +1,6 @@
 package mdlaf.components.menuitem;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;

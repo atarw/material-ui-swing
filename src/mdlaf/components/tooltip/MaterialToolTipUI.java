@@ -1,6 +1,6 @@
 package mdlaf.components.tooltip;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;

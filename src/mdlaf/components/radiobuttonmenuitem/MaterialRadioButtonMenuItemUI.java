@@ -1,6 +1,6 @@
 package mdlaf.components.radiobuttonmenuitem;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;

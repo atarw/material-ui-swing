@@ -1,6 +1,6 @@
 package mdlaf.components.checkbox;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;

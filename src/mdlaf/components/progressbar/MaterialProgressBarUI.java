@@ -1,8 +1,8 @@
 package mdlaf.components.progressbar;
 
-import mdlaf.resources.MaterialBorders;
-import mdlaf.resources.MaterialColors;
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.JProgressBar;

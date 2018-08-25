@@ -1,4 +1,4 @@
-package mdlaf.resources;
+package mdlaf.utils;
 
 import mdlaf.shadows.DropShadowBorder;
 

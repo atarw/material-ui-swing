@@ -1,6 +1,6 @@
 package mdlaf.components.checkboxmenuitem;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.Icon;
 import javax.swing.JCheckBoxMenuItem;

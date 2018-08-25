@@ -1,6 +1,6 @@
 package mdlaf.components.tree;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.JTree;

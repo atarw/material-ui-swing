@@ -1,6 +1,6 @@
 package mdlaf.components.table;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;

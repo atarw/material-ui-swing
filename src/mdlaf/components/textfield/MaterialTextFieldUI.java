@@ -1,8 +1,8 @@
 package mdlaf.components.textfield;
 
-import mdlaf.resources.MaterialColors;
-import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialFonts;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFonts;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;

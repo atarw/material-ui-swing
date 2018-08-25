@@ -28,10 +28,10 @@ import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
-import mdlaf.resources.MaterialBorders;
-import mdlaf.resources.MaterialColors;
-import mdlaf.resources.MaterialFonts;
-import mdlaf.resources.MaterialImages;
+import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialFonts;
+import mdlaf.utils.MaterialImages;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -135,10 +135,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	protected void initComponentDefaults (UIDefaults table) {
 		super.initComponentDefaults (table);
 
-		table.put ("Button.highlight", MaterialColors.GRAY_200);
+		table.put ("Button.highlight", MaterialColors.GRAY_400);
 		table.put ("Button.opaque", false);
 		table.put ("Button.border", BorderFactory.createEmptyBorder (7, 17, 7, 17));
-		table.put ("Button.background", MaterialColors.GRAY_300);
+		table.put ("Button.background", MaterialColors.GRAY_200);
 		table.put ("Button.foreground", Color.BLACK);
 		table.put ("Button.font", MaterialFonts.MEDIUM);
 

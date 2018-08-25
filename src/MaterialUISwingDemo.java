@@ -1,9 +1,8 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.resources.MaterialColors;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -151,7 +150,7 @@ public class MaterialUISwingDemo {
 		pn.add (textPane1);
 
 		JEditorPane editorPane = new JEditorPane ();
-		editorPane.setText ("This theme is fantastic");
+		editorPane.setText ("I added a second character for Arabic support, it is activated according to the locale");
 		pn.add (editorPane);
 
 		JButton buttonTwoo = new JButton("Original");

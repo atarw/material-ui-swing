@@ -1,7 +1,7 @@
 package mdlaf.components.filechooser;
 
-import mdlaf.resources.MaterialDrawingUtils;
-import mdlaf.resources.MaterialImages;
+import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialImages;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;

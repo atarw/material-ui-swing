@@ -1,6 +1,6 @@
 package mdlaf.components.toolbar;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
 import javax.swing.JToolBar;

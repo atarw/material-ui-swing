@@ -1,6 +1,6 @@
 package mdlaf.components.combobox;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;

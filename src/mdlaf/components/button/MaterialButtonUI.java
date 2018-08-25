@@ -1,6 +1,6 @@
 package mdlaf.components.button;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;

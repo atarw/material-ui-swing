@@ -1,6 +1,6 @@
 package mdlaf.components.scrollbar;
 
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;

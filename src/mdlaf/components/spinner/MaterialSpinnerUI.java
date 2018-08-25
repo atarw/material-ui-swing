@@ -1,7 +1,7 @@
 package mdlaf.components.spinner;
 
 import mdlaf.components.textfield.MaterialTextFieldUI;
-import mdlaf.resources.MaterialDrawingUtils;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
