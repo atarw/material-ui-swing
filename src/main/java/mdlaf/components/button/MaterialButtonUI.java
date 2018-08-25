@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.Graphics;
+import java.awt.im.InputContext;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -18,6 +19,9 @@ public class MaterialButtonUI extends BasicButtonUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
+
+		InputContext ctx = InputContext.getInstance ();
+		System.out.println (ctx.getLocale ());
 
 		AbstractButton button = (AbstractButton) c;
 		button.setOpaque (UIManager.getBoolean ("Button.opaque"));
