@@ -8,7 +8,6 @@ Skins JComponents to have a Material Design Look and Feel. Most components are r
 Screenshot in action below (chessboard not included 😛):
 
 ![Screenshot](http://i.imgur.com/WsprAM6.png?1)
-
 # Some Examples
 
 ````java
