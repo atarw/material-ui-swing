@@ -31,7 +31,7 @@ public class MaterialUISwingDemo {
 
 		//Test RadioButtonMenuItem
 		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem ();
-		jRadioButtonMenuItem.setText ("prova RadioButtonMenuItem");
+		jRadioButtonMenuItem.setText ("test RadioButtonMenuItem");
 		menu1.add (jRadioButtonMenuItem);
 		menu1.addSeparator ();
 		//TestCheckBoxMenuItem

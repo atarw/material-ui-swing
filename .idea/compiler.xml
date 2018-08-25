@@ -9,8 +9,5 @@
         <module name="material-ui-swing" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="material-ui-swing" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

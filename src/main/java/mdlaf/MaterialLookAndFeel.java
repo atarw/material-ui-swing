@@ -1,5 +1,6 @@
 package mdlaf;
 
+import main.java.mdlaf.utils.MaterialResurceManager;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
@@ -42,6 +43,8 @@ import java.awt.Color;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
+	private static MaterialResurceManager materialResurceManager = new MaterialResurceManager();
+
 	private static final String buttonUI = MaterialButtonUI.class.getCanonicalName ();
 	private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName ();
 	private static final String passwordFieldUI = MaterialPasswordFieldUI.class.getCanonicalName ();
@@ -71,6 +74,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
+
+	public MaterialLookAndFeel() {
+		materialResurceManager.init();
+	}
+
+	public static MaterialResurceManager getMaterialResurceManager() {
+		return materialResurceManager;
+	}
 
 	@Override
 	public String getName () {
@@ -140,7 +151,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Button.border", BorderFactory.createEmptyBorder (7, 17, 7, 17));
 		table.put ("Button.background", MaterialColors.GRAY_200);
 		table.put ("Button.foreground", Color.BLACK);
-		table.put ("Button.font", MaterialFonts.MEDIUM);
+		table.put ("Button.font", MaterialFonts.BLACK);
 
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("CheckBox.background", Color.WHITE);
@@ -162,7 +173,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Label.foreground", Color.BLACK);
 		table.put ("Label.border", BorderFactory.createEmptyBorder ());
 
-		table.put ("Menu.font", MaterialFonts.BOLD);
+		table.put ("Menu.font", MaterialFonts.BLACK);
 		table.put ("Menu.border", BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		table.put ("Menu.background", Color.WHITE);
 		table.put ("Menu.foreground", Color.BLACK);
@@ -172,7 +183,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Menu.disabledForeground", new Color (0, 0, 0, 100));
 		table.put ("Menu.menuPopupOffsetY", 3);
 
-		table.put ("MenuBar.font", MaterialFonts.BOLD);
+		table.put ("MenuBar.font", MaterialFonts.BLACK);
 		table.put ("MenuBar.background", Color.WHITE);
 		table.put ("MenuBar.border", MaterialBorders.LIGHT_SHADOW_BORDER);
 		table.put ("MenuBar.foreground", Color.BLACK);
