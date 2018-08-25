@@ -7,7 +7,11 @@ Screenshot in action below (chessboard not included 😛):
 
 ![Screenshot](http://i.imgur.com/WsprAM6.png?1)
 
-# Some Examples
+# Usage
+
+Go to the releases and download the latest version of `material-ui-swing.jar`. Add it to your project's build path (e.g. for IntelliJ [this](https://www.jetbrains.com/help/idea/import-project-from-existing-sources-libraries-page.html) might help), and you're all set!
+
+## Example
 
 ````java
 import mdlaf.*;
@@ -44,7 +48,7 @@ public class MaterialUISwingDemo {
 }
 ````
 
-Check `src/MaterialUISwingDemo.java` for a slightly longer example of how to use this library (and an explanation of what everything means/does).
+Check `src/main/java/MaterialUISwingDemo.java` for a slightly longer example of how to use this library (and an explanation of what everything means/does).
 For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
 
 # Misc
