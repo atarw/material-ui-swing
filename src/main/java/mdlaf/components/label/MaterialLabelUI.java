@@ -20,7 +20,7 @@ public class MaterialLabelUI extends BasicLabelUI {
 		super.installUI (c);
 
 		JLabel label = (JLabel) c;
-		label.setOpaque (true);
+		label.setOpaque (false);
 		label.setFont (UIManager.getFont ("Label.font"));
 		label.setBackground (UIManager.getColor ("Label.background"));
 		label.setForeground (UIManager.getColor ("Label.foreground"));

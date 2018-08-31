@@ -1,9 +1,11 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialImages;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
@@ -103,7 +105,7 @@ public class MaterialUISwingDemo {
 		// the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
 		MaterialUIMovement.add (button, MaterialColors.LIGHT_BLUE_500, 5, 1000 / 30);
 
-		//
+		// other components
 		content.add (new JCheckBox ("checkbox"));
 		content.add (new JComboBox<String> (new String[]{"a", "b", "c"}));
 		content.add (new JLabel ("label"));
@@ -117,15 +119,13 @@ public class MaterialUISwingDemo {
 
 		JToolBar tb = new JToolBar ("toolbar");
 		JButton button1 = new JButton ("f");
-		class ActionTest extends AbstractAction {
 
-			public ActionTest () {
-				putValue (Action.NAME, "f");
-				putValue (Action.SHORT_DESCRIPTION, "Test tool tip");
-			}
-
+		button1.setAction (new AbstractAction () {
 			@Override
 			public void actionPerformed (ActionEvent e) {
+				putValue (Action.NAME, "f");
+				putValue (Action.SHORT_DESCRIPTION, "Test tool tip");
+
 				JDialog dialog = new JDialog ();
 				JPanel jPanel = new JPanel ();
 				jPanel.add (new JColorChooser ());
@@ -134,8 +134,8 @@ public class MaterialUISwingDemo {
 				dialog.setVisible (true);
 				dialog.pack ();
 			}
-		}
-		button1.setAction (new ActionTest ());
+		});
+
 		JButton button2 = new JButton ("e");
 		button1.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button1.setForeground (Color.WHITE);
@@ -158,8 +158,8 @@ public class MaterialUISwingDemo {
 
 		JPanel pn = new JPanel ();
 		JTabbedPane tp = new JTabbedPane ();
-		tp.addTab ("bleh1", pn);
 		tp.addTab ("bleh", sp);
+		tp.addTab ("bleh2", pn);
 
 		frame.add (tp, BorderLayout.CENTER);
 

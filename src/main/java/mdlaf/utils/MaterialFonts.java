@@ -11,18 +11,18 @@ import java.util.Map;
 public class MaterialFonts {
 
 	private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object> ();
-	public static final Font BLACK = loadFont ("/fonts/Roboto-Black.ttf");
-	public static final Font BLACK_ITALIC = loadFont ("/fonts/Roboto-BlackItalic.ttf");
-	public static final Font BOLD = loadFont ("/fonts/Roboto-Bold.ttf");
-	public static final Font BOLD_ITALIC = loadFont ("/fonts/Roboto-BoldItalic.ttf");
-	public static final Font ITALIC = loadFont ("/fonts/Roboto-Italic.ttf");
-	public static final Font LIGHT = loadFont ("/fonts/Roboto-Light.ttf");
-	public static final Font LIGHT_ITALIC = loadFont ("/fonts/Roboto-LightItalic.ttf");
-	public static final Font MEDIUM = loadFont ("/fonts/Roboto-Medium.ttf");
-	public static final Font MEDIUM_ITALIC = loadFont ("/fonts/Roboto-MediumItalic.ttf");
-	public static final Font REGULAR = loadFont ("/fonts/Roboto-Regular.ttf");
-	public static final Font THIN = loadFont ("/fonts/Roboto-Thin.ttf");
-	public static final Font THIN_ITALIC = loadFont ("/fonts/Roboto-ThinItalic.ttf");
+	public static final Font BLACK = loadFont ("/fonts/NotoSans-Black.ttf");
+	public static final Font BLACK_ITALIC = loadFont ("/fonts/NotoSans-BlackItalic.ttf");
+	public static final Font BOLD = loadFont ("/fonts/NotoSans-Bold.ttf");
+	public static final Font BOLD_ITALIC = loadFont ("/fonts/NotoSans-BoldItalic.ttf");
+	public static final Font ITALIC = loadFont ("/fonts/NotoSans-Italic.ttf");
+	public static final Font LIGHT = loadFont ("/fonts/NotoSans-Light.ttf");
+	public static final Font LIGHT_ITALIC = loadFont ("/fonts/NotoSans-LightItalic.ttf");
+	public static final Font MEDIUM = loadFont ("/fonts/NotoSans-Medium.ttf");
+	public static final Font MEDIUM_ITALIC = loadFont ("/fonts/NotoSans-MediumItalic.ttf");
+	public static final Font REGULAR = loadFont ("/fonts/NotoSans-Regular.ttf");
+	public static final Font THIN = loadFont ("/fonts/NotoSans-Thin.ttf");
+	public static final Font THIN_ITALIC = loadFont ("/fonts/NotoSans-ThinItalic.ttf");
 
 	private static Font loadFont (String fontPath) {
 		if (fontSettings.isEmpty ()) {

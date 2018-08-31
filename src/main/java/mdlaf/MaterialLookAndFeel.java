@@ -136,7 +136,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		super.initComponentDefaults (table);
 
 		table.put ("Button.highlight", MaterialColors.GRAY_200);
-		table.put ("Button.opaque", false);
+		table.put ("Button.opaque", true);
 		table.put ("Button.border", BorderFactory.createEmptyBorder (7, 17, 7, 17));
 		table.put ("Button.background", MaterialColors.WHITE);
 		table.put ("Button.foreground", Color.BLACK);
