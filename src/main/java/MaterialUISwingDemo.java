@@ -1,6 +1,7 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialImages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -155,6 +156,10 @@ public class MaterialUISwingDemo {
 
 		JButton buttonTwoo = new JButton("Original");
 		pn.add(buttonTwoo);
+
+		JButton bottoneConImmagine = new JButton();
+		bottoneConImmagine.setIcon(new ImageIcon(MaterialImages.UNCHECKED_BOX));
+		pn.add(bottoneConImmagine);
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);

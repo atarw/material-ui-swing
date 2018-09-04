@@ -31,7 +31,9 @@ public class MaterialButtonUI extends BasicButtonUI {
 	public void paint (Graphics g, JComponent c) {
 		AbstractButton b = (AbstractButton) c;
 		g = MaterialDrawingUtils.getAliasedGraphics (g);
-		paintBackground (g, b);
+		if (b.isContentAreaFilled ()) {
+			paintBackground (g, b);
+		}
 		super.paint (g, c);
 	}
 

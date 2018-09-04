@@ -11,18 +11,18 @@ public class MaterialFonts {
 
 	private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object> ();
 
-	public static final Font BLACK = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("BLACK"));
-	public static final Font BLACK_ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("BLACK_ITALIC"));
-	public static final Font BOLD = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("BOLD"));
-	public static final Font BOLD_ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("BOLD_ITALIC"));
-	public static final Font ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("ITALIC"));
-	public static final Font LIGHT = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("LIGHT"));
-	public static final Font LIGHT_ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("LIGHT_ITALIC"));
-	public static final Font MEDIUM = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("MEDIUM"));
-	public static final Font MEDIUM_ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("MEDIUM_ITALIC"));
-	public static final Font REGULAR = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("REGULAR"));
-	public static final Font THIN = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("THIN"));
-	public static final Font THIN_ITALIC = loadFont (mdlaf.MaterialLookAndFeel.getMaterialResurceManager().getStringResource("THIN_ITALIC"));
+	public static final Font BLACK = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Black.ttf");
+	public static final Font BLACK_ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-BlackItalic.ttf");
+	public static final Font BOLD = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Bold.ttf");
+	public static final Font BOLD_ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-BoldItalic.ttf");
+	public static final Font ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Italic.ttf");
+	public static final Font LIGHT = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Light.ttf");
+	public static final Font LIGHT_ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-LightItalic.ttf");
+	public static final Font MEDIUM = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Medium.ttf");
+	public static final Font MEDIUM_ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-MediumItalic.ttf");
+	public static final Font REGULAR = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Regular.ttf");
+	public static final Font THIN = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-Thin.ttf");
+	public static final Font THIN_ITALIC = loadFont ("/main/resources/fonts/NotoSansDisplay/NotoSansDisplay-ThinItalic.ttf");
 
 	private static Font loadFont (String fontPath) {
 		if (fontSettings.isEmpty ()) {
