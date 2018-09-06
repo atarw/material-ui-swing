@@ -1,13 +1,14 @@
 package mdlaf.components.button;
 
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFonts;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -24,7 +25,9 @@ public class MaterialButtonUI extends BasicButtonUI {
 		button.setBorder (UIManager.getBorder ("Button.border"));
 		button.setBackground (UIManager.getColor ("Button.background"));
 		button.setForeground (UIManager.getColor ("Button.foreground"));
-		button.setFont (UIManager.getFont ("Button.font"));
+		//TODO sei arrivato qui, non carica nulla
+		//Font font = MaterialFonts.getFont(button.getText(), "Black");
+		button.setFont (MaterialFonts.BOLD);
 	}
 
 	@Override
