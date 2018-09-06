@@ -5,7 +5,8 @@ A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
 
-![Screenshot](https://imgur.com/a/TGalSuF)
+![scree](https://preview.ibb.co/mRUdQK/screen_presentazione.png)
+
 # Some Examples
 
 ````java
