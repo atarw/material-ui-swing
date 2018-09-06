@@ -72,6 +72,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
 
+
+
 	@Override
 	public String getName () {
 		return "Material Look And Feel";
