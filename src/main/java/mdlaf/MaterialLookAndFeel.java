@@ -319,5 +319,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("ToolTip.foreground", MaterialColors.GRAY_50);
 		table.put("ToolTip.border", BorderFactory.createEmptyBorder(5,5,5,5));
 
+		table.put ("TextField.inactiveForeground", MaterialColors.GRAY_800);
+		table.put ("TextField.inactiveBackground", MaterialColors.GRAY_200);
+		table.put ("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
+		table.put ("TextField.selectionForeground", Color.BLACK);
+
 	}
 }
