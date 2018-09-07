@@ -257,6 +257,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("TextArea.border", BorderFactory.createEmptyBorder ());
 		table.put ("TextArea.foreground", Color.BLACK);
 
+		table.put ("TextField.inactiveForeground", MaterialColors.GRAY_800);
+		table.put ("TextField.inactiveBackground", MaterialColors.GRAY_200);
+		table.put ("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
+		table.put ("TextField.selectionForeground", Color.BLACK);
+
 		table.put ("ToggleButton.border", BorderFactory.createEmptyBorder ());
 		table.put ("ToggleButton.font", MaterialFonts.REGULAR);
 		table.put ("ToggleButton.background", Color.WHITE);

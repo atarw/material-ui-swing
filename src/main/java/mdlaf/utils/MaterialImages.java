@@ -27,7 +27,6 @@ public class MaterialImages {
 	public static final BufferedImage LIST = loadImg ("/imgs/list.png");
 	public static final BufferedImage NEW_FOLDER = loadImg ("/imgs/new_folder.png");
 	public static final BufferedImage DETAILS = loadImg ("/imgs/details.png");
-	public static final BufferedImage TEST = loadImg ("/imgs/test.png");
 
 	private MaterialImages () {}
 
