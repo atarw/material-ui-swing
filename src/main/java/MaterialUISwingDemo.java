@@ -117,22 +117,7 @@ public class MaterialUISwingDemo {
 
 		JToolBar tb = new JToolBar ("toolbar");
 		JButton button1 = new JButton ("f");
-
-		button1.setAction (new AbstractAction () {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				putValue (Action.NAME, "f");
-				putValue (Action.SHORT_DESCRIPTION, "Test tool tip");
-
-				JDialog dialog = new JDialog ();
-				JPanel jPanel = new JPanel ();
-				jPanel.add (new JColorChooser ());
-				dialog.setContentPane (jPanel);
-				dialog.setLocationRelativeTo (null);
-				dialog.setVisible (true);
-				dialog.pack ();
-			}
-		});
+		button1.setAction (new ActionTest());
 
 		JButton button2 = new JButton ("e");
 		button1.setBackground (MaterialColors.LIGHT_BLUE_400);
@@ -191,5 +176,21 @@ public class MaterialUISwingDemo {
 
 		JFileChooser fileChooser = new JFileChooser ();
 		fileChooser.showOpenDialog (frame);
+	}
+
+	private static class ActionTest extends AbstractAction {
+		@Override
+		public void actionPerformed (ActionEvent e) {
+			putValue (Action.NAME, "f");
+			putValue (Action.SHORT_DESCRIPTION, "Test tool tip");
+
+			JDialog dialog = new JDialog ();
+			JPanel jPanel = new JPanel ();
+			jPanel.add (new JColorChooser ());
+			dialog.setContentPane (jPanel);
+			dialog.setLocationRelativeTo (null);
+			dialog.setVisible (true);
+			dialog.pack ();
+		}
 	}
 }
