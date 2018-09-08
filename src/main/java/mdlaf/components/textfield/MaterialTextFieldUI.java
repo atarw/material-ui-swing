@@ -1,6 +1,5 @@
 package mdlaf.components.textfield;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFonts;
 
@@ -10,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.Color;
@@ -22,14 +22,13 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-//TODO al clic sulla jtextfield cancellare quello che c'e scritto.
 public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
-	private Color focusedBackground;
-	private Color unfocusedBackground;
-	private Color focusedSelectionBackground;
-	private Color unfocusedSelectionBackground;
 	private boolean drawLine;
+	private Color activeBackground;
+	private Color activeForeground;
+	private Color inactiveBackground;
+	private Color inactiveForeground;
 
 	public MaterialTextFieldUI () {
 		this (true);
@@ -54,14 +53,15 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		                     BorderFactory.createEmptyBorder (5, 2, 10, 0) :
 		                     BorderFactory.createEmptyBorder (2, 2, 2, 2));
 
-		textField.setBackground (MaterialColors.LIGHT_BLUE_400);
 		textField.setFont (MaterialFonts.REGULAR);
+		this.activeBackground = UIManager.getColor ("TextField.selectionBackground");
+		this.activeForeground = UIManager.getColor ("TextField.selectionForeground");
+		this.inactiveBackground = UIManager.getColor ("TextField.inactiveBackground");
+		this.inactiveForeground = UIManager.getColor ("TextField.inactiveForeground");
 
-		this.focusedBackground = textField.getBackground ();
-		this.unfocusedBackground = MaterialColors.GRAY_200;
-
-		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
-		this.unfocusedSelectionBackground = unfocusedBackground;
+		textField.setSelectionColor (c.hasFocus () && c.isEnabled () ? activeBackground : inactiveBackground);
+		textField.setSelectedTextColor (c.hasFocus () && c.isEnabled () ? activeForeground : inactiveForeground);
+		textField.setForeground (c.hasFocus () && c.isEnabled () ? activeForeground : inactiveForeground);
 	}
 
 	@Override
@@ -139,25 +139,12 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		JTextField c = (JTextField) getComponent ();
 		g = MaterialDrawingUtils.getAliasedGraphics (g);
 
-		Color lineColor;
-
-		if (getComponent ().hasFocus ()) {
-			lineColor = focusedBackground;
-			c.setSelectionColor (focusedSelectionBackground);
-		}
-		else {
-			lineColor = unfocusedBackground;
-			c.setSelectionColor (unfocusedSelectionBackground);
-		}
-
-		g.setColor (lineColor);
-		getComponent ().setBackground (lineColor);
-
 		if (drawLine) {
-			int x = getComponent ().getInsets ().left;
-			int y = getComponent ().getInsets ().top;
-			int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
+			int x = c.getInsets ().left;
+			int y = c.getInsets ().top;
+			int w = c.getWidth () - c.getInsets ().left - c.getInsets ().right;
 
+			g.setColor (c.getSelectionColor ());
 			g.fillRect (x, c.getHeight () - y, w, 2);
 		}
 
@@ -165,31 +152,49 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	}
 
 	@Override
-	public void paintBackground (final Graphics g) {
-		super.paintBackground (MaterialDrawingUtils.getAliasedGraphics (g));
-	}
-
-	@Override
 	public void focusGained (FocusEvent e) {
-		e.getComponent ().setBackground (focusedBackground);
+		changeColorOnFocus (true);
 	}
 
 	@Override
 	public void focusLost (FocusEvent e) {
-		e.getComponent ().setBackground (unfocusedBackground);
+		changeColorOnFocus (false);
+	}
+
+	private void changeColorOnFocus (boolean hasFocus) {
+		JTextField c = (JTextField) getComponent ();
+
+		c.setSelectionColor (hasFocus ? activeBackground : inactiveBackground);
+		c.setForeground (hasFocus ? activeForeground : inactiveForeground);
+		c.setSelectedTextColor (hasFocus ? activeForeground : inactiveForeground);
+
+		c.paint (c.getGraphics ());
 	}
 
 	@Override
 	public void propertyChange (PropertyChangeEvent pce) {
 		super.propertyChange (pce);
 
-		if (pce.getPropertyName ().equals ("background")) {
+		if (pce.getPropertyName ().equals ("selectionColor")) {
 			Color newColor = (Color) pce.getNewValue ();
 
-			if (!newColor.equals (focusedBackground) && !newColor.equals (unfocusedBackground)) {
-				this.focusedBackground = (Color) pce.getNewValue ();
-				this.focusedSelectionBackground = MaterialColors.bleach (this.focusedBackground, 0.3f);
+			if (!newColor.equals (activeBackground) && !newColor.equals (inactiveBackground)) {
+				this.activeBackground = newColor;
+				getComponent ().repaint ();
 			}
+		}
+
+		if (pce.getPropertyName ().equals ("selectedTextColor")) {
+			Color newColor = (Color) pce.getNewValue ();
+
+			if (!newColor.equals (activeForeground) && !newColor.equals (inactiveForeground)) {
+				this.activeForeground = newColor;
+				getComponent ().repaint ();
+			}
+		}
+
+		if (pce.getPropertyName ().equals ("background")) {
+			getComponent ().repaint ();
 		}
 	}
 }
