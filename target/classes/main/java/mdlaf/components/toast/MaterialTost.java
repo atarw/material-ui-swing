@@ -143,7 +143,7 @@ public class MaterialTost extends JDialog {
         Point ownerLoc = mOwner.getLocation();
         if(mPosition == TOP){
             int x = (int) (ownerLoc.getX() + ((mOwner.getWidth() - this.getWidth()) / 2));
-            int y = (int) (mOwner.getHeight() + DISTANCE_FROM_PARENT);
+            int y = (int) (ownerLoc.getY());
             return new Point(x, y);
         }
         int x = (int) (ownerLoc.getX() + ((mOwner.getWidth() - this.getWidth()) / 2));

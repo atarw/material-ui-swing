@@ -185,7 +185,7 @@ public class MaterialUISwingDemo {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                MaterialTost.makeText(frame, "This is a message in a toast component", MaterialTost.NORMAL).display();
+                MaterialTost.makeText(frame, "This is a message in a toast component", MaterialTost.SHORT, MaterialTost.NORMAL, MaterialTost.BOTTOM).display();
             }
         }
         buttonTwoo.setAction(new ActionToastTest(pn));
