@@ -1,3 +1,4 @@
+import main.java.mdlaf.components.toast.MaterialTost;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
@@ -26,8 +27,25 @@ public class MaterialUISwingDemo {
 		JMenuBar bar = new JMenuBar ();
 		JMenu menu1 = new JMenu ("Option 1 (Animated)");
 		JMenu menu2 = new JMenu ("Option 2 (Not animated)");
+		class ActionTestJFC extends AbstractAction{
+
+			JComponent component;
+
+			public ActionTestJFC(JComponent component){
+				this.component = component;
+				putValue(Action.NAME, "Test JFileChooser (Animated)");
+				putValue(Action.SHORT_DESCRIPTION, "Test JFileChooser");
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.showDialog(component, "Test OK");
+			}
+		}
 
 		JMenuItem item1 = new JMenuItem ("Item 1 (Animated)");
+		item1.setAction(new ActionTestJFC(new JPanel()));
 		JMenuItem item2 = new JMenuItem ("Item 2 (Not animated)");
 
 		//Test RadioButtonMenuItem
@@ -154,17 +172,37 @@ public class MaterialUISwingDemo {
 		editorPane.setText ("I added a second character for Arabic support, it is activated according to the locale");
 		pn.add (editorPane);
 
-		JButton buttonTwoo = new JButton("Original");
+		JButton buttonTwoo = new JButton();
+		class ActionToastTest extends AbstractAction{
+
+		    JComponent component;
+
+            public ActionToastTest(JComponent component){
+                this.component = component;
+                putValue(Action.NAME, "Test Toast");
+                putValue(Action.SHORT_DESCRIPTION, "Test Toast");
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MaterialTost.makeText(frame, "This is a message in a toast component", MaterialTost.NORMAL).display();
+            }
+        }
+        buttonTwoo.setAction(new ActionToastTest(pn));
+		buttonTwoo.setBackground(MaterialColors.PURPLE_400);
+		buttonTwoo.setForeground(MaterialColors.GRAY_100);
 		pn.add(buttonTwoo);
 
 		JButton bottoneConImmagine = new JButton();
 		bottoneConImmagine.setIcon(new ImageIcon(MaterialImages.UNCHECKED_BOX));
 		pn.add(bottoneConImmagine);
+
+
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
+		frame.setLocationRelativeTo(null);
 
-		JFileChooser fileChooser = new JFileChooser ();
-		fileChooser.showOpenDialog (frame);
+
 	}
 }
