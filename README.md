@@ -9,7 +9,7 @@ Screenshot in action below (chessboard not included 😛):
 
 # Usage
 
-Go to the releases (or just the `target` folder in the repo) and download the latest version of `material-ui-swing.jar`. Add it to your project's build path (e.g. for IntelliJ [this](https://www.jetbrains.com/help/idea/import-project-from-existing-sources-libraries-page.html) might help), and you're all set!
+Go to the releases (or just the `target/classes` folder in the repo) and download the latest version of `material-ui-swing.jar`. The OSGi version is available under `target`. Add it to your project's build path (e.g. for IntelliJ [this](https://www.jetbrains.com/help/idea/import-project-from-existing-sources-libraries-page.html) might help), and you're all set!
 
 ## Example
 
