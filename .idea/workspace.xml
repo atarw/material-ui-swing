@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_osgi_org_osgi_core_6_0_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_osgi_core_6_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/org.osgi.core-6.0.0-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/org.osgi.core-6.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/material-ui-swing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/material-ui-swing.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/material-ui-swing.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/material-ui-swing.jar" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,14 +24,14 @@
     <session id="-509449287">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.8" value="3" />
+          <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -222,6 +214,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,8 +249,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -345,9 +337,9 @@
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.36187398" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.36752826" />
       <window_info id="Structure" order="1" sideWeight="0.41038525" side_tool="true" weight="0.30936995" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.41107383" side_tool="true" weight="0.30936995" />
