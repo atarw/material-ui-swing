@@ -5,9 +5,18 @@ A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
 
-![scree](https://preview.ibb.co/mRUdQK/screen_presentazione.png)
+# Support for android components
 
-# Some Examples
+Yes, you understand, this theme in addition to changing the look and fell also supports Android components (those possible to implement)
+
+What does it support?
+
+It supports the Toast component of android and here it is called MaterialToast you can find the documentation here .. and in the demo an example is included.
+
+![scree](https://preview.ibb.co/mRUdQK/screen_presentazione.png)
+![scree](https://preview.ibb.co/dqFRKp/addToast.png)
+
+# Some Examples using MaterialToast
 
 ````java
 import mdlaf.*;
@@ -34,6 +43,25 @@ public class MaterialUISwingDemo {
 		JPanel content = new JPanel ();
 		content.add (button);
 		frame.add (content, BorderLayout.CENTER);
+		
+		//Using MaterialToast
+		JButton buttonTwoo = new JButton();
+		class ActionToastTest extends AbstractAction{
+
+		    	JComponent component;
+
+            		public ActionToastTest(JComponent component){
+                	this.component = component;
+               		 putValue(Action.NAME, "Test Toast");
+                	putValue(Action.SHORT_DESCRIPTION, "Test Toast");
+            	}
+
+            	@Override
+            	public void actionPerformed(ActionEvent e) {
+              	  MaterialTost.makeText(frame, "This is a message in a toast component", MaterialTost.NORMAL).display();
+           	 }
+        }
+        buttonTwoo.setAction(new ActionToastTest(pn));
 
 		// on hover, button will change to a light gray
 		MaterialUIMovement.add (button, MaterialColors.GRAY_100);
