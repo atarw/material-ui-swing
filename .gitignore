@@ -1,3 +1,6 @@
 *.java~
 *.class
 out/
+**/target/
+*.iml
+**/.idea
