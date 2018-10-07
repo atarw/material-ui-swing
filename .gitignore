@@ -1,6 +1,5 @@
-*.java~
 *.class
 out/
-**/target/
+target/
 *.iml
-**/.idea
+.idea/
