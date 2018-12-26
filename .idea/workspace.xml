@@ -9,7 +9,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/MaterialUISwingDemo.java" line="88" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="" />
+    <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,38 +25,39 @@
     <session id="-509449287">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="16" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.11" value="3" />
+          <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="42" />
+          <entry key="JAVA" value="43" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="42" />
+          <entry key="java" value="43" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3790" />
+          <entry key="java" value="3822" />
           <entry key="xml" value="194" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3790" />
+          <entry key="JAVA" value="3822" />
           <entry key="XML" value="194" />
         </counts>
       </usages-collector>
@@ -66,7 +70,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -169,10 +173,10 @@
         <option value="$PROJECT_DIR$/src/main/java/mdlaf/components/label/MaterialLabelUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/mdlaf/components/button/MaterialButtonUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/mdlaf/utils/MaterialImages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" />
         <option value="$PROJECT_DIR$/src/main/java/mdlaf/components/textfield/MaterialTextFieldUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/MaterialUISwingDemo.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" />
       </list>
     </option>
   </component>
@@ -212,7 +216,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,6 +238,21 @@
             <path>
               <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
               <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mdlaf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="material-ui-swing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="material-ui-swing" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -246,7 +265,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -337,7 +356,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.37318256" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.39095315" />
       <window_info id="Structure" order="1" sideWeight="0.41038525" side_tool="true" weight="0.30936995" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.41107383" side_tool="true" weight="0.30936995" />
@@ -664,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-684">
-          <caret line="242" column="32" selection-start-line="242" selection-start-column="32" selection-end-line="242" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MaterialUISwingDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -682,6 +694,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="322" column="42" selection-start-line="322" selection-start-column="42" selection-end-line="322" selection-end-column="42" />
         </state>
       </provider>
     </entry>

@@ -324,5 +324,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
 		table.put ("ColorChooser.background ", MaterialColors.WHITE);
 		table.put ("ColorChooser.foreground ", MaterialColors.BLACK);
+
+		table.put ("TitledBorder.font", MaterialFonts.REGULAR);
 	}
 }
