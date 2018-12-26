@@ -1,5 +1,6 @@
-*.class
-out/
-target/
+### IDE files
+.idea/
 *.iml
-.idea
+target/
+.classpath
+.project
