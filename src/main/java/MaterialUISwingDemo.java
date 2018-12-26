@@ -1,5 +1,6 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.titleborder.MaterialTitleBorder;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.AbstractAction;
@@ -191,5 +192,9 @@ public class MaterialUISwingDemo {
 
 		JFileChooser fileChooser = new JFileChooser ();
 		fileChooser.showOpenDialog (frame);
+
+		//test a MaterialTitleBorder
+		MaterialTitleBorder materialTitleBorder = new MaterialTitleBorder("Test new Title Border component");
+		content.setBorder(materialTitleBorder);
 	}
 }
