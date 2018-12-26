@@ -16,11 +16,11 @@ import java.awt.*;
  *
  * This is a Adapter patter for the implementation a Title border for Material
  */
-public class MaterialTitleBorderAdapter implements Border{
+public class MaterialTitleBorder implements Border{
 
     private TitledBorder titledBorder;
 
-    public MaterialTitleBorderAdapter(String title){
+    public MaterialTitleBorder(String title){
         titledBorder = new TitledBorder(title);
         setBorder();
         setFont();
