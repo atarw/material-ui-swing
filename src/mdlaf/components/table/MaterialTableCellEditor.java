@@ -15,7 +15,7 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 
 	private static JTextField init () {
 		JTextField textField = new JTextField ();
-		textField.setUI (new MaterialTextFieldUI (false));
+		textField.setUI (new MaterialTextFieldUI(false));
 
 		return textField;
 	}

@@ -4,7 +4,7 @@ import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
-import mdlaf.components.filechooser.MaterialFileChooserUI;
+import mdlaf.components.filechooser.MaterialFileChooserUITest;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -28,6 +28,7 @@ import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
+import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFonts;
@@ -38,7 +39,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import java.awt.Color;
+import java.awt.*;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
@@ -69,7 +70,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String textPaneUI = MaterialTextPaneUI.class.getCanonicalName ();
 	private static final String editorPane = MaterialTextPaneUI.class.getCanonicalName ();
 	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
-	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
+	private static final String fileChooserUI = MaterialFileChooserUITest.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
 
 
@@ -284,6 +285,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
 		table.put ("RadioButtonMenuItem.foreground", Color.BLACK);
 		table.put ("RadioButtonMenuItem.selectionForeground", Color.BLACK);
+
 		//If it changes the background of the menuitem it must change this too, irrespective of its setting
 		table.put ("RadioButtonMenuItem.background", UIManager.getColor ("MenuItem.background"));
 		table.put ("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
@@ -322,7 +324,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("TextField.inactiveForeground", MaterialColors.GRAY_800);
 		table.put ("TextField.inactiveBackground", MaterialColors.GRAY_200);
 		table.put ("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
-		table.put ("TextField.selectionForeground", Color.BLACK);
+		table.put ("TextField.selectionForeground", MaterialColors.BLACK);
+
+		table.put("TitledBorder.border",
+				new DropShadowBorder(MaterialColors.BLACK, 10, 4, (float)0.2, 8 ,
+						true, true, true, true));
+		table.put("TitledBorder.font", MaterialFonts.BOLD);
 
 	}
 }

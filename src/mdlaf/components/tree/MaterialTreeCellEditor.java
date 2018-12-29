@@ -27,7 +27,7 @@ public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 
 	private void init () {
 		textField = new JTextField ();
-		textField.setUI (new MaterialTextFieldUI ());
+		textField.setUI (new MaterialTextFieldUI());
 
 		textField.addKeyListener (new KeyAdapter () {
 			@Override

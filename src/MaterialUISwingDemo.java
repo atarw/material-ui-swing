@@ -1,9 +1,8 @@
-import main.java.mdlaf.components.toast.MaterialTost;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.components.titleborder.MaterialTitleBorder;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImages;
+import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -24,6 +23,7 @@ public class MaterialUISwingDemo {
 		// JMenuBar with some menus and items, as well as a button
 		JFrame frame = new JFrame ("Material Design UI for Swing by atharva washimkar");
 		frame.setMinimumSize (new Dimension (600, 400));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// configuring the JMenuBar as well as its menus and items
 		JMenuBar bar = new JMenuBar ();
@@ -76,10 +76,7 @@ public class MaterialUISwingDemo {
 		content.add (button);
 
 		//Test a MaterialTitleBorder
-		MaterialTitleBorder materialTitleBorder = new MaterialTitleBorder("Test Border");
-		materialTitleBorder.setTitleColor​(MaterialColors.LIGHT_BLUE_400);
-		materialTitleBorder.setTitlePosition​(TitledBorder.BOTTOM);
-		materialTitleBorder.setTitleJustification​(TitledBorder.CENTER);
+		TitledBorder materialTitleBorder = new TitledBorder("Test Border");
 		content.setBorder(materialTitleBorder);
 
 		// add everything to the frame

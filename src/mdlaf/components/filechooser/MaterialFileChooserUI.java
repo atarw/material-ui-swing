@@ -49,7 +49,8 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 		ui.directoryOpenButtonText = "OPEN";
 		ui.updateButtonText = "UPDATE";
 
-		ui.installComponents (fileChooser);
+
+		ui.installComponents(fileChooser);
 	}
 
 	@Override

@@ -4,10 +4,18 @@
     <groupId>mlaf.material-swing</groupId>
     <artifactId>material-ui-swing</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.4.5</version>
+    <version>0.9.6</version>
 
     <name>material-ui-swing</name>
     <url>https://github.com/vincenzopalazzo/material-ui-swing</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vincenzopalazzo</groupId>
+            <artifactId>toasts-for-swing</artifactId>
+            <version>1.5</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <finalName>${artifactId}-${version}</finalName>

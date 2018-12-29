@@ -1,23 +1,19 @@
 package mdlaf.components.textfield;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFonts;
-
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
-//TODO al clic sulla jtextfield cancellare quello che c'e scritto.
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
+
 public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
     private boolean drawLine;
@@ -40,24 +36,24 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     }
 
     @Override
+    /**
+     * This method not override because non paint correct in the JFileChooser
+     * @fixed by https://github.com/vincenzopalazzo
+     */
     public void installUI(JComponent c) {
         super.installUI(c);
+    }
 
-        JTextField textField = (JTextField) c;
-        textField.setOpaque(false);
-        textField.setBorder(drawLine ?
-                BorderFactory.createEmptyBorder(5, 2, 10, 0) :
-                BorderFactory.createEmptyBorder(2, 2, 2, 2));
+    @Override
+    protected void installDefaults() {
+        super.installDefaults();
+        installMyDefaults();
+    }
 
-        textField.setFont(MaterialFonts.REGULAR);
-
-        this.activeBackground = UIManager.getColor("TextField.selectionBackground");
-        this.activeForeground = UIManager.getColor("TextField.selectionForeground");
-        this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
-        this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
-        textField.setSelectionColor(c.hasFocus() && c.isEnabled() ? activeBackground : inactiveBackground);
-        textField.setSelectedTextColor(c.hasFocus() && c.isEnabled() ? activeForeground : inactiveForeground);
-        textField.setForeground(c.hasFocus() && c.isEnabled() ? activeForeground : inactiveForeground);
+    @Override
+    protected void uninstallDefaults() {
+        getComponent().setBorder(null);
+        super.uninstallDefaults();
     }
 
     @Override
@@ -65,6 +61,47 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         super.installListeners();
         getComponent().addFocusListener(this);
         getComponent().addPropertyChangeListener(this);
+    }
+
+    @Override
+    protected void uninstallListeners() {
+        getComponent().removeFocusListener(this);
+        super.uninstallListeners();
+    }
+
+    private void installMyDefaults() {
+        this.activeBackground = UIManager.getColor("TextField.selectionBackground");
+        this.activeForeground = UIManager.getColor("TextField.selectionForeground");
+        this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
+        this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
+        getComponent().setFont(MaterialFonts.REGULAR);
+        getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
+        getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+        getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+        getComponent().setBorder(BorderFactory.createEmptyBorder(3, 5, 2,5));
+    }
+    @Override
+    protected void paintBackground(Graphics g) {
+        super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
+    }
+
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        changeColorOnFocus(true);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        changeColorOnFocus(false);
+    }
+
+    private void changeColorOnFocus(boolean hasFocus) {
+        JTextField c = (JTextField) getComponent();
+        c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
+        c.setForeground(hasFocus ? activeForeground : inactiveForeground);
+        c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);
+        c.paint(c.getGraphics());
     }
 
     @Override
@@ -130,38 +167,21 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     }
 
     @Override
+    /**
+     *This metod drive a line button on JTextField
+     * @fixed by https://github.com/vincenzopalazzo
+     */
     public void paintSafely(Graphics g) {
         JTextField c = (JTextField) getComponent();
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
-
+        super.paintSafely(g);
         if (drawLine) {
             int x = c.getInsets().left;
             int y = c.getInsets().top;
             int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
             g.setColor(c.getSelectionColor());
 
-            g.fillRect(x, c.getHeight() - y, w, 2);
+            g.fillRect(x, c.getHeight() - y - 1, w, 2);
         }
-
-        super.paintSafely(g);
-    }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        changeColorOnFocus(true);
-    }
-
-    private void changeColorOnFocus(boolean hasFocus) {
-        JTextField c = (JTextField) getComponent();
-        c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
-        c.setForeground(hasFocus ? activeForeground : inactiveForeground);
-        c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);
-        c.paint(c.getGraphics());
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        changeColorOnFocus (false);
     }
 
     @Override
@@ -186,5 +206,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         if (pce.getPropertyName().equals("background")) {
             getComponent().repaint();
         }
+
     }
+
 }
+
+

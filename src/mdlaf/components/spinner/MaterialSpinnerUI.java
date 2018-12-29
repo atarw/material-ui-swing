@@ -36,7 +36,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 	@Override
 	protected JComponent createEditor () {
 		JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) super.createEditor ();
-		editor.getTextField ().setUI (new MaterialTextFieldUI (false));
+		editor.getTextField ().setUI (new MaterialTextFieldUI(false));
 
 		return editor;
 	}
