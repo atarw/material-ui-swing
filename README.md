@@ -54,3 +54,5 @@ For a real-world example of usage, see [here](https://github.com/atarw/washer-ch
 # Misc
 
 If there's a component that isn't supported, don't hesitate to open an issue! I can usually code something up for you in a couple of days 😀
+
+[A fork of this project exists](https://github.com/vincenzopalazzo/material-ui-swing) and is maintained by [@vincenzopalazzo](https://github.com/vincenzopalazzo), which adds support for some Android components not found in the traditional Java Swing library.
