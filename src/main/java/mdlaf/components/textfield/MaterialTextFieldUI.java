@@ -83,6 +83,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
 		this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
 		getComponent().setFont(MaterialFonts.REGULAR);
+
 		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
 		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
 		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
@@ -106,9 +107,20 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 	private void changeColorOnFocus(boolean hasFocus) {
 		JTextField c = (JTextField) getComponent();
-		c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
+		/*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
 		c.setForeground(hasFocus ? activeForeground : inactiveForeground);
-		c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);
+		c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
+		if(hasFocus && (activeBackground != null) && (activeForeground != null)){
+			c.setSelectionColor(activeBackground);
+			c.setForeground(activeForeground);
+			c.setSelectedTextColor(activeForeground);
+		}
+
+		if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
+			c.setSelectionColor(inactiveBackground);
+			c.setForeground(inactiveForeground);
+			c.setSelectedTextColor(inactiveForeground);
+		}
 		c.paint(c.getGraphics());
 	}
 
@@ -119,7 +131,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		Action selectAll = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getComponent().selectAll();
+				if(getComponent() != null){
+					getComponent().selectAll();
+				}
 			}
 		};
 
@@ -142,21 +156,27 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		Action left = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
+				if(getComponent() != null){
+					getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
+				}
 			}
 		};
 
 		Action right = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
+				if(getComponent() != null){
+					getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
+				}
 			}
 		};
 
 		Action enter = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((JTextField) getComponent()).postActionEvent();
+				if(getComponent() != null){
+					((JTextField) getComponent()).postActionEvent();
+				}
 			}
 		};
 
