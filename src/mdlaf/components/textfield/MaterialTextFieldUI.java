@@ -98,6 +98,10 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         changeColorOnFocus(false);
     }
 
+    /**
+     *This metod drive a line button on JTextField
+     * @fixed by https://github.com/vincenzopalazzo
+     */
     private void changeColorOnFocus(boolean hasFocus) {
         JTextField c = (JTextField) getComponent();
         /*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
@@ -115,8 +119,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             c.setForeground(inactiveForeground);
             c.setSelectedTextColor(inactiveForeground);
         }
-
-        c.paint(c.getGraphics());
+        if(c.getGraphics() != null) {
+            c.paint(c.getGraphics());
+        }
     }
 
 
