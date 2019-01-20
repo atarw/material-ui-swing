@@ -99,7 +99,8 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     }
 
     /**
-     *This metod drive a line button on JTextField
+     * This metod drive a line button on JTextField
+     *
      * @fixed by https://github.com/vincenzopalazzo
      */
     private void changeColorOnFocus(boolean hasFocus) {
@@ -108,22 +109,21 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         c.setForeground(hasFocus ? activeForeground : inactiveForeground);
         c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
 
-        if(hasFocus && (activeBackground != null) && (activeForeground != null)){
+        if (hasFocus && (activeBackground != null) && (activeForeground != null)) {
             c.setSelectionColor(activeBackground);
             c.setForeground(activeForeground);
             c.setSelectedTextColor(activeForeground);
         }
 
-        if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
+        if (!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)) {
             c.setSelectionColor(inactiveBackground);
             c.setForeground(inactiveForeground);
             c.setSelectedTextColor(inactiveForeground);
         }
-        if(c.getGraphics() != null) {
+        if (c.getGraphics() != null) {
             c.paint(c.getGraphics());
         }
     }
-
 
 
     @Override
@@ -156,21 +156,27 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         Action left = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
+                if (getComponent() != null) {
+                    getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
+                }
             }
         };
 
         Action right = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
+                if (getComponent() != null) {
+                    getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
+                }
             }
         };
 
         Action enter = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((JTextField) getComponent()).postActionEvent();
+                if (getComponent() != null) {
+                    ((JTextField) getComponent()).postActionEvent();
+                }
             }
         };
 
