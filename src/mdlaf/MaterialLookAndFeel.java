@@ -34,12 +34,10 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFonts;
 import mdlaf.utils.MaterialImages;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 

@@ -2,6 +2,7 @@ package mdlaf.components.textfield;
 
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFonts;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -78,8 +79,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
         getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-        getComponent().setBorder(BorderFactory.createEmptyBorder(3, 5, 2,5));
+        getComponent().setBorder(BorderFactory.createEmptyBorder(3, 5, 2, 5));
     }
+
     @Override
     protected void paintBackground(Graphics g) {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
@@ -98,11 +100,26 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
     private void changeColorOnFocus(boolean hasFocus) {
         JTextField c = (JTextField) getComponent();
-        c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
+        /*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
         c.setForeground(hasFocus ? activeForeground : inactiveForeground);
-        c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);
+        c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
+
+        if(hasFocus && (activeBackground != null) && (activeForeground != null)){
+            c.setSelectionColor(activeBackground);
+            c.setForeground(activeForeground);
+            c.setSelectedTextColor(activeForeground);
+        }
+
+        if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
+            c.setSelectionColor(inactiveBackground);
+            c.setForeground(inactiveForeground);
+            c.setSelectedTextColor(inactiveForeground);
+        }
+
         c.paint(c.getGraphics());
     }
+
+
 
     @Override
     protected void installKeyboardActions() {

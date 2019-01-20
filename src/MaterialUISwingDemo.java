@@ -203,6 +203,29 @@ public class MaterialUISwingDemo {
 		bottoneConImmagine.setIcon(new ImageIcon(MaterialImages.UNCHECKED_BOX));
 		pn.add(bottoneConImmagine);
 
+		JButton buttonTestTextFieled = new JButton("Test JtexFiele");
+
+
+		class AzioneTestJTexField extends AbstractAction{
+
+			public AzioneTestJTexField() {
+				putValue(Action.NAME, "testJtextFieled");
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JDialog dialog = new JDialog();
+				dialog.add(new JComboBox<String>());
+				dialog.add(new JSpinner());
+				dialog.setSize(new Dimension(50, 50));
+				dialog.setLocationRelativeTo(frame);
+				dialog.setVisible(true);
+			}
+		}
+
+		buttonTestTextFieled.setAction(new AzioneTestJTexField());
+
+		pn.add(buttonTestTextFieled);
 
 		// make everything visible to the world
 		frame.pack ();
