@@ -1,6 +1,5 @@
 package mdlaf;
 
-import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
@@ -31,10 +30,7 @@ import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.shadows.DropShadowBorder;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFonts;
-import mdlaf.utils.MaterialImages;
+import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -149,8 +145,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.font", MaterialFonts.REGULAR);
         table.put("CheckBox.background", Color.WHITE);
         table.put("CheckBox.foreground", Color.BLACK);
-        table.put("CheckBox.icon", new ImageIcon(MaterialImages.UNCHECKED_BOX));
-        table.put("CheckBox.selectedIcon", new ImageIcon(MaterialImages.PAINTED_CHECKED_BOX));
+        table.put("CheckBox.icon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UNCHECKED_BOX)));
+        table.put("CheckBox.selectedIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.PAINTED_BLACK_CHECKED_BOX)));
 
         table.put("ComboBox.font", MaterialFonts.REGULAR);
         table.put("ComboBox.background", Color.WHITE);
@@ -204,8 +200,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.font", MaterialFonts.REGULAR);
         table.put("RadioButton.background", Color.WHITE);
         table.put("RadioButton.foreground", Color.BLACK);
-        table.put("RadioButton.icon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
-        table.put("RadioButton.selectedIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
+        table.put("RadioButton.icon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RADIO_BUTTON_OFF)));
+        table.put("RadioButton.selectedIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RADIO_BUTTON_ON)));
 
         table.put("Spinner.font", MaterialFonts.REGULAR);
         table.put("Spinner.background", Color.WHITE);
@@ -265,8 +261,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.font", MaterialFonts.REGULAR);
         table.put("ToggleButton.background", Color.WHITE);
         table.put("ToggleButton.foreground", Color.BLACK);
-        table.put("ToggleButton.icon", new ImageIcon(MaterialImages.TOGGLE_BUTTON_OFF));
-        table.put("ToggleButton.selectedIcon", new ImageIcon(MaterialImages.TOGGLE_BUTTON_ON));
+        table.put("ToggleButton.icon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF)));
+        table.put("ToggleButton.selectedIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON)));
 
         table.put("ToolBar.font", MaterialFonts.REGULAR);
         table.put("ToolBar.background", Color.WHITE);
@@ -280,8 +276,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Tree.foreground", Color.BLACK);
         table.put("Tree.selectionBackground", MaterialColors.GRAY_200);
         table.put("Tree.background", Color.WHITE);
-        table.put("Tree.closedIcon", new ImageIcon(MaterialImages.RIGHT_ARROW));
-        table.put("Tree.openIcon", new ImageIcon(MaterialImages.DOWN_ARROW));
+        table.put("Tree.closedIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RIGHT_ARROW)));
+        table.put("Tree.openIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DOWN_ARROW)));
         table.put("Tree.selectionBorderColor", null);
 
         table.put("RadioButtonMenuItem.foreground", Color.BLACK);
@@ -291,8 +287,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButtonMenuItem.background", UIManager.getColor("MenuItem.background"));
         table.put("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
         table.put("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_OFF));
-        table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.RADIO_BUTTON_ON));
+        table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF)));
+        table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RADIO_BUTTON_ON)));
 
         //If it changes the background of the menuitem it must change this too, irrespective of its setting
         table.put("CheckBoxMenuItem.background", UIManager.getColor("MenuItem.background"));
@@ -300,8 +296,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBoxMenuItem.foreground", Color.BLACK);
         table.put("CheckBoxMenuItem.selectionForeground", Color.BLACK);
         table.put("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImages.UNCHECKED_BOX));
-        table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImages.PAINTED_CHECKED_BOX));
+        table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UNCHECKED_BOX)));
+        table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.PAINTED_BLACK_CHECKED_BOX)));
 
         table.put("TextPane.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("TextPane.background", MaterialColors.GRAY_50);
@@ -342,8 +338,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
         table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
-        table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImages.YES_COLLASSED));
-        table.put("TaskPane.noCollassed", new ImageIcon(MaterialImages.NO_COLLASSED));
+        table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.YES_COLLASSED)));
+        table.put("TaskPane.noCollassed",   new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
 
     }
 }

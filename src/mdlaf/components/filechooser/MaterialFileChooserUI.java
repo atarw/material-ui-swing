@@ -1,7 +1,7 @@
 package mdlaf.components.filechooser;
 
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialImages;
+import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -30,17 +30,17 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 		ui.uninstallComponents (fileChooser);
 		ui.clearIconCache ();
 
-		ui.computerIcon = new ImageIcon (MaterialImages.COMPUTER);
-		ui.directoryIcon = new ImageIcon (MaterialImages.FOLDER);
-		ui.fileIcon = new ImageIcon (MaterialImages.FILE);
-		ui.floppyDriveIcon = new ImageIcon (MaterialImages.FLOPPY_DRIVE);
-		ui.hardDriveIcon = new ImageIcon (MaterialImages.HARD_DRIVE);
+		ui.computerIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.COMPUTER));
+		ui.directoryIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FOLDER));
+		ui.fileIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FILE));
+		ui.floppyDriveIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FLOPPY_DRIVE));
+		ui.hardDriveIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.HARD_DRIVE));
 
-		ui.homeFolderIcon = new ImageIcon (MaterialImages.HOME);
-		ui.listViewIcon = new ImageIcon (MaterialImages.LIST);
-		ui.detailsViewIcon = new ImageIcon (MaterialImages.DETAILS);
-		ui.newFolderIcon = new ImageIcon (MaterialImages.NEW_FOLDER);
-		ui.upFolderIcon = new ImageIcon (MaterialImages.BACK_ARROW);
+		ui.homeFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.HOME));
+		ui.listViewIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.LIST));
+		ui.detailsViewIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DETAILS));
+		ui.newFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NEW_FOLDER));
+		ui.upFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.BACK_ARROW));
 
 		ui.openButtonText = "OPEN";
 		ui.cancelButtonText = "CANCEL";
