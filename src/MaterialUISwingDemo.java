@@ -1,7 +1,9 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialImages;
+import mdlaf.utils.MaterialFontFactory;
+import mdlaf.utils.MaterialImageFactory;
+import org.jdesktop.swingx.JXTaskPane;
 import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.swing.*;
@@ -10,6 +12,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MaterialUISwingDemo {
+
+	private static long beforeUsedMem;
+
+	public MaterialUISwingDemo() {
+		beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+	}
+
+
 
 	public static void main (String[] args) {
 		try {
@@ -200,7 +210,7 @@ public class MaterialUISwingDemo {
 		pn.add(buttonTwoo);
 
 		JButton bottoneConImmagine = new JButton();
-		bottoneConImmagine.setIcon(new ImageIcon(MaterialImages.UNCHECKED_BOX));
+		bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UNCHECKED_BOX)));
 		pn.add(bottoneConImmagine);
 
 		JButton buttonTestTextFieled = new JButton("Test JtexFiele");
@@ -227,11 +237,24 @@ public class MaterialUISwingDemo {
 
 		pn.add(buttonTestTextFieled);
 
+		JXTaskPane jxTaskPane = new JXTaskPane();
+		jxTaskPane.setTitle("Material UI memory");
+
+
+		JLabel memoryOccupedNow = new JLabel();
+		JLabel memoryOccupedBefore = new JLabel("Memory occuped before update 24.92 Mb");
+
+		jxTaskPane.add(memoryOccupedBefore);
+		jxTaskPane.add(memoryOccupedNow);
+
+		pn.add(jxTaskPane);
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
 		frame.setLocationRelativeTo(null);
 
-
+		long lastUsedMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+		double megamemori = (lastUsedMem - beforeUsedMem) * 9.537 * Math.pow(10, -7);
+		memoryOccupedNow.setText("Memory occuped after update: " + megamemori + " MB");
 	}
 }

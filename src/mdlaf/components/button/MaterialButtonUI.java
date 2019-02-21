@@ -1,7 +1,6 @@
 package mdlaf.components.button;
 
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialFonts;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
@@ -27,7 +26,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 		button.setForeground (UIManager.getColor ("Button.foreground"));
 		//TODO sei arrivato qui, non carica nulla
 		//Font font = MaterialFonts.getFont(button.getText(), "Black");
-		button.setFont (MaterialFonts.BOLD);
+		button.setFont (UIManager.getFont("Button.font"));
 	}
 
 	@Override
