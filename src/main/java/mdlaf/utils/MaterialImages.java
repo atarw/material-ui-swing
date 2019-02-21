@@ -27,6 +27,8 @@ public class MaterialImages {
 	public static final BufferedImage LIST = loadImg ("/imgs/list.png");
 	public static final BufferedImage NEW_FOLDER = loadImg ("/imgs/new_folder.png");
 	public static final BufferedImage DETAILS = loadImg ("/imgs/details.png");
+	public static final BufferedImage YES_COLLASSED = loadImg ("/imgs/yes-collassed.png");
+	public static final BufferedImage NO_COLLASSED = loadImg ("/imgs/no-collassed.png");
 
 	private MaterialImages () {}
 
