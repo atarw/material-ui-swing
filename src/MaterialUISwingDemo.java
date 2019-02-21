@@ -1,7 +1,9 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.taskpane.MaterialTaskPaneUI;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImages;
+import org.jdesktop.swingx.JXTaskPane;
 import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.swing.*;
@@ -226,6 +228,11 @@ public class MaterialUISwingDemo {
 		buttonTestTextFieled.setAction(new AzioneTestJTexField());
 
 		pn.add(buttonTestTextFieled);
+
+		JXTaskPane jxTaskPane = new JXTaskPane();
+		jxTaskPane.add(new Label("This is a MaterialTaskPaneUI"));
+		jxTaskPane.setTitle("Material UI");
+		pn.add(jxTaskPane);
 
 		// make everything visible to the world
 		frame.pack ();
