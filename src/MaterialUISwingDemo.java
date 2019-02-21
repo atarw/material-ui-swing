@@ -22,10 +22,6 @@ public class MaterialUISwingDemo {
 
 
 	public static void main (String[] args) {
-
-		//TODO test MaterialFontFactory
-		MaterialFontFactory.getIstance();
-
 		try {
 			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
 		}

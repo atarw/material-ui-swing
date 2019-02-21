@@ -1,7 +1,6 @@
 package mdlaf.components.textfield;
 
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialFonts;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -75,7 +74,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         this.activeForeground = UIManager.getColor("TextField.selectionForeground");
         this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
         this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
-        getComponent().setFont(MaterialFonts.REGULAR);
+        getComponent().setFont(UIManager.getFont("TextField.font"));
         getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
         getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
