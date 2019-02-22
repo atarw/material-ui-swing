@@ -8,10 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3162ee46-df58-4f91-b058-73617e5ff7b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdlaf/components/button/MaterialButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdlaf/components/button/MaterialButtonUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/material-ui-swing.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/material-ui-swing.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/material-ui-swing-osgi.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/material-ui-swing-osgi.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,7 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
+            <state relative-caret-position="2231">
               <caret line="146" column="65" selection-start-line="146" selection-start-column="65" selection-end-line="146" selection-end-column="65" />
             </state>
           </provider>
@@ -36,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/components/button/MaterialButtonUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="207">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -198,7 +195,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -260,6 +256,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,17 +379,19 @@
       <workItem from="1548021633386" duration="306000" />
       <workItem from="1550769774691" duration="674000" />
       <workItem from="1550876724391" duration="789000" />
+      <workItem from="1550877742214" duration="751000" />
+      <workItem from="1550879845269" duration="44000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2127000" />
+    <option name="totallyTimeSpent" value="2922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.1664888" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5889262" visible="true" weight="0.1696905" />
       <window_info id="Structure" order="1" sideWeight="0.41038525" side_tool="true" weight="0.30936995" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.41107383" side_tool="true" weight="0.30936995" />
@@ -402,7 +401,7 @@
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.328877" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3382353" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.30372807" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.30372807" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -505,15 +504,15 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/MaterialUISwingDemo.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/MaterialLookAndFeel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="2231">
           <caret line="146" column="65" selection-start-line="146" selection-start-column="65" selection-end-line="146" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mdlaf/components/button/MaterialButtonUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="207">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
