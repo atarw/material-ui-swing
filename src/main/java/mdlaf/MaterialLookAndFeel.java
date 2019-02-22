@@ -144,6 +144,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Button.background", MaterialColors.WHITE);
 		table.put ("Button.foreground", Color.BLACK);
 		table.put ("Button.font", MaterialFonts.MEDIUM);
+		table.put("Button.mouseHoverColor", MaterialColors.GRAY_400);
+		table.put("Button.mouseHoverEnable", true);
 
 		table.put ("CheckBox.font", MaterialFonts.REGULAR);
 		table.put ("CheckBox.background", Color.WHITE);
