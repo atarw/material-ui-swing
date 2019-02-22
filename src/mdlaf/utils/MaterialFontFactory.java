@@ -3,7 +3,6 @@ package mdlaf.utils;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -13,7 +12,11 @@ import java.util.Properties;
  */
 public class MaterialFontFactory {
 
-    //OS supported
+    /**
+     * Tipe OS supported
+     * @author https://github.com/vincenzopalazzo
+     * LINUX, WINDOWS, MAC
+     */
     private static final String[] SISTEM_SUPPORTED = {"linux", "windows", "mac"};
     private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
     /**

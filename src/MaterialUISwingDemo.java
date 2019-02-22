@@ -210,7 +210,7 @@ public class MaterialUISwingDemo {
 		pn.add(buttonTwoo);
 
 		JButton bottoneConImmagine = new JButton();
-		bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UNCHECKED_BOX)));
+		bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.COMPUTER)));
 		pn.add(bottoneConImmagine);
 
 		JButton buttonTestTextFieled = new JButton("Test JtexFiele");
@@ -242,9 +242,7 @@ public class MaterialUISwingDemo {
 
 
 		JLabel memoryOccupedNow = new JLabel();
-		JLabel memoryOccupedBefore = new JLabel("Memory occuped before update 24.92 Mb");
 
-		jxTaskPane.add(memoryOccupedBefore);
 		jxTaskPane.add(memoryOccupedNow);
 
 		pn.add(jxTaskPane);
