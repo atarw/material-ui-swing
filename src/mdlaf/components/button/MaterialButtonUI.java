@@ -12,8 +12,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -30,11 +28,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.setBorder(UIManager.getBorder("Button.border"));
         button.setBackground(UIManager.getColor("Button.background"));
         button.setForeground(UIManager.getColor("Button.foreground"));
-        //TODO sei arrivato qui, non carica nulla
-        //Font font = MaterialFonts.getFont(button.getText(), "Black");
         button.setFont(UIManager.getFont("Button.font"));
-       // button.addMouseListener(new EffectButton(button));
-        button.addChangeListener(new EffectButton(button));
+        button.addChangeListener(new EffectButton());
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
     }
 
@@ -56,16 +52,16 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     private class EffectButton implements ChangeListener {
 
-        private JComponent component;
-
-        public EffectButton(JComponent component) {
-            this.component = component;
-        }
 
 
         @Override
         public void stateChanged(ChangeEvent e) {
-            MaterialUIMovement.add(component, MaterialColors.GRAY_500, 5, 1000 / 30);
+            JComponent component = (JComponent) e.getSource();
+            if(UIManager.getBoolean("Button.mouseHoverEnable")){
+                MaterialUIMovement.add(component, MaterialColors.bleach(UIManager.getColor("Button.mouseHoverColor"), (float) 0.1), 5, 1000 / 30);
+            }
         }
+
+
     }
 }
