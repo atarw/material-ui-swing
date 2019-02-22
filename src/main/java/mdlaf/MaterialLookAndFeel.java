@@ -22,6 +22,7 @@ import mdlaf.components.spinner.MaterialSpinnerUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
+import mdlaf.components.taskpane.MaterialTaskPaneUI;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.textpane.MaterialTextPaneUI;
 import mdlaf.components.togglebutton.MaterialToggleButtonUI;
@@ -71,6 +72,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String separatorUI = MaterialSeparatorUI.class.getCanonicalName ();
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName ();
+	private static final String taskPaneUI = MaterialTaskPaneUI.class.getCanonicalName ();
 
 	@Override
 	public String getName () {
@@ -129,6 +131,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("SeparatorUI", separatorUI);
 		table.put ("FileChooserUI", fileChooserUI);
 		table.put ("ToolTipUI", toolTipUI);
+		table.put ("swingx/TaskPaneUI", taskPaneUI);
 	}
 
 	@Override
@@ -326,5 +329,18 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("ColorChooser.foreground ", MaterialColors.BLACK);
 
 		table.put ("TitledBorder.font", MaterialFonts.REGULAR);
+
+		table.put("TaskPane.font", MaterialFonts.MEDIUM);
+		table.put("TaskPane.titleBackgroundGradientStart", MaterialColors.GRAY_300);
+		table.put("TaskPane.titleBackgroundGradientEnd", MaterialColors.GRAY_500);
+		table.put("TaskPane.titleOver", MaterialColors.LIGHT_BLUE_500);
+		table.put("TaskPane.specialTitleOver", MaterialColors.LIGHT_BLUE_500);
+		table.put("TaskPane.background", MaterialColors.LIGHT_BLUE_500);
+		table.put("TaskPane.foreground", MaterialColors.BLACK);
+		table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
+		table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
+		table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
+		table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImages.YES_COLLASSED));
+		table.put("TaskPane.noCollassed", new ImageIcon(MaterialImages.NO_COLLASSED));
 	}
 }

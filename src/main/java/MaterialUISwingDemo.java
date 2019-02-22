@@ -1,6 +1,7 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
+import org.jdesktop.swingx.JXTaskPane;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -184,6 +185,12 @@ public class MaterialUISwingDemo {
 		JEditorPane editorPane = new JEditorPane ();
 		editorPane.setText ("This theme is fantastic");
 		pn.add (editorPane);
+
+		JXTaskPane taskPane = new JXTaskPane();
+		taskPane.add(new JLabel("if you see it means that at a certain point \n" +
+				"you do not see yourself anymore"));
+		taskPane.setTitle("Material Look and fell");
+		pn.add(taskPane);
 
 		// make everything visible to the world
 		frame.pack ();
