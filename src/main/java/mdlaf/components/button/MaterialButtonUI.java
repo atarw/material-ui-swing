@@ -1,6 +1,5 @@
 package mdlaf.components.button;
 
-import javafx.scene.paint.Material;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
@@ -8,11 +7,11 @@ import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -30,7 +29,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 		button.setBackground (UIManager.getColor ("Button.background"));
 		button.setForeground (UIManager.getColor ("Button.foreground"));
 		button.setFont (UIManager.getFont ("Button.font"));
-		button.addChangeListener(new EffectButton());
+		button.addMouseListener(new EffectButton());
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
@@ -51,16 +50,14 @@ public class MaterialButtonUI extends BasicButtonUI {
 		g.fillRoundRect (0, 0, c.getWidth (), c.getHeight (), 7, 7);
 	}
 
-	private class EffectButton implements ChangeListener {
+	private class EffectButton extends MouseAdapter {
 
 		@Override
-		public void stateChanged(ChangeEvent e) {
+		public void mouseEntered(MouseEvent e) {
 			JComponent component = (JComponent) e.getSource();
 			if(UIManager.getBoolean("Button.mouseHoverEnable")){
 				MaterialUIMovement.add(component, MaterialColors.bleach(UIManager.getColor("Button.mouseHoverColor"), (float) 0.1), 5, 1000 / 30);
 			}
 		}
-
-
 	}
 }
