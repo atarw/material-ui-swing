@@ -246,8 +246,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.borderHighlightColor", MaterialColors.GRAY_300);
 
         table.put("Table.selectionBackground", MaterialColors.GRAY_100);
-        table.put("Table.selectionForeground", Color.BLACK);
-        table.put("Table.background", Color.WHITE);
+        table.put("Table.selectionForeground", MaterialColors.BLACK);
+        table.put("Table.background", MaterialColors.WHITE);
+        table.put("Table.foreground", MaterialColors.BLACK);
         table.put("Table.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Table.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("Table.gridColor", MaterialColors.GRAY_200);
