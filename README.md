@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/vincenzopalazzo/material-ui-swing.svg)](https://jitpack.io/#vincenzopalazzo/material-ui-swing) [![License Info](http://img.shields.io/badge/license-The%20MIT%20License-brightgreen.svg)](https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE)
+![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge) ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
 # "Will undergo changes soon"
 
@@ -45,7 +45,7 @@ public class MaterialUISwingDemo {
 		JPanel content = new JPanel ();
 		content.add (button);
 		frame.add (content, BorderLayout.CENTER);
-		
+
 		//Using MaterialToast
 		JButton buttonTwoo = new JButton();
 		class ActionToastTest extends AbstractAction{
