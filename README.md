@@ -1,4 +1,4 @@
-![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge) ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
+[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing) ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
 # "Will undergo changes soon"
 
