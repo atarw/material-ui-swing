@@ -205,8 +205,9 @@ public class MaterialUISwingDemo {
             }
         }
         buttonTwoo.setAction(new ActionToastTest(pn));
-		buttonTwoo.setBackground(MaterialColors.PURPLE_400);
+		buttonTwoo.setBackground(MaterialColors.PURPLE_600);
 		buttonTwoo.setForeground(MaterialColors.GRAY_100);
+		MaterialUIMovement.add(buttonTwoo, MaterialColors.PURPLE_300);
 		pn.add(buttonTwoo);
 
 		JButton bottoneConImmagine = new JButton();
@@ -244,6 +245,18 @@ public class MaterialUISwingDemo {
 		JLabel memoryOccupedNow = new JLabel();
 
 		jxTaskPane.add(memoryOccupedNow);
+
+		//Setting defoult
+		JButton testButtonHoverOne = new JButton("Fly over me One");
+		pn.add(testButtonHoverOne);
+
+		//ModSetting
+		JButton testButtonHoverTwo = new JButton("Fly over me Two");
+		testButtonHoverTwo.setBackground(MaterialColors.LIGHT_BLUE_500);
+		testButtonHoverTwo.setForeground(MaterialColors.WHITE);
+		MaterialUIMovement.add(testButtonHoverTwo, MaterialColors.LIGHT_BLUE_200);
+
+		pn.add(testButtonHoverTwo);
 
 		pn.add(jxTaskPane);
 		// make everything visible to the world

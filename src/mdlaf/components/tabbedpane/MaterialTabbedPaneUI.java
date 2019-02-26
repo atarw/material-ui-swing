@@ -7,8 +7,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
@@ -26,7 +25,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		tabbedPane.setBackground (UIManager.getColor ("TabbedPane.background"));
 		tabbedPane.setForeground (UIManager.getColor ("TabbedPane.foreground"));
 		tabbedPane.setBorder (UIManager.getBorder ("TabbedPane.border"));
-
 		darkShadow = UIManager.getColor ("TabbedPane.darkShadow");
 		shadow = UIManager.getColor ("TabbedPane.shadow");
 		lightHighlight = UIManager.getColor ("TabbedPane.highlight");
@@ -59,4 +57,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		// for some reason tabs aren't painted properly by paint()
 		super.paintTab (MaterialDrawingUtils.getAliasedGraphics (g), tabPlacement, rects, tabIndex, iconRect, textRect);
 	}
+
+
 }

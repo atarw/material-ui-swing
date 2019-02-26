@@ -4,7 +4,7 @@
     <groupId>mlaf.material-swing</groupId>
     <artifactId>material-ui-swing</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
 
     <name>material-ui-swing</name>
     <url>https://github.com/vincenzopalazzo/material-ui-swing</url>

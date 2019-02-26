@@ -8,8 +8,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -27,6 +26,7 @@ public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 		JRadioButtonMenuItem j = (JRadioButtonMenuItem) c;
 		//j.setBackground(MaterialColors.WHITE);
 		j.setBorder (UIManager.getBorder ("MenuItem.border"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

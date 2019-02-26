@@ -8,8 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -24,6 +23,7 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

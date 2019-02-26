@@ -1,5 +1,6 @@
 package mdlaf.components.menu;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
@@ -7,7 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialMenuUI extends BasicMenuUI {
 
@@ -25,6 +26,8 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menu.setBackground (UIManager.getColor ("Menu.background"));
 		menu.setForeground (UIManager.getColor ("Menu.foreground"));
 		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 	}
 
 	@Override

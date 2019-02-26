@@ -12,8 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialSpinnerUI extends BasicSpinnerUI {
 
@@ -31,6 +30,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 		spinner.setBackground (UIManager.getColor ("Spinner.background"));
 		spinner.setForeground (UIManager.getColor ("Spinner.foreground"));
 		spinner.setBorder (UIManager.getBorder ("Spinner.border"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPanelUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialPanelUI extends BasicPanelUI {
 
@@ -24,6 +24,7 @@ public class MaterialPanelUI extends BasicPanelUI {
 		panel.setFont (UIManager.getFont ("Panel.font"));
 		panel.setBackground (UIManager.getColor ("Panel.background"));
 		panel.setBorder (UIManager.getBorder ("Panel.border"));
+
 	}
 
 	@Override

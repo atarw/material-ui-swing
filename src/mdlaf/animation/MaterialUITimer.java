@@ -40,6 +40,7 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 		this.component = component;
 		this.component.addMouseListener (this);
 		timer = new Timer (interval, this);
+		component.setBackground(from);
 	}
 
 	private Color nextColor () {

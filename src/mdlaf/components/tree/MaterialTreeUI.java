@@ -9,7 +9,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialTreeUI extends BasicTreeUI {
 
@@ -35,6 +35,8 @@ public class MaterialTreeUI extends BasicTreeUI {
 		MaterialTreeUI ui = (MaterialTreeUI) tree.getUI ();
 		ui.setLeftChildIndent (10);
 		ui.setRightChildIndent (10);
+
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

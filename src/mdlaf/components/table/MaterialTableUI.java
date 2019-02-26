@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialTableUI extends BasicTableUI {
 
@@ -27,6 +27,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setBorder (UIManager.getBorder ("Table.border"));
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		table.getTableHeader ().setResizingAllowed (true);
 		int rowHeight = UIManager.getInt ("Table.rowHeight");

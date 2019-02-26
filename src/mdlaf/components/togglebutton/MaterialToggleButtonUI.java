@@ -7,7 +7,7 @@ import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 /*
  * Contributed by https://github.com/downToHell
@@ -28,6 +28,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 		toggleButton.setFont (UIManager.getFont ("ToggleButton.font"));
 		toggleButton.setBackground (UIManager.getColor ("ToggleButton.background"));
 		toggleButton.setForeground (UIManager.getColor ("ToggleButton.foreground"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		if (toggleButton.getIcon () == null && toggleButton.getSelectedIcon () == null) {
 			toggleButton.setIcon (UIManager.getIcon ("ToggleButton.icon"));
