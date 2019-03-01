@@ -51,21 +51,23 @@ public class MaterialFontFactory {
 
     private void loadOsPropries() throws IOException {
         String os = System.getProperty("os.name", "generic").toLowerCase();
-        String pathProperties = "/resources/config/font-" + os + ".properties";
-        if (isOsSupportted(os)) {
+        System.out.print(os);
+        String osSupport = isOsSupportted(os);
+        if (osSupport != null) {
+            String pathProperties = "/resources/config/font-" + osSupport + ".properties";
             properties.load(getClass().getResourceAsStream(pathProperties));
             return;
         }
-        properties.load(getClass().getResourceAsStream("resources/config/font-linux.properties"));
+        properties.load(getClass().getResourceAsStream("/resources/config/font-linux.properties"));
     }
 
-    private boolean isOsSupportted(String os) {
+    private String isOsSupportted(String os) {
         for (int i = 0; i < SISTEM_SUPPORTED.length; i++) {
-            if (os.equals(SISTEM_SUPPORTED[i])) {
-                return true;
+            if (os.contains(SISTEM_SUPPORTED[i])) {
+                return SISTEM_SUPPORTED[i];
             }
         }
-        return false;
+        return null;
     }
 
     public Font getFont(String typeFont){
