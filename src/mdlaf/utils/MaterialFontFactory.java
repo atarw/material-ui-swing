@@ -51,8 +51,7 @@ public class MaterialFontFactory {
 
     private void loadOsPropries() throws IOException {
         String os = System.getProperty("os.name", "generic").toLowerCase();
-        System.out.print(os);
-        String osSupport = isOsSupportted(os);
+        String osSupport = osSupportted(os);
         if (osSupport != null) {
             String pathProperties = "/resources/config/font-" + osSupport + ".properties";
             properties.load(getClass().getResourceAsStream(pathProperties));
@@ -61,7 +60,7 @@ public class MaterialFontFactory {
         properties.load(getClass().getResourceAsStream("/resources/config/font-linux.properties"));
     }
 
-    private String isOsSupportted(String os) {
+    private String osSupportted(String os) {
         for (int i = 0; i < SISTEM_SUPPORTED.length; i++) {
             if (os.contains(SISTEM_SUPPORTED[i])) {
                 return SISTEM_SUPPORTED[i];

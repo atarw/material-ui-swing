@@ -63,6 +63,9 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mousePressed (MouseEvent me) {
+		if(!me.getComponent().isEnabled()){
+			return;
+		}
 		alpha = steps - 1;
 		forward = false;
 		timer.start ();
@@ -84,6 +87,9 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseExited (MouseEvent me) {
+		if(!me.getComponent().isEnabled()){
+			return;
+		}
 		alpha = steps - 1;
 		forward = false;
 		timer.start ();
@@ -91,6 +97,9 @@ public class MaterialUITimer implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseEntered (MouseEvent me) {
+		if(!me.getComponent().isEnabled()){
+			return;
+		}
 		alpha = 0;
 		forward = true;
 		timer.start ();

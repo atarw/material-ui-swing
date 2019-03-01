@@ -1,10 +1,7 @@
 package mdlaf.components.button;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.animation.MaterialUITimer;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
@@ -29,7 +26,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.setForeground(UIManager.getColor("Button.foreground"));
         button.setFont(UIManager.getFont("Button.font"));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        MaterialUIMovement.add(button, UIManager.getColor("Button.mouseHoverColor"));
+        button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
     }
 
     @Override

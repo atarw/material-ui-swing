@@ -1,7 +1,6 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 import org.jdesktop.swingx.JXTaskPane;
 import top.gigabox.supportcomponent.toast.MaterialTost;
@@ -16,14 +15,12 @@ public class MaterialUISwingDemo {
 	private static long beforeUsedMem;
 
 	public MaterialUISwingDemo() {
-		beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+		beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 	}
-
-
 
 	public static void main (String[] args) {
 		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+			UIManager.setLookAndFeel(new MaterialLookAndFeel());
 		}
 		catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace ();
@@ -142,6 +139,10 @@ public class MaterialUISwingDemo {
 		button1.setForeground (Color.WHITE);
 		button2.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button2.setForeground (Color.WHITE);
+
+        button1.addMouseListener(MaterialUIMovement.getMovement(button1, MaterialColors.LIGHT_BLUE_300));
+        button2.addMouseListener(MaterialUIMovement.getMovement(button2, MaterialColors.LIGHT_BLUE_300));
+
 		tb.add (button1);
 		tb.addSeparator ();
 		tb.add (button2);
@@ -207,7 +208,7 @@ public class MaterialUISwingDemo {
         buttonTwoo.setAction(new ActionToastTest(pn));
 		buttonTwoo.setBackground(MaterialColors.PURPLE_600);
 		buttonTwoo.setForeground(MaterialColors.GRAY_100);
-		MaterialUIMovement.add(buttonTwoo, MaterialColors.PURPLE_300);
+		buttonTwoo.addMouseListener(MaterialUIMovement.getMovement(buttonTwoo, MaterialColors.PURPLE_300));
 		pn.add(buttonTwoo);
 
 		JButton bottoneConImmagine = new JButton();
@@ -246,16 +247,17 @@ public class MaterialUISwingDemo {
 
 		jxTaskPane.add(memoryOccupedNow);
 
-		//Setting defoult
+		//Test effect mouse over
+		//Setting default
 		JButton testButtonHoverOne = new JButton("Fly over me One");
+		testButtonHoverOne.setEnabled(false);
 		pn.add(testButtonHoverOne);
 
 		//ModSetting
 		JButton testButtonHoverTwo = new JButton("Fly over me Two");
 		testButtonHoverTwo.setBackground(MaterialColors.LIGHT_BLUE_500);
 		testButtonHoverTwo.setForeground(MaterialColors.WHITE);
-		MaterialUIMovement.add(testButtonHoverTwo, MaterialColors.LIGHT_BLUE_200);
-
+		testButtonHoverTwo.addMouseListener(MaterialUIMovement.getMovement(testButtonHoverTwo, MaterialColors.LIGHT_BLUE_200));
 		pn.add(testButtonHoverTwo);
 
 		pn.add(jxTaskPane);

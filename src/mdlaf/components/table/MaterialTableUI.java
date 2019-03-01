@@ -40,6 +40,7 @@ public class MaterialTableUI extends BasicTableUI {
 
 		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
+		table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
