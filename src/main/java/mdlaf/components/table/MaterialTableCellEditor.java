@@ -5,7 +5,7 @@ import mdlaf.components.textfield.MaterialTextFieldUI;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialTableCellEditor extends DefaultCellEditor {
 
@@ -16,7 +16,6 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 	private static JTextField init () {
 		JTextField textField = new JTextField ();
 		textField.setUI (new MaterialTextFieldUI (false));
-
 		return textField;
 	}
 

@@ -7,7 +7,7 @@ import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 /*
  * Contributed by https://github.com/downToHell
@@ -29,6 +29,7 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));
 		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
 		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

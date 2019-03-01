@@ -1,11 +1,10 @@
 package mdlaf.components.table;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
+import mdlaf.animation.MaterialUIMovement;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 
@@ -20,5 +19,15 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 		this.setVerticalAlignment (SwingConstants.CENTER);
 
 		return component;
+	}
+
+	@Override
+	public void setBackground(Color c) {
+		super.setBackground(UIManager.getColor("Table.background"));
+	}
+
+	@Override
+	public void setForeground(Color c) {
+		super.setForeground(UIManager.getColor("Table.foreground"));
 	}
 }

@@ -69,6 +69,7 @@ public class MaterialUISwingDemo {
 		jRadioButtonMenuItem.setText ("prova RadioButtonMenuItem");
 		menu1.add (jRadioButtonMenuItem);
 		menu1.addSeparator ();
+
 		//TestCheckBoxMenuItem
 		JCheckBoxMenuItem checkBoxMenuItem = new JCheckBoxMenuItem ();
 		checkBoxMenuItem.setText ("test");
@@ -118,28 +119,31 @@ public class MaterialUISwingDemo {
 
 		JToolBar tb = new JToolBar ("toolbar");
 		JButton button1 = new JButton ("f");
-
-		button1.setAction (new AbstractAction () {
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				putValue (Action.NAME, "f");
-				putValue (Action.SHORT_DESCRIPTION, "Test tool tip");
-
-				JDialog dialog = new JDialog ();
-				JPanel jPanel = new JPanel ();
-				jPanel.add (new JColorChooser ());
-				dialog.setContentPane (jPanel);
-				dialog.setLocationRelativeTo (null);
-				dialog.setVisible (true);
-				dialog.pack ();
-			}
-		});
-
 		JButton button2 = new JButton ("e");
 		button1.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button1.setForeground (Color.WHITE);
 		button2.setBackground (MaterialColors.LIGHT_BLUE_400);
 		button2.setForeground (Color.WHITE);
+		button1.addMouseListener(MaterialUIMovement.getMovement(button1, MaterialColors.LIGHT_BLUE_200));
+		button2.addMouseListener(MaterialUIMovement.getMovement(button2, MaterialColors.LIGHT_BLUE_200));
+
+        button1.addActionListener (new AbstractAction () {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+
+                putValue (Action.NAME, "f");
+
+                JDialog dialog = new JDialog ();
+                JPanel jPanel = new JPanel ();
+                jPanel.add (new JColorChooser ());
+                dialog.setContentPane (jPanel);
+                dialog.setLocationRelativeTo (null);
+                dialog.pack ();
+                dialog.setVisible (true);
+            }
+        });
+        button1.setToolTipText("This is a tool tip");
+
 		tb.add (button1);
 		tb.addSeparator ();
 		tb.add (button2);
@@ -191,6 +195,20 @@ public class MaterialUISwingDemo {
 				"you do not see yourself anymore"));
 		taskPane.setTitle("Material Look and fell");
 		pn.add(taskPane);
+
+		//Test effect mouse over
+
+		//Setting defoult
+		JButton testButtonHoverOne = new JButton("Fly over me One");
+		testButtonHoverOne.setEnabled(false);
+		pn.add(testButtonHoverOne);
+
+		//ModSetting
+		JButton testButtonHoverTwo = new JButton("Fly over me Two");
+		testButtonHoverTwo.setBackground(MaterialColors.LIGHT_BLUE_500);
+		testButtonHoverTwo.setForeground(MaterialColors.WHITE);
+		testButtonHoverTwo.addMouseListener(MaterialUIMovement.getMovement(testButtonHoverTwo, MaterialColors.LIGHT_BLUE_200));
+		pn.add(testButtonHoverTwo);
 
 		// make everything visible to the world
 		frame.pack ();

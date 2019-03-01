@@ -12,7 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
@@ -31,6 +31,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		comboBox.setBorder (UIManager.getBorder ("ComboBox.border"));
 		comboBox.setLightWeightPopupEnabled (true);
 		comboBox.setRenderer (new MaterialComboBoxRenderer ());
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
