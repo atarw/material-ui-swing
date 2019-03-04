@@ -7,7 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuBarUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialMenuBarUI extends BasicMenuBarUI {
 
@@ -24,6 +24,7 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
 		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
 		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

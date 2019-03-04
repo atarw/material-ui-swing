@@ -8,8 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -34,6 +33,7 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	@Override
 	protected void paintMenuItem (Graphics g, JComponent c, Icon checkIcon, Icon arrowIcon, Color background, Color foreground, int defaultTextIconGap) {
 		JCheckBoxMenuItem checkBoxMenuItem = (JCheckBoxMenuItem) c;
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		if (checkBoxMenuItem.isSelected ()) {
 			super.paintMenuItem (MaterialDrawingUtils.getAliasedGraphics (g), checkBoxMenuItem, UIManager.getIcon ("CheckBoxMenuItem.selectedCheckIcon"), arrowIcon, background, foreground, defaultTextIconGap);
 			return;

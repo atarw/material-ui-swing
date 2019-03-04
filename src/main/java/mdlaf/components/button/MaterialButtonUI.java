@@ -1,5 +1,6 @@
 package mdlaf.components.button;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.AbstractButton;
@@ -7,7 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -25,6 +26,10 @@ public class MaterialButtonUI extends BasicButtonUI {
 		button.setBackground (UIManager.getColor ("Button.background"));
 		button.setForeground (UIManager.getColor ("Button.foreground"));
 		button.setFont (UIManager.getFont ("Button.font"));
+		if(UIManager.getBoolean("Button.mouseHoverEnable")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
+		}
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
@@ -43,4 +48,5 @@ public class MaterialButtonUI extends BasicButtonUI {
 		g.setColor (c.getBackground ());
 		g.fillRoundRect (0, 0, c.getWidth (), c.getHeight (), 7, 7);
 	}
+
 }

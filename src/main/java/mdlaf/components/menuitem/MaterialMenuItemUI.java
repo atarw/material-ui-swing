@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuItemUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialMenuItemUI extends BasicMenuItemUI {
 
@@ -27,6 +27,7 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 		menuItem.setHorizontalAlignment (SwingConstants.LEFT);
 		menuItem.setVerticalAlignment (SwingConstants.CENTER);
 		menuItem.setBorder (UIManager.getBorder ("MenuItem.border"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

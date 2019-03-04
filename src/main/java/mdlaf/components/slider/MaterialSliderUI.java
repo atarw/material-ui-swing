@@ -8,8 +8,7 @@ import javax.swing.JSlider;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 
 //TODO cambio grafica slider
 public class MaterialSliderUI extends BasicSliderUI {
@@ -39,6 +38,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 		slider.setBackground (UIManager.getColor ("Slider.background"));
 		slider.setForeground (UIManager.getColor ("Slider.foreground"));
 		slider.setBorder (UIManager.getBorder ("Slider.border"));
+		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
