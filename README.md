@@ -1,8 +1,12 @@
-[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing) ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
+# Material UI for swing
+[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing)
+![](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
+## Community
+[![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # "Will undergo changes soon"
 
-# material-ui-swing
+#Description
 A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
@@ -78,5 +82,8 @@ Check `src/MaterialUISwingDemo.java` for a slightly longer example of how to use
 For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
 
 # Misc
-
 If there's a component that isn't supported, don't hesitate to open an issue! I can usually code something up for you in a couple of days 😀
+
+# Licenze
+![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
+

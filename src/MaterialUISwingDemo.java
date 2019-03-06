@@ -7,6 +7,9 @@ import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -159,9 +162,11 @@ public class MaterialUISwingDemo {
 		sp.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JPanel pn = new JPanel ();
+		JPanel panel3 = new JPanel ();
 		JTabbedPane tp = new JTabbedPane ();
 		tp.addTab ("bleh1", pn);
 		tp.addTab ("bleh", sp);
+		tp.addTab ("Panel 3", panel3);
 
 		frame.add (tp, BorderLayout.CENTER);
 
@@ -262,6 +267,36 @@ public class MaterialUISwingDemo {
 
 		pn.add(jxTaskPane);
 		// make everything visible to the world
+
+		//Init table in panel 3
+		JTable table = new JTable();
+		table.setModel(new AbstractTableModel() {
+
+			private String value = "A";
+
+			@Override
+			public int getRowCount() {
+				return 3;
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 2;
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+				return value;
+			}
+
+			@Override
+			public String getColumnName(int column) {
+				return "Colum: " + column;
+			}
+		});
+
+		panel3.add(table);
+
 		frame.pack ();
 		frame.setVisible (true);
 		frame.setLocationRelativeTo(null);

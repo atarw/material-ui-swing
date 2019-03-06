@@ -27,4 +27,6 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 
 		return textField;
 	}
+
+
 }
