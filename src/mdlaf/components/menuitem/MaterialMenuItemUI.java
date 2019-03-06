@@ -1,6 +1,5 @@
 package mdlaf.components.menuitem;
 
-import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
