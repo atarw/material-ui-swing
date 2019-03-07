@@ -84,6 +84,6 @@ For a real-world example of usage, see [here](https://github.com/atarw/washer-ch
 # Misc
 If there's a component that isn't supported, don't hesitate to open an issue! I can usually code something up for you in a couple of days 😀
 
-# Licenze
+# License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
