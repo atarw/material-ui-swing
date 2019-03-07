@@ -1,11 +1,8 @@
 package mdlaf.components.table;
 
-import mdlaf.utils.MaterialBorders;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.*;
 
 public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 

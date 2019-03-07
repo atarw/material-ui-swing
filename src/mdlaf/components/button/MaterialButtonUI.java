@@ -49,4 +49,10 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
         super.paintButtonPressed(g, b);
     }
+
+    @Override
+    public void update(Graphics g, JComponent c) {
+        super.update(g, c);
+        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
 }
