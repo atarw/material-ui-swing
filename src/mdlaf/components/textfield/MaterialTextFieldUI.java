@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
@@ -84,6 +85,12 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     @Override
     protected void paintBackground(Graphics g) {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
+        Map<?, ?> desktopHints = (Map<?, ?>) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
+
+        Graphics2D g2d = (Graphics2D) g;
+        if (desktopHints != null) {
+            g2d.setRenderingHints(desktopHints);
+        }
     }
 
 
@@ -207,7 +214,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
             g.setColor(c.getSelectionColor());
 
-            g.fillRect(x, c.getHeight() - y - 1, w, 2);
+            g.fillRect(x, c.getHeight() - y, w, 2);
         }
     }
 

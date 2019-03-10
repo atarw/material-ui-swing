@@ -1,9 +1,6 @@
 package mdlaf.components.tree;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTree;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.Component;
 
@@ -32,5 +29,20 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 		component.setBorder (BorderFactory.createEmptyBorder (5, 2, 5, 2));
 
 		return component;
+	}
+
+	@Override
+	public Icon getDefaultOpenIcon() {
+		return UIManager.getIcon ("Tree.openIcon");
+	}
+
+	@Override
+	public Icon getDefaultClosedIcon() {
+		return UIManager.getIcon ("Tree.closedIcon");
+	}
+
+	@Override
+	public Icon getDefaultLeafIcon() {
+		return null;
 	}
 }

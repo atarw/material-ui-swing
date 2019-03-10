@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
+ * Copyright (c) 2018 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -80,7 +80,7 @@ public class MaterialFontFactory {
             properties.load(getClass().getResourceAsStream(pathProperties));
             return;
         }
-        properties.load(getClass().getResourceAsStream("/resources/config/font-linux.properties"));
+        properties.load(getClass().getResourceAsStream("/resources/config/font-all-language.properties"));
     }
 
     private String osSupportted(String os) {

@@ -1,5 +1,6 @@
 package mdlaf.components.combobox;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.BorderFactory;
@@ -47,7 +48,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
 		button.setBorder (BorderFactory.createEmptyBorder ());
-
+		button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHover")));
 		return button;
 	}
 

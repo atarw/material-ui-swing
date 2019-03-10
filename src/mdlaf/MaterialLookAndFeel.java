@@ -32,6 +32,7 @@ import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
 import mdlaf.components.menuitem.MaterialMenuItemUI;
+import mdlaf.components.optionpane.MaterialOptionPaneUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.popupmenu.MaterialPopupMenuUI;
@@ -91,6 +92,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName();
     private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
     private static final String taskPaneUI = MaterialTaskPaneUI.class.getCanonicalName();
+    private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
 
 
     @Override
@@ -150,6 +152,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("SeparatorUI", separatorUI);
         table.put("FileChooserUI", fileChooserUI);
         table.put("ToolTipUI", toolTipUI);
+        table.put("OptionPaneUI", optionPaneUI);
         // java swingx
         table.put("swingx/TaskPaneUI", taskPaneUI);
     }
@@ -181,6 +184,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.selectionBackground", Color.WHITE);
         table.put("ComboBox.selectionForeground", Color.BLACK);
         table.put("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
+        table.put("ComboBox.mouseHover", MaterialColors.GRAY_400);
 
         table.put("Label.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Label.background", Color.WHITE);
@@ -354,7 +358,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
                         true, true, true, true));
         table.put("TitledBorder.font", MaterialFonts.BOLD);
 
-        table.put("TaskPane.font", MaterialFonts.MEDIUM);
+        table.put("TaskPane.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("TaskPane.titleBackgroundGradientStart", MaterialColors.GRAY_300);
         table.put("TaskPane.titleBackgroundGradientEnd", MaterialColors.GRAY_500);
         table.put("TaskPane.titleOver", MaterialColors.LIGHT_BLUE_500);
@@ -366,6 +370,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
         table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.YES_COLLASSED)));
         table.put("TaskPane.noCollassed",   new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
+
+        //TODO this not loaded correctly, look a MaterialOptionPaneUI
+        table.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
+        table.put("OptionPane.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
+        table.put("OptionPane.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
+        table.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
 
     }
 }

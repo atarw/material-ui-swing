@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.util.Map;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -37,7 +38,6 @@ public class MaterialButtonUI extends BasicButtonUI {
             paintBackground(g, b);
         }
         super.paint(g, c);
-
     }
 
     private void paintBackground(Graphics g, JComponent c) {

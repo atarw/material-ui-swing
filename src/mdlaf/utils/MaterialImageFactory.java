@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
+ * Copyright (c) 2018 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,8 +58,12 @@ public class MaterialImageFactory {
     public static final String LIST = "/resources/imgs/list.png";
     public static final String NEW_FOLDER = "/resources/imgs/new_folder.png";
     public static final String DETAILS = "/resources/imgs/details.png";
-    public static final String YES_COLLASSED = "/resources/imgs/yes-collassated.png";
-    public static final String NO_COLLASSED = "/resources/imgs/no-collassated.png";
+    public static final String YES_COLLASSED = "/resources/imgs/yes-collassed.png";
+    public static final String NO_COLLASSED = "/resources/imgs/no-collassed.png";
+    public static final String ERROR = "/resources/imgs/error.png";
+    public static final String WARNING = "/resources/imgs/warning.png";
+    public static final String QUESTION = "/resources/imgs/question.png";
+    public static final String INFORMATION = "/resources/imgs/information.png";
 
     private Map<String, BufferedImage> cachaImage = new HashMap<>();
 
