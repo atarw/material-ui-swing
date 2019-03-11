@@ -22,24 +22,22 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
-        JOptionPane pane = (JOptionPane) c;
-        int type = pane.getMessageType();
-        if(type == JOptionPane.ERROR_MESSAGE){
-            optionPane.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
-        }
-        if(type == JOptionPane.INFORMATION_MESSAGE){
-            optionPane.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
-        }
-        if(type == JOptionPane.QUESTION_MESSAGE){
-            optionPane.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
-        }
-        if(type == JOptionPane.WARNING_MESSAGE){
-            optionPane.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
-        }
     }
 
-
-
-
-
+    @Override
+    protected Icon getIconForType(int messageType) {
+        if(messageType == JOptionPane.ERROR_MESSAGE){
+            return UIManager.getIcon("OptionPaneUI.errorIcon");
+        }
+        if(messageType == JOptionPane.INFORMATION_MESSAGE){
+            return UIManager.getIcon("OptionPaneUI.informationIcon");
+        }
+        if(messageType == JOptionPane.QUESTION_MESSAGE){
+            return UIManager.getIcon("OptionPaneUI.questionIcon");
+        }
+        if(messageType == JOptionPane.WARNING_MESSAGE){
+            return UIManager.getIcon("OptionPaneUI.warningIcon");
+        }
+        return super.getIconForType(messageType);
+    }
 }

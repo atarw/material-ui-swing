@@ -79,7 +79,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
         getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-        getComponent().setBorder(BorderFactory.createEmptyBorder(3, 5, 2, 5));
+        getComponent().setBorder(UIManager.getBorder("TextField.border"));
     }
 
     @Override
@@ -92,7 +92,6 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             g2d.setRenderingHints(desktopHints);
         }
     }
-
 
     @Override
     public void focusGained(FocusEvent e) {
@@ -240,8 +239,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         if (pce.getPropertyName().equals("background")) {
             getComponent().repaint();
         }
-
     }
+
+
 
 }
 

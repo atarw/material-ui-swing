@@ -28,6 +28,7 @@ import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.filechooser.MaterialFileChooserUI;
+import mdlaf.components.formattertextfield.MaterialFormattedTextFieldUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -93,6 +94,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName();
     private static final String taskPaneUI = MaterialTaskPaneUI.class.getCanonicalName();
     private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
+    private static final String formattedTextFieldUI = MaterialFormattedTextFieldUI.class.getCanonicalName();
 
 
     @Override
@@ -153,6 +155,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FileChooserUI", fileChooserUI);
         table.put("ToolTipUI", toolTipUI);
         table.put("OptionPaneUI", optionPaneUI);
+        table.put("FormattedTextFieldUI", formattedTextFieldUI);
         // java swingx
         table.put("swingx/TaskPaneUI", taskPaneUI);
     }
@@ -352,6 +355,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.inactiveBackground", MaterialColors.GRAY_200);
         table.put("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("TextField.selectionForeground", MaterialColors.BLACK);
+        table.put("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
 
         table.put("TitledBorder.border",
                 new DropShadowBorder(MaterialColors.BLACK, 10, 4, (float) 0.2, 8,
@@ -371,11 +375,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.YES_COLLASSED)));
         table.put("TaskPane.noCollassed",   new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
 
-        //TODO this not loaded correctly, look a MaterialOptionPaneUI
-        table.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
-        table.put("OptionPane.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
-        table.put("OptionPane.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
-        table.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
+        table.put("OptionPaneUI.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
+        table.put("OptionPaneUI.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
+        table.put("OptionPaneUI.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
+        table.put("OptionPaneUI.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
 
     }
 }

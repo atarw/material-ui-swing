@@ -17,6 +17,9 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class MaterialUISwingDemo {
 
@@ -352,7 +355,7 @@ public class MaterialUISwingDemo {
         JButton buttonWarning = new JButton();
         buttonWarning.setBackground(MaterialColors.YELLOW_800);
         buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.YELLOW_500));
-        class WarningMessage extends AbstractAction{
+        class WarningMessage extends AbstractAction {
 
             public WarningMessage() {
                 putValue(Action.NAME, "Info warning pane");
@@ -364,12 +367,27 @@ public class MaterialUISwingDemo {
                 JOptionPane optionPane = new JOptionPane();
                 optionPane.showMessageDialog(frame, "This is message warning", "Message warning", JOptionPane.WARNING_MESSAGE);
             }
+
         }
 
         buttonWarning.setAction(new WarningMessage());
 
         panel3.add(buttonQuestion);
         panel3.add(buttonWarning);
+
+        JSpinner spinnerDate = new JSpinner(new SpinnerDateModel());
+
+        JSpinner spinnerNumbar = new JSpinner(new SpinnerNumberModel());
+
+        ArrayList<Object> objectList = new ArrayList<>();
+        objectList.add(new Object());
+        objectList.add(new Object());
+        objectList.add(new Object());
+        JSpinner spinnerList = new JSpinner(new SpinnerListModel(objectList));
+
+        panel3.add(spinnerDate);
+        panel3.add(spinnerNumbar);
+        panel3.add(spinnerList);
 
         frame.pack();
         frame.setVisible(true);
