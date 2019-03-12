@@ -73,8 +73,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
     }
 
-
-
     protected class MaterialPaneBorder extends PaneBorder{
 
         protected void paintTitleBackground(JXTaskPane group, Graphics g) {

@@ -1,6 +1,5 @@
 package mdlaf.components.optionpane;
 
-import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;

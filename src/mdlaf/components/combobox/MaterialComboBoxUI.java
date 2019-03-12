@@ -48,7 +48,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
 		button.setBorder (BorderFactory.createEmptyBorder ());
-		button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHover")));
+		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHoverColor")));
+		}
 		return button;
 	}
 

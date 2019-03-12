@@ -46,12 +46,12 @@ public class MaterialFormattedTextFieldUI extends BasicFormattedTextFieldUI {
     public void installUI(JComponent c) {
         super.installUI(c);
         JFormattedTextField formattedTextField = (JFormattedTextField) c;
-        formattedTextField.setSelectionColor(UIManager.getColor("TextField.selectionBackground"));
-        formattedTextField.setSelectedTextColor(UIManager.getColor("TextField.selectionForeground"));
-        formattedTextField.setBackground(UIManager.getColor("TextField.inactiveBackground"));
-        formattedTextField.setForeground(UIManager.getColor("TextField.inactiveForeground"));
-        formattedTextField.setFont(UIManager.getFont("TextField.font"));
-        formattedTextField.setBorder(UIManager.getBorder("TextField.border"));
+        formattedTextField.setSelectionColor(UIManager.getColor("FormattedTextField.selectionBackground"));
+        formattedTextField.setSelectedTextColor(UIManager.getColor("FormattedTextField.selectionForeground"));
+        formattedTextField.setBackground(UIManager.getColor("FormattedTextField.inactiveBackground"));
+        formattedTextField.setForeground(UIManager.getColor("FormattedTextField.inactiveForeground"));
+        formattedTextField.setFont(UIManager.getFont("FormattedTextField.font"));
+        formattedTextField.setBorder(UIManager.getBorder("FormattedTextField.border"));
     }
 
     @Override

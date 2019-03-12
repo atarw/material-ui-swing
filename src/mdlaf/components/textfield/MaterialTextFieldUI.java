@@ -1,19 +1,26 @@
 package mdlaf.components.textfield;
 
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFonts;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Map;
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
@@ -75,23 +82,18 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         this.activeForeground = UIManager.getColor("TextField.selectionForeground");
         this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
         this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
-        getComponent().setFont(UIManager.getFont("TextField.font"));
+        getComponent().setFont(MaterialFonts.REGULAR);
+
         getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
         getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         getComponent().setBorder(UIManager.getBorder("TextField.border"));
     }
-
     @Override
     protected void paintBackground(Graphics g) {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
-        Map<?, ?> desktopHints = (Map<?, ?>) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
-
-        Graphics2D g2d = (Graphics2D) g;
-        if (desktopHints != null) {
-            g2d.setRenderingHints(desktopHints);
-        }
     }
+
 
     @Override
     public void focusGained(FocusEvent e) {
@@ -103,33 +105,24 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         changeColorOnFocus(false);
     }
 
-    /**
-     * This metod drive a line button on JTextField
-     *
-     * @fixed by https://github.com/vincenzopalazzo
-     */
     private void changeColorOnFocus(boolean hasFocus) {
         JTextField c = (JTextField) getComponent();
-        /*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
-        c.setForeground(hasFocus ? activeForeground : inactiveForeground);
-        c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
-
-        if (hasFocus && (activeBackground != null) && (activeForeground != null)) {
+		/*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
+		c.setForeground(hasFocus ? activeForeground : inactiveForeground);
+		c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
+        if(hasFocus && (activeBackground != null) && (activeForeground != null)){
             c.setSelectionColor(activeBackground);
             c.setForeground(activeForeground);
             c.setSelectedTextColor(activeForeground);
         }
 
-        if (!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)) {
+        if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
             c.setSelectionColor(inactiveBackground);
             c.setForeground(inactiveForeground);
             c.setSelectedTextColor(inactiveForeground);
         }
-        if (c.getGraphics() != null) {
-            c.paint(c.getGraphics());
-        }
+        c.paint(c.getGraphics());
     }
-
 
     @Override
     protected void installKeyboardActions() {
@@ -138,7 +131,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         Action selectAll = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getComponent().selectAll();
+                if(getComponent() != null){
+                    getComponent().selectAll();
+                }
             }
         };
 
@@ -161,7 +156,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         Action left = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getComponent() != null) {
+                if(getComponent() != null){
                     getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
                 }
             }
@@ -170,7 +165,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         Action right = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getComponent() != null) {
+                if(getComponent() != null){
                     getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
                 }
             }
@@ -179,7 +174,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         Action enter = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getComponent() != null) {
+                if(getComponent() != null){
                     ((JTextField) getComponent()).postActionEvent();
                 }
             }
@@ -201,7 +196,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
     @Override
     /**
-     *This metod drive a line button on JTextField
+     *This method drive a line button on JTextField
      * @fixed by https://github.com/vincenzopalazzo
      */
     public void paintSafely(Graphics g) {
@@ -213,8 +208,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
             g.setColor(c.getSelectionColor());
 
-            g.fillRect(x, c.getHeight() - y, w, 2);
+            g.fillRect(x, c.getHeight() - y, w, 1);
         }
+
     }
 
     @Override
@@ -239,10 +235,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         if (pce.getPropertyName().equals("background")) {
             getComponent().repaint();
         }
+
     }
 
-
-
 }
-
-

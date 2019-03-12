@@ -21,4 +21,6 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 
 		return component;
 	}
+
+
 }

@@ -187,7 +187,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.selectionBackground", Color.WHITE);
         table.put("ComboBox.selectionForeground", Color.BLACK);
         table.put("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
-        table.put("ComboBox.mouseHover", MaterialColors.GRAY_400);
+        table.put("ComboBox.mouseHoverColor", MaterialColors.GRAY_400);
+        table.put("ComboBox.mouseHoverEnabled", true);
 
         table.put("Label.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Label.background", Color.WHITE);
@@ -241,6 +242,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Spinner.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("Spinner.arrowButtonBackground", MaterialColors.GRAY_200);
         table.put("Spinner.arrowButtonBorder", BorderFactory.createEmptyBorder());
+        table.put("Spinner.mouseHoverEnabled", true);
+        table.put("Spinner.mouseHoverColor", MaterialColors.GRAY_400);
 
         table.put("ScrollBar.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
         table.put("ScrollBar.track", MaterialColors.GRAY_200);
@@ -379,6 +382,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPaneUI.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
         table.put("OptionPaneUI.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
         table.put("OptionPaneUI.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
+
+
+        table.put("FormattedTextField.inactiveForeground", MaterialColors.GRAY_800);
+        table.put("FormattedTextField.inactiveBackground", MaterialColors.GRAY_200);
+        table.put("FormattedTextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
+        table.put("FormattedTextField.selectionForeground", MaterialColors.BLACK);
+        table.put("FormattedTextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
 
     }
 }

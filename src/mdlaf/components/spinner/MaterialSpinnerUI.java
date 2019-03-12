@@ -1,5 +1,6 @@
 package mdlaf.components.spinner;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.textpane.MaterialTextPaneUI;
 import mdlaf.utils.MaterialDrawingUtils;
@@ -59,6 +60,9 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
+        if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
+            button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
+        }
         installNextButtonListeners(button);
         return button;
     }
@@ -75,6 +79,9 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
+        if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
+            button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
+        }
         installPreviousButtonListeners(button);
         return button;
     }

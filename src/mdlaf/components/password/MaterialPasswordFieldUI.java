@@ -133,7 +133,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 		int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
 
 		g.setColor (c.getBackground ());
-		g.fillRect (x, c.getHeight () - y, w, 2);
+		g.fillRect (x, c.getHeight () - y + 1, w, 1);
 
 		super.paintSafely (g);
 	}
