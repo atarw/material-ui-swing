@@ -1,6 +1,6 @@
 package mdlaf.components.spinner;
 
-import mdlaf.components.textfield.MaterialTextFieldUI;
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.Icon;
@@ -34,14 +34,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 	}
 
 	@Override
-	protected JComponent createEditor () {
-		JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) super.createEditor ();
-		editor.getTextField ().setUI (new MaterialTextFieldUI (false));
-
-		return editor;
-	}
-
-	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
@@ -60,7 +52,9 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 		button.setBackground (UIManager.getColor ("Spinner.arrowButtonBackground"));
 		button.setBorder (UIManager.getBorder ("Spinner.arrowButtonBorder"));
 		installNextButtonListeners (button);
-
+		if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
+		}
 		return button;
 	}
 
@@ -74,12 +68,13 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 		else {
 			button = new BasicArrowButton (SwingConstants.SOUTH);
 		}
-
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("Spinner.arrowButtonBackground"));
 		button.setBorder (UIManager.getBorder ("Spinner.arrowButtonBorder"));
 		installPreviousButtonListeners (button);
-
+		if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
+		}
 		return button;
 	}
 }
