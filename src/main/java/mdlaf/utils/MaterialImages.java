@@ -29,6 +29,10 @@ public class MaterialImages {
 	public static final BufferedImage DETAILS = loadImg ("/imgs/details.png");
 	public static final BufferedImage YES_COLLASSED = loadImg ("/imgs/yes-collassed.png");
 	public static final BufferedImage NO_COLLASSED = loadImg ("/imgs/no-collassed.png");
+	public static final BufferedImage ERROR = loadImg ("/imgs/error.png");
+	public static final BufferedImage WARNING = loadImg ("/imgs/warning.png");
+	public static final BufferedImage QUESTION = loadImg ("/imgs/question.png");
+	public static final BufferedImage INFORMATION = loadImg ("/imgs/information.png");
 
 	private MaterialImages () {}
 

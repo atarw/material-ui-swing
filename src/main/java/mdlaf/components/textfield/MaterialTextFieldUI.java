@@ -87,7 +87,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
 		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
 		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-		getComponent().setBorder(BorderFactory.createEmptyBorder(3, 5, 2,5));
+		getComponent().setBorder(UIManager.getBorder("TextField.border"));
 	}
 	@Override
 	protected void paintBackground(Graphics g) {
@@ -196,7 +196,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
 	@Override
 	/**
-	 *This metod drive a line button on JTextField
+	 *This method drive a line button on JTextField
 	 * @fixed by https://github.com/vincenzopalazzo
 	 */
 	public void paintSafely(Graphics g) {
@@ -208,8 +208,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 			int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
 			g.setColor(c.getSelectionColor());
 
-			g.fillRect(x, c.getHeight() - y - 1, w, 2);
+			g.fillRect(x, c.getHeight() - y, w, 1);
 		}
+
 	}
 
 	@Override

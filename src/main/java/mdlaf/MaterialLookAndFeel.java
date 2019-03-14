@@ -5,10 +5,12 @@ import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.filechooser.MaterialFileChooserUI;
+import mdlaf.components.formattertextfield.MaterialFormattedTextFieldUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
 import mdlaf.components.menuitem.MaterialMenuItemUI;
+import mdlaf.components.optionpane.MaterialOptionPaneUI;
 import mdlaf.components.panel.MaterialPanelUI;
 import mdlaf.components.password.MaterialPasswordFieldUI;
 import mdlaf.components.popupmenu.MaterialPopupMenuUI;
@@ -73,6 +75,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 	private static final String fileChooserUI = MaterialFileChooserUI.class.getCanonicalName ();
 	private static final String toolTipUI = MaterialToolTipUI.class.getCanonicalName ();
 	private static final String taskPaneUI = MaterialTaskPaneUI.class.getCanonicalName ();
+	private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
+	private static final String formattedTextFieldUI = MaterialFormattedTextFieldUI.class.getCanonicalName();
 
 	@Override
 	public String getName () {
@@ -132,6 +136,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("FileChooserUI", fileChooserUI);
 		table.put ("ToolTipUI", toolTipUI);
 		table.put ("swingx/TaskPaneUI", taskPaneUI);
+		table.put("OptionPaneUI", optionPaneUI);
+		table.put("FormattedTextFieldUI", formattedTextFieldUI);
 	}
 
 	@Override
@@ -161,6 +167,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("ComboBox.selectionBackground", Color.WHITE);
 		table.put ("ComboBox.selectionForeground", Color.BLACK);
 		table.put ("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
+		table.put("ComboBox.mouseHoverColor", MaterialColors.GRAY_400);
+		table.put("ComboBox.mouseHoverEnabled", true);
 
 		table.put ("Label.font", MaterialFonts.REGULAR);
 		table.put ("Label.background", Color.WHITE);
@@ -214,6 +222,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Spinner.border", MaterialBorders.LIGHT_LINE_BORDER);
 		table.put ("Spinner.arrowButtonBackground", MaterialColors.GRAY_200);
 		table.put ("Spinner.arrowButtonBorder", BorderFactory.createEmptyBorder ());
+		table.put("Spinner.mouseHoverEnabled", true);
+		table.put("Spinner.mouseHoverColor", MaterialColors.GRAY_400);
 
 		table.put ("ScrollBar.font", MaterialFonts.REGULAR);
 		table.put ("ScrollBar.track", MaterialColors.GRAY_200);
@@ -266,6 +276,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("TextField.inactiveBackground", MaterialColors.GRAY_200);
 		table.put ("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
 		table.put ("TextField.selectionForeground", Color.BLACK);
+		table.put ("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
 
 		table.put ("ToggleButton.border", BorderFactory.createEmptyBorder ());
 		table.put ("ToggleButton.font", MaterialFonts.REGULAR);
@@ -344,5 +355,16 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
 		table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImages.YES_COLLASSED));
 		table.put("TaskPane.noCollassed", new ImageIcon(MaterialImages.NO_COLLASSED));
+
+		table.put("OptionPaneUI.warningIcon", new ImageIcon(MaterialImages.WARNING));
+		table.put("OptionPaneUI.errorIcon", new ImageIcon(MaterialImages.ERROR));
+		table.put("OptionPaneUI.questionIcon", new ImageIcon(MaterialImages.QUESTION));
+		table.put("OptionPaneUI.informationIcon", new ImageIcon(MaterialImages.INFORMATION));
+
+		table.put ("FormattedTextField.inactiveForeground", MaterialColors.GRAY_800);
+		table.put ("FormattedTextField.inactiveBackground", MaterialColors.GRAY_200);
+		table.put ("FormattedTextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
+		table.put ("FormattedTextField.selectionForeground", Color.BLACK);
+		table.put("FormattedTextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
 	}
 }
