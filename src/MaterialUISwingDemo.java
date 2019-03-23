@@ -8,17 +8,9 @@ import top.gigabox.supportcomponent.toast.MaterialTost;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelListener;
-import javax.swing.event.TreeModelListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class MaterialUISwingDemo {
@@ -30,7 +22,7 @@ public class MaterialUISwingDemo {
     }
 
     public static void main(String[] args) {
-        try {
+       try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
@@ -298,7 +290,7 @@ public class MaterialUISwingDemo {
         class InfoMessage extends AbstractAction{
 
             public InfoMessage() {
-                putValue(Action.NAME, "Info option pane");
+                putValue(Action.NAME, "Info option panel");
             }
 
             @Override
@@ -319,7 +311,7 @@ public class MaterialUISwingDemo {
         class ErrorMassage extends AbstractAction{
 
             public ErrorMassage() {
-                putValue(Action.NAME, "Error option pane");
+                putValue(Action.NAME, "Error option panel");
             }
 
             @Override
@@ -339,7 +331,7 @@ public class MaterialUISwingDemo {
         class QuesuionMessage extends AbstractAction{
 
             public QuesuionMessage() {
-                putValue(Action.NAME, "Info question pane");
+                putValue(Action.NAME, "Info question panel");
             }
 
             @Override
@@ -358,7 +350,7 @@ public class MaterialUISwingDemo {
         class WarningMessage extends AbstractAction {
 
             public WarningMessage() {
-                putValue(Action.NAME, "Info warning pane");
+                putValue(Action.NAME, "Info warning panel");
             }
 
             @Override
