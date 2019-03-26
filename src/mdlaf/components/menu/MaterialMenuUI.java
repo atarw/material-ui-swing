@@ -1,16 +1,20 @@
 package mdlaf.components.menu;
 
-
+import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuUI;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 
 public class MaterialMenuUI extends BasicMenuUI {
 
@@ -29,7 +33,9 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menu.setForeground (UIManager.getColor ("Menu.foreground"));
 		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		menu.addMouseListener(new MouseOverEffect());
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO adding into master
+			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.black));
+		}
 
 	}
 
@@ -38,21 +44,52 @@ public class MaterialMenuUI extends BasicMenuUI {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
+	@Override
+	protected ChangeListener createChangeListener(JComponent c) {
+		c.addMouseListener(new MouseHover());
+		return super.createChangeListener(c);
+	}
+
 	/**
 	 * @author https://github.com/vincenzopalazzo
 	 */
-	private class MouseOverEffect extends MouseAdapter{
+	private class MouseHover implements MouseListener {
+
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+
+		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			JMenu menu = (JMenu) e.getSource();
-			menu.setSelected(true);
+			if(e.getSource() instanceof  JMenu){
+				JMenu menu = (JMenu) e.getSource();
+				if(menu.isEnabled()){
+					menu.setSelected(true);
+				}
+
+			}
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			JMenu menu = (JMenu) e.getSource();
-			menu.setSelected(false);
+			if(e.getSource() instanceof  JMenu){
+				JMenu menu = (JMenu) e.getSource();
+				if(menu.isEnabled()){
+					menu.setSelected(false);
+				}
+
+			}
 		}
 	}
 }

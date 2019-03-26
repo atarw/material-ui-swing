@@ -3,6 +3,7 @@ package mdlaf.components.spinner;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.textfield.MaterialTextFieldUI;
 import mdlaf.components.textpane.MaterialTextPaneUI;
+import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import org.jdesktop.swingx.JXTextField;
 
@@ -64,6 +65,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
         }
         installNextButtonListeners(button);
+        button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
         return button;
     }
 
@@ -83,6 +85,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
         }
         installPreviousButtonListeners(button);
+        button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
         return button;
     }
 

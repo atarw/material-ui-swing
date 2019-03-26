@@ -204,6 +204,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Menu.selectionForeground", MaterialColors.BLACK);
         table.put("Menu.disabledForeground", new Color(0, 0, 0, 100));
         table.put("Menu.menuPopupOffsetY", 3);
+        table.put("Menu[MouseOver].enable", true); //TODO adding into master
 
         table.put("MenuBar.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("MenuBar.background", Color.WHITE);
