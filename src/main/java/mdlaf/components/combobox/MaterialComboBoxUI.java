@@ -1,6 +1,7 @@
 package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.BorderFactory;
@@ -32,7 +33,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		comboBox.setBorder (UIManager.getBorder ("ComboBox.border"));
 		comboBox.setLightWeightPopupEnabled (true);
 		comboBox.setRenderer (new MaterialComboBoxRenderer ());
-		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
@@ -47,10 +48,10 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		}
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
-		button.setBorder (BorderFactory.createEmptyBorder ());
 		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){
 			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHoverColor")));
 		}
+		button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
 		return button;
 	}
 
@@ -58,4 +59,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
+
+
 }
