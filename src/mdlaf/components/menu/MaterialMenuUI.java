@@ -1,7 +1,6 @@
 package mdlaf.components.menu;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -46,7 +45,9 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
-		c.addMouseListener(new MouseHover());
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+			c.addMouseListener(new MouseHover());
+		}
 		return super.createChangeListener(c);
 	}
 

@@ -8,7 +8,6 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
-import java.util.Map;
 
 public class MaterialButtonUI extends BasicButtonUI {
 
@@ -35,14 +34,16 @@ public class MaterialButtonUI extends BasicButtonUI {
         AbstractButton b = (AbstractButton) c;
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         if (b.isContentAreaFilled()) {
-            paintBackground(g, b);
+            paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
         }
-        super.paint(g, c);
+        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+
     }
 
     @Override
@@ -55,4 +56,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         super.update(g, c);
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
+
+
 }

@@ -245,7 +245,7 @@ public class MaterialUISwingDemo {
 
         JXTaskPane jxTaskPane = new JXTaskPane();
         jxTaskPane.setTitle("Material UI memory");
-
+        jxTaskPane.setOpaque(false);
 
         JLabel memoryOccupedNow = new JLabel();
 
@@ -345,6 +345,7 @@ public class MaterialUISwingDemo {
         buttonQuestion.setAction(new QuesuionMessage());
 
         JButton buttonWarning = new JButton();
+        buttonWarning.setOpaque(false);
         buttonWarning.setBackground(MaterialColors.YELLOW_800);
         buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.YELLOW_500));
         class WarningMessage extends AbstractAction {
