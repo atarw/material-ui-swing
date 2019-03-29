@@ -1,21 +1,18 @@
 package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.components.textfield.MaterialTextFieldUI;
-import mdlaf.components.textpane.MaterialTextPaneUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
-import org.jdesktop.swingx.JXTextField;
-
+import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
-import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialSpinnerUI extends BasicSpinnerUI {
 
 
@@ -58,6 +55,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.NORTH);
         }
+        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
@@ -78,6 +76,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
+        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));

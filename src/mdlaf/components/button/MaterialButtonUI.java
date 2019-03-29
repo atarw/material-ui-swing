@@ -9,6 +9,9 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialButtonUI extends BasicButtonUI {
 
     public static ComponentUI createUI(final JComponent c) {
@@ -40,10 +43,13 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     private void paintBackground(Graphics g, JComponent c) {
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
+        //g.setColor(c.getBackground());
+        //g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+        Graphics2D graphics2D = (Graphics2D) g;
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g = graphics2D;
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
-
     }
 
     @Override

@@ -1,4 +1,5 @@
-package mdlaf.shadows;/*
+package mdlaf.shadows;
+/*
  * $Id: mdlaf.shadows.DropShadowBorder.java,v 1.10 2005/10/13 17:19:34 rbair Exp $
  *
  * Copyright 2004 Sun Microsystems, Inc., 4150 Network Circle,
@@ -18,9 +19,6 @@ package mdlaf.shadows;/*
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-//package org.jdesktop.swingx.border;
-
 import javax.swing.UIManager;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;

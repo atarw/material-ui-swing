@@ -3,6 +3,7 @@ package mdlaf.components.combobox;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -16,6 +17,9 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -46,6 +50,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		else {
 			button = new BasicArrowButton (SwingConstants.SOUTH);
 		}
+		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
 		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){

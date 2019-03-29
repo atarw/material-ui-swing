@@ -61,6 +61,10 @@ import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
+
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
     private static final String buttonUI = MaterialButtonUI.class.getCanonicalName();
@@ -253,7 +257,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ScrollBar.thumbHighlight", MaterialColors.GRAY_300);
         table.put("ScrollBar.thumbShadow", MaterialColors.GRAY_300);
         table.put("ScrollBar.arrowButtonBackground", MaterialColors.GRAY_300);
-        table.put("ScrollBar.arrowButtonBorder", BorderFactory.createEmptyBorder());
+        table.put("ScrollBar.arrowButtonBorder", MaterialBorders.LIGHT_LINE_BORDER);
+        table.put("ScrollBar[MouseHover].enable", true);
+        table.put("ScrollBar[MouseHover].color", MaterialColors.GRAY_400);
 
         table.put("ScrollPane.background", Color.WHITE);
         table.put("ScrollPane.border", BorderFactory.createEmptyBorder());

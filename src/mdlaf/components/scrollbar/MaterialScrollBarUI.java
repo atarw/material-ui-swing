@@ -1,6 +1,8 @@
 package mdlaf.components.scrollbar;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -43,10 +45,13 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	protected JButton createDecreaseButton (int orientation) {
 		JButton button = new BasicArrowButton (orientation);
 
+		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
 		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
-
+		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ScrollBar[MouseHover].color")));
+		}
 		return button;
 	}
 
@@ -54,10 +59,13 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	protected JButton createIncreaseButton (int orientation) {
 		JButton button = new BasicArrowButton (orientation);
 
+		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
 		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
-
+		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
+			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ScrollBar[MouseHover].color")));
+		}
 		return button;
 	}
 }
