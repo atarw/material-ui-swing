@@ -10,7 +10,9 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 
-//TODO cambio grafica slider
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialSliderUI extends BasicSliderUI {
 
 	private static final int NORMAL_THUMB_RADIUS = 7;
@@ -25,7 +27,12 @@ public class MaterialSliderUI extends BasicSliderUI {
 		return new MaterialSliderUI ((JSlider) c);
 	}
 
+	 // I fixig paint the circle bacuse this was painted wrong
+	 // @contributor https://github.com/vincenzopalazzo
 	private static void drawCircle (Graphics g, int x, int y, int radius) {
+		Graphics2D graphics2D = (Graphics2D) g;
+		graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g = graphics2D;
 		g.fillOval (x - radius, y - radius, radius * 2, radius * 2);
 	}
 
