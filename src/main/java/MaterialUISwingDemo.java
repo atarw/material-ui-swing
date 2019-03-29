@@ -188,7 +188,7 @@ public class MaterialUISwingDemo {
 		class InfoMessage extends AbstractAction{
 
 			public InfoMessage() {
-				putValue(Action.NAME, "Info option pane");
+				putValue(Action.NAME, "Info option panel");
 			}
 
 			@Override
@@ -208,7 +208,7 @@ public class MaterialUISwingDemo {
 		class ErrorMassage extends AbstractAction{
 
 			public ErrorMassage() {
-				putValue(Action.NAME, "Error option pane");
+				putValue(Action.NAME, "Error option panel");
 			}
 
 			@Override
@@ -228,7 +228,7 @@ public class MaterialUISwingDemo {
 		class QuesuionMessage extends AbstractAction{
 
 			public QuesuionMessage() {
-				putValue(Action.NAME, "Info question pane");
+				putValue(Action.NAME, "Info question panel");
 			}
 
 			@Override
@@ -242,12 +242,13 @@ public class MaterialUISwingDemo {
 		buttonQuestion.setAction(new QuesuionMessage());
 
 		JButton buttonWarning = new JButton();
+		buttonWarning.setOpaque(false);
 		buttonWarning.setBackground(MaterialColors.YELLOW_800);
 		buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.YELLOW_500));
 		class WarningMessage extends AbstractAction {
 
 			public WarningMessage() {
-				putValue(Action.NAME, "Info warning pane");
+				putValue(Action.NAME, "Info warning panel");
 			}
 
 			@Override

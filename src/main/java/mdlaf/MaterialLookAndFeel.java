@@ -158,14 +158,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("CheckBox.foreground", Color.BLACK);
 		table.put ("CheckBox.icon", new ImageIcon (MaterialImages.UNCHECKED_BOX));
 		table.put ("CheckBox.selectedIcon", new ImageIcon (MaterialImages.PAINTED_CHECKED_BOX));
-
 		table.put ("ComboBox.font", MaterialFonts.REGULAR);
 		table.put ("ComboBox.background", Color.WHITE);
 		table.put ("ComboBox.foreground", Color.BLACK);
 		table.put ("ComboBox.border", BorderFactory.createCompoundBorder (MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder (0, 5, 0, 0)));
 		table.put ("ComboBox.buttonBackground", MaterialColors.GRAY_300);
-		table.put ("ComboBox.selectionBackground", Color.WHITE);
-		table.put ("ComboBox.selectionForeground", Color.BLACK);
+		table.put ("ComboBox.selectionBackground", MaterialColors.GRAY_300);
+		table.put ("ComboBox.selectionForeground", MaterialColors.BLACK);
 		table.put ("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
 		table.put("ComboBox.mouseHoverColor", MaterialColors.GRAY_400);
 		table.put("ComboBox.mouseHoverEnabled", true);
@@ -184,6 +183,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put ("Menu.selectionForeground", Color.BLACK);
 		table.put ("Menu.disabledForeground", new Color (0, 0, 0, 100));
 		table.put ("Menu.menuPopupOffsetY", 3);
+		table.put("Menu[MouseOver].enable", true); //TODO testing
+		//TODO refactoinh and using the convensioni Component[Action].ohYeah
 
 		table.put ("MenuBar.font", MaterialFonts.BOLD);
 		table.put ("MenuBar.background", Color.WHITE);

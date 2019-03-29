@@ -38,15 +38,16 @@ public class MaterialButtonUI extends BasicButtonUI {
 		g = MaterialDrawingUtils.getAliasedGraphics (g);
 
 		if (b.isContentAreaFilled ()) {
-			paintBackground (g, b);
+			paintBackground (MaterialDrawingUtils.getAliasedGraphics(g), b);
 		}
 
-		super.paint (g, c);
+		super.paint (MaterialDrawingUtils.getAliasedGraphics(g), c);
 	}
 
 	private void paintBackground (Graphics g, JComponent c) {
+		g = MaterialDrawingUtils.getAliasedGraphics(g);
 		g.setColor (c.getBackground ());
-		g.fillRoundRect (0, 0, c.getWidth (), c.getHeight (), 7, 7);
+		g.fillRect (0, 0, c.getWidth (), c.getHeight());
 	}
 
 }
