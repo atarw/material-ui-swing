@@ -23,13 +23,14 @@ repositories {
 }
 
 dependencies {
+
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:20.0'
-    compile (name:'material-ui-swing-0.9.8-jar-with-dependencies', ext:'jar')
+    compile (name:'material-ui-swing-0.9.9-jar-with-dependencies', ext:'jar')
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    testCompile (name:'material-ui-swing-0.9.8-jar-with-dependencies', ext:'jar')
+    testCompile (name:'material-ui-swing-0.9.9-jar-with-dependencies', ext:'jar')
     //Material Look and feel
     //implementation 'com.github.vincenzopalazzo:material-ui-swing:V0.9.8'
 }
@@ -38,6 +39,10 @@ allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
     }
+}
+
+startScripts {
+    classpath += files('src/main/resources/')
 }
 
 // Define the main class for the application

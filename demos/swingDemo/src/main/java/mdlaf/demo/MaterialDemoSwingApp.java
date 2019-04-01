@@ -30,7 +30,7 @@ public class MaterialDemoSwingApp {
 
     //Init view component application
     private MaterialDemoSwingFrame frame = new MaterialDemoSwingFrame();
-    private MaterialDemoSwingDialogInfo dialogInfo = new MaterialDemoSwingDialogInfo(frame, "Info project", true);
+    private MaterialDemoSwingDialogInfo dialogInfo = new MaterialDemoSwingDialogInfo(frame, "Developer", true);
 
     //Init actions component
     private ActionsMenuBar actionsMenuBar = new ActionsMenuBar();

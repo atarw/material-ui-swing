@@ -257,7 +257,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ScrollBar.thumbHighlight", MaterialColors.GRAY_300);
         table.put("ScrollBar.thumbShadow", MaterialColors.GRAY_300);
         table.put("ScrollBar.arrowButtonBackground", MaterialColors.GRAY_300);
-        table.put("ScrollBar.arrowButtonBorder", MaterialBorders.LIGHT_LINE_BORDER);
+        table.put("ScrollBar.arrowButtonBorder", MaterialBorders.FAT_LINE_BORDER);
         table.put("ScrollBar[MouseHover].enable", true);
         table.put("ScrollBar[MouseHover].color", MaterialColors.GRAY_400);
 
