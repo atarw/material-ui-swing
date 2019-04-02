@@ -285,8 +285,9 @@ public class MaterialUISwingDemo {
         panel3.add(jt);
 
         JButton buttonInfo = new JButton("Test INFO");
-        buttonInfo.setBackground(MaterialColors.LIGHT_BLUE_500);
-        buttonInfo.addMouseListener(MaterialUIMovement.getMovement(buttonInfo, MaterialColors.LIGHT_BLUE_200));
+        buttonInfo.setBackground(MaterialColors.COSMO_GREEN);
+        buttonInfo.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
+        buttonInfo.addMouseListener(MaterialUIMovement.getMovement(buttonInfo, MaterialColors.COSMO_LIGHT_GREEN));
         class InfoMessage extends AbstractAction{
 
             public InfoMessage() {
@@ -306,8 +307,9 @@ public class MaterialUISwingDemo {
         panel3.add(buttonInfo);
 
         JButton buttonError = new JButton();
-        buttonError.setBackground(MaterialColors.RED_800);
-        buttonError.addMouseListener(MaterialUIMovement.getMovement(buttonError, MaterialColors.RED_400));
+        buttonError.setBackground(MaterialColors.COSMO_RED);
+        buttonError.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
+        buttonError.addMouseListener(MaterialUIMovement.getMovement(buttonError, MaterialColors.COSMO_LIGHT_RED));
         class ErrorMassage extends AbstractAction{
 
             public ErrorMassage() {
@@ -326,8 +328,9 @@ public class MaterialUISwingDemo {
         panel3.add(buttonError);
 
         JButton buttonQuestion = new JButton();
-        buttonQuestion.setBackground(MaterialColors.BLUE_600);
-        buttonQuestion.addMouseListener(MaterialUIMovement.getMovement(buttonQuestion, MaterialColors.BLUE_300));
+        buttonQuestion.setBackground(MaterialColors.COSMO_BLUE);
+        buttonQuestion.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
+        buttonQuestion.addMouseListener(MaterialUIMovement.getMovement(buttonQuestion, MaterialColors.COSMO_LIGTH_BLUE));
         class QuesuionMessage extends AbstractAction{
 
             public QuesuionMessage() {
@@ -346,8 +349,9 @@ public class MaterialUISwingDemo {
 
         JButton buttonWarning = new JButton();
         buttonWarning.setOpaque(false);
-        buttonWarning.setBackground(MaterialColors.YELLOW_800);
-        buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.YELLOW_500));
+        buttonWarning.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
+        buttonWarning.setBackground(MaterialColors.COSMO_ORANGE);
+        buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.COSMO_LIGHT_ORANGE));
         class WarningMessage extends AbstractAction {
 
             public WarningMessage() {
