@@ -1,13 +1,11 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
@@ -69,7 +67,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ScrollBar[MouseHover].color")));
+			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color")));
 		}
 		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 		return button;

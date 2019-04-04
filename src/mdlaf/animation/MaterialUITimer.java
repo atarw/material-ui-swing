@@ -27,7 +27,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
 
-public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 
     private Color from, to;
     private boolean forward;

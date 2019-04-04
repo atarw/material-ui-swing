@@ -42,7 +42,7 @@ public class MaterialDemoSwingDialogInfo extends javax.swing.JDialog {
         
         pack();
         setLocationRelativeTo(this.getRootPane());
-        setResizable(false);
+       // setResizable(false);
         setVisible(true);
     }
 
