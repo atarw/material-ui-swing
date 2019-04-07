@@ -1,20 +1,21 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 /*
  * Contributed by https://github.com/downToHell
+ * Contributed for refactoring by https://github.com/vincenzopalazzo
  * */
 
 public class MaterialScrollBarUI extends BasicScrollBarUI {
@@ -26,14 +27,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-
-		JScrollBar scrollBar = (JScrollBar) c;
-		scrollBar.setFont (UIManager.getFont ("ScrollBar.font"));
-		trackColor = UIManager.getColor ("ScrollBar.track");
-		thumbColor = UIManager.getColor ("ScrollBar.thumb");
-		thumbDarkShadowColor = UIManager.getColor ("ScrollBar.thumbDarkShadow");
-		thumbHighlightColor = UIManager.getColor ("ScrollBar.thumbHighlight");
-		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
 	@Override
@@ -43,29 +36,50 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	@Override
 	protected JButton createDecreaseButton (int orientation) {
-		JButton button = new BasicArrowButton (orientation);
-
-		MaterialManagerListener.removeAllMouseListener(button);
-		button.setOpaque (true);
-		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
-		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
-		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ScrollBar[MouseHover].color")));
-		}
-		return button;
+		return installButton(orientation);
 	}
 
 	@Override
 	protected JButton createIncreaseButton (int orientation) {
-		JButton button = new BasicArrowButton (orientation);
+		return installButton(orientation);
+	}
 
+	@Override
+	protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+		super.paintTrack(g, c, trackBounds);
+		g.setColor(UIManager.getColor ("ScrollBar.track"));
+	}
+
+	@Override
+	protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+		super.paintThumb(g, c, thumbBounds);
+		g.setColor(UIManager.getColor ("ScrollBar.thumb"));
+	}
+
+	/**
+	 * Method service for not duplicate code
+	 * @author https://github.com/vincenzopalazzo
+	 * @param orientation
+	 * @return JButton with correct orientation
+	 */
+	private JButton installButton(int orientation){
+		JButton button = new BasicArrowButton (orientation);
 		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
-		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ScrollBar[MouseHover].color")));
+			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
+					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
+		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 		return button;
+	}
+
+	@Override
+	protected void configureScrollBarColors() {
+		super.configureScrollBarColors();
+		thumbDarkShadowColor = UIManager.getColor ("ScrollBar.thumbDarkShadow");
+		thumbHighlightColor = UIManager.getColor ("ScrollBar.thumbHighlight");
+		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 }

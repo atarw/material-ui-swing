@@ -1,7 +1,6 @@
 package mdlaf.utils;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
+import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,9 +23,14 @@ public class MaterialFonts {
 	public static final Font THIN = loadFont ("/fonts/NotoSans-Thin.ttf");
 	public static final Font THIN_ITALIC = loadFont ("/fonts/NotoSans-ThinItalic.ttf");
 
+	/**
+	 * Fix the problem with this post
+	 * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
+	 * @author https://github.com/vincenzopalazzo
+	 */
 	private static Font loadFont (String fontPath) {
 		if (fontSettings.isEmpty ()) {
-			fontSettings.put (TextAttribute.SIZE, 14f);
+			fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
 			fontSettings.put (TextAttribute.KERNING, TextAttribute.KERNING_ON);
 		}
 
