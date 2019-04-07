@@ -260,6 +260,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ScrollBar.arrowButtonBorder", MaterialBorders.FAT_LINE_BORDER);
         table.put("ScrollBar[MouseHover].enable", true);
         table.put("ScrollBar[MouseHover].color", MaterialColors.GRAY_400);
+        table.put("ScrollBar[OnClick].color", MaterialColors.GRAY_500);
+
 
         table.put("ScrollPane.background", Color.WHITE);
         table.put("ScrollPane.border", BorderFactory.createEmptyBorder());

@@ -14,10 +14,12 @@ class MaterialUIStaticMovement implements MouseListener {
 
     private Color before;
     private Color after;
+    private Color strongOnClick;
 
-    public MaterialUIStaticMovement(Color before, Color after) {
+    public MaterialUIStaticMovement(Color before, Color after, Color strongOnClick) {
         this.before = before;
         this.after = after;
+        this.strongOnClick = strongOnClick;
     }
 
     @Override
@@ -32,19 +34,19 @@ class MaterialUIStaticMovement implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         /*For effect click, need create a timer ?*/
-        /*if(e == null){
+        if(e == null){
             throw new IllegalArgumentException("MouseEvent null");
         }
-        setColorComponent(e, after);*/
+        setColorComponent(e, strongOnClick);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         /*For effect click, need create a timer ?*/
-       /* if(e == null){
+       if(e == null){
             throw new IllegalArgumentException("MouseEvent null");
         }
-        setColorComponent(e, before);*/
+        setColorComponent(e, after);
     }
 
     @Override

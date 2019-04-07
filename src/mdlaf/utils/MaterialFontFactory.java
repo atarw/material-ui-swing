@@ -105,9 +105,14 @@ public class MaterialFontFactory {
         return cacheFont.get(typeFont);
     }
 
+    /**
+     * Fix the problem with this post
+     * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
+     * @author https://github.com/vincenzopalazzo
+     */
     private Font loadFont(String fontPath) {
         if (fontSettings.isEmpty()) {
-            fontSettings.put(TextAttribute.SIZE, 14f);
+            fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
             fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
         }
 

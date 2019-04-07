@@ -1,6 +1,7 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
@@ -67,7 +68,8 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color")));
+			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
+					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
 		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
 		return button;
