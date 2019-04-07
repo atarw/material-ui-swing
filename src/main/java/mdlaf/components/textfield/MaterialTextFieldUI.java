@@ -143,7 +143,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		Action delete = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (getComponent().getSelectedText() == null) {
+				if (getComponent().getSelectedText() != null) {
 					int pos = getComponent().getCaretPosition() - 1;
 
 					if (pos >= 0) {
