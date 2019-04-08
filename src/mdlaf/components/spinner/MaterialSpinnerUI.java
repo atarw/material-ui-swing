@@ -55,7 +55,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.NORTH);
         }
-        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
@@ -76,7 +75,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
-        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));

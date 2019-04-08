@@ -1,13 +1,12 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -54,6 +53,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
 		super.paintThumb(g, c, thumbBounds);
 		g.setColor(UIManager.getColor ("ScrollBar.thumb"));
+
 	}
 
 	/**
@@ -71,9 +71,11 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
 					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
-		button.setBorder (UIManager.getBorder ("ScrollBar.arrowButtonBorder"));
+		button.setBorder (BorderFactory.createMatteBorder(button.getX() + 1, button.getY() + 1, button.getWidth() + 1, button.getHeight() + 1, button.getBackground()));
 		return button;
 	}
+
+
 
 	@Override
 	protected void configureScrollBarColors() {
