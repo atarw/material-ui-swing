@@ -18,6 +18,7 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
     }
 
 
+
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
@@ -38,5 +39,11 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
             return UIManager.getIcon("OptionPaneUI.warningIcon");
         }
         return super.getIconForType(messageType);
+    }
+
+    @Override
+    protected void addButtonComponents(Container container, Object[] buttons, int initialIndex) {
+        super.addButtonComponents(container, buttons, initialIndex);
+
     }
 }

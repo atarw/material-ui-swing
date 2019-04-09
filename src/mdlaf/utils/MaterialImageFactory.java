@@ -38,6 +38,7 @@ public class MaterialImageFactory {
     private static MaterialImageFactory SINGLETON;
 
     public static final String RIGHT_ARROW = "/resources/imgs/right_arrow.png";
+    public static final String LEFT_ARROW = "/resources/imgs/left_arrow.png";
     public static final String DOWN_ARROW = "/resources/imgs/down_arrow.png";
     public static final String UP_ARROW = "/resources/imgs/up_arrow.png";
     public static final String PAINTED_BLACK_CHECKED_BOX = "/resources/imgs/painted_checked_box.png";

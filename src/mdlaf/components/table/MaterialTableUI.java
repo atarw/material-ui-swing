@@ -28,6 +28,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setBorder (UIManager.getBorder ("Table.border"));
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
+		table.setFocusable (UIManager.getBoolean ("Table.focusable"));
 
 		table.getTableHeader ().setResizingAllowed (true);
 		int rowHeight = UIManager.getInt ("Table.rowHeight");

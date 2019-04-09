@@ -110,6 +110,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
     private void changeColorOnFocus(boolean hasFocus) {
         JTextField c = (JTextField) getComponent();
+        if(c == null){
+            return;
+        }
 		/*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
 		c.setForeground(hasFocus ? activeForeground : inactiveForeground);
 		c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
@@ -124,7 +127,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             c.setForeground(inactiveForeground);
             c.setSelectedTextColor(inactiveForeground);
         }
-        c.paint(c.getGraphics());
+        if(c.getGraphics() != null){
+            c.paint(c.getGraphics());
+        }
     }
 
     @Override

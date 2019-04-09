@@ -1,14 +1,10 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
+import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
@@ -63,18 +59,45 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	 * @return JButton with correct orientation
 	 */
 	private JButton installButton(int orientation){
-		JButton button = new BasicArrowButton (orientation);
+		//JButton button = new MaterialArrowButtonUI(orientation);
+		JButton button = new JButton();
 		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
+		setIconArrowButton(button, orientation);
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
 			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
 					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
-		button.setBorder (BorderFactory.createMatteBorder(button.getX() + 1, button.getY() + 1, button.getWidth() + 1, button.getHeight() + 1, button.getBackground()));
+		button.setBorder (BorderFactory.createEmptyBorder());
 		return button;
 	}
 
+	/**
+	 * This is method of service for setting icon on button
+	 * because the arrow button border is painted not correct in JScorllbar
+	 * @param button
+	 * @param orientation
+	 */
+	private void setIconArrowButton(JButton button, int orientation) {
+		if(button == null){
+			throw new IllegalArgumentException("Input null");
+		}
+		if (orientation == SwingConstants.NORTH){
+			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UP_ARROW)));
+			return;
+		}else if(orientation == SwingConstants.SOUTH){
+			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DOWN_ARROW)));
+			return;
+		}else if(orientation == SwingConstants.EAST){
+			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RIGHT_ARROW)));
+			return;
+		}else if(orientation == SwingConstants.WEST){
+			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.LEFT_ARROW)));
+			return;
+		}
+		throw new IllegalArgumentException("orientation not valid");
+	}
 
 
 	@Override

@@ -22,7 +22,7 @@ public class MaterialUISwingDemo {
     }
 
     public static void main(String[] args) {
-       try {
+        try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
@@ -288,7 +288,7 @@ public class MaterialUISwingDemo {
         buttonInfo.setBackground(MaterialColors.COSMO_GREEN);
         buttonInfo.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
         buttonInfo.addMouseListener(MaterialUIMovement.getMovement(buttonInfo, MaterialColors.COSMO_LIGHT_GREEN));
-        class InfoMessage extends AbstractAction{
+        class InfoMessage extends AbstractAction {
 
             public InfoMessage() {
                 putValue(Action.NAME, "Info option panel");
@@ -310,7 +310,7 @@ public class MaterialUISwingDemo {
         buttonError.setBackground(MaterialColors.COSMO_RED);
         buttonError.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
         buttonError.addMouseListener(MaterialUIMovement.getMovement(buttonError, MaterialColors.COSMO_LIGHT_RED));
-        class ErrorMassage extends AbstractAction{
+        class ErrorMassage extends AbstractAction {
 
             public ErrorMassage() {
                 putValue(Action.NAME, "Error option panel");
@@ -331,7 +331,7 @@ public class MaterialUISwingDemo {
         buttonQuestion.setBackground(MaterialColors.COSMO_BLUE);
         buttonQuestion.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
         buttonQuestion.addMouseListener(MaterialUIMovement.getMovement(buttonQuestion, MaterialColors.COSMO_LIGTH_BLUE));
-        class QuesuionMessage extends AbstractAction{
+        class QuesuionMessage extends AbstractAction {
 
             public QuesuionMessage() {
                 putValue(Action.NAME, "Info question panel");
@@ -385,6 +385,34 @@ public class MaterialUISwingDemo {
         panel3.add(spinnerDate);
         panel3.add(spinnerNumbar);
         panel3.add(spinnerList);
+
+        JPanel panel4 = new JPanel();
+
+        //String array to store weekdays
+        String week[] = {"Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday", "Sunday"};
+        JList<String> listDay = new JList<>(week);
+
+        JButton buttonOptionPane = new JButton("Click for open JOptionpane");
+
+
+        class OpenOptionPane extends AbstractAction {
+            public OpenOptionPane() {
+                putValue(Action.NAME, "Click me for open JOptionpane");
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane op = new JOptionPane(null, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+                JDialog dialog = op.createDialog("Test Button principal");
+                dialog.setVisible(true);
+            }
+        }
+        buttonOptionPane.setAction(new OpenOptionPane());
+        panel4.add(buttonOptionPane);
+        panel4.add(listDay);
+
+        tp.addTab("Panel 4", panel4);
 
         frame.pack();
         frame.setVisible(true);
