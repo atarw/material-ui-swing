@@ -72,7 +72,7 @@ import java.lang.reflect.Method;
  * @contributor https://github.com/vincenzopalazzo
  */
 
-public class MaterialLookAndFeel extends BasicLookAndFeel {
+public class MaterialLookAndFeel extends MetalLookAndFeel {
 
     private BasicLookAndFeel basicLookAndFeel;
 
@@ -205,9 +205,9 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("Button.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
-        table.put("Button.focusable", false);
-        table.put("Button[focus].background", MaterialColors.COSMO_BLUE);
-        table.put("Button[focus].foreground", Color.DARK_GRAY);
+        table.put("Button.focusable", true);
+        table.put("Button[focus].background", MaterialColors.GRAY_400);
+        table.put("Button[focus].foreground", MaterialColors.BLACK);
 
         table.put("CheckBox.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", Color.WHITE);
@@ -430,10 +430,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.YES_COLLASSED)));
         table.put("TaskPane.noCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
 
-        table.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
+        /*table.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
         table.put("OptionPane.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
         table.put("OptionPane.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
-        table.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
+        table.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));*/
         table.put("OptionPane.background", Color.WHITE);
         table.put("OptionPane.border", MaterialBorders.LIGHT_SHADOW_BORDER);
         table.put("OptionPane.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
@@ -461,9 +461,12 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
             final Method superMethod = BasicLookAndFeel.class.getDeclaredMethod("getDefaults");
             superMethod.setAccessible(true);
             final UIDefaults defaults = (UIDefaults)superMethod.invoke(basicLookAndFeel);
-
             initClassDefaults(defaults);
             initComponentDefaults(defaults);
+            defaults.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
+            defaults.put("OptionPane.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
+            defaults.put("OptionPane.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
+            defaults.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
             return defaults;
         }
         catch (Exception ignore) {

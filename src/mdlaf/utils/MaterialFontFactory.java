@@ -75,6 +75,7 @@ public class MaterialFontFactory {
     private void loadOsPropries() throws IOException {
         String os = System.getProperty("os.name", "generic").toLowerCase();
         String osSupport = osSupportted(os);
+        osSupport = null; //TODO DISABLE FONT NATIVE, AND ENABLE NOTO FONT
         if (osSupport != null) {
             String pathProperties = "/resources/config/font-" + osSupport + ".properties";
             properties.load(getClass().getResourceAsStream(pathProperties));
