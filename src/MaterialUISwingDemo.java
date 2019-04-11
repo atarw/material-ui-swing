@@ -1,6 +1,5 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import org.jdesktop.swingx.JXTaskPane;
@@ -394,8 +393,6 @@ public class MaterialUISwingDemo {
         JList<String> listDay = new JList<>(week);
 
         JButton buttonOptionPane = new JButton("Click for open JOptionpane");
-
-
         class OpenOptionPane extends AbstractAction {
             public OpenOptionPane() {
                 putValue(Action.NAME, "Click me for open JOptionpane");
@@ -405,6 +402,7 @@ public class MaterialUISwingDemo {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane op = new JOptionPane(null, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
                 JDialog dialog = op.createDialog("Test Button principal");
+                //dialog.setUndecorated(true);
                 dialog.setVisible(true);
             }
         }

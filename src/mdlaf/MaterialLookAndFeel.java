@@ -62,14 +62,19 @@ import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
+import java.lang.reflect.Method;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
 
 public class MaterialLookAndFeel extends BasicLookAndFeel {
+
+    private BasicLookAndFeel basicLookAndFeel;
 
     private static final String buttonUI = MaterialButtonUI.class.getCanonicalName();
     private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName();
@@ -107,6 +112,14 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
     private static final String textAreaUI = MaterialTextAreaUI.class.getCanonicalName();
     private static final String editorPane = MaterialEditorPaneUI.class.getCanonicalName();
 
+    public MaterialLookAndFeel() {
+        try {
+            basicLookAndFeel = new MetalLookAndFeel();
+            MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+        } catch (Exception ignore) {
+            //do nothing
+        }
+    }
 
     @Override
     public String getName() {
@@ -130,6 +143,11 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
     @Override
     public boolean isSupportedLookAndFeel() {
+        return true;
+    }
+
+    @Override
+    public boolean getSupportsWindowDecorations() {
         return true;
     }
 
@@ -177,7 +195,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
     @Override
     protected void initComponentDefaults(UIDefaults table) {
 
-       super.initComponentDefaults(table);
+        super.initComponentDefaults(table);
 
         table.put("Button.highlight", MaterialColors.GRAY_400);
         table.put("Button.opaque", false);
@@ -188,6 +206,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
         table.put("Button.focusable", false);
+        table.put("Button[focus].background", MaterialColors.COSMO_BLUE);
+        table.put("Button[focus].foreground", Color.DARK_GRAY);
 
         table.put("CheckBox.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", Color.WHITE);
@@ -234,10 +254,6 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("MenuItem.background", Color.WHITE);
         table.put("MenuItem.foreground", Color.BLACK);
         table.put("MenuItem.border", BorderFactory.createEmptyBorder(5, 0, 5, 0));
-
-        table.put("OptionPane.background", Color.WHITE);
-        table.put("OptionPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
-        table.put("OptionPane.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
 
         table.put("Panel.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Panel.background", Color.WHITE);
@@ -314,9 +330,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("TextArea.background", MaterialColors.GRAY_200);
         table.put("TextArea.border", BorderFactory.createEmptyBorder());
         table.put("TextArea.foreground", Color.BLACK);
-        table.put("TextArea.focusInputMap", multilineInputMap); //install shortcut
+        table.put("TextArea.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
+       /* table.put("TextArea.focusInputMap", multilineInputMap); //install shortcut
 
-        table.put("Password.focusInputMap", passwordInputMap); //install shortcut
+        table.put("Password.focusInputMap", passwordInputMap); //install shortcut*/
 
         table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
         table.put("ToggleButton.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
@@ -388,6 +405,13 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
         table.put("TextField.focusInputMap", fieldInputMap); //install shortcut
 
+        table.put("PasswordField.inactiveForeground", MaterialColors.GRAY_800);
+        table.put("PasswordField.inactiveBackground", MaterialColors.GRAY_200);
+        table.put("PasswordField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
+        table.put("PasswordField.selectionForeground", MaterialColors.BLACK);
+        table.put("PasswordField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
+        table.put("PasswordField.focusInputMap", fieldInputMap); //install shortcut
+
         table.put("TitledBorder.border",
                 new DropShadowBorder(MaterialColors.BLACK, 10, 4, (float) 0.2, 8,
                         true, true, true, true));
@@ -404,13 +428,15 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
         table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.YES_COLLASSED)));
-        table.put("TaskPane.noCollassed",   new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
+        table.put("TaskPane.noCollassed", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NO_COLLASSED)));
 
         table.put("OptionPane.warningIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.WARNING)));
         table.put("OptionPane.errorIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.ERROR)));
         table.put("OptionPane.questionIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.QUESTION)));
         table.put("OptionPane.informationIcon", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
-        //table.put("OptionPane.okButton", new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.INFORMATION)));
+        table.put("OptionPane.background", Color.WHITE);
+        table.put("OptionPane.border", MaterialBorders.LIGHT_SHADOW_BORDER);
+        table.put("OptionPane.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.REGULAR));
 
 
         table.put("FormattedTextField.inactiveForeground", MaterialColors.GRAY_800);
@@ -421,7 +447,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
         table.put("List.background", MaterialColors.WHITE);
         table.put("List.foreground", MaterialColors.BLACK);
-        table.put("List.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
+        table.put("List.border", MaterialBorders.LIGHT_SHADOW_BORDER);
         table.put("List.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.MEDIUM));
         table.put("List.selectionBackground", MaterialColors.GRAY_400);
         table.put("List.selectionForeground", MaterialColors.BLACK);
@@ -429,9 +455,24 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
     }
 
+    @Override
+    public UIDefaults getDefaults() {
+        try {
+            final Method superMethod = BasicLookAndFeel.class.getDeclaredMethod("getDefaults");
+            superMethod.setAccessible(true);
+            final UIDefaults defaults = (UIDefaults)superMethod.invoke(basicLookAndFeel);
+
+            initClassDefaults(defaults);
+            initComponentDefaults(defaults);
+            return defaults;
+        }
+        catch (Exception ignore) {
+        }
+        return super.getDefaults();
+    }
 
     /*Shortcut for filed input*/
-    Object fieldInputMap = new UIDefaults.LazyInputMap(new Object[] {
+    Object fieldInputMap = new UIDefaults.LazyInputMap(new Object[]{
             "ctrl C", DefaultEditorKit.copyAction,
             "ctrl V", DefaultEditorKit.pasteAction,
             "ctrl X", DefaultEditorKit.cutAction,
@@ -474,7 +515,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
     });
 
     /*Shortcut for password input*/
-    Object passwordInputMap = new UIDefaults.LazyInputMap(new Object[] {
+    Object passwordInputMap = new UIDefaults.LazyInputMap(new Object[]{
             "ctrl C", DefaultEditorKit.copyAction,
             "ctrl V", DefaultEditorKit.pasteAction,
             "ctrl X", DefaultEditorKit.cutAction,
@@ -515,7 +556,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
     });
 
     /*Shortcut for multiline input*/
-    Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[] {
+    Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[]{
             "ctrl C", DefaultEditorKit.copyAction,
             "ctrl V", DefaultEditorKit.pasteAction,
             "ctrl X", DefaultEditorKit.cutAction,

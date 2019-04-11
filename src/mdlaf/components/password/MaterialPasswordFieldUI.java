@@ -1,24 +1,14 @@
 package mdlaf.components.password;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFonts;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JPasswordField;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPasswordFieldUI;
-import javax.swing.text.Element;
-import javax.swing.text.PasswordView;
-import javax.swing.text.View;
+import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -27,169 +17,231 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener, PropertyChangeListener {
 
-	private Color focusedBackground;
-	private Color unfocusedBackground;
-	private Color focusedSelectionBackground;
-	private Color unfocusedSelectionBackground;
+	private boolean drawLine;
+	private Color activeBackground;
+	private Color activeForeground;
+	private Color inactiveBackground;
+	private Color inactiveForeground;
 
-	public static ComponentUI createUI (JComponent c) {
-		return new MaterialPasswordFieldUI ();
+	public MaterialPasswordFieldUI() {
+		this(true);
+	}
+
+	public MaterialPasswordFieldUI(boolean drawLine) {
+		super();
+		this.drawLine = drawLine;
+	}
+
+	public static ComponentUI createUI(JComponent c) {
+		return new MaterialPasswordFieldUI();
 	}
 
 	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
-
+	/**
+	 * This method not override because non paint correct in the JFileChooser
+	 * @fixed by https://github.com/vincenzopalazzo
+	 */
+	public void installUI(JComponent c) {
+		super.installUI(c);
 		JPasswordField passwordField = (JPasswordField) c;
-		passwordField.setOpaque (false);
-		passwordField.setBorder (BorderFactory.createEmptyBorder (5, 2, 2, 0));
-		passwordField.setBackground (MaterialColors.LIGHT_BLUE_400);
-
-		this.focusedBackground = passwordField.getBackground ();
-		this.unfocusedBackground = MaterialColors.GRAY_200;
-
-		this.focusedSelectionBackground = MaterialColors.bleach (focusedBackground, 0.3f);
-		this.unfocusedSelectionBackground = unfocusedBackground;
+		passwordField.setEchoChar('\u2022');
 	}
 
 	@Override
-	protected void installListeners () {
-		getComponent ().addFocusListener (this);
-		getComponent ().addPropertyChangeListener (this);
+	protected void installDefaults() {
+		super.installDefaults();
+		installMyDefaults();
 	}
 
 	@Override
-	protected void installKeyboardActions () {
-		super.installKeyboardActions ();
+	protected void uninstallDefaults() {
+		getComponent().setBorder(null);
+		super.uninstallDefaults();
+	}
 
-		Action selectAll = new AbstractAction () {
+	@Override
+	protected void installListeners() {
+		super.installListeners();
+		getComponent().addFocusListener(this);
+		getComponent().addPropertyChangeListener(this);
+	}
+
+	@Override
+	protected void uninstallListeners() {
+		getComponent().removeFocusListener(this);
+		super.uninstallListeners();
+	}
+
+	private void installMyDefaults() {
+		this.activeBackground = UIManager.getColor("PasswordField.selectionBackground");
+		this.activeForeground = UIManager.getColor("PasswordField.selectionForeground");
+		this.inactiveBackground = UIManager.getColor("PasswordField.inactiveBackground");
+		this.inactiveForeground = UIManager.getColor("PasswordField.inactiveForeground");
+		getComponent().setFont(UIManager.getFont("PasswordField.font"));
+
+		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
+		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+		getComponent().setBorder(UIManager.getBorder("PasswordField.border"));
+	}
+	@Override
+	protected void paintBackground(Graphics g) {
+		super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
+	}
+
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		changeColorOnFocus(true);
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		changeColorOnFocus(false);
+	}
+
+	//TODO refactoring for recicle code
+	private void changeColorOnFocus(boolean hasFocus) {
+		JPasswordField c = (JPasswordField) getComponent();
+		if(c == null){
+			return;
+		}
+		/*c.setSelectionColor(hasFocus ? activeBackground : inactiveBackground);
+		c.setForeground(hasFocus ? activeForeground : inactiveForeground);
+		c.setSelectedTextColor(hasFocus ? activeForeground : inactiveForeground);*/
+		if(hasFocus && (activeBackground != null) && (activeForeground != null)){
+			c.setSelectionColor(activeBackground);
+			c.setForeground(activeForeground);
+			c.setSelectedTextColor(activeForeground);
+		}
+
+		if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
+			c.setSelectionColor(inactiveBackground);
+			c.setForeground(inactiveForeground);
+			c.setSelectedTextColor(inactiveForeground);
+		}
+		if(c.getGraphics() != null){
+			c.paint(c.getGraphics());
+		}
+	}
+/*
+	@Override
+	protected void installKeyboardActions() {
+		super.installKeyboardActions();
+
+		Action selectAll = new AbstractAction() {
 			@Override
-			public void actionPerformed (ActionEvent e) {
-				getComponent ().selectAll ();
+			public void actionPerformed(ActionEvent e) {
+				if(getComponent() != null){
+					getComponent().selectAll();
+				}
 			}
 		};
 
-		Action delete = new AbstractAction () {
+		Action delete = new AbstractAction() {
 			@Override
-			public void actionPerformed (ActionEvent e) {
-				if (getComponent ().getSelectedText () == null) {
-					int pos = getComponent ().getCaretPosition () - 1;
+			public void actionPerformed(ActionEvent e) {
+				if (getComponent().getSelectedText() != null) {
+					int pos = getComponent().getCaretPosition() - 1;
 
 					if (pos >= 0) {
-						getComponent ().select (pos, pos + 1);
-						getComponent ().replaceSelection ("");
+						getComponent().select(pos, pos + 1);
+						getComponent().replaceSelection("");
 					}
-				}
-				else {
-					getComponent ().replaceSelection ("");
+				} else {
+					getComponent().replaceSelection("");
 				}
 			}
 		};
 
-		Action left = new AbstractAction () {
+		Action left = new AbstractAction() {
 			@Override
-			public void actionPerformed (ActionEvent e) {
-				getComponent ().setCaretPosition (Math.max (0, getComponent ().getCaretPosition () - 1));
+			public void actionPerformed(ActionEvent e) {
+				if(getComponent() != null){
+					getComponent().setCaretPosition(Math.max(0, getComponent().getCaretPosition() - 1));
+				}
 			}
 		};
 
-		Action right = new AbstractAction () {
+		Action right = new AbstractAction() {
 			@Override
-			public void actionPerformed (ActionEvent e) {
-				getComponent ().setCaretPosition (Math.min (getComponent ().getText ().length (), getComponent ().getCaretPosition () + 1));
+			public void actionPerformed(ActionEvent e) {
+				if(getComponent() != null){
+					getComponent().setCaretPosition(Math.min(getComponent().getText().length(), getComponent().getCaretPosition() + 1));
+				}
+			}
+		};
+
+		Action enter = new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(getComponent() != null){
+					((JPasswordField) getComponent()).postActionEvent();
+				}
 			}
 		};
 
 		// note getMenuShortcutKeyMask() is deprecated in Java 10 - change to getMenuShortcutKeyMaskEx()
-		getComponent ().getInputMap ().put (KeyStroke.getKeyStroke (KeyEvent.VK_A, Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask ()), "selectAll");
-		getComponent ().getInputMap ().put (KeyStroke.getKeyStroke (KeyEvent.VK_BACK_SPACE, 0), "delete");
-		getComponent ().getInputMap ().put (KeyStroke.getKeyStroke (KeyEvent.VK_LEFT, 0), "left");
-		getComponent ().getInputMap ().put (KeyStroke.getKeyStroke (KeyEvent.VK_RIGHT, 0), "right");
+		getComponent().getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_A, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "selectAll");
+		getComponent().getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "delete");
+		getComponent().getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
+		getComponent().getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+		getComponent().getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
 
-		getComponent ().getActionMap ().put ("selectAll", selectAll);
-		getComponent ().getActionMap ().put ("delete", delete);
-		getComponent ().getActionMap ().put ("left", left);
-		getComponent ().getActionMap ().put ("right", right);
+		getComponent().getActionMap().put("selectAll", selectAll);
+		getComponent().getActionMap().put("delete", delete);
+		getComponent().getActionMap().put("left", left);
+		getComponent().getActionMap().put("right", right);
+		getComponent().getActionMap().put("enter", enter);
 	}
-
+*/
 	@Override
-	public void paintSafely (Graphics g) {
-		JPasswordField c = (JPasswordField) getComponent ();
-		g = MaterialDrawingUtils.getAliasedGraphics (g);
+	/**
+	 *This method drive a line button on JTextField
+	 * @fixed by https://github.com/vincenzopalazzo
+	 */
+	public void paintSafely(Graphics g) {
+		JPasswordField c = (JPasswordField) getComponent();
+		super.paintSafely(g);
+		if (drawLine) {
+			int x = c.getInsets().left;
+			int y = c.getInsets().top;
+			int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
+			g.setColor(c.getSelectionColor());
 
-		if (getComponent ().hasFocus ()) {
-			c.setBackground (focusedBackground);
-			c.setSelectionColor (focusedSelectionBackground);
+			g.fillRect(x, c.getHeight() - y, w, 1);
 		}
-		else {
-			c.setBackground (unfocusedBackground);
-			c.setSelectionColor (unfocusedSelectionBackground);
-		}
 
-		int x = getComponent ().getInsets ().left;
-		int y = getComponent ().getInsets ().top;
-		int w = getComponent ().getWidth () - getComponent ().getInsets ().left - getComponent ().getInsets ().right;
-
-		g.setColor (c.getBackground ());
-		g.fillRect (x, c.getHeight () - y + 1, w, 1);
-
-		super.paintSafely (g);
 	}
 
 	@Override
-	public void paintBackground (Graphics g) {
-		super.paintBackground (MaterialDrawingUtils.getAliasedGraphics (g));
-	}
+	public void propertyChange(PropertyChangeEvent pce) {
+		super.propertyChange(pce);
 
-	@Override
-	public void focusGained (FocusEvent e) {
-		e.getComponent ().setBackground (focusedBackground);
-	}
-
-	@Override
-	public void focusLost (FocusEvent e) {
-		e.getComponent ().setBackground (unfocusedBackground);
-	}
-
-	@Override
-	public void propertyChange (PropertyChangeEvent pce) {
-		if (pce.getPropertyName ().equals ("background")) {
-			Color newColor = (Color) pce.getNewValue ();
-
-			if (!newColor.equals (focusedBackground) && !newColor.equals (unfocusedBackground)) {
-				this.focusedBackground = (Color) pce.getNewValue ();
-				this.focusedSelectionBackground = MaterialColors.bleach (this.focusedBackground, 0.3f);
+		if (pce.getPropertyName().equals("selectionColor")) {
+			Color newColor = (Color) pce.getNewValue();
+			if (!newColor.equals(activeBackground) && !newColor.equals(inactiveBackground)) {
+				this.activeBackground = newColor;
+				getComponent().repaint();
 			}
 		}
-	}
 
-	@Override
-	public View create (Element elem) {
-		return new MaterialPasswordView (elem);
-	}
-
-	private static class MaterialPasswordView extends PasswordView {
-
-		private MaterialPasswordView (Element elem) {
-			super (elem);
+		if (pce.getPropertyName().equals("selectedTextColor")) {
+			Color newColor = (Color) pce.getNewValue();
+			if (!newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
+				this.activeForeground = newColor;
+				getComponent().repaint();
+			}
+		}
+		if (pce.getPropertyName().equals("background")) {
+			getComponent().repaint();
 		}
 
-		// depreciated in Java 9 and above - replace method with float drawEchoCharacter(Graphics2D g, float x, float y, char c)
-		@Override
-		protected int drawEchoCharacter (Graphics g, int x, int y, char c) {
-			Graphics2D g2 = (Graphics2D) g.create ();
-			g2.setRenderingHint (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-			FontMetrics fm = g2.getFontMetrics ();
-			int r = fm.charWidth (c) - 2;
-
-			g2.setPaint (Color.BLACK);
-			g2.fillOval (x + 1, y + 5 - fm.getAscent (), r, r);
-			g2.dispose ();
-
-			return x + fm.charWidth (c);
-		}
 	}
+
 }

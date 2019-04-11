@@ -3,13 +3,7 @@ package mdlaf.components.textfield;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFonts;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.Color;
@@ -53,6 +47,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
      */
     public void installUI(JComponent c) {
         super.installUI(c);
+
     }
 
     @Override
@@ -85,7 +80,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         this.activeForeground = UIManager.getColor("TextField.selectionForeground");
         this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
         this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
-        getComponent().setFont(MaterialFonts.REGULAR);
+        getComponent().setFont(UIManager.getFont("TextField.font"));
 
         getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
         getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
@@ -131,7 +126,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
             c.paint(c.getGraphics());
         }
     }
-
+/*
     @Override
     protected void installKeyboardActions() {
         super.installKeyboardActions();
@@ -201,7 +196,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         getComponent().getActionMap().put("right", right);
         getComponent().getActionMap().put("enter", enter);
     }
-
+*/
     @Override
     /**
      *This method drive a line button on JTextField
