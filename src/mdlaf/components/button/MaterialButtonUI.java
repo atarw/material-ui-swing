@@ -1,20 +1,17 @@
 package mdlaf.components.button;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-
-public class MaterialButtonUI extends BasicButtonUI {
+//TODO clean old code.
+public class MaterialButtonUI extends MetalButtonUI {
     public static ComponentUI createUI(final JComponent c) {
         return new MaterialButtonUI();
     }
@@ -50,21 +47,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (b.isContentAreaFilled()) {
             paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
         }
-
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
-    }
-
-    private void changeColorOnUnfocus(JComponent component) {
-        JButton button = (JButton) component;
-        Color foregroundComponent = button.getForeground();
-        Color backgroundComponent = button.getBackground();
-        if (foregroundComponent.equals(this.focusableForeground) && backgroundComponent.equals(this.focusableBackground)) {
-            button.setBackground(this.background);
-            button.setForeground(this.foreground);
-        }
-        if(!button.isDefaultButton()){
-           // button.setBackground(background);
-        }
     }
 
     //Fix to #73 border were pixeled, fixde by https://github.com/vincenzopalazzo
@@ -78,31 +61,53 @@ public class MaterialButtonUI extends BasicButtonUI {
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
         JButton b = (JButton) c;
         if(b.isDefaultButton()){
-           // b.setBackground(MaterialColors.GREEN_900);
+            driveLine(g, b);
         }
     }
 
     @Override
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         super.paintText(g, c, textRect, text);
-        changeColorOnUnfocus(c);
     }
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        if(!((JButton)b).isFocusable()){
-            return;
-        }
-        super.paintFocus(g, b, viewRect, textRect, iconRect);
-        this.background = b.getBackground();
-        this.foreground = b.getForeground();
-        b.setForeground(this.focusableForeground);
-        b.setBackground(this.focusableBackground);
+        //super.paintFocus(g, b, viewRect, textRect, iconRect);
+        //changeColorOnUnfocus(b);
+        driveLine(g, (JButton) b);
+
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
-        super.update(g, c);
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        super.update(g, c);
     }
+
+    @Deprecated
+    private void changeColorOnUnfocus(JComponent component) {
+        JButton button = (JButton) component;
+        Color foregroundComponent = button.getForeground();
+        Color backgroundComponent = button.getBackground();
+        if (foregroundComponent.equals(this.focusableForeground) &&
+                backgroundComponent.equals(this.focusableBackground)) {
+            button.setBackground(this.background);
+            button.setForeground(this.foreground);
+        }
+        if(!button.isDefaultButton()){
+            // button.setBackground(background);
+        }
+    }
+
+    @Override
+    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+        super.paintText(g, b, textRect, text);
+    }
+
+    private void driveLine(Graphics g, JButton b){
+        g.setColor(UIManager.getColor("Button[focus].color"));
+        g.drawLine(20 , (b.getHeight() / 2) + 10, b.getWidth() - 20, (b.getHeight() / 2) + 10);
+    }
+
+
 }

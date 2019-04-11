@@ -194,7 +194,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
     @Override
     protected void initComponentDefaults(UIDefaults table) {
-
         super.initComponentDefaults(table);
 
         table.put("Button.highlight", MaterialColors.GRAY_400);
@@ -205,9 +204,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
-        table.put("Button.focusable", true);
+        table.put("Button.focusable", false);
+        //FUNCTION not implementable for moment
         table.put("Button[focus].background", MaterialColors.GRAY_400);
         table.put("Button[focus].foreground", MaterialColors.BLACK);
+
+        table.put("Button[focus].color", MaterialColors.BLACK);
 
         table.put("CheckBox.font", MaterialFontFactory.getIstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", Color.WHITE);
