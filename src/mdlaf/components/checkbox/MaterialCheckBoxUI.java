@@ -2,10 +2,10 @@ package mdlaf.components.checkbox;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFontFactory;
+import mdlaf.utils.MaterialImageFactory;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
 import java.awt.*;
@@ -28,6 +28,7 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		checkBox.setIcon (UIManager.getIcon ("CheckBox.icon"));
 		checkBox.setSelectedIcon (UIManager.getIcon ("CheckBox.selectedIcon"));
 		checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 	}
 
 	@Override

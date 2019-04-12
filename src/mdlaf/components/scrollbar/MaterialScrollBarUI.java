@@ -59,18 +59,30 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	 * @return JButton with correct orientation
 	 */
 	private JButton installButton(int orientation){
-		//JButton button = new MaterialArrowButtonUI(orientation);
 		JButton button = new JButton();
 		MaterialManagerListener.removeAllMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
+		if(!UIManager.getBoolean("ScrollBar.enableArrow")){
+			createInvisibleButton(button);
+			return button;
+		}
 		setIconArrowButton(button, orientation);
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
 			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
 					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
-		button.setBorder (BorderFactory.createEmptyBorder());
+		button.setBorder (UIManager.getBorder("ScrollBar.arrowButtonBorder"));
 		return button;
+	}
+
+
+	@Override
+	protected void configureScrollBarColors() {
+		super.configureScrollBarColors();
+		thumbDarkShadowColor = UIManager.getColor ("ScrollBar.thumbDarkShadow");
+		thumbHighlightColor = UIManager.getColor ("ScrollBar.thumbHighlight");
+		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
 	/**
@@ -99,12 +111,12 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		throw new IllegalArgumentException("orientation not valid");
 	}
 
-
-	@Override
-	protected void configureScrollBarColors() {
-		super.configureScrollBarColors();
-		thumbDarkShadowColor = UIManager.getColor ("ScrollBar.thumbDarkShadow");
-		thumbHighlightColor = UIManager.getColor ("ScrollBar.thumbHighlight");
-		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
+	private void createInvisibleButton(JComponent component){
+		if(component == null){
+			throw new IllegalArgumentException("Argument function null");
+		}
+		component.setPreferredSize(new Dimension(0, 0));
+		component.setMinimumSize(new Dimension(0, 0));
+		component.setMaximumSize(new Dimension(0, 0));
 	}
 }

@@ -1,12 +1,16 @@
 package mdlaf.components.tabbedpane;
 
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -50,13 +54,39 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-        g.setColor(UIManager.getColor("TabbedPane.borderHighlightColor"));
-        g.drawRect(x, y, w, h);
+        //do nothing
     }
 
     @Override
     protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-        // do nothing
+
+        Rectangle tabRect = rects[tabIndex];
+        if (tabPane.hasFocus() && isSelected) {
+            int x, y, w, h;
+            if (tabPlacement == LEFT) {
+                x = tabRect.x + 3;
+                y = tabRect.y + 3;
+                w = tabRect.width - 5;
+                h = tabRect.height - 6;
+            } else if (tabPlacement == RIGHT) {
+                x = tabRect.x + 2;
+                y = tabRect.y + 3;
+                w = tabRect.width - 5;
+                h = tabRect.height - 6;
+            } else if (tabPlacement == BOTTOM) {
+                x = tabRect.x + 3;
+                y = tabRect.y + 2;
+                w = tabRect.width - 6;
+                h = tabRect.height - 5;
+            } else {
+                x = tabRect.x + 3;
+                y = tabRect.y + 3;
+                w = tabRect.width - 6;
+                h = tabRect.height - 5;
+            }
+            paintLine(g, x, y, w, h);
+
+        }
     }
 
     @Override
@@ -66,11 +96,23 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         component.addMouseMotionListener(new MouseHoverTab(rects));
     }
 
+
     @Override
     protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
         super.paintTabArea(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, selectedIndex);
     }
 
+    private void paintLine(Graphics graphics, int x, int y, int w, int h) {
+        if (graphics == null) {
+            throw new IllegalArgumentException("Argument null");
+        }
+        graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
+        graphics.fillRoundRect(x + 6, y + 19, w - 12, y - 3, 10, 10);
+    }
+
+    /**
+     * Event listener for mouse hover
+     */
     private class MouseHoverTab implements MouseMotionListener {
 
         private Rectangle[] rectangles;
@@ -98,5 +140,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             }
             mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
+
+
     }
+
 }

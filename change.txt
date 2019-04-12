@@ -1,0 +1,7 @@
+##
+Adding a constant into UIManager for disable a arrow into JScollbar
+Adding effect into jTabbledPane
+Adding icon white checkbox and radiobutton
+
+BUG
+On click tabbledpane

@@ -19,6 +19,9 @@ public class MaterialListUI extends BasicListUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+        super.installDefaults();
+        super.installKeyboardActions();
+        super.installListeners();
 
         JList list = (JList) c;
         list.setBackground(UIManager.getColor("List.background"));
