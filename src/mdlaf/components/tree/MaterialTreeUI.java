@@ -1,6 +1,5 @@
 package mdlaf.components.tree;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialImageFactory;
 
@@ -47,12 +46,12 @@ public class MaterialTreeUI extends BasicTreeUI {
 
 	@Override
 	public Icon getExpandedIcon() {
-		return new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DOWN_ARROW));
+		return new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW));
 	}
 
 	@Override
 	public Icon getCollapsedIcon() {
-		return new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RIGHT_ARROW));
+		return new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW));
 	}
 
 	@Override

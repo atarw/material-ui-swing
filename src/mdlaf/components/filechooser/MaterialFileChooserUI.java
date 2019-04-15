@@ -30,17 +30,17 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 		ui.uninstallComponents (fileChooser);
 		ui.clearIconCache ();
 
-		ui.computerIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.COMPUTER));
-		ui.directoryIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FOLDER));
-		ui.fileIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FILE));
-		ui.floppyDriveIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.FLOPPY_DRIVE));
-		ui.hardDriveIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.HARD_DRIVE));
+		ui.computerIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER));
+		ui.directoryIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER));
+		ui.fileIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FILE));
+		ui.floppyDriveIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FLOPPY_DRIVE));
+		ui.hardDriveIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HARD_DRIVE));
 
-		ui.homeFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.HOME));
-		ui.listViewIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.LIST));
-		ui.detailsViewIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DETAILS));
-		ui.newFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.NEW_FOLDER));
-		ui.upFolderIcon = new ImageIcon (MaterialImageFactory.getIstance().getImage(MaterialImageFactory.BACK_ARROW));
+		ui.homeFolderIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HOME));
+		ui.listViewIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LIST));
+		ui.detailsViewIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS));
+		ui.newFolderIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER));
+		ui.upFolderIcon = new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW));
 
 		ui.openButtonText = "OPEN";
 		ui.cancelButtonText = "CANCEL";

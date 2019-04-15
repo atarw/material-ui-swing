@@ -54,7 +54,7 @@ public class MaterialFontFactory {
 
     private static MaterialFontFactory SINGLETON;
 
-    public static MaterialFontFactory getIstance() {
+    public static MaterialFontFactory getInstance() {
         if (SINGLETON == null) {
             SINGLETON = new MaterialFontFactory();
         }

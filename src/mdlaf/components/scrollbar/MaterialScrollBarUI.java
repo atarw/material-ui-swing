@@ -96,16 +96,16 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 			throw new IllegalArgumentException("Input null");
 		}
 		if (orientation == SwingConstants.NORTH){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.UP_ARROW)));
+			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UP_ARROW)));
 			return;
 		}else if(orientation == SwingConstants.SOUTH){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.DOWN_ARROW)));
+			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW)));
 			return;
 		}else if(orientation == SwingConstants.EAST){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.RIGHT_ARROW)));
+			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW)));
 			return;
 		}else if(orientation == SwingConstants.WEST){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getIstance().getImage(MaterialImageFactory.LEFT_ARROW)));
+			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LEFT_ARROW)));
 			return;
 		}
 		throw new IllegalArgumentException("orientation not valid");

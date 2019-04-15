@@ -71,7 +71,7 @@ public class MaterialImageFactory {
 
     private Map<String, BufferedImage> cachaImage = new HashMap<>();
 
-    public static MaterialImageFactory getIstance() {
+    public static MaterialImageFactory getInstance() {
         if (SINGLETON == null) {
             SINGLETON = new MaterialImageFactory();
         }
