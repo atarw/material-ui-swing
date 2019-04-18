@@ -4,7 +4,6 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import org.jdesktop.swingx.JXTaskPane;
 import top.gigabox.supportcomponent.toast.MaterialTost;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -22,6 +21,8 @@ public class MaterialUISwingDemo {
 
     public static void main(String[] args) {
         try {
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            JFrame.setDefaultLookAndFeelDecorated(false);
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();

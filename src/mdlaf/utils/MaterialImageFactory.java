@@ -43,15 +43,14 @@ public class MaterialImageFactory {
     public static final String UP_ARROW = "/resources/imgs/up_arrow.png";
     public static final String CHECKED_BLACK_BOX = "/resources/imgs/painted_checked_box.png";
     public static final String CHECKED_WHITE_BOX = "/resources/imgs/checked_white.png";
-    public static final String OUTLINED_CHECKED_BOX = "/resources/imgs/outlined_checked_box.png";
     public static final String UNCHECKED_BLACK_BOX = "/resources/imgs/unchecked_box.png";
     public static final String UNCHECKED_WHITE_BOX = "/resources/imgs/unchecked_white.png";
     public static final String RADIO_BUTTON_BLACK_ON = "/resources/imgs/radio_button_on.png";
     public static final String RADIO_BUTTON_WHITE_ON = "/resources/imgs/radio-checked-white.png";
     public static final String RADIO_BUTTON_BLACK_OFF = "/resources/imgs/radio_button_off.png";
     public static final String RADIO_BUTTON_WHITE_OFF = "/resources/imgs/radio_unchecked-white.png";
-    public static final String TOGGLE_BUTTON_ON = "/resources/imgs/toggle_on.png";
-    public static final String TOGGLE_BUTTON_OFF = "/resources/imgs/toggle_off.png";
+    public static final String TOGGLE_BUTTON_BLACK_ON = "/resources/imgs/toggle_on.png";
+    public static final String TOGGLE_BUTTON_BLACK_OFF = "/resources/imgs/toggle_off.png";
     public static final String BACK_ARROW = "/resources/imgs/back_arrow.png";
     public static final String COMPUTER = "/resources/imgs/computer.png";
     public static final String FILE = "/resources/imgs/file.png";
@@ -68,6 +67,10 @@ public class MaterialImageFactory {
     public static final String WARNING = "/resources/imgs/warning.png";
     public static final String QUESTION = "/resources/imgs/question.png";
     public static final String INFORMATION = "/resources/imgs/information.png";
+    public static final String CLOSE_WINDOWS = "/resources/imgs/close-button.png";
+    public static final String MAXIMIZE_WINDOWS = "/resources/imgs/maximize.png";
+    public static final String MINIIMIZE_WINDOWS = "/resources/imgs/minimize.png";
+    public static final String ICONIFY_WINDOWS = "/resources/imgs/restore.png";
 
     private Map<String, BufferedImage> cachaImage = new HashMap<>();
 
