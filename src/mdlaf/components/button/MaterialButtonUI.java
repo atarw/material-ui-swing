@@ -10,7 +10,6 @@ import java.awt.*;
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-//TODO clean old code.
 public class MaterialButtonUI extends MetalButtonUI {
     public static ComponentUI createUI(final JComponent c) {
         return new MaterialButtonUI();
@@ -43,22 +42,21 @@ public class MaterialButtonUI extends MetalButtonUI {
     @Override
     public void paint(Graphics g, JComponent c) {
         JButton b = (JButton) c;
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
         if (b.isContentAreaFilled()) {
             paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
         }
+
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
     }
 
     //Fix to #73 border were pixeled, fixde by https://github.com/vincenzopalazzo
     private void paintBackground(Graphics g, JComponent c) {
-        //g.setColor(c.getBackground());
-        //g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g = graphics2D;
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+
         JButton b = (JButton) c;
         if(b.isDefaultButton()){
             driveLine(g, b);
@@ -66,42 +64,21 @@ public class MaterialButtonUI extends MetalButtonUI {
     }
 
     @Override
-    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
-        super.paintText(g, c, textRect, text);
-    }
-
-    @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        //super.paintFocus(g, b, viewRect, textRect, iconRect);
-        //changeColorOnUnfocus(b);
+        super.paintFocus(g, b, viewRect, textRect, iconRect);
         driveLine(g, (JButton) b);
-
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
-        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         super.update(g, c);
-    }
-
-    @Deprecated
-    private void changeColorOnUnfocus(JComponent component) {
-        JButton button = (JButton) component;
-        Color foregroundComponent = button.getForeground();
-        Color backgroundComponent = button.getBackground();
-        if (foregroundComponent.equals(this.focusableForeground) &&
-                backgroundComponent.equals(this.focusableBackground)) {
-            button.setBackground(this.background);
-            button.setForeground(this.foreground);
-        }
-        if(!button.isDefaultButton()){
-            // button.setBackground(background);
-        }
+        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
-    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
-        super.paintText(g, b, textRect, text);
+    protected void paintButtonPressed(Graphics g, AbstractButton b) {
+        //super.paintButtonPressed(g, b);
+        g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), 7, 7);
     }
 
     private void driveLine(Graphics g, JButton b){

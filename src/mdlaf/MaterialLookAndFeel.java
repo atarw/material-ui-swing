@@ -370,7 +370,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //If it changes the background of the menuitem it must change this too, irrespective of its setting
         table.put("RadioButtonMenuItem.background", UIManager.getColor("MenuItem.background"));
         table.put("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
-        table.put("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        table.put("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder(5, 0, 5, 0));
         table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF)));
         table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON)));
 
@@ -379,7 +379,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBoxMenuItem.selectionBackground", MaterialColors.GRAY_200);
         table.put("CheckBoxMenuItem.foreground", MaterialColors.BLACK);
         table.put("CheckBoxMenuItem.selectionForeground", MaterialColors.BLACK);
-        table.put("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        table.put("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder(5, 0, 5, 0));
         table.put("CheckBoxMenuItem.checkIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
         table.put("CheckBoxMenuItem.selectedCheckIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
 
