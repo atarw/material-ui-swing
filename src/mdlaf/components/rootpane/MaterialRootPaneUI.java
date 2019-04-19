@@ -1,8 +1,6 @@
 package mdlaf.components.rootpane;
 
 import mdlaf.components.titlepane.MaterialTitlePaneUI;
-import mdlaf.utils.MaterialColors;
-
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
@@ -17,9 +15,6 @@ import java.beans.PropertyChangeEvent;
  */
 public class MaterialRootPaneUI extends MetalRootPaneUI {
 
-    /**
-     * Keys to lookup borders in defaults table.
-     */
     private static final String[] borderKeys = new String[] {
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
@@ -28,82 +23,29 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             "RootPane.warningDialogBorder"
     };
 
-
-    /**
-     * The amount of space (in pixels) that the cursor is changed on.
-     */
     private static final int CORNER_DRAG_WIDTH = 16;
 
-    /**
-     * Region from edges that dragging is active from.
-     */
     private static final int BORDER_DRAG_THICKNESS = 5;
 
-    /**
-     * Window the <code>JRootPane</code> is in.
-     */
     private Window window;
 
-    /**
-     * <code>JComponent</code> providing window decorations. This will be
-     * null if not providing window decorations.
-     */
     private JComponent titlePane;
 
-    /**
-     * <code>MouseInputListener</code> that is added to the parent
-     * <code>Window</code> the <code>JRootPane</code> is contained in.
-     */
     private MouseInputListener mouseInputListener;
 
-    /**
-     * The <code>LayoutManager</code> that is set on the
-     * <code>JRootPane</code>.
-     */
     private LayoutManager layoutManager;
 
-    /**
-     * <code>LayoutManager</code> of the <code>JRootPane</code> before we
-     * replaced it.
-     */
     private LayoutManager savedOldLayout;
 
-    /**
-     * <code>JRootPane</code> providing the look and feel for.
-     */
     private JRootPane root;
 
-    /**
-     * <code>Cursor</code> used to track the cursor set by the user.
-     * This is initially <code>Cursor.DEFAULT_CURSOR</code>.
-     */
     private Cursor lastCursor =
             Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
-    /**
-     * Creates a UI for a <code>JRootPane</code>.
-     *
-     * @param c the JRootPane the RootPaneUI will be created for
-     * @return the RootPaneUI implementation for the passed in JRootPane
-     */
     public static ComponentUI createUI(JComponent c) {
         return new MaterialRootPaneUI();
     }
 
-    /**
-     * Invokes supers implementation of <code>installUI</code> to install
-     * the necessary state onto the passed in <code>JRootPane</code>
-     * to render the metal look and feel implementation of
-     * <code>RootPaneUI</code>. If
-     * the <code>windowDecorationStyle</code> property of the
-     * <code>JRootPane</code> is other than <code>JRootPane.NONE</code>,
-     * this will add a custom <code>Component</code> to render the widgets to
-     * <code>JRootPane</code>, as well as installing a custom
-     * <code>Border</code> and <code>LayoutManager</code> on the
-     * <code>JRootPane</code>.
-     *
-     * @param c the JRootPane to install state onto
-     */
     public void installUI(JComponent c) {
         super.installUI(c);
         root = (JRootPane)c;
@@ -114,18 +56,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-
-    /**
-     * Invokes supers implementation to uninstall any of its state. This will
-     * also reset the <code>LayoutManager</code> of the <code>JRootPane</code>.
-     * If a <code>Component</code> has been added to the <code>JRootPane</code>
-     * to render the window decoration style, this method will remove it.
-     * Similarly, this will revert the Border and LayoutManager of the
-     * <code>JRootPane</code> to what it was before <code>installUI</code>
-     * was invoked.
-     *
-     * @param c the JRootPane to uninstall state from
-     */
     public void uninstallUI(JComponent c) {
         super.uninstallUI(c);
         uninstallClientDecorations(root);
@@ -135,10 +65,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         root = null;
     }
 
-    /**
-     * Installs the appropriate <code>Border</code> onto the
-     * <code>JRootPane</code>.
-     */
     void installBorder(JRootPane root) {
         int style = root.getWindowDecorationStyle();
 
@@ -150,23 +76,10 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    /**
-     * Removes any border that may have been installed.
-     */
     private void uninstallBorder(JRootPane root) {
         LookAndFeel.uninstallBorder(root);
     }
 
-    /**
-     * Installs the necessary Listeners on the parent <code>Window</code>,
-     * if there is one.
-     * <p>
-     * This takes the parent so that cleanup can be done from
-     * <code>removeNotify</code>, at which point the parent hasn't been
-     * reset yet.
-     *
-     * @param parent The parent of the JRootPane
-     */
     private void installWindowListeners(JRootPane root, Component parent) {
         if (parent instanceof Window) {
             window = (Window)parent;
@@ -183,10 +96,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    /**
-     * Uninstalls the necessary Listeners on the <code>Window</code> the
-     * Listeners were last installed on.
-     */
     private void uninstallWindowListeners(JRootPane root) {
         if (window != null) {
             window.removeMouseListener(mouseInputListener);
@@ -194,10 +103,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    /**
-     * Installs the appropriate LayoutManager on the <code>JRootPane</code>
-     * to render the window decorations.
-     */
     private void installLayout(JRootPane root) {
         if (layoutManager == null) {
             layoutManager = createLayoutManager();
@@ -206,9 +111,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         root.setLayout(layoutManager);
     }
 
-    /**
-     * Uninstalls the previously installed <code>LayoutManager</code>.
-     */
     private void uninstallLayout(JRootPane root) {
         if (savedOldLayout != null) {
             root.setLayout(savedOldLayout);
@@ -216,11 +118,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    /**
-     * Installs the necessary state onto the JRootPane to render client
-     * decorations. This is ONLY invoked if the <code>JRootPane</code>
-     * has a decoration style other than <code>JRootPane.NONE</code>.
-     */
     private void installClientDecorations(JRootPane root) {
         installBorder(root);
 
@@ -235,29 +132,16 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    /**
-     * Uninstalls any state that <code>installClientDecorations</code> has
-     * installed.
-     * <p>
-     * NOTE: This may be called if you haven't installed client decorations
-     * yet (ie before <code>installClientDecorations</code> has been invoked).
-     */
     private void uninstallClientDecorations(JRootPane root) {
         uninstallBorder(root);
         uninstallWindowListeners(root);
         setTitlePane(root, null);
         uninstallLayout(root);
-        // We have to revalidate/repaint root if the style is JRootPane.NONE
-        // only. When we needs to call revalidate/repaint with other styles
-        // the installClientDecorations is always called after this method
-        // imediatly and it will cause the revalidate/repaint at the proper
-        // time.
         int style = root.getWindowDecorationStyle();
         if (style == JRootPane.NONE) {
             root.repaint();
             root.revalidate();
         }
-        // Reset the cursor, as we may have changed it to a resize cursor
         if (window != null) {
             window.setCursor(Cursor.getPredefinedCursor
                     (Cursor.DEFAULT_CURSOR));
@@ -265,22 +149,13 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         window = null;
     }
 
-    /**
-     * Returns the <code>JComponent</code> to render the window decoration
-     * style.
-     */
     private JComponent createTitlePane(JRootPane root) {
-        return new MaterialTitlePaneUI(root, this);
+        return new MaterialTitlePaneUI(root);
     }
 
-    /**
-     * Returns a <code>MouseListener</code> that will be added to the
-     * <code>Window</code> containing the <code>JRootPane</code>.
-     */
     private MouseInputListener createWindowMouseInputListener(JRootPane root) {
         return new MaterialRootPaneUI.MouseInputHandler();
     }
-
 
     private LayoutManager createLayoutManager() {
         return new MaterialLayaut();
@@ -341,13 +216,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         return;
     }
 
-    /**
-     * A custom layout manager that is responsible for the layout of
-     * layeredPane, glassPane, menuBar and titlePane, if one has been
-     * installed.
-     */
-    // NOTE: Ideally this would extends JRootPane.RootLayout, but that
-    //       would force this to be non-static.
     private static class MaterialLayaut implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
@@ -481,14 +349,11 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             }
 
             int maxHeight = Math.max(Math.max(cpHeight, mbHeight), tpHeight);
-            // Only overflows if 3 real non-MAX_VALUE heights, sum to > MAX_VALUE
-            // Only will happen if sums to more than 2 billion units.  Not likely.
             if (maxHeight != Integer.MAX_VALUE) {
                 maxHeight = cpHeight + mbHeight + tpHeight + i.top + i.bottom;
             }
 
             int maxWidth = Math.max(Math.max(cpWidth, mbWidth), tpWidth);
-            // Similar overflow comment as above
             if (maxWidth != Integer.MAX_VALUE) {
                 maxWidth += i.left + i.right;
             }
@@ -510,8 +375,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             if(root.getGlassPane() != null) {
                 root.getGlassPane().setBounds(i.left, i.top, w, h);
             }
-            // Note: This is laying out the children in the layeredPane,
-            // technically, these are not our children.
             if (root.getWindowDecorationStyle() != JRootPane.NONE &&
                     (root.getUI() instanceof MaterialRootPaneUI)) {
                 JComponent titlePane = ((MaterialRootPaneUI)root.getUI()).
@@ -545,11 +408,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         public void invalidateLayout(Container target) {}
     }
 
-
-    /**
-     * Maps from positions to cursor type. Refer to calculateCorner and
-     * calculatePosition for details of this.
-     */
     private static final int[] cursorMapping = new int[]
             { Cursor.NW_RESIZE_CURSOR, Cursor.NW_RESIZE_CURSOR, Cursor.N_RESIZE_CURSOR,
                     Cursor.NE_RESIZE_CURSOR, Cursor.NE_RESIZE_CURSOR,
@@ -557,43 +415,22 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
                     Cursor.W_RESIZE_CURSOR, 0, 0, 0, Cursor.E_RESIZE_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, 0, 0, 0, Cursor.SE_RESIZE_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
-                    Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR
+                    Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR,
+                    Cursor.HAND_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.MOVE_CURSOR
             };
 
-    /**
-     * MouseInputHandler is responsible for handling resize/moving of
-     * the Window. It sets the cursor directly on the Window when then
-     * mouse moves over a hot spot.
-     */
     private class MouseInputHandler implements MouseInputListener {
-        /**
-         * Set to true if the drag operation is moving the window.
-         */
+
         private boolean isMovingWindow;
 
-        /**
-         * Used to determine the corner the resize is occurring from.
-         */
         private int dragCursor;
 
-        /**
-         * X location the mouse went down on for a drag operation.
-         */
         private int dragOffsetX;
 
-        /**
-         * Y location the mouse went down on for a drag operation.
-         */
         private int dragOffsetY;
 
-        /**
-         * Width of the window when the drag started.
-         */
         private int dragWidth;
 
-        /**
-         * Height of the window when the drag started.
-         */
         private int dragHeight;
 
         public void mousePressed(MouseEvent ev) {
@@ -648,8 +485,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
 
         public void mouseReleased(MouseEvent ev) {
             if (dragCursor != 0 && window != null && !window.isValid()) {
-                // Some Window systems validate as you resize, others won't,
-                // thus the check for validity before repainting.
                 window.validate();
                 getRootPane().repaint();
             }
@@ -822,10 +657,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             }
         }
 
-        /**
-         * Returns the corner that contains the point <code>x</code>,
-         * <code>y</code>, or -1 if the position doesn't match a corner.
-         */
         private int calculateCorner(Window w, int x, int y) {
             Insets insets = w.getInsets();
             int xPosition = calculatePosition(x - insets.left,
@@ -839,10 +670,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             return yPosition * 5 + xPosition;
         }
 
-        /**
-         * Returns the Cursor to render for the specified corner. This returns
-         * 0 if the corner doesn't map to a valid Cursor
-         */
         private int getCursor(int corner) {
             if (corner == -1) {
                 return 0;
@@ -850,16 +677,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             return cursorMapping[corner];
         }
 
-        /**
-         * Returns an integer indicating the position of <code>spot</code>
-         * in <code>width</code>. The return value will be:
-         * 0 if < BORDER_DRAG_THICKNESS
-         * 1 if < CORNER_DRAG_WIDTH
-         * 2 if >= CORNER_DRAG_WIDTH && < width - BORDER_DRAG_THICKNESS
-         * 3 if >= width - CORNER_DRAG_WIDTH
-         * 4 if >= width - BORDER_DRAG_THICKNESS
-         * 5 otherwise
-         */
         private int calculatePosition(int spot, int width) {
             if (spot < BORDER_DRAG_THICKNESS) {
                 return 0;

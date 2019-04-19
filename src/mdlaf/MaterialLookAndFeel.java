@@ -210,11 +210,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
         table.put("Button.focusable", false);
-        //FUNCTION not implementable for moment
         table.put("Button[focus].background", MaterialColors.GRAY_400);
         table.put("Button[focus].foreground", MaterialColors.BLACK);
-
-        table.put("Button[focus].color", MaterialColors.BLACK);
+        table.put("Button[focus].color", MaterialColors.GRAY_600);
 
         table.put("CheckBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", Color.WHITE);
@@ -366,15 +364,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("RadioButtonMenuItem.foreground", MaterialColors.BLACK);
         table.put("RadioButtonMenuItem.selectionForeground", MaterialColors.BLACK);
-
-        //If it changes the background of the menuitem it must change this too, irrespective of its setting
         table.put("RadioButtonMenuItem.background", UIManager.getColor("MenuItem.background"));
         table.put("RadioButtonMenuItem.selectionBackground", MaterialColors.GRAY_200);
         table.put("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder(5, 0, 5, 0));
         table.put("RadioButtonMenuItem.checkIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF)));
         table.put("RadioButtonMenuItem.selectedCheckIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON)));
 
-        //If it changes the background of the menuitem it must change this too, irrespective of its setting
         table.put("CheckBoxMenuItem.background", UIManager.getColor("MenuItem.background"));
         table.put("CheckBoxMenuItem.selectionBackground", MaterialColors.GRAY_200);
         table.put("CheckBoxMenuItem.foreground", MaterialColors.BLACK);
@@ -388,14 +383,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("TextPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC));
-        table.put("TextPane.focusInputMap", multilineInputMap); //instal shortcut
+        table.put("TextPane.focusInputMap", multilineInputMap);
 
         table.put("EditorPane.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("EditorPane.background", MaterialColors.GRAY_50);
         table.put("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("EditorPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("EditorPane.focusInputMap", multilineInputMap); //install shortcut
+        table.put("EditorPane.focusInputMap", multilineInputMap);
 
         table.put("Separator.background", MaterialColors.GRAY_300);
         table.put("Separator.foreground", MaterialColors.GRAY_300);
@@ -463,7 +458,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrame.minimizeIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIIMIZE_WINDOWS)));
         table.put("InternalFrame.closeIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS)));
         table.put("InternalFrame.iconifyIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS)));
-
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
         table.put("InternalFrame.inactiveTitleBackground", MaterialColors.BLACK);
@@ -472,6 +466,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("Material.activeCaption", MaterialColors.WHITE);
         table.put("Material.activeCaptionText", MaterialColors.BLACK);
+        table.put("Material.activeCaptionBorder", MaterialColors.COSMO_STRONG_GRAY);
 
 
         table.put("OptionPane.background", Color.WHITE);
@@ -480,14 +475,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPane.enableIcon", false);
 
         table.put("OptionPane.errorDialog.titlePane.background", MaterialColors.WHITE);
-        table.put("OptionPane.errorDialog.titlePane.foreground", MaterialColors.BLACK);
-        table.put("OptionPane.errorDialog.titlePane.shadow", MaterialColors.WHITE);
+        table.put("OptionPane.errorDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
+        table.put("OptionPane.errorDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
         table.put("OptionPane.questionDialog.titlePane.background", MaterialColors.WHITE);
-        table.put("OptionPane.questionDialog.titlePane.foreground", MaterialColors.BLACK);
-        table.put("OptionPane.questionDialog.titlePane.shadow", MaterialColors.WHITE);
+        table.put("OptionPane.questionDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
+        table.put("OptionPane.questionDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
         table.put("OptionPane.warningDialog.titlePane.background", MaterialColors.WHITE);
-        table.put("OptionPane.warningDialog.titlePane.foreground", MaterialColors.BLACK);
-        table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.WHITE);
+        table.put("OptionPane.warningDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
+        table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
 
 
     }

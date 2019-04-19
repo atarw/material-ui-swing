@@ -2,17 +2,15 @@ package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.*;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 /*
- * Contributed by https://github.com/downToHell
- * Contributed for refactoring by https://github.com/vincenzopalazzo
- * */
-
+ * @contributor by https://github.com/downToHell
+ * @contributor for refactoring by https://github.com/vincenzopalazzo
+ */
 public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -52,31 +50,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	}
 
-	/**
-	 * Method service for not duplicate code
-	 * @author https://github.com/vincenzopalazzo
-	 * @param orientation
-	 * @return JButton with correct orientation
-	 */
-	private JButton installButton(int orientation){
-		JButton button = new JButton();
-		MaterialManagerListener.removeAllMouseListener(button);
-		button.setOpaque (true);
-		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
-		if(!UIManager.getBoolean("ScrollBar.enableArrow")){
-			createInvisibleButton(button);
-			return button;
-		}
-		setIconArrowButton(button, orientation);
-		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
-					UIManager.getColor("ScrollBar[OnClick].color")));
-		}
-		button.setBorder (UIManager.getBorder("ScrollBar.arrowButtonBorder"));
-		return button;
-	}
-
-
 	@Override
 	protected void configureScrollBarColors() {
 		super.configureScrollBarColors();
@@ -85,12 +58,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
-	/**
-	 * This is method of service for setting icon on button
-	 * because the arrow button border is painted not correct in JScorllbar
-	 * @param button
-	 * @param orientation
-	 */
 	private void setIconArrowButton(JButton button, int orientation) {
 		if(button == null){
 			throw new IllegalArgumentException("Input null");
@@ -118,5 +85,23 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		component.setPreferredSize(new Dimension(0, 0));
 		component.setMinimumSize(new Dimension(0, 0));
 		component.setMaximumSize(new Dimension(0, 0));
+	}
+
+	protected JButton installButton(int orientation){
+		JButton button = new JButton();
+		MaterialManagerListener.removeAllMouseListener(button);
+		button.setOpaque (true);
+		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
+		if(!UIManager.getBoolean("ScrollBar.enableArrow")){
+			createInvisibleButton(button);
+			return button;
+		}
+		setIconArrowButton(button, orientation);
+		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
+			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
+					UIManager.getColor("ScrollBar[OnClick].color")));
+		}
+		button.setBorder (UIManager.getBorder("ScrollBar.arrowButtonBorder"));
+		return button;
 	}
 }

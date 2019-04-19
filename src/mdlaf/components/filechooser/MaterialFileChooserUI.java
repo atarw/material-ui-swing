@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicFileChooserUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.Graphics;
 

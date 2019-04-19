@@ -17,7 +17,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
     /**
-     * @author Konstantin Bulenkov
+     * @author https://github.com/users/vincenzopalazzo
      */
     public class MaterialTitlePaneUI extends JComponent {
         private static final int IMAGE_HEIGHT = 16;
@@ -38,7 +38,6 @@ import java.util.List;
         private Window myWindow;
         private JRootPane myRootPane;
         private int myState;
-        private MaterialRootPaneUI rootPaneUI;
 
 
         private Color myInactiveBackground = UIManager.getColor("inactiveCaption");
@@ -48,9 +47,8 @@ import java.util.List;
         private Color myActiveForeground = null;
         private Color myActiveShadow = null;
 
-        public MaterialTitlePaneUI(JRootPane root, MaterialRootPaneUI ui) {
+        public MaterialTitlePaneUI(JRootPane root) {
             this.myRootPane = root;
-            rootPaneUI = ui;
 
             myState = -1;
 
@@ -161,11 +159,19 @@ import java.util.List;
                     myActiveShadow = UIManager.getColor("OptionPane.errorDialog.titlePane.shadow");
                     break;
                 case JRootPane.QUESTION_DIALOG:
-                case JRootPane.COLOR_CHOOSER_DIALOG:
-                case JRootPane.FILE_CHOOSER_DIALOG:
                     myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
                     myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
                     myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
+                    break;
+                case JRootPane.COLOR_CHOOSER_DIALOG:
+                    myActiveBackground = UIManager.getColor("Material.activeCaption");
+                    myActiveForeground = UIManager.getColor("Material.activeCaptionText");
+                    myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                    break;
+                case JRootPane.FILE_CHOOSER_DIALOG:
+                    myActiveBackground = UIManager.getColor("Material.activeCaption");
+                    myActiveForeground = UIManager.getColor("Material.activeCaptionText");
+                    myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
                     break;
                 case JRootPane.WARNING_DIALOG:
                     myActiveBackground = UIManager.getColor("OptionPane.warningDialog.titlePane.background");
@@ -173,7 +179,15 @@ import java.util.List;
                     myActiveShadow = UIManager.getColor("OptionPane.warningDialog.titlePane.shadow");
                     break;
                 case JRootPane.PLAIN_DIALOG:
+                    myActiveBackground = UIManager.getColor("Material.activeCaption");
+                    myActiveForeground = UIManager.getColor("Material.activeCaptionText");
+                    myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                    break;
                 case JRootPane.INFORMATION_DIALOG:
+                    myActiveBackground = UIManager.getColor("OptionPane.errorDialog.titlePane.background");
+                    myActiveForeground = UIManager.getColor("OptionPane.errorDialog.titlePane.foreground");
+                    myActiveShadow = UIManager.getColor("OptionPane.errorDialog.titlePane.shadow");
+                    break;
                 default:
                     myActiveBackground = UIManager.getColor("Material.activeCaption");
                     myActiveForeground = UIManager.getColor("Material.activeCaptionText");
