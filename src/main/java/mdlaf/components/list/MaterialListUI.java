@@ -21,35 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package mdlaf.components.optionpane;
+package mdlaf.components.list;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
+import javax.swing.plaf.basic.BasicListUI;
 import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class MaterialOptionPaneUI extends BasicOptionPaneUI {
+public class MaterialListUI extends BasicListUI {
 
     @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
     public static ComponentUI createUI(JComponent c) {
-        return new MaterialOptionPaneUI();
+        return new MaterialListUI();
     }
 
     @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
+    public void installUI(JComponent c) {
+        super.installUI(c);
+
+        list = (JList) c;
+        list.setBackground(UIManager.getColor("List.background"));
+        list.setForeground(UIManager.getColor("List.foreground"));
+        list.setBorder(UIManager.getBorder("List.border"));
+        list.setFont(UIManager.getFont("List.font"));
+        list.setSelectionBackground(UIManager.getColor("List.selectionBackground"));
+        list.setSelectionForeground(UIManager.getColor("List.selectionForeground"));
+        list.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        list.setFocusable(UIManager.getBoolean("List.focusable"));
     }
 
-    @Override
-    protected Icon getIconForType(int messageType) {
-        return super.getIconForType(messageType);
-    }
-
-    @Override
-    protected void addButtonComponents(Container container, Object[] buttons, int initialIndex) {
-        super.addButtonComponents(container, buttons, initialIndex);
-    }
 }

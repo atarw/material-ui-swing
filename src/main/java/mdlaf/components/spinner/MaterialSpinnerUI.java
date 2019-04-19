@@ -3,7 +3,6 @@ package mdlaf.components.spinner;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
@@ -56,7 +55,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.NORTH);
         }
-        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
@@ -77,7 +75,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
-        MaterialManagerListener.removeAllMouseListener(button);
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
