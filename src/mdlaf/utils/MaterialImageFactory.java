@@ -91,7 +91,7 @@ public class MaterialImageFactory {
         if (cachaImage.containsKey(key)) {
             return cachaImage.get(key);
         }
-        try (InputStream inputStream = MaterialImages.class.getResourceAsStream(key)) {
+        try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(key)) {
             BufferedImage image = ImageIO.read(inputStream);
             cachaImage.put(key, image);
             return cachaImage.get(key);

@@ -1,6 +1,7 @@
 package mdlaf.components.checkbox;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.combobox.MaterialComboBoxRenderer;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;

@@ -13,7 +13,6 @@ import java.awt.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-
 public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -23,6 +22,10 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
+
+		c.setBackground(UIManager.getColor("CheckBoxMenuItem.background"));
+		c.setForeground(UIManager.getColor("CheckBoxMenuItem.foreground"));
+		c.setBorder(UIManager.getBorder("CheckBoxMenuItem.border"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 

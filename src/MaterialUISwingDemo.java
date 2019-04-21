@@ -3,7 +3,6 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import org.jdesktop.swingx.JXTaskPane;
-import top.gigabox.supportcomponent.toast.MaterialTost;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -72,17 +71,56 @@ public class MaterialUISwingDemo {
         menu1.add(item1);
         menu2.add(item2);
 
+        JMenuItem menuItemTestUno = new JMenuItem("Test distance");
+        JMenuItem menuItemTestDue = new JMenuItem("Test distance");
+        JMenuItem menuItemExit = new JMenuItem("Exit");
+
+        menu1.addSeparator();
+        menu1.add(menuItemExit);
+
+        menu2.add(menuItemTestUno);
+        menu2.add(checkBoxMenuItem);
+        menu2.add(menuItemTestDue);
+        menu2.add(jRadioButtonMenuItem);
+
         bar.add(menu1);
         bar.add(menu2);
 
         // configuring a simple JButton
-        JButton button = new JButton("PRESS ME");
-        button.setBackground(MaterialColors.LIGHT_BLUE_400);
-        button.setForeground(Color.WHITE);
-        button.setMaximumSize(new Dimension(200, 200));
-
+        JButton button = new JButton("I'm Disabled");
+        button.setEnabled(false);
         JPanel content = new JPanel();
         content.add(button);
+
+
+
+        class ActionEnableButton extends AbstractAction{
+
+            private JButton button;
+
+            public ActionEnableButton(JButton button) {
+                putValue(Action.NAME, "I can enable");
+                this.button = button;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(button.isEnabled()){
+                    button.setEnabled(false);
+                    button.setText("I'm disable");
+                }else{
+                    button.setEnabled(true);
+                    button.setText("I'm enable");
+                }
+            }
+        }
+
+        JButton abiliteButton = new JButton("I can enable");
+        abiliteButton.setAction(new ActionEnableButton(button));
+        abiliteButton.setBackground(MaterialColors.COSMO_BLUE);
+        abiliteButton.setForeground(MaterialColors.WHITE);
+        abiliteButton.addMouseListener(MaterialUIMovement.getMovement(abiliteButton, MaterialColors.COSMO_LIGTH_BLUE));
+        content.add(abiliteButton);
 
         //Test a MaterialTitleBorder
         TitledBorder materialTitleBorder = new TitledBorder("Test Border");
@@ -206,7 +244,11 @@ public class MaterialUISwingDemo {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                MaterialTost.makeText(frame, "This is a message in a toast component", MaterialTost.SHORT, MaterialTost.NORMAL, MaterialTost.BOTTOM).display();
+               JOptionPane pane = new JOptionPane();
+               String message = "The componet toast is removed into project \n " +
+                       "Because it carried unnecessary dependencies, but you can find the component here\n" +
+                       "https://github.com/vincenzopalazzo/toasts-for-swing";
+               pane.showMessageDialog(frame, message, "Info on Toast", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         buttonTwoo.setAction(new ActionToastTest(pn));

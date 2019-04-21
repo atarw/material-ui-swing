@@ -5,13 +5,7 @@ import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -36,7 +30,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		comboBox.setForeground (UIManager.getColor ("ComboBox.foreground"));
 		comboBox.setBorder (UIManager.getBorder ("ComboBox.border"));
 		comboBox.setLightWeightPopupEnabled (true);
-		comboBox.setRenderer (new MaterialComboBoxRenderer ());
 		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
@@ -65,5 +58,8 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
-
+	@Override
+	protected ListCellRenderer createRenderer() {
+		return new MaterialComboBoxRenderer();
+	}
 }

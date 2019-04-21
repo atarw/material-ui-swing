@@ -1,7 +1,8 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
+ * Copyright (c) 2018-2019 atharva washimkar,
+ * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -210,9 +211,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
         table.put("Button.focusable", false);
-        table.put("Button[focus].background", MaterialColors.GRAY_400);
-        table.put("Button[focus].foreground", MaterialColors.BLACK);
-        table.put("Button[focus].color", MaterialColors.GRAY_600);
+        table.put("Button[focus].color", MaterialColors.GRAY_900);
+        table.put("Button.disabledText", MaterialColors.GRAY_600);
 
         table.put("CheckBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", Color.WHITE);
@@ -225,6 +225,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.foreground", Color.BLACK);
         table.put("ComboBox.border", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(0, 5, 0, 0)));
         table.put("ComboBox.buttonBackground", MaterialColors.GRAY_300);
+        table.put("ComboBox.disabledBackground", MaterialColors.GRAY_500);
+        table.put("ComboBox.disabledForeground", MaterialColors.GRAY_900);
         table.put("ComboBox.selectionBackground", Color.WHITE);
         table.put("ComboBox.selectionForeground", Color.BLACK);
         table.put("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
@@ -380,6 +382,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TextPane.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("TextPane.background", MaterialColors.GRAY_50);
+        table.put("TextPane.foreground", MaterialColors.BLACK);
         table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("TextPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC));
@@ -415,7 +418,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TitledBorder.border",new DropShadowBorder(MaterialColors.BLACK, 10, 4, (float) 0.2, 8,
                         true, true, true, true));
-        table.put("TitledBorder.font", MaterialFonts.BOLD);
+        table.put("TitledBorder.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM));
 
         table.put("TaskPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("TaskPane.titleBackgroundGradientStart", MaterialColors.GRAY_300);
@@ -483,8 +486,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPane.warningDialog.titlePane.background", MaterialColors.WHITE);
         table.put("OptionPane.warningDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
         table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
-
-
     }
 
     @Override

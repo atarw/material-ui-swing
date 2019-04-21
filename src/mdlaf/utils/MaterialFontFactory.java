@@ -72,6 +72,13 @@ public class MaterialFontFactory {
         }
     }
 
+    /**
+     * This method was to change the font based on the operating system because there
+     * was a bug for the well-known font, it was tinted pixeled,
+     * but now this problem has been solved and therefore there is no need to carry around
+     * Many dependencies, native fonts are removed from the project but this method remains for furious purposes
+     * @throws IOException
+     */
     private void loadOsPropries() throws IOException {
         String os = System.getProperty("os.name", "generic").toLowerCase();
         String osSupport = osSupportted(os);

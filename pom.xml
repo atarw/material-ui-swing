@@ -10,12 +10,6 @@
     <url>https://github.com/vincenzopalazzo/material-ui-swing</url>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.vincenzopalazzo</groupId>
-            <artifactId>toasts-for-swing</artifactId>
-            <version>1.5</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
         <dependency>
             <groupId>org.swinglabs</groupId>
