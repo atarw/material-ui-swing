@@ -13,7 +13,6 @@ import java.awt.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-
 public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -23,9 +22,10 @@ public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-		JRadioButtonMenuItem j = (JRadioButtonMenuItem) c;
-		//j.setBackground(MaterialColors.WHITE);
-		j.setBorder (UIManager.getBorder ("MenuItem.border"));
+
+		c.setBackground(UIManager.getColor("RadioButtonMenuItem.background"));
+		c.setForeground(UIManager.getColor("RadioButtonMenuItem.foreground"));
+		c.setBorder(UIManager.getBorder("RadioButtonMenuItem.border"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 

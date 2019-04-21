@@ -2,14 +2,11 @@ package mdlaf.components.checkbox;
 
 import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
 import java.awt.*;
 
-//TODO cambio colore icone combo box
 public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -26,8 +23,7 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		checkBox.setForeground (UIManager.getColor ("CheckBox.foreground"));
 		checkBox.setIcon (UIManager.getIcon ("CheckBox.icon"));
 		checkBox.setSelectedIcon (UIManager.getIcon ("CheckBox.selectedIcon"));
-		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
+		checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
