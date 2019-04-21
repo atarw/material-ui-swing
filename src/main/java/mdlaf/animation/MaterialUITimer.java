@@ -1,7 +1,8 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
+ * Copyright (c) 2018 atharva washimkar
+ * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +28,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
 
-public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 
     private Color from, to;
     private boolean forward;
@@ -60,7 +61,6 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         this.steps = steps;
 
         this.component = component;
-        this.component.addMouseListener(this);
         timer = new Timer(interval, this);
         component.setBackground(from);
     }
@@ -90,6 +90,9 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
         alpha = steps - 1;
         forward = false;
+        if(timer.isRunning()){
+            timer.stop();
+        }
         timer.start();
 
         alpha = 0;
@@ -99,18 +102,21 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
 
     @Override
     public void mouseReleased(MouseEvent me) {
-
+        //do nothing
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
-
+        //do nothing
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
         if (!me.getComponent().isEnabled()) {
             return;
+        }
+        if(timer.isRunning()){
+            timer.stop();
         }
         alpha = steps - 1;
         forward = false;
@@ -124,6 +130,9 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
         alpha = 0;
         forward = true;
+        if(timer.isRunning()){
+            timer.stop();
+        }
         timer.start();
     }
 
@@ -138,7 +147,9 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
 
         if (alpha == steps + 1 || alpha == -1) {
-            timer.stop();
+            if(timer.isRunning()){
+                timer.stop();
+            }
         }
     }
 

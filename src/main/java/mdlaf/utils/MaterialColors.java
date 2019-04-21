@@ -261,6 +261,31 @@ public class MaterialColors {
 	public static final Color BLACK = new Color (0, 0, 0);
 	public static final Color WHITE = new Color (255, 255, 255);
 
+	//Cosmo color
+	public static final Color DARKLY_STRONG_BLUE = new Color(40, 65, 91);
+	public static final Color DARKLY_BLUE = new Color(55, 90, 127);
+	public static final Color COSMO_STRONG_BLUE = new Color(25, 103, 190);
+	public static final Color COSMO_BLUE = new Color(39, 128, 227);
+	public static final Color COSMO_LIGTH_BLUE = new Color(195, 219, 247);
+	public static final Color DARKLY_RED = new Color(231, 76, 60);
+	public static final Color COSMO_RED = new Color(255, 0, 57);
+	public static final Color COSMO_LIGHT_RED = new Color(255, 184, 200);
+	public static final Color COSMO_PURPLE = new Color(153, 84, 187);
+	public static final Color COSMO_LIGHT_PURPLE = new Color(226, 207, 236);
+	public static final Color DARKLY_ORANGE = new Color(243, 156, 18);
+	public static final Color COSMO_ORANGE = new Color(255, 117, 24);
+	public static final Color COSMO_LIGHT_ORANGE = new Color(255, 216, 190);
+	public static final Color DARKLY_STRONG_GREEN = new Color(0, 112, 83);
+	public static final Color DARKLY_GREEN = new Color(0, 188, 140);
+	public static final Color COSMO_GREEN = new Color(61, 176, 23);
+	public static final Color COSMO_LIGHT_GREEN = new Color(201, 235, 190);
+	public static final Color COSMO_LIGTH_GRAY = new Color(248, 249, 250);
+	public static final Color COSMO_MEDIUM_GRAY = new Color(218, 218, 218);
+	public static final Color COSMO_STRONG_GRAY = new Color(199, 200, 200);
+	public static final Color COSMO_DARK_GRAY = new Color(199, 200, 200);
+	public static final Color DARKLY_GRAY = new Color(173, 181, 189);
+	public static final Color COSMO_BLACK = new Color(55, 58, 60);
+
 	private MaterialColors () {}
 
 	public static Color bleach (Color color, float amount) {

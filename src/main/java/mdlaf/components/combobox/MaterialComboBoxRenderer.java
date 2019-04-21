@@ -16,11 +16,12 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 		component.setBorder (BorderFactory.createEmptyBorder (5, 5, 5, 5));
 		component.setForeground (UIManager.getColor ("ComboBox.foreground"));
 		component.setBackground (isSelected || cellHasFocus ?
-				UIManager.getColor ("ComboBox.selectedInDropDownBackground") :
-				UIManager.getColor ("ComboBox.background"));
+				UIManager.getColor("ComboBox.selectedInDropDownBackground") :
+				UIManager.getColor("ComboBox.background"));
 
 		return component;
 	}
+
 
 
 }
