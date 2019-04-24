@@ -43,8 +43,9 @@ public class MaterialButtonUI extends MetalButtonUI {
         if (b.isContentAreaFilled()) {
             paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
         }
-
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+
+        paintStateButton(c, g);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
@@ -53,8 +54,6 @@ public class MaterialButtonUI extends MetalButtonUI {
         g = graphics2D;
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
-
-        paintStateButton(c, g);
     }
 
     @Override

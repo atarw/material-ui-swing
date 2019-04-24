@@ -1,6 +1,7 @@
 ### IDE files
 .idea/
 *.iml
+*.txt
 target/
 .classpath
 .project

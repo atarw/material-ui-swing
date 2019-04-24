@@ -402,6 +402,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToolTip.foreground", MaterialColors.GRAY_50);
         table.put("ToolTip.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
+        table.put("TextField.background", MaterialColors.GRAY_100);
+        table.put("TextField.foreground", MaterialColors.GRAY_800);
         table.put("TextField.inactiveForeground", MaterialColors.GRAY_800);
         table.put("TextField.inactiveBackground", MaterialColors.GRAY_200);
         table.put("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
@@ -409,12 +411,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
         table.put("TextField.focusInputMap", fieldInputMap); //install shortcut
 
+        table.put("PasswordField.background", MaterialColors.GRAY_100);
+        table.put("PasswordField.foreground", MaterialColors.BLACK);
         table.put("PasswordField.inactiveForeground", MaterialColors.GRAY_800);
         table.put("PasswordField.inactiveBackground", MaterialColors.GRAY_200);
         table.put("PasswordField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("PasswordField.selectionForeground", MaterialColors.BLACK);
         table.put("PasswordField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
-        table.put("PasswordField.focusInputMap", fieldInputMap); //install shortcut
+        table.put("PasswordField.focusInputMap", fieldInputMap);
 
         table.put("TitledBorder.border",new DropShadowBorder(MaterialColors.BLACK, 10, 4, (float) 0.2, 8,
                         true, true, true, true));
@@ -471,11 +475,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Material.activeCaptionText", MaterialColors.BLACK);
         table.put("Material.activeCaptionBorder", MaterialColors.COSMO_STRONG_GRAY);
 
-
         table.put("OptionPane.background", Color.WHITE);
         table.put("OptionPane.border", BorderFactory.createEmptyBorder());
         table.put("OptionPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("OptionPane.enableIcon", false);
+        table.put("OptionPane.enableIcon", true);
 
         table.put("OptionPane.errorDialog.titlePane.background", MaterialColors.WHITE);
         table.put("OptionPane.errorDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);

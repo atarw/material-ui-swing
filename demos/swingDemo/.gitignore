@@ -1,8 +1,0 @@
-#File ide
-.idea
-*.iml
-
-#Sistem costruction files
-out
-build
-.gradle
