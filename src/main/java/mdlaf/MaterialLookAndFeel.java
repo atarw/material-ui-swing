@@ -412,8 +412,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
 		table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 		table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
-		table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImages.YES_COLLASSED));
-		table.put("TaskPane.noCollassed", new ImageIcon(MaterialImages.NO_COLLASSED));
+		table.put("TaskPane.yesCollapsed", new ImageIcon(MaterialImages.YES_COLLAPSED));
+		table.put("TaskPane.noCollapsed", new ImageIcon(MaterialImages.NO_COLLAPSED));
 
 		table.put("OptionPaneUI.warningIcon", new ImageIcon(MaterialImages.WARNING));
 		table.put("OptionPaneUI.errorIcon", new ImageIcon(MaterialImages.ERROR));
@@ -433,6 +433,17 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("List.selectionBackground", MaterialColors.GRAY_400);
 		table.put("List.selectionForeground", MaterialColors.BLACK);
 		table.put("List.focusable", true);
+
+		table.put("FileChooser[icons].computer", new ImageIcon (MaterialImages.COMPUTER));
+		table.put("FileChooser[icons].directory", new ImageIcon (MaterialImages.FOLDER));
+		table.put("FileChooser[icons].file", new ImageIcon (MaterialImages.FILE));
+		table.put("FileChooser[icons].floppyDrive", new ImageIcon (MaterialImages.FLOPPY_DRIVE));
+		table.put("FileChooser[icons].hardDrive", new ImageIcon (MaterialImages.HARD_DRIVE));
+		table.put("FileChooser[icons].home", new ImageIcon (MaterialImages.HOME));
+		table.put("FileChooser[icons].list", new ImageIcon (MaterialImages.LIST));
+		table.put("FileChooser[icons].details", new ImageIcon (MaterialImages.DETAILS));
+		table.put("FileChooser[icons].newFolder", new ImageIcon (MaterialImages.NEW_FOLDER));
+		table.put("FileChooser[icons].upFolder", new ImageIcon (MaterialImages.BACK_ARROW));
 	}
 
 	@Override

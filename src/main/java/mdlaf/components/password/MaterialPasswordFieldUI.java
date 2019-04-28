@@ -199,7 +199,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 		}
 	}
 
-	protected static class MaterialPasswordView extends PasswordView {
+	protected class MaterialPasswordView extends PasswordView {
 
 		private MaterialPasswordView(Element elem) {
 			super(elem);
@@ -214,7 +214,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
 			FontMetrics fm = g2.getFontMetrics();
 			int r = fm.charWidth(c) - 2;
 
-			g2.setPaint(Color.BLACK);
+			g2.setPaint(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
 			g2.fillOval(x + 1, y + 5 - fm.getAscent(), r, r);
 			g2.dispose();
 

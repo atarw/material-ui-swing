@@ -31,7 +31,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         super.installUI(c);
         JXTaskPane jxTaskPane = (JXTaskPane) c;
         jxTaskPane.addMouseListener(new ChangeIconOnClick(jxTaskPane));
-        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollassed") : UIManager.getIcon("TaskPane.noCollassed"));
+        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         jxTaskPane.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
     }
 
@@ -116,10 +116,10 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         @Override
         public void mouseClicked(MouseEvent e) {
             if(taskPane.isCollapsed()){
-                taskPane.setIcon(UIManager.getIcon("TaskPane.yesCollassed"));
+                taskPane.setIcon(UIManager.getIcon("TaskPane.yesCollapsed"));
                 return;
             }
-            taskPane.setIcon(UIManager.getIcon("TaskPane.noCollassed"));
+            taskPane.setIcon(UIManager.getIcon("TaskPane.noCollapsed"));
         }
 
         @Override
