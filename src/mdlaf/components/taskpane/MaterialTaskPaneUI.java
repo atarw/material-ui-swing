@@ -97,7 +97,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     }
 
     /**
-     * Action change icon on clic
+     * Action change icon on click
      * @author @author https://github.com/vincenzopalazzo
      */
 
