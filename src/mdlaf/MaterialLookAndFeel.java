@@ -433,8 +433,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
         table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
-        table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED)));
-        table.put("TaskPane.noCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED)));
+        table.put("TaskPane.yesCollapsed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED)));
+        table.put("TaskPane.noCollapsed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED)));
 
         table.put("FormattedTextField.inactiveForeground", MaterialColors.GRAY_800);
         table.put("FormattedTextField.inactiveBackground", MaterialColors.GRAY_200);

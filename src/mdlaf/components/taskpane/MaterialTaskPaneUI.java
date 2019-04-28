@@ -30,7 +30,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         super.installUI(c);
         JXTaskPane jxTaskPane = (JXTaskPane) c;
         jxTaskPane.addMouseListener(new ChangeIconOnClick(jxTaskPane));
-        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollassed") : UIManager.getIcon("TaskPane.noCollassed"));
+        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         jxTaskPane.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
     }
 
