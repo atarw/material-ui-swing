@@ -74,7 +74,6 @@ import java.lang.reflect.Method;
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
     private BasicLookAndFeel basicLookAndFeel;
@@ -121,7 +120,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
             basicLookAndFeel = new MetalLookAndFeel();
             MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
         } catch (Exception ignore) {
-            //do nothing
+            ignore.printStackTrace();
         }
     }
 
@@ -434,8 +433,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
         table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
-        table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLASSED)));
-        table.put("TaskPane.noCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLASSED)));
+        table.put("TaskPane.yesCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED)));
+        table.put("TaskPane.noCollassed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED)));
 
         table.put("FormattedTextField.inactiveForeground", MaterialColors.GRAY_800);
         table.put("FormattedTextField.inactiveBackground", MaterialColors.GRAY_200);
@@ -467,18 +466,21 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrame.iconifyIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS)));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
-        table.put("InternalFrame.inactiveTitleBackground", MaterialColors.BLACK);
+        table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.inactiveTitleForeground", MaterialColors.BLACK);
         table.put("InternalFrame.titleFont", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
 
         table.put("Material.activeCaption", MaterialColors.WHITE);
+        table.put("Material.inactiveCaption", MaterialColors.WHITE);
         table.put("Material.activeCaptionText", MaterialColors.BLACK);
+        table.put("Material.inactiveCaptionText", MaterialColors.GRAY_700);
         table.put("Material.activeCaptionBorder", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("Material.inactiveCaptionBorder", MaterialColors.COSMO_STRONG_GRAY);
 
         table.put("OptionPane.background", Color.WHITE);
         table.put("OptionPane.border", BorderFactory.createEmptyBorder());
         table.put("OptionPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("OptionPane.enableIcon", true);
+        table.put("OptionPane.enableIcon", false);
 
         table.put("OptionPane.errorDialog.titlePane.background", MaterialColors.WHITE);
         table.put("OptionPane.errorDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
@@ -489,6 +491,17 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPane.warningDialog.titlePane.background", MaterialColors.WHITE);
         table.put("OptionPane.warningDialog.titlePane.foreground", MaterialColors.COSMO_BLACK);
         table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
+
+        table.put("FileChooser[icons].computer", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK)));
+        table.put("FileChooser[icons].directory", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER_BLACK)));
+        table.put("FileChooser[icons].file", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FILE_BLACK)));
+        table.put("FileChooser[icons].floppyDrive", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FLOPPY_DRIVE_BLACK)));
+        table.put("FileChooser[icons].hardDrive", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HARD_DRIVE_BLACK)));
+        table.put("FileChooser[icons].home", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HOME_BLACK)));
+        table.put("FileChooser[icons].list", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LIST_BLACK)));
+        table.put("FileChooser[icons].details", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_BLACK)));
+        table.put("FileChooser[icons].newFolder", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_BLACK)));
+        table.put("FileChooser[icons].upFolder", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_BLACK)));
     }
 
     @Override
@@ -506,6 +519,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
             return defaults;
         }
         catch (Exception ignore) {
+            //do nothing
+            ignore.printStackTrace();
         }
         return super.getDefaults();
     }

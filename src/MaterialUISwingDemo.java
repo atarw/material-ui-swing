@@ -258,7 +258,7 @@ public class MaterialUISwingDemo {
         pn.add(buttonTwoo);
 
         JButton bottoneConImmagine = new JButton();
-        bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER)));
+        bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK)));
         pn.add(bottoneConImmagine);
 
         JButton buttonTestTextFieled = new JButton("Test JtexFiele");

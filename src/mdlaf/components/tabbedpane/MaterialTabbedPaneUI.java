@@ -1,7 +1,29 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package mdlaf.components.tabbedpane;
 
 import mdlaf.utils.MaterialDrawingUtils;
-import sun.swing.SwingUtilities2;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -43,6 +65,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         g.setColor(isSelected ? lightHighlight : tabPane.getBackground());
         g.fillRect(x, y, w, h);
+        if(isSelected){
+            paintLine(g, x, y, w, h);
+        }
 
     }
 
@@ -53,7 +78,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-        //super.paintFocusIndicator(g, tabPlacement, rects, tabIndex, iconRect, textRect, isSelected);
         Rectangle tabRect = rects[tabIndex];
         if (tabPane.hasFocus() && isSelected) {
             int x, y, w, h;
@@ -87,41 +111,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-
-       /* Rectangle rectangleSelected = rects[tabIndex];
-        int forCenterPoint = (int) ((component.getWidth() / 2.5));
-        Point position = new Point(rectangleSelected.x + forCenterPoint, rectangleSelected.y);
-        rectangleSelected.setLocation(position);
-        int selectedIndex = tabPane.getSelectedIndex();
-        boolean isSelected = selectedIndex == tabIndex;
-
-        if (tabPane.isOpaque()) {
-            paintTabBackground(g, tabPlacement, tabIndex, rectangleSelected.x, rectangleSelected.y,
-                    rectangleSelected.width, rectangleSelected.height, isSelected);
-        }
-
-        paintTabBorder(g, tabPlacement, tabIndex, rectangleSelected.x, rectangleSelected.y,
-                rectangleSelected.width, rectangleSelected.height, isSelected);
-
-        String title = tabPane.getTitleAt(tabIndex);
-        Font font = tabPane.getFont();
-        FontMetrics metrics = SwingUtilities2.getFontMetrics(tabPane, g, font);
-        Icon icon = getIconForTab(tabIndex);
-
-        layoutLabel(tabPlacement, metrics, tabIndex, title, icon, rectangleSelected, iconRect, textRect, isSelected);
-
-        if (tabPane.getTabComponentAt(tabIndex) == null) {
-            String clippedTitle = title;
-
-            paintText(g, tabPlacement, font, metrics,
-                    tabIndex, clippedTitle, textRect, isSelected);
-
-            paintIcon(g, tabPlacement, tabIndex, icon, iconRect, isSelected);
-        }
-        paintFocusIndicator(g, tabPlacement, rects, tabIndex,
-                iconRect, textRect, isSelected);
-
-*/
         component.addMouseMotionListener(new MouseHoverTab(rects));
     }
 

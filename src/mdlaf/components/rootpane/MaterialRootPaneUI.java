@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
+import java.security.AccessController;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -22,6 +25,10 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             "RootPane.fileChooserDialogBorder", "RootPane.questionDialogBorder",
             "RootPane.warningDialogBorder"
     };
+
+    private Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+
+    private enum CursorState {EXITED, ENTERED, NIL}
 
     private static final int CORNER_DRAG_WIDTH = 16;
 
@@ -38,9 +45,6 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
     private LayoutManager savedOldLayout;
 
     private JRootPane root;
-
-    private Cursor lastCursor =
-            Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialRootPaneUI();
@@ -408,30 +412,54 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         public void invalidateLayout(Container target) {}
     }
 
+    /**
+     * Maps from positions to cursor type. Refer to calculateCorner and
+     * calculatePosition for details of this.
+     */
     private static final int[] cursorMapping = new int[]
-            { Cursor.NW_RESIZE_CURSOR, Cursor.NW_RESIZE_CURSOR, Cursor.N_RESIZE_CURSOR,
-                    Cursor.NE_RESIZE_CURSOR, Cursor.NE_RESIZE_CURSOR,
+            {       Cursor.NW_RESIZE_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.N_RESIZE_CURSOR,
+                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR,
                     Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
                     Cursor.W_RESIZE_CURSOR, 0, 0, 0, Cursor.E_RESIZE_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, 0, 0, 0, Cursor.SE_RESIZE_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
-                    Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR,
-                    Cursor.HAND_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.MOVE_CURSOR
+                    Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR
             };
+
+    public void setMaximized() {
+        Component tla = root.getTopLevelAncestor();
+        //GraphicsConfiguration gc = (currentRootPaneGC != null) ? currentRootPaneGC : tla.getGraphicsConfiguration();
+        GraphicsConfiguration gc = tla.getGraphicsConfiguration();
+        Rectangle screenBounds = gc.getBounds();
+        screenBounds.x = 0;
+        screenBounds.y = 0;
+        Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
+        Rectangle maxBounds = new Rectangle(
+                (screenBounds.x + screenInsets.left),
+                (screenBounds.y + screenInsets.top), screenBounds.width
+                - ((screenInsets.left + screenInsets.right)),
+                screenBounds.height
+                        - ((screenInsets.top + screenInsets.bottom)));
+        if (tla instanceof JFrame) {
+            ((JFrame)tla).setMaximizedBounds(maxBounds);
+        }
+    }
 
     private class MouseInputHandler implements MouseInputListener {
 
         private boolean isMovingWindow;
-
         private int dragCursor;
-
         private int dragOffsetX;
-
         private int dragOffsetY;
-
         private int dragWidth;
-
         private int dragHeight;
+
+        @SuppressWarnings("unchecked")
+        private final PrivilegedExceptionAction getLocationAction = new PrivilegedExceptionAction() {
+            public Object run() throws HeadlessException {
+                return MouseInfo.getPointerInfo().getLocation();
+            }
+        };
 
         public void mousePressed(MouseEvent ev) {
             JRootPane rootPane = getRootPane();
@@ -444,47 +472,47 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             if (w != null) {
                 w.toFront();
             }
-            Point convertedDragWindowOffset = SwingUtilities.convertPoint(
-                    w, dragWindowOffset, getTitlePane());
+            Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
 
             Frame f = null;
             Dialog d = null;
 
             if (w instanceof Frame) {
                 f = (Frame)w;
-            } else if (w instanceof Dialog) {
+            }
+            else if (w instanceof Dialog) {
                 d = (Dialog)w;
             }
 
             int frameState = (f != null) ? f.getExtendedState() : 0;
 
-            if (getTitlePane() != null &&
-                    getTitlePane().contains(convertedDragWindowOffset)) {
-                if ((f != null && ((frameState & Frame.MAXIMIZED_BOTH) == 0)
-                        || (d != null))
-                        && dragWindowOffset.y >= BORDER_DRAG_THICKNESS
-                        && dragWindowOffset.x >= BORDER_DRAG_THICKNESS
-                        && dragWindowOffset.x < w.getWidth()
-                        - BORDER_DRAG_THICKNESS) {
+            if ((getTitlePane() != null)
+                    && getTitlePane().contains(
+                    convertedDragWindowOffset)) {
+                if ((((f != null) && ((frameState & Frame.MAXIMIZED_BOTH) == 0)) || (d != null))
+                        && (dragWindowOffset.y >= BORDER_DRAG_THICKNESS)
+                        && (dragWindowOffset.x >= BORDER_DRAG_THICKNESS)
+                        && (dragWindowOffset.x < w.getWidth() - BORDER_DRAG_THICKNESS)) {
                     isMovingWindow = true;
                     dragOffsetX = dragWindowOffset.x;
                     dragOffsetY = dragWindowOffset.y;
                 }
             }
-            else if (f != null && f.isResizable()
-                    && ((frameState & Frame.MAXIMIZED_BOTH) == 0)
-                    || (d != null && d.isResizable())) {
+            else if (((f != null) && f.isResizable() && ((frameState & Frame.MAXIMIZED_BOTH) == 0))
+                    || ((d != null) && d.isResizable())) {
                 dragOffsetX = dragWindowOffset.x;
                 dragOffsetY = dragWindowOffset.y;
                 dragWidth = w.getWidth();
                 dragHeight = w.getHeight();
-                dragCursor = getCursor(calculateCorner(
-                        w, dragWindowOffset.x, dragWindowOffset.y));
+                dragCursor = getCursor(calculateCorner(w,
+                        dragWindowOffset.x, dragWindowOffset.y));
             }
         }
 
         public void mouseReleased(MouseEvent ev) {
-            if (dragCursor != 0 && window != null && !window.isValid()) {
+            if ((dragCursor != 0)
+                    && (window != null)
+                    && !window.isValid()) {
                 window.validate();
                 getRootPane().repaint();
             }
@@ -506,20 +534,19 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
 
             if (w instanceof Frame) {
                 f = (Frame)w;
-            } else if (w instanceof Dialog) {
+            }
+            else if (w instanceof Dialog) {
                 d = (Dialog)w;
             }
 
-            // Update the cursor
             int cursor = getCursor(calculateCorner(w, ev.getX(), ev.getY()));
 
-            if (cursor != 0 && ((f != null && (f.isResizable() &&
-                    (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0))
-                    || (d != null && d.isResizable()))) {
+            if ((cursor != 0)
+                    && (((f != null) && (f.isResizable() && ((f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0)))
+                    || ((d != null) && d.isResizable()))) {
                 w.setCursor(Cursor.getPredefinedCursor(cursor));
-            }
-            else {
-                w.setCursor(lastCursor);
+            }else {
+                w.setCursor(myLastCursor);
             }
         }
 
@@ -547,14 +574,22 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             }
         }
 
+        @SuppressWarnings("unchecked")
         public void mouseDragged(MouseEvent ev) {
             Window w = (Window)ev.getSource();
             Point pt = ev.getPoint();
 
             if (isMovingWindow) {
-                Point eventLocationOnScreen = ev.getLocationOnScreen();
-                w.setLocation(eventLocationOnScreen.x - dragOffsetX,
-                        eventLocationOnScreen.y - dragOffsetY);
+                Point windowPt;
+                try {
+                    windowPt = (Point) AccessController
+                            .doPrivileged(getLocationAction);
+                    windowPt.x = windowPt.x - dragOffsetX;
+                    windowPt.y = windowPt.y - dragOffsetY;
+                    w.setLocation(windowPt);
+                }
+                catch (PrivilegedActionException e) {
+                }
             }
             else if (dragCursor != 0) {
                 Rectangle r = w.getBounds();
@@ -563,15 +598,15 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
 
                 switch (dragCursor) {
                     case Cursor.E_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0, pt.x + (dragWidth - dragOffsetX) -
-                                r.width, 0);
+                        adjust(r, min, 0, 0, pt.x
+                                + (dragWidth - dragOffsetX) - r.width, 0);
                         break;
                     case Cursor.S_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0, 0, pt.y + (dragHeight - dragOffsetY) -
-                                r.height);
+                        adjust(r, min, 0, 0, 0, pt.y
+                                + (dragHeight - dragOffsetY) - r.height);
                         break;
                     case Cursor.N_RESIZE_CURSOR:
-                        adjust(r, min, 0, pt.y -dragOffsetY, 0,
+                        adjust(r, min, 0, pt.y - dragOffsetY, 0,
                                 -(pt.y - dragOffsetY));
                         break;
                     case Cursor.W_RESIZE_CURSOR:
@@ -579,34 +614,32 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
                                 -(pt.x - dragOffsetX), 0);
                         break;
                     case Cursor.NE_RESIZE_CURSOR:
-                        adjust(r, min, 0, pt.y - dragOffsetY,
-                                pt.x + (dragWidth - dragOffsetX) - r.width,
+                        adjust(r, min, 0, pt.y - dragOffsetY, pt.x
+                                        + (dragWidth - dragOffsetX) - r.width,
                                 -(pt.y - dragOffsetY));
                         break;
                     case Cursor.SE_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0,
-                                pt.x + (dragWidth - dragOffsetX) - r.width,
-                                pt.y + (dragHeight - dragOffsetY) -
-                                        r.height);
+                        adjust(r, min, 0, 0, pt.x
+                                        + (dragWidth - dragOffsetX) - r.width,
+                                pt.y + (dragHeight - dragOffsetY)
+                                        - r.height);
                         break;
                     case Cursor.NW_RESIZE_CURSOR:
-                        adjust(r, min, pt.x - dragOffsetX,
-                                pt.y - dragOffsetY,
-                                -(pt.x - dragOffsetX),
+                        adjust(r, min, pt.x - dragOffsetX, pt.y
+                                        - dragOffsetY, -(pt.x - dragOffsetX),
                                 -(pt.y - dragOffsetY));
                         break;
                     case Cursor.SW_RESIZE_CURSOR:
                         adjust(r, min, pt.x - dragOffsetX, 0,
-                                -(pt.x - dragOffsetX),
-                                pt.y + (dragHeight - dragOffsetY) - r.height);
+                                -(pt.x - dragOffsetX), pt.y
+                                        + (dragHeight - dragOffsetY)
+                                        - r.height);
                         break;
                     default:
                         break;
                 }
                 if (!r.equals(startBounds)) {
                     w.setBounds(r);
-                    // Defer repaint/validate on mouseReleased unless dynamic
-                    // layout is active.
                     if (Toolkit.getDefaultToolkit().isDynamicLayoutActive()) {
                         w.validate();
                         getRootPane().repaint();
@@ -615,43 +648,54 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             }
         }
 
+        private CursorState cursorState = CursorState.NIL;
+
         public void mouseEntered(MouseEvent ev) {
             Window w = (Window)ev.getSource();
-            lastCursor = w.getCursor();
+            if (cursorState == CursorState.EXITED || cursorState == CursorState.NIL) {
+                myLastCursor = w.getCursor();
+            }
+            cursorState = CursorState.ENTERED;
             mouseMoved(ev);
         }
 
         public void mouseExited(MouseEvent ev) {
             Window w = (Window)ev.getSource();
-            w.setCursor(lastCursor);
+            w.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            cursorState = CursorState.EXITED;
         }
 
         public void mouseClicked(MouseEvent ev) {
             Window w = (Window)ev.getSource();
-            Frame f = null;
+            Frame f;
 
             if (w instanceof Frame) {
                 f = (Frame)w;
-            } else {
+            }
+            else {
                 return;
             }
 
-            Point convertedPoint = SwingUtilities.convertPoint(
-                    w, ev.getPoint(), getTitlePane());
+            JComponent windowTitlePane = getTitlePane();
+            if (windowTitlePane == null) {
+                return;
+            }
+
+            Point convertedPoint = SwingUtilities.convertPoint(w, ev.getPoint(), windowTitlePane);
 
             int state = f.getExtendedState();
-            if (getTitlePane() != null &&
-                    getTitlePane().contains(convertedPoint)) {
-                if ((ev.getClickCount() % 2) == 0 &&
-                        ((ev.getModifiers() & InputEvent.BUTTON1_MASK) != 0)) {
+            if (windowTitlePane.contains(convertedPoint)) {
+                if (((ev.getClickCount() % 2) == 0)
+                        && ((ev.getModifiers() & InputEvent.BUTTON1_MASK) != 0)) {
                     if (f.isResizable()) {
                         if ((state & Frame.MAXIMIZED_BOTH) != 0) {
+                            setMaximized();
                             f.setExtendedState(state & ~Frame.MAXIMIZED_BOTH);
                         }
                         else {
+                            setMaximized();
                             f.setExtendedState(state | Frame.MAXIMIZED_BOTH);
                         }
-                        return;
                     }
                 }
             }
@@ -659,15 +703,13 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
 
         private int calculateCorner(Window w, int x, int y) {
             Insets insets = w.getInsets();
-            int xPosition = calculatePosition(x - insets.left,
-                    w.getWidth() - insets.left - insets.right);
-            int yPosition = calculatePosition(y - insets.top,
-                    w.getHeight() - insets.top - insets.bottom);
+            int xPosition = calculatePosition(x - insets.left, w.getWidth() - insets.left - insets.right);
+            int yPosition = calculatePosition(y - insets.top, w.getHeight() - insets.top - insets.bottom);
 
-            if (xPosition == -1 || yPosition == -1) {
+            if ((xPosition == -1) || (yPosition == -1)) {
                 return -1;
             }
-            return yPosition * 5 + xPosition;
+            return yPosition + xPosition;
         }
 
         private int getCursor(int corner) {

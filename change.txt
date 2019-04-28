@@ -1,7 +1,30 @@
-##
-Adding a constant into UIManager for disable a arrow into JScollbar
-Adding effect into jTabbledPane
-Adding icon white checkbox and radiobutton
+## Fixing
+- Change name at the JXTaskPane but not change the direction
+  because are fixed here https://github.com/atarw/material-ui-swing/issues/66
+- Add constant for the icon JFileChooser, the constant is
+    "FileChooser[icons].computer"
+    "FileChooser[icons].directory"
+    "FileChooser[icons].file"
+    "FileChooser[icons].floppyDrive"
+    "FileChooser[icons].hardDrive"
+    "FileChooser[icons].home"
+    "FileChooser[icons].list"
+    "FileChooser[icons].details"
+    "FileChooser[icons].newFolder"
+    "FileChooser[icons].upFolder"
 
-BUG
-On click tabbledpane
+    and the icons are two color BLACK and WHITE such as the RINGO :)
+
+    MaterialImageFactory.COMPUTER_COLOR
+    MaterialImageFactory.FOLDER_COLOR
+    MaterialImageFactory.FILE_COLOR
+    MaterialImageFactory.FLOPPY_DRIVE_COLOR
+    MaterialImageFactory.HARD_DRIVE_COLOR
+    MaterialImageFactory.HOME_COLOR
+    MaterialImageFactory.LIST_COLOR
+    MaterialImageFactory.DETAILS_COLOR
+    MaterialImageFactory.NEW_FOLDER_COLOR
+    MaterialImageFactory.BACK_ARROW_COLOR
+
+- Fixed some bug into JTabbedPane line effect
+- Fixed some bug into JFileChooser for action mouse moved and change cursor when happens a event

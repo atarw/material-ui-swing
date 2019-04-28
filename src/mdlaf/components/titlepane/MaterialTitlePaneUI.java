@@ -1,5 +1,28 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package mdlaf.components.titlepane;
-import mdlaf.components.rootpane.MaterialRootPaneUI;
+
 import sun.awt.SunToolkit;
 import sun.swing.SwingUtilities2;
 
@@ -40,9 +63,9 @@ import java.util.List;
         private int myState;
 
 
-        private Color myInactiveBackground = UIManager.getColor("inactiveCaption");
-        private Color myInactiveForeground = UIManager.getColor("inactiveCaptionText");
-        private Color myInactiveShadow = UIManager.getColor("inactiveCaptionBorder");
+        private Color myInactiveBackground = UIManager.getColor("Material.inactiveCaption");
+        private Color myInactiveForeground = UIManager.getColor("Material.inactiveCaptionText");
+        private Color myInactiveShadow = UIManager.getColor("Material.inactiveCaptionBorder");
         private Color myActiveBackground = null;
         private Color myActiveForeground = null;
         private Color myActiveShadow = null;
