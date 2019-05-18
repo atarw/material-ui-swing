@@ -326,6 +326,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.highlight", MaterialColors.GRAY_200);
         table.put("TabbedPane.borderHighlightColor", MaterialColors.GRAY_300);
         table.put("TabbedPane[focus].colorLine", MaterialColors.COSMO_BLUE);
+        table.put("TabbedPane[MouseHover].enable",true);
 
         table.put("Table.selectionBackground", MaterialColors.GRAY_100);
         table.put("Table.selectionForeground", MaterialColors.BLACK);

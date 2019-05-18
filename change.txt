@@ -1,2 +1,9 @@
 ## Fixing
 - Fix distance list and details in jFileChooser
+- Fixed Problem Cursor frame with addictional control into JTabbedPan for mouse hover
+- Added Adapter BasicTabbedPaneUI and add support to tabbedpaneUI style material
+- Add bold into JDialog Title when it's pain with style material
+- Added support tu JTree style material
+- Added support to difference tra button focusable and default
+- Add button exit on JDialog
+- add new method into MaterialManagerListener now remove only listener MaterialTimer

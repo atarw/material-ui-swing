@@ -24,9 +24,11 @@
 package mdlaf.utils;
 
 import mdlaf.animation.MaterialUITimer;
+import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 
 import javax.swing.*;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -51,13 +53,13 @@ public class MaterialManagerListener {
      * Look this if you would change this function
      * https://bugs.java.com/bugdatabase/view_bug.do?bug_id=4380536
      */
-    public static void removeAllMaterialMouseListener(JButton button){
-        if(button == null){
+    public static void removeAllMaterialMouseListener(JComponent component){
+        if(component == null){
             throw new IllegalArgumentException("Argument is null");
         }
-        for(MouseListener mouseListener : button.getListeners(MouseListener.class)){
+        for(MouseListener mouseListener : component.getListeners(MouseListener.class)){
             if (mouseListener instanceof MaterialUITimer){
-                button.removeMouseListener(mouseListener);
+                component.removeMouseListener(mouseListener);
             }
         }
     }

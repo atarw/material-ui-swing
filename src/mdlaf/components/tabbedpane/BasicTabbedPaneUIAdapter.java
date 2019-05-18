@@ -22,7 +22,6 @@
  * or visit www.oracle.com if you need additional information or have any
  * questions.
  */
-
 package mdlaf.components.tabbedpane;
 
 import mdlaf.MaterialLookAndFeel;
@@ -81,7 +80,8 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
     }
 
     public void installUI(JComponent c) {
-        super.installUI(c);
+        this.tabPane = (JTabbedPane)c;
+
         calculatedBaseline = false;
         rolloverTabIndex = -1;
         focusIndex = -1;
@@ -89,6 +89,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         installComponents();
         installDefaults();
         installListeners();
+        installKeyboardActions();
 
     }
 

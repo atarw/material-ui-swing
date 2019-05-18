@@ -2,6 +2,7 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.MaterialManagerListener;
 import org.jdesktop.swingx.JXTaskPane;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -453,7 +454,6 @@ public class MaterialUISwingDemo {
         panel4.add(listDay);
 
         tp.addTab("Panel 4", panel4);
-
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -462,6 +462,7 @@ public class MaterialUISwingDemo {
         double megamemori = (lastUsedMem - beforeUsedMem) * 9.537 * Math.pow(10, -7);
         memoryOccupedNow.setText("Memory occuped after update: " + megamemori + " MB");
 
-        SwingUtilities.updateComponentTreeUI(frame);
+        //For testing
+        //SwingUtilities.updateComponentTreeUI(frame);
     }
 }
