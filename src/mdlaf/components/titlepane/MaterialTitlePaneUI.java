@@ -1,28 +1,21 @@
 /*
- * MIT License
+ * Copyright 2000-2014 JetBrains s.r.o.
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package mdlaf.components.titlepane;
 
+import mdlaf.utils.MaterialManagerListener;
 import sun.awt.SunToolkit;
 import sun.swing.SwingUtilities2;
 
@@ -40,9 +33,15 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
     /**
+     * @author Konstantin Bulenkov
+     * In this version for Titelpane the change are effectuate by
      * @author https://github.com/users/vincenzopalazzo
+     *
+     * Thi version of code is on MIT lincenze
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
      */
     public class MaterialTitlePaneUI extends JComponent {
+
         private static final int IMAGE_HEIGHT = 16;
         private static final int IMAGE_WIDTH = 16;
 
@@ -82,13 +81,13 @@ import java.util.List;
             setLayout(createLayout());
         }
 
-        private void uninstall() {
+        protected void uninstall() {
             uninstallListeners();
             myWindow = null;
             removeAll();
         }
 
-        private void installListeners() {
+        protected void installListeners() {
             if (myWindow != null) {
                 myWindowListener = createWindowListener();
                 myWindow.addWindowListener(myWindowListener);
@@ -97,18 +96,18 @@ import java.util.List;
             }
         }
 
-        private void uninstallListeners() {
+        protected void uninstallListeners() {
             if (myWindow != null) {
                 myWindow.removeWindowListener(myWindowListener);
                 myWindow.removePropertyChangeListener(myPropertyChangeListener);
             }
         }
 
-        private WindowListener createWindowListener() {
+        protected WindowListener createWindowListener() {
             return new WindowHandler();
         }
 
-        private PropertyChangeListener createWindowPropertyChangeListener() {
+        protected PropertyChangeListener createWindowPropertyChangeListener() {
             return new PropertyChangeHandler();
         }
 
@@ -116,7 +115,7 @@ import java.util.List;
             return myRootPane;
         }
 
-        private int getWindowDecorationStyle() {
+        protected int getWindowDecorationStyle() {
             return getRootPane().getWindowDecorationStyle();
         }
 
@@ -146,7 +145,7 @@ import java.util.List;
             myWindow = null;
         }
 
-        private void installSubcomponents() {
+        protected void installSubcomponents() {
             int decorationStyle = getWindowDecorationStyle();
             if (decorationStyle == JRootPane.FRAME) {
                 createActions();
@@ -164,12 +163,23 @@ import java.util.List;
                     decorationStyle == JRootPane.WARNING_DIALOG) {
                 createActions();
                 createButtons();
-                myCloseButton.setVisible(false);
+                initMaterialButtonClose();
+                myCloseButton.setFocusable(false);
+                myCloseButton.setVisible(true); //TODO this is the component
                 add(myCloseButton);
             }
         }
 
-        private void determineColors() {
+        /**
+         * This is method for init style button into JDialog
+         */
+        protected void initMaterialButtonClose() {
+            MaterialManagerListener.removeAllMaterialMouseListener(myCloseButton);
+            myCloseButton.setBackground(UIManager.getColor("OptionPane.errorDialog.titlePane.background"));
+            myCloseButton.setAction(myCloseAction);
+        }
+
+        protected void determineColors() {
             switch (getWindowDecorationStyle()) {
                 case JRootPane.FRAME:
                     myActiveBackground = UIManager.getColor("Material.activeCaption");
@@ -219,35 +229,33 @@ import java.util.List;
             }
         }
 
-        private void installDefaults() {
+        protected void installDefaults() {
             setFont(UIManager.getFont("InternalFrame.titleFont", getLocale()));
         }
 
-
-        private void close() {
+        protected void close() {
             Window window = getWindow();
 
             if (window != null) {
-                window.dispatchEvent(new WindowEvent(
-                        window, WindowEvent.WINDOW_CLOSING));
+                window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
             }
         }
 
-        private void iconify() {
+        protected void iconify() {
             Frame frame = getFrame();
             if (frame != null) {
                 frame.setExtendedState(myState | Frame.ICONIFIED);
             }
         }
 
-        private void maximize() {
+        protected void maximize() {
             Frame frame = getFrame();
             if (frame != null) {
                 frame.setExtendedState(myState | Frame.MAXIMIZED_BOTH);
             }
         }
 
-        private void restore() {
+        protected void restore() {
             Frame frame = getFrame();
 
             if (frame == null) {
@@ -262,7 +270,7 @@ import java.util.List;
             }
         }
 
-        private void createActions() {
+        protected void createActions() {
             myCloseAction = new CloseAction();
             if (getWindowDecorationStyle() == JRootPane.FRAME) {
                 myIconifyAction = new IconifyAction();
@@ -271,7 +279,7 @@ import java.util.List;
             }
         }
 
-        private JMenu createMenu() {
+        protected JMenu createMenu() {
             JMenu menu = new JMenu("");
             if (getWindowDecorationStyle() == JRootPane.FRAME) {
                 addMenuItems(menu);
@@ -279,7 +287,7 @@ import java.util.List;
             return menu;
         }
 
-        private void addMenuItems(JMenu menu) {
+        protected void addMenuItems(JMenu menu) {
             menu.add(myRestoreAction);
             menu.add(myIconifyAction);
             if (Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH)) {
@@ -291,7 +299,7 @@ import java.util.List;
             menu.add(myCloseAction);
         }
 
-        private static JButton createButton(String accessibleName, Icon icon, Action action) {
+        protected static JButton createButton(String accessibleName, Icon icon, Action action) {
             JButton button = new JButton();
             button.setFocusPainted(false);
             button.setFocusable(false);
@@ -305,7 +313,7 @@ import java.util.List;
             return button;
         }
 
-        private void createButtons() {
+        protected void createButtons() {
             myCloseButton = createButton("Close", UIManager.getIcon("InternalFrame.closeIcon"), myCloseAction);
 
             if (getWindowDecorationStyle() == JRootPane.FRAME) {
@@ -317,11 +325,11 @@ import java.util.List;
             }
         }
 
-        private LayoutManager createLayout() {
+        protected LayoutManager createLayout() {
             return new TitlePaneLayout();
         }
 
-        private void setActive(boolean active) {
+        protected void setActive(boolean active) {
             myCloseButton.putClientProperty("paintActive", Boolean.valueOf(active));
 
             if (getWindowDecorationStyle() == JRootPane.FRAME) {
@@ -332,11 +340,11 @@ import java.util.List;
             getRootPane().repaint();
         }
 
-        private void setState(int state) {
+        protected void setState(int state) {
             setState(state, false);
         }
 
-        private void setState(int state, boolean updateRegardless) {
+        protected void setState(int state, boolean updateRegardless) {
             Window wnd = getWindow();
 
             if (wnd != null && getWindowDecorationStyle() == JRootPane.FRAME) {
@@ -404,13 +412,13 @@ import java.util.List;
             }
         }
 
-        private void updateToggleButton(Action action, Icon icon) {
+        protected void updateToggleButton(Action action, Icon icon) {
             myToggleButton.setAction(action);
             myToggleButton.setIcon(icon);
             myToggleButton.setText(null);
         }
 
-        private Frame getFrame() {
+        protected Frame getFrame() {
             Window window = getWindow();
 
             if (window instanceof Frame) {
@@ -419,11 +427,11 @@ import java.util.List;
             return null;
         }
 
-        private Window getWindow() {
+        protected Window getWindow() {
             return myWindow;
         }
 
-        private String getTitle() {
+        protected String getTitle() {
             Window w = getWindow();
 
             if (w instanceof Frame) {
@@ -435,7 +443,7 @@ import java.util.List;
             return null;
         }
 
-        public void paintComponent(Graphics g) {
+        protected void paintComponent(Graphics g) {
             if (getFrame() != null) {
                 setState(getFrame().getExtendedState());
             }
@@ -496,13 +504,11 @@ import java.util.List;
                         rect.x = window.getWidth() - window.getInsets().right - 2;
                     }
                     titleW = rect.x - xOffset - 4;
-                    theTitle = SwingUtilities2.clipStringIfNecessary(
-                            rootPane, fm, theTitle, titleW);
+                    theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
                 }
                 else {
                     titleW = xOffset - rect.x - rect.width - 4;
-                    theTitle = SwingUtilities2.clipStringIfNecessary(
-                            rootPane, fm, theTitle, titleW);
+                    theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
                     xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
                 }
                 int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
@@ -511,9 +517,9 @@ import java.util.List;
             }
         }
 
-        private class CloseAction extends AbstractAction {
+        protected class CloseAction extends AbstractAction {
             public CloseAction() {
-                super(UIManager.getString("DarculaTitlePane.closeTitle", getLocale()));
+                super(UIManager.getString("MaterialTitlePane.closeTitle", getLocale()));
             }
 
             public void actionPerformed(ActionEvent e) {
@@ -522,9 +528,9 @@ import java.util.List;
         }
 
 
-        private class IconifyAction extends AbstractAction {
+        protected class IconifyAction extends AbstractAction {
             public IconifyAction() {
-                super(UIManager.getString("DarculaTitlePane.iconifyTitle", getLocale()));
+                super(UIManager.getString("MaterialTitlePane.iconifyTitle", getLocale()));
             }
 
             public void actionPerformed(ActionEvent e) {
@@ -533,10 +539,9 @@ import java.util.List;
         }
 
 
-        private class RestoreAction extends AbstractAction {
+        protected class RestoreAction extends AbstractAction {
             public RestoreAction() {
-                super(UIManager.getString
-                        ("DarculaTitlePane.restoreTitle", getLocale()));
+                super(UIManager.getString("MaterialTitlePane.restoreTitle", getLocale()));
             }
 
             public void actionPerformed(ActionEvent e) {
@@ -545,9 +550,9 @@ import java.util.List;
         }
 
 
-        private class MaximizeAction extends AbstractAction {
+        protected class MaximizeAction extends AbstractAction {
             public MaximizeAction() {
-                super(UIManager.getString("DarculaTitlePane.maximizeTitle", getLocale()));
+                super(UIManager.getString("MaterialTitlePane.maximizeTitle", getLocale()));
             }
 
             public void actionPerformed(ActionEvent e) {
@@ -556,7 +561,7 @@ import java.util.List;
         }
 
 
-        private class TitlePaneLayout implements LayoutManager {
+        protected class TitlePaneLayout implements LayoutManager {
             public void addLayoutComponent(String name, Component c) {
             }
 
@@ -622,8 +627,7 @@ import java.util.List;
                 if (!leftToRight) x += buttonWidth;
 
                 if (getWindowDecorationStyle() == JRootPane.FRAME) {
-                    if (Toolkit.getDefaultToolkit().isFrameStateSupported(
-                            Frame.MAXIMIZED_BOTH)) {
+                    if (Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH)) {
                         if (myToggleButton.getParent() != null) {
                             spacing = 10;
                             x += leftToRight ? -spacing - buttonWidth : spacing;
@@ -647,7 +651,7 @@ import java.util.List;
         }
 
 
-        private class PropertyChangeHandler implements PropertyChangeListener {
+        protected class PropertyChangeHandler implements PropertyChangeListener {
             public void propertyChange(PropertyChangeEvent pce) {
                 String name = pce.getPropertyName();
 
@@ -664,11 +668,11 @@ import java.util.List;
                 else if ("title".equals(name)) {
                     repaint();
                 }
-                else if ("componentOrientation" == name) {
+                else if ("componentOrientation".equals(name)) {
                     revalidate();
                     repaint();
                 }
-                else if ("iconImage" == name) {
+                else if ("iconImage".equals(name)) {
                     updateSystemIcon();
                     revalidate();
                     repaint();
@@ -676,7 +680,7 @@ import java.util.List;
             }
         }
 
-        private void updateSystemIcon() {
+        protected void updateSystemIcon() {
             Window window = getWindow();
             if (window == null) {
                 mySystemIcon = null;

@@ -15,11 +15,6 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
 		setBorderSelectionColor (UIManager.getColor ("Tree.selectionBorderColor"));
 
-		setClosedIcon (UIManager.getIcon ("Tree.closedIcon"));
-		setOpenIcon (UIManager.getIcon ("Tree.openIcon"));
-		setLeafIcon (null);
-
-
 		setFont (UIManager.getFont ("Tree.font"));
 	}
 
@@ -43,6 +38,8 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	@Override
 	public Icon getDefaultLeafIcon() {
-		return null;
+		return UIManager.getIcon ("Tree.leafIcon");
 	}
+
+
 }

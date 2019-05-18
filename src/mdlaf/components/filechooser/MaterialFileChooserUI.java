@@ -25,11 +25,9 @@
 package mdlaf.components.filechooser;
 
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicFileChooserUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.Graphics;
 
@@ -47,12 +45,12 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JFileChooser fileChooser = (JFileChooser) c;
+
 		MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
 
 		ui.uninstallIcons (fileChooser);
 		ui.uninstallComponents (fileChooser);
 		ui.clearIconCache ();
-
 		ui.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
 		ui.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
 		ui.fileIcon = UIManager.getIcon("FileChooser[icons].file");

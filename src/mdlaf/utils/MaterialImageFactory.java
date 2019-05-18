@@ -64,7 +64,7 @@ public class MaterialImageFactory {
     public static final String WARNING = "/resources/imgs/warning.png";
     public static final String QUESTION = "/resources/imgs/question.png";
     public static final String INFORMATION = "/resources/imgs/information.png";
-    public static final String CLOSE_WINDOWS = "/resources/imgs/close-button.png";
+    public static final String CLOSE_WINDOWS_BLACK = "/resources/imgs/close-button.png";
     public static final String MAXIMIZE_WINDOWS = "/resources/imgs/maximize.png";
     public static final String MINIIMIZE_WINDOWS = "/resources/imgs/minimize.png";
     public static final String ICONIFY_WINDOWS = "/resources/imgs/restore.png";
@@ -84,6 +84,8 @@ public class MaterialImageFactory {
     public static final String LIST_WHITE = "/resources/imgs/white/list.png";
     public static final String NEW_FOLDER_WHITE = "/resources/imgs/white/new_folder.png";
     public static final String DETAILS_WHITE = "/resources/imgs/white/details.png";
+    public static final String CLOSE_WINDOWS_WHITE = "/resources/imgs/white/close-button.png";
+
 
     private Map<String, BufferedImage> cachaImage = new HashMap<>();
 

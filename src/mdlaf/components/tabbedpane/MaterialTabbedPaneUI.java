@@ -26,12 +26,11 @@ package mdlaf.components.tabbedpane;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
+public class MaterialTabbedPaneUI extends BasicTabbedPaneUIAdapter {
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialTabbedPaneUI();
@@ -65,7 +64,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         g.setColor(isSelected ? lightHighlight : tabPane.getBackground());
         g.fillRect(x, y, w, h);
-        if(isSelected){
+        if (isSelected) {
             paintLine(g, x, y, w, h);
         }
 
@@ -126,7 +125,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     }
 
-    private void paintLine(Graphics graphics, int x, int y, int w, int h) {
+    protected void paintLine(Graphics graphics, int x, int y, int w, int h) {
         if (graphics == null) {
             throw new IllegalArgumentException("Argument null");
         }
@@ -137,7 +136,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     /**
      * Event listener for mouse hover
      */
-    private class MouseHoverTab implements MouseMotionListener {
+    protected class MouseHoverTab implements MouseMotionListener {
 
         private Rectangle[] rectangles;
 

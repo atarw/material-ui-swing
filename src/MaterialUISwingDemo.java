@@ -27,13 +27,12 @@ public class MaterialUISwingDemo {
             e.printStackTrace();
         }
 
-        // basic instantiation of JFrame with various components, including a
-        // JMenuBar with some menus and items, as well as a button
         JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar");
         frame.setMinimumSize(new Dimension(600, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        /*For resolve issue*/
+        frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-        // configuring the JMenuBar as well as its menus and items
         JMenuBar bar = new JMenuBar();
         JMenu menu1 = new JMenu("Option 1 (Animated)");
         JMenu menu2 = new JMenu("Option 2 (Not animated)");
@@ -462,5 +461,7 @@ public class MaterialUISwingDemo {
         long lastUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         double megamemori = (lastUsedMem - beforeUsedMem) * 9.537 * Math.pow(10, -7);
         memoryOccupedNow.setText("Memory occuped after update: " + megamemori + " MB");
+
+        SwingUtilities.updateComponentTreeUI(frame);
     }
 }

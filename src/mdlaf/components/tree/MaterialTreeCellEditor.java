@@ -48,4 +48,6 @@ public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 	public Object getCellEditorValue () {
 		return textField.getText ();
 	}
+
+
 }

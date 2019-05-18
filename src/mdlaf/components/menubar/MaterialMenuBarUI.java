@@ -6,11 +6,10 @@ import javax.swing.JComponent;
 import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.awt.*;
 
-public class MaterialMenuBarUI extends MetalMenuBarUI	 {
+public class MaterialMenuBarUI extends MetalMenuBarUI{
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuBarUI ();

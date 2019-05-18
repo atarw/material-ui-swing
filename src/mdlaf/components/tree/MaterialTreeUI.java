@@ -8,6 +8,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 
 public class MaterialTreeUI extends BasicTreeUI {
@@ -44,18 +45,20 @@ public class MaterialTreeUI extends BasicTreeUI {
 		super.paint (g, c);
 	}
 
-	@Override
-	public Icon getExpandedIcon() {
-		return new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW));
-	}
-
-	@Override
-	public Icon getCollapsedIcon() {
-		return new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW));
-	}
 
 	@Override
 	protected void paintDropLine(Graphics g) {
 		super.paintDropLine(MaterialDrawingUtils.getAliasedGraphics(g));
 	}
+
+	@Override
+	protected void paintVerticalLine(Graphics g, JComponent c, int x, int top, int bottom) {
+		//do nothing
+	}
+
+	@Override
+	protected void paintHorizontalLine(Graphics g, JComponent c, int y, int left, int right) {
+		//do nothing
+	}
+
 }

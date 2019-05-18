@@ -1,3 +1,27 @@
+/*
+ * Copyright (c) 1997, 2015, Oracle and/or its affiliates. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 2 only, as
+ * published by the Free Software Foundation.  Oracle designates this
+ * particular file as subject to the "Classpath" exception as provided
+ * by Oracle in the LICENSE file that accompanied this code.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 2 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Please contact Oracle, 500 Oracle Parkway, Redwood Shores, CA 94065 USA
+ * or visit www.oracle.com if you need additional information or have any
+ * questions.
+ */
 package mdlaf.components.rootpane;
 
 import mdlaf.components.titlepane.MaterialTitlePaneUI;
@@ -14,11 +38,13 @@ import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
 /**
- * @author https://github.com/vincenzopalazzo
+ * @author Terry Kellerman
+ *  The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
+ *  @author https://github.com/vincenzopalazzo
  */
 public class MaterialRootPaneUI extends MetalRootPaneUI {
 
-    private static final String[] borderKeys = new String[] {
+    protected static final String[] borderKeys = new String[] {
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
             "RootPane.errorDialogBorder", "RootPane.colorChooserDialogBorder",
@@ -26,25 +52,25 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             "RootPane.warningDialogBorder"
     };
 
-    private Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+    protected Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
-    private enum CursorState {EXITED, ENTERED, NIL}
+    protected enum CursorState {EXITED, ENTERED, NIL}
 
-    private static final int CORNER_DRAG_WIDTH = 16;
+    protected static final int CORNER_DRAG_WIDTH = 16;
 
-    private static final int BORDER_DRAG_THICKNESS = 5;
+    protected static final int BORDER_DRAG_THICKNESS = 5;
 
-    private Window window;
+    protected Window window;
 
-    private JComponent titlePane;
+    protected JComponent titlePane;
 
-    private MouseInputListener mouseInputListener;
+    protected MouseInputListener mouseInputListener;
 
-    private LayoutManager layoutManager;
+    protected LayoutManager layoutManager;
 
-    private LayoutManager savedOldLayout;
+    protected LayoutManager savedOldLayout;
 
-    private JRootPane root;
+    protected JRootPane root;
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialRootPaneUI();
@@ -69,22 +95,11 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         root = null;
     }
 
-    void installBorder(JRootPane root) {
-        int style = root.getWindowDecorationStyle();
-
-        if (style == JRootPane.NONE) {
-            LookAndFeel.uninstallBorder(root);
-        }
-        else {
-            LookAndFeel.installBorder(root, borderKeys[style]);
-        }
-    }
-
-    private void uninstallBorder(JRootPane root) {
+    protected void uninstallBorder(JRootPane root) {
         LookAndFeel.uninstallBorder(root);
     }
 
-    private void installWindowListeners(JRootPane root, Component parent) {
+    protected void installWindowListeners(JRootPane root, Component parent) {
         if (parent instanceof Window) {
             window = (Window)parent;
         }
@@ -100,14 +115,14 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    private void uninstallWindowListeners(JRootPane root) {
+    protected void uninstallWindowListeners(JRootPane root) {
         if (window != null) {
             window.removeMouseListener(mouseInputListener);
             window.removeMouseMotionListener(mouseInputListener);
         }
     }
 
-    private void installLayout(JRootPane root) {
+    protected void installLayout(JRootPane root) {
         if (layoutManager == null) {
             layoutManager = createLayoutManager();
         }
@@ -115,14 +130,14 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         root.setLayout(layoutManager);
     }
 
-    private void uninstallLayout(JRootPane root) {
+    protected void uninstallLayout(JRootPane root) {
         if (savedOldLayout != null) {
             root.setLayout(savedOldLayout);
             savedOldLayout = null;
         }
     }
 
-    private void installClientDecorations(JRootPane root) {
+    protected void installClientDecorations(JRootPane root) {
         installBorder(root);
 
         JComponent titlePane = createTitlePane(root);
@@ -136,7 +151,7 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    private void uninstallClientDecorations(JRootPane root) {
+    protected void uninstallClientDecorations(JRootPane root) {
         uninstallBorder(root);
         uninstallWindowListeners(root);
         setTitlePane(root, null);
@@ -153,20 +168,20 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         window = null;
     }
 
-    private JComponent createTitlePane(JRootPane root) {
+    protected JComponent createTitlePane(JRootPane root) {
         return new MaterialTitlePaneUI(root);
     }
 
-    private MouseInputListener createWindowMouseInputListener(JRootPane root) {
+    protected MouseInputListener createWindowMouseInputListener(JRootPane root) {
         return new MaterialRootPaneUI.MouseInputHandler();
     }
 
-    private LayoutManager createLayoutManager() {
+    protected LayoutManager createLayoutManager() {
         return new MaterialLayaut();
 
     }
 
-    private void setTitlePane(JRootPane root, JComponent titlePane) {
+    protected void setTitlePane(JRootPane root, JComponent titlePane) {
         JLayeredPane layeredPane = root.getLayeredPane();
         JComponent oldTitlePane = getTitlePane();
 
@@ -181,11 +196,11 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         this.titlePane = titlePane;
     }
 
-    private JComponent getTitlePane() {
+    protected JComponent getTitlePane() {
         return titlePane;
     }
 
-    private JRootPane getRootPane() {
+    protected JRootPane getRootPane() {
         return root;
     }
 
@@ -220,7 +235,7 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         return;
     }
 
-    private static class MaterialLayaut implements LayoutManager2 {
+    protected static class MaterialLayaut implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
             Dimension cpd, mbd, tpd;
@@ -416,7 +431,7 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
      * Maps from positions to cursor type. Refer to calculateCorner and
      * calculatePosition for details of this.
      */
-    private static final int[] cursorMapping = new int[]
+    protected static final int[] cursorMapping = new int[]
             {       Cursor.NW_RESIZE_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.N_RESIZE_CURSOR,
                     Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR,
                     Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
@@ -445,7 +460,7 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
         }
     }
 
-    private class MouseInputHandler implements MouseInputListener {
+    protected class MouseInputHandler implements MouseInputListener {
 
         private boolean isMovingWindow;
         private int dragCursor;
@@ -733,6 +748,17 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
                 return 3;
             }
             return 2;
+        }
+    }
+
+    protected void installBorder(JRootPane root) {
+        int style = root.getWindowDecorationStyle();
+
+        if (style == JRootPane.NONE) {
+            LookAndFeel.uninstallBorder(root);
+        }
+        else {
+            LookAndFeel.installBorder(root, borderKeys[style]);
         }
     }
 }

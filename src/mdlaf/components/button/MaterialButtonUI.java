@@ -2,7 +2,6 @@ package mdlaf.components.button;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -58,7 +57,8 @@ public class MaterialButtonUI extends MetalButtonUI {
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        driveLine(g, (JButton) b);
+       // driveLine(g, (JButton) b);
+        paintFocusRing(g, (JButton) b);
     }
 
     @Override
@@ -79,8 +79,19 @@ public class MaterialButtonUI extends MetalButtonUI {
         g.drawLine(20 , (b.getHeight() / 2) + 10, b.getWidth() - 20, (b.getHeight() / 2) + 10);
     }
 
+    protected void paintFocusRing(Graphics g, JButton b){
+        Stroke dashed = new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f, new float[] { 0f, 3f }, 10.0f);
+        //Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setStroke(dashed);
+        g2.setColor(UIManager.getColor("Button[focus].color"));
+        g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, 7, 7);
+
+        g2.dispose();
+    }
+
     protected void paintStateButton(JComponent component, Graphics graphics) {
-        if(component == null){
+        if(component == null || graphics == null){
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
@@ -88,6 +99,4 @@ public class MaterialButtonUI extends MetalButtonUI {
             driveLine(graphics, b);
         }
     }
-
-
 }
