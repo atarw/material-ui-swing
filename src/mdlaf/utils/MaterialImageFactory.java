@@ -37,17 +37,19 @@ public class MaterialImageFactory {
 
     private static MaterialImageFactory SINGLETON;
 
+    private static final String PATH_RESOUSES = "/resources/imgs";
+
     //Icon black
-    public static final String RIGHT_ARROW = "/resources/imgs/right_arrow.png";
-    public static final String LEFT_ARROW = "/resources/imgs/left_arrow.png";
-    public static final String DOWN_ARROW = "/resources/imgs/down_arrow.png";
-    public static final String UP_ARROW = "/resources/imgs/up_arrow.png";
-    public static final String CHECKED_BLACK_BOX = "/resources/imgs/painted_checked_box.png";
-    public static final String UNCHECKED_BLACK_BOX = "/resources/imgs/unchecked_box.png";
-    public static final String RADIO_BUTTON_BLACK_ON = "/resources/imgs/radio_button_on.png";
-    public static final String RADIO_BUTTON_BLACK_OFF = "/resources/imgs/radio_button_off.png";
-    public static final String TOGGLE_BUTTON_BLACK_ON = "/resources/imgs/toggle_on.png";
-    public static final String TOGGLE_BUTTON_BLACK_OFF = "/resources/imgs/toggle_off.png";
+    public static final String RIGHT_ARROW = PATH_RESOUSES + "/right_arrow.png";
+    public static final String LEFT_ARROW = PATH_RESOUSES + "/left_arrow.png";
+    public static final String DOWN_ARROW = PATH_RESOUSES + "/down_arrow.png";
+    public static final String UP_ARROW = PATH_RESOUSES + "/up_arrow.png";
+    public static final String CHECKED_BLACK_BOX = PATH_RESOUSES + "/painted_checked_box.png";
+    public static final String UNCHECKED_BLACK_BOX = PATH_RESOUSES + "/unchecked_box.png";
+    public static final String RADIO_BUTTON_BLACK_ON = PATH_RESOUSES + "/radio_button_on.png";
+    public static final String RADIO_BUTTON_BLACK_OFF = PATH_RESOUSES + "/radio_button_off.png";
+    public static final String TOGGLE_BUTTON_BLACK_ON = PATH_RESOUSES + "/toggle_on.png";
+    public static final String TOGGLE_BUTTON_BLACK_OFF = PATH_RESOUSES + "/toggle_off.png";
     public static final String BACK_ARROW_BLACK = "/resources/imgs/back_arrow.png";
     public static final String COMPUTER_BLACK = "/resources/imgs/computer.png";
     public static final String FILE_BLACK = "/resources/imgs/file.png";
@@ -85,7 +87,8 @@ public class MaterialImageFactory {
     public static final String NEW_FOLDER_WHITE = "/resources/imgs/white/new_folder.png";
     public static final String DETAILS_WHITE = "/resources/imgs/white/details.png";
     public static final String CLOSE_WINDOWS_WHITE = "/resources/imgs/white/close-button.png";
-
+    public static final String TOGGLE_BUTTON_ON_WHITE = PATH_RESOUSES + "/white/toggle_on.png";
+    public static final String TOGGLE_BUTTON_OFF_WHITE = PATH_RESOUSES + "/white/toggle_off.png";
 
     private Map<String, BufferedImage> cachaImage = new HashMap<>();
 

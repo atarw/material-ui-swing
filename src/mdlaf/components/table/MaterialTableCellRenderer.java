@@ -30,5 +30,4 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 	public void setForeground(Color c) {
 		super.setForeground(UIManager.getColor("Table.foreground"));
 	}
-
 }

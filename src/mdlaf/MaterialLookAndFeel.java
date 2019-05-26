@@ -237,8 +237,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.mouseHoverEnabled", true);
 
         table.put("Label.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("Label.background", Color.WHITE);
-        table.put("Label.foreground", Color.BLACK);
+        table.put("Label.background", MaterialColors.WHITE);
+        table.put("Label.foreground", MaterialColors.BLACK);
+        table.put("Label.opaque", true);
+        table.put("Label[disabled].font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC));
+        table.put("Label[disabled].background", MaterialColors.WHITE);
+        table.put("Label[disabled].foreground", MaterialColors.COSMO_BLACK);
         table.put("Label.border", BorderFactory.createEmptyBorder());
 
         table.put("Menu.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
@@ -339,6 +343,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TableHeader.background", MaterialColors.GRAY_200);
         table.put("TableHeader.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("TableHeader.cellBorder", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        table.put("Table[CheckBox].checked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
+        table.put("Table[CheckBox].unchecked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
 
         table.put("TextArea.background", MaterialColors.GRAY_200);
         table.put("TextArea.border", BorderFactory.createEmptyBorder());
@@ -433,7 +439,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.background", MaterialColors.LIGHT_BLUE_500);
         table.put("TaskPane.foreground", MaterialColors.BLACK);
         table.put("TaskPane.borderColor", MaterialColors.LIGHT_BLUE_500);
-        table.put("TaskPane.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
+        table.put("TaskPane.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("TaskPane.contentBackground", MaterialColors.GRAY_50);
         table.put("TaskPane.yesCollapsed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED)));
         table.put("TaskPane.noCollapsed", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED)));

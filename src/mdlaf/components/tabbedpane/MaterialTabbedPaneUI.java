@@ -26,11 +26,15 @@ package mdlaf.components.tabbedpane;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public class MaterialTabbedPaneUI extends BasicTabbedPaneUIAdapter {
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
+public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialTabbedPaneUI();
@@ -115,7 +119,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUIAdapter {
         }
     }
 
-
     @Override
     protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
         super.paintTabArea(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, selectedIndex);
@@ -124,7 +127,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUIAdapter {
     @Override
     protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
         super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
-
+        if (isSelected) {
+            paintLine(g, textRect.x - 10, textRect.y, textRect.width + 18, textRect.height);
+        }
     }
 
     protected void paintLine(Graphics graphics, int x, int y, int w, int h) {
@@ -154,6 +159,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUIAdapter {
         public void mouseMoved(MouseEvent e) {
             JComponent mouseGenerate = (JComponent) e.getSource();
             if (!mouseGenerate.isEnabled()) {
+                return;
+            }
+            if(mouseGenerate.getCursor().equals(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR))){
                 return;
             }
             Point point = e.getPoint();

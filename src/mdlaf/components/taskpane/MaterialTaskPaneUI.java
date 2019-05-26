@@ -100,8 +100,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      * Action change icon on click
      * @author @author https://github.com/vincenzopalazzo
      */
-
-    private class ChangeIconOnClick implements MouseListener {
+    protected class ChangeIconOnClick implements MouseListener {
 
         JXTaskPane taskPane;
 

@@ -31,8 +31,9 @@ public class MaterialUISwingDemo {
         JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar");
         frame.setMinimumSize(new Dimension(600, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        /*For resolve issue*/
-        frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        //Test for fix the issue https://github.com/vincenzopalazzo/material-ui-swing/projects/1#card-21599924
+        //frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         JMenuBar bar = new JMenuBar();
         JMenu menu1 = new JMenu("Option 1 (Animated)");
@@ -193,7 +194,6 @@ public class MaterialUISwingDemo {
         tree.setEditable(true);
 
         content.add(tree);
-
         JScrollPane sp = new JScrollPane(content);
         sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -452,6 +452,11 @@ public class MaterialUISwingDemo {
         buttonOptionPane.setAction(new OpenOptionPane());
         panel4.add(buttonOptionPane);
         panel4.add(listDay);
+
+        //Test label disable
+        JLabel labelDisable = new JLabel("I'm disabled");
+        panel4.add(labelDisable);
+        labelDisable.setEnabled(false);
 
         tp.addTab("Panel 4", panel4);
         frame.pack();

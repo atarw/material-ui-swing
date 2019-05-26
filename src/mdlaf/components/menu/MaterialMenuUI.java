@@ -1,6 +1,7 @@
 package mdlaf.components.menu;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -32,7 +33,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menu.setForeground (UIManager.getColor ("Menu.foreground"));
 		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO adding into master
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO testing
 			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.black));
 		}
 
@@ -43,4 +44,55 @@ public class MaterialMenuUI extends BasicMenuUI {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
+	@Override
+	protected ChangeListener createChangeListener(JComponent c) {
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+			c.addMouseListener(new MouseHover());
+		}
+		return super.createChangeListener(c);
+	}
+
+	/**
+	 * @author https://github.com/vincenzopalazzo
+	 */
+	private class MouseHover implements MouseListener {
+
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+
+			if(e.getSource() instanceof  JMenu){
+				JMenu menu = (JMenu) e.getSource();
+				if(menu.isEnabled()){
+					menu.setSelected(true);
+				}
+
+			}
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			if(e.getSource() instanceof  JMenu){
+				JMenu menu = (JMenu) e.getSource();
+				if(menu.isEnabled()){
+					menu.setSelected(false);
+				}
+
+			}
+		}
+	}
 }
