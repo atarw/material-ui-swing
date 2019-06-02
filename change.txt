@@ -1,6 +1,8 @@
 ## Fixing
-- Reverse BasicTablePaneAdapter supported, this solution has more bug
-- Added support to JLabel disabled
-- Added skill for change icon for check box into JTable
-- Try fix the change cursor into JFrame
-- Added support tu RadioButton icon White
+- Fixed problem paint JLabel
+- Fixed problem to JTable paint custom color into header
+- Fixed problem into JTree background and foreground color
+- Fixed problem into JTaskPane color background was strange
+- Fixed position line into JTabbledPane
+- Fixed color strange into JComboBox
+- Fixed color disable text JCheckBox

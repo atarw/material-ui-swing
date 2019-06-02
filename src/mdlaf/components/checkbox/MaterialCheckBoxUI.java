@@ -1,18 +1,17 @@
 package mdlaf.components.checkbox;
 
-import mdlaf.animation.MaterialUIMovement;
-import mdlaf.components.combobox.MaterialComboBoxRenderer;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialFontFactory;
-import mdlaf.utils.MaterialImageFactory;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
+import javax.swing.plaf.metal.MetalCheckBoxUI;
+import javax.swing.plaf.metal.MetalLabelUI;
 import java.awt.*;
 
 //TODO cambio colore icone combo box
-public class MaterialCheckBoxUI extends BasicCheckBoxUI {
+public class MaterialCheckBoxUI extends MetalCheckBoxUI {
+
+	private Color disabledColorText;
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialCheckBoxUI ();
@@ -30,10 +29,18 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		checkBox.setSelectedIcon (UIManager.getIcon ("CheckBox.selectedIcon"));
 		checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+		disabledColorText = UIManager.getColor("CheckBox[disabled].foreground");
 	}
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
+
+	//TODO support change icon for future
+	@Override
+	protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
+		//super.paintFocus(g, textRect, size);
+	}
+
 }

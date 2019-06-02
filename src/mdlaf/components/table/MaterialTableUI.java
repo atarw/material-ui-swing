@@ -26,6 +26,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setOpaque (false);
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
 		table.setBackground (UIManager.getColor ("Table.background"));
+		table.setForeground (UIManager.getColor ("Table.foreground"));
 		table.setFont (UIManager.getFont ("Table.font"));
 		table.setBorder (UIManager.getBorder ("Table.border"));
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
@@ -53,18 +54,31 @@ public class MaterialTableUI extends BasicTableUI {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
+	@Override
+	public void update(Graphics g, JComponent c) {
+		super.update(g, c);
+		settingIconToTable();
+	}
+
 	/**
 	 * This method do possibility change icon into JTable, you setting a icon with this constant input
 	 * UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
 	 */
 	protected void settingIconToTable(){
 
+		Icon unchecked = UIManager.getIcon("Table[CheckBox].unchecked");
+		Icon checked = UIManager.getIcon("Table[CheckBox].checked");
+
+		if(checked == null || unchecked == null){
+			return;
+		}
+
 		JCheckBox check = (JCheckBox) table.getDefaultRenderer(Boolean.class);
-		check.setIcon(UIManager.getIcon("Table[CheckBox].unchecked"));
-		check.setSelectedIcon(UIManager.getIcon("Table[CheckBox].checked"));
+		check.setIcon(unchecked);
+		check.setSelectedIcon(checked);
 
 		DefaultCellEditor editor = (DefaultCellEditor) table.getDefaultEditor(Boolean.class);
-		((JCheckBox)editor.getComponent()).setIcon(UIManager.getIcon("Table[CheckBox].unchecked"));
-		((JCheckBox)editor.getComponent()).setSelectedIcon(UIManager.getIcon("Table[CheckBox].checked"));
+		((JCheckBox)editor.getComponent()).setIcon(unchecked);
+		((JCheckBox)editor.getComponent()).setSelectedIcon(checked);
 	}
 }

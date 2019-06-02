@@ -30,10 +30,10 @@ public class MaterialButtonUI extends MetalButtonUI {
         background = UIManager.getColor("Button.background");
         button.setBackground(background);
         button.setForeground(foreground);
-        button.setFont(UIManager.getFont("Button.font"));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
+
     }
 
     @Override

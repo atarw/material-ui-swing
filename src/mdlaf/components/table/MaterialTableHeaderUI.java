@@ -2,7 +2,7 @@ package mdlaf.components.table;
 
 import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableHeaderUI;
 import javax.swing.table.JTableHeader;
@@ -20,6 +20,10 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 
 		JTableHeader header = (JTableHeader) c;
 		header.setDefaultRenderer (new MaterialTableHeaderCellRenderer ());
+		header.setBackground(UIManager.getColor("TableHeader.background"));
+		header.setForeground(UIManager.getColor("TableHeader.foreground"));
+		header.setFont(UIManager.getFont("TableHeader.font"));
+		header.setBorder(UIManager.getBorder("TableHeader.border"));
 	}
 
 	@Override

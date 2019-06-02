@@ -4,11 +4,11 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.metal.MetalComboBoxUI;
 import java.awt.*;
 
 /**
@@ -43,7 +43,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		else {
 			button = new BasicArrowButton (SwingConstants.SOUTH);
 		}
-		MaterialManagerListener.removeAllMouseListener(button);
+		MaterialManagerListener.removeAllMaterialMouseListener(button);
 		button.setOpaque (true);
 		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
 		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){
@@ -62,4 +62,5 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 	protected ListCellRenderer createRenderer() {
 		return new MaterialComboBoxRenderer();
 	}
+
 }

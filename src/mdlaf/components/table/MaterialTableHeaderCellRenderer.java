@@ -15,6 +15,7 @@ public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 		component.setBorder (UIManager.getBorder ("TableHeader.cellBorder"));
 		component.setFont (UIManager.getFont ("TableHeader.font"));
 		component.setBackground (UIManager.getColor ("TableHeader.background"));
+		component.setForeground(UIManager.getColor("TableHeader.foreground"));
 
 		this.setHorizontalAlignment (SwingConstants.CENTER);
 		this.setVerticalAlignment (SwingConstants.CENTER);

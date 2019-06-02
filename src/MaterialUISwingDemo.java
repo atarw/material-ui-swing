@@ -288,7 +288,6 @@ public class MaterialUISwingDemo {
         JXTaskPane jxTaskPane = new JXTaskPane();
         jxTaskPane.setTitle("Material UI memory");
         jxTaskPane.setOpaque(false);
-
         JLabel memoryOccupedNow = new JLabel();
 
         jxTaskPane.add(memoryOccupedNow);
@@ -457,6 +456,37 @@ public class MaterialUISwingDemo {
         JLabel labelDisable = new JLabel("I'm disabled");
         panel4.add(labelDisable);
         labelDisable.setEnabled(false);
+
+        JButton buttonEnableLabel = new JButton("Enable lable");
+        buttonEnableLabel.setBackground(MaterialColors.COSMO_BLACK);
+        buttonEnableLabel.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
+
+        MaterialManagerListener.removeAllMaterialMouseListener(buttonEnableLabel);
+        buttonEnableLabel.addMouseListener(MaterialUIMovement.getMovement(buttonEnableLabel, MaterialColors.COSMO_DARK_GRAY));
+
+        class ActionEnableLabel extends AbstractAction{
+
+            public ActionEnableLabel() {
+                putValue(Action.NAME, "Enable label");
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(labelDisable.isEnabled()){
+                    labelDisable.setEnabled(false);
+                    return;
+                }
+                labelDisable.setEnabled(true);
+            }
+        }
+
+        buttonEnableLabel.setAction(new ActionEnableLabel());
+
+        panel4.add(buttonEnableLabel);
+
+        JCheckBox disabledCheckBox = new JCheckBox("I'm Disabled");
+        disabledCheckBox.setEnabled(false);
+        panel4.add(disabledCheckBox);
 
         tp.addTab("Panel 4", panel4);
         frame.pack();

@@ -1,13 +1,13 @@
 package mdlaf.components.label;
 
-import mdlaf.utils.MaterialDrawingUtils;
+import sun.swing.SwingUtilities2;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicLabelUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
@@ -23,7 +23,7 @@ public class MaterialLabelUI extends BasicLabelUI {
 		super.installUI (c);
 
 		JLabel label = (JLabel) c;
-		label.setOpaque (true);
+		label.setOpaque (UIManager.getBoolean("Label.opaque"));
 		label.setFont (UIManager.getFont ("Label.font"));
 		label.setBackground (UIManager.getColor ("Label.background"));
 		label.setForeground (UIManager.getColor ("Label.foreground"));
@@ -32,26 +32,13 @@ public class MaterialLabelUI extends BasicLabelUI {
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
-	}
-
-	@Override
-	protected void paintEnabledText(JLabel l, Graphics g, String s, int textX, int textY) {
-		super.paintEnabledText(l, g, s, textX, textY);
-
-		l.setOpaque (UIManager.getBoolean("Label.opaque"));
-		l.setFont (UIManager.getFont ("Label.font"));
-		l.setBackground (UIManager.getColor ("Label.background"));
-		l.setForeground (UIManager.getColor ("Label.foreground"));
-		l.setBorder (UIManager.getBorder ("Label.border"));
+		super.paint (g, c);
 	}
 
 	@Override
 	protected void paintDisabledText(JLabel l, Graphics g, String s, int textX, int textY) {
-		super.paintDisabledText(l, g, s, textX, textY);
-
-		l.setForeground(UIManager.getColor("Label[disabled].foreground"));
-		l.setBackground(UIManager.getColor("Label[disabled].background"));
-		l.setFont(UIManager.getFont("Label[disabled].font"));
+		int mnemIndex = l.getDisplayedMnemonicIndex();
+		g.setColor(UIManager.getColor("Label.disabledForeground"));
+		SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
 	}
 }

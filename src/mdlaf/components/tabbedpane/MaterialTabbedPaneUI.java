@@ -137,8 +137,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             throw new IllegalArgumentException("Argument null");
         }
         graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
-        graphics.fillRoundRect(x + 6, y + 19, w - 12, y - 3, 10, 10);
+        graphics.fillRoundRect(x + 6, y + 17, w - 12, y - 3, 10, 10);
     }
+
+
 
     /**
      * Event listener for mouse hover

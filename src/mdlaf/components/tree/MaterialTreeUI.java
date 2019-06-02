@@ -29,6 +29,8 @@ public class MaterialTreeUI extends BasicTreeUI {
 		tree.setCellEditor (editor);
 
 		tree.setFont (UIManager.getFont ("Tree.font"));
+		tree.setForeground (UIManager.getColor ("Tree.foreground"));
+		tree.setBackground (UIManager.getColor ("Tree.background"));
 		tree.setRowHeight (0);
 		tree.setInvokesStopCellEditing (true);
 
