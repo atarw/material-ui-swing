@@ -6,14 +6,14 @@ import javax.swing.JComponent;
 import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicRadioButtonUI;
+import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
 
 /*
  * Contributed by https://github.com/downToHell
  * */
 //TODO cambio colore del radio button.
-public class MaterialRadioButtonUI extends BasicRadioButtonUI {
+public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialRadioButtonUI ();
@@ -22,7 +22,6 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-
 		JRadioButton radioButton = (JRadioButton) c;
 		radioButton.setFont (UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
@@ -35,5 +34,10 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+	}
+
+	@Override
+	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
+		//do nothing
 	}
 }

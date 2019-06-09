@@ -3,9 +3,7 @@ package mdlaf.components.checkbox;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicCheckBoxUI;
 import javax.swing.plaf.metal.MetalCheckBoxUI;
-import javax.swing.plaf.metal.MetalLabelUI;
 import java.awt.*;
 
 //TODO cambio colore icone combo box

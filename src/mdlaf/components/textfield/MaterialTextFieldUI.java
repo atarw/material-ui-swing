@@ -23,7 +23,10 @@
  */
 package mdlaf.components.textfield;
 
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import sun.java2d.SunGraphics2D;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
@@ -40,6 +43,7 @@ import java.beans.PropertyChangeListener;
 public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
 
     private boolean drawLine;
+    private Color background;
     private Color activeBackground;
     private Color activeForeground;
     private Color inactiveBackground;
@@ -90,6 +94,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
     }
 
     private void installMyDefaults() {
+        this.background = UIManager.getColor("TextField.background");
         this.activeBackground = UIManager.getColor("TextField.selectionBackground");
         this.activeForeground = UIManager.getColor("TextField.selectionForeground");
         this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
@@ -117,19 +122,15 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         changeColorOnFocus(false);
     }
 
+    /**
+     * Paint line when the component is focused
+     * @param g
+     */
     @Override
     public void paintSafely(Graphics g) {
-        JTextField c = (JTextField) getComponent();
         super.paintSafely(g);
-        if (drawLine) {
-            int x = c.getInsets().left;
-            int y = c.getInsets().top;
-            int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
-            g.setColor(c.getSelectionColor());
 
-            g.fillRect(x, c.getHeight() - y, w, 1);
-        }
-
+        paintLine(MaterialColors.LIGHT_BLUE_400, g);
     }
 
     @Override
@@ -164,7 +165,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground){
         if(newColor == null){
-            throw new IllegalArgumentException("The inpur argument is null");
+            throw new IllegalArgumentException("The input argument is null");
         }
         if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
             this.activeForeground = newColor;
@@ -190,6 +191,22 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
         }
         if(c.getGraphics() != null){
             c.paint(c.getGraphics());
+        }
+    }
+
+    protected void paintLine(Color color, Graphics graphics){
+        if(color == null || graphics == null){
+            throw new IllegalArgumentException("Color null");
+        }
+        JTextField c = (JTextField) getComponent();
+
+        if (drawLine) {
+            int x = c.getInsets().left;
+            int y = c.getInsets().top;
+            int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
+            graphics.setColor(c.getSelectionColor());
+
+            graphics.fillRect(x, c.getHeight() - y, w, 1);
         }
     }
 }

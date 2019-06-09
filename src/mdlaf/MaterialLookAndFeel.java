@@ -49,6 +49,7 @@ import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.separator.MaterialSeparatorUI;
 import mdlaf.components.slider.MaterialSliderUI;
 import mdlaf.components.spinner.MaterialSpinnerUI;
+import mdlaf.components.splitpane.MaterialSplitPaneUI;
 import mdlaf.components.tabbedpane.MaterialTabbedPaneUI;
 import mdlaf.components.table.MaterialTableHeaderUI;
 import mdlaf.components.table.MaterialTableUI;
@@ -60,7 +61,6 @@ import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
-import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.*;
 import sun.awt.SunToolkit;
 
@@ -116,6 +116,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String editorPane = MaterialEditorPaneUI.class.getCanonicalName();
     private static final String rootPane = MaterialRootPaneUI.class.getCanonicalName();
     private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
+    //TODO not allineated this compoent with master
+    private static final String splitPaneUI = MaterialSplitPaneUI.class.getCanonicalName();
 
     public MaterialLookAndFeel() {
         try {
@@ -194,6 +196,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrameUI", internalFrameUI);
         table.put("RootPaneUI", rootPane);
         table.put("OptionPaneUI", optionPaneUI);
+        table.put("SplitPaneUI", splitPaneUI);
 
         // java swingx
         table.put("swingx/TaskPaneUI", taskPaneUI);
@@ -284,6 +287,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.foreground", Color.BLACK);
         table.put("RadioButton.icon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF)));
         table.put("RadioButton.selectedIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON)));
+        table.put("RadioButton.disabledText", MaterialColors.COSMO_STRONG_GRAY);
 
         table.put("Spinner.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Spinner.background", Color.WHITE);
@@ -312,15 +316,17 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ScrollPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
 
         table.put("Slider.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("Slider.background", Color.WHITE);
+        table.put("Slider.background", MaterialColors.WHITE);
         table.put("Slider.foreground", MaterialColors.LIGHT_BLUE_400);
-        table.put("Slider.trackColor", Color.BLACK);
+        table.put("Slider.trackColor", MaterialColors.BLACK);
+        table.put("Slider[halo].color", MaterialColors.bleach (MaterialColors.LIGHT_BLUE_400, 0.5f)); //TODO new fix
         table.put("Slider.border", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(20, 20, 20, 20)));
 
         table.put("SplitPane.border", BorderFactory.createEmptyBorder());
         table.put("SplitPane.background", MaterialColors.WHITE);
         table.put("SplitPane.dividerSize", 5);
         table.put("SplitPaneDivider.border", BorderFactory.createEmptyBorder());
+        table.put("SplitPaneDivider.background",MaterialColors.WHITE);
 
         table.put("TabbedPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
         table.put("TabbedPane.background", Color.WHITE);
@@ -357,7 +363,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
         table.put("ToggleButton.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
         table.put("ToggleButton.background", MaterialColors.WHITE);
+        table.put("ToggleButton.select", MaterialColors.WHITE);
         table.put("ToggleButton.foreground", MaterialColors.BLACK);
+        table.put("ToggleButton.disabledText", MaterialColors.COSMO_STRONG_GRAY);
         table.put("ToggleButton.icon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF)));
         table.put("ToggleButton.selectedIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON)));
 
@@ -402,14 +410,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("TextPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("TextPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC));
-        table.put("TextPane.focusInputMap", multilineInputMap);
+        //table.put("TextPane.focusInputMap", multilineInputMap);
 
         table.put("EditorPane.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("EditorPane.background", MaterialColors.GRAY_50);
         table.put("EditorPane.selectionBackground", MaterialColors.LIGHT_BLUE_200);
         table.put("EditorPane.inactiveForeground", MaterialColors.GRAY_500);
         table.put("EditorPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("EditorPane.focusInputMap", multilineInputMap);
+        //table.put("EditorPane.focusInputMap", multilineInputMap);
 
         table.put("Separator.background", MaterialColors.GRAY_300);
         table.put("Separator.foreground", MaterialColors.GRAY_300);
@@ -425,7 +433,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("TextField.selectionForeground", MaterialColors.BLACK);
         table.put("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
-        table.put("TextField.focusInputMap", fieldInputMap); //install shortcut
+        //table.put("TextField.focusInputMap", fieldInputMap); //deprecated
 
         table.put("PasswordField.background", MaterialColors.GRAY_100);
         table.put("PasswordField.foreground", MaterialColors.BLACK);
@@ -434,7 +442,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("PasswordField.selectionForeground", MaterialColors.BLACK);
         table.put("PasswordField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
-        table.put("PasswordField.focusInputMap", fieldInputMap);
+        //table.put("PasswordField.focusInputMap", fieldInputMap);
 
         table.put("TitledBorder.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("TitledBorder.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM));
@@ -554,6 +562,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     }
 
     /*Shortcut for filed input*/
+    @Deprecated
     Object fieldInputMap = new UIDefaults.LazyInputMap(new Object[]{
             "ctrl C", DefaultEditorKit.copyAction,
             "ctrl V", DefaultEditorKit.pasteAction,
@@ -598,6 +607,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
 
     /*Shortcut for multiline input*/
+    @Deprecated
     Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[]{
             "ctrl C", DefaultEditorKit.copyAction,
             "ctrl V", DefaultEditorKit.pasteAction,

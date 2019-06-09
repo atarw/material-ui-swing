@@ -488,6 +488,10 @@ public class MaterialUISwingDemo {
         disabledCheckBox.setEnabled(false);
         panel4.add(disabledCheckBox);
 
+        JRadioButton radioDisabled = new JRadioButton("radio disabled");
+        radioDisabled.setEnabled(false);
+        panel4.add(radioDisabled);
+
         tp.addTab("Panel 4", panel4);
         frame.pack();
         frame.setVisible(true);

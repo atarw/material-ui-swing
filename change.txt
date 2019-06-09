@@ -1,8 +1,3 @@
 ## Fixing
-- Fixed problem paint JLabel
-- Fixed problem to JTable paint custom color into header
-- Fixed problem into JTree background and foreground color
-- Fixed problem into JTaskPane color background was strange
-- Fixed position line into JTabbledPane
-- Fixed color strange into JComboBox
-- Fixed color disable text JCheckBox
+- Added support to JSplitPane
+- Fixed issue jToggleButton disabled

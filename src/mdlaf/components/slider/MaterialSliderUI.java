@@ -61,7 +61,8 @@ public class MaterialSliderUI extends BasicSliderUI {
 		int cy = thumbRect.y + thumbRect.height / 2;
 
 		if (isDragging ()) {
-			g.setColor (MaterialColors.bleach (slider.getForeground (), 0.5f));
+			//g.setColor (MaterialColors.bleach (UIManager.getColor("Slider[halo].color"), 0.5f));
+			g.setColor (UIManager.getColor("Slider[halo].color"));
 			drawCircle (g, cx, cy, DRAG_THUMB_RADIUS);
 		}
 
