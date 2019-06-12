@@ -1,3 +1,29 @@
 ## Fixing
+- Fix distance list and details in jFileChooser
+- Fixed Problem Cursor frame with addictional control into JTabbedPan for mouse hover
+- Added Adapter BasicTabbedPaneUI and add support to tabbedpaneUI style material
+- Add bold into JDialog Title when it's pain with style material
+- Added support tu JTree style material
+- Added support to difference tra button focusable and default
+- Add button exit on JDialog
+- add new method into MaterialManagerListener now remove only listener MaterialTimer
+- Added support to JLabel disabled
+- Added skill for change icon for check box into JTable
+- Added line into tab for tabbedpane
+- Add button focusable style
+- Try fix the change cursor into JFrame
+- Reverse BasicTablePaneAdapter support, this solution has more bug
+- Added support to JLabel disabled
+- Added skill for change icon for check box into JTable
+- Try to fix the change cursor into JFrame
+- Fixed problem paint JLabel
+- Fixed problem to JTable paint custom color into header
+- Fixed problem into JTree background and foreground color
+- Fixed problem into JTaskPane color background was strange
+- Fixed position line into JTabbledPane
+- Fixed color strange into JComboBox
+- Fixed color disable text JCheckBox
 - Added support to JSplitPane
 - Fixed issue jToggleButton disabled
+- added const "Table[row].height"
+- Fixed the color into JTable customize 

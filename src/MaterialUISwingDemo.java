@@ -388,6 +388,8 @@ public class MaterialUISwingDemo {
 
         buttonQuestion.setAction(new QuesuionMessage());
 
+        frame.getRootPane().setDefaultButton(buttonQuestion);
+
         JButton buttonWarning = new JButton();
         buttonWarning.setOpaque(false);
         buttonWarning.setForeground(MaterialColors.COSMO_LIGTH_GRAY);

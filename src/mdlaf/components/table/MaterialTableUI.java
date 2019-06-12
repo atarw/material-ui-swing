@@ -23,7 +23,7 @@ public class MaterialTableUI extends BasicTableUI {
 		super.installUI (c);
 
 		table = (JTable) c;
-		table.setOpaque (false);
+		table.setOpaque (UIManager.getBoolean("Table.opaque"));
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
 		table.setBackground (UIManager.getColor ("Table.background"));
 		table.setForeground (UIManager.getColor ("Table.foreground"));
@@ -32,7 +32,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 		table.setFocusable (UIManager.getBoolean ("Table.focusable"));
-
+		table.setRowHeight(UIManager.getInt("Table[row].height"));
 		table.getTableHeader ().setResizingAllowed (true);
 		int rowHeight = UIManager.getInt ("Table.rowHeight");
 		if (rowHeight > 0) {

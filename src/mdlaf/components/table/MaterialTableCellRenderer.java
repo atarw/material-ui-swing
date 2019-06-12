@@ -12,22 +12,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 		// hides yellow selection highlight
 		this.setHorizontalAlignment (SwingConstants.CENTER);
 		this.setVerticalAlignment (SwingConstants.CENTER);
-		component.setForeground(UIManager.getColor("Table.foreground"));
+		//component.setForeground(UIManager.getColor("Table.foreground"));
 		return component;
-	}
-
-	@Override
-	public void repaint() {
-		super.repaint();
-	}
-
-	@Override
-	public void setBackground(Color c) {
-		super.setBackground(UIManager.getColor("Table.background"));
-	}
-
-	@Override
-	public void setForeground(Color c) {
-		super.setForeground(UIManager.getColor("Table.foreground"));
 	}
 }

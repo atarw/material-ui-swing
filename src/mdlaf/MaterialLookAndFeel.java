@@ -347,13 +347,16 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("Table.gridColor", MaterialColors.GRAY_200);
         table.put("Table.focusable", false);
+        table.put("Table.opaque", false);
+        table.put("Table[row].height", 3);
+        table.put("Table[CheckBox].checked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
+        table.put("Table[CheckBox].unchecked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
+
         table.put("TableHeader.background", MaterialColors.GRAY_200);
         table.put("TableHeader.foreground", MaterialColors.BLACK);
         table.put("TableHeader.border", BorderFactory.createEmptyBorder());
         table.put("TableHeader.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("TableHeader.cellBorder", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        table.put("Table[CheckBox].checked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
-        table.put("Table[CheckBox].unchecked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
 
         table.put("TextArea.background", MaterialColors.GRAY_200);
         table.put("TextArea.border", BorderFactory.createEmptyBorder());
