@@ -63,12 +63,10 @@ import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
 import mdlaf.utils.*;
 import sun.awt.SunToolkit;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
@@ -205,14 +203,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     @Override
     protected void initComponentDefaults(UIDefaults table) {
         super.initComponentDefaults(table);
-
         table.put("Button.highlight", MaterialColors.GRAY_400);
         table.put("Button.opaque", false);
         table.put("Button.border", BorderFactory.createEmptyBorder(7, 17, 7, 17));
         table.put("Button.background", MaterialColors.GRAY_200);
-        table.put("Button[Default].background", MaterialColors.GRAY_400);
+        table.put("Button[Default].background", MaterialColors.bleach(MaterialColors.LIGHT_BLUE_500, 0.2f));
         table.put("Button.foreground", Color.BLACK);
-        table.put("Button[Default].foreground", Color.BLACK);
+        table.put("Button[Default].foreground", Color.WHITE);
         table.put("Button.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
@@ -228,16 +225,19 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.selectedIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
 
         table.put("ComboBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("ComboBox.background", Color.WHITE);
-        table.put("ComboBox.foreground", Color.BLACK);
-        table.put("ComboBox.border", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(0, 5, 0, 0)));
-        table.put("ComboBox.buttonBackground", MaterialColors.GRAY_300);
-        table.put("ComboBox.disabledBackground", MaterialColors.GRAY_500);
+        table.put("ComboBox.background", MaterialColors.WHITE);
+        table.put("ComboBox.foreground", MaterialColors.BLACK);
+        table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK));
+        table.put("ComboBox.buttonBackground", MaterialColors.WHITE);
+        table.put("ComboBox[button].border", BorderFactory.createLineBorder(MaterialColors.WHITE));
+        table.put("ComboBox.disabledBackground", MaterialColors.WHITE);
         table.put("ComboBox.disabledForeground", MaterialColors.GRAY_900);
         table.put("ComboBox.selectionBackground", Color.WHITE);
         table.put("ComboBox.selectionForeground", Color.BLACK);
         table.put("ComboBox.selectedInDropDownBackground", MaterialColors.GRAY_200);
-        table.put("ComboBox.mouseHoverColor", MaterialColors.GRAY_400);
+        table.put("ComboBox.mouseHoverColor", MaterialColors.WHITE);
+        table.put("ComboBox.unfocusColor", MaterialColors.COSMO_BLACK);
+        table.put("ComboBox.focusColor", MaterialColors.LIGHT_BLUE_500);
         table.put("ComboBox.mouseHoverEnabled", true);
 
         table.put("Label.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
@@ -339,7 +339,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane[focus].colorLine", MaterialColors.COSMO_BLUE);
         table.put("TabbedPane[MouseHover].enable",true);
 
-        table.put("Table.selectionBackground", MaterialColors.GRAY_100);
+        table.put("Table.selectionBackground", MaterialColors.COSMO_LIGTH_BLUE);
         table.put("Table.selectionForeground", MaterialColors.BLACK);
         table.put("Table.background", MaterialColors.WHITE);
         table.put("Table.foreground", MaterialColors.BLACK);
@@ -348,6 +348,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table.gridColor", MaterialColors.GRAY_200);
         table.put("Table.focusable", false);
         table.put("Table.opaque", false);
+        table.put("Table.alternateRowColor", true);
+        table.put("Table.alternateRowBackground", MaterialColors.GRAY_300);
         table.put("Table[row].height", 3);
         table.put("Table[CheckBox].checked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
         table.put("Table[CheckBox].unchecked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
@@ -533,6 +535,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FileChooser[icons].newFolder", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_BLACK)));
         table.put("FileChooser[icons].upFolder", new ImageIcon (MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_BLACK)));
 
+        table.put("ProgressBar.border", MaterialBorders.LIGHT_LINE_BORDER);
+        table.put("ProgressBar.background", MaterialColors.COSMO_LIGTH_BLUE);
+        table.put("ProgressBar.foreground", MaterialColors.COSMO_BLUE);
+        //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
+        table.put("ProgressBar.verticalSize", 1);
     }
 
     @Override
@@ -563,117 +570,4 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         }
         return ActionEvent.ALT_MASK;
     }
-
-    /*Shortcut for filed input*/
-    @Deprecated
-    Object fieldInputMap = new UIDefaults.LazyInputMap(new Object[]{
-            "ctrl C", DefaultEditorKit.copyAction,
-            "ctrl V", DefaultEditorKit.pasteAction,
-            "ctrl X", DefaultEditorKit.cutAction,
-            "COPY", DefaultEditorKit.copyAction,
-            "PASTE", DefaultEditorKit.pasteAction,
-            "CUT", DefaultEditorKit.cutAction,
-            "control INSERT", DefaultEditorKit.copyAction,
-            "shift INSERT", DefaultEditorKit.pasteAction,
-            "shift DELETE", DefaultEditorKit.cutAction,
-            "shift LEFT", DefaultEditorKit.selectionBackwardAction,
-            "shift KP_LEFT", DefaultEditorKit.selectionBackwardAction,
-            "shift RIGHT", DefaultEditorKit.selectionForwardAction,
-            "shift KP_RIGHT", DefaultEditorKit.selectionForwardAction,
-            "ctrl LEFT", DefaultEditorKit.previousWordAction,
-            "ctrl KP_LEFT", DefaultEditorKit.previousWordAction,
-            "ctrl RIGHT", DefaultEditorKit.nextWordAction,
-            "ctrl KP_RIGHT", DefaultEditorKit.nextWordAction,
-            "ctrl shift LEFT", DefaultEditorKit.selectionPreviousWordAction,
-            "ctrl shift KP_LEFT", DefaultEditorKit.selectionPreviousWordAction,
-            "ctrl shift RIGHT", DefaultEditorKit.selectionNextWordAction,
-            "ctrl shift KP_RIGHT", DefaultEditorKit.selectionNextWordAction,
-            "ctrl A", DefaultEditorKit.selectAllAction,
-            "HOME", DefaultEditorKit.beginLineAction,
-            "END", DefaultEditorKit.endLineAction,
-            "shift HOME", DefaultEditorKit.selectionBeginLineAction,
-            "shift END", DefaultEditorKit.selectionEndLineAction,
-            "BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
-            "shift BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
-            "ctrl H", DefaultEditorKit.deletePrevCharAction,
-            "DELETE", DefaultEditorKit.deleteNextCharAction,
-            "ctrl DELETE", DefaultEditorKit.deleteNextWordAction,
-            "ctrl BACK_SPACE", DefaultEditorKit.deletePrevWordAction,
-            "RIGHT", DefaultEditorKit.forwardAction,
-            "LEFT", DefaultEditorKit.backwardAction,
-            "KP_RIGHT", DefaultEditorKit.forwardAction,
-            "KP_LEFT", DefaultEditorKit.backwardAction,
-            "ENTER", JTextField.notifyAction,
-            "ctrl BACK_SLASH", "unselect"/*DefaultEditorKit.unselectAction*/,
-            "control shift O", "toggle-componentOrientation"/*DefaultEditorKit.toggleComponentOrientation*/
-    });
-
-
-    /*Shortcut for multiline input*/
-    @Deprecated
-    Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[]{
-            "ctrl C", DefaultEditorKit.copyAction,
-            "ctrl V", DefaultEditorKit.pasteAction,
-            "ctrl X", DefaultEditorKit.cutAction,
-            "COPY", DefaultEditorKit.copyAction,
-            "PASTE", DefaultEditorKit.pasteAction,
-            "CUT", DefaultEditorKit.cutAction,
-            "control INSERT", DefaultEditorKit.copyAction,
-            "shift INSERT", DefaultEditorKit.pasteAction,
-            "shift DELETE", DefaultEditorKit.cutAction,
-            "shift LEFT", DefaultEditorKit.selectionBackwardAction,
-            "shift KP_LEFT", DefaultEditorKit.selectionBackwardAction,
-            "shift RIGHT", DefaultEditorKit.selectionForwardAction,
-            "shift KP_RIGHT", DefaultEditorKit.selectionForwardAction,
-            "ctrl LEFT", DefaultEditorKit.previousWordAction,
-            "ctrl KP_LEFT", DefaultEditorKit.previousWordAction,
-            "ctrl RIGHT", DefaultEditorKit.nextWordAction,
-            "ctrl KP_RIGHT", DefaultEditorKit.nextWordAction,
-            "ctrl shift LEFT", DefaultEditorKit.selectionPreviousWordAction,
-            "ctrl shift KP_LEFT", DefaultEditorKit.selectionPreviousWordAction,
-            "ctrl shift RIGHT", DefaultEditorKit.selectionNextWordAction,
-            "ctrl shift KP_RIGHT", DefaultEditorKit.selectionNextWordAction,
-            "ctrl A", DefaultEditorKit.selectAllAction,
-            "HOME", DefaultEditorKit.beginLineAction,
-            "END", DefaultEditorKit.endLineAction,
-            "shift HOME", DefaultEditorKit.selectionBeginLineAction,
-            "shift END", DefaultEditorKit.selectionEndLineAction,
-
-            "UP", DefaultEditorKit.upAction,
-            "KP_UP", DefaultEditorKit.upAction,
-            "DOWN", DefaultEditorKit.downAction,
-            "KP_DOWN", DefaultEditorKit.downAction,
-            "PAGE_UP", DefaultEditorKit.pageUpAction,
-            "PAGE_DOWN", DefaultEditorKit.pageDownAction,
-            "shift PAGE_UP", "selection-page-up",
-            "shift PAGE_DOWN", "selection-page-down",
-            "ctrl shift PAGE_UP", "selection-page-left",
-            "ctrl shift PAGE_DOWN", "selection-page-right",
-            "shift UP", DefaultEditorKit.selectionUpAction,
-            "shift KP_UP", DefaultEditorKit.selectionUpAction,
-            "shift DOWN", DefaultEditorKit.selectionDownAction,
-            "shift KP_DOWN", DefaultEditorKit.selectionDownAction,
-            "ENTER", DefaultEditorKit.insertBreakAction,
-            "BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
-            "shift BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
-            "ctrl H", DefaultEditorKit.deletePrevCharAction,
-            "DELETE", DefaultEditorKit.deleteNextCharAction,
-            "ctrl DELETE", DefaultEditorKit.deleteNextWordAction,
-            "ctrl BACK_SPACE", DefaultEditorKit.deletePrevWordAction,
-            "RIGHT", DefaultEditorKit.forwardAction,
-            "LEFT", DefaultEditorKit.backwardAction,
-            "KP_RIGHT", DefaultEditorKit.forwardAction,
-            "KP_LEFT", DefaultEditorKit.backwardAction,
-            "TAB", DefaultEditorKit.insertTabAction,
-            "ctrl BACK_SLASH", "unselect"/*DefaultEditorKit.unselectAction*/,
-            "ctrl HOME", DefaultEditorKit.beginAction,
-            "ctrl END", DefaultEditorKit.endAction,
-            "ctrl shift HOME", DefaultEditorKit.selectionBeginAction,
-            "ctrl shift END", DefaultEditorKit.selectionEndAction,
-            "ctrl T", "next-link-action",
-            "ctrl shift T", "previous-link-action",
-            "ctrl SPACE", "activate-link-action",
-            "control shift O", "toggle-componentOrientation"/*DefaultEditorKit.toggleComponentOrientation*/
-    });
-
 }

@@ -26,4 +26,7 @@
 - Added support to JSplitPane
 - Fixed issue jToggleButton disabled
 - added const "Table[row].height"
-- Fixed the color into JTable customize 
+- Fixed the color into JTable customize
+- Added new effect to JTable row (FIX) test with developers JMars
+- Added minus cooplin to progressbar constant
+- Added new Style at the ComboBox

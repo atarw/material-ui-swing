@@ -435,10 +435,10 @@ public class MaterialRootPaneUI extends MetalRootPaneUI {
             {       Cursor.NW_RESIZE_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.N_RESIZE_CURSOR,
                     Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR,
                     Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
-                    Cursor.W_RESIZE_CURSOR, 0, 0, 0, Cursor.E_RESIZE_CURSOR,
+                    Cursor.DEFAULT_CURSOR, 0, 0, 0, Cursor.DEFAULT_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, 0, 0, 0, Cursor.SE_RESIZE_CURSOR,
                     Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
-                    Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR
+                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR
             };
 
     public void setMaximized() {

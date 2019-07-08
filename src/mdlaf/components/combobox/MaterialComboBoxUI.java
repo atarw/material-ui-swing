@@ -2,14 +2,14 @@ package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.metal.MetalComboBoxUI;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
@@ -49,13 +49,18 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){
 			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHoverColor")));
 		}
-		button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
+		button.setBorder (UIManager.getBorder("ComboBox[button].border"));
 		return button;
 	}
 
 	@Override
+	public void update(Graphics g, JComponent c) {
+		super.update(g, c);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+		super.paint (g, c);
 	}
 
 	@Override
@@ -63,4 +68,22 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		return new MaterialComboBoxRenderer();
 	}
 
+	@Override
+	protected FocusListener createFocusListener() {
+		comboBox.addFocusListener(new FocusListenerColor());
+		return super.createFocusListener();
+	}
+
+	protected class FocusListenerColor implements FocusListener{
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			comboBox.setBorder(MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.focusColor")));
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			comboBox.setBorder(MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.unfocusColor")));
+		}
+	}
 }

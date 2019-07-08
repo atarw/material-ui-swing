@@ -37,15 +37,14 @@ public class MaterialTableUI extends BasicTableUI {
 		int rowHeight = UIManager.getInt ("Table.rowHeight");
 		if (rowHeight > 0) {
 			table.setRowHeight (rowHeight);
-		}
-		else {
+		}else {
 			table.setRowHeight (table.getRowHeight () + 25);
 		}
 
-		table.setDefaultRenderer (Object.class, new MaterialTableCellRenderer ());
+		this.setDefaultCellRenderWithAllTipe(table);
+
 		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
 		settingIconToTable();
 	}
 
@@ -80,5 +79,23 @@ public class MaterialTableUI extends BasicTableUI {
 		DefaultCellEditor editor = (DefaultCellEditor) table.getDefaultEditor(Boolean.class);
 		((JCheckBox)editor.getComponent()).setIcon(unchecked);
 		((JCheckBox)editor.getComponent()).setSelectedIcon(checked);
+	}
+
+	//TODO refactoring name
+
+	/**
+	 * This method setting a MaterialCellRender at the particular class
+	 * With this class not working correctly the color alternate in the Jtable
+	 */
+	protected void setDefaultCellRenderWithAllTipe(JTable table) {
+		if(table == null){
+			throw new IllegalArgumentException("Table is null");
+		}
+
+		table.setDefaultRenderer(Object.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(String.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Integer.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
 	}
 }

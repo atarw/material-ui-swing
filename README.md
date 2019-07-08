@@ -14,14 +14,6 @@ A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
 
-# Support for android components
-
-Yes, you understand, this theme in addition to changing the look and fell also supports Android components (those possible to implement)
-
-What does it support?
-
-It supports the Toast component of android and here it is called MaterialToast you can find the documentation [here](https://github.com/vincenzopalazzo/android-toasts-for-swing/releases/tag/v1.0) and in the demo an example is included.
-
 ![scree](https://preview.ibb.co/mRUdQK/screen_presentazione.png)
 ![scree](https://preview.ibb.co/dqFRKp/addToast.png)
 
@@ -90,3 +82,6 @@ If there's a component that isn't supported, don't hesitate to open an issue! I 
 # License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
+_**List of projects with Material-UI-Swing theme**_
+
+_For add your project to list create a new pool request or open an issue_

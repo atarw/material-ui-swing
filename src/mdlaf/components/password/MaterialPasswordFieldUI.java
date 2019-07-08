@@ -23,7 +23,6 @@
  */
 package mdlaf.components.password;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -40,13 +39,15 @@ import java.beans.PropertyChangeListener;
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements FocusListener, PropertyChangeListener {
+public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 
     private boolean drawLine;
     private Color activeBackground;
     private Color activeForeground;
     private Color inactiveBackground;
     private Color inactiveForeground;
+    private FocusListener focusListenerColorLine;
+    private PropertyChangeListener propertyChangeListener;
 
     public MaterialPasswordFieldUI() {
         this(true);
@@ -55,6 +56,8 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
     public MaterialPasswordFieldUI(boolean drawLine) {
         super();
         this.drawLine = drawLine;
+        this.focusListenerColorLine = new FocusListenerColorLine();
+        this.propertyChangeListener = new MaterialPropertyChangeListener();
     }
 
     public static ComponentUI createUI(JComponent c) {
@@ -83,29 +86,20 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
     @Override
     protected void installListeners() {
         super.installListeners();
-        getComponent().addFocusListener(this);
-        getComponent().addPropertyChangeListener(this);
+        getComponent().addFocusListener(focusListenerColorLine);
+        getComponent().addPropertyChangeListener(propertyChangeListener);
     }
 
     @Override
     protected void uninstallListeners() {
-        getComponent().removeFocusListener(this);
+        getComponent().removeFocusListener(focusListenerColorLine);
+        getComponent().removePropertyChangeListener(propertyChangeListener);
         super.uninstallListeners();
     }
 
     @Override
     protected void paintBackground(Graphics g) {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
-    }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        changeColorOnFocus(true);
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        changeColorOnFocus(false);
     }
 
     @Override
@@ -127,20 +121,6 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         super.propertyChange(pce);
-
-        if (pce.getPropertyName().equals("selectionColor")) {
-            Color newColor = (Color) pce.getNewValue();
-            logicForPropertyChange(newColor, false);
-        }
-
-        if (pce.getPropertyName().equals("selectedTextColor")) {
-            Color newColor = (Color) pce.getNewValue();
-            logicForPropertyChange(newColor, true);
-        }
-        if (pce.getPropertyName().equals("background")) {
-            getComponent().repaint();
-        }
-
     }
 
     @Override
@@ -221,5 +201,41 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI implements Foc
             return x + fm.charWidth(c);
         }
     }
+
+    protected class FocusListenerColorLine implements FocusListener{
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            changeColorOnFocus(true);
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            changeColorOnFocus(false);
+        }
+    }
+
+    protected class MaterialPropertyChangeListener implements PropertyChangeListener{
+
+        @Override
+        public void propertyChange(PropertyChangeEvent pce) {
+            if(getComponent() == null){
+                return;
+            }
+            if (pce.getPropertyName().equals("selectionColor")) {
+                Color newColor = (Color) pce.getNewValue();
+                logicForPropertyChange(newColor, false);
+            }
+
+            if (pce.getPropertyName().equals("selectedTextColor")) {
+                Color newColor = (Color) pce.getNewValue();
+                logicForPropertyChange(newColor, true);
+            }
+            if (pce.getPropertyName().equals("background")) {
+                getComponent().repaint();
+            }
+        }
+    }
+
 
 }

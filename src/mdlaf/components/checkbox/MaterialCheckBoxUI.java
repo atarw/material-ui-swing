@@ -32,8 +32,10 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+		super.paint (g, c);
 	}
+
+
 
 	//TODO support change icon for future
 	@Override

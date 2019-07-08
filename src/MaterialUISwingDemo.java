@@ -9,6 +9,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MaterialUISwingDemo {
@@ -144,7 +145,9 @@ public class MaterialUISwingDemo {
 
         //
         content.add(new JCheckBox("checkbox"));
-        content.add(new JComboBox<String>(new String[]{"a", "b", "c"}));
+        JComboBox<String> combo = new JComboBox<String>(new String[]{"a", "b", "c"});
+       // combo.setEnabled(false);
+        content.add(combo);
         content.add(new JLabel("label"));
         content.add(new JPasswordField("password"));
         content.add(new JRadioButton("radio button"));
@@ -493,6 +496,16 @@ public class MaterialUISwingDemo {
         JRadioButton radioDisabled = new JRadioButton("radio disabled");
         radioDisabled.setEnabled(false);
         panel4.add(radioDisabled);
+
+        JTextField textFieldBugListener = new JTextField("Test for bug https://github.com/vincenzopalazzo/material-ui-swing/issues/63");
+        textFieldBugListener.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("The bag was fixed?");
+            }
+        });
+
+        panel4.add(textFieldBugListener);
 
         tp.addTab("Panel 4", panel4);
         frame.pack();

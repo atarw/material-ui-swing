@@ -1,11 +1,9 @@
 package mdlaf.components.button;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 
@@ -20,7 +18,6 @@ public class MaterialButtonUI extends MetalButtonUI {
 
     private Color foreground;
     private Color background;
-    private AbstractButton button;
 
     @Override
     public void installUI(JComponent c) {
@@ -37,16 +34,17 @@ public class MaterialButtonUI extends MetalButtonUI {
         button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
 
-        this.button = button;
     }
 
     @Override
     public void paint(Graphics g, JComponent c) {
         JButton b = (JButton) c;
         if (b.isContentAreaFilled()) {
-            paintBackground(g, b);
+            paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
         }
-        super.paint(g, c);
+        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+
+        paintStateButton(c, g);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
@@ -55,19 +53,18 @@ public class MaterialButtonUI extends MetalButtonUI {
         g = graphics2D;
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
-
-        paintStateButton(c, g);
     }
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+        // driveLine(g, (JButton) b);
         paintFocusRing(g, (JButton) b);
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
-        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
@@ -98,9 +95,10 @@ public class MaterialButtonUI extends MetalButtonUI {
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
-        JButton buttonOne = (JButton) button;
-        if(buttonOne.isDefaultButton()){
-           driveLine(graphics, b);
+        if(b.isDefaultButton()){
+            driveLine(graphics, b);
+            //b.setBackground(UIManager.getColor("Button[Default].background"));
+            //b.setForeground(UIManager.getColor("Button[Default].foreground"));
         }
     }
 }
