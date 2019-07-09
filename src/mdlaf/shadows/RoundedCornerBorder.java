@@ -2,7 +2,6 @@ package mdlaf.shadows;
 
 import mdlaf.utils.MaterialColors;
 
-import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.geom.Area;
@@ -26,7 +25,6 @@ public class RoundedCornerBorder extends AbstractBorder {
         this.colorLine = colorLine;
         alphaZero = new Color(0x0, true);
     }
-
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {

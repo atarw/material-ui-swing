@@ -30,3 +30,5 @@
 - Added new effect to JTable row (FIX) test with developers JMars
 - Added minus cooplin to progressbar constant
 - Added new Style at the ComboBox
+- Try to add support change color on Button state -> default, disabled, normal
+- fix fimension line on the JTabbledPane 

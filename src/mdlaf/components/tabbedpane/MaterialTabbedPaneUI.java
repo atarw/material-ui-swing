@@ -105,7 +105,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 w = tabRect.width - 6;
                 h = tabRect.height - 5;
             }
-            paintLine(g, x, y, w, h);
+            //paintLine(g, x, y, w, h);
 
         }
     }
@@ -128,7 +128,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
         super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
         if (isSelected) {
-            paintLine(g, textRect.x - 10, textRect.y, textRect.width + 18, textRect.height);
+            //paintLine(g, textRect.x - 10, textRect.y, textRect.width + 18, textRect.height);
         }
     }
 
@@ -137,14 +137,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             throw new IllegalArgumentException("Argument null");
         }
         graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
-        graphics.fillRoundRect(x + 6, y + 17, w - 12, y - 3, 10, 10);
+        graphics.fillRoundRect(x + 6, y + 21, w - 12, 5, 10, 10);
     }
 
-
-
-    /**
-     * Event listener for mouse hover
-     */
     public class MouseHoverTab implements MouseMotionListener {
 
         private Rectangle[] rectangles;

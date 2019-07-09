@@ -90,6 +90,7 @@ public class MaterialUISwingDemo {
 
         // configuring a simple JButton
         JButton button = new JButton("I'm Disabled");
+        button.setBackground(MaterialColors.COSMO_RED);
         button.setEnabled(false);
         JPanel content = new JPanel();
         content.add(button);

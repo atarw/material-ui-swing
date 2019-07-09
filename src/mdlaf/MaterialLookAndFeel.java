@@ -203,14 +203,18 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     @Override
     protected void initComponentDefaults(UIDefaults table) {
         super.initComponentDefaults(table);
+
         table.put("Button.highlight", MaterialColors.GRAY_400);
         table.put("Button.opaque", false);
         table.put("Button.border", BorderFactory.createEmptyBorder(7, 17, 7, 17));
         table.put("Button.background", MaterialColors.GRAY_200);
-        table.put("Button[Default].background", MaterialColors.bleach(MaterialColors.LIGHT_BLUE_500, 0.2f));
-        table.put("Button.foreground", Color.BLACK);
+        table.put("Button.foreground", MaterialColors.COSMO_BLACK);
+        table.put("Button.disabledBackground", MaterialColors.COSMO_DARK_GRAY);
+        table.put("Button.disabledForeground", MaterialColors.BLACK);
+        table.put("Button[Default].background", MaterialColors.LIGHT_BLUE_500);
         table.put("Button[Default].foreground", Color.WHITE);
         table.put("Button.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
+        //table.put("Button[Default].mouseHoverColor", MaterialColors.LIGHT_BLUE_200);
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
         table.put("Button.focusable", true);
@@ -356,7 +360,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TableHeader.background", MaterialColors.GRAY_200);
         table.put("TableHeader.foreground", MaterialColors.BLACK);
-        table.put("TableHeader.border", BorderFactory.createEmptyBorder());
+        table.put("TableHeader.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
         table.put("TableHeader.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("TableHeader.cellBorder", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
