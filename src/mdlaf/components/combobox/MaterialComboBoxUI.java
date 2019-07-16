@@ -2,9 +2,7 @@ package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
@@ -64,8 +62,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
     }
-
-
 
     @Override
     protected ListCellRenderer createRenderer() {

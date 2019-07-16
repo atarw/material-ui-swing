@@ -31,4 +31,5 @@
 - Added minus cooplin to progressbar constant
 - Added new Style at the ComboBox
 - Try to add support change color on Button state -> default, disabled, normal
-- fix fimension line on the JTabbledPane 
+- Fix dimension line on the JTabbledPane
+- init fix bug into JTextField

@@ -1,6 +1,5 @@
 package mdlaf.components.combobox;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.UIManager;
@@ -13,7 +12,7 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 	public Component getListCellRendererComponent (JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 		JComponent component = (JComponent) super.getListCellRendererComponent (list, value, index, isSelected, cellHasFocus);
 
-		component.setBorder (BorderFactory.createEmptyBorder (5, 5, 5, 5));
+		component.setBorder (UIManager.getBorder("ComboBox.borderItems"));
 		component.setForeground (UIManager.getColor ("ComboBox.foreground"));
 		component.setBackground (isSelected || cellHasFocus ?
 		                         UIManager.getColor ("ComboBox.selectedInDropDownBackground") :

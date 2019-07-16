@@ -67,6 +67,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
@@ -232,6 +233,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.background", MaterialColors.WHITE);
         table.put("ComboBox.foreground", MaterialColors.BLACK);
         table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK));
+        table.put("ComboBox.borderItems", BorderFactory.createEmptyBorder(2, 2, 2 , 2));
         table.put("ComboBox.buttonBackground", MaterialColors.WHITE);
         table.put("ComboBox[button].border", BorderFactory.createLineBorder(MaterialColors.WHITE));
         table.put("ComboBox.disabledBackground", MaterialColors.WHITE);
@@ -438,11 +440,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.background", MaterialColors.GRAY_100);
         table.put("TextField.foreground", MaterialColors.GRAY_800);
         table.put("TextField.inactiveForeground", MaterialColors.GRAY_800);
-        table.put("TextField.inactiveBackground", MaterialColors.GRAY_200);
+        table.put("TextField.inactiveBackground", MaterialColors.GRAY_100);
         table.put("TextField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("TextField.selectionForeground", MaterialColors.BLACK);
+        table.put("TextField[Line].inactiveColor", MaterialColors.BLACK);
+        table.put("TextField[Line].activeColor", MaterialColors.LIGHT_BLUE_400);
         table.put("TextField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
-        //table.put("TextField.focusInputMap", fieldInputMap); //deprecated
+        table.put("TextField.focusInputMap", fieldInputMap); //deprecated
 
         table.put("PasswordField.background", MaterialColors.GRAY_100);
         table.put("PasswordField.foreground", MaterialColors.BLACK);
@@ -451,7 +455,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("PasswordField.selectionForeground", MaterialColors.BLACK);
         table.put("PasswordField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
-        //table.put("PasswordField.focusInputMap", fieldInputMap);
+        table.put("PasswordField.focusInputMap", fieldInputMap);
 
         table.put("TitledBorder.border", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("TitledBorder.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM));
@@ -574,4 +578,114 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         }
         return ActionEvent.ALT_MASK;
     }
+
+    /*Shortcut for filed input*/
+    Object fieldInputMap = new UIDefaults.LazyInputMap(new Object[]{
+            "ctrl C", DefaultEditorKit.copyAction,
+            "ctrl V", DefaultEditorKit.pasteAction,
+            "ctrl X", DefaultEditorKit.cutAction,
+            "COPY", DefaultEditorKit.copyAction,
+            "PASTE", DefaultEditorKit.pasteAction,
+            "CUT", DefaultEditorKit.cutAction,
+            "control INSERT", DefaultEditorKit.copyAction,
+            "shift INSERT", DefaultEditorKit.pasteAction,
+            "shift DELETE", DefaultEditorKit.cutAction,
+            "shift LEFT", DefaultEditorKit.selectionBackwardAction,
+            "shift KP_LEFT", DefaultEditorKit.selectionBackwardAction,
+            "shift RIGHT", DefaultEditorKit.selectionForwardAction,
+            "shift KP_RIGHT", DefaultEditorKit.selectionForwardAction,
+            "ctrl LEFT", DefaultEditorKit.previousWordAction,
+            "ctrl KP_LEFT", DefaultEditorKit.previousWordAction,
+            "ctrl RIGHT", DefaultEditorKit.nextWordAction,
+            "ctrl KP_RIGHT", DefaultEditorKit.nextWordAction,
+            "ctrl shift LEFT", DefaultEditorKit.selectionPreviousWordAction,
+            "ctrl shift KP_LEFT", DefaultEditorKit.selectionPreviousWordAction,
+            "ctrl shift RIGHT", DefaultEditorKit.selectionNextWordAction,
+            "ctrl shift KP_RIGHT", DefaultEditorKit.selectionNextWordAction,
+            "ctrl A", DefaultEditorKit.selectAllAction,
+            "HOME", DefaultEditorKit.beginLineAction,
+            "END", DefaultEditorKit.endLineAction,
+            "shift HOME", DefaultEditorKit.selectionBeginLineAction,
+            "shift END", DefaultEditorKit.selectionEndLineAction,
+            "BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+            "shift BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+            "ctrl H", DefaultEditorKit.deletePrevCharAction,
+            "DELETE", DefaultEditorKit.deleteNextCharAction,
+            "ctrl DELETE", DefaultEditorKit.deleteNextWordAction,
+            "ctrl BACK_SPACE", DefaultEditorKit.deletePrevWordAction,
+            "RIGHT", DefaultEditorKit.forwardAction,
+            "LEFT", DefaultEditorKit.backwardAction,
+            "KP_RIGHT", DefaultEditorKit.forwardAction,
+            "KP_LEFT", DefaultEditorKit.backwardAction,
+            "ENTER", JTextField.notifyAction,
+            "ctrl BACK_SLASH", "unselect"/*DefaultEditorKit.unselectAction*/,
+            "control shift O", "toggle-componentOrientation"/*DefaultEditorKit.toggleComponentOrientation*/
+    });
+
+
+    /*Shortcut for multiline input*/
+    Object multilineInputMap = new UIDefaults.LazyInputMap(new Object[]{
+            "ctrl C", DefaultEditorKit.copyAction,
+            "ctrl V", DefaultEditorKit.pasteAction,
+            "ctrl X", DefaultEditorKit.cutAction,
+            "COPY", DefaultEditorKit.copyAction,
+            "PASTE", DefaultEditorKit.pasteAction,
+            "CUT", DefaultEditorKit.cutAction,
+            "control INSERT", DefaultEditorKit.copyAction,
+            "shift INSERT", DefaultEditorKit.pasteAction,
+            "shift DELETE", DefaultEditorKit.cutAction,
+            "shift LEFT", DefaultEditorKit.selectionBackwardAction,
+            "shift KP_LEFT", DefaultEditorKit.selectionBackwardAction,
+            "shift RIGHT", DefaultEditorKit.selectionForwardAction,
+            "shift KP_RIGHT", DefaultEditorKit.selectionForwardAction,
+            "ctrl LEFT", DefaultEditorKit.previousWordAction,
+            "ctrl KP_LEFT", DefaultEditorKit.previousWordAction,
+            "ctrl RIGHT", DefaultEditorKit.nextWordAction,
+            "ctrl KP_RIGHT", DefaultEditorKit.nextWordAction,
+            "ctrl shift LEFT", DefaultEditorKit.selectionPreviousWordAction,
+            "ctrl shift KP_LEFT", DefaultEditorKit.selectionPreviousWordAction,
+            "ctrl shift RIGHT", DefaultEditorKit.selectionNextWordAction,
+            "ctrl shift KP_RIGHT", DefaultEditorKit.selectionNextWordAction,
+            "ctrl A", DefaultEditorKit.selectAllAction,
+            "HOME", DefaultEditorKit.beginLineAction,
+            "END", DefaultEditorKit.endLineAction,
+            "shift HOME", DefaultEditorKit.selectionBeginLineAction,
+            "shift END", DefaultEditorKit.selectionEndLineAction,
+
+            "UP", DefaultEditorKit.upAction,
+            "KP_UP", DefaultEditorKit.upAction,
+            "DOWN", DefaultEditorKit.downAction,
+            "KP_DOWN", DefaultEditorKit.downAction,
+            "PAGE_UP", DefaultEditorKit.pageUpAction,
+            "PAGE_DOWN", DefaultEditorKit.pageDownAction,
+            "shift PAGE_UP", "selection-page-up",
+            "shift PAGE_DOWN", "selection-page-down",
+            "ctrl shift PAGE_UP", "selection-page-left",
+            "ctrl shift PAGE_DOWN", "selection-page-right",
+            "shift UP", DefaultEditorKit.selectionUpAction,
+            "shift KP_UP", DefaultEditorKit.selectionUpAction,
+            "shift DOWN", DefaultEditorKit.selectionDownAction,
+            "shift KP_DOWN", DefaultEditorKit.selectionDownAction,
+            "ENTER", DefaultEditorKit.insertBreakAction,
+            "BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+            "shift BACK_SPACE", DefaultEditorKit.deletePrevCharAction,
+            "ctrl H", DefaultEditorKit.deletePrevCharAction,
+            "DELETE", DefaultEditorKit.deleteNextCharAction,
+            "ctrl DELETE", DefaultEditorKit.deleteNextWordAction,
+            "ctrl BACK_SPACE", DefaultEditorKit.deletePrevWordAction,
+            "RIGHT", DefaultEditorKit.forwardAction,
+            "LEFT", DefaultEditorKit.backwardAction,
+            "KP_RIGHT", DefaultEditorKit.forwardAction,
+            "KP_LEFT", DefaultEditorKit.backwardAction,
+            "TAB", DefaultEditorKit.insertTabAction,
+            "ctrl BACK_SLASH", "unselect"/*DefaultEditorKit.unselectAction*/,
+            "ctrl HOME", DefaultEditorKit.beginAction,
+            "ctrl END", DefaultEditorKit.endAction,
+            "ctrl shift HOME", DefaultEditorKit.selectionBeginAction,
+            "ctrl shift END", DefaultEditorKit.selectionEndAction,
+            "ctrl T", "next-link-action",
+            "ctrl shift T", "previous-link-action",
+            "ctrl SPACE", "activate-link-action",
+            "control shift O", "toggle-componentOrientation"/*DefaultEditorKit.toggleComponentOrientation*/
+    });
 }

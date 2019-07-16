@@ -63,9 +63,9 @@ public class MaterialButtonUI extends MetalButtonUI {
     public void paint(Graphics g, JComponent c) {
         JButton b = (JButton) c;
         if (b.isContentAreaFilled()) {
-            paintBackground(MaterialDrawingUtils.getAliasedGraphics(g), b);
+            paintBackground(g, b);
         }
-        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.paint(g, c);
     }
 
     private void paintBackground(Graphics g, JComponent c) {

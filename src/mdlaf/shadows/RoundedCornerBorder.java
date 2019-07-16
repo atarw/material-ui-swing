@@ -39,9 +39,11 @@ public class RoundedCornerBorder extends AbstractBorder {
         g2.draw(border);
         g2.dispose();
     }
+
     public Shape getBorderShape(int x, int y, int w, int h) {
         return new RoundRectangle2D.Double(x, y, w, h, 12, 12);
     }
+
     @Override
     public Insets getBorderInsets(Component c) {
         return new Insets(1, 6, 1, 6);
