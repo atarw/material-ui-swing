@@ -69,9 +69,7 @@ public class MaterialButtonUI extends MetalButtonUI {
     }
 
     private void paintBackground(Graphics g, JComponent c) {
-        Graphics2D graphics2D = (Graphics2D) g;
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g = graphics2D;
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
 

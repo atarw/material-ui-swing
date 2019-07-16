@@ -2,12 +2,15 @@ package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.metal.MetalComboBoxUI;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -21,13 +24,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         return new MaterialComboBoxUI();
     }
 
+    protected Color background;
+
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
         JComboBox<?> comboBox = (JComboBox<?>) c;
         comboBox.setFont(UIManager.getFont("ComboBox.font"));
-        comboBox.setBackground(UIManager.getColor("ComboBox.background"));
+        background = UIManager.getColor("ComboBox.background");
+        comboBox.setBackground(background);
         comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
         comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
@@ -55,7 +61,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void update(Graphics g, JComponent c) {
-        super.update(g, c);
+        //super.update(g, c);
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
+        g.setColor(c.getBackground());
+        g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(),12, 12);
+        paint(g, c);
     }
 
     @Override

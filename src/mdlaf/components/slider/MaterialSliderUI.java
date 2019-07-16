@@ -27,12 +27,8 @@ public class MaterialSliderUI extends BasicSliderUI {
 		return new MaterialSliderUI ((JSlider) c);
 	}
 
-	// I fixig paint the circle bacuse this was painted wrong
-	// @contributor https://github.com/vincenzopalazzo
 	private static void drawCircle (Graphics g, int x, int y, int radius) {
-		Graphics2D graphics2D = (Graphics2D) g;
-		graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g = graphics2D;
+		g = MaterialDrawingUtils.getAliasedGraphics(g);
 		g.fillOval (x - radius, y - radius, radius * 2, radius * 2);
 	}
 
@@ -114,7 +110,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 
 	@Override
 	public void paintFocus (Graphics g) {
-
+		//Do nothing
 	}
 
 	@Override

@@ -23,8 +23,7 @@ public class MaterialDrawingUtils {
 		hints.put(RenderingHints.KEY_TEXT_ANTIALIASING,	RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
 
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.addRenderingHints (hints);
-
+		g2d.addRenderingHints(hints);
 		//g2d.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
 		return g2d;
 	}

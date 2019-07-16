@@ -29,7 +29,7 @@
 - Fixed the color into JTable customize
 - Added new effect to JTable row (FIX) test with developers JMars
 - Added minus cooplin to progressbar constant
-- Added new Style at the ComboBox
+- Added new Style at the ComboBox and fix the paint border
 - Try to add support change color on Button state -> default, disabled, normal
 - Fix dimension line on the JTabbledPane
 - init fix bug into JTextField
