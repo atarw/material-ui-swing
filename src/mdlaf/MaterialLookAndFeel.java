@@ -311,8 +311,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ScrollBar.thumbHighlight", MaterialColors.GRAY_500);
         table.put("ScrollBar.thumbShadow", MaterialColors.GRAY_500);
         table.put("ScrollBar.arrowButtonBackground", MaterialColors.GRAY_200);
-        table.put("ScrollBar.enableArrow", false);
+        table.put("ScrollBar.enableArrow", true);
         table.put("ScrollBar.arrowButtonBorder", BorderFactory.createEmptyBorder());
+        table.put("ScrollBar.width", 14);
         table.put("ScrollBar[MouseHover].enable", true);
         table.put("ScrollBar[MouseHover].color", MaterialColors.GRAY_400);
         table.put("ScrollBar[OnClick].color", MaterialColors.GRAY_500);
@@ -454,6 +455,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.inactiveBackground", MaterialColors.GRAY_200);
         table.put("PasswordField.selectionBackground", MaterialColors.LIGHT_BLUE_400);
         table.put("PasswordField.selectionForeground", MaterialColors.BLACK);
+        table.put("PasswordField[Line].inactiveColor", MaterialColors.BLACK);
+        table.put("PasswordField[Line].activeColor", MaterialColors.LIGHT_BLUE_400);
         table.put("PasswordField.border", BorderFactory.createEmptyBorder(3, 5, 2, 5));
         table.put("PasswordField.focusInputMap", fieldInputMap);
 

@@ -7,7 +7,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
-/*
+/**
  * @contributor by https://github.com/downToHell
  * @contributor for refactoring by https://github.com/vincenzopalazzo
  */
@@ -58,7 +58,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
-	private void setIconArrowButton(JButton button, int orientation) {
+	protected void setIconArrowButton(JButton button, int orientation) {
 		if(button == null){
 			throw new IllegalArgumentException("Input null");
 		}
@@ -78,7 +78,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		throw new IllegalArgumentException("orientation not valid");
 	}
 
-	private void createInvisibleButton(JComponent component){
+	protected void createInvisibleButton(JComponent component){
 		if(component == null){
 			throw new IllegalArgumentException("Argument function null");
 		}
@@ -89,8 +89,9 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	protected JButton installButton(int orientation){
 		JButton button = new JButton();
-		MaterialManagerListener.removeAllMouseListener(button);
+		MaterialManagerListener.removeAllMaterialMouseListener(button);
 		button.setOpaque (true);
+		button.setFocusable(false); //This must be false because the button focus have an effect that this button mustn't be have
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));
 		if(!UIManager.getBoolean("ScrollBar.enableArrow")){
 			createInvisibleButton(button);
@@ -98,10 +99,12 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		}
 		setIconArrowButton(button, orientation);
 		if(UIManager.getBoolean("ScrollBar[MouseHover].enable")){
-			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,UIManager.getColor("ScrollBar[MouseHover].color"),
+			button.addMouseListener(MaterialUIMovement.getStaticMovement(button,
+					UIManager.getColor("ScrollBar[MouseHover].color"),
 					UIManager.getColor("ScrollBar[OnClick].color")));
 		}
 		button.setBorder (UIManager.getBorder("ScrollBar.arrowButtonBorder"));
 		return button;
 	}
+
 }

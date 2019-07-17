@@ -32,4 +32,7 @@
 - Added new Style at the ComboBox and fix the paint border
 - Try to add support change color on Button state -> default, disabled, normal
 - Fix dimension line on the JTabbledPane
-- init fix bug into JTextField
+- init fix bug into JTextField and JPasswordField (must be tested)
+- Fixed bug into Button of the JScrollbar when it is enabled and it is focused
+- Fixed nullpointer int JTextField and the Partial problem in the JComboBox button
+- added partial support into Change cursor when run the Listener for the MouseHover but I must be work on it

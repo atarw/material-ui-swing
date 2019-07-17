@@ -71,7 +71,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         if (isSelected) {
             paintLine(g, x, y, w, h);
         }
-
     }
 
     @Override

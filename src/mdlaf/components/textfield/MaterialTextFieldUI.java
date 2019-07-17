@@ -40,9 +40,9 @@ import java.beans.PropertyChangeSupport;
  */
 public class MaterialTextFieldUI extends BasicTextFieldUI{
 
-    private static final String PROPERTY_LINE_COLOR = "lineColor";
-    private static final String PROPERTY_SELECTION_COLOR = "selectionColor";
-    private static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
+    protected static final String PROPERTY_LINE_COLOR = "lineColor";
+    protected static final String PROPERTY_SELECTION_COLOR = "selectionColor";
+    protected static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
 
     protected boolean drawLine;
     protected Color background;
@@ -76,7 +76,6 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
     }
 
     @Override
@@ -197,7 +196,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
 
     protected void paintLine(Graphics graphics){
         if( graphics == null){
-            throw new IllegalArgumentException("Color null");
+            return;
         }
         JTextField c = (JTextField) getComponent();
 

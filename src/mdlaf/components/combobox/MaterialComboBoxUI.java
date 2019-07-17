@@ -49,14 +49,26 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
-        MaterialManagerListener.removeAllMaterialMouseListener(button);
-        button.setOpaque(true);
-        button.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
-        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
-            button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("ComboBox.mouseHoverColor")));
-        }
-        button.setBorder(UIManager.getBorder("ComboBox[button].border"));
         return button;
+    }
+
+    @Override
+    public void configureArrowButton() {
+        super.configureArrowButton();
+
+        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+        arrowButton.setOpaque(true);
+        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
+        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
+            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
+        }
+        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
+    }
+
+    @Override
+    public void unconfigureArrowButton() {
+        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+        super.unconfigureArrowButton();
     }
 
     @Override
@@ -85,7 +97,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     protected class FocusListenerColor implements FocusListener {
-
         private Border focus;
         private Border unfocus;
 
@@ -96,15 +107,23 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         @Override
         public void focusGained(FocusEvent e) {
+            if(e.getComponent() == null){
+                return;
+            }
+            JComboBox cb = (JComboBox) e.getComponent();
             if (focus != null) {
-                comboBox.setBorder(focus);
+                cb.setBorder(focus);
             }
         }
 
         @Override
         public void focusLost(FocusEvent e) {
+            if(e.getComponent() == null){
+                return;
+            }
+            JComboBox cb = (JComboBox) e.getComponent();
             if (unfocus != null) {
-                comboBox.setBorder(unfocus);
+                cb.setBorder(unfocus);
             }
         }
     }
