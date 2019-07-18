@@ -1,28 +1,24 @@
 package mdlaf.components.combobox;
 
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import java.awt.Component;
+import java.awt.*;
 
+/**
+ * @contributor https://github.com/vincenzopalazzo
+ */
 public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 
 	@Override
 	public Component getListCellRendererComponent (JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-		JComponent component = (JComponent) super.getListCellRendererComponent (list, value, index, isSelected, cellHasFocus);
+		super.getListCellRendererComponent (list, value, index, isSelected, cellHasFocus);
 
-		component.setBorder (UIManager.getBorder("ComboBox.borderItems"));
-		component.setForeground (UIManager.getColor ("ComboBox.foreground"));
-		component.setBackground (isSelected || cellHasFocus ?
+		setBorder((UIManager.getBorder("ComboBox.borderItems")));
+		setForeground (UIManager.getColor ("ComboBox.foreground"));
+		setBackground (isSelected || cellHasFocus ?
 		                         UIManager.getColor ("ComboBox.selectedInDropDownBackground") :
 		                         UIManager.getColor ("ComboBox.background"));
 
-		return component;
+		return this;
 	}
-
-
-
-
-
 }

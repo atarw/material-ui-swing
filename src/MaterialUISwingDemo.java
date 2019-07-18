@@ -146,7 +146,7 @@ public class MaterialUISwingDemo {
 
         //
         content.add(new JCheckBox("checkbox"));
-        JComboBox<String> combo = new JComboBox<String>(new String[]{"a", "b", "c"});
+        JComboBox<String> combo = new JComboBox<String>(new String[]{"Pizza", "Pasta", "Sushi"});
        // combo.setEnabled(false);
         content.add(combo);
         content.add(new JLabel("label"));

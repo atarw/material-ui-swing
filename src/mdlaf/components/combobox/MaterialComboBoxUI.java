@@ -2,7 +2,6 @@ package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
@@ -10,10 +9,9 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.metal.MetalComboBoxUI;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
+
 
 /**
  * @contributor https://github.com/vincenzopalazzo
@@ -76,18 +74,18 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         //super.update(g, c);
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         g.setColor(c.getBackground());
-        g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(),12, 12);
+        g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), 12, 12);
         paint(g, c);
-    }
-
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
     }
 
     @Override
     protected ListCellRenderer createRenderer() {
         return new MaterialComboBoxRenderer();
+    }
+
+    @Override
+    protected ComboBoxEditor createEditor() {
+        return new MaterialComboBoxEditor();
     }
 
     @Override
@@ -107,23 +105,25 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         @Override
         public void focusGained(FocusEvent e) {
-            if(e.getComponent() == null){
+            if (e.getComponent() == null) {
                 return;
             }
             JComboBox cb = (JComboBox) e.getComponent();
             if (focus != null) {
                 cb.setBorder(focus);
+                cb.repaint();
             }
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            if(e.getComponent() == null){
+            if (e.getComponent() == null) {
                 return;
             }
             JComboBox cb = (JComboBox) e.getComponent();
             if (unfocus != null) {
                 cb.setBorder(unfocus);
+                cb.repaint();
             }
         }
     }
