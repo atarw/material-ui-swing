@@ -29,6 +29,7 @@ public class MaterialButtonUI extends MetalButtonUI {
     private Color disabledForeground;
     private Color defauldBackground;
     private Color defaultForeground;
+    private Boolean isDefoultButton = null;
 
     @Override
     public void installUI(JComponent c) {
@@ -57,6 +58,8 @@ public class MaterialButtonUI extends MetalButtonUI {
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
 
         this.button = button;
+
+
     }
 
     @Override
@@ -64,6 +67,9 @@ public class MaterialButtonUI extends MetalButtonUI {
         JButton b = (JButton) c;
         if (b.isContentAreaFilled()) {
             paintBackground(g, b);
+        }
+        if(isDefoultButton == null){
+            isDefoultButton = ((JButton)button).isDefaultButton();
         }
         super.paint(g, c);
     }
@@ -85,7 +91,7 @@ public class MaterialButtonUI extends MetalButtonUI {
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
-        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
@@ -115,7 +121,7 @@ public class MaterialButtonUI extends MetalButtonUI {
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
-        if (b.isEnabled() && b.isDefaultButton()) {
+        if (b.isEnabled() && (isDefoultButton != null && isDefoultButton) && !b.isSelected()) {
             MaterialManagerListener.removeAllMaterialMouseListener(b);
             //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
             b.setBackground(defauldBackground);

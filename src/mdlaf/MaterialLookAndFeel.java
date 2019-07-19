@@ -230,20 +230,20 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.selectedIcon", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
 
         table.put("ComboBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("ComboBox.background", MaterialColors.COSMO_BLUE);
+        table.put("ComboBox.background", MaterialColors.WHITE);
         table.put("ComboBox.foreground", MaterialColors.BLACK);
-        table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLUE));
+        table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK));
         table.put("ComboBox.borderItems", BorderFactory.createEmptyBorder(1, 2, 0, 1));
-        table.put("ComboBox.buttonBackground", MaterialColors.COSMO_BLUE);
-        table.put("ComboBox[button].border", BorderFactory.createLineBorder(MaterialColors.COSMO_BLUE));
-        table.put("ComboBox.disabledBackground", MaterialColors.COSMO_BLUE);
+        table.put("ComboBox.buttonBackground", MaterialColors.WHITE);
+        table.put("ComboBox[button].border", BorderFactory.createLineBorder(MaterialColors.WHITE));
+        table.put("ComboBox.disabledBackground", MaterialColors.WHITE);
         table.put("ComboBox.disabledForeground", MaterialColors.GRAY_900);
-        table.put("ComboBox.selectionBackground", MaterialColors.COSMO_LIGTH_BLUE);
+        table.put("ComboBox.selectionBackground", MaterialColors.WHITE);
         table.put("ComboBox.selectionForeground", Color.BLACK);
         table.put("ComboBox.selectedInDropDownBackground", MaterialColors.COSMO_LIGTH_BLUE);
-        table.put("ComboBox.mouseHoverColor", MaterialColors.COSMO_BLUE);
+        table.put("ComboBox.mouseHoverColor", MaterialColors.WHITE);
         table.put("ComboBox.unfocusColor", MaterialColors.COSMO_BLACK);
-        table.put("ComboBox.focusColor", MaterialColors.COSMO_BLUE);
+        table.put("ComboBox.focusColor", MaterialColors.LIGHT_BLUE_400);
         table.put("ComboBox.mouseHoverEnabled", false);
 
         table.put("Label.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
@@ -486,7 +486,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("List.foreground", MaterialColors.BLACK);
         table.put("List.border", MaterialBorders.LIGHT_SHADOW_BORDER);
         table.put("List.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM));
-        table.put("List.selectionBackground", MaterialColors.GRAY_400);
+        table.put("List.selectionBackground", MaterialColors.COSMO_LIGTH_BLUE);
         table.put("List.selectionForeground", MaterialColors.BLACK);
         table.put("List.focusable", true);
 
