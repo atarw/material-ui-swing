@@ -1,0 +1,55 @@
+apply plugin: 'java-library'
+apply plugin: 'java'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    jcenter()
+}
+version = '1.0-Beta-1.3'
+dependencies {
+
+    // https://mvnrepository.com/artifact/org.swinglabs/swingx
+    compile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+
+    //Slf4j configuration
+    testImplementation 'ch.qos.logback:logback-classic:1.2.3'
+    testImplementation 'ch.qos.logback:logback-core:1.2.3'
+    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+
+    //assertj
+    testImplementation group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
+    testImplementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task deployOnDiffereProjectJMars {
+    doLast {
+        copy {
+            println 'init task copy source file'
+            from 'build/libs/' + project.name + ".jar"
+            into '/media/vincenzo/vincenzodev/Jmars/JMars_firstVersionBeta_170719/xxx_oss_branch/lib'
+            rename(project.name + ".jar", 'material-ui-swing-1.0_Beta.jar')
+        }
+    }
+}
+
+task deployOnDiffereProjectLocalLib {
+    doLast {
+        copy {
+            println 'init task copy source file'
+            from 'build/libs/' + project.name + ".jar"
+            into '/media/vincenzo/vincenzodev/home-pc/myLocalLib/java'
+            rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
+        }
+    }
+}
