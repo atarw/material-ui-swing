@@ -3,7 +3,7 @@
 ![](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 [![Website](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
-#Description
+# Description
 A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
@@ -26,6 +26,6 @@ _Send me a mail if you use material-ui-swing so I add the your project at the li
 ![GitHub issues](https://img.shields.io/github/issues/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
-#Screenshot
+# Screenshot
 ![](https://i.imgur.com/K3RwlRy.png)
 Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)
