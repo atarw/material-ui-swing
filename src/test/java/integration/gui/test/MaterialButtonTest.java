@@ -11,7 +11,7 @@ public class MaterialButtonTest extends AbstractTestGUI {
 
     @Test
     public void testButtonColorBackgroundDefoultWhenIsClicked() {
-        JButtonFixture buttonDefoult = frame.button("buttonDefoult");
+        JButtonFixture buttonDefoult = frame.button("buttonDefault");
         buttonDefoult.background().requireEqualTo(MaterialColors.LIGHT_BLUE_500);
         buttonDefoult.click();
         buttonDefoult.background().requireEqualTo(MaterialColors.LIGHT_BLUE_500);
@@ -65,7 +65,7 @@ public class MaterialButtonTest extends AbstractTestGUI {
 
     @Test
     public void testButtonColorBackgroundDefoultWhenIsFocused() {
-        JButtonFixture buttonDefoult = frame.button("buttonDefoult");
+        JButtonFixture buttonDefoult = frame.button("buttonDefault");
         buttonDefoult.background().requireEqualTo(MaterialColors.LIGHT_BLUE_500);
         buttonDefoult.foreground().requireEqualTo(MaterialColors.WHITE);
         buttonDefoult.focus();

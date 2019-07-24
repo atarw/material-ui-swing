@@ -120,20 +120,4 @@ public class MaterialImageFactory {
             throw new RuntimeException("Image " + path + " wasn't loaded");
         }
     }
-
-    public InputStream getResourcesImage(String key, MaterialImageType type){
-        if (key == null || type == null) {
-            throw new IllegalArgumentException("Argument nulled");
-        }
-        String path;
-        if(type.equals(MaterialImageType.SVG)){
-            path = PATH_RESOUSES + LOCAL_PATH_SVG + key + ".svg";
-            return MaterialImageFactory.class.getResourceAsStream(path);
-        }
-        if(type.equals(MaterialImageType.PNG)){
-            path = PATH_RESOUSES + key + ".png";
-            return MaterialImageFactory.class.getResourceAsStream(path);
-        }
-        throw new RuntimeException("The type image is not valid");
-    }
 }

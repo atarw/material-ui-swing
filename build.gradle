@@ -53,3 +53,14 @@ task deployOnDiffereProjectLocalLib {
         }
     }
 }
+
+task copyIntoLibsDir{
+    doLast {
+        copy {
+            println 'init task copy source file'
+            from 'build/libs/' + project.name + ".jar"
+            into 'libs/'
+            rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
+        }
+    }
+}

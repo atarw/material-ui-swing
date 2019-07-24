@@ -4,6 +4,9 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo

@@ -26,9 +26,9 @@ public class MaterialButtonUI extends MetalButtonUI {
     private Color background;
     private Color disabledBackground;
     private Color disabledForeground;
-    private Color defauldBackground;
+    private Color defaultdBackground;
     private Color defaultForeground;
-    private Boolean isDefoultButton = null;
+    private Boolean isDefaultButton = null;
 
     @Override
     public void installUI(JComponent c) {
@@ -41,7 +41,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         background = UIManager.getColor("Button.background");
         disabledBackground = UIManager.getColor("Button.disabledBackground");
         disabledForeground = UIManager.getColor("Button.disabledForeground");
-        defauldBackground = UIManager.getColor("Button[Default].background");
+        defaultdBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
         button.setBackground(background);
         button.setForeground(foreground);
@@ -67,10 +67,11 @@ public class MaterialButtonUI extends MetalButtonUI {
         if (b.isContentAreaFilled()) {
             paintBackground(g, b);
         }
-        if(isDefoultButton == null){
-            isDefoultButton = ((JButton)button).isDefaultButton();
+        if(isDefaultButton == null){
+            isDefaultButton = ((JButton)button).isDefaultButton();
         }
         super.paint(g, c);
+        paintStateButton(c, g);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
@@ -120,10 +121,10 @@ public class MaterialButtonUI extends MetalButtonUI {
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
-        if (b.isEnabled() && (isDefoultButton != null && isDefoultButton) && !b.isSelected()) {
+        if (b.isEnabled() && (isDefaultButton != null && isDefaultButton) && !b.isSelected()) {
             MaterialManagerListener.removeAllMaterialMouseListener(b);
             //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
-            b.setBackground(defauldBackground);
+            b.setBackground(defaultdBackground);
             b.setForeground(defaultForeground);
             return;
         }
