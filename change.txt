@@ -29,4 +29,14 @@
 - Fixed the color into JTable customize
 - Added new effect to JTable row (FIX) test with developers JMars
 - Added minus cooplin to progressbar constant
-- Added new Style at the ComboBox
+- Added new Style at the ComboBox and fix the paint border
+- Try to add support change color on Button state -> default, disabled, normal
+- Fixed dimension line on the JTabbledPane
+- Fixed bug into JTextField and JPasswordField (must be tested)
+- Fixed bug into Button of the JScrollbar when it is enabled and it is focused
+- Fixed nullpointer int JTextField and the Partial problem in the JComboBox button
+- added partial support into Change cursor when run the Listener for the MouseHover but I must be work on it
+- Fixed bug into State button Defoult
+- Fixed bug for the corners border of the new state JComboBox
+- Added method for get SVG image, (temporal)
+- Added assertj for test GUI

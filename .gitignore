@@ -6,3 +6,8 @@ target/
 .classpath
 .project
 /demos/swingDemo/.nb-gradle/
+
+#Gradle file
+**/build/
+**/out/
+**/.gradle/
