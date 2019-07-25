@@ -1,7 +1,8 @@
 # Material-UI-Swing
-[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing)]
+[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?style=for-the-badge)
-[![Website](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
+
+[![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
 # Description
 A modern, Material Design UI for Java Swing
