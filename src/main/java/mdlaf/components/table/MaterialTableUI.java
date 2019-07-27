@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class MaterialTableUI extends BasicTableUI {
 
-	private JTable table;
+	protected JTable table;
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();

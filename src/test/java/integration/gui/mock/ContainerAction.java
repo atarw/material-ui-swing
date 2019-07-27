@@ -12,6 +12,11 @@ public class ContainerAction{
     private Action enableButtonDisabled = new ActionEnableButtonDisabled();
     private ActionListener listenerTextField = new ActionListenerTextField();
     private ActionListener listenerPasswordField = new ActionListenerPasswordField();
+    private Action actionFileChooser = new ActionOpenFileChooser();
+
+    public Action getActionFileChooser() {
+        return actionFileChooser;
+    }
 
     public Action getEnableButtonDisabled() {
         return enableButtonDisabled;
@@ -78,6 +83,20 @@ public class ContainerAction{
             }else {
                 passwField.setText("");
             }
+        }
+    }
+
+    private class ActionOpenFileChooser extends AbstractAction{
+
+        public ActionOpenFileChooser() {
+            putValue(Action.NAME, "Chooser");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            int returnVal = DemoGUITest.getInstance().getFileChooser().showSaveDialog(DemoGUITest.getInstance());
+
         }
     }
 }

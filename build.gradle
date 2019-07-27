@@ -24,6 +24,9 @@ dependencies {
     //assertj
     testImplementation group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
     testImplementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+    // https://mvnrepository.com/artifact/com.jtattoo/JTattoo
+    testImplementation group: 'com.jtattoo', name: 'JTattoo', version: '1.6.11'
+
 }
 
 jar {

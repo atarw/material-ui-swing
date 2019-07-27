@@ -1,10 +1,14 @@
 package mdlaf.components.button;
 
+import com.sun.istack.internal.NotNull;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.shadows.RoundedCornerBorder;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -26,7 +30,7 @@ public class MaterialButtonUI extends MetalButtonUI {
     private Color background;
     private Color disabledBackground;
     private Color disabledForeground;
-    private Color defaultdBackground;
+    private Color defaultBackground;
     private Color defaultForeground;
     private Boolean isDefaultButton = null;
 
@@ -41,24 +45,37 @@ public class MaterialButtonUI extends MetalButtonUI {
         background = UIManager.getColor("Button.background");
         disabledBackground = UIManager.getColor("Button.disabledBackground");
         disabledForeground = UIManager.getColor("Button.disabledForeground");
-        defaultdBackground = UIManager.getColor("Button[Default].background");
+        defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
         button.setBackground(background);
         button.setForeground(foreground);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (UIManager.getBoolean("Button.mouseHoverEnable")) {
             JButton b = (JButton) button;
-            if (b.isDefaultButton()) {
-                b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
-            } else {
+            if (!b.isDefaultButton()) {
                 button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
             }
         }
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
 
         this.button = button;
+    }
 
+    @Override
+    public void uninstallUI(JComponent c) {
 
+        AbstractButton button = (AbstractButton) c;
+        button.setBorder(null);
+        foreground = null;
+        background = null;
+        disabledBackground = null;
+        disabledForeground = null;
+        defaultBackground = null;
+        defaultForeground = null;
+        button.setBackground(null);
+        button.setForeground(null);
+        button.setCursor(null);
+        super.uninstallUI(c);
     }
 
     @Override
@@ -67,25 +84,49 @@ public class MaterialButtonUI extends MetalButtonUI {
         if (b.isContentAreaFilled()) {
             paintBackground(g, b);
         }
-        if(isDefaultButton == null){
-            isDefaultButton = ((JButton)button).isDefaultButton();
+        if (isDefaultButton == null) {
+            isDefaultButton = ((JButton) button).isDefaultButton();
+            if (isDefaultButton) {
+                MaterialManagerListener.removeAllMaterialMouseListener(b);
+                b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
+                paintStateButton(c, g);
+            }
         }
         super.paint(g, c);
-        paintStateButton(c, g);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
+        Graphics2D graphics = (Graphics2D) g.create();
         g.setColor(c.getBackground());
-        g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+        JButton b = (JButton) c;
+        if (b.getIcon() != null) {
+            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+        } else {
+            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+            if(isDefaultButton != null && isDefaultButton){
+                paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
+                return;
+            }
+            graphics.setStroke(new BasicStroke(2f));
 
-        paintStateButton(c, g);
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int w = b.getWidth()-1;
+            int h = b.getHeight()-1;
+            int arc = 7;
+
+            graphics.setColor(MaterialColors.COSMO_MEDIUM_GRAY);
+            graphics.drawRoundRect(0, 0, w, h, arc, arc);
+        }
+
+        paintStateButton(c, g, StateButton.DISABLE);
     }
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         // driveLine(g, (JButton) b);
         paintFocusRing(g, (JButton) b);
+        //paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
     }
 
     @Override
@@ -116,15 +157,26 @@ public class MaterialButtonUI extends MetalButtonUI {
         g2.dispose();
     }
 
+    protected void paintShadow(@NotNull Graphics g, @NotNull JComponent c){
+        int shade = 0;
+        int topOpacity = 80;
+        int pixels = UIManager.getInt("Button[Default].shadowPixel");
+        JButton b = (JButton) c;
+        for (int i = 0; i < pixels; i++) {
+            g.setColor(new Color(shade, shade, shade, ((topOpacity / pixels) * i)));
+            g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), 7, 7);
+        }
+    }
+
     protected void paintStateButton(JComponent component, Graphics graphics) {
         if (component == null || graphics == null) {
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
         if (b.isEnabled() && (isDefaultButton != null && isDefaultButton) && !b.isSelected()) {
-            MaterialManagerListener.removeAllMaterialMouseListener(b);
+            //MaterialManagerListener.removeAllMaterialMouseListener(b);
             //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
-            b.setBackground(defaultdBackground);
+            b.setBackground(defaultBackground);
             b.setForeground(defaultForeground);
             return;
         }
@@ -134,6 +186,16 @@ public class MaterialButtonUI extends MetalButtonUI {
             return;
         }
     }
+
+
+    private void paintStateButton(JComponent c, Graphics g, StateButton disable) {
+        if(StateButton.DISABLE.equals(disable)){
+            if(!c.isEnabled()){
+                paintStateButton(c, g);
+            }
+        }
+    }
+
 
     protected class EventEnableButton implements PropertyChangeListener {
 

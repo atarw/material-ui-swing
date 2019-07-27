@@ -46,8 +46,17 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
             //TODO this is an refactoring
             component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
+        if(component instanceof JButton){
+            JButton button = (JButton) component;
+            if (button.isDefaultButton()){
+                this.from = UIManager.getColor("Button[Default].background");
+            }else{
+                this.from = component.getBackground();
 
-        this.from = component.getBackground();
+            }
+        }else{
+            this.from = component.getBackground();
+        }
         this.to = to;
 
         this.forwardDeltas = new int[4];

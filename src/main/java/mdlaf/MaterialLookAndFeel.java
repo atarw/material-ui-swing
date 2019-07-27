@@ -213,17 +213,18 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.border", BorderFactory.createEmptyBorder(7, 17, 7, 17));
         table.put("Button.background", MaterialColors.GRAY_200);
         table.put("Button.foreground", MaterialColors.COSMO_BLACK);
-        table.put("Button.disabledBackground", MaterialColors.COSMO_DARK_GRAY);
-        table.put("Button.disabledForeground", MaterialColors.BLACK);
         table.put("Button[Default].background", MaterialColors.LIGHT_BLUE_500);
         table.put("Button[Default].foreground", Color.WHITE);
+        table.put("Button.disabledBackground", MaterialColors.COSMO_DARK_GRAY);
+        table.put("Button.disabledForeground", MaterialColors.BLACK);
         table.put("Button.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
-        //table.put("Button[Default].mouseHoverColor", MaterialColors.LIGHT_BLUE_200);
+        table.put("Button[Default].mouseHoverColor", MaterialColors.LIGHT_BLUE_200);
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
         table.put("Button.focusable", true);
         table.put("Button[focus].color", MaterialColors.GRAY_900);
         table.put("Button.disabledText", MaterialColors.GRAY_600);
+        table.put("Button[Default].shadowPixel", 3);
 
         table.put("CheckBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", MaterialColors.WHITE);

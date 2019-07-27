@@ -2,11 +2,7 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -22,6 +18,8 @@ public class DemoGUITest extends JFrame {
         }
     }
 
+    private static final DemoGUITest SINGLETON = new DemoGUITest();
+
     private GroupLayout layout;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
@@ -32,6 +30,10 @@ public class DemoGUITest extends JFrame {
     private ContainerAction containerAction = new ContainerAction();
     private JTextField textFieldUsername = new JTextField();
     private JPasswordField passwordFiled = new JPasswordField();
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenuItem menuItemJFileChooser = new JMenuItem("Choose");
+    private JMenu menuFile = new JMenu("File");
+    JFileChooser fileChooser = new JFileChooser();
 
     public void initComponent(){
         buttonDefault.setName("buttonDefault");
@@ -49,6 +51,8 @@ public class DemoGUITest extends JFrame {
         passwordFiled.setName("passwordField");
         passwordFiled.addActionListener(containerAction.getListenerPasswordField());
 
+        initJMenuBar();
+
         initLayoutContentPanel();
 
         this.getRootPane().setDefaultButton(buttonDefault);
@@ -59,6 +63,18 @@ public class DemoGUITest extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public void initJMenuBar(){
+
+        menuItemJFileChooser.setName("menuItemJFileChooser");
+        menuFile.add(menuItemJFileChooser);
+        menuFile.setName("nameFile");
+        menuBar.add(menuFile);
+        menuBar.setName("menuBar");
+        this.setJMenuBar(menuBar);
+
+        menuItemJFileChooser.setAction(containerAction.getActionFileChooser());
     }
 
     public void initLayoutContentPanel(){
@@ -100,12 +116,21 @@ public class DemoGUITest extends JFrame {
         );
     }
 
+    //getter and setter
+    public JFileChooser getFileChooser() {
+        fileChooser.setName("fileChooserAction");
+        return fileChooser;
+    }
+
+    public static DemoGUITest getInstance(){
+        return SINGLETON;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DemoGUITest demoGUITest = new DemoGUITest();
-                demoGUITest.initComponent();
+                SINGLETON.initComponent();
             }
         });
     }
