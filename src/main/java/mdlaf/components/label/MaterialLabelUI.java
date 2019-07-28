@@ -40,5 +40,6 @@ public class MaterialLabelUI extends BasicLabelUI {
 		int mnemIndex = l.getDisplayedMnemonicIndex();
 		g.setColor(UIManager.getColor("Label.disabledForeground"));
 		SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
+		//BasicGraphicsUtils.drawStringUnderlineCharAt(g, s, mnemIndex, textX, textY); This isn't deprecated
 	}
 }

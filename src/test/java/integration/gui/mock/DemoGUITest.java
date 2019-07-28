@@ -2,6 +2,7 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
+
 import javax.swing.*;
 
 /**
@@ -13,6 +14,8 @@ public class DemoGUITest extends JFrame {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            JFrame.setDefaultLookAndFeelDecorated(true); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -20,7 +23,8 @@ public class DemoGUITest extends JFrame {
 
     private static final DemoGUITest SINGLETON = new DemoGUITest();
 
-    private GroupLayout layout;
+    private GroupLayout layoutPanelOne;
+    private GroupLayout layoutPanelTwo;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
     private JButton buttonDefault = new JButton("Ok");
@@ -33,9 +37,11 @@ public class DemoGUITest extends JFrame {
     private JMenuBar menuBar = new JMenuBar();
     private JMenuItem menuItemJFileChooser = new JMenuItem("Choose");
     private JMenu menuFile = new JMenu("File");
-    JFileChooser fileChooser = new JFileChooser();
+    private JFileChooser fileChooser = new JFileChooser();
+    private JPanel panelTwo = new JPanel();
+    private JTable table = new JTable();
 
-    public void initComponent(){
+    public void initComponent() {
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
         buttonUndo.setAction(containerAction.getEnableButtonDisabled());
@@ -53,11 +59,15 @@ public class DemoGUITest extends JFrame {
 
         initJMenuBar();
 
-        initLayoutContentPanel();
+        table.setModel(new TableModelSecondPanel());
+
+        initLayoutContentPanelOne();
+        initLayoutContentPanelTwo();
 
         this.getRootPane().setDefaultButton(buttonDefault);
 
-        tabbedPane.add(panelOne , "Panel One");
+        tabbedPane.add(panelOne, "Panel One");
+        tabbedPane.add(panelTwo, "Panel two");
         this.setContentPane(tabbedPane);
 
         pack();
@@ -65,7 +75,7 @@ public class DemoGUITest extends JFrame {
         setVisible(true);
     }
 
-    public void initJMenuBar(){
+    public void initJMenuBar() {
 
         menuItemJFileChooser.setName("menuItemJFileChooser");
         menuFile.add(menuItemJFileChooser);
@@ -77,19 +87,19 @@ public class DemoGUITest extends JFrame {
         menuItemJFileChooser.setAction(containerAction.getActionFileChooser());
     }
 
-    public void initLayoutContentPanel(){
-        layout = new GroupLayout(panelOne);
-        panelOne.setLayout(layout);
+    public void initLayoutContentPanelOne() {
+        layoutPanelOne = new GroupLayout(panelOne);
+        panelOne.setLayout(layoutPanelOne);
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        layoutPanelOne.setAutoCreateGaps(true);
+        layoutPanelOne.setAutoCreateContainerGaps(true);
 
         //Init position component with group layaut
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+        layoutPanelOne.setHorizontalGroup(
+                layoutPanelOne.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(textFieldUsername)
                         .addComponent(passwordFiled)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(layoutPanelOne.createSequentialGroup()
                                 .addGap(50)
                                 .addComponent(buttonDefault, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(50)
@@ -101,18 +111,37 @@ public class DemoGUITest extends JFrame {
                         )
         );
 
-        layout.setVerticalGroup(
-                layout.createSequentialGroup()
+        layoutPanelOne.setVerticalGroup(
+                layoutPanelOne.createSequentialGroup()
                         .addComponent(textFieldUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20)
                         .addComponent(passwordFiled, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(layoutPanelOne.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(buttonDefault)
                                 .addComponent(buttonDisabled)
                                 .addComponent(buttonNormal)
                                 .addComponent(buttonUndo)
                         )
+        );
+    }
+
+    public void initLayoutContentPanelTwo() {
+        layoutPanelTwo = new GroupLayout(panelTwo);
+        panelTwo.setLayout(layoutPanelTwo);
+
+        layoutPanelTwo.setAutoCreateGaps(true);
+        layoutPanelTwo.setAutoCreateContainerGaps(true);
+
+        //Init position component with group layaut
+        layoutPanelTwo.setHorizontalGroup(
+                layoutPanelTwo.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(table)
+        );
+
+        layoutPanelTwo.setVerticalGroup(
+                layoutPanelTwo.createSequentialGroup()
+                        .addComponent(table, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
 
@@ -122,7 +151,7 @@ public class DemoGUITest extends JFrame {
         return fileChooser;
     }
 
-    public static DemoGUITest getInstance(){
+    public static DemoGUITest getInstance() {
         return SINGLETON;
     }
 

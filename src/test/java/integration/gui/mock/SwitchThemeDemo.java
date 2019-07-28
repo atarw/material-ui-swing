@@ -19,6 +19,7 @@ import javax.swing.WindowConstants;
 /**
  * @author https://github.com/vincenzopalazzo
  */
+//TODO import this into DEMoGUITest
 public class SwitchThemeDemo extends JFrame implements ComponentListener,ActionListener {
 
     // Variables declaration

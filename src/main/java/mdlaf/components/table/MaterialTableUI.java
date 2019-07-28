@@ -41,11 +41,11 @@ public class MaterialTableUI extends BasicTableUI {
 			table.setRowHeight (table.getRowHeight () + 25);
 		}
 
-		this.setDefaultCellRenderWithAllTipe(table);
+		this.setDefaultCellRenderWithType(table);
 
-		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
+		table.setDefaultEditor(Object.class, new MaterialTableCellEditor());
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		settingIconToTable();
+		//settingIconToTable();
 	}
 
 	@Override
@@ -56,13 +56,13 @@ public class MaterialTableUI extends BasicTableUI {
 	@Override
 	public void update(Graphics g, JComponent c) {
 		super.update(g, c);
-		settingIconToTable();
+		//settingIconToTable();
 	}
 
-	/**
-	 * This method do possibility change icon into JTable, you setting a icon with this constant input
-	 * UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
-	 */
+
+	 // This method do possibility change icon into JTable, you setting a icon with this constant input
+	 // UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
+	@Deprecated
 	protected void settingIconToTable(){
 
 		Icon unchecked = UIManager.getIcon("Table[CheckBox].unchecked");
@@ -81,13 +81,12 @@ public class MaterialTableUI extends BasicTableUI {
 		((JCheckBox)editor.getComponent()).setSelectedIcon(checked);
 	}
 
-	//TODO refactoring name
 
 	/**
 	 * This method setting a MaterialCellRender at the particular class
 	 * With this class not working correctly the color alternate in the Jtable
 	 */
-	protected void setDefaultCellRenderWithAllTipe(JTable table) {
+	protected void setDefaultCellRenderWithType(JTable table) {
 		if(table == null){
 			throw new IllegalArgumentException("Table is null");
 		}
@@ -97,5 +96,6 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setDefaultRenderer(Integer.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
 	}
 }

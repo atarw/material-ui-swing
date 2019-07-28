@@ -1,14 +1,10 @@
 package mdlaf.components.button;
 
-import com.sun.istack.internal.NotNull;
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.shadows.RoundedCornerBorder;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -157,7 +153,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         g2.dispose();
     }
 
-    protected void paintShadow(@NotNull Graphics g, @NotNull JComponent c){
+    protected void paintShadow(Graphics g, JComponent c){
         int shade = 0;
         int topOpacity = 80;
         int pixels = UIManager.getInt("Button[Default].shadowPixel");
