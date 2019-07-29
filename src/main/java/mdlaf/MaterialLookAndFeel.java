@@ -224,7 +224,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.focusable", true);
         table.put("Button[focus].color", MaterialColors.GRAY_900);
         table.put("Button.disabledText", MaterialColors.GRAY_600);
-        table.put("Button[Default].shadowPixel", 3);
+        table.put("Button[Default].shadowPixel", 2);
+        table.put("Button[Default][focus].color", MaterialColors.GRAY_200);
 
         table.put("CheckBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", MaterialColors.WHITE);

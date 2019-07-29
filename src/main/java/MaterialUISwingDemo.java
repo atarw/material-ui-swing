@@ -95,8 +95,6 @@ public class MaterialUISwingDemo {
         JPanel content = new JPanel();
         content.add(button);
 
-
-
         class ActionEnableButton extends AbstractAction{
 
             private JButton button;
