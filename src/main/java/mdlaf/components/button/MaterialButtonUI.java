@@ -1,8 +1,6 @@
 package mdlaf.components.button;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
@@ -10,7 +8,6 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.metal.MetalButtonUI;
-import javax.swing.text.html.StyleSheet;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -86,7 +83,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         if (isDefaultButton == null && b.isEnabled()) {
             isDefaultButton = ((JButton) button).isDefaultButton();
             if (isDefaultButton) {
-                if(UIManager.getBoolean("Button.mouseHoverEnable")){
+                if (UIManager.getBoolean("Button.mouseHoverEnable")) {
                     MaterialManagerListener.removeAllMaterialMouseListener(b);
                     b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
                 }
@@ -101,7 +98,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         Graphics2D graphics = (Graphics2D) g.create();
         g.setColor(c.getBackground());
         JButton b = (JButton) c;
-        if (b.getIcon() != null) {
+        if (!UIManager.getBoolean("Button[border].toAll") && (button.getIcon() != null)) {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
         } else {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
@@ -110,10 +107,14 @@ public class MaterialButtonUI extends MetalButtonUI {
                 paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
                 return;
             }
-            paintBorderButton(graphics, b);
+
+            if(UIManager.getBoolean("Button[border].enable")){
+                paintBorderButton(graphics, b);
+            }
         }
 
         paintStateButton(c, g, StateButton.DISABLE);
+
     }
 
     @Override
@@ -157,20 +158,28 @@ public class MaterialButtonUI extends MetalButtonUI {
     }
 
     protected void paintShadow(Graphics g, JComponent c) {
-        int shade = 0;
         int topOpacity = 80;
         int pixels = UIManager.getInt("Button[Default].shadowPixel");
-        Color baseColor = c.getBackground();
         JButton b = (JButton) c;
-        for (int i = 0; i < pixels; i++) {
-            int valueRed = baseColor.getRed();
-            int valueGreen = baseColor.getGreen();
-            int valueBlue = baseColor.getBlue();
-            if (valueRed > 0 && valueBlue > 0 && valueGreen > 0) {
-                g.setColor(new Color(shade, shade, shade, ((topOpacity / pixels) * i)));
-                g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), 7, 7);
+        int valueRed = 255;
+        int valueGreen = 255;
+        int valueBlue = 255;
+        for (int i = pixels; i >= 0; i--) {
+            if(valueBlue > 70){
+                valueRed -= 70;
+                valueGreen -= 70;
+                valueBlue -= 70;
+            }else{
+                valueBlue -= valueBlue;
+                valueGreen -= valueGreen;
+                valueRed -= valueRed;
             }
+
+            Color result = new Color(valueRed, valueGreen, valueBlue, topOpacity);
+            g.setColor(result);
+            g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), 7, 7);
         }
+
     }
 
     protected void paintBorderButton(Graphics2D graphics, JButton b) {
@@ -181,7 +190,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         int h = b.getHeight() - 1;
         int arc = 7;
 
-        graphics.setColor(MaterialColors.COSMO_MEDIUM_GRAY);
+        graphics.setColor(UIManager.getColor("Button[border].color"));
         graphics.drawRoundRect(0, 0, w, h, arc, arc);
     }
 
@@ -205,14 +214,13 @@ public class MaterialButtonUI extends MetalButtonUI {
     }
 
 
-    private void paintStateButton(JComponent c, Graphics g, StateButton disable) {
+    protected void paintStateButton(JComponent c, Graphics g, StateButton disable) {
         if (StateButton.DISABLE.equals(disable)) {
             if (!c.isEnabled()) {
                 paintStateButton(c, g);
             }
         }
     }
-
 
     protected class EventEnableButton implements PropertyChangeListener {
 

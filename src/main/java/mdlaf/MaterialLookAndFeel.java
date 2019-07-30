@@ -65,6 +65,7 @@ import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
+
 import sun.awt.SunToolkit;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
@@ -221,11 +222,15 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button[Default].mouseHoverColor", MaterialColors.LIGHT_BLUE_200);
         table.put("Button.mouseHoverColor", MaterialColors.GRAY_500);
         table.put("Button.mouseHoverEnable", true);
+        table.put("Button.mouseHoverBorder", false); //if is true -> the mouse hover effect change the color to OnlyBorder, if false to all button
         table.put("Button.focusable", true);
         table.put("Button[focus].color", MaterialColors.GRAY_900);
         table.put("Button.disabledText", MaterialColors.GRAY_600);
-        table.put("Button[Default].shadowPixel", 2);
+        table.put("Button[Default].shadowPixel", 3);
         table.put("Button[Default][focus].color", MaterialColors.GRAY_200);
+        table.put("Button[border].enable", true);
+        table.put("Button[border].color", MaterialColors.COSMO_MEDIUM_GRAY);
+        table.put("Button[border].toAll", false); //if is true the border do have all button if if false the border do have only button without icon
 
         table.put("CheckBox.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("CheckBox.background", MaterialColors.WHITE);
