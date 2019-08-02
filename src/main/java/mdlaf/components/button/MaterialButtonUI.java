@@ -5,12 +5,14 @@ import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
@@ -29,6 +31,7 @@ public class MaterialButtonUI extends MetalButtonUI {
     private Color defaultBackground;
     private Color defaultForeground;
     private Boolean isDefaultButton = null;
+    private PropertyChangeListener enableButton = new EventEnableButton();
 
     @Override
     public void installUI(JComponent c) {
@@ -71,6 +74,8 @@ public class MaterialButtonUI extends MetalButtonUI {
         button.setBackground(null);
         button.setForeground(null);
         button.setCursor(null);
+
+        super.uninstallDefaults((AbstractButton) c);
         super.uninstallUI(c);
     }
 
@@ -104,7 +109,9 @@ public class MaterialButtonUI extends MetalButtonUI {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
             if (isDefaultButton != null && isDefaultButton) {
                 g.setColor(UIManager.getColor("Button[Default].background"));
-                paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
+                if(UIManager.getBoolean("Button[Default].shadowEnable")){
+                    paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
+                }
                 return;
             }
 
@@ -137,8 +144,14 @@ public class MaterialButtonUI extends MetalButtonUI {
 
     @Override
     protected BasicButtonListener createButtonListener(AbstractButton b) {
-        b.addPropertyChangeListener(new EventEnableButton());
+        b.addPropertyChangeListener(enableButton);
         return super.createButtonListener(b);
+    }
+
+    @Override
+    protected void uninstallListeners(AbstractButton b) {
+        b.removePropertyChangeListener(enableButton);
+        super.uninstallListeners(b);
     }
 
     protected void paintFocusRing(Graphics g, JButton b) {

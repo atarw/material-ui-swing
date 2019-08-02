@@ -17,17 +17,7 @@ public class MaterialEditorPaneUI extends BasicEditorPaneUI {
 	}
 
 	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
-	}
-
-	@Override
 	protected void paintBackground(Graphics g) {
 		super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
-	}
-
-	@Override
-	protected void installDefaults() {
-		super.installDefaults();
 	}
 }

@@ -31,6 +31,18 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}

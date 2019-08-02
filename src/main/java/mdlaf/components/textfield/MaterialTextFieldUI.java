@@ -84,6 +84,18 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        super.uninstallUI(c);
+    }
+
+    @Override
     protected void uninstallDefaults() {
         super.uninstallDefaults();
         getComponent().setBorder(null);

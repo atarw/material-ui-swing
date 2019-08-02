@@ -227,6 +227,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button[focus].color", MaterialColors.GRAY_900);
         table.put("Button.disabledText", MaterialColors.GRAY_600);
         table.put("Button[Default].shadowPixel", 3);
+        table.put("Button[Default].shadowEnable", false);
         table.put("Button[Default][focus].color", MaterialColors.GRAY_200);
         table.put("Button[border].enable", true);
         table.put("Button[border].color", MaterialColors.COSMO_MEDIUM_GRAY);

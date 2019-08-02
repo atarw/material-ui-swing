@@ -60,6 +60,25 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        JTabbedPane tabbedPane = (JTabbedPane) c;
+        tabbedPane.setFont(null);
+        tabbedPane.setBackground(null);
+        tabbedPane.setForeground(null);
+        tabbedPane.setBorder(null);
+
+        darkShadow = null;
+        shadow = null;
+        lightHighlight = null;
+
+        component = null;
+
+        super.uninstallDefaults();
+        super.uninstallUI(c);
+    }
+
+    @Override
     public void paint(Graphics g, JComponent c) {
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
     }

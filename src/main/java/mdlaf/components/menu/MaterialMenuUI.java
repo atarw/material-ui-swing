@@ -2,6 +2,8 @@ package mdlaf.components.menu;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialManagerListener;
+
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
@@ -36,6 +38,21 @@ public class MaterialMenuUI extends BasicMenuUI {
 			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.black));
 		}
 
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+
+		JMenu menu = (JMenu) c;
+		menu.setFont (null);
+		menu.setBorder (null);
+		menu.setBackground (null);
+		menu.setForeground (null);
+		c.setCursor(null);
+		MaterialManagerListener.removeAllMaterialMouseListener(menu);
+
+		super.uninstallDefaults();
+		super.uninstallUI(c);
 	}
 
 	@Override

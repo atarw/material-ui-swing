@@ -50,9 +50,4 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
         }
         return super.getIconForType(messageType);
     }
-
-    @Override
-    protected void addButtonComponents(Container container, Object[] buttons, int initialIndex) {
-        super.addButtonComponents(container, buttons, initialIndex);
-    }
 }

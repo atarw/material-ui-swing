@@ -55,6 +55,21 @@ public class MaterialFormattedTextFieldUI extends BasicFormattedTextFieldUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        JFormattedTextField formattedTextField = (JFormattedTextField) c;
+        formattedTextField.setSelectionColor(null);
+        formattedTextField.setSelectedTextColor(null);
+        formattedTextField.setBackground(null);
+        formattedTextField.setForeground(null);
+        formattedTextField.setFont(null);
+        formattedTextField.setBorder(null);
+
+        super.uninstallDefaults();
+        super.uninstallUI(c);
+    }
+
+    @Override
     protected void paintBackground(Graphics g) {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
     }

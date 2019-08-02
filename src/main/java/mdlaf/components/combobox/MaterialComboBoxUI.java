@@ -39,6 +39,24 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        JComboBox<?> comboBox = (JComboBox<?>) c;
+        comboBox.setFont(null);
+        background = null;
+        comboBox.setBackground(background);
+        comboBox.setForeground(null);
+        comboBox.setBorder(null);
+        comboBox.setLightWeightPopupEnabled(true);
+        comboBox.setCursor(null);
+        comboBox.setRenderer(null);
+        comboBox.setEditor(null);
+
+        super.uninstallDefaults();
+        super.uninstallUI(c);
+    }
+
+    @Override
     protected JButton createArrowButton() {
         Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
         JButton button;

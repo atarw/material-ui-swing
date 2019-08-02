@@ -20,11 +20,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	}
 
 	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
-	}
-
-	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}

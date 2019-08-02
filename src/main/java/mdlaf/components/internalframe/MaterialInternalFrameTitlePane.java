@@ -48,17 +48,17 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
     protected void createButtons() {
         super.createButtons();
 
-        MaterialManagerListener.removeAllMouseListener(closeButton);
+        MaterialManagerListener.removeAllMaterialMouseListener(closeButton);
         closeButton.setBorder(null);
         closeButton.setOpaque(false);
         closeButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGHT_RED));
 
-        MaterialManagerListener.removeAllMouseListener(maxButton);
+        MaterialManagerListener.removeAllMaterialMouseListener(maxButton);
         maxButton.setBorder(null);
         maxButton.setOpaque(false);
         maxButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGTH_BLUE));
 
-        MaterialManagerListener.removeAllMouseListener(iconButton);
+        MaterialManagerListener.removeAllMaterialMouseListener(iconButton);
         iconButton.setBorder(null);
         iconButton.setOpaque(false);
     }

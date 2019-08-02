@@ -53,4 +53,19 @@ public class MaterialListUI extends BasicListUI {
         list.setFocusable(UIManager.getBoolean("List.focusable"));
     }
 
+    @Override
+    public void uninstallUI(JComponent c) {
+
+        list = (JList) c;
+        list.setBackground(null);
+        list.setForeground(null);
+        list.setBorder(null);
+        list.setFont(null);
+        list.setSelectionBackground(null);
+        list.setSelectionForeground(null);
+        list.setCursor(null);
+
+        super.uninstallDefaults();
+        super.uninstallUI(c);
+    }
 }

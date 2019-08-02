@@ -30,6 +30,18 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setBackground(null);
+		c.setForeground(null);
+		c.setBorder(null);
+		c.setCursor(null);
+
+		super.uninstallDefaults();
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}

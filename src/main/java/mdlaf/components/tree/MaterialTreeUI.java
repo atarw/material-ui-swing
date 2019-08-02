@@ -36,7 +36,22 @@ public class MaterialTreeUI extends BasicTreeUI {
 		ui.setLeftChildIndent (10);
 		ui.setRightChildIndent (10);
 
-		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		tree.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+
+		tree.setCellRenderer (null);
+		tree.setCellEditor (null);
+
+		tree.setFont (null);
+		tree.setForeground (null);
+		tree.setBackground (null);
+
+		tree.setCursor(null);
+
+		super.uninstallUI(c);
 	}
 
 	@Override

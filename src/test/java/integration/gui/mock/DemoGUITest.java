@@ -4,6 +4,7 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -37,9 +38,13 @@ public class DemoGUITest extends JFrame {
     private JMenuBar menuBar = new JMenuBar();
     private JMenuItem menuItemJFileChooser = new JMenuItem("Choose");
     private JMenu menuFile = new JMenu("File");
+    private JMenu themesMenu = new JMenu("Themes");
     private JFileChooser fileChooser = new JFileChooser();
     private JPanel panelTwo = new JPanel();
     private JTable table = new JTable();
+    private JMenuItem gtk = new JMenuItem("GTK");
+    private JMenuItem metal = new JMenuItem("Metal");
+    private JMenuItem material = new JMenuItem("Material");
 
     public void initComponent() {
         buttonDefault.setName("buttonDefault");
@@ -80,7 +85,17 @@ public class DemoGUITest extends JFrame {
         menuItemJFileChooser.setName("menuItemJFileChooser");
         menuFile.add(menuItemJFileChooser);
         menuFile.setName("nameFile");
+
+        material.setAction(containerAction.getActionChangeTheme("Material"));
+        metal.setAction(containerAction.getActionChangeTheme("Metal"));
+        gtk.setAction(containerAction.getActionChangeTheme("GTK"));
+
+        themesMenu.add(material);
+        themesMenu.add(metal);
+        themesMenu.add(gtk);
+
         menuBar.add(menuFile);
+        menuBar.add(themesMenu);
         menuBar.setName("menuBar");
         this.setJMenuBar(menuBar);
 
@@ -145,10 +160,45 @@ public class DemoGUITest extends JFrame {
         );
     }
 
+    public void reloadUI(){
+        SwingUtilities.updateComponentTreeUI(getRootPane());
+    }
+
+    public void changeThemeWith(BasicLookAndFeel lookAndFeel){
+        try {
+            UIManager.setLookAndFeel(lookAndFeel);
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void enableTheme(JMenuItem menuItem){
+        menuItem.setEnabled(false);
+        if(menuItem != material){
+            material.setEnabled(true);
+        }else if (menuItem != gtk){
+            gtk.setEnabled(true);
+        }else if (menuItem != metal){
+            metal.setEnabled(true);
+        }
+    }
+
     //getter and setter
     public JFileChooser getFileChooser() {
         fileChooser.setName("fileChooserAction");
         return fileChooser;
+    }
+
+    public JMenuItem getMaterial() {
+        return material;
+    }
+
+    public JMenuItem getGtk() {
+        return gtk;
+    }
+
+    public JMenuItem getMetal() {
+        return metal;
     }
 
     public static DemoGUITest getInstance() {

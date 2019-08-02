@@ -49,6 +49,27 @@ public class MaterialTableUI extends BasicTableUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		table = (JTable) c;
+		table.setSelectionForeground (null);
+		table.setBackground (null);
+		table.setForeground (null);
+		table.setFont (null);
+		table.setBorder (null);
+		table.setSelectionBackground (null);
+		table.getTableHeader ().setResizingAllowed (true);
+
+		table.setDefaultEditor(Object.class, null);
+		table.setCursor(null);
+
+		this.table = null;
+
+		super.uninstallUI(c);
+
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
@@ -58,7 +79,6 @@ public class MaterialTableUI extends BasicTableUI {
 		super.update(g, c);
 		//settingIconToTable();
 	}
-
 
 	 // This method do possibility change icon into JTable, you setting a icon with this constant input
 	 // UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
