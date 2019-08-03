@@ -80,13 +80,15 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 
 	@Override
 	public void uninstallUI(JComponent c) {
-		super.uninstallUI(c);
 
 		JFileChooser fileChooser = (JFileChooser) c;
 
 		this.uninstallIcons (fileChooser);
-		this.uninstallComponents (fileChooser);
-		this.clearIconCache ();
+		this.uninstallComponents(fileChooser);
+		this.uninstallListeners(fileChooser);
+		this.uninstallStrings(fileChooser);
+		super.uninstallUI(c);
+
 		this.computerIcon = null;
 		this.directoryIcon = null;
 		this.fileIcon = null;

@@ -161,6 +161,8 @@ public class DemoGUITest extends JFrame {
     }
 
     public void reloadUI(){
+        SwingUtilities.updateComponentTreeUI(this);
+        SwingUtilities.updateComponentTreeUI(getContentPane());
         SwingUtilities.updateComponentTreeUI(getRootPane());
     }
 

@@ -20,7 +20,6 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JMenuItem menuItem = (JMenuItem) c;
 		menuItem.setFont (UIManager.getFont ("MenuItem.font"));
 		menuItem.setBackground (UIManager.getColor ("MenuItem.background"));
 		menuItem.setForeground (UIManager.getColor ("MenuItem.foreground"));
@@ -33,13 +32,13 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);
+		menuItem.setFont (null);
+		menuItem.setBackground (null);
+		menuItem.setForeground (null);
+		menuItem.setBorder (null);
+		menuItem.setCursor(null);
 
-		super.uninstallUI(c);
+		super.uninstallUI(menuItem);
 	}
 
 	@Override

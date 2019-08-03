@@ -12,7 +12,6 @@ import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
@@ -62,6 +61,7 @@ public class MaterialButtonUI extends MetalButtonUI {
 
     @Override
     public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
 
         AbstractButton button = (AbstractButton) c;
         button.setBorder(null);
@@ -75,8 +75,6 @@ public class MaterialButtonUI extends MetalButtonUI {
         button.setForeground(null);
         button.setCursor(null);
 
-        super.uninstallDefaults((AbstractButton) c);
-        super.uninstallUI(c);
     }
 
     @Override

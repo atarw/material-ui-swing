@@ -12,8 +12,6 @@ import java.awt.*;
  */
 public class MaterialTableUI extends BasicTableUI {
 
-	protected JTable table;
-
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();
 	}
@@ -22,7 +20,7 @@ public class MaterialTableUI extends BasicTableUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		table = (JTable) c;
+		//table = (JTable) c;
 		table.setOpaque (UIManager.getBoolean("Table.opaque"));
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
 		table.setBackground (UIManager.getColor ("Table.background"));
@@ -51,7 +49,6 @@ public class MaterialTableUI extends BasicTableUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		table = (JTable) c;
 		table.setSelectionForeground (null);
 		table.setBackground (null);
 		table.setForeground (null);
@@ -63,9 +60,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setDefaultEditor(Object.class, null);
 		table.setCursor(null);
 
-		this.table = null;
-
-		super.uninstallUI(c);
+		super.uninstallUI(table);
 
 	}
 

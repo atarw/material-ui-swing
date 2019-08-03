@@ -43,16 +43,15 @@ public class MaterialMenuUI extends BasicMenuUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		JMenu menu = (JMenu) c;
-		menu.setFont (null);
-		menu.setBorder (null);
-		menu.setBackground (null);
-		menu.setForeground (null);
-		c.setCursor(null);
-		MaterialManagerListener.removeAllMaterialMouseListener(menu);
+		menuItem.setFont (null);
+		menuItem.setBackground (null);
+		menuItem.setForeground (null);
+		menuItem.setBorder (null);
+		menuItem.setCursor(null);
 
-		super.uninstallDefaults();
-		super.uninstallUI(c);
+		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
+
+		super.uninstallUI(menuItem);
 	}
 
 	@Override

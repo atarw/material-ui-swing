@@ -23,12 +23,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     protected Color background;
+    protected FocusListener focusListener;
+
+    public MaterialComboBoxUI() {
+        focusListener = new FocusListenerColor();
+    }
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JComboBox<?> comboBox = (JComboBox<?>) c;
         comboBox.setFont(UIManager.getFont("ComboBox.font"));
         background = UIManager.getColor("ComboBox.background");
         comboBox.setBackground(background);
@@ -40,11 +44,10 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
 
-        JComboBox<?> comboBox = (JComboBox<?>) c;
         comboBox.setFont(null);
-        background = null;
-        comboBox.setBackground(background);
+        comboBox.setBackground(null);
         comboBox.setForeground(null);
         comboBox.setBorder(null);
         comboBox.setLightWeightPopupEnabled(true);
@@ -52,8 +55,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setRenderer(null);
         comboBox.setEditor(null);
 
-        super.uninstallDefaults();
-        super.uninstallUI(c);
+        comboBox.removeFocusListener(focusListener);
+
+        comboBox = null;
     }
 
     @Override
@@ -108,7 +112,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected FocusListener createFocusListener() {
-        comboBox.addFocusListener(new FocusListenerColor());
+        comboBox.addFocusListener(focusListener);
         return super.createFocusListener();
     }
 
