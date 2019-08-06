@@ -7,7 +7,11 @@ import mdlaf.utils.MaterialManagerListener;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.basic.BasicMenuUI;
+import javax.swing.plaf.basic.BasicToolBarUI;
+import javax.swing.plaf.metal.MetalMenuBarUI;
+import javax.swing.plaf.metal.MetalToolBarUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -22,6 +26,8 @@ public class MaterialMenuUI extends BasicMenuUI {
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuUI ();
 	}
+
+	private MouseListener mouseHover = new MouseHover();
 
 	@Override
 	public void installUI (JComponent c) {
@@ -49,6 +55,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menuItem.setBorder (null);
 		menuItem.setCursor(null);
 
+		c.removeMouseListener(mouseHover);
 		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
 
 		super.uninstallUI(menuItem);
@@ -62,7 +69,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
 		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
-			c.addMouseListener(new MouseHover());
+			c.addMouseListener(mouseHover);
 		}
 		return super.createChangeListener(c);
 	}

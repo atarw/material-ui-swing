@@ -23,6 +23,7 @@
  */
 package mdlaf.utils;
 
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
@@ -100,17 +101,17 @@ public class MaterialFontFactory {
         return null;
     }
 
-    public Font getFont(String typeFont){
+    public FontUIResource getFont(String typeFont){
         if(typeFont == null){
             throw new IllegalArgumentException("Argument null");
         }
         if(cacheFont.containsKey(typeFont)){
-            return cacheFont.get(typeFont);
+            return new FontUIResource(cacheFont.get(typeFont));
         }
         String propieties =properties.getProperty(typeFont);
         Font font = loadFont(propieties);
         cacheFont.put(typeFont, font);
-        return cacheFont.get(typeFont);
+        return new FontUIResource(cacheFont.get(typeFont));
     }
 
     /**

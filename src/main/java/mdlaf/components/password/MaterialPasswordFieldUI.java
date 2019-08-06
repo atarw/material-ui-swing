@@ -165,7 +165,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground){
         if(newColor == null){
-            throw new IllegalArgumentException("The input argument is null");
+            return;
         }
         if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
             this.activeForeground = newColor;

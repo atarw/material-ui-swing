@@ -23,8 +23,8 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 		JMenuBar menuBar = (JMenuBar) c;
 		menuBar.setFont (UIManager.getFont ("MenuBar.font"));
 		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
-		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
 		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
+		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
 	}
 
 	@Override

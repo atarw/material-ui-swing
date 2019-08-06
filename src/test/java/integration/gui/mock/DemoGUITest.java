@@ -16,7 +16,7 @@ public class DemoGUITest extends JFrame {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(true); //not support yet
+            JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class DemoGUITest extends JFrame {
         menuFile.setName("nameFile");
 
         material.setAction(containerAction.getActionChangeTheme("Material"));
-        metal.setAction(containerAction.getActionChangeTheme("Metal"));
+        metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
 
         themesMenu.add(material);
@@ -160,14 +160,13 @@ public class DemoGUITest extends JFrame {
         );
     }
 
-    public void reloadUI(){
+    public synchronized void reloadUI(){
         SwingUtilities.updateComponentTreeUI(this);
-        SwingUtilities.updateComponentTreeUI(getContentPane());
-        SwingUtilities.updateComponentTreeUI(getRootPane());
     }
 
-    public void changeThemeWith(BasicLookAndFeel lookAndFeel){
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel){
         try {
+            UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();

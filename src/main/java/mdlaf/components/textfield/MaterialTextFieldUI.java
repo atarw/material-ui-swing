@@ -85,6 +85,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
 
     @Override
     public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
 
         c.setFont (null);
         c.setBackground (null);
@@ -92,7 +93,6 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
         c.setBorder (null);
         c.setCursor(null);
 
-        super.uninstallUI(c);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class MaterialTextFieldUI extends BasicTextFieldUI{
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground){
         if(newColor == null){
-            throw new IllegalArgumentException("The input argument is null");
+           return;
         }
         if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
             this.activeForeground = newColor;

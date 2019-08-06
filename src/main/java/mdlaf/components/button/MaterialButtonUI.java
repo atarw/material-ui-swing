@@ -18,6 +18,8 @@ import java.beans.PropertyChangeListener;
  */
 public class MaterialButtonUI extends MetalButtonUI {
 
+    public static final String UI_KEY = "ButtonUI";
+
     public static ComponentUI createUI(final JComponent c) {
         return new MaterialButtonUI();
     }
@@ -47,7 +49,7 @@ public class MaterialButtonUI extends MetalButtonUI {
         defaultForeground = UIManager.getColor("Button[Default].foreground");
         button.setBackground(background);
         button.setForeground(foreground);
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (UIManager.getBoolean("Button.mouseHoverEnable")) {
             JButton b = (JButton) button;
             if (!b.isDefaultButton()) {
@@ -74,6 +76,8 @@ public class MaterialButtonUI extends MetalButtonUI {
         button.setBackground(null);
         button.setForeground(null);
         button.setCursor(null);
+
+        MaterialManagerListener.removeAllMaterialMouseListener(button);
 
     }
 
@@ -194,6 +198,9 @@ public class MaterialButtonUI extends MetalButtonUI {
     }
 
     protected void paintBorderButton(Graphics2D graphics, JButton b) {
+        if(!b.isEnabled()){
+            return;
+        }
         graphics.setStroke(new BasicStroke(2f));
 
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

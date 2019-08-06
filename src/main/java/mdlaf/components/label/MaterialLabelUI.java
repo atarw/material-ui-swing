@@ -39,7 +39,6 @@ public class MaterialLabelUI extends BasicLabelUI {
         label.setForeground(null);
         label.setBorder(null);
 
-        super.uninstallDefaults(label);
         super.uninstallUI(c);
     }
 

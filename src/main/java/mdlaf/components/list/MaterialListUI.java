@@ -65,7 +65,6 @@ public class MaterialListUI extends BasicListUI {
         list.setSelectionForeground(null);
         list.setCursor(null);
 
-        super.uninstallDefaults();
         super.uninstallUI(c);
     }
 }
