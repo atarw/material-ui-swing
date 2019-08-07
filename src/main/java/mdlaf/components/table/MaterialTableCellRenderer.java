@@ -37,7 +37,6 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 		return component;
 	}
 
-
 	  // This method setting a MaterialCellRender at the particular class
 	  // With this class not working correctly the color alternate in the Jtable
 	  // in particular the IconImage without this code the cell is painted not correctly or

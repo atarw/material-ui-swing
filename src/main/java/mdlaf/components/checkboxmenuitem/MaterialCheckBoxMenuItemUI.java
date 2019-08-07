@@ -37,7 +37,6 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 		c.setBorder(null);
 		c.setCursor(null);
 
-		super.uninstallDefaults();
 		super.uninstallUI(c);
 	}
 

@@ -1,6 +1,6 @@
 package mdlaf.components.table;
 
-import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -11,6 +11,8 @@ import java.awt.*;
  * @contributor https://github.com/vincenzopalazzo
  */
 public class MaterialTableUI extends BasicTableUI {
+
+	public static final String UI_KEY = "TableUI";
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();
@@ -47,7 +49,8 @@ public class MaterialTableUI extends BasicTableUI {
 	}
 
 	@Override
-	public void uninstallUI(JComponent c) {
+	protected void uninstallDefaults() {
+		super.uninstallDefaults();
 
 		table.setSelectionForeground (null);
 		table.setBackground (null);
@@ -55,13 +58,9 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setFont (null);
 		table.setBorder (null);
 		table.setSelectionBackground (null);
-		table.getTableHeader ().setResizingAllowed (true);
 
-		table.setDefaultEditor(Object.class, null);
-		table.setCursor(null);
-
-		super.uninstallUI(table);
-
+		table.removeEditor();
+		table.setDefaultRenderer(Object.class, null);
 	}
 
 	@Override

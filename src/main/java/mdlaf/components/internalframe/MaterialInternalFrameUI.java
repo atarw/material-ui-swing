@@ -25,8 +25,8 @@ public class MaterialInternalFrameUI extends BasicInternalFrameUI {
     @Override
     protected JComponent createNorthPane(JInternalFrame w) {
         this.titlePane = new MaterialInternalFrameTitlePane(w);
-        w.setBackground(MaterialColors.COSMO_BLUE);
-        this.titlePane.setBorder(MaterialBorders.DEFAULT_SHADOW_BORDER);
+        w.setBackground(UIManager.getColor("InternalFrame.background"));
+        this.titlePane.setBorder(UIManager.getBorder("InternalFrame.border"));
         return this.titlePane;
     }
 
@@ -37,5 +37,9 @@ public class MaterialInternalFrameUI extends BasicInternalFrameUI {
         g.fillRect(0, 0, c.getWidth(), c.getHeight());
     }
 
-
+    @Override
+    public void uninstallUI(JComponent c) {
+        this.titlePane = null;
+        super.uninstallUI(c);
+    }
 }

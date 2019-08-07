@@ -1,6 +1,7 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.MaterialManagerListener;
@@ -87,6 +88,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	protected JButton installButton(int orientation){
 		JButton button = new JButton();
 		MaterialManagerListener.removeAllMaterialMouseListener(button);
+		button.setUI(new MaterialButtonUI());
 		button.setOpaque (true);
 		button.setFocusable(false); //This must be false because the button focus have an effect that this button mustn't be have
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));

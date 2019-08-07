@@ -5,6 +5,7 @@ import mdlaf.MaterialLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -121,7 +122,7 @@ public class ContainerAction {
                 if(e.getSource() == DemoGUITest.getInstance().getMaterial()){
                     DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getMetal()){
-                    DemoGUITest.getInstance().changeThemeWith(new MetalLookAndFeel());
+                    DemoGUITest.getInstance().changeThemeWith(new NimbusLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getGtk()){
                     DemoGUITest.getInstance().changeThemeWith(new GTKLookAndFeel());
                 }

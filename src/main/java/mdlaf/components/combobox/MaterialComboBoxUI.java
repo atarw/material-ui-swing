@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.ForkJoinPool;
 
 
 /**
@@ -44,9 +45,8 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        super.uninstallUI(c);
 
-        comboBox.setFont(null);
+       // comboBox.setFont(null);
         comboBox.setBackground(null);
         comboBox.setForeground(null);
         comboBox.setBorder(null);
@@ -56,8 +56,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setEditor(null);
 
         comboBox.removeFocusListener(focusListener);
+        MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
 
-        comboBox = null;
+        super.uninstallUI(comboBox);
     }
 
     @Override

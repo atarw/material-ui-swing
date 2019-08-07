@@ -1,5 +1,7 @@
 package mdlaf.components.checkbox;
 
+import mdlaf.utils.MaterialManagerListener;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalCheckBoxUI;
@@ -36,8 +38,6 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
         checkBox.setSelectedIcon(null);
         checkBox.setCursor(null);
 
-
-        super.uninstallDefaults((AbstractButton) c);
         super.uninstallUI(c);
     }
 

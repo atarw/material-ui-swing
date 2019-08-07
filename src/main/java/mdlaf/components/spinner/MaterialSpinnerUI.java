@@ -1,6 +1,7 @@
 package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 
@@ -30,17 +31,12 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         spinner.setBackground(UIManager.getColor("Spinner.background"));
         spinner.setForeground(UIManager.getColor("Spinner.foreground"));
         spinner.setBorder(UIManager.getBorder("Spinner.border"));
-        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-        c.setFont (null);
-        c.setBackground (null);
-        c.setForeground (null);
-        c.setBorder (null);
-        c.setCursor(null);
+        //c.setCursor(null);
 
         super.uninstallUI(c);
     }
@@ -66,13 +62,14 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             button = new BasicArrowButton(SwingConstants.NORTH);
         }
         button.setOpaque(true);
+        button.setFocusable(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
         if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
             button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
         }
         installNextButtonListeners(button);
-        button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
+        button.setBorder (BorderFactory.createEmptyBorder(10,10,10,10));
         return button;
     }
 
@@ -87,12 +84,11 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         }
         button.setOpaque(true);
         button.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
-        button.setBorder(UIManager.getBorder("Spinner.arrowButtonBorder"));
         if(UIManager.getBoolean("Spinner.mouseHoverEnabled")){
             button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
         }
         installPreviousButtonListeners(button);
-        button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
+        button.setBorder (BorderFactory.createLineBorder(button.getBackground()));
         return button;
     }
 

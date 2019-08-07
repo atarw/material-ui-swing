@@ -65,7 +65,6 @@ public class MaterialFormattedTextFieldUI extends BasicFormattedTextFieldUI {
         formattedTextField.setFont(null);
         formattedTextField.setBorder(null);
 
-        super.uninstallDefaults();
         super.uninstallUI(c);
     }
 
