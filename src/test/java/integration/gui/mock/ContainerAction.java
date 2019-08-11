@@ -2,6 +2,9 @@ package integration.gui.mock;
 
 import com.sun.java.swing.plaf.gtk.GTKLookAndFeel;
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialTheme;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -120,11 +123,21 @@ public class ContainerAction {
         public void actionPerformed(ActionEvent e) {
             try {
                 if(e.getSource() == DemoGUITest.getInstance().getMaterial()){
-                    DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel());
+                    if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
+                        MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
+                    }else{
+                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel());
+                    }
                 }else if(e.getSource() == DemoGUITest.getInstance().getMetal()){
                     DemoGUITest.getInstance().changeThemeWith(new NimbusLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getGtk()){
                     DemoGUITest.getInstance().changeThemeWith(new GTKLookAndFeel());
+                }else if(e.getSource() == DemoGUITest.getInstance().getMaterialDark()){
+                    if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
+                        MaterialLookAndFeel.changeTheme(new MaterialDarkTheme());
+                    }else{
+                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new MaterialDarkTheme()));
+                    }
                 }
                 DemoGUITest.getInstance().reloadUI();
             } catch (Exception ex) {
