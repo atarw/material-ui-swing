@@ -30,8 +30,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.textColor = MaterialColors.BLACK;
         this.disableTextColor = MaterialColors.GRAY_500;
 
-        this.buttonBackgroundColor = MaterialColors.COSMO_MEDIUM_GRAY;
-        this.buttonBackgroundColorMouseHover = MaterialColors.COSMO_LIGTH_GRAY;
+        this.buttonBackgroundColor = MaterialColors.GRAY_300;
+        this.buttonBackgroundColorMouseHover = MaterialColors.GRAY_400;
         this.buttonTextColor = MaterialColors.BLACK;
         this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;

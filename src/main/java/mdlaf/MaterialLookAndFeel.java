@@ -61,6 +61,7 @@ import mdlaf.components.togglebutton.MaterialToggleButtonUI;
 import mdlaf.components.toolbar.MaterialToolBarUI;
 import mdlaf.components.tooltip.MaterialToolTipUI;
 import mdlaf.components.tree.MaterialTreeUI;
+import mdlaf.shadows.RoundedCornerBorder;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialTheme;
 import mdlaf.themes.exceptions.MaterialChangeThemeException;
@@ -71,6 +72,8 @@ import mdlaf.utils.MaterialImageFactory;
 
 import sun.awt.SunToolkit;
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
@@ -243,8 +246,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
         table.put("Button.highlight", MaterialColors.GRAY_400);
         table.put("Button.opaque", false);
-        table.put("Button.border", BorderFactory.createEmptyBorder(7, 17, 7, 17));
+       /* table.put("Button.border", new BorderUIResource(new CompoundBorder(new RoundedCornerBorder(7, MaterialColors.COSMO_MEDIUM_GRAY, 3f),
+                                                            new EmptyBorder(4,8,4,8))));*/
         table.put("Button.background", theme.getButtonBackgroundColor());
+        table.put("Button.border", BorderFactory.createEmptyBorder(8, 12, 8, 12));
         table.put("Button.foreground", theme.getButtonTextColor());
         table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
         table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
@@ -262,7 +267,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("Button[Default].shadowEnable", false);
         table.put("Button[Default][focus].color", MaterialColors.GRAY_200);
         table.put("Button[border].enable", true);
-        table.put("Button[border].color", MaterialColors.COSMO_MEDIUM_GRAY);
+        table.put("Button[border].color", MaterialColors.GRAY_200);
         table.put("Button[border].toAll", false); //if is true the border do have all button if if false the border do have only button without icon
 
         table.put("CheckBox.font", theme.getFontRegular());
@@ -368,10 +373,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
         table.put("Slider.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Slider.background", theme.getBackgroundPrimary());
-        table.put("Slider.foreground", theme.getTextColor());
+        table.put("Slider.foreground", theme.getHighlightBackgroundPrimary());
         table.put("Slider.trackColor", MaterialColors.BLACK);
         table.put("Slider[halo].color", MaterialColors.bleach(MaterialColors.LIGHT_BLUE_400, 0.5f)); //TODO new fix
-        table.put("Slider.border", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(20, 20, 20, 20)));
+        table.put("Slider.border", BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
 
         table.put("SplitPane.border", BorderFactory.createEmptyBorder());
         table.put("SplitPane.background", theme.getBackgroundPrimary());

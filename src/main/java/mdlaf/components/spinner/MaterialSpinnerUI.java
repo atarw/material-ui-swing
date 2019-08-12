@@ -69,7 +69,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("Spinner.mouseHoverColor")));
         }
         installNextButtonListeners(button);
-        button.setBorder (BorderFactory.createEmptyBorder(10,10,10,10));
+        button.setBorder(BorderFactory.createLineBorder(button.getBackground()));
         return button;
     }
 
