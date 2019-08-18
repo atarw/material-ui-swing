@@ -11,11 +11,12 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
     @Override
     public void installTheme() {
         installColor();
-        installFont();
+        installFonts();
+        installBorders();
     }
 
     @Override
-    protected void installFont(){
+    protected void installFonts(){
         this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
         this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
         this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
@@ -36,6 +37,11 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
         this.buttonDefaultTextColor = MaterialColors.WHITE;
+        this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
+        this.buttonDisabledForeground = MaterialColors.BLACK;
+        this.buttonFocusColor = MaterialColors.GRAY_900;
+        this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
+        this.buttonBorderColor = MaterialColors.GRAY_200;
 
         this.menuBackground = MaterialColors.WHITE;
         this.menuBackgroundMouseHover = MaterialColors.GRAY_400;

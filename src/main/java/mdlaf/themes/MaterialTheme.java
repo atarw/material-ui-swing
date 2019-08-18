@@ -2,6 +2,8 @@ package mdlaf.themes;
 
 import mdlaf.utils.MaterialColors;
 
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 
@@ -12,8 +14,11 @@ public interface MaterialTheme {
 
     void installTheme();
 
+    void installUIDefault(UIDefaults table);
+
     String getName();
 
+    //Getter for global constant
     ColorUIResource getBackgroundPrimary();
 
     ColorUIResource getHighlightBackgroundPrimary();
@@ -22,6 +27,7 @@ public interface MaterialTheme {
 
     ColorUIResource getDisableTextColor();
 
+    //getter for button propriety
     ColorUIResource getButtonBackgroundColor();
 
     ColorUIResource getButtonTextColor();
@@ -33,6 +39,30 @@ public interface MaterialTheme {
     ColorUIResource getButtonDefaultTextColor();
 
     ColorUIResource getButtonDefaultBackgroundColorMouseHover();
+
+    ColorUIResource getButtonDisabledBackground();
+
+    ColorUIResource getButtonDisabledForeground();
+
+    ColorUIResource getButtonFocusColor();
+
+    ColorUIResource getButtonDisableTextColor();
+
+    ColorUIResource getButtonDefaultFocusColor();
+
+    ColorUIResource getButtonBorderColor();
+
+    BorderUIResource getButtonBorder();
+
+    FontUIResource getButtonFont();
+
+    boolean getMouseHoverButtonEnable();
+
+    boolean getButtonFocusable();
+
+    boolean getButtonBorderEnable();
+
+    boolean getButtonBorderEnableToAll();
 
     ColorUIResource getMenuBackground();
 
@@ -49,4 +79,6 @@ public interface MaterialTheme {
     FontUIResource getFontRegular();
 
     FontUIResource getFontMedium();
+
+
 }

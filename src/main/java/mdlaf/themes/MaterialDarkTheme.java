@@ -30,7 +30,7 @@ public class MaterialDarkTheme extends AbstractMaterialTheme{
     }
 
     @Override
-    protected void installFont() {
+    protected void installFonts() {
 
     }
 

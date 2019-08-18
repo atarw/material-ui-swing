@@ -246,29 +246,27 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
 
         table.put("Button.highlight", MaterialColors.GRAY_400);
         table.put("Button.opaque", false);
-       /* table.put("Button.border", new BorderUIResource(new CompoundBorder(new RoundedCornerBorder(7, MaterialColors.COSMO_MEDIUM_GRAY, 3f),
-                                                            new EmptyBorder(4,8,4,8))));*/
         table.put("Button.background", theme.getButtonBackgroundColor());
-        table.put("Button.border", BorderFactory.createEmptyBorder(8, 12, 8, 12));
+        table.put("Button.border", theme.getButtonBorder());
         table.put("Button.foreground", theme.getButtonTextColor());
         table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
         table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
-        table.put("Button.disabledBackground", MaterialColors.COSMO_DARK_GRAY);
-        table.put("Button.disabledForeground", MaterialColors.BLACK);
-        table.put("Button.font", theme.getFontBold());
+        table.put("Button.disabledBackground", theme.getButtonDisabledBackground());
+        table.put("Button.disabledForeground", theme.getButtonDisabledForeground());
+        table.put("Button.font", theme.getButtonFont());
         table.put("Button[Default].mouseHoverColor", theme.getButtonDefaultBackgroundColorMouseHover());
         table.put("Button.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
-        table.put("Button.mouseHoverEnable", true);
+        table.put("Button.mouseHoverEnable", theme.getMouseHoverButtonEnable());
         table.put("Button.mouseHoverBorder", false); //if is true -> the mouse hover effect change the color to OnlyBorder, if false to all button
-        table.put("Button.focusable", true);
-        table.put("Button[focus].color", MaterialColors.GRAY_900);
-        table.put("Button.disabledText", MaterialColors.GRAY_600);
+        table.put("Button.focusable", theme.getButtonFocusable());
+        table.put("Button[focus].color", theme.getButtonFocusColor());
+        table.put("Button.disabledText", theme.getButtonDisableTextColor());
         table.put("Button[Default].shadowPixel", 3);
         table.put("Button[Default].shadowEnable", false);
-        table.put("Button[Default][focus].color", MaterialColors.GRAY_200);
-        table.put("Button[border].enable", true);
-        table.put("Button[border].color", MaterialColors.GRAY_200);
-        table.put("Button[border].toAll", false); //if is true the border do have all button if if false the border do have only button without icon
+        table.put("Button[Default][focus].color", theme.getButtonDefaultFocusColor());
+        table.put("Button[border].enable", theme.getButtonBorderEnable());
+        table.put("Button[border].color", theme.getButtonBorderColor());
+        table.put("Button[border].toAll", theme.getButtonBorderEnableToAll()); //if is true the border do have all button if if false the border do have only button without icon
 
         table.put("CheckBox.font", theme.getFontRegular());
         table.put("CheckBox.background", theme.getBackgroundPrimary());
@@ -602,6 +600,8 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("ProgressBar.foreground", MaterialColors.COSMO_BLUE);
         //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
         table.put("ProgressBar.verticalSize", 1);
+
+        theme.installUIDefault(table);
     }
 
     @Override
