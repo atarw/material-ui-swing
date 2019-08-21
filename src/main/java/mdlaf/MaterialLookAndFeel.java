@@ -248,6 +248,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("Button.opaque", false);
         table.put("Button.background", theme.getButtonBackgroundColor());
         table.put("Button.border", theme.getButtonBorder());
+        table.put("Button.arc", 7);
         table.put("Button.foreground", theme.getButtonTextColor());
         table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
         table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
@@ -278,7 +279,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("ComboBox.font", theme.getFontRegular());
         table.put("ComboBox.background", theme.getBackgroundPrimary());
         table.put("ComboBox.foreground", theme.getTextColor());
-        table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK));
+        table.put("ComboBox.border", MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK, 12));
         table.put("ComboBox.borderItems", BorderFactory.createEmptyBorder(1, 2, 0, 1));
         table.put("ComboBox.buttonBackground", theme.getBackgroundPrimary());
         table.put("ComboBox[button].border", BorderFactory.createLineBorder(theme.getBackgroundPrimary()));
@@ -291,6 +292,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("ComboBox.unfocusColor", theme.getTextColor());
         table.put("ComboBox.focusColor", theme.getHighlightBackgroundPrimary());
         table.put("ComboBox.mouseHoverEnabled", false);
+        table.put("ComboBox.arc", 12);
 
         table.put("Label.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
         table.put("Label.background", theme.getBackgroundPrimary());
@@ -533,8 +535,10 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("List.foreground", theme.getTextColor());
         table.put("List.border", MaterialBorders.LIGHT_SHADOW_BORDER);
         table.put("List.font", theme.getFontMedium());
-        table.put("List.selectionBackground", theme.getHighlightBackgroundPrimary());
+        table.put("List.selectionBackground", MaterialColors.COSMO_LIGTH_BLUE);
         table.put("List.selectionForeground", theme.getTextColor());
+        table.put("List[item].border", BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
+                                                                            BorderFactory.createEmptyBorder(2, 5, 2, 5)));
         table.put("List.focusable", true);
 
         table.put("RootPane.frameBorder", BorderFactory.createEmptyBorder());

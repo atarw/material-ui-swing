@@ -5,11 +5,9 @@ import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -33,6 +31,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     private Color defaultBackground;
     private Color defaultForeground;
     private Boolean isDefaultButton = null;
+    private int arch = 7;
     private PropertyChangeListener enableButton = new EventEnableButton();
 
     @Override
@@ -50,6 +49,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         defaultForeground = UIManager.getColor("Button[Default].foreground");
         button.setBackground(background);
         button.setForeground(foreground);
+        this.arch = UIManager.getInt("Button.arc");
         //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (UIManager.getBoolean("Button.mouseHoverEnable")) {
             JButton b = (JButton) button;
@@ -101,15 +101,21 @@ public class MaterialButtonUI extends BasicButtonUI {
         super.paint(g, c);
     }
 
+    @Override
+    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+        super.paintText(g, b, textRect, text);
+        paintStateButton(b, g, StateButton.DISABLE);
+    }
+
     private void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D graphics = (Graphics2D) g.create();
         g.setColor(c.getBackground());
         JButton b = (JButton) c;
         if (!UIManager.getBoolean("Button[border].toAll") && (button.getIcon() != null)) {
-            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         } else {
-            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 7, 7);
+            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
             if (isDefaultButton != null && isDefaultButton) {
                 g.setColor(UIManager.getColor("Button[Default].background"));
                 if(UIManager.getBoolean("Button[Default].shadowEnable")){
@@ -142,7 +148,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
-        g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), 7, 7);
+        g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), arch, arch);
     }
 
     @Override
@@ -168,7 +174,7 @@ public class MaterialButtonUI extends BasicButtonUI {
             g2.setColor(UIManager.getColor("Button[focus].color"));
         }
 
-        g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, 7, 7);
+        g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, arch, arch);
 
         g2.dispose();
     }
@@ -193,7 +199,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
             Color result = new Color(valueRed, valueGreen, valueBlue, topOpacity);
             g.setColor(result);
-            g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), 7, 7);
+            g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), arch, arch);
         }
 
     }
@@ -207,10 +213,10 @@ public class MaterialButtonUI extends BasicButtonUI {
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int w = b.getWidth() - 1;
         int h = b.getHeight() - 1;
-        int arc = 7;
+        //int arc = 7;
 
         graphics.setColor(UIManager.getColor("Button[border].color"));
-        graphics.drawRoundRect(0, 0, w, h, arc, arc);
+        graphics.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
     }
 
     protected void paintStateButton(JComponent component, Graphics graphics) {

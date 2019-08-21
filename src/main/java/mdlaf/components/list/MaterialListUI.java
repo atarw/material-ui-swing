@@ -51,6 +51,8 @@ public class MaterialListUI extends BasicListUI {
         list.setSelectionForeground(UIManager.getColor("List.selectionForeground"));
         list.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         list.setFocusable(UIManager.getBoolean("List.focusable"));
+
+        list.setCellRenderer(new MaterialListCellRenderer());
     }
 
     @Override

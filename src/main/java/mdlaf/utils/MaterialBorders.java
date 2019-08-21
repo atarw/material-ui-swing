@@ -27,8 +27,14 @@ public class MaterialBorders {
         if(colorLine == null){
             throw new IllegalArgumentException("The color line is null");
         }
-        return new BorderUIResource(new RoundedCornerBorder(colorLine));
-       // return new RoundedCornerBorder();
+        return roundedLineColorBorder(colorLine, 12);
+    }
+
+    public static BorderUIResource roundedLineColorBorder(Color colorLine, int arch){
+        if(colorLine == null){
+            throw new IllegalArgumentException("The color line is null");
+        }
+        return new BorderUIResource(new RoundedCornerBorder(colorLine, arch));
     }
 }
 
