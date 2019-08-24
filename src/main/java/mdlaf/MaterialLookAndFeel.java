@@ -409,6 +409,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("Table[row].height", 4);
         table.put("Table[CheckBox].checked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX)));
         table.put("Table[CheckBox].unchecked", new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX)));
+        table.put("Table.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
         table.put("TableHeader.background", MaterialColors.GRAY_200);
         table.put("TableHeader.foreground", theme.getTextColor());
@@ -537,6 +538,7 @@ public class MaterialLookAndFeel extends BasicLookAndFeel {
         table.put("List.font", theme.getFontMedium());
         table.put("List.selectionBackground", MaterialColors.COSMO_LIGTH_BLUE);
         table.put("List.selectionForeground", theme.getTextColor());
+        table.put("List.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
         table.put("List[item].border", BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
                                                                             BorderFactory.createEmptyBorder(2, 5, 2, 5)));
         table.put("List.focusable", true);
