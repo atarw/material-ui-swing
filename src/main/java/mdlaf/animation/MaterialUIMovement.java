@@ -56,7 +56,7 @@ public class MaterialUIMovement {
 	 * @author https://github.com/vincenzopalazzo
 	 */
 	public static MaterialUIStaticMovement getStaticMovement(JComponent c, Color colorEffect, Color colorOnClick){
-		if(c == null || colorEffect == null){
+		if(c == null || colorEffect == null || colorOnClick == null){
 			throw new IllegalArgumentException("Che input arguments is/are null");
 		}
 		return new MaterialUIStaticMovement(c.getBackground(), colorEffect, colorOnClick);

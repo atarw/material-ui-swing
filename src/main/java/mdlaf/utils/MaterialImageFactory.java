@@ -23,6 +23,8 @@
  */
 package mdlaf.utils;
 
+import sun.swing.ImageIconUIResource;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -91,7 +93,7 @@ public class MaterialImageFactory {
     public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
     public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
 
-    private Map<String, BufferedImage> cachaImage = new HashMap<>();
+    private Map<String, ImageIconUIResource> cachaImage = new HashMap<>();
 
     public static MaterialImageFactory getInstance() {
         if (SINGLETON == null) {
@@ -103,7 +105,7 @@ public class MaterialImageFactory {
     private MaterialImageFactory() {
     }
 
-    public BufferedImage getImage(String key) {
+    public ImageIconUIResource getImage(String key) {
         if (key == null) {
             throw new IllegalArgumentException("Argument nulled");
         }
@@ -113,7 +115,7 @@ public class MaterialImageFactory {
         }
         try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(path)) {
             BufferedImage image = ImageIO.read(inputStream);
-            cachaImage.put(path, image);
+            cachaImage.put(path, new ImageIconUIResource(image));
             return cachaImage.get(path);
         } catch (IOException e) {
             e.printStackTrace();

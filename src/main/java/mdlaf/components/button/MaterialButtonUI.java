@@ -15,7 +15,7 @@ import java.beans.PropertyChangeListener;
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-public class MaterialButtonUI extends BasicButtonUI {
+public class MaterialButtonUI extends BasicButtonUI{
 
     public static final String UI_KEY = "ButtonUI";
 

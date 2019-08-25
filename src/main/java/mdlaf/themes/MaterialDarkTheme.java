@@ -35,6 +35,11 @@ public class MaterialDarkTheme extends AbstractMaterialTheme{
     }
 
     @Override
+    protected void installIcons() {
+
+    }
+
+    @Override
     protected void installColor() {
 
     }
