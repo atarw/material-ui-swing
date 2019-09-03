@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.InsetsUIResource;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -171,7 +172,25 @@ public interface MaterialTheme {
 
     ColorUIResource getFocusColorLineTabbedPane();
 
+    InsetsUIResource getTabInsetsTabbedPane();
+
+    InsetsUIResource getSelectedTabInsetsTabbedPane();
+
     boolean getMouseHoverEnableTabbedPane();
+
+    int getLinePositionYTabbedPane();
+
+    int getLinePositionXTabbedPane();
+
+    int getLineWithTabbedPane();
+
+    int getLineHeightTabbedPane();
+
+    int getLineArchTabbedPane();
+
+    int getIndentTabbedPane();
+
+    int getSpacerTabbedPane();
 
     //---------------------------------------------------
     //Proprieties JTable
@@ -281,6 +300,56 @@ public interface MaterialTheme {
     BorderUIResource getBorderItemList();
 
     BorderUIResource getBorderList();
+
+    //---------------------------------------------------
+    //Proprieties JRootPane
+    BorderUIResource getBorderFrameRootPane();
+
+    BorderUIResource getBorderDialogRootPane();
+
+    //---------------------------------------------------
+    //Proprieties JOptionPane
+    ColorUIResource getBackgroundOptionPane();
+
+    ImageIconUIResource getWarningIconOptionPane();
+
+    ImageIconUIResource getErrorIconIconOptionPane();
+
+    ImageIconUIResource getQuestionIconOptionPane();
+
+    ImageIconUIResource getInformationIconOptionPane();
+
+    boolean getEnableIconOptionPane();
+
+    //---------------------------------------------------
+    //Proprieties JFileChooser
+    ImageIconUIResource getIconComputerFileChooser();
+
+    ImageIconUIResource getIconDirectoryFileChooser();
+
+    ImageIconUIResource getIconFileFileChooser();
+
+    ImageIconUIResource getIconFloppyDriveFileChooser();
+
+    ImageIconUIResource getIconHardDriveFileChooser();
+
+    ImageIconUIResource getIconHomeFileChooser();
+
+    ImageIconUIResource getIconListFileChooser();
+
+    ImageIconUIResource getIconDetailsFileChooser();
+
+    ImageIconUIResource getIconNewFolderFileChooser();
+
+    ImageIconUIResource getIconUpFolderFileChooser();
+
+    //---------------------------------------------------
+    //Proprieties JProgressBar
+    ColorUIResource getBackgroundProgressBar();
+
+    ColorUIResource getForegroundProgressBar();
+
+    BorderUIResource getBorderProgressBar();
 
     //All type of font supported to the theme
     FontUIResource getFontBold();

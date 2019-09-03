@@ -70,9 +70,9 @@ import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
 import sun.awt.SunToolkit;
+
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
@@ -127,12 +127,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     //TODO not allineated this component with master
     private static final String splitPaneUI = MaterialSplitPaneUI.class.getCanonicalName();
 
-    public static void changeTheme(MaterialTheme theme){
-        if(theme == null){
+    public static void changeTheme(MaterialTheme theme) {
+        if (theme == null) {
             throw new IllegalArgumentException("Theme null");
         }
         BasicLookAndFeel blaf = (BasicLookAndFeel) UIManager.getLookAndFeel();
-        if(blaf instanceof MaterialLookAndFeel){
+        if (blaf instanceof MaterialLookAndFeel) {
             MaterialLookAndFeel materialLookAndFeel = (MaterialLookAndFeel) blaf;
             UIManager.removeAuxiliaryLookAndFeel(materialLookAndFeel);
             theme.installTheme();
@@ -285,6 +285,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.disabledForeground", theme.getDisableTextColor());
         table.put("ComboBox.selectionBackground", theme.getBackgroundPrimary());
         table.put("ComboBox.selectionForeground", theme.getTextColor());
+        table.put("ComboBox[item].selectionForeground", theme.getTextColor());
         table.put("ComboBox.selectedInDropDownBackground", theme.getSelectedInDropDownBackgroundComboBox());
         table.put("ComboBox.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
         table.put("ComboBox.unfocusColor", theme.getTextColor());
@@ -383,6 +384,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.font", theme.getFontRegular());
         table.put("TabbedPane.background", theme.getBackgroundPrimary());
         table.put("TabbedPane.foreground", theme.getTextColor());
+        table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
+        table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
         table.put("TabbedPane.border", theme.getBorderPanel());
         table.put("TabbedPane.shadow", null);
         table.put("TabbedPane.darkShadow", null);
@@ -390,6 +393,15 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
         table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
+        table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
+        table.put("TabbedPane.indent", theme.getIndentTabbedPane());
+        table.put("TabbedPane.tabInsets", theme.getTabInsetsTabbedPane());
+        table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
+        table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
+        table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
+        table.put("TabbedPane.lineWith", theme.getLineWithTabbedPane());
+        table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
+        table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
@@ -471,7 +483,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.focusInputMap", multilineInputMap);
 
         table.put("EditorPane.border", theme.getBorderPanel());
-        table.put("EditorPane.background",theme.getBackgroundTextField());
+        table.put("EditorPane.background", theme.getBackgroundTextField());
         table.put("EditorPane.selectionBackground", theme.getSelectionBackgroundTextField());
         table.put("EditorPane.inactiveForeground", theme.getSelectionForegroundTextField());
         table.put("EditorPane.font", theme.getFontRegular());
@@ -527,7 +539,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FormattedTextField.inactiveForeground", theme.getInactiveForegroundTextField());
         table.put("FormattedTextField.inactiveBackground", theme.getInactiveBackgroundTextField());
         table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
-        table.put("FormattedTextField.selectionForeground",theme.getSelectionForegroundTextField());
+        table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("FormattedTextField.border", theme.getBorderTextField());
 
         table.put("List.background", theme.getBackgroundPrimary());
@@ -540,17 +552,17 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("List[item].border", theme.getBorderItemList());
         table.put("List.focusable", true);
 
-        //TODO fino a qui ho importato il nuovo tema
-        table.put("RootPane.frameBorder", BorderFactory.createEmptyBorder());
+        table.put("RootPane.frameBorder", theme.getBorderFrameRootPane());
         table.put("RootPane.background", theme.getBackgroundPrimary());
-        table.put("RootPane.plainDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.informationDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.errorDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.fileChooserDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.questionDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.warningDialogBorder", MaterialBorders.LIGHT_SHADOW_BORDER);
-        table.put("RootPane.colorChooserDialogBorder", MaterialColors.WHITE);
+        table.put("RootPane.plainDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.informationDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.errorDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.fileChooserDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.questionDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.warningDialogBorder", theme.getBorderDialogRootPane());
+        table.put("RootPane.colorChooserDialogBorder", theme.getBackgroundPrimary());
 
+        //TODO not supported yet
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS));
         table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIIMIZE_WINDOWS));
         table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK));
@@ -564,20 +576,20 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrame.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
         table.put("Material.activeCaption", theme.getBackgroundPrimary());
-        table.put("Material.inactiveCaption",theme.getBackgroundPrimary());
+        table.put("Material.inactiveCaption", theme.getBackgroundPrimary());
         table.put("Material.activeCaptionText", theme.getTextColor());
-        table.put("Material.inactiveCaptionText", MaterialColors.GRAY_700);
+        table.put("Material.inactiveCaptionText", theme.getDisableTextColor());
         table.put("Material.activeCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);
         table.put("Material.inactiveCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);
 
         table.put("OptionPane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.border", BorderFactory.createEmptyBorder());
-        table.put("OptionPane.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR));
-        table.put("OptionPane.enableIcon", false);
-        table.put("OptionPaneUI.warningIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING));
-        table.put("OptionPaneUI.errorIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR));
-        table.put("OptionPaneUI.questionIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION));
-        table.put("OptionPaneUI.informationIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION));
+        table.put("OptionPane.font", theme.getFontRegular());
+        table.put("OptionPane.enableIcon", theme.getEnableIconOptionPane());
+        table.put("OptionPaneUI.warningIcon", theme.getWarningIconOptionPane());
+        table.put("OptionPaneUI.errorIcon", theme.getErrorIconIconOptionPane());
+        table.put("OptionPaneUI.questionIcon", theme.getQuestionIconOptionPane());
+        table.put("OptionPaneUI.informationIcon", theme.getInformationIconOptionPane());
         table.put("OptionPane.errorDialog.titlePane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.errorDialog.titlePane.foreground", theme.getTextColor());
         table.put("OptionPane.errorDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
@@ -588,20 +600,20 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPane.warningDialog.titlePane.foreground", theme.getTextColor());
         table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
 
-        table.put("FileChooser[icons].computer", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK));
-        table.put("FileChooser[icons].directory", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER_BLACK));
-        table.put("FileChooser[icons].file", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FILE_BLACK));
-        table.put("FileChooser[icons].floppyDrive", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FLOPPY_DRIVE_BLACK));
-        table.put("FileChooser[icons].hardDrive", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HARD_DRIVE_BLACK));
-        table.put("FileChooser[icons].home", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HOME_BLACK));
-        table.put("FileChooser[icons].list", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LIST_BLACK));
-        table.put("FileChooser[icons].details", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_BLACK));
-        table.put("FileChooser[icons].newFolder", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_BLACK));
-        table.put("FileChooser[icons].upFolder", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_BLACK));
+        table.put("FileChooser[icons].computer", theme.getIconComputerFileChooser());
+        table.put("FileChooser[icons].directory", theme.getIconDirectoryFileChooser());
+        table.put("FileChooser[icons].file", theme.getIconFileFileChooser());
+        table.put("FileChooser[icons].floppyDrive", theme.getIconFloppyDriveFileChooser());
+        table.put("FileChooser[icons].hardDrive", theme.getIconHardDriveFileChooser());
+        table.put("FileChooser[icons].home", theme.getIconHomeFileChooser());
+        table.put("FileChooser[icons].list", theme.getIconListFileChooser());
+        table.put("FileChooser[icons].details", theme.getIconDetailsFileChooser());
+        table.put("FileChooser[icons].newFolder", theme.getIconNewFolderFileChooser());
+        table.put("FileChooser[icons].upFolder", theme.getIconUpFolderFileChooser());
 
-        table.put("ProgressBar.border", MaterialBorders.LIGHT_LINE_BORDER);
-        table.put("ProgressBar.background", MaterialColors.COSMO_LIGTH_BLUE);
-        table.put("ProgressBar.foreground", MaterialColors.COSMO_BLUE);
+        table.put("ProgressBar.border", theme.getBorderProgressBar());
+        table.put("ProgressBar.background", theme.getBackgroundProgressBar());
+        table.put("ProgressBar.foreground", theme.getForegroundProgressBar());
         //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
         table.put("ProgressBar.verticalSize", 1);
 
@@ -620,7 +632,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
             defaults.put("OptionPane.warningIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING));
             defaults.put("OptionPane.errorIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR));
             defaults.put("OptionPane.questionIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION));
-            defaults.put("OptionPane.informationIcon",MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION));
+            defaults.put("OptionPane.informationIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION));
             return defaults;
         } catch (Exception ignore) {
             //do nothing

@@ -1,6 +1,7 @@
 package mdlaf.themes;
 
 
+import javafx.scene.paint.Color;
 import mdlaf.utils.MaterialBorders;
 import sun.swing.ImageIconUIResource;
 
@@ -8,6 +9,8 @@ import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.InsetsUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -135,6 +138,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ColorUIResource focusColorLineTabbedPane;
 
+    protected InsetsUIResource tabInsetsTabbedPane;
+
+    protected InsetsUIResource selectedTabInsetsTabbedPane;
+
     //---------------------------------------------------
     //Proprieties JTable
     protected ColorUIResource backgroundTable;
@@ -236,6 +243,53 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected BorderUIResource borderList;
 
+    //---------------------------------------------------
+    //Proprieties JRootPane
+    protected BorderUIResource borderFrameRootPane;
+
+    protected BorderUIResource borderDialogRootPane;
+
+    //---------------------------------------------------
+    //Proprieties JOptionPane
+    protected ColorUIResource backgroundOptionPane;
+
+    protected ImageIconUIResource warningIconOptionPane;
+
+    protected ImageIconUIResource errorIconIconOptionPane;
+
+    protected ImageIconUIResource questionIconOptionPane;
+
+    protected ImageIconUIResource informationIconOptionPane;
+
+    //---------------------------------------------------
+    //Proprieties JFileChooser
+    protected ImageIconUIResource iconComputerFileChooser;
+
+    protected ImageIconUIResource iconDirectoryFileChooser;
+
+    protected ImageIconUIResource iconFileFileChooser;
+
+    protected ImageIconUIResource iconFloppyDriveFileChooser;
+
+    protected ImageIconUIResource iconHardDriveFileChooser;
+
+    protected ImageIconUIResource iconHomeFileChooser;
+
+    protected ImageIconUIResource iconListFileChooser;
+
+    protected ImageIconUIResource iconDetailsFileChooser;
+
+    protected ImageIconUIResource iconNewFolderFileChooser;
+
+    protected ImageIconUIResource iconUpFolderFileChooser;
+
+    //---------------------------------------------------
+    //Proprieties JProgressBar
+    protected ColorUIResource backgroundProgressBar;
+
+    protected ColorUIResource foregroundProgressBar;
+
+    protected BorderUIResource borderProgressBar;
 
     //---------------------------------------------------
     //All type of font supported to the look and feel
@@ -285,6 +339,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
         borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
                                          BorderFactory.createEmptyBorder(2, 5, 2, 5)));
+
+        tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+        selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+
+        borderFrameRootPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
+
+        borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
     }
 
     //getter
@@ -564,6 +626,49 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return focusColorLineTabbedPane;
     }
 
+    public InsetsUIResource getTabInsetsTabbedPane() {
+        return tabInsetsTabbedPane;
+    }
+
+    public InsetsUIResource getSelectedTabInsetsTabbedPane() {
+        return selectedTabInsetsTabbedPane;
+    }
+
+    @Override
+    public int getLinePositionYTabbedPane() {
+        return 40;
+    }
+
+    @Override
+    public int getLinePositionXTabbedPane() {
+        return 0;
+    }
+
+    @Override
+    public int getLineWithTabbedPane() {
+        return 0;
+    }
+
+    @Override
+    public int getLineHeightTabbedPane() {
+        return 5;
+    }
+
+    @Override
+    public int getLineArchTabbedPane() {
+        return 0;
+    }
+
+    @Override
+    public int getIndentTabbedPane() {
+        return 4;
+    }
+
+    @Override
+    public int getSpacerTabbedPane() {
+        return 20;
+    }
+
     @Override
     public boolean getMouseHoverEnableTabbedPane() {
         return true;
@@ -774,6 +879,99 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     public BorderUIResource getBorderList() {
         return borderList;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JRootPane
+    public BorderUIResource getBorderFrameRootPane() {
+        return borderFrameRootPane;
+    }
+
+    public BorderUIResource getBorderDialogRootPane() {
+        return borderDialogRootPane;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JFileChooser
+    public ImageIconUIResource getIconComputerFileChooser() {
+        return iconComputerFileChooser;
+    }
+
+    public ImageIconUIResource getIconDirectoryFileChooser() {
+        return iconDirectoryFileChooser;
+    }
+
+    public ImageIconUIResource getIconFileFileChooser() {
+        return iconFileFileChooser;
+    }
+
+    public ImageIconUIResource getIconFloppyDriveFileChooser() {
+        return iconFloppyDriveFileChooser;
+    }
+
+    public ImageIconUIResource getIconHardDriveFileChooser() {
+        return iconHardDriveFileChooser;
+    }
+
+    public ImageIconUIResource getIconHomeFileChooser() {
+        return iconHomeFileChooser;
+    }
+
+    public ImageIconUIResource getIconListFileChooser() {
+        return iconListFileChooser;
+    }
+
+    public ImageIconUIResource getIconDetailsFileChooser() {
+        return iconDetailsFileChooser;
+    }
+
+    public ImageIconUIResource getIconNewFolderFileChooser() {
+        return iconNewFolderFileChooser;
+    }
+
+    public ImageIconUIResource getIconUpFolderFileChooser() {
+        return iconUpFolderFileChooser;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JOptionPane
+    public ColorUIResource getBackgroundOptionPane() {
+        return backgroundOptionPane;
+    }
+
+    public ImageIconUIResource getWarningIconOptionPane() {
+        return warningIconOptionPane;
+    }
+
+    public ImageIconUIResource getErrorIconIconOptionPane() {
+        return errorIconIconOptionPane;
+    }
+
+    public ImageIconUIResource getQuestionIconOptionPane() {
+        return questionIconOptionPane;
+    }
+
+    public ImageIconUIResource getInformationIconOptionPane() {
+        return informationIconOptionPane;
+    }
+
+    @Override
+    public boolean getEnableIconOptionPane() {
+        return false;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JProgressBar
+    public ColorUIResource getBackgroundProgressBar() {
+        return backgroundProgressBar;
+    }
+
+    public ColorUIResource getForegroundProgressBar() {
+        return foregroundProgressBar;
+    }
+
+    public BorderUIResource getBorderProgressBar() {
+        return borderProgressBar;
     }
 
     //get fonts
