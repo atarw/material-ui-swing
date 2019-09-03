@@ -24,6 +24,7 @@
 package mdlaf.components.tabbedpane;
 
 import mdlaf.utils.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
@@ -40,7 +41,14 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         return new MaterialTabbedPaneUI();
     }
 
-    private JTabbedPane component;
+    protected JTabbedPane component;
+    protected Color selectedForeground;
+    protected Color foreground;
+    protected int positionYLine;
+    protected int positionXLine;
+    protected int widthLine;
+    protected int heightLine;
+    protected int arcLine;
 
     @Override
     public void installUI(JComponent c) {
@@ -50,13 +58,38 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         tabbedPane.setOpaque(false);
         tabbedPane.setFont(UIManager.getFont("TabbedPane.font"));
         tabbedPane.setBackground(UIManager.getColor("TabbedPane.background"));
-        tabbedPane.setForeground(UIManager.getColor("TabbedPane.foreground"));
+        this.foreground = (UIManager.getColor("TabbedPane.foreground"));
+        tabbedPane.setForeground(foreground);
+        this.selectedForeground = UIManager.getColor("TabbedPane.selectionForeground");
         tabbedPane.setBorder(UIManager.getBorder("TabbedPane.border"));
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
-
+        this.positionYLine = UIManager.getInt("TabbedPane.linePositionY");
+        this.positionXLine = UIManager.getInt("TabbedPane.linePositionX");
+        this.widthLine = UIManager.getInt("TabbedPane.lineWith");
+        this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
+        this.arcLine = UIManager.getInt("TabbedPane.lineArch");
         component = tabbedPane;
+    }
+
+    @Override
+    public void uninstallUI(JComponent c) {
+
+        JTabbedPane tabbedPane = (JTabbedPane) c;
+        tabbedPane.setFont(null);
+        tabbedPane.setBackground(null);
+        tabbedPane.setForeground(null);
+        tabbedPane.setBorder(null);
+
+        darkShadow = null;
+        shadow = null;
+        lightHighlight = null;
+
+        component = null;
+
+        super.uninstallDefaults();
+        super.uninstallUI(c);
     }
 
     @Override
@@ -70,6 +103,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         g.fillRect(x, y, w, h);
         if (isSelected) {
             paintLine(g, x, y, w, h);
+            this.tabPane.setForegroundAt(tabIndex, selectedForeground);
+        } else {
+            this.tabPane.setForegroundAt(tabIndex, foreground);
         }
     }
 
@@ -80,40 +116,14 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-        Rectangle tabRect = rects[tabIndex];
-        if (tabPane.hasFocus() && isSelected) {
-            int x, y, w, h;
-            if (tabPlacement == LEFT) {
-                x = tabRect.x + 3;
-                y = tabRect.y + 3;
-                w = tabRect.width - 5;
-                h = tabRect.height - 6;
-            } else if (tabPlacement == RIGHT) {
-                x = tabRect.x + 2;
-                y = tabRect.y + 3;
-                w = tabRect.width - 5;
-                h = tabRect.height - 6;
-            } else if (tabPlacement == BOTTOM) {
-                x = tabRect.x + 3;
-                y = tabRect.y + 2;
-                w = tabRect.width - 6;
-                h = tabRect.height - 5;
-            } else {
-                x = tabRect.x + 3;
-                y = tabRect.y + 3;
-                w = tabRect.width - 6;
-                h = tabRect.height - 5;
-            }
-            //paintLine(g, x, y, w, h);
-
-        }
+        //do nothing
     }
 
     @Override
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        if(UIManager.getBoolean("TabbedPane[MouseHover].enable")){
+        if (UIManager.getBoolean("TabbedPane[MouseHover].enable")) {
             component.addMouseMotionListener(new MouseHoverTab(rects));
         }
     }
@@ -131,15 +141,46 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
-    protected void paintLine(Graphics graphics, int x, int y, int w, int h) {
-        if (graphics == null) {
-            throw new IllegalArgumentException("Argument null");
-        }
-        graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
-        graphics.fillRoundRect(x + 6, y + 21, w - 12, 5, 10, 10);
+    @Override
+    protected LayoutManager createLayoutManager() {
+        return new MaterialTabbedPaneLayout();
     }
 
-    public class MouseHoverTab implements MouseMotionListener {
+    protected void paintLine(Graphics graphics, int x, int y, int w, int h) {
+        if (graphics == null) {
+            return;
+        }
+        graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
+        graphics.fillRoundRect(x + positionXLine, y + positionYLine, w - widthLine, heightLine, arcLine, arcLine);
+    }
+
+    protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
+
+        protected int spacer; // should be non-negative
+        protected int indent;
+
+        public MaterialTabbedPaneLayout() {
+            this.spacer = UIManager.getInt("TabbedPane.spacer");
+            this.indent = UIManager.getInt("TabbedPane.indent");
+        }
+
+        @Override
+        protected void calculateTabRects(int tabPlacement, int tabCount) {
+            if (spacer < 0) {
+                throw new IllegalArgumentException("The spacer inside the " +
+                        this.getClass().getSimpleName() + " must be a not negative value");
+            }
+
+            super.calculateTabRects(tabPlacement, tabCount);
+           if (tabPlacement == TOP || tabPlacement == BOTTOM) {
+                for (int i = 0; i < rects.length; i++) {
+                    rects[i].x += i * spacer + indent;
+                }
+            }
+        }
+    }
+
+    protected class MouseHoverTab implements MouseMotionListener {
 
         private Rectangle[] rectangles;
 
@@ -157,7 +198,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             if (!mouseGenerate.isEnabled()) {
                 return;
             }
-            if(mouseGenerate.getCursor().equals(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR))){
+            if (mouseGenerate.getCursor().equals(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR))) {
                 return;
             }
             Point point = e.getPoint();

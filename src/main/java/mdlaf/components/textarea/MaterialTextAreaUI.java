@@ -56,6 +56,18 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        super.uninstallUI(c);
+    }
+
+    @Override
     public void update(Graphics g, JComponent c) {
         super.update(MaterialDrawingUtils.getAliasedGraphics(g), c);
     }

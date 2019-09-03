@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.ForkJoinPool;
 
 
 /**
@@ -23,12 +24,17 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     protected Color background;
+    protected FocusListener focusListener;
+    protected int arc = 12; //default value
+
+    public MaterialComboBoxUI() {
+        focusListener = new FocusListenerColor();
+    }
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JComboBox<?> comboBox = (JComboBox<?>) c;
         comboBox.setFont(UIManager.getFont("ComboBox.font"));
         background = UIManager.getColor("ComboBox.background");
         comboBox.setBackground(background);
@@ -36,6 +42,27 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        comboBox.setFocusable(true);
+
+        this.arc = UIManager.getInt("ComboBox.arc");
+    }
+
+    @Override
+    public void uninstallUI(JComponent c) {
+
+       // comboBox.setFont(null);
+        comboBox.setBackground(null);
+        comboBox.setForeground(null);
+        comboBox.setBorder(null);
+        comboBox.setLightWeightPopupEnabled(true);
+        comboBox.setCursor(null);
+        comboBox.setRenderer(null);
+        comboBox.setEditor(null);
+
+        comboBox.removeFocusListener(focusListener);
+        MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
+
+        super.uninstallUI(comboBox);
     }
 
     @Override
@@ -74,7 +101,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         //super.update(g, c);
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         g.setColor(c.getBackground());
-        g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), 12, 12);
+        g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
         paint(g, c);
     }
 
@@ -90,17 +117,18 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected FocusListener createFocusListener() {
-        comboBox.addFocusListener(new FocusListenerColor());
+        comboBox.addFocusListener(focusListener);
         return super.createFocusListener();
     }
 
     protected class FocusListenerColor implements FocusListener {
+
         private Border focus;
         private Border unfocus;
 
         public FocusListenerColor() {
-            focus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.focusColor"));
-            unfocus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.unfocusColor"));
+            focus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.focusColor"), arc);
+            unfocus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.unfocusColor"), arc);
         }
 
         @Override

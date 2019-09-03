@@ -29,7 +29,9 @@ import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
-import java.awt.Graphics;
+import java.awt.*;
+import java.io.File;
+
 
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
@@ -45,33 +47,67 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JFileChooser fileChooser = (JFileChooser) c;
+		//MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
+		//all this before were ui.uninstallIcon
+		this.uninstallIcons (fileChooser);
+		this.uninstallComponents (fileChooser);
+		this.clearIconCache ();
+		this.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
+		this.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
+		this.fileIcon = UIManager.getIcon("FileChooser[icons].file");
+		this.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
+		this.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
 
-		MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
+		this.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
+		this.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
+		this.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
+		this.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
+		this.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
 
-		ui.uninstallIcons (fileChooser);
-		ui.uninstallComponents (fileChooser);
-		ui.clearIconCache ();
-		ui.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
-		ui.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
-		ui.fileIcon = UIManager.getIcon("FileChooser[icons].file");
-		ui.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
-		ui.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
+		this.openButtonText = "OPEN";
+		this.cancelButtonText = "CANCEL";
+		this.helpButtonText = "HELP";
+		this.saveButtonText = "SAVE";
+		this.directoryOpenButtonText = "OPEN";
+		this.updateButtonText = "UPDATE";
 
-		ui.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
-		ui.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
-		ui.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
-		ui.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
-		ui.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
+		this.installComponents(fileChooser);
+	}
 
-		ui.openButtonText = "OPEN";
-		ui.cancelButtonText = "CANCEL";
-		ui.helpButtonText = "HELP";
-		ui.saveButtonText = "SAVE";
-		ui.directoryOpenButtonText = "OPEN";
-		ui.updateButtonText = "UPDATE";
+	@Override
+	public void uninstallComponents(JFileChooser fc) {
+		super.uninstallComponents(fc);
+	}
 
+	@Override
+	public void uninstallUI(JComponent c) {
 
-		ui.installComponents(fileChooser);
+		JFileChooser fileChooser = (JFileChooser) c;
+
+		this.uninstallIcons (fileChooser);
+		this.uninstallComponents(fileChooser);
+		this.uninstallListeners(fileChooser);
+		this.uninstallStrings(fileChooser);
+		super.uninstallUI(c);
+
+		this.computerIcon = null;
+		this.directoryIcon = null;
+		this.fileIcon = null;
+		this.floppyDriveIcon = null;
+		this.hardDriveIcon = null;
+
+		this.homeFolderIcon = null;
+		this.listViewIcon = null;
+		this.detailsViewIcon = null;
+		this.newFolderIcon = null;
+		this.upFolderIcon = null;
+
+		this.openButtonText = null;
+		this.cancelButtonText = null;
+		this.helpButtonText = null;
+		this.saveButtonText = null;
+		this.directoryOpenButtonText = null;
+		this.updateButtonText = null;
 	}
 
 	@Override

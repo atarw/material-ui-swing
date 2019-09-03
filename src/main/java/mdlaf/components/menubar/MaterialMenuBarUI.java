@@ -6,10 +6,11 @@ import javax.swing.JComponent;
 import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.awt.*;
 
-public class MaterialMenuBarUI extends MetalMenuBarUI{
+public class MaterialMenuBarUI extends BasicMenuBarUI {
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuBarUI ();
@@ -22,9 +23,19 @@ public class MaterialMenuBarUI extends MetalMenuBarUI{
 		JMenuBar menuBar = (JMenuBar) c;
 		menuBar.setFont (UIManager.getFont ("MenuBar.font"));
 		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
-		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
 		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
+		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
+	}
 
+	@Override
+	public void uninstallUI(JComponent c) {
+		JMenuBar menuBar = (JMenuBar) c;
+		menuBar.setFont (null);
+		menuBar.setBackground (null);
+		menuBar.setBorder (null);
+		menuBar.setForeground (null);
+
+		super.uninstallUI(c);
 	}
 
 	@Override

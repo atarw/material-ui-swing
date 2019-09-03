@@ -11,7 +11,7 @@ import java.awt.*;
 /*
  * Contributed by https://github.com/downToHell
  * */
-//TODO cambio icone del togle button soprattutto il colore
+//TODO change the icon, this comment was added by vincenzopalazzo
 public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     public static ComponentUI createUI(JComponent c) {

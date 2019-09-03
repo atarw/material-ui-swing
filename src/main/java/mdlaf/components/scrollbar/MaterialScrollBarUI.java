@@ -1,6 +1,7 @@
 package mdlaf.components.scrollbar;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.MaterialManagerListener;
@@ -17,11 +18,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialScrollBarUI ();
-	}
-
-	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
 	}
 
 	@Override
@@ -65,16 +61,16 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 			throw new IllegalArgumentException("Input null");
 		}
 		if (orientation == SwingConstants.NORTH){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UP_ARROW)));
+			button.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UP_ARROW));
 			return;
 		}else if(orientation == SwingConstants.SOUTH){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW)));
+			button.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW));
 			return;
 		}else if(orientation == SwingConstants.EAST){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW)));
+			button.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW));
 			return;
 		}else if(orientation == SwingConstants.WEST){
-			button.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LEFT_ARROW)));
+			button.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LEFT_ARROW));
 			return;
 		}
 		throw new IllegalArgumentException("orientation not valid");
@@ -92,6 +88,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 	protected JButton installButton(int orientation){
 		JButton button = new JButton();
 		MaterialManagerListener.removeAllMaterialMouseListener(button);
+		button.setUI(new MaterialButtonUI());
 		button.setOpaque (true);
 		button.setFocusable(false); //This must be false because the button focus have an effect that this button mustn't be have
 		button.setBackground (UIManager.getColor ("ScrollBar.arrowButtonBackground"));

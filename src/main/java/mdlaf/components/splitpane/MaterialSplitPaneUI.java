@@ -26,6 +26,20 @@ public class MaterialSplitPaneUI extends MetalSplitPaneUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        this.divider.setBackground(null);
+
+        super.uninstallUI(c);
+    }
+
+    @Override
     public BasicSplitPaneDivider createDefaultDivider() {
         return new MaterialSplitPaneDivider(this);
     }

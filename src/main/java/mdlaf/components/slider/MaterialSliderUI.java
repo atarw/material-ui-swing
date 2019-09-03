@@ -44,6 +44,18 @@ public class MaterialSliderUI extends BasicSliderUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public Dimension getThumbSize () {
 		return THUMB_SIZE;
 	}

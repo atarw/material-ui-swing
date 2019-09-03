@@ -25,13 +25,34 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         return new MaterialTaskPaneUI();
     }
 
+    private MouseListener changeIcon;
+    private JXTaskPane taskPane;
+
+    public MaterialTaskPaneUI() {
+        changeIcon = new ChangeIconOnClick();
+    }
+
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
         JXTaskPane jxTaskPane = (JXTaskPane) c;
-        jxTaskPane.addMouseListener(new ChangeIconOnClick(jxTaskPane));
+        jxTaskPane.addMouseListener(changeIcon);
         jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         jxTaskPane.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
+
+        this.taskPane = jxTaskPane;
+    }
+
+    @Override
+    public void uninstallUI(JComponent c) {
+
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        super.uninstallUI(c);
     }
 
     @Override
@@ -61,6 +82,12 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
                 content.setBorder(createContentPaneBorder());
             }
         }
+    }
+
+    @Override
+    protected void uninstallListeners() {
+        taskPane.removeMouseListener(changeIcon);
+        super.uninstallListeners();
     }
 
     protected Border createContentPaneBorder() {
@@ -121,13 +148,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      * @author https://github.com/vincenzopalazzo
      */
     protected class ChangeIconOnClick implements MouseListener {
-
-        JXTaskPane taskPane;
-
-        public ChangeIconOnClick(JXTaskPane taskPane) {
-            this.taskPane = taskPane;
-        }
-
 
         @Override
         public void mouseClicked(MouseEvent e) {

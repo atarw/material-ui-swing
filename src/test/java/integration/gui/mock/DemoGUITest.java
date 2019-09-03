@@ -4,9 +4,7 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -17,12 +15,17 @@ public class DemoGUITest extends JFrame {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
     }
 
-    private GroupLayout layout;
+    private static final DemoGUITest SINGLETON = new DemoGUITest();
+
+    private GroupLayout layoutPanelOne;
+    private GroupLayout layoutPanelTwo;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
     private JButton buttonDefault = new JButton("Ok");
@@ -32,8 +35,23 @@ public class DemoGUITest extends JFrame {
     private ContainerAction containerAction = new ContainerAction();
     private JTextField textFieldUsername = new JTextField();
     private JPasswordField passwordFiled = new JPasswordField();
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenuItem menuItemJFileChooser = new JMenuItem("Choose");
+    private JMenu menuFile = new JMenu("File");
+    private JMenu themesMenu = new JMenu("Themes");
+    private JFileChooser fileChooser = new JFileChooser();
+    private JPanel panelTwo = new JPanel();
+    private JTable table = new JTable();
+    private JMenuItem gtk = new JMenuItem("GTK");
+    private JMenuItem metal = new JMenuItem("Metal");
+    private JMenuItem material = new JMenuItem("Material");
+    private JMenuItem materialDark = new JMenuItem("Material Dark");
 
-    public void initComponent(){
+    public JMenuItem getMaterialDark() {
+        return materialDark;
+    }
+
+    public void initComponent() {
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
         buttonUndo.setAction(containerAction.getEnableButtonDisabled());
@@ -49,11 +67,17 @@ public class DemoGUITest extends JFrame {
         passwordFiled.setName("passwordField");
         passwordFiled.addActionListener(containerAction.getListenerPasswordField());
 
-        initLayoutContentPanel();
+        initJMenuBar();
+
+        table.setModel(new TableModelSecondPanel());
+
+        initLayoutContentPanelOne();
+        initLayoutContentPanelTwo();
 
         this.getRootPane().setDefaultButton(buttonDefault);
 
-        tabbedPane.add(panelOne , "Panel One");
+        tabbedPane.add(panelOne, "Panel One");
+        tabbedPane.add(panelTwo, "Panel two");
         this.setContentPane(tabbedPane);
 
         pack();
@@ -61,19 +85,43 @@ public class DemoGUITest extends JFrame {
         setVisible(true);
     }
 
-    public void initLayoutContentPanel(){
-        layout = new GroupLayout(panelOne);
-        panelOne.setLayout(layout);
+    public void initJMenuBar() {
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        menuItemJFileChooser.setName("menuItemJFileChooser");
+        menuFile.add(menuItemJFileChooser);
+        menuFile.setName("nameFile");
+
+        material.setAction(containerAction.getActionChangeTheme("Material lite"));
+        metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
+        gtk.setAction(containerAction.getActionChangeTheme("GTK"));
+        materialDark.setAction(containerAction.getActionChangeTheme("Material Dark"));
+
+        themesMenu.add(material);
+        themesMenu.add(metal);
+        themesMenu.add(materialDark);
+        themesMenu.add(gtk);
+
+        menuBar.add(menuFile);
+        menuBar.add(themesMenu);
+        menuBar.setName("menuBar");
+        this.setJMenuBar(menuBar);
+
+        menuItemJFileChooser.setAction(containerAction.getActionFileChooser());
+    }
+
+    public void initLayoutContentPanelOne() {
+        layoutPanelOne = new GroupLayout(panelOne);
+        panelOne.setLayout(layoutPanelOne);
+
+        layoutPanelOne.setAutoCreateGaps(true);
+        layoutPanelOne.setAutoCreateContainerGaps(true);
 
         //Init position component with group layaut
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+        layoutPanelOne.setHorizontalGroup(
+                layoutPanelOne.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(textFieldUsername)
                         .addComponent(passwordFiled)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(layoutPanelOne.createSequentialGroup()
                                 .addGap(50)
                                 .addComponent(buttonDefault, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(50)
@@ -85,13 +133,13 @@ public class DemoGUITest extends JFrame {
                         )
         );
 
-        layout.setVerticalGroup(
-                layout.createSequentialGroup()
+        layoutPanelOne.setVerticalGroup(
+                layoutPanelOne.createSequentialGroup()
                         .addComponent(textFieldUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20)
                         .addComponent(passwordFiled, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addGroup(layoutPanelOne.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(buttonDefault)
                                 .addComponent(buttonDisabled)
                                 .addComponent(buttonNormal)
@@ -100,12 +148,76 @@ public class DemoGUITest extends JFrame {
         );
     }
 
+    public void initLayoutContentPanelTwo() {
+        layoutPanelTwo = new GroupLayout(panelTwo);
+        panelTwo.setLayout(layoutPanelTwo);
+
+        layoutPanelTwo.setAutoCreateGaps(true);
+        layoutPanelTwo.setAutoCreateContainerGaps(true);
+
+        //Init position component with group layaut
+        layoutPanelTwo.setHorizontalGroup(
+                layoutPanelTwo.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(table)
+        );
+
+        layoutPanelTwo.setVerticalGroup(
+                layoutPanelTwo.createSequentialGroup()
+                        .addComponent(table, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }
+
+    public synchronized void reloadUI(){
+        SwingUtilities.updateComponentTreeUI(this);
+    }
+
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel){
+        try {
+           // UIManager.getLookAndFeel().uninitialize();
+            UIManager.setLookAndFeel(lookAndFeel);
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void enableTheme(JMenuItem menuItem){
+        menuItem.setEnabled(false);
+        if(menuItem != material){
+            material.setEnabled(true);
+        }else if (menuItem != gtk){
+            gtk.setEnabled(true);
+        }else if (menuItem != metal){
+            metal.setEnabled(true);
+        }
+    }
+
+    //getter and setter
+    public JFileChooser getFileChooser() {
+        fileChooser.setName("fileChooserAction");
+        return fileChooser;
+    }
+
+    public JMenuItem getMaterial() {
+        return material;
+    }
+
+    public JMenuItem getGtk() {
+        return gtk;
+    }
+
+    public JMenuItem getMetal() {
+        return metal;
+    }
+
+    public static DemoGUITest getInstance() {
+        return SINGLETON;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DemoGUITest demoGUITest = new DemoGUITest();
-                demoGUITest.initComponent();
+                SINGLETON.initComponent();
             }
         });
     }

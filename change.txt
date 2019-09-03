@@ -40,3 +40,5 @@
 - Fixed bug for the corners border of the new state JComboBox
 - Added method for get SVG image, (temporal)
 - Added assertj for test GUI
+- Added support to TableCellRenderer for combo box
+- Working on JButton

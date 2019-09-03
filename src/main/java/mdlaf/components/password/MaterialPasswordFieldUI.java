@@ -89,6 +89,18 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
     }
 
     @Override
+    public void uninstallUI(JComponent c) {
+
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        super.uninstallUI(c);
+    }
+
+    @Override
     protected void uninstallDefaults() {
         super.uninstallDefaults();
         getComponent().setBorder(null);
@@ -153,7 +165,7 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground){
         if(newColor == null){
-            throw new IllegalArgumentException("The input argument is null");
+            return;
         }
         if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
             this.activeForeground = newColor;

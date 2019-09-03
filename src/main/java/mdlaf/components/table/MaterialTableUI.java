@@ -1,6 +1,6 @@
 package mdlaf.components.table;
 
-import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class MaterialTableUI extends BasicTableUI {
 
-	private JTable table;
+	public static final String UI_KEY = "TableUI";
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();
@@ -22,7 +22,7 @@ public class MaterialTableUI extends BasicTableUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		table = (JTable) c;
+		//table = (JTable) c;
 		table.setOpaque (UIManager.getBoolean("Table.opaque"));
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
 		table.setBackground (UIManager.getColor ("Table.background"));
@@ -41,11 +41,26 @@ public class MaterialTableUI extends BasicTableUI {
 			table.setRowHeight (table.getRowHeight () + 25);
 		}
 
-		this.setDefaultCellRenderWithAllTipe(table);
+		this.setDefaultCellRenderWithType(table);
 
-		table.setDefaultEditor (Object.class, new MaterialTableCellEditor ());
+		table.setDefaultEditor(Object.class, new MaterialTableCellEditor());
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		settingIconToTable();
+		//settingIconToTable();
+	}
+
+	@Override
+	protected void uninstallDefaults() {
+		super.uninstallDefaults();
+
+		table.setSelectionForeground (null);
+		table.setBackground (null);
+		table.setForeground (null);
+		table.setFont (null);
+		table.setBorder (null);
+		table.setSelectionBackground (null);
+
+		table.removeEditor();
+		table.setDefaultRenderer(Object.class, null);
 	}
 
 	@Override
@@ -56,13 +71,12 @@ public class MaterialTableUI extends BasicTableUI {
 	@Override
 	public void update(Graphics g, JComponent c) {
 		super.update(g, c);
-		settingIconToTable();
+		//settingIconToTable();
 	}
 
-	/**
-	 * This method do possibility change icon into JTable, you setting a icon with this constant input
-	 * UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
-	 */
+	 // This method do possibility change icon into JTable, you setting a icon with this constant input
+	 // UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
+	@Deprecated
 	protected void settingIconToTable(){
 
 		Icon unchecked = UIManager.getIcon("Table[CheckBox].unchecked");
@@ -81,13 +95,12 @@ public class MaterialTableUI extends BasicTableUI {
 		((JCheckBox)editor.getComponent()).setSelectedIcon(checked);
 	}
 
-	//TODO refactoring name
 
 	/**
 	 * This method setting a MaterialCellRender at the particular class
 	 * With this class not working correctly the color alternate in the Jtable
 	 */
-	protected void setDefaultCellRenderWithAllTipe(JTable table) {
+	protected void setDefaultCellRenderWithType(JTable table) {
 		if(table == null){
 			throw new IllegalArgumentException("Table is null");
 		}
@@ -97,5 +110,6 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setDefaultRenderer(Integer.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
 	}
 }

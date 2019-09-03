@@ -95,8 +95,6 @@ public class MaterialUISwingDemo {
         JPanel content = new JPanel();
         content.add(button);
 
-
-
         class ActionEnableButton extends AbstractAction{
 
             private JButton button;
@@ -262,7 +260,7 @@ public class MaterialUISwingDemo {
         pn.add(buttonTwoo);
 
         JButton bottoneConImmagine = new JButton();
-        bottoneConImmagine.setIcon(new ImageIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK)));
+        bottoneConImmagine.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK));
         pn.add(bottoneConImmagine);
 
         JButton buttonTestTextFieled = new JButton("Test JtexFiele");

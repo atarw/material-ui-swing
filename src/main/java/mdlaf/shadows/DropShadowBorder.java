@@ -48,8 +48,7 @@ import java.util.Map;
  */
 public class DropShadowBorder extends AbstractBorder implements Border {
 
-	private static final Map<Integer, Map<Position, BufferedImage>> CACHE
-			= new HashMap<Integer, Map<Position, BufferedImage>> ();
+	private static final Map<Integer, Map<Position, BufferedImage>> CACHE =  new HashMap<Integer, Map<Position, BufferedImage>> ();
 	private Color lineColor;
 	private int lineWidth;
 	private int shadowSize;

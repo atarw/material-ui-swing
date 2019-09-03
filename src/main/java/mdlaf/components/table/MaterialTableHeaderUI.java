@@ -27,6 +27,19 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		JTableHeader header = (JTableHeader) c;
+		header.setDefaultRenderer (null);
+		header.setBackground(null);
+		header.setForeground(null);
+		header.setFont(null);
+		header.setBorder(null);
+
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
