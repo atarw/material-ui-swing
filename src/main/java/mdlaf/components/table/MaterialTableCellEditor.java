@@ -1,10 +1,8 @@
 package mdlaf.components.table;
 
 import mdlaf.components.textfield.MaterialTextFieldUI;
-import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 public class MaterialTableCellEditor extends DefaultCellEditor {
@@ -52,7 +50,6 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
                 }
             }
         }
-
         return editorComponent;
     }
 }

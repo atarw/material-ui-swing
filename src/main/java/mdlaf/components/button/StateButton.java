@@ -5,6 +5,6 @@ package mdlaf.components.button;
  */
 public enum StateButton {
     DISABLE,
-    DEFOULT,
+    DEFAULT,
     NORMAL
 }

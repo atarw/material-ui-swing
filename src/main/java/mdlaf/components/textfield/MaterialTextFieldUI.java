@@ -27,6 +27,7 @@ import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
+import javax.swing.plaf.metal.MetalTextFieldUI;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -37,7 +38,7 @@ import java.beans.PropertyChangeSupport;
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-public class MaterialTextFieldUI extends BasicTextFieldUI{
+public class MaterialTextFieldUI extends MetalTextFieldUI {
 
     protected static final String PROPERTY_LINE_COLOR = "lineColor";
     protected static final String PROPERTY_SELECTION_COLOR = "selectionColor";

@@ -29,7 +29,9 @@ import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
-import java.awt.Graphics;
+import java.awt.*;
+import java.io.File;
+
 
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
@@ -69,7 +71,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 		this.directoryOpenButtonText = "OPEN";
 		this.updateButtonText = "UPDATE";
 
-
 		this.installComponents(fileChooser);
 	}
 
@@ -107,7 +108,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
 		this.saveButtonText = null;
 		this.directoryOpenButtonText = null;
 		this.updateButtonText = null;
-
 	}
 
 	@Override

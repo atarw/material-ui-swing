@@ -1,5 +1,7 @@
 package mdlaf.components.combobox;
 
+import mdlaf.utils.MaterialColors;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
@@ -14,7 +16,11 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 		super.getListCellRendererComponent (list, value, index, isSelected, cellHasFocus);
 
 		setBorder((UIManager.getBorder("ComboBox.borderItems")));
-		setForeground (UIManager.getColor ("ComboBox.foreground"));
+		if(isSelected){
+			setForeground(UIManager.getColor("ComboBox[item].selectionForeground"));
+		}else{
+			setForeground (UIManager.getColor ("ComboBox.foreground"));
+		}
 		setBackground (isSelected || cellHasFocus ?
 		                         UIManager.getColor ("ComboBox.selectedInDropDownBackground") :
 		                         UIManager.getColor ("ComboBox.background"));

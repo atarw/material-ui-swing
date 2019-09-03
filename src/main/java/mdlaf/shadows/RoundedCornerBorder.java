@@ -17,6 +17,7 @@ public class RoundedCornerBorder extends AbstractBorder {
 
     protected  int arch = 12; //default value
     protected Color colorLine;
+    protected float withBorder = 1.2f;
 
     public RoundedCornerBorder() {
         colorLine = MaterialColors.LIGHT_BLUE_400;
@@ -32,10 +33,16 @@ public class RoundedCornerBorder extends AbstractBorder {
         this.arch = arch;
     }
 
+    public RoundedCornerBorder(int arch, Color colorLine, float withBorder) {
+        this.arch = arch;
+        this.colorLine = colorLine;
+        this.withBorder = withBorder;
+    }
+
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Graphics2D g2 = (Graphics2D) g.create();
-        g2.setStroke(new BasicStroke(1.2f));
+        g2.setStroke(new BasicStroke(withBorder));
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int r = arch;
         int w = width - 1;

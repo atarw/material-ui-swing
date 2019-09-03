@@ -45,6 +45,11 @@ public class DemoGUITest extends JFrame {
     private JMenuItem gtk = new JMenuItem("GTK");
     private JMenuItem metal = new JMenuItem("Metal");
     private JMenuItem material = new JMenuItem("Material");
+    private JMenuItem materialDark = new JMenuItem("Material Dark");
+
+    public JMenuItem getMaterialDark() {
+        return materialDark;
+    }
 
     public void initComponent() {
         buttonDefault.setName("buttonDefault");
@@ -86,12 +91,14 @@ public class DemoGUITest extends JFrame {
         menuFile.add(menuItemJFileChooser);
         menuFile.setName("nameFile");
 
-        material.setAction(containerAction.getActionChangeTheme("Material"));
+        material.setAction(containerAction.getActionChangeTheme("Material lite"));
         metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
+        materialDark.setAction(containerAction.getActionChangeTheme("Material Dark"));
 
         themesMenu.add(material);
         themesMenu.add(metal);
+        themesMenu.add(materialDark);
         themesMenu.add(gtk);
 
         menuBar.add(menuFile);
@@ -166,7 +173,7 @@ public class DemoGUITest extends JFrame {
 
     public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel){
         try {
-            UIManager.getLookAndFeel().uninitialize();
+           // UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
