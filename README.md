@@ -1,4 +1,4 @@
-# material-ui-swing
+# Material-UI-Swing
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
 A modern, Material Design UI for Java Swing
@@ -70,7 +70,9 @@ For a change the theme to runtime you can use this code
      MaterialLookAndFeel.changeTheme(new MaterialDarkTheme());
  }
 ```
-  Look the example inside the test/java/integration/gui/mock
+  Look the example [here](https://github.com/vincenzopalazzo/material-ui-swing/tree/masternow/src/test/java/integration/gui/mock) 
+  
+The theming system is projected by [@vincenzopalazzo](https://github.com/vincenzopalazzo)
   
 ## Stack Overflow
 We are using the Stack Overflow to help the community because we don't have much time to write detailed documentation, but remember we worked hard to build a customizable look-and-feel. 
