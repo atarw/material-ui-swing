@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="material-ui-swing:jar">
-    <output-path>$PROJECT_DIR$/target/classes</output-path>
-    <root id="archive" name="material-ui-swing.jar">
-      <element id="module-output" name="material-ui-swing" />
-    </root>
-  </artifact>
-</component>

@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuBarUI;
+import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.awt.*;
 
 public class MaterialMenuBarUI extends BasicMenuBarUI {
@@ -22,9 +23,19 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 		JMenuBar menuBar = (JMenuBar) c;
 		menuBar.setFont (UIManager.getFont ("MenuBar.font"));
 		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
-		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
 		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
-		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+		JMenuBar menuBar = (JMenuBar) c;
+		menuBar.setFont (null);
+		menuBar.setBackground (null);
+		menuBar.setBorder (null);
+		menuBar.setForeground (null);
+
+		super.uninstallUI(c);
 	}
 
 	@Override

@@ -4,9 +4,7 @@ import mdlaf.utils.MaterialColors;
 import org.jdesktop.swingx.JXTaskPane;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -14,6 +12,7 @@ public class MaterialUISwingDemo {
 
 	public static void main (String[] args) {
 		try {
+			JDialog.setDefaultLookAndFeelDecorated(true);
 			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
 		}
 		catch (UnsupportedLookAndFeelException e) {
@@ -25,6 +24,8 @@ public class MaterialUISwingDemo {
 		JFrame frame = new JFrame ("Material Design UI for Swing by atharva washimkar");
 		frame.setMinimumSize (new Dimension (600, 400));
 
+		//Test for fix the issue https://github.com/vincenzopalazzo/material-ui-swing/projects/1#card-21599924
+		//frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		// configuring the JMenuBar as well as its menus and items
 		JMenuBar bar = new JMenuBar ();
 		JMenu menu1 = new JMenu ("Option 1 (Animated)");
@@ -184,6 +185,7 @@ public class MaterialUISwingDemo {
 
 		JButton buttonInfo = new JButton("Test INFO");
 		buttonInfo.setBackground(MaterialColors.LIGHT_BLUE_500);
+		buttonInfo.setForeground(MaterialColors.WHITE);
 		buttonInfo.addMouseListener(MaterialUIMovement.getMovement(buttonInfo, MaterialColors.LIGHT_BLUE_200));
 		class InfoMessage extends AbstractAction{
 
@@ -204,6 +206,7 @@ public class MaterialUISwingDemo {
 
 		JButton buttonError = new JButton();
 		buttonError.setBackground(MaterialColors.RED_800);
+		buttonError.setForeground(MaterialColors.WHITE);
 		buttonError.addMouseListener(MaterialUIMovement.getMovement(buttonError, MaterialColors.RED_400));
 		class ErrorMassage extends AbstractAction{
 
@@ -224,6 +227,7 @@ public class MaterialUISwingDemo {
 
 		JButton buttonQuestion = new JButton();
 		buttonQuestion.setBackground(MaterialColors.BLUE_600);
+		buttonQuestion.setForeground(MaterialColors.WHITE);
 		buttonQuestion.addMouseListener(MaterialUIMovement.getMovement(buttonQuestion, MaterialColors.BLUE_300));
 		class QuesuionMessage extends AbstractAction{
 
@@ -244,6 +248,7 @@ public class MaterialUISwingDemo {
 		JButton buttonWarning = new JButton();
 		buttonWarning.setOpaque(false);
 		buttonWarning.setBackground(MaterialColors.YELLOW_800);
+		buttonWarning.setForeground(MaterialColors.WHITE);
 		buttonWarning.addMouseListener(MaterialUIMovement.getMovement(buttonWarning, MaterialColors.YELLOW_500));
 		class WarningMessage extends AbstractAction {
 
@@ -278,6 +283,11 @@ public class MaterialUISwingDemo {
 		panel3.add(spinnerDate);
 		panel3.add(spinnerNumbar);
 		panel3.add(spinnerList);
+
+		//Test label disable
+		JLabel labelDisable = new JLabel("I'm disabled");
+		panel3.add(labelDisable);
+		labelDisable.setEnabled(false);
 
 		// make everything visible to the world
 		frame.pack ();

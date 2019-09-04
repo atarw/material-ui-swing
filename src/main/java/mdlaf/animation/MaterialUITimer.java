@@ -1,8 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,10 +24,10 @@
 package mdlaf.animation;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.*;
 
-class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 
     private Color from, to;
     private boolean forward;
@@ -42,7 +41,22 @@ class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListe
         if (component == null || !component.isEnabled()) {
             return;
         }
-        this.from = component.getBackground();
+        if(component.getCursor().getType() == Cursor.WAIT_CURSOR){
+            //TODO this is an refactoring
+            return;
+        }
+        component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        if(component instanceof JButton){
+            JButton button = (JButton) component;
+            if (button.isDefaultButton()){
+                this.from = UIManager.getColor("Button[Default].background");
+            }else{
+                this.from = component.getBackground();
+
+            }
+        }else{
+            this.from = component.getBackground();
+        }
         this.to = to;
 
         this.forwardDeltas = new int[4];
@@ -61,6 +75,7 @@ class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListe
         this.steps = steps;
 
         this.component = component;
+        //this.component.addMouseListener(this);
         timer = new Timer(interval, this);
         component.setBackground(from);
     }
