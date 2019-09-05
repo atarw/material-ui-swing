@@ -197,7 +197,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     @Override
     protected void initClassDefaults(UIDefaults table) {
         super.initClassDefaults(table);
-        table.put(MaterialButtonUI.UI_KEY, buttonUI);
+        table.put("ButtonUI", buttonUI);
         table.put("TextFieldUI", textfieldUI);
         table.put("PasswordFieldUI", passwordFieldUI);
         table.put("TableUI", tableUI);
@@ -386,6 +386,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.foreground", theme.getTextColor());
         table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
+        table.put("TabbedPane.disableContentAreaColor", MaterialColors.COSMO_STRONG_GRAY);
         table.put("TabbedPane.border", theme.getBorderPanel());
         table.put("TabbedPane.shadow", null);
         table.put("TabbedPane.darkShadow", null);
@@ -399,7 +400,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
         table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
         table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
-        table.put("TabbedPane.lineWith", theme.getLineWithTabbedPane());
+        table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
 

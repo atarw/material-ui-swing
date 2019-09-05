@@ -27,9 +27,12 @@ dependencies {
 
 }
 
-//-Xlint: -deprecation
-compileJava {
-    options.compilerArgs << '-deprecation'
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
 }
 
 jar {

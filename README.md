@@ -27,8 +27,9 @@ For a change the theme to runtime you can use this code
 ```
   Look the example inside the test/java/integration/gui/mock
   
- ## StackOverflow
-We are using the StackOverflow to help the community, if you need the help, you can write a post
+ ## Stack Overflow
+We are using the Stack Overflow to help the community because we don't have much time to write detailed documentation, but remember we worked hard to build a customizable look-and-feel. 
+If you need the help, you can write a post
 with these tags
   
  **java**, **material**, **swing**, **look-and-feel**

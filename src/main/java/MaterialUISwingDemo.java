@@ -265,7 +265,6 @@ public class MaterialUISwingDemo {
 
         JButton buttonTestTextFieled = new JButton("Test JtexFiele");
 
-
         class AzioneTestJTexField extends AbstractAction {
 
             public AzioneTestJTexField() {

@@ -636,7 +636,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLinePositionYTabbedPane() {
-        return 40;
+        return 50;
     }
 
     @Override
@@ -646,7 +646,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLineWithTabbedPane() {
-        return 0;
+        return 2;
     }
 
     @Override
