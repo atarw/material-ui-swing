@@ -136,6 +136,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource focusColorLineTabbedPane;
 
+    protected ColorUIResource disableColorTabTabbedPane;
+
     protected InsetsUIResource tabInsetsTabbedPane;
 
     protected InsetsUIResource selectedTabInsetsTabbedPane;
@@ -623,6 +625,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return focusColorLineTabbedPane;
     }
 
+    @Override
+    public ColorUIResource getDisableColorTabTabbedPane() {
+        return disableColorTabTabbedPane;
+    }
+
     public InsetsUIResource getTabInsetsTabbedPane() {
         return tabInsetsTabbedPane;
     }
@@ -633,7 +640,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     @Override
     public int getLinePositionYTabbedPane() {
-        return 40;
+        return 50;
     }
 
     @Override

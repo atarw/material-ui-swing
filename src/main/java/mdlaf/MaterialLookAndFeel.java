@@ -385,6 +385,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("TabbedPane.foreground", theme.getTextColor());
 		table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
 		table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
+		table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
 		table.put("TabbedPane.border", theme.getBorderPanel());
 		table.put("TabbedPane.shadow", null);
 		table.put("TabbedPane.darkShadow", null);

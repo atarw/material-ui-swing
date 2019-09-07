@@ -1,5 +1,6 @@
 package mdlaf.themes;
 
+import mdlaf.utils.MaterialColors;
 import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
@@ -170,6 +171,8 @@ public interface MaterialTheme {
     ColorUIResource getBorderHighlightColorTabbedPane();
 
     ColorUIResource getFocusColorLineTabbedPane();
+
+    ColorUIResource getDisableColorTabTabbedPane();
 
     InsetsUIResource getTabInsetsTabbedPane();
 
@@ -358,6 +361,4 @@ public interface MaterialTheme {
     FontUIResource getFontRegular();
 
     FontUIResource getFontMedium();
-
-
 }

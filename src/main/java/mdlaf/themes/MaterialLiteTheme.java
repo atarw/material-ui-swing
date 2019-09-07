@@ -115,6 +115,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.highlightColorTabbedPane = MaterialColors.GRAY_200;
         this.borderHighlightColorTabbedPane = MaterialColors.GRAY_300;
         this.focusColorLineTabbedPane = MaterialColors.COSMO_BLUE;
+        this.disableColorTabTabbedPane = MaterialColors.COSMO_STRONG_GRAY;
 
         this.backgroundTable = MaterialColors.WHITE;
         this.backgroundTableHeader = MaterialColors.GRAY_200;

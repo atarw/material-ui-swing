@@ -26,6 +26,7 @@ package mdlaf.components.tabbedpane;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
@@ -33,7 +34,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author  https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
@@ -42,8 +43,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 	}
 
 	protected JTabbedPane component;
-	protected Color selectedForeground;
-	protected Color foreground;
+	protected ColorUIResource selectedForeground;
+	protected ColorUIResource areaContentBackground;
+	protected ColorUIResource selectedAreaContentBackground;
+	protected ColorUIResource disableAreaContentBackground;
+	protected ColorUIResource foreground;
 	protected int positionYLine;
 	protected int positionXLine;
 	protected int widthLine;
@@ -58,9 +62,12 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		tabbedPane.setOpaque(false);
 		tabbedPane.setFont(UIManager.getFont("TabbedPane.font"));
 		tabbedPane.setBackground(UIManager.getColor("TabbedPane.background"));
-		this.foreground = (UIManager.getColor("TabbedPane.foreground"));
+		this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
 		tabbedPane.setForeground(foreground);
-		this.selectedForeground = UIManager.getColor("TabbedPane.selectionForeground");
+		this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
+		this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
+		this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
+		this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
 		tabbedPane.setBorder(UIManager.getBorder("TabbedPane.border"));
 		darkShadow = UIManager.getColor("TabbedPane.darkShadow");
 		shadow = UIManager.getColor("TabbedPane.shadow");
@@ -91,32 +98,64 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		super.uninstallDefaults();
 		super.uninstallUI(c);
 	}
-
 	@Override
-	public void paint(Graphics g, JComponent c) {
-		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
-	}
-
-	@Override
+	/**
+	 * This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
+	 */
 	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-		g.setColor(isSelected ? lightHighlight : tabPane.getBackground());
-		g.fillRect(x, y, w, h);
+		Graphics2D g2D = (Graphics2D) g;
+		int xp[];
+		int yp[];
+		Polygon shape = null;
+		Rectangle shapeRect = null;
+		//Todo remove the shape and used the shapeRect
+		if(tabPlacement == TOP){
+			xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
+			yp = new int[]{(y + positionYLine + heightLine), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + heightLine, y + positionYLine + heightLine};
+			shape = new Polygon(xp, yp, xp.length);
+		}else if(tabPlacement == BOTTOM){
+			y += 20;
+			xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
+			yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
+			shape = new Polygon(xp, yp, xp.length);
+		}else if(tabPlacement == LEFT){
+			//xp = new int[]{0, 0, 0, h, h, h, h, 0};
+			//yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
+			shapeRect = new Rectangle(x + heightLine - 2, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
+		}else{
+			//super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
+			shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
+		}
+
 		if (isSelected) {
-			paintLine(g, x, y, w, h);
-			this.tabPane.setForegroundAt(tabIndex, selectedForeground);
+			g2D.setColor(selectedAreaContentBackground);
+			g2D.setPaint(selectedAreaContentBackground);
+			tabPane.setForegroundAt(tabIndex, selectedForeground);
+
 		} else {
-			this.tabPane.setForegroundAt(tabIndex, foreground);
+			if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
+				g2D.setColor(areaContentBackground);
+				g2D.setPaint(areaContentBackground);
+			} else {
+				g2D.setColor(disableAreaContentBackground);
+				g2D.setPaint(disableAreaContentBackground);
+			}
+			tabPane.setForegroundAt(tabIndex, foreground);
+		}
+		if(shape != null){
+			g2D.fill(shape);
+		}else if (shapeRect != null){
+			g2D.fill(shapeRect);
 		}
 	}
 
 	@Override
-	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-		//do nothing
-	}
-
-	@Override
-	protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-		//do nothing
+	protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
+		if (tabPlacement == LEFT || tabPlacement == RIGHT) {
+			return super.calculateTabHeight(tabPlacement, tabIndex, fontHeight);
+		} else {
+			return 18 + super.calculateTabHeight(tabPlacement, tabIndex, fontHeight);
+		}
 	}
 
 	@Override
@@ -129,29 +168,18 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 	}
 
 	@Override
-	protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
-		super.paintTabArea(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, selectedIndex);
-	}
+	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) { }
 
 	@Override
-	protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
-		super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
-		if (isSelected) {
-			//paintLine(g, textRect.x - 10, textRect.y, textRect.width + 18, textRect.height);
-		}
-	}
+	protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) { }
+
+	@Override
+	protected void paintContentBorder(Graphics graphics, int i, int i1) { }
+
 
 	@Override
 	protected LayoutManager createLayoutManager() {
 		return new MaterialTabbedPaneLayout();
-	}
-
-	protected void paintLine(Graphics graphics, int x, int y, int w, int h) {
-		if (graphics == null) {
-			return;
-		}
-		graphics.setColor(UIManager.getColor("TabbedPane[focus].colorLine"));
-		graphics.fillRoundRect(x + positionXLine, y + positionYLine, w - widthLine, heightLine, arcLine, arcLine);
 	}
 
 	protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
@@ -210,8 +238,5 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			}
 			mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-
-
 	}
-
 }
