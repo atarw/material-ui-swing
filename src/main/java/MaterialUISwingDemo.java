@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialUISwingDemo {
 
     private static long beforeUsedMem;

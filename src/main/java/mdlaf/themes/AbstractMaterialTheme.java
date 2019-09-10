@@ -138,6 +138,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ColorUIResource focusColorLineTabbedPane;
 
+    protected ColorUIResource disableColorTabTabbedPane;
+
     protected InsetsUIResource tabInsetsTabbedPane;
 
     protected InsetsUIResource selectedTabInsetsTabbedPane;
@@ -624,6 +626,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     public ColorUIResource getFocusColorLineTabbedPane() {
         return focusColorLineTabbedPane;
+    }
+
+    public ColorUIResource getDisableColorTabTabbedPane() {
+        return disableColorTabTabbedPane;
     }
 
     public InsetsUIResource getTabInsetsTabbedPane() {

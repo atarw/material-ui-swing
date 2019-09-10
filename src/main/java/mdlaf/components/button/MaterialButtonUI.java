@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
  */
 public class MaterialButtonUI extends BasicButtonUI{
 

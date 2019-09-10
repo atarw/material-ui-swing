@@ -38,7 +38,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 

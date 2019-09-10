@@ -7,6 +7,10 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 
 	@Override

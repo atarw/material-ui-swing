@@ -1,6 +1,6 @@
 # Material-UI-Swing
-[![](https://img.shields.io/jitpack/v/vincenzopalazzo/material-ui-swing.svg?color=yellow&style=for-the-badge)](https://jitpack.io/#vincenzopalazzo/material-ui-swing)
-![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?style=for-the-badge)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%234fc3f7&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?color=%234fc3f7&style=for-the-badge)
 
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
@@ -35,6 +35,24 @@ with these tags
  **java**, **material**, **swing**, **look-and-feel**
  
  ps:we use these until we have one of our own
+ 
+ ## Repository
+ 
+ _Maven_
+ 
+ ```
+ <dependency>
+   <groupId>io.github.vincenzopalazzo</groupId>
+   <artifactId>material-ui-swing</artifactId>
+   <version>1.0.0</version>
+ </dependency>
+ ```
+
+ _Gradle_
+ 
+```
+ implementation 'io.github.vincenzopalazzo:material-ui-swing:1.0.0'
+``` 
 
 ## License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)

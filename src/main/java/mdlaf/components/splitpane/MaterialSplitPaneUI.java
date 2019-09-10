@@ -6,6 +6,7 @@ import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 import javax.swing.plaf.metal.MetalSplitPaneUI;
 import java.awt.*;
+
 /**
  * @author https://github.com/vincenzopalazzo
  */

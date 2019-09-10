@@ -34,7 +34,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author  https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
@@ -78,18 +78,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
         component = tabbedPane;
-/*
-        tabbedPane.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
-                int tabCount = tabbedPane.getTabCount();
-                for (int i = 0; i < tabCount; i++) {
-                    Component c = tabbedPane.getComponentAt(i);
-                    c.setPreferredSize(new Dimension(c.getSize().width, c.getPreferredSize().height));
-                }
-            }
-        });*/
     }
 
     @Override
@@ -111,12 +99,16 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.uninstallUI(c);
     }
     @Override
+    /**
+     * This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
+     */
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2D = (Graphics2D) g;
         int xp[];
         int yp[];
         Polygon shape = null;
         Rectangle shapeRect = null;
+        //Todo remove the shape and used the shapeRect
         if(tabPlacement == TOP){
             xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
             yp = new int[]{(y + positionYLine + heightLine), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + heightLine, y + positionYLine + heightLine};
@@ -136,16 +128,19 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
 
         if (isSelected) {
-            g2D.setColor(selectedAreaContentBackground); // TODO auslagern
+            g2D.setColor(selectedAreaContentBackground);
             g2D.setPaint(selectedAreaContentBackground);
+            tabPane.setForegroundAt(tabIndex, selectedForeground);
+
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
-                g2D.setColor(areaContentBackground); // TODO auslagern
+                g2D.setColor(areaContentBackground);
                 g2D.setPaint(areaContentBackground);
             } else {
-                g2D.setColor(new Color(232, 232, 232)); // TODO auslagern
-                g2D.setPaint(new Color(232, 232, 232));
+                g2D.setColor(disableAreaContentBackground);
+                g2D.setPaint(disableAreaContentBackground);
             }
+            tabPane.setForegroundAt(tabIndex, foreground);
         }
         if(shape != null){
             g2D.fill(shape);

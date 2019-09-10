@@ -81,7 +81,8 @@ import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialLookAndFeel extends MetalLookAndFeel {
 
@@ -386,7 +387,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.foreground", theme.getTextColor());
         table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
-        table.put("TabbedPane.disableContentAreaColor", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
         table.put("TabbedPane.border", theme.getBorderPanel());
         table.put("TabbedPane.shadow", null);
         table.put("TabbedPane.darkShadow", null);

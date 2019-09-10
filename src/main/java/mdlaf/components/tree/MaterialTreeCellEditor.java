@@ -11,6 +11,9 @@ import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
 public class MaterialTreeCellEditor extends DefaultTreeCellEditor {
 
 	private JTextField textField;

@@ -81,24 +81,7 @@ public class MaterialFontFactory {
      * @throws IOException
      */
     private void loadOsPropries() throws IOException {
-        String os = System.getProperty("os.name", "generic").toLowerCase();
-        String osSupport = osSupportted(os);
-        osSupport = null; //TODO DISABLE FONT NATIVE, AND ENABLE NOTO FONT
-        if (osSupport != null) {
-            String pathProperties = "/config/font-" + osSupport + ".properties";
-            properties.load(getClass().getResourceAsStream(pathProperties));
-            return;
-        }
         properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
-    }
-
-    private String osSupportted(String os) {
-        for (int i = 0; i < SISTEM_SUPPORTED.length; i++) {
-            if (os.contains(SISTEM_SUPPORTED[i])) {
-                return SISTEM_SUPPORTED[i];
-            }
-        }
-        return null;
     }
 
     public FontUIResource getFont(String typeFont){

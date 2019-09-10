@@ -7,7 +7,8 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 

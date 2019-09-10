@@ -10,7 +10,8 @@ import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialSliderUI extends BasicSliderUI {
 
