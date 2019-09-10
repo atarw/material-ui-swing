@@ -9,6 +9,10 @@ import javax.swing.border.Border;
 import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialBorders {
 
     public static final BorderUIResource LIGHT_LINE_BORDER = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.GRAY_200, 1));

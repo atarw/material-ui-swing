@@ -172,6 +172,8 @@ public interface MaterialTheme {
 
     ColorUIResource getFocusColorLineTabbedPane();
 
+    ColorUIResource getDisableColorTabTabbedPane();
+
     InsetsUIResource getTabInsetsTabbedPane();
 
     InsetsUIResource getSelectedTabInsetsTabbedPane();

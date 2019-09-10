@@ -1,5 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -7,7 +9,11 @@ targetCompatibility = '1.8'
 repositories {
     jcenter()
 }
-version = '1.0-Beta-1.4.1'
+
+group = "io.github.vincenzopalazzo"
+archivesBaseName = "material-ui-swing"
+version = "1.0.0"
+
 dependencies {
 
     // https://mvnrepository.com/artifact/org.swinglabs/swingx
@@ -27,14 +33,80 @@ dependencies {
 
 }
 
-//-Xlint: -deprecation
-compileJava {
-    options.compilerArgs << '-deprecation'
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
 }
 
 jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name archivesBaseName
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'archivesBaseName'
+                url 'https://github.com/vincenzopalazzo/material-ui-swing'
+
+                scm {
+                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
+                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
+                    url 'http://foo.googlecode.com/svn/trunk/'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'vincenzopalazzo'
+                        name 'Vincenzo Palazzo'
+                        email 'vincenzopalazzodev@gmail.com'
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -27,6 +27,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 
     private Color from, to;

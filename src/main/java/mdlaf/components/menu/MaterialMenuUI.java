@@ -20,7 +20,6 @@ import java.awt.event.MouseListener;
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
-
 public class MaterialMenuUI extends BasicMenuUI {
 
 	public static ComponentUI createUI (JComponent c) {

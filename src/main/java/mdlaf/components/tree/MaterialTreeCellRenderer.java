@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.Component;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
 public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	public MaterialTreeCellRenderer () {

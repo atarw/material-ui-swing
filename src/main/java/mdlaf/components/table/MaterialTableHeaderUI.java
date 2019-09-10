@@ -8,6 +8,10 @@ import javax.swing.plaf.basic.BasicTableHeaderUI;
 import javax.swing.table.JTableHeader;
 import java.awt.Graphics;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 
 	public static ComponentUI createUI (JComponent c) {

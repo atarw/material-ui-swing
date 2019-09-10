@@ -8,7 +8,8 @@ import javax.swing.plaf.basic.BasicTableUI;
 import java.awt.*;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialTableUI extends BasicTableUI {
 
@@ -74,32 +75,8 @@ public class MaterialTableUI extends BasicTableUI {
 		//settingIconToTable();
 	}
 
-	 // This method do possibility change icon into JTable, you setting a icon with this constant input
-	 // UIManager.getIcon("Table[CheckBox].unchecked") and UIManager.getIcon("Table[CheckBox].checked")
-	@Deprecated
-	protected void settingIconToTable(){
-
-		Icon unchecked = UIManager.getIcon("Table[CheckBox].unchecked");
-		Icon checked = UIManager.getIcon("Table[CheckBox].checked");
-
-		if(checked == null || unchecked == null){
-			return;
-		}
-
-		JCheckBox check = (JCheckBox) table.getDefaultRenderer(Boolean.class);
-		check.setIcon(unchecked);
-		check.setSelectedIcon(checked);
-
-		DefaultCellEditor editor = (DefaultCellEditor) table.getDefaultEditor(Boolean.class);
-		((JCheckBox)editor.getComponent()).setIcon(unchecked);
-		((JCheckBox)editor.getComponent()).setSelectedIcon(checked);
-	}
-
-
-	/**
-	 * This method setting a MaterialCellRender at the particular class
-	 * With this class not working correctly the color alternate in the Jtable
-	 */
+	 //This method setting a MaterialCellRender at the particular class
+	 // With this class not working correctly the color alternate in the Jtable
 	protected void setDefaultCellRenderWithType(JTable table) {
 		if(table == null){
 			throw new IllegalArgumentException("Table is null");

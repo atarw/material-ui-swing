@@ -10,7 +10,6 @@ import java.awt.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-
 public class MaterialProgressBarUI extends BasicProgressBarUI {
 
 	public static ComponentUI createUI (JComponent c) {

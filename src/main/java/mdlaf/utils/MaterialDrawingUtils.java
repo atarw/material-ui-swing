@@ -6,6 +6,10 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.util.Map;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialDrawingUtils {
 
 	static {

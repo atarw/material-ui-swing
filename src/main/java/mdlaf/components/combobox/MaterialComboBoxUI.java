@@ -15,7 +15,8 @@ import java.util.concurrent.ForkJoinPool;
 
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
