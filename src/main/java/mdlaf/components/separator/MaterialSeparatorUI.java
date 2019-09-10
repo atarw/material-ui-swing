@@ -10,7 +10,6 @@ import java.awt.Graphics;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-
 public class MaterialSeparatorUI extends BasicSeparatorUI {
 
 	public static ComponentUI createUI (JComponent c) {

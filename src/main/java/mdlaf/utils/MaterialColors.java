@@ -28,6 +28,10 @@ package mdlaf.utils;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.Color;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialColors {
 
 	public static final ColorUIResource RED_50 = new ColorUIResource (255, 235, 238);

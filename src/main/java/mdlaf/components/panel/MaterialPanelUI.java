@@ -7,6 +7,10 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPanelUI;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialPanelUI extends BasicPanelUI {
 
 	public static ComponentUI createUI (JComponent c) {

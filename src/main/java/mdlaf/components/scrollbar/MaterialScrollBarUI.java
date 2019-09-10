@@ -11,8 +11,9 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 /**
- * @contributor by https://github.com/downToHell
- * @contributor for refactoring by https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ * @author https://github.com/downToHell
  */
 public class MaterialScrollBarUI extends BasicScrollBarUI {
 

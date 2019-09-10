@@ -9,6 +9,10 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 import java.awt.Graphics;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialPopupMenuUI extends BasicPopupMenuUI {
 
 	public static ComponentUI createUI (JComponent c) {

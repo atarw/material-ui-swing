@@ -5,6 +5,10 @@ import mdlaf.components.textfield.MaterialTextFieldUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialTableCellEditor extends DefaultCellEditor {
 
     private static JTextField init() {

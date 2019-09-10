@@ -9,10 +9,11 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
 
-/*
- * Contributed by https://github.com/downToHell
- * */
-//TODO cambio colore del radio button.
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ * @author https://github.com/downToHell
+ */
 public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 
 	public static ComponentUI createUI (JComponent c) {
