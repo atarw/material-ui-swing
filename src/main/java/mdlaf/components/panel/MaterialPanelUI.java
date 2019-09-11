@@ -2,12 +2,10 @@ package mdlaf.components.panel;
 
 import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPanelUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MaterialPanelUI extends BasicPanelUI {
 
@@ -24,6 +22,19 @@ public class MaterialPanelUI extends BasicPanelUI {
 		panel.setFont (UIManager.getFont ("Panel.font"));
 		panel.setBackground (UIManager.getColor ("Panel.background"));
 		panel.setBorder (UIManager.getBorder ("Panel.border"));
+
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
 	}
 
 	@Override

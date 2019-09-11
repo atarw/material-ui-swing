@@ -4,62 +4,155 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.concurrent.ForkJoinPool;
+
 
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
-	public static ComponentUI createUI (JComponent c) {
-		return new MaterialComboBoxUI ();
+	public static ComponentUI createUI(JComponent c) {
+		return new MaterialComboBoxUI();
+	}
+
+	protected Color background;
+	protected FocusListener focusListener;
+	protected int arc = 12; //default value
+
+	public MaterialComboBoxUI() {
+		focusListener = new FocusListenerColor();
 	}
 
 	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
+	public void installUI(JComponent c) {
+		super.installUI(c);
 
-		JComboBox<?> comboBox = (JComboBox<?>) c;
-		comboBox.setFont (UIManager.getFont ("ComboBox.font"));
-		comboBox.setBackground (UIManager.getColor ("ComboBox.background"));
-		comboBox.setForeground (UIManager.getColor ("ComboBox.foreground"));
-		comboBox.setBorder (UIManager.getBorder ("ComboBox.border"));
-		comboBox.setLightWeightPopupEnabled (true);
+		comboBox.setFont(UIManager.getFont("ComboBox.font"));
+		background = UIManager.getColor("ComboBox.background");
+		comboBox.setBackground(background);
+		comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
+		comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
+		comboBox.setLightWeightPopupEnabled(true);
 		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		comboBox.setFocusable(true);
+
+		this.arc = UIManager.getInt("ComboBox.arc");
 	}
 
 	@Override
-	protected JButton createArrowButton () {
-		Icon icon = UIManager.getIcon ("ComboBox.buttonIcon");
+	public void uninstallUI(JComponent c) {
+
+		// comboBox.setFont(null);
+		comboBox.setBackground(null);
+		comboBox.setForeground(null);
+		comboBox.setBorder(null);
+		comboBox.setLightWeightPopupEnabled(true);
+		comboBox.setCursor(null);
+		comboBox.setRenderer(null);
+		comboBox.setEditor(null);
+
+		comboBox.removeFocusListener(focusListener);
+		MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
+
+		super.uninstallUI(comboBox);
+	}
+
+	@Override
+	protected JButton createArrowButton() {
+		Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
 		JButton button;
 		if (icon != null) {
-			button = new JButton (icon);
+			button = new JButton(icon);
+		} else {
+			button = new BasicArrowButton(SwingConstants.SOUTH);
 		}
-		else {
-			button = new BasicArrowButton (SwingConstants.SOUTH);
-		}
-		MaterialManagerListener.removeAllMouseListener(button);
-		button.setOpaque (true);
-		button.setBackground (UIManager.getColor ("ComboBox.buttonBackground"));
-		if(UIManager.getBoolean("ComboBox.mouseHoverEnabled")){
-			button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor ("ComboBox.mouseHoverColor")));
-		}
-		button.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
 		return button;
 	}
 
 	@Override
-	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+	public void configureArrowButton() {
+		super.configureArrowButton();
+
+		MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+		arrowButton.setOpaque(true);
+		arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
+		if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
+			arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
+		}
+		arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
+	}
+
+	@Override
+	public void unconfigureArrowButton() {
+		MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+		super.unconfigureArrowButton();
+	}
+
+	@Override
+	public void update(Graphics g, JComponent c) {
+		//super.update(g, c);
+		g = MaterialDrawingUtils.getAliasedGraphics(g);
+		g.setColor(c.getBackground());
+		g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
+		paint(g, c);
 	}
 
 	@Override
 	protected ListCellRenderer createRenderer() {
 		return new MaterialComboBoxRenderer();
+	}
+
+	@Override
+	protected ComboBoxEditor createEditor() {
+		return new MaterialComboBoxEditor();
+	}
+
+	@Override
+	protected FocusListener createFocusListener() {
+		comboBox.addFocusListener(focusListener);
+		return super.createFocusListener();
+	}
+
+	protected class FocusListenerColor implements FocusListener {
+
+		private Border focus;
+		private Border unfocus;
+
+		public FocusListenerColor() {
+			focus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.focusColor"), arc);
+			unfocus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.unfocusColor"), arc);
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			if (e.getComponent() == null) {
+				return;
+			}
+			JComboBox cb = (JComboBox) e.getComponent();
+			if (focus != null) {
+				cb.setBorder(focus);
+				cb.repaint();
+			}
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			if (e.getComponent() == null) {
+				return;
+			}
+			JComboBox cb = (JComboBox) e.getComponent();
+			if (unfocus != null) {
+				cb.setBorder(unfocus);
+				cb.repaint();
+			}
+		}
 	}
 }

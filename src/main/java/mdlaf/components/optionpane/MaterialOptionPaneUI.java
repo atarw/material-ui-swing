@@ -1,6 +1,6 @@
 /*
  * MIT License
- * Copyright (c) 2018 atharva washimkar
+ *
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,11 +45,9 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
 
     @Override
     protected Icon getIconForType(int messageType) {
+        if(!UIManager.getBoolean("OptionPane.enableIcon")){
+            return null;
+        }
         return super.getIconForType(messageType);
-    }
-
-    @Override
-    protected void addButtonComponents(Container container, Object[] buttons, int initialIndex) {
-        super.addButtonComponents(container, buttons, initialIndex);
     }
 }

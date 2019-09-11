@@ -32,6 +32,20 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		this.dockingColor = null;
+		this.floatingColor = null;
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}

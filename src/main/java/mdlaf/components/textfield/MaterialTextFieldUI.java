@@ -1,6 +1,6 @@
 /*
  * MIT License
- * Copyright (c) 2018 atharva washimkar
+ *
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,27 +24,38 @@
 package mdlaf.components.textfield;
 
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.swing.plaf.metal.MetalTextFieldUI;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * @contributor https://github.com/vincenzopalazzo
  */
-public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListener, PropertyChangeListener {
+public class MaterialTextFieldUI extends MetalTextFieldUI {
 
-	private boolean drawLine;
-	private Color activeBackground;
-	private Color activeForeground;
-	private Color inactiveBackground;
-	private Color inactiveForeground;
+	protected static final String PROPERTY_LINE_COLOR = "lineColor";
+	protected static final String PROPERTY_SELECTION_COLOR = "selectionColor";
+	protected static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
+
+	protected boolean drawLine;
+	protected Color background;
+	protected Color activeBackground;
+	protected Color activeForeground;
+	protected Color inactiveBackground;
+	protected Color inactiveForeground;
+	protected Color colorLineInactive;
+	protected Color colorLineActive;
+	protected Color colorLine;
+	protected FocusListener focusListenerColorLine;
+	protected PropertyChangeListener propertyChangeListener;
+	protected PropertyChangeSupport propertyChangeSupport;
 
 	public MaterialTextFieldUI() {
 		this(true);
@@ -53,6 +64,9 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	public MaterialTextFieldUI(boolean drawLine) {
 		super();
 		this.drawLine = drawLine;
+		this.focusListenerColorLine = new FocusListenerColorLine();
+		this.propertyChangeListener = new MaterialPropertyChangeListener();
+		this.propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 
 	public static ComponentUI createUI(JComponent c) {
@@ -62,31 +76,45 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
-
 	}
 
 	@Override
 	protected void installDefaults() {
 		super.installDefaults();
-		installMaterialDefault();
+		installMyDefaults();
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+		super.uninstallUI(c);
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
 	}
 
 	@Override
 	protected void uninstallDefaults() {
-		getComponent().setBorder(null);
 		super.uninstallDefaults();
+		getComponent().setBorder(null);
 	}
 
 	@Override
 	protected void installListeners() {
 		super.installListeners();
-		getComponent().addFocusListener(this);
-		getComponent().addPropertyChangeListener(this);
+		getComponent().addFocusListener(focusListenerColorLine);
+		getComponent().addPropertyChangeListener(propertyChangeListener);
+		propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
 	}
 
 	@Override
 	protected void uninstallListeners() {
-		getComponent().removeFocusListener(this);
+		getComponent().removeFocusListener(focusListenerColorLine);
+		getComponent().removePropertyChangeListener(propertyChangeListener);
+		propertyChangeSupport.removePropertyChangeListener(propertyChangeListener);
 		super.uninstallListeners();
 	}
 
@@ -95,49 +123,14 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
 	}
 
-	@Override
-	public void focusGained(FocusEvent e) {
-		changeColorOnFocus(true);
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		changeColorOnFocus(false);
-	}
-
+	/**
+	 * Paint line when the component is focused
+	 */
 	@Override
 	public void paintSafely(Graphics g) {
-		JTextField c = (JTextField) getComponent();
 		super.paintSafely(g);
-		if (drawLine) {
-			int x = c.getInsets().left;
-			int y = c.getInsets().top;
-			int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
-			g.setColor(c.getSelectionColor());
 
-			g.fillRect(x, c.getHeight() - y, w, 1);
-		}
-
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent pce) {
-		super.propertyChange(pce);
-		if(getComponent() == null){
-			return;
-		}
-		if (pce.getPropertyName().equals("selectionColor")) {
-			Color newColor = (Color) pce.getNewValue();
-			logicForPropertyChange(newColor, false);
-		}
-
-		if (pce.getPropertyName().equals("selectedTextColor")) {
-			Color newColor = (Color) pce.getNewValue();
-			logicForPropertyChange(newColor, true);
-		}
-		if (pce.getPropertyName().equals("background")) {
-			getComponent().repaint();
-		}
+		paintLine(g);
 	}
 
 	protected void logicForChangeColorOnFocus(JComponent component, Color background, Color foreground){
@@ -145,14 +138,30 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 			throw new IllegalArgumentException("Argument function null");
 		}
 		JTextField textField = (JTextField) component;
-		textField.setSelectionColor(background);
 		textField.setForeground(foreground);
+		textField.setSelectionColor(background);
 		textField.setSelectedTextColor(foreground);
+	}
+
+	protected void installMyDefaults() {
+		this.background = UIManager.getColor("TextField.background");
+		this.activeBackground = UIManager.getColor("TextField.selectionBackground");
+		this.activeForeground = UIManager.getColor("TextField.selectionForeground");
+		this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
+		this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
+		colorLineInactive = UIManager.getColor("TextField[Line].inactiveColor");
+		colorLineActive = UIManager.getColor("TextField[Line].activeColor");
+		getComponent().setFont(UIManager.getFont("TextField.font"));
+		colorLine = getComponent().hasFocus() && getComponent().isEditable() ? colorLineActive : colorLineInactive;
+		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
+		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+		getComponent().setBorder(UIManager.getBorder("TextField.border"));
 	}
 
 	protected void logicForPropertyChange(Color newColor, boolean isForeground){
 		if(newColor == null){
-			throw new IllegalArgumentException("The inpur argument is null");
+			return;
 		}
 		if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
 			this.activeForeground = newColor;
@@ -164,19 +173,6 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		}
 	}
 
-	protected void installMaterialDefault() {
-		this.activeBackground = UIManager.getColor("TextField.selectionBackground");
-		this.activeForeground = UIManager.getColor("TextField.selectionForeground");
-		this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
-		this.inactiveForeground = UIManager.getColor("TextField.inactiveForeground");
-		getComponent().setFont(UIManager.getFont("TextField.font"));
-
-		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
-		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-		getComponent().setBorder(UIManager.getBorder("TextField.border"));
-	}
-
 	protected void changeColorOnFocus(boolean hasFocus) {
 		JTextField c = (JTextField) getComponent();
 		if(c == null){
@@ -184,13 +180,90 @@ public class MaterialTextFieldUI extends BasicTextFieldUI implements FocusListen
 		}
 		if(hasFocus && (activeBackground != null) && (activeForeground != null)){
 			logicForChangeColorOnFocus(c, activeBackground, activeForeground);
+			//TODO create a new changePropriety
+			paintLine(c.getGraphics());
 		}
 
 		if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
 			logicForChangeColorOnFocus(c, inactiveBackground, inactiveForeground);
+			paintLine(c.getGraphics());
 		}
 		if(c.getGraphics() != null){
 			c.paint(c.getGraphics());
 		}
 	}
+
+	protected synchronized void firePropertyChange(String propertyName, Object oldValue, Object newValue){
+		if((propertyName == null || propertyName.isEmpty()) || oldValue == null || newValue == null){
+			throw new IllegalArgumentException("Some property null");
+		}
+		if (propertyChangeSupport == null || (oldValue != null && newValue != null && oldValue.equals(newValue))) {
+			return;
+		}
+		if (propertyChangeSupport == null || oldValue == newValue) {
+			return;
+		}
+		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
+	}
+
+	protected void paintLine(Graphics graphics){
+		if( graphics == null){
+			return;
+		}
+		JTextField c = (JTextField) getComponent();
+
+		if (drawLine) {
+			int x = c.getInsets().left;
+			int y = c.getInsets().top;
+			int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
+			graphics.setColor(colorLine);
+
+			graphics.fillRect(x, c.getHeight() - y, w, 1);
+		}
+	}
+
+	protected class FocusListenerColorLine implements FocusListener{
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
+			changeColorOnFocus(true);
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			firePropertyChange(PROPERTY_LINE_COLOR, colorLineActive, colorLineInactive);
+			changeColorOnFocus(false);
+		}
+	}
+
+	protected class MaterialPropertyChangeListener implements PropertyChangeListener{
+
+		@Override
+		public void propertyChange(PropertyChangeEvent pce) {
+			if(getComponent() == null){
+				return;
+			}
+			if (pce.getPropertyName().equals(PROPERTY_SELECTION_COLOR)) {
+				Color newColor = (Color) pce.getNewValue();
+				logicForPropertyChange(newColor, false);
+			}
+
+			if (pce.getPropertyName().equals(PROPERTY_SELECTION_TEXT_COLOR)) {
+				Color newColor = (Color) pce.getNewValue();
+				logicForPropertyChange(newColor, true);
+			}
+
+			if (pce.getPropertyName().equals(PROPERTY_LINE_COLOR)) {
+				Color newColor = (Color) pce.getNewValue();
+				colorLine = newColor;
+				getComponent().repaint();
+			}
+
+			if (pce.getPropertyName().equals("background")) {
+				getComponent().repaint();
+			}
+		}
+	}
+
 }

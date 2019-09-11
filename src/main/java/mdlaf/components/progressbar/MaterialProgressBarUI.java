@@ -1,14 +1,11 @@
 package mdlaf.components.progressbar;
 
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JProgressBar;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicProgressBarUI;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -25,14 +22,25 @@ public class MaterialProgressBarUI extends BasicProgressBarUI {
 		super.installUI (c);
 
 		JProgressBar progressBar = (JProgressBar) c;
-		progressBar.setBorder (MaterialBorders.LIGHT_LINE_BORDER);
-		progressBar.setBackground (MaterialColors.GRAY_200);
-		progressBar.setForeground (MaterialColors.LIGHT_BLUE_400);
+		progressBar.setBorder (UIManager.getBorder("ProgressBar.border"));
+		progressBar.setBackground (UIManager.getColor("ProgressBar.background"));
+		progressBar.setForeground (UIManager.getColor("ProgressBar.foreground"));
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
 	}
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
-
 }

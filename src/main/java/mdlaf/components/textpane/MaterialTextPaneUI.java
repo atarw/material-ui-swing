@@ -1,7 +1,6 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,5 +46,17 @@ public class MaterialTextPaneUI extends BasicTextPaneUI {
 		c.setForeground(UIManager.getColor("TextPane.foreground"));
 		c.setBorder(UIManager.getBorder("TextPane.border"));
 		c.setFont(UIManager.getFont("TextPane.font"));
+	}
+
+	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
 	}
 }

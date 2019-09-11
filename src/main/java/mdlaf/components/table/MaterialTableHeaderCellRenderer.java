@@ -1,11 +1,8 @@
 package mdlaf.components.table;
 
-import javax.swing.JComponent;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 
@@ -15,6 +12,7 @@ public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 		component.setBorder (UIManager.getBorder ("TableHeader.cellBorder"));
 		component.setFont (UIManager.getFont ("TableHeader.font"));
 		component.setBackground (UIManager.getColor ("TableHeader.background"));
+		component.setForeground(UIManager.getColor("TableHeader.foreground"));
 
 		this.setHorizontalAlignment (SwingConstants.CENTER);
 		this.setVerticalAlignment (SwingConstants.CENTER);

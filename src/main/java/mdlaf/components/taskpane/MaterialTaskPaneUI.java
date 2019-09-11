@@ -11,7 +11,6 @@ import javax.swing.plaf.ComponentUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Map;
 
 import static org.jdesktop.swingx.SwingXUtilities.isUIInstallable;
 
@@ -26,16 +25,43 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         return new MaterialTaskPaneUI();
     }
 
+    private MouseListener changeIcon;
+    private JXTaskPane taskPane;
+
+    public MaterialTaskPaneUI() {
+        changeIcon = new ChangeIconOnClick();
+    }
+
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
         JXTaskPane jxTaskPane = (JXTaskPane) c;
-        jxTaskPane.addMouseListener(new ChangeIconOnClick(jxTaskPane));
-        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollassed") : UIManager.getIcon("TaskPane.noCollassed"));
+        jxTaskPane.addMouseListener(changeIcon);
+        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         jxTaskPane.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
+
+        this.taskPane = jxTaskPane;
     }
 
+    @Override
+    public void uninstallUI(JComponent c) {
 
+        c.setFont (null);
+        c.setBackground (null);
+        c.setForeground (null);
+        c.setBorder (null);
+        c.setCursor(null);
+
+        super.uninstallUI(c);
+    }
+
+    @Override
+    public void update(Graphics g, JComponent c) {
+        super.update(g, c);
+        JXTaskPane jxTaskPane = (JXTaskPane) c;
+        jxTaskPane.setIcon(jxTaskPane.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
+        jxTaskPane.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
+    }
 
     protected void installDefaults() {
         LookAndFeel.installColorsAndFont(group, "TaskPane.background",
@@ -58,6 +84,12 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         }
     }
 
+    @Override
+    protected void uninstallListeners() {
+        taskPane.removeMouseListener(changeIcon);
+        super.uninstallListeners();
+    }
+
     protected Border createContentPaneBorder() {
         Color borderColor = UIManager.getColor("TaskPane.borderColor");
         return new CompoundBorder(new ContentPaneBorder(borderColor),
@@ -75,17 +107,20 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     }
 
 
-
     protected class MaterialPaneBorder extends PaneBorder{
 
         protected void paintTitleBackground(JXTaskPane group, Graphics g) {
             MaterialDrawingUtils.getAliasedGraphics(g);
+            this.label.setBackground(UIManager.getColor("TaskPane.background"));
             if (group.isSpecial()) {
                 g.setColor(specialTitleBackground);
             } else {
                 g.setColor(titleBackgroundGradientStart);
             }
-            g.fillRoundRect(0, 0, group.getWidth(), getTitleHeight(group) -1 , 15, 15);
+            Graphics2D graphics2D = (Graphics2D) g;
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g = graphics2D;
+            g.fillRoundRect( -2, 0, group.getWidth(), group.getHeight(), 15, 15);
         }
 
         @Override
@@ -97,29 +132,30 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         public boolean isBorderOpaque() {
             return true;
         }
+
+        @Override
+        public Dimension getPreferredSize(JXTaskPane group) {
+            this.configureLabel(group);
+            Dimension dim = this.label.getPreferredSize();
+            dim.width += getTitleHeight(group);
+            dim.height = getTitleHeight(group);
+            return dim;
+        }
     }
 
     /**
-     * Action change icon on clic
-     * @author @author https://github.com/vincenzopalazzo
+     * Action change icon on click
+     * @author https://github.com/vincenzopalazzo
      */
-
-    private class ChangeIconOnClick implements MouseListener {
-
-        JXTaskPane taskPane;
-
-        public ChangeIconOnClick(JXTaskPane taskPane) {
-            this.taskPane = taskPane;
-        }
-
+    protected class ChangeIconOnClick implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
             if(taskPane.isCollapsed()){
-                taskPane.setIcon(UIManager.getIcon("TaskPane.yesCollassed"));
+                taskPane.setIcon(UIManager.getIcon("TaskPane.yesCollapsed"));
                 return;
             }
-            taskPane.setIcon(UIManager.getIcon("TaskPane.noCollassed"));
+            taskPane.setIcon(UIManager.getIcon("TaskPane.noCollapsed"));
         }
 
         @Override

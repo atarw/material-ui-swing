@@ -1,6 +1,5 @@
 package mdlaf.components.slider;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.JComponent;
@@ -27,12 +26,8 @@ public class MaterialSliderUI extends BasicSliderUI {
 		return new MaterialSliderUI ((JSlider) c);
 	}
 
-	 // I fixig paint the circle bacuse this was painted wrong
-	 // @contributor https://github.com/vincenzopalazzo
 	private static void drawCircle (Graphics g, int x, int y, int radius) {
-		Graphics2D graphics2D = (Graphics2D) g;
-		graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g = graphics2D;
+		g = MaterialDrawingUtils.getAliasedGraphics(g);
 		g.fillOval (x - radius, y - radius, radius * 2, radius * 2);
 	}
 
@@ -49,6 +44,18 @@ public class MaterialSliderUI extends BasicSliderUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);
+		c.setCursor(null);
+
+		super.uninstallUI(c);
+	}
+
+	@Override
 	public Dimension getThumbSize () {
 		return THUMB_SIZE;
 	}
@@ -61,7 +68,8 @@ public class MaterialSliderUI extends BasicSliderUI {
 		int cy = thumbRect.y + thumbRect.height / 2;
 
 		if (isDragging ()) {
-			g.setColor (MaterialColors.bleach (slider.getForeground (), 0.5f));
+			//g.setColor (MaterialColors.bleach (UIManager.getColor("Slider[halo].color"), 0.5f));
+			g.setColor (UIManager.getColor("Slider[halo].color"));
 			drawCircle (g, cx, cy, DRAG_THUMB_RADIUS);
 		}
 
@@ -113,7 +121,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 
 	@Override
 	public void paintFocus (Graphics g) {
-
+		//Do nothing
 	}
 
 	@Override

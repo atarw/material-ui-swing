@@ -1,12 +1,17 @@
 package mdlaf.components.menu;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialManagerListener;
+
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.basic.BasicMenuUI;
+import javax.swing.plaf.basic.BasicToolBarUI;
+import javax.swing.plaf.metal.MetalMenuBarUI;
+import javax.swing.plaf.metal.MetalToolBarUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,6 +26,8 @@ public class MaterialMenuUI extends BasicMenuUI {
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialMenuUI ();
 	}
+
+	private MouseListener mouseHover = new MouseHover();
 
 	@Override
 	public void installUI (JComponent c) {
@@ -40,6 +47,21 @@ public class MaterialMenuUI extends BasicMenuUI {
 	}
 
 	@Override
+	public void uninstallUI(JComponent c) {
+
+		menuItem.setFont (null);
+		menuItem.setBackground (null);
+		menuItem.setForeground (null);
+		menuItem.setBorder (null);
+		menuItem.setCursor(null);
+
+		c.removeMouseListener(mouseHover);
+		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
+
+		super.uninstallUI(menuItem);
+	}
+
+	@Override
 	public void paint (Graphics g, JComponent c) {
 		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
@@ -47,7 +69,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
 		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
-			c.addMouseListener(new MouseHover());
+			c.addMouseListener(mouseHover);
 		}
 		return super.createChangeListener(c);
 	}
@@ -74,6 +96,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
+
 			if(e.getSource() instanceof  JMenu){
 				JMenu menu = (JMenu) e.getSource();
 				if(menu.isEnabled()){

@@ -6,7 +6,7 @@
 
     <groupId>com.mdlaf</groupId>
     <artifactId>material-ui-swing</artifactId>
-    <version>0.9.3.3</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
