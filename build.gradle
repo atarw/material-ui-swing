@@ -132,7 +132,7 @@ task deployOnDiffereProjectLocalLib {
     }
 }
 
-task copyIntoLibsDir{
+task copyIntoLibsDir {
     doLast {
         copy {
             println 'init task copy source file'
@@ -141,4 +141,23 @@ task copyIntoLibsDir{
             //rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
         }
     }
+}
+
+task createPom {
+    pom {
+        project {
+            groupId GROUP_ID
+            artifactId ARCHTFAT_ID
+            version VERSION
+
+            inceptionYear '2019'
+            licenses {
+                license {
+                    name 'MIT'
+                    url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
 }
