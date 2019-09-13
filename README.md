@@ -2,8 +2,6 @@
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%234fc3f7&style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?color=%234fc3f7&style=for-the-badge)
 
-[![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
-
 ## Description
 A modern, Material Design UI for Java Swing
 
@@ -66,6 +64,13 @@ _Send me a mail if you use material-ui-swing so I add the your project at the li
 ## Community
 [![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+### Sponsors
+Support this project
+
+[![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
+
+The donor
+- [lilili87222](https://github.com/lilili87222)
 # Status
 ![GitHub issues](https://img.shields.io/github/issues/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
