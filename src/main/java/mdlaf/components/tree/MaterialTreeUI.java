@@ -21,7 +21,6 @@ public class MaterialTreeUI extends BasicTreeUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-		JTree tree = (JTree) c;
 
 		DefaultTreeCellRenderer renderer = new MaterialTreeCellRenderer ();
 		TreeCellEditor editor = new MaterialTreeCellEditor (tree, renderer);

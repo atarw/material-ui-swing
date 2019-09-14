@@ -24,6 +24,7 @@
  */
 package mdlaf;
 
+import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.button.MaterialButtonUI;
@@ -125,6 +126,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String editorPane = MaterialEditorPaneUI.class.getCanonicalName();
     private static final String rootPane = MaterialRootPaneUI.class.getCanonicalName();
     private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
+    private static final String colorChooserUI = MaterialColorChooser.class.getCanonicalName();
     //TODO not allineated this component with master
     private static final String splitPaneUI = MaterialSplitPaneUI.class.getCanonicalName();
 
@@ -234,6 +236,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RootPaneUI", rootPane);
         table.put("OptionPaneUI", optionPaneUI);
         table.put("SplitPaneUI", splitPaneUI);
+        table.put("ColorChooserUI", colorChooserUI);
         // java swingx
         table.put("swingx/TaskPaneUI", taskPaneUI);
     }
@@ -286,7 +289,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.disabledForeground", theme.getDisableTextColor());
         table.put("ComboBox.selectionBackground", theme.getBackgroundPrimary());
         table.put("ComboBox.selectionForeground", theme.getTextColor());
-        table.put("ComboBox[item].selectionForeground", theme.getTextColor());
+        table.put("ComboBox[item].selectionForeground", theme.getSelectedForegroundComboBox());
         table.put("ComboBox.selectedInDropDownBackground", theme.getSelectedInDropDownBackgroundComboBox());
         table.put("ComboBox.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
         table.put("ComboBox.unfocusColor", theme.getTextColor());
@@ -319,7 +322,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("MenuBar.foreground", theme.getMenuTextColor());
 
         table.put("MenuItem.disabledForeground", theme.getDisableTextColor());
-        table.put("MenuItem.selectionBackground", MaterialColors.GRAY_200);
+        table.put("MenuItem.selectionBackground", theme.getMenuBackgroundMouseHover());
         table.put("MenuItem.selectionForeground", theme.getTextColor());
         table.put("MenuItem.font", theme.getFontRegular());
         table.put("MenuItem.background", theme.getMenuBackground());
@@ -337,8 +340,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.font", theme.getFontRegular());
         table.put("RadioButton.background", theme.getBackgroundPrimary());
         table.put("RadioButton.foreground", theme.getTextColor());
-        table.put("RadioButton.icon", theme.getSelectedRadioButtonIcon());
-        table.put("RadioButton.selectedIcon", theme.getUnselectedRadioButtonIcon());
+        table.put("RadioButton.icon", theme.getUnselectedRadioButtonIcon());
+        table.put("RadioButton.selectedIcon", theme.getSelectedRadioButtonIcon());
         table.put("RadioButton.disabledText", theme.getDisableTextColor());
 
         table.put("Spinner.font", theme.getFontRegular());
@@ -384,14 +387,16 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TabbedPane.font", theme.getFontRegular());
         table.put("TabbedPane.background", theme.getBackgroundPrimary());
+        table.put("TabbedPane.tabAreaBackground", theme.getBackgroundPrimary());
         table.put("TabbedPane.foreground", theme.getTextColor());
         table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
         table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
         table.put("TabbedPane.border", theme.getBorderPanel());
-        table.put("TabbedPane.shadow", null);
-        table.put("TabbedPane.darkShadow", null);
-        table.put("TabbedPane.highlight", theme.getHighlightColorTabbedPane());
+        table.put("TabbedPane.shadow", theme.getBackgroundPrimary());
+        table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary());
+        table.put("TabbedPane.highlight", theme.getBackgroundPrimary());
+        table.put("TabbedPane.light", theme.getBackgroundPrimary());
         table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
         table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
@@ -435,7 +440,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
         table.put("ToggleButton.font", theme.getFontRegular());
         table.put("ToggleButton.background", theme.getBackgroundPrimary());
-        table.put("ToggleButton.select", MaterialColors.WHITE);
+        table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());
         table.put("ToggleButton.foreground", theme.getTextColor());
         table.put("ToggleButton.disabledText", theme.getDisableTextColor());
         table.put("ToggleButton.icon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF));
@@ -486,6 +491,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("EditorPane.border", theme.getBorderPanel());
         table.put("EditorPane.background", theme.getBackgroundTextField());
+        table.put("EditorPane.foreground", theme.getTextColor());
         table.put("EditorPane.selectionBackground", theme.getSelectionBackgroundTextField());
         table.put("EditorPane.inactiveForeground", theme.getSelectionForegroundTextField());
         table.put("EditorPane.font", theme.getFontRegular());
@@ -585,6 +591,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Material.inactiveCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);
 
         table.put("OptionPane.background", theme.getBackgroundPrimary());
+        table.put("OptionPane.foreground", theme.getTextColor());
         table.put("OptionPane.border", BorderFactory.createEmptyBorder());
         table.put("OptionPane.font", theme.getFontRegular());
         table.put("OptionPane.enableIcon", theme.getEnableIconOptionPane());
@@ -601,6 +608,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPane.warningDialog.titlePane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.warningDialog.titlePane.foreground", theme.getTextColor());
         table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("OptionPane.messageForeground", theme.getTextColor());
 
         table.put("FileChooser[icons].computer", theme.getIconComputerFileChooser());
         table.put("FileChooser[icons].directory", theme.getIconDirectoryFileChooser());
@@ -618,6 +626,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ProgressBar.foreground", theme.getForegroundProgressBar());
         //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
         table.put("ProgressBar.verticalSize", 1);
+
+        table.put("ColorChooser.background", theme.getBackgroundPrimary());
+        table.put("ColorChooser.foreground", theme.getTextColor());
+        table.put("ColorChooser.border", theme.getBorderPanel());
 
         theme.installUIDefault(table);
     }

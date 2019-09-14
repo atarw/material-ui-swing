@@ -10,10 +10,6 @@ repositories {
     jcenter()
 }
 
-group = "io.github.vincenzopalazzo"
-archivesBaseName = "material-ui-swing"
-version = "1.0.0"
-
 dependencies {
 
     // https://mvnrepository.com/artifact/org.swinglabs/swingx
@@ -32,6 +28,8 @@ dependencies {
     testImplementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
 
 }
+
+version = VERSION
 
 allprojects {
     gradle.projectsEvaluated {
@@ -115,7 +113,7 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincenzo/vincenzodev/Jmars/JMars_firstVersionBeta_170719/xxx_oss_branch/lib'
+            into '/media/vincenzo/vincenzodev/Jmars/JMars_version_9-9-2019/branches/UI/lib'
             rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.0_Beta.jar')
         }
     }
