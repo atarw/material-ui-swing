@@ -2,14 +2,19 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import java.util.Map;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class DemoGUITest extends JFrame {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoGUITest.class);
 
     static {
         try {
@@ -39,7 +44,7 @@ public class DemoGUITest extends JFrame {
     private JMenuItem menuItemJFileChooser = new JMenuItem("Choose");
     private JMenu menuFile = new JMenu("File");
     private JMenu themesMenu = new JMenu("Themes");
-    private JFileChooser fileChooser = new JFileChooser();
+    private JFileChooser fileChooser;
     private JPanel panelTwo = new JPanel();
     private JTable table = new JTable();
     private JMenuItem gtk = new JMenuItem("GTK");
@@ -52,6 +57,18 @@ public class DemoGUITest extends JFrame {
     }
 
     public void initComponent() {
+
+        for(Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()){
+            Object key =  entry.getKey();
+            if(key instanceof String){
+                String keyString = (String) key;
+                if(keyString.contains("TabbedPane")){
+                    LOGGER.debug("Key: " + keyString + " value: " + entry.getValue());
+                }
+            }
+
+        }
+
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
         buttonUndo.setAction(containerAction.getEnableButtonDisabled());
@@ -193,6 +210,7 @@ public class DemoGUITest extends JFrame {
 
     //getter and setter
     public JFileChooser getFileChooser() {
+        fileChooser = new JFileChooser();
         fileChooser.setName("fileChooserAction");
         return fileChooser;
     }

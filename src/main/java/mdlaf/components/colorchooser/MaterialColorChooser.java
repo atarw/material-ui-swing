@@ -1,7 +1,8 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2019 atharva washimkar,
+ * Copyright (c) 2019 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package mdlaf.themes.exceptions;
+package mdlaf.components.colorchooser;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicColorChooserUI;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class MaterialChangeThemeException extends RuntimeException{
+public class MaterialColorChooser extends BasicColorChooserUI {
 
-    public MaterialChangeThemeException() {
-        super();
+
+    @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialColorChooser();
     }
 
-    public MaterialChangeThemeException(String message) {
-        super(message);
+    @Override
+    public void installUI(JComponent c) {
+        super.installUI(c);
     }
 
-    public MaterialChangeThemeException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public MaterialChangeThemeException(Throwable cause) {
-        super(cause);
-    }
-
-    protected MaterialChangeThemeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    @Override
+    public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
     }
 }

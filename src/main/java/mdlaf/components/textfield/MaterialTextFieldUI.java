@@ -46,7 +46,9 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
     protected static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
 
     protected boolean drawLine;
+    protected JTextField textField;
     protected Color background;
+    protected Color foreground;
     protected Color activeBackground;
     protected Color activeForeground;
     protected Color inactiveBackground;
@@ -77,6 +79,7 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+        this.textField = (JTextField) c;
     }
 
     @Override
@@ -124,9 +127,6 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
     }
 
-    /**
-     * Paint line when the component is focused
-     */
     @Override
     public void paintSafely(Graphics g) {
         super.paintSafely(g);
@@ -139,13 +139,17 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
             throw new IllegalArgumentException("Argument function null");
         }
         JTextField textField = (JTextField) component;
-        textField.setForeground(foreground);
+        if(!this.activeForeground.equals(foreground)){ //TODO this comment resolve the issue but I don't not if it introduce some bug
+            textField.setSelectedTextColor(inactiveForeground);
+        }else{
+            textField.setSelectedTextColor(foreground);
+        }
         textField.setSelectionColor(background);
-        textField.setSelectedTextColor(foreground);
     }
 
     protected void installMyDefaults() {
         this.background = UIManager.getColor("TextField.background");
+        this.foreground = UIManager.getColor("TextField.foreground");
         this.activeBackground = UIManager.getColor("TextField.selectionBackground");
         this.activeForeground = UIManager.getColor("TextField.selectionForeground");
         this.inactiveBackground = UIManager.getColor("TextField.inactiveBackground");
@@ -164,7 +168,7 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         if(newColor == null){
            return;
         }
-        if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
+        if (isForeground && (!newColor.equals(activeForeground) && !newColor.equals(inactiveForeground))) {
             this.activeForeground = newColor;
             getComponent().repaint();
         }
@@ -198,6 +202,7 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         if((propertyName == null || propertyName.isEmpty()) || oldValue == null || newValue == null){
             throw new IllegalArgumentException("Some property null");
         }
+        //TODO refectoring this code
         if (propertyChangeSupport == null || (oldValue != null && newValue != null && oldValue.equals(newValue))) {
             return;
         }
@@ -213,7 +218,7 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         }
         JTextField c = (JTextField) getComponent();
 
-        if (drawLine) {
+        if(drawLine){
             int x = c.getInsets().left;
             int y = c.getInsets().top;
             int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
@@ -223,11 +228,12 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         }
     }
 
-    protected class FocusListenerColorLine implements FocusListener{
+    public class FocusListenerColorLine implements FocusListener{
 
         @Override
         public void focusGained(FocusEvent e) {
             firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
+
             changeColorOnFocus(true);
         }
 
@@ -238,7 +244,7 @@ public class MaterialTextFieldUI extends MetalTextFieldUI {
         }
     }
 
-    protected class MaterialPropertyChangeListener implements PropertyChangeListener{
+    public class MaterialPropertyChangeListener implements PropertyChangeListener{
 
         @Override
         public void propertyChange(PropertyChangeEvent pce) {

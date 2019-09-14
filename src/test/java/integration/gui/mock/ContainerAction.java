@@ -2,12 +2,10 @@ package integration.gui.mock;
 
 import com.sun.java.swing.plaf.gtk.GTKLookAndFeel;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialDarkTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.themes.MaterialTheme;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -134,9 +132,9 @@ public class ContainerAction {
                     DemoGUITest.getInstance().changeThemeWith(new GTKLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getMaterialDark()){
                     if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
-                        MaterialLookAndFeel.changeTheme(new MaterialDarkTheme());
+                        MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
                     }else{
-                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new MaterialDarkTheme()));
+                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new MaterialOceanicTheme()));
                     }
                 }
                 DemoGUITest.getInstance().reloadUI();

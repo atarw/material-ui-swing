@@ -35,6 +35,8 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 					component.setBackground(normalColor);
 					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
 				}
+				component.setForeground(table.getForeground());
+			}else {
 				component.setForeground(table.getSelectionForeground());
 			}
 		}

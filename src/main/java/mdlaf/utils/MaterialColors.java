@@ -318,6 +318,12 @@ public class MaterialColors {
 	public static final ColorUIResource COSMO_BLACK = new ColorUIResource(55, 58, 60);
 
 
+
+	//Other color
+	public static final ColorUIResource MYRTLE_GREEN = new ColorUIResource(	29, 120, 116);
+	public static final ColorUIResource DARK_JUNGLE_GREEN = new ColorUIResource(7, 30, 34);
+	public static final ColorUIResource SUNNY = new ColorUIResource(244, 232, 124);
+
 	private MaterialColors () {}
 
 	public static ColorUIResource bleach (Color color, float amount) {
