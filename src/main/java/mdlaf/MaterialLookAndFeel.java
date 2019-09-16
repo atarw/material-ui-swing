@@ -296,7 +296,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.focusColor", theme.getHighlightBackgroundPrimary());
         table.put("ComboBox.mouseHoverEnabled", theme.getMouseHoverEnableComboBox());
         table.put("ComboBox.arc", theme.getArchBorderComboBox());
-        table.put("ComboBox.focusable", true);
+        table.put("ComboBox.focusable", theme.getFocusableComboBox());
+        table.put("ComboBox.lightWeightPopupEnabled", theme.getLightWeightPopupEnabledComboBox());
 
         table.put("Label.font", theme.getFontRegular());
         table.put("Label.background", theme.getBackgroundPrimary());
@@ -424,6 +425,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table[row].height", theme.getHeightRowTable());
         table.put("Table[CheckBox].checked", theme.getSelectedCheckBoxIconTable());
         table.put("Table[CheckBox].unchecked", theme.getUnselectedCheckBoxIconTable());
+        table.put("Table[CheckBox].selectionChecked", theme.getSelectedCheckBoxIconSelectionRowTable());
+        table.put("Table[CheckBox].selectionUnchecked", theme.getUnselectedCheckBoxIconSelectionRowTable());
         table.put("Table.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
         table.put("TableHeader.background", theme.getBackgroundTableHeader());
@@ -524,6 +527,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField[Line].inactiveColor", theme.getInactiveColorLineTextField());
         table.put("PasswordField[Line].activeColor", theme.getActiveColorLineTextField());
         table.put("PasswordField.border", theme.getBorderTextField());
+        table.put("PasswordField.echoChar", theme.getEchoCharPasswordField());
         table.put("PasswordField.focusInputMap", fieldInputMap);
 
         table.put("TitledBorder.border", MaterialBorders.LIGHT_LINE_BORDER);

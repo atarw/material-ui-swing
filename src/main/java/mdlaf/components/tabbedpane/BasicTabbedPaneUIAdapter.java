@@ -104,16 +104,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
 
     }
 
-    /**
-     * Invoked by <code>installUI</code> to create
-     * a layout manager object to manage
-     * the <code>JTabbedPane</code>.
-     *
-     * @return a layout manager object
-     *
-     * @see MaterialTabbedPaneLayout
-     * @see javax.swing.JTabbedPane#getTabLayoutPolicy
-     */
+
     protected LayoutManager createLayoutManager() {
         if (tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT) {
             return new MaterialTabbedPaneScrollLayout();
@@ -122,21 +113,11 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         }
     }
 
-    /* In an attempt to preserve backward compatibility for programs
-     * which have extended BasicTabbedPaneUI to do their own layout, the
-     * UI uses the installed layoutManager (and not tabLayoutPolicy) to
-     * determine if scrollTabLayout is enabled.
-     */
+
     private boolean scrollableTabLayoutEnabled() {
         return (tabPane.getLayout() instanceof MaterialTabbedPaneScrollLayout);
     }
 
-    /**
-     * Creates and installs any required subcomponents for the JTabbedPane.
-     * Invoked by installUI.
-     *
-     * @since 1.4
-     */
     protected void installComponents() {
         if (scrollableTabLayoutEnabled()) {
             if (tabScroller == null) {
@@ -167,20 +148,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         }
     }
 
-    /**
-     * Creates and returns a JButton that will provide the user
-     * with a way to scroll the tabs in a particular direction. The
-     * returned JButton must be instance of UIResource.
-     *
-     * @param direction One of the SwingConstants constants:
-     * SOUTH, NORTH, EAST or WEST
-     * @return Widget for user to
-     * @see javax.swing.JTabbedPane#setTabPlacement
-     * @see javax.swing.SwingConstants
-     * @throws IllegalArgumentException if direction is not one of
-     *         NORTH, SOUTH, EAST or WEST
-     * @since 1.5
-     */
+
     protected JButton createScrollButton(int direction) {
         if (direction != SOUTH && direction != NORTH && direction != EAST &&
                 direction != WEST) {
@@ -190,12 +158,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         return new ScrollableTabButton(direction);
     }
 
-    /**
-     * Removes any installed subcomponents from the JTabbedPane.
-     * Invoked by uninstallUI.
-     *
-     * @since 1.4
-     */
+
     protected void uninstallComponents() {
         uninstallTabContainer();
         if (scrollableTabLayoutEnabled()) {
@@ -263,9 +226,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         return handler;
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     protected void updateMnemonics() {
         resetMnemonics();
         for (int counter = tabPane.getTabCount() - 1; counter >= 0;
@@ -278,9 +239,6 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         }
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
     protected void resetMnemonics() {
         if (mnemonicToIndexMap != null) {
             mnemonicToIndexMap.clear();
@@ -288,9 +246,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         }
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     protected void addMnemonic(int index, int mnemonic) {
         if (mnemonicToIndexMap == null) {
             initMnemonics();
@@ -299,9 +255,6 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         mnemonicToIndexMap.put(Integer.valueOf(mnemonic), Integer.valueOf(index));
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
     protected void initMnemonics() {
         mnemonicToIndexMap = new Hashtable<Integer, Integer>();
         mnemonicInputMap = new ComponentInputMapUIResource(tabPane);
@@ -312,23 +265,17 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
                 mnemonicInputMap);
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     protected void setRolloverTab(int x, int y) {
         setRolloverTab(tabForCoordinate(tabPane, x, y, false));
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     protected void setRolloverTab(int index) {
         rolloverTabIndex = index;
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     protected int getRolloverTab() {
         return rolloverTabIndex;
     }
@@ -370,9 +317,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
         return -1;
     }
 
-    /**
-     * Look the BasicTabbedPaneUI for doc
-     */
+
     public Component.BaselineResizeBehavior getBaselineResizeBehavior(
             JComponent c) {
         super.getBaselineResizeBehavior(c);

@@ -1,7 +1,6 @@
 # Material-UI-Swing
-<a src="https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing/1.0.0/jar"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge"/></a>
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)](https://search.maven.org/search?q=g:%22io.github.vincenzopalazzo%22%20AND%20a:%22material-ui-swing%22)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)
-
 ## Description
 A modern, Material Design UI for Java Swing
 

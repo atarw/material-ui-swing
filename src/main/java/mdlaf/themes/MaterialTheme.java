@@ -112,6 +112,10 @@ public interface MaterialTheme {
 
     boolean getMouseHoverEnableComboBox();
 
+    boolean getLightWeightPopupEnabledComboBox();
+
+    boolean getFocusableComboBox();
+
     int getArchBorderComboBox();
 
     //-----------------------------------
@@ -238,6 +242,10 @@ public interface MaterialTheme {
 
     ImageIconUIResource getSelectedCheckBoxIconTable();
 
+    ImageIconUIResource getUnselectedCheckBoxIconSelectionRowTable();
+
+    ImageIconUIResource getSelectedCheckBoxIconSelectionRowTable();
+
     boolean getTableFocusable();
 
     boolean getTableOpaque();
@@ -292,6 +300,8 @@ public interface MaterialTheme {
     ColorUIResource getActiveColorLineTextField();
 
     BorderUIResource getBorderTextField();
+
+    char getEchoCharPasswordField();
 
     //---------------------------------------------------
     //Proprieties JXTaskPane

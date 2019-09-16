@@ -4,6 +4,7 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
@@ -43,7 +44,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        comboBox.setFocusable(true);
+        comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));
 
         this.arc = UIManager.getInt("ComboBox.arc");
     }
@@ -51,7 +52,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-       // comboBox.setFont(null);
+        // comboBox.setFont(null);
         comboBox.setBackground(null);
         comboBox.setForeground(null);
         comboBox.setBorder(null);
@@ -98,6 +99,14 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     @Override
+    protected void uninstallListeners() {
+        if(this.comboBox.isFocusable()){
+            this.comboBox.removeFocusListener(focusListener);
+        }
+        super.uninstallListeners();
+    }
+
+    @Override
     public void update(Graphics g, JComponent c) {
         //super.update(g, c);
         g = MaterialDrawingUtils.getAliasedGraphics(g);
@@ -118,7 +127,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected FocusListener createFocusListener() {
-        comboBox.addFocusListener(focusListener);
+        if(comboBox.isFocusable()){
+            comboBox.addFocusListener(focusListener);
+        }
         return super.createFocusListener();
     }
 

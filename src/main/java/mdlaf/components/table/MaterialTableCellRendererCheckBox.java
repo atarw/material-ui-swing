@@ -11,6 +11,8 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
 
     protected Icon unchecked = UIManager.getIcon("Table[CheckBox].unchecked");
     protected Icon checked = UIManager.getIcon("Table[CheckBox].checked");
+    protected Icon uncheckedSelectionRow = UIManager.getIcon("Table[CheckBox].selectionUnchecked");
+    protected Icon checkedSelectionRow = UIManager.getIcon("Table[CheckBox].selectionChecked");
 
     public MaterialTableCellRendererCheckBox() {
         setLayout(new GridBagLayout());
@@ -30,6 +32,8 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
         Color normalColor = UIManager.getColor("Table.background");
         if(alternativeRow){
             if(!isSelected){
+                setIcon(unchecked);
+                setSelectedIcon(checked);
                 if(row%2 == 1) {
                     this.setBackground(alternativeRowColor);
                 }else{
@@ -37,6 +41,8 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
                 }
                 this.setForeground(table.getForeground());
             }else{
+                setIcon(uncheckedSelectionRow);
+                setSelectedIcon(checkedSelectionRow);
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
