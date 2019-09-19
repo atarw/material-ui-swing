@@ -109,7 +109,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
         this.buttonDefaultTextColor = MaterialColors.WHITE;
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDisabledForeground = MaterialColors.BLACK;
+        this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
         this.buttonBorderColor = MaterialColors.GRAY_200;
