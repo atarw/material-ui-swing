@@ -98,10 +98,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.uninstallDefaults();
         super.uninstallUI(c);
     }
+     //
+     // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
+     //
     @Override
-    /**
-     * This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
-     */
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2D = (Graphics2D) g;
         int xp[];
@@ -176,6 +176,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void paintContentBorder(Graphics graphics, int i, int i1) { }
 
+    @Override
+    public void paint(Graphics g, JComponent c) {
+        super.paint(g, c);
+    }
 
     @Override
     protected LayoutManager createLayoutManager() {

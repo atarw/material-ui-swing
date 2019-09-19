@@ -195,6 +195,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ImageIconUIResource selectedCheckBoxIconTable;
 
+    protected ImageIconUIResource unselectedCheckBoxIconSelectionRowTable;
+
+    protected ImageIconUIResource selectedCheckBoxIconSelectionRowTable;
 
     //---------------------------------------------------
     //Proprieties JToolBar
@@ -500,10 +503,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return borderComboBox;
     }
 
-
     @Override
     public boolean getMouseHoverEnableComboBox() {
         return false;
+    }
+
+    @Override
+    public boolean getLightWeightPopupEnabledComboBox() {
+        return true;
+    }
+
+    @Override
+    public boolean getFocusableComboBox() {
+        return true;
     }
 
     @Override
@@ -744,6 +756,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return selectedCheckBoxIconTable;
     }
 
+    public ImageIconUIResource getUnselectedCheckBoxIconSelectionRowTable() {
+        return unselectedCheckBoxIconSelectionRowTable;
+    }
+
+    public ImageIconUIResource getSelectedCheckBoxIconSelectionRowTable() {
+        return selectedCheckBoxIconSelectionRowTable;
+    }
+
     @Override
     public boolean getTableFocusable() {
         return true;
@@ -826,6 +846,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     public BorderUIResource getBorderTextField() {
         return borderTextField;
+    }
+
+    public char getEchoCharPasswordField() {
+        return '\u2022';
     }
 
     //---------------------------------------------------

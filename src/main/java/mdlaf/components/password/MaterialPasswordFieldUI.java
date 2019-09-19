@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2018 https://github.com/atarw
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,7 +24,7 @@
  */
 package mdlaf.components.password;
 
-import mdlaf.components.textfield.MaterialTextFieldUI;
+import mdlaf.components.textfield.MaterialComponentField;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -32,26 +33,15 @@ import javax.swing.text.Element;
 import javax.swing.text.PasswordView;
 import javax.swing.text.View;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 /**
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
-public class MaterialPasswordFieldUI extends MaterialTextFieldUI {
+public class MaterialPasswordFieldUI extends MaterialComponentField{
 
-    protected boolean drawLine;
-    protected Color activeForeground;
-    protected Color inactiveForeground;
-    protected Color background;
-    protected Color foreground;
-    protected FocusListener focusListenerColorLine;
-    protected PropertyChangeListener propertyChangeListener;
-    protected PropertyChangeSupport propertyChangeSupport;
+    protected static final String ProprietyPrefix = "PasswordField";
+    protected BasicPasswordFieldUI basicPasswordFieldUI = new BasicPasswordFieldUI();
 
     public MaterialPasswordFieldUI() {
         this(true);
@@ -60,9 +50,6 @@ public class MaterialPasswordFieldUI extends MaterialTextFieldUI {
     public MaterialPasswordFieldUI(boolean drawLine) {
         super();
         this.drawLine = drawLine;
-        this.focusListenerColorLine = new FocusListenerColorLine();
-        this.propertyChangeListener = new MaterialPropertyChangeListener();
-        this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     public static ComponentUI createUI(JComponent c) {
@@ -70,27 +57,34 @@ public class MaterialPasswordFieldUI extends MaterialTextFieldUI {
     }
 
     @Override
+    protected String getPropertyPrefix() {
+        return ProprietyPrefix;
+    }
+
+    @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+        basicPasswordFieldUI.installUI(c);
         JPasswordField passwordField = (JPasswordField) c;
-        passwordField.setEchoChar('\u2022');
+        passwordField.setEchoChar((Character) UIManager.get("PasswordField.echoChar"));
+        installMyDefaults(passwordField);
     }
 
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        installMyDefaults();
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
         c.setFont (null);
         c.setBackground (null);
         c.setForeground (null);
         c.setBorder (null);
         c.setCursor(null);
 
+        basicPasswordFieldUI.uninstallUI(c);
+        textComponent = null;
         super.uninstallUI(c);
     }
 
@@ -124,7 +118,7 @@ public class MaterialPasswordFieldUI extends MaterialTextFieldUI {
     @Override
     public void paintSafely(Graphics g) {
         super.paintSafely(g);
-
+        changeColorOnFocus(g);
         paintLine(g);
     }
 
@@ -149,7 +143,8 @@ public class MaterialPasswordFieldUI extends MaterialTextFieldUI {
             FontMetrics fm = g2.getFontMetrics();
             int r = fm.charWidth(c) - 2;
 
-            g2.setPaint(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+            //The line with the comment introduced this bug https://github.com/vincenzopalazzo/material-ui-swing/issues/72
+            //g2.setPaint(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
             g2.fillOval(x + 1, y + 5 - fm.getAscent(), r, r);
             g2.dispose();
 

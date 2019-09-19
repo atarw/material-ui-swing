@@ -80,7 +80,11 @@ uploadArchives {
                 name archivesBaseName
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description 'archivesBaseName'
+                print('Archive base name: ' + archivesBaseName)
+                groupId GROUP_ID
+                artifactId ARCHTFAT_ID
+                version VERSION
+                description archivesBaseName
                 url 'https://github.com/vincenzopalazzo/material-ui-swing'
 
                 scm {

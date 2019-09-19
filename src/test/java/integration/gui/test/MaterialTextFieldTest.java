@@ -1,5 +1,7 @@
 package integration.gui.test;
 
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
 import org.assertj.swing.core.KeyPressInfo;
 import org.assertj.swing.fixture.JTextComponentFixture;
@@ -20,7 +22,7 @@ public class MaterialTextFieldTest extends AbstractTestGUI{
     @Test
     public void testActionListenerTextField(){
         JTextComponentFixture textField = frame.textBox("usernameField");
-        textField.background().requireEqualTo(MaterialColors.GRAY_100);
+        textField.background().requireEqualTo(theme.getBackgroundTextField());
         Assert.assertTrue(textField.text().contains("AssertJ"));
         textField.pressAndReleaseKey(KeyPressInfo.keyCode(ENTER));
         Assert.assertTrue(textField.text().contains("Material"));

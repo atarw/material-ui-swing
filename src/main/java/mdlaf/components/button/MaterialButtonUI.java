@@ -3,11 +3,13 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
+import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -97,6 +99,28 @@ public class MaterialButtonUI extends BasicButtonUI{
             }
         }
         super.paint(g, c);
+    }
+
+    @Override
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+        AbstractButton b = (AbstractButton) c;
+        ButtonModel model = b.getModel();
+        FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
+        int mnemonicIndex = b.getDisplayedMnemonicIndex();
+
+        if(model.isEnabled()) {
+            g.setColor(b.getForeground());
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
+                    textRect.x + getTextShiftOffset(),
+                    textRect.y + fm.getAscent() + getTextShiftOffset());
+        }
+        else {
+            g.setColor(disabledForeground);
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
+                    textRect.x + getTextShiftOffset(),
+                    textRect.y + fm.getAscent() + getTextShiftOffset());
+
+        }
     }
 
     @Override

@@ -59,6 +59,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
         this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
 
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
         this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
@@ -107,7 +109,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
         this.buttonDefaultTextColor = MaterialColors.WHITE;
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDisabledForeground = MaterialColors.BLACK;
+        this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
         this.buttonBorderColor = MaterialColors.GRAY_200;

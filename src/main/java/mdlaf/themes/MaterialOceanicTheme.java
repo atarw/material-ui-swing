@@ -62,6 +62,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
         this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
 
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
         this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
@@ -122,7 +124,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.buttonDefaultBackgroundColor = MaterialColors.LIME_A200;
         this.buttonDefaultTextColor = MaterialColors.BLACK;
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDisabledForeground = MaterialColors.BLACK;
+        this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.WHITE;
         this.buttonDefaultFocusColor = MaterialColors.BLACK;
         this.buttonBorderColor = MaterialColors.GRAY_200;

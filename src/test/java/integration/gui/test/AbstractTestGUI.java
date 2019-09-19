@@ -1,6 +1,8 @@
 package integration.gui.test;
 
 import integration.gui.mock.DemoGUITest;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialTheme;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.edt.GuiQuery;
@@ -18,6 +20,7 @@ import java.awt.*;
 public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
 
     protected FrameFixture frame;
+    protected MaterialLiteTheme theme;
 
     @BeforeClass
     public static final void setUpOnce() {
@@ -41,6 +44,8 @@ public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
         this.frame = new FrameFixture(this.robot(), mainWindow);
         this.frame.show();
         onSetUp();
+        theme = new MaterialLiteTheme();
+        theme.installTheme();
     }
 
     protected void onSetUp() {
