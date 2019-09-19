@@ -23,7 +23,6 @@
  */
 package mdlaf.components.textfield;
 
-import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import java.awt.*;
@@ -57,13 +56,12 @@ public class MaterialTextFieldUI extends MaterialComponentField {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-        this.textComponent = (JTextField) c;
+        installMyDefaults(c);
     }
 
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        installMyDefaults();
     }
 
     @Override
@@ -75,7 +73,6 @@ public class MaterialTextFieldUI extends MaterialComponentField {
         c.setForeground (null);
         c.setBorder (null);
         c.setCursor(null);
-
     }
 
     @Override
@@ -101,16 +98,9 @@ public class MaterialTextFieldUI extends MaterialComponentField {
     }
 
     @Override
-    protected void paintBackground(Graphics g) {
-        super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
-    }
-
-    @Override
     public void paintSafely(Graphics g) {
         super.paintSafely(g);
-
         paintLine(g);
+        changeColorOnFocus(g);
     }
-
-
 }

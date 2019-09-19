@@ -124,7 +124,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.buttonDefaultBackgroundColor = MaterialColors.LIME_A200;
         this.buttonDefaultTextColor = MaterialColors.BLACK;
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDisabledForeground = MaterialColors.BLACK;
+        this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.WHITE;
         this.buttonDefaultFocusColor = MaterialColors.BLACK;
         this.buttonBorderColor = MaterialColors.GRAY_200;

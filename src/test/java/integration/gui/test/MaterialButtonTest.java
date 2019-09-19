@@ -40,7 +40,7 @@ public class MaterialButtonTest extends AbstractTestGUI {
         buttonDisabled.foreground().requireEqualTo(theme.getButtonTextColor());
         buttonDisabled.click();
         buttonDisabled.background().requireEqualTo(theme.getButtonDisabledBackground());
-        //buttonDisabled.foreground().requireEqualTo(theme.getButtonDisableTextColor());
+        buttonDisabled.foreground().requireEqualTo(theme.getButtonDisableTextColor());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class MaterialButtonTest extends AbstractTestGUI {
         buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
         buttonUndo.click();
         buttonUndo.background().requireEqualTo(theme.getButtonDisabledBackground());
-       // buttonUndo.foreground().requireEqualTo(theme.getButtonDisableTextColor());
+        buttonUndo.foreground().requireEqualTo(theme.getButtonDisableTextColor());
     }
 
     //Test button focus

@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2018 https://github.com/atarw
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -66,18 +67,16 @@ public class MaterialPasswordFieldUI extends MaterialComponentField{
         basicPasswordFieldUI.installUI(c);
         JPasswordField passwordField = (JPasswordField) c;
         passwordField.setEchoChar((Character) UIManager.get("PasswordField.echoChar"));
-        this.textComponent = passwordField;
+        installMyDefaults(passwordField);
     }
 
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        installMyDefaults();
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
         c.setFont (null);
         c.setBackground (null);
         c.setForeground (null);
@@ -85,6 +84,7 @@ public class MaterialPasswordFieldUI extends MaterialComponentField{
         c.setCursor(null);
 
         basicPasswordFieldUI.uninstallUI(c);
+        textComponent = null;
         super.uninstallUI(c);
     }
 
@@ -118,6 +118,7 @@ public class MaterialPasswordFieldUI extends MaterialComponentField{
     @Override
     public void paintSafely(Graphics g) {
         super.paintSafely(g);
+        changeColorOnFocus(g);
         paintLine(g);
     }
 

@@ -43,6 +43,7 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
     protected static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
 
     protected boolean drawLine;
+    protected boolean focused;
     protected JTextComponent textComponent;
     protected Color background;
     protected Color foreground;
@@ -71,7 +72,7 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
 
     protected void logicForChangeColorOnFocus(JComponent component, Color background, Color foreground){
         if(background == null || foreground == null){
-            throw new IllegalArgumentException("Argument function null");
+            return;
         }
         JTextField textField = (JTextField) component;
         if(!this.activeForeground.equals(foreground)){ //TODO this comment resolve the issue but I don't not if it introduce some bug
@@ -82,7 +83,8 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         textField.setSelectionColor(background);
     }
 
-    protected void installMyDefaults() {
+    protected void installMyDefaults(JComponent component) {
+        textComponent = (JTextComponent) component;
         this.background = UIManager.getColor(getPropertyPrefix() + ".background");
         this.foreground = UIManager.getColor(getPropertyPrefix() + ".foreground");
         this.activeBackground = UIManager.getColor(getPropertyPrefix() + ".selectionBackground");
@@ -91,12 +93,12 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         this.inactiveForeground = UIManager.getColor(getPropertyPrefix() + ".inactiveForeground");
         colorLineInactive = UIManager.getColor(getPropertyPrefix() + "[Line].inactiveColor");
         colorLineActive = UIManager.getColor(getPropertyPrefix() + "[Line].activeColor");
-        getComponent().setFont(UIManager.getFont(getPropertyPrefix() + ".font"));
+        textComponent.setFont(UIManager.getFont(getPropertyPrefix() + ".font"));
         colorLine = getComponent().hasFocus() && getComponent().isEditable() ? colorLineActive : colorLineInactive;
-        getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
-        getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-        getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-        getComponent().setBorder(UIManager.getBorder(getPropertyPrefix() + ".border"));
+        textComponent.setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
+        textComponent.setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+        textComponent.setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+        textComponent.setBorder(UIManager.getBorder(getPropertyPrefix() + ".border"));
     }
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground){
@@ -113,23 +115,21 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         }
     }
 
-    protected void changeColorOnFocus(boolean hasFocus) {
+    protected void changeColorOnFocus(Graphics g) {
+        boolean hasFocus = focused;
         JTextComponent c = getComponent();
-        if(c == null){
+        if (c == null) {
             return;
         }
-        if(hasFocus && (activeBackground != null) && (activeForeground != null)){
+        if (hasFocus && (activeBackground != null) && (activeForeground != null)) {
             logicForChangeColorOnFocus(c, activeBackground, activeForeground);
             //TODO create a new changePropriety
             paintLine(c.getGraphics());
         }
 
-        if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
+        if (!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)) {
             logicForChangeColorOnFocus(c, inactiveBackground, inactiveForeground);
             paintLine(c.getGraphics());
-        }
-        if(c.getGraphics() != null){
-            c.paint(c.getGraphics());
         }
     }
 
@@ -167,15 +167,14 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
 
         @Override
         public void focusGained(FocusEvent e) {
-            firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
-
-            changeColorOnFocus(true);
+           firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
+            focused = true;
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            firePropertyChange(PROPERTY_LINE_COLOR, colorLineActive, colorLineInactive);
-            changeColorOnFocus(false);
+           firePropertyChange(PROPERTY_LINE_COLOR, colorLineActive, colorLineInactive);
+            focused = false;
         }
     }
 

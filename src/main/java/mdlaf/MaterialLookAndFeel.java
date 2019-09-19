@@ -269,7 +269,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button[Default][focus].color", theme.getButtonDefaultFocusColor());
         table.put("Button[border].enable", theme.getButtonBorderEnable());
         table.put("Button[border].color", theme.getButtonBorderColor());
-        table.put("Button[border].toAll", theme.getButtonBorderEnableToAll()); //if is true the border do have all button if if false the border do have only button without icon
+        table.put("Button[border].toAll", theme.getButtonBorderEnableToAll()); //if is true -> the border do have all button if if false the border do have only button without icon
 
         table.put("CheckBox.font", theme.getFontRegular());
         table.put("CheckBox.background", theme.getBackgroundPrimary());
