@@ -25,6 +25,7 @@
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
@@ -54,7 +55,7 @@ public class MaterialUISwingDemo {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false);
-            MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialOceanicTheme());
+            MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());
             UIManager.setLookAndFeel(material);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();

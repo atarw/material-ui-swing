@@ -23,6 +23,8 @@
  */
 package mdlaf.components.textfield;
 
+import mdlaf.utils.MaterialColors;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import javax.swing.text.JTextComponent;
@@ -74,13 +76,10 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         if(background == null || foreground == null){
             return;
         }
-        JTextField textField = (JTextField) component;
-        if(!this.activeForeground.equals(foreground)){ //TODO this comment resolve the issue but I don't not if it introduce some bug
-            textField.setSelectedTextColor(inactiveForeground);
-        }else{
-            textField.setSelectedTextColor(foreground);
-        }
-        textField.setSelectionColor(background);
+        JTextComponent componentText = (JTextField) component;
+        componentText.setSelectedTextColor(foreground);
+        componentText.setSelectionColor(background);
+
     }
 
     protected void installMyDefaults(JComponent component) {
@@ -105,12 +104,20 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         if(newColor == null){
             return;
         }
-        if (isForeground && (!newColor.equals(activeForeground) && !newColor.equals(inactiveForeground))) {
-            this.activeForeground = newColor;
+        if (isForeground) {
+            if(!newColor.equals(this.activeForeground)){
+                this.inactiveForeground = newColor;
+            }else{
+                this.activeForeground = newColor;
+            }
             getComponent().repaint();
         }
-        if (!isForeground && !newColor.equals(activeBackground) && !newColor.equals(inactiveBackground)) {
-            this.activeBackground = newColor;
+        if (!isForeground) {
+            if(!newColor.equals(this.activeBackground)){
+                this.inactiveBackground = newColor;
+            }else {
+                this.activeBackground = newColor;
+            }
             getComponent().repaint();
         }
     }
@@ -137,13 +144,7 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         if((propertyName == null || propertyName.isEmpty()) || oldValue == null || newValue == null){
             throw new IllegalArgumentException("Some property null");
         }
-        //TODO refectoring this code
-        if (propertyChangeSupport == null || (oldValue != null && newValue != null && oldValue.equals(newValue))) {
-            return;
-        }
-        if (propertyChangeSupport == null || oldValue == newValue) {
-            return;
-        }
+
         propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
     }
 
@@ -168,13 +169,17 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         @Override
         public void focusGained(FocusEvent e) {
            firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
-            focused = true;
+           firePropertyChange(PROPERTY_SELECTION_COLOR, inactiveBackground, activeBackground);
+           firePropertyChange(PROPERTY_SELECTION_TEXT_COLOR, inactiveForeground, activeForeground);
+           focused = true;
         }
 
         @Override
         public void focusLost(FocusEvent e) {
            firePropertyChange(PROPERTY_LINE_COLOR, colorLineActive, colorLineInactive);
-            focused = false;
+            firePropertyChange(PROPERTY_SELECTION_COLOR, activeBackground, inactiveBackground);
+            firePropertyChange(PROPERTY_SELECTION_TEXT_COLOR, activeForeground, inactiveForeground);
+           focused = false;
         }
     }
 
