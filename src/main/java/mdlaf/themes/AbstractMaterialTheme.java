@@ -24,7 +24,9 @@
 package mdlaf.themes;
 
 
+import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
 import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
@@ -546,6 +548,26 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     public BorderUIResource getBorderMenuBar() {
         return borderMenuBar;
+    }
+
+    @Override
+    public Icon getMenuArrowIcon(){
+        return new MaterialMenuArrowIcon();
+    }
+
+    @Override
+    public ColorUIResource getMenuArrowHoverColor(){
+        return MaterialColors.BLACK;
+    }
+
+    @Override
+    public int getMenuArrowHeight() {
+        return 8;
+    }
+
+    @Override
+    public int getMenuArrowWidth() {
+        return 4;
     }
 
     @Override

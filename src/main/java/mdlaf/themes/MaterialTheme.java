@@ -23,6 +23,8 @@
  */
 package mdlaf.themes;
 
+import mdlaf.components.menu.MaterialMenuArrowIcon;
+import mdlaf.utils.MaterialColors;
 import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
@@ -30,6 +32,7 @@ import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.InsetsUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -133,6 +136,14 @@ public interface MaterialTheme {
     BorderUIResource getBorderMenuBar();
 
     boolean getMouseHoverEnableMenu();
+
+    Icon getMenuArrowIcon();
+
+    ColorUIResource getMenuArrowHoverColor();
+
+    int getMenuArrowHeight();
+
+    int getMenuArrowWidth();
 
     //-----------------------------------
     //Proprieties JRadioButton
