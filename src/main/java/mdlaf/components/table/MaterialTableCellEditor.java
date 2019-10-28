@@ -41,19 +41,19 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-
+        JComponent component = (JComponent) super.getTableCellEditorComponent(table, value, isSelected, row, column);
         boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
         Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
         Color normalColor = UIManager.getColor("Table.background");
         if(alternativeRow){
             if(!isSelected){
                 if(row%2 == 1) {
-                    editorComponent.setBackground(alternativeRowColor);
+                    component.setBackground(alternativeRowColor);
                 }else{
-                    editorComponent.setBackground(normalColor);
+                    component.setBackground(normalColor);
                 }
             }
         }
-        return editorComponent;
+        return component;
     }
 }

@@ -13,7 +13,6 @@ import java.awt.*;
  */
 public class MaterialTableUI extends BasicTableUI {
 
-	public static final String UI_KEY = "TableUI";
 
 	public static ComponentUI createUI (JComponent c) {
 		return new MaterialTableUI ();
@@ -61,7 +60,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setSelectionBackground (null);
 
 		table.removeEditor();
-		table.setDefaultRenderer(Object.class, null);
+		//table.setDefaultRenderer(Object.class, null);
 	}
 
 	@Override
