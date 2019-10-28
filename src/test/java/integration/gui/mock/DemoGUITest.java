@@ -2,6 +2,7 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel());
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialOceanicTheme()));
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
@@ -53,6 +54,9 @@ public class DemoGUITest extends JFrame {
     private JMenuItem metal = new JMenuItem("Metal");
     private JMenuItem material = new JMenuItem("Material");
     private JMenuItem materialDark = new JMenuItem("Material Dark");
+    private JMenu arrowMenuOne = new JMenu("Root Menu 1");
+    private JMenu arrowMenuTwo = new JMenu("Root Menu 2");
+
 
     public JMenuItem getMaterialDark() {
         return materialDark;
@@ -120,12 +124,33 @@ public class DemoGUITest extends JFrame {
         themesMenu.add(materialDark);
         themesMenu.add(gtk);
 
+        addSubMenus(arrowMenuOne, 5);
+        addSubMenus(arrowMenuTwo, 3);
+
         menuBar.add(menuFile);
         menuBar.add(themesMenu);
+        menuBar.add(arrowMenuOne);
+        menuBar.add(arrowMenuTwo);
         menuBar.setName("menuBar");
         this.setJMenuBar(menuBar);
 
         menuItemJFileChooser.setAction(containerAction.getActionFileChooser());
+    }
+
+    public void addSubMenus(JMenu parent, int number) {
+        for (int i = 1; i <= number; i++) {
+            JMenu menu = new JMenu("Sub Menu " + i);
+            parent.add(menu);
+
+            addSubMenus(menu, number - 1);
+            addMenuItems(menu, number);
+        }
+    }
+
+    public void addMenuItems(JMenu parent, int number) {
+        for (int i = 1; i <= number; i++) {
+            parent.add(new JMenuItem("Item " + i));
+        }
     }
 
     public void initLayoutContentPanelOne() {

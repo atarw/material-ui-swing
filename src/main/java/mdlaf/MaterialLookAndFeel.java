@@ -25,6 +25,7 @@
 package mdlaf;
 
 import mdlaf.components.colorchooser.MaterialColorChooser;
+import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.button.MaterialButtonUI;
@@ -314,8 +315,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Menu.selectionBackground", theme.getMenuBackgroundMouseHover());
         table.put("Menu.selectionForeground", theme.getMenuTextColor());
         table.put("Menu.disabledForeground", theme.getMenuDisableBackground());
+        table.put("Menu.acceleratorSelectionForeground", theme.getMenuTextColor());
         table.put("Menu.menuPopupOffsetY", 3);
         table.put("Menu[MouseOver].enable", theme.getMouseHoverEnableMenu());
+        table.put("Menu.arrowIcon", theme.getMenuArrowIcon());
+        table.put("Menu[arrowIcon].hoverColor", theme.getMenuArrowHoverColor());
+        table.put("Menu[arrowIcon].color", theme.getMenuTextColor());
+        table.put("Menu[arrowIcon].height", theme.getMenuArrowHeight());
+        table.put("Menu[arrowIcon].width", theme.getMenuArrowWidth());
 
         table.put("MenuBar.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
         table.put("MenuBar.background", theme.getMenuBackground());
@@ -329,6 +336,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("MenuItem.background", theme.getMenuBackground());
         table.put("MenuItem.foreground", theme.getMenuTextColor());
         table.put("MenuItem.border", theme.getBorderMenu());
+        //table.put("MenuItem.arrowIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FILE_WHITE));
 
         table.put("Panel.font", theme.getFontRegular());
         table.put("Panel.background", theme.getBackgroundPrimary());
