@@ -69,8 +69,9 @@ Support this project
 
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
-The donors
+_Donors_
 - [lilili87222](https://github.com/lilili87222)
+- Arizona State University
 
 # Status
 ![GitHub issues](https://img.shields.io/github/issues/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
