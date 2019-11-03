@@ -370,7 +370,6 @@ public class MaterialUISwingDemo {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 JOptionPane optionPane = new JOptionPane();
                 optionPane.showMessageDialog(frame, "This is message info", "Message info", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -538,6 +537,17 @@ public class MaterialUISwingDemo {
         panel4.add(textFieldBugListener);
 
         tp.addTab("Panel 4", panel4);
+
+        //Panel for Oriental language
+        JPanel panelOrientalLanguage = new JPanel();
+
+        panelOrientalLanguage.add(new JTextField("東方語言"));
+        panelOrientalLanguage.add(new JButton("東方語言"));
+        panelOrientalLanguage.add(new JLabel("東方語言"));
+        panelOrientalLanguage.add(new JTextArea("東方語言"));
+
+        tp.addTab("東方語言", panelOrientalLanguage);
+
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);

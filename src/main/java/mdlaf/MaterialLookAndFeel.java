@@ -25,7 +25,6 @@
 package mdlaf;
 
 import mdlaf.components.colorchooser.MaterialColorChooser;
-import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.button.MaterialButtonUI;
@@ -445,6 +444,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TextArea.background", theme.getBackgroundTextField());
         table.put("TextArea.border", theme.getBorderTextField());
+        table.put("TextArea.selectionBackground", theme.getSelectionBackgroundTextField());
+        table.put("TextArea.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("TextArea.foreground", theme.getTextColor());
         table.put("TextArea.font", theme.getFontBold());
 
@@ -517,6 +518,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("TextField.background", theme.getBackgroundTextField());
         table.put("TextField.foreground", theme.getTextColor());
+        table.put("TextField.font", theme.getFontRegular());
         table.put("TextField.inactiveForeground", theme.getInactiveForegroundTextField());
         table.put("TextField.inactiveBackground", theme.getInactiveBackgroundTextField());
         table.put("TextField.selectionBackground", theme.getSelectionBackgroundTextField());

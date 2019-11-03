@@ -62,6 +62,19 @@ public class MaterialFontFactory {
         return SINGLETON;
     }
 
+
+    public static Font fontUtilsDisplayable(String textDisplayable, Font withFont){
+        if(textDisplayable == null || withFont == null){
+            throw new IllegalArgumentException("Argument at the fontUtilsDisplayable function are/is null");
+        }
+
+        if(withFont.canDisplayUpTo(textDisplayable) < 0){
+            return withFont;
+        }
+
+        return new javax.swing.plaf.FontUIResource(Font.SANS_SERIF, withFont.getStyle(), withFont.getSize());
+    }
+
     private Properties properties = new Properties();
     private Map<String, Font> cacheFont = new HashMap<>();
 
@@ -118,4 +131,5 @@ public class MaterialFontFactory {
             throw new RuntimeException("Font " + fontPath + " wasn't loaded");
         }
     }
+
 }

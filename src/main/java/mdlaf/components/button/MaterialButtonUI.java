@@ -1,7 +1,9 @@
 package mdlaf.components.button;
 
+import javafx.scene.paint.Material;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialManagerListener;
 import sun.swing.SwingUtilities2;
 
@@ -58,7 +60,6 @@ public class MaterialButtonUI extends BasicButtonUI{
             }
         }
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
-
         this.button = button;
     }
 
@@ -113,14 +114,16 @@ public class MaterialButtonUI extends BasicButtonUI{
             BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
-        }
-        else {
+        }else {
             g.setColor(disabledForeground);
             BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
 
         }
+        //TODO POTENTIAL solution
+        button.setFont(MaterialFontFactory.fontUtilsDisplayable(button.getText(), UIManager.getFont("Button.font")));
+
     }
 
     @Override
@@ -145,14 +148,12 @@ public class MaterialButtonUI extends BasicButtonUI{
                 }
                 return;
             }
-
             if(UIManager.getBoolean("Button[border].enable")){
                 paintBorderButton(graphics, b);
             }
         }
 
         paintStateButton(c, g, StateButton.DISABLE);
-
     }
 
     @Override

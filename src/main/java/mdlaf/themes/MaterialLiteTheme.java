@@ -43,7 +43,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installFonts(){
-        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+       this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
         this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
         this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
         this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);

@@ -56,7 +56,6 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                 this.from = UIManager.getColor("Button[Default].background");
             }else{
                 this.from = component.getBackground();
-
             }
         }else{
             this.from = component.getBackground();
