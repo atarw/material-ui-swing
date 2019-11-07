@@ -54,7 +54,7 @@ public class MaterialUISwingDemo {
     public static void main(String[] args) {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(false);
+            JFrame.setDefaultLookAndFeelDecorated(true);
             MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());
             UIManager.setLookAndFeel(material);
         } catch (UnsupportedLookAndFeelException e) {
@@ -537,16 +537,6 @@ public class MaterialUISwingDemo {
         panel4.add(textFieldBugListener);
 
         tp.addTab("Panel 4", panel4);
-
-        //Panel for Oriental language
-        JPanel panelOrientalLanguage = new JPanel();
-
-        panelOrientalLanguage.add(new JTextField("東方語言"));
-        panelOrientalLanguage.add(new JButton("東方語言"));
-        panelOrientalLanguage.add(new JLabel("東方語言"));
-        panelOrientalLanguage.add(new JTextArea("東方語言"));
-
-        tp.addTab("東方語言", panelOrientalLanguage);
 
         frame.pack();
         frame.setVisible(true);

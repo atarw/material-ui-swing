@@ -597,6 +597,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrame.background", MaterialColors.LIGHT_BLUE_500);
         table.put("InternalFrame.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
+        //This is for change the TitlePane
         table.put("Material.activeCaption", theme.getBackgroundPrimary());
         table.put("Material.inactiveCaption", theme.getBackgroundPrimary());
         table.put("Material.activeCaptionText", theme.getTextColor());

@@ -25,16 +25,16 @@ public class MaterialButtonUI extends BasicButtonUI{
         return new MaterialButtonUI();
     }
 
-    private AbstractButton button;
-    private Color foreground;
-    private Color background;
-    private Color disabledBackground;
-    private Color disabledForeground;
-    private Color defaultBackground;
-    private Color defaultForeground;
-    private Boolean isDefaultButton = null;
-    private int arch = 7;
-    private PropertyChangeListener enableButton = new EventEnableButton();
+    protected AbstractButton button;
+    protected Color foreground;
+    protected Color background;
+    protected Color disabledBackground;
+    protected Color disabledForeground;
+    protected Color defaultBackground;
+    protected Color defaultForeground;
+    protected Boolean isDefaultButton = null;
+    protected int arch = 7;
+    protected PropertyChangeListener enableButton = new EventEnableButton();
 
     @Override
     public void installUI(JComponent c) {

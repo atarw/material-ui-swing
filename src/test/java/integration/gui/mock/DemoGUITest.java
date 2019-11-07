@@ -53,7 +53,10 @@ public class DemoGUITest extends JFrame {
     private JMenuItem gtk = new JMenuItem("GTK");
     private JMenuItem metal = new JMenuItem("Metal");
     private JMenuItem material = new JMenuItem("Material");
-    private JMenuItem materialDark = new JMenuItem("Material Dark");
+    private JMenuItem materialDark = new JMenuItem("Material Oceanic");
+    private JMenuItem jmarsDark = new JMenuItem("Jmars Dark");
+
+
     private JMenu arrowMenuOne = new JMenu("Root Menu 1");
     private JMenu arrowMenuTwo = new JMenu("Root Menu 2");
 
@@ -117,11 +120,13 @@ public class DemoGUITest extends JFrame {
         material.setAction(containerAction.getActionChangeTheme("Material lite"));
         metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
-        materialDark.setAction(containerAction.getActionChangeTheme("Material Dark"));
+        materialDark.setAction(containerAction.getActionChangeTheme("Material Oceanic"));
+        jmarsDark.setAction(containerAction.getActionChangeTheme("JMars Dark"));
 
         themesMenu.add(material);
         themesMenu.add(metal);
         themesMenu.add(materialDark);
+        themesMenu.add(jmarsDark);
         themesMenu.add(gtk);
 
         addSubMenus(arrowMenuOne, 5);
@@ -252,6 +257,11 @@ public class DemoGUITest extends JFrame {
 
     public JMenuItem getMetal() {
         return metal;
+    }
+
+
+    public JMenuItem getJmarsDark() {
+        return jmarsDark;
     }
 
     public static DemoGUITest getInstance() {
