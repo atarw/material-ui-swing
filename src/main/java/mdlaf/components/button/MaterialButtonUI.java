@@ -35,6 +35,7 @@ public class MaterialButtonUI extends BasicButtonUI{
     protected Boolean isDefaultButton = null;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
+    protected boolean isPaintedDisabled = false;
 
     @Override
     public void installUI(JComponent c) {
@@ -122,14 +123,8 @@ public class MaterialButtonUI extends BasicButtonUI{
 
         }
         //TODO POTENTIAL solution
-        button.setFont(MaterialFontFactory.fontUtilsDisplayable(button.getText(), UIManager.getFont("Button.font")));
+        //button.setFont(MaterialFontFactory.fontUtilsDisplayable(button.getText(), UIManager.getFont("Button.font")));
 
-    }
-
-    @Override
-    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
-        super.paintText(g, b, textRect, text);
-        paintStateButton(b, g, StateButton.DISABLE);
     }
 
     private void paintBackground(Graphics g, JComponent c) {
@@ -196,7 +191,6 @@ public class MaterialButtonUI extends BasicButtonUI{
         } else {
             g2.setColor(UIManager.getColor("Button[focus].color"));
         }
-
         g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, arch, arch);
 
         g2.dispose();
@@ -250,22 +244,27 @@ public class MaterialButtonUI extends BasicButtonUI{
         if (b.isEnabled() && (isDefaultButton != null && isDefaultButton) && !b.isSelected()) {
             //MaterialManagerListener.removeAllMaterialMouseListener(b);
             //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
-            b.setBackground(defaultBackground);
+           b.setBackground(defaultBackground);
             b.setForeground(defaultForeground);
-            return;
-        }
-        if (!b.isEnabled()) {
+        }else if (!b.isEnabled()) {
             b.setBackground(disabledBackground);
             b.setForeground(disabledForeground);
-            return;
         }
     }
 
 
     protected void paintStateButton(JComponent c, Graphics g, StateButton disable) {
         if (StateButton.DISABLE.equals(disable)) {
-            if (!c.isEnabled()) {
+            //this condition test the value for the button is enable
+            //if no it check if the button is painted with style disabled
+            //if no it paint the component
+            if (!c.isEnabled() && !isPaintedDisabled) {
+                isPaintedDisabled = true;
                 paintStateButton(c, g);
+            }else if(isPaintedDisabled && c.isEnabled()){
+                //This condition check if the button is enable and the variable is setted to
+                // true, an example: Is the button is now enable by the event and before it was disabled
+                isPaintedDisabled = false;
             }
         }
     }
