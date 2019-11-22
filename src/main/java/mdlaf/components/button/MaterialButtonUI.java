@@ -26,6 +26,7 @@ public class MaterialButtonUI extends BasicButtonUI{
     }
 
     protected AbstractButton button;
+    protected Boolean mouseHoverEnabled;
     protected Color foreground;
     protected Color background;
     protected Color disabledBackground;
@@ -50,11 +51,14 @@ public class MaterialButtonUI extends BasicButtonUI{
         disabledForeground = UIManager.getColor("Button.disabledForeground");
         defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
+        if(mouseHoverEnabled == null){
+            mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
+        }
         button.setBackground(background);
         button.setForeground(foreground);
         this.arch = UIManager.getInt("Button.arc");
         //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        if (UIManager.getBoolean("Button.mouseHoverEnable")) {
+        if (mouseHoverEnabled) {
             JButton b = (JButton) button;
             if (!b.isDefaultButton()) {
                 button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));

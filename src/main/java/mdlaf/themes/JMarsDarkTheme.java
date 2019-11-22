@@ -95,6 +95,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme{
 
         this.textColor = new ColorUIResource(255, 255, 255);
         this.disableTextColor = new ColorUIResource(170, 170, 170);
+
 //------- OLD VALUE START
         this.buttonBackgroundColor = MaterialColors.DARKLY_STRONG_BLUE;
         this.buttonBackgroundColorMouseHover = MaterialColors.DARKLY_BLUE;

@@ -32,8 +32,6 @@ import java.awt.event.MouseListener;
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialManagerListener {
-
-
     /*
      * Look this if you would change this function
      * https://bugs.java.com/bugdatabase/view_bug.do?bug_id=4380536
