@@ -57,40 +57,31 @@ For a real-world example of usage, see [here](https://github.com/atarw/washer-ch
 
 ## Version 1.0.0
 
-This look and feel implement an method for theming personal, don't use the MetalTheme but implements
-the complete system.
+This look and feel implements theming to change the color scheme of the Material UI. Currently this isn't completely stable, but if you want to implement a theme for this look and feel, you can extend and implement the abstract class `AbstractMaterialTheme` (look at `mdlaf.themes.MaterialLiteTheme` for an example).
 
-For the moment not is scheduler a documentations and this is considered a version alpha, if you want to
-try the implement a theme for this look and feel, you can extend the abstract class AbstractMaterialTheme implement
-the methods abstract, for more info look theme mlaf.thmes.MaterialLiteTheme
+To change the theme, use the below code:
 
-For a change the theme to runtime you can use this code
 ```
  if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
      MaterialLookAndFeel.changeTheme(new MaterialDarkTheme());
  }
 ```
-  Look the example [here](https://github.com/vincenzopalazzo/material-ui-swing/tree/masternow/src/test/java/integration/gui/mock) 
-  
-The theming system is projected by [@vincenzopalazzo](https://github.com/vincenzopalazzo)
+
+A working example is also found [here](https://github.com/vincenzopalazzo/material-ui-swing/tree/masternow/src/test/java/integration/gui/mock).
+
+This theming system was implemented by [@vincenzopalazzo](https://github.com/vincenzopalazzo)
   
 ## Stack Overflow
-We are using the Stack Overflow to help the community because we don't have much time to write detailed documentation, but remember we worked hard to build a customizable look-and-feel. 
-If you need the help, you can write a post
-with these tags
-  
- **java**, **material**, **swing**, **look-and-feel**
- 
- ps:we use these until we have one of our own
+
+We don't have much time to write detailed documentation, but if you want to get help, post a question on Stack Overflow with the tags `material-ui-swing`, `java`, `material`, `swing`, `look-and-feel`.
 
 ## License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
-
 _**List of projects with Material-UI-Swing theme**_
 - [JMars Beta](https://JMars.mars.asu.edu)
 
-_Send me a mail if you use material-ui-swing so I add the your project at the list_
+Contact us if you use this look and feel so we can add your project to the list 🙂
 
 ## Community
 [![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
