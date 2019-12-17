@@ -97,7 +97,7 @@ public class MaterialButtonUI extends BasicButtonUI{
         if (isDefaultButton == null && b.isEnabled()) {
             isDefaultButton = ((JButton) button).isDefaultButton();
             if (isDefaultButton) {
-                if (UIManager.getBoolean("Button.mouseHoverEnable")) {
+                if (mouseHoverEnabled) {
                     MaterialManagerListener.removeAllMaterialMouseListener(b);
                     b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
                 }

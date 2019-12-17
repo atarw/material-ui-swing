@@ -23,8 +23,6 @@
  */
 package mdlaf.themes;
 
-import mdlaf.components.menu.MaterialMenuArrowIcon;
-import mdlaf.utils.MaterialColors;
 import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;

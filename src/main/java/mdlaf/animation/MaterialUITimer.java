@@ -38,26 +38,26 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     private int alpha, steps;
     private int[] forwardDeltas, backwardDeltas;
 
-   private JComponent component;
+    private JComponent component;
     private Timer timer;
 
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
         if (component == null || !component.isEnabled()) {
             return;
         }
-        if(component.getCursor().getType() == Cursor.WAIT_CURSOR){
+        if (component.getCursor().getType() == Cursor.WAIT_CURSOR) {
             //TODO this is an refactoring
             return;
         }
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        if(component instanceof JButton){
+        if (component instanceof JButton) {
             JButton button = (JButton) component;
-            if (button.isDefaultButton()){
+            if (button.isDefaultButton()) {
                 this.from = UIManager.getColor("Button[Default].background");
-            }else{
+            } else {
                 this.from = component.getBackground();
             }
-        }else{
+        } else {
             this.from = component.getBackground();
         }
         this.to = to;
@@ -108,7 +108,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
         alpha = steps - 1;
         forward = false;
-        if(timer.isRunning()){
+        if (timer.isRunning()) {
             timer.stop();
         }
         timer.start();
@@ -119,21 +119,11 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     }
 
     @Override
-    public void mouseReleased(MouseEvent me) {
-        //do nothing
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        //do nothing
-    }
-
-    @Override
     public void mouseExited(MouseEvent me) {
         if (!me.getComponent().isEnabled()) {
             return;
         }
-        if(timer.isRunning()){
+        if (timer.isRunning()) {
             timer.stop();
         }
         alpha = steps - 1;
@@ -148,7 +138,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
         alpha = 0;
         forward = true;
-        if(timer.isRunning()){
+        if (timer.isRunning()) {
             timer.stop();
         }
         timer.start();
@@ -156,18 +146,23 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-       if (forward) {
+        if (forward) {
             component.setBackground(nextColor());
             ++alpha;
         } else {
             component.setBackground(previousColor());
             --alpha;
         }
-
         if (alpha == steps + 1 || alpha == -1) {
-            if(timer.isRunning()){
+            if (timer.isRunning()) {
                 timer.stop();
             }
+        }
+        //For some color the algorithm not work well, so
+        //when the alpha is -1 the mouse is exist from button
+        if(alpha == -1){
+            //Mouse exit
+            this.component.setBackground(this.from);
         }
     }
 
@@ -179,5 +174,15 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseMoved(MouseEvent e) {
         //do nothing this is util only implements interface MouseMotions
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        //do nothing
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        //do nothing
     }
 }

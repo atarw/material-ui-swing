@@ -6,6 +6,7 @@ import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -24,11 +25,12 @@ public class Issue87ColorMouseHover extends JDialog {
 
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+            this.getContentPane().setBackground(new ColorUIResource(45, 48, 56));
             JButton jButton1 = new javax.swing.JButton();
-            jButton1.setBackground(MaterialColors.LIGHT_BLUE_400);
+            jButton1.setBorder(BorderFactory.createLineBorder(new ColorUIResource(45, 48, 56)));
+            jButton1.setBackground(new ColorUIResource(45, 48, 56));
             jButton1.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
-            jButton1.addMouseListener(MaterialUIMovement.getMovement(jButton1, MaterialColors.GRAY_500));
+            jButton1.addMouseListener(MaterialUIMovement.getMovement(jButton1, new ColorUIResource(23, 137, 134)));
             jButton1.setText("Test Button");
             jButton1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {

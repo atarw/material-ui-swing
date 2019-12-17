@@ -1,9 +1,7 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +20,7 @@ public class DemoGUITest extends JFrame {
     static {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialOceanicTheme()));
-            UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
+            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
@@ -36,10 +34,10 @@ public class DemoGUITest extends JFrame {
     private GroupLayout layoutPanelTwo;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
-    private JButton buttonDefault = new JButton("Ok");
+    private JButtonNoMouseHoverNative buttonDefault = new JButtonNoMouseHoverNative("Ok");
     private JButton buttonUndo = new JButton("Undo");
     private JButton buttonDisabled = new JButton("I'm disabled");
-    private JButton buttonNormal = new JButton("I'm a pure jbutton");
+    private JButtonNoMouseHoverNative buttonNormal = new JButtonNoMouseHoverNative("I'm a pure jbutton");
     private ContainerAction containerAction = new ContainerAction();
     private JTextField textFieldUsername = new JTextField();
     private JPasswordField passwordFiled = new JPasswordField();
