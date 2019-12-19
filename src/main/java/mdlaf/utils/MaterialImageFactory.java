@@ -71,9 +71,9 @@ public class MaterialImageFactory {
     public static final String QUESTION = "question";
     public static final String INFORMATION = "information";
     public static final String CLOSE_WINDOWS_BLACK = "close-button";
-    public static final String MAXIMIZE_WINDOWS = "maximize";
-    public static final String MINIIMIZE_WINDOWS = "minimize";
-    public static final String ICONIFY_WINDOWS = "restore";
+    public static final String MAXIMIZE_WINDOWS_BLACK = "maximize";
+    public static final String MINIMIZE_WINDOWS_BLACK = "minimize";
+    public static final String ICONIFY_WINDOWS_BLACK = "restore";
 
     //Icon White
     public static final String RADIO_BUTTON_WHITE_OFF = "white/radio_unchecked-white";
@@ -91,6 +91,9 @@ public class MaterialImageFactory {
     public static final String NEW_FOLDER_WHITE = "white/new_folder";
     public static final String DETAILS_WHITE = "white/details";
     public static final String CLOSE_WINDOWS_WHITE = "white/close-button";
+    public static final String MAXIMIZE_WINDOWS_WHITE = "white/maximize";
+    public static final String MINIMIZE_WINDOWS_WHITE = "white/minimize";
+    public static final String ICONIFY_WINDOWS_WHITE = "white/restore";
     public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
     public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
 
@@ -110,7 +113,7 @@ public class MaterialImageFactory {
         if (key == null) {
             throw new IllegalArgumentException("Argument nulled");
         }
-        String path = PATH_RESOUSES + key + ".png";
+        String path = PATH_RESOUSES.trim() + key.trim() + ".png".trim();
         if (cachaImage.containsKey(path)) {
             return cachaImage.get(path);
         }

@@ -60,8 +60,8 @@ public class MaterialUISwingDemo {
             public void run() {
                 try {
                     JDialog.setDefaultLookAndFeelDecorated(true);
-                    JFrame.setDefaultLookAndFeelDecorated(true);
-                    MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());
+                    JFrame.setDefaultLookAndFeelDecorated(false);
+                    MaterialLookAndFeel material = new MaterialLookAndFeel(new JMarsDarkTheme());
                     UIManager.setLookAndFeel(material);
 
                     /* DEMO */

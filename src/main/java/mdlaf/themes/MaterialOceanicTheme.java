@@ -23,6 +23,7 @@
  */
 package mdlaf.themes;
 
+import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
@@ -30,6 +31,8 @@ import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -91,7 +94,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
     @Override
     protected void installBorders() {
         super.installBorders();
-        borderMenuBar = MaterialBorders.OCEAN_LINE_BORDER;
+        borderMenuBar = new BorderUIResource(new DropShadowBorder(Color.DARK_GRAY, 10, 4, 0.3f, 12,
+                false, false, true, false));
+        //borderMenuBar = new BorderUIResource(BorderFactory.createLineBorder(this.menuBackground, 1));;
         borderPopupMenu = MaterialBorders.OCEAN_LINE_BORDER;
         borderSpinner = MaterialBorders.OCEAN_LINE_BORDER;
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.DARK_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -133,7 +138,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectedInDropDownBackgroundComboBox = MaterialColors.LIME_A400;
         this.selectedForegroundComboBox = MaterialColors.BLACK;
 
-        this.menuBackground = MaterialColors.DARKLY_STRONG_BLUE;
+        this.menuBackground = new ColorUIResource(31, 51, 71);
         this.menuBackgroundMouseHover = MaterialColors.DARKLY_BLUE;
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;

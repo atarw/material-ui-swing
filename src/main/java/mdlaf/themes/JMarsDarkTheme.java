@@ -8,12 +8,12 @@ import mdlaf.utils.MaterialImageFactory;
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class JMarsDarkTheme extends AbstractMaterialTheme{
-
+public class JMarsDarkTheme extends AbstractMaterialTheme {
 
     @Override
     public void installTheme() {
@@ -70,22 +70,22 @@ public class JMarsDarkTheme extends AbstractMaterialTheme{
     @Override
     protected void installBorders() {
         super.installBorders();
-        borderMenuBar = MaterialBorders.OCEAN_LINE_BORDER;
-        borderPopupMenu = MaterialBorders.OCEAN_LINE_BORDER;
-        borderSpinner = MaterialBorders.OCEAN_LINE_BORDER;
-        borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.DARK_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        borderMenuBar = new BorderUIResource(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(225, 156, 43)));
+        borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
+        borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
-                MaterialBorders.DARK_LINE_BORDER,
+                borderSpinner,
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        borderToolBar = MaterialBorders.OCEAN_LINE_BORDER;
+        borderToolBar = borderSpinner;
 
-        borderDialogRootPane = MaterialBorders.OCEAN_LINE_BORDER;
+        borderDialogRootPane = borderSpinner;
 
-        borderProgressBar = MaterialBorders.OCEAN_LINE_BORDER;
+        borderProgressBar = borderSpinner;
 
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
-        this.borderTable = MaterialBorders.OCEAN_LINE_BORDER;
-        this.borderTableHeader = MaterialBorders.OCEAN_LINE_BORDER;
+        this.borderTable = borderSpinner;
+        this.borderTableHeader = borderSpinner;
     }
 
     @Override
@@ -96,105 +96,84 @@ public class JMarsDarkTheme extends AbstractMaterialTheme{
         this.textColor = new ColorUIResource(255, 255, 255);
         this.disableTextColor = new ColorUIResource(170, 170, 170);
 
-//------- OLD VALUE START
-        this.buttonBackgroundColor = MaterialColors.DARKLY_STRONG_BLUE;
-        this.buttonBackgroundColorMouseHover = MaterialColors.DARKLY_BLUE;
+        this.buttonBackgroundColor = new ColorUIResource(45, 48, 56);
+        this.buttonBackgroundColorMouseHover = new ColorUIResource(81, 86, 101);
         this.buttonTextColor = MaterialColors.WHITE;
-        this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIME_200;
-        this.buttonDefaultBackgroundColor = MaterialColors.LIME_A200;
-        this.buttonDefaultTextColor = MaterialColors.BLACK;
-        this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
+        this.buttonDefaultBackgroundColorMouseHover = new ColorUIResource(23, 137, 134);
+        this.buttonDefaultBackgroundColor = new ColorUIResource(66,179,176);
+        this.buttonDefaultTextColor = MaterialColors.WHITE;
+        this.buttonDisabledBackground = new ColorUIResource(66,69,76);
         this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.WHITE;
         this.buttonDefaultFocusColor = MaterialColors.BLACK;
-        this.buttonBorderColor = MaterialColors.GRAY_200;
-        this.buttonColorHighlight = MaterialColors.GRAY_400;
+        this.buttonBorderColor = MaterialColors.WHITE;
+        this.buttonColorHighlight = buttonBackgroundColorMouseHover;
 
-        this.selectedInDropDownBackgroundComboBox = MaterialColors.LIME_A400;
+        this.selectedInDropDownBackgroundComboBox = new ColorUIResource(249, 192, 98);
         this.selectedForegroundComboBox = MaterialColors.BLACK;
 
-        this.menuBackground = MaterialColors.DARKLY_STRONG_BLUE;
-        this.menuBackgroundMouseHover = MaterialColors.DARKLY_BLUE;
+        this.menuBackground = backgroundPrimary;
+        this.menuBackgroundMouseHover = buttonBackgroundColorMouseHover;
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = MaterialColors.DARKLY_STRONG_BLUE;
-        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_BLUE;
+        this.arrowButtonBackgroundSpinner = buttonBackgroundColor;
+        this.mouseHoverButtonColorSpinner = buttonBackgroundColorMouseHover;
 
-        this.arrowButtonColorScrollBar = MaterialColors.DARKLY_STRONG_BLUE;
-        this.trackColorScrollBar = MaterialColors.DARKLY_BLUE;
-        this.thumbColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.arrowButtonOnClickColorScrollBar = MaterialColors.DARKLY_BLUE;
-        this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
+        this.arrowButtonColorScrollBar = buttonBackgroundColor;
+        this.trackColorScrollBar = new ColorUIResource(81, 86, 101);
+        this.thumbColorScrollBar = new ColorUIResource(155,155,155);
+        this.thumbDarkShadowColorScrollBar = thumbColorScrollBar;
+        this.thumbHighlightColorScrollBar = thumbColorScrollBar;
+        this.thumbShadowColorScrollBar = thumbColorScrollBar;
+        this.arrowButtonOnClickColorScrollBar = buttonBackgroundColorMouseHover;
+        this.mouseHoverColorScrollBar = thumbColorScrollBar;
 
-        this.trackColorSlider = MaterialColors.DARKLY_BLUE;
-        this.haloColorSlider = MaterialColors.bleach(MaterialColors.LIME_A200, 0.5f);
+        this.trackColorSlider = new ColorUIResource(119, 119, 119);
+        this.haloColorSlider = MaterialColors.bleach(new Color(249, 192, 98), 0.2f);
 
-        this.highlightColorTabbedPane = MaterialColors.DARKLY_STRONG_BLUE;
-        this.borderHighlightColorTabbedPane = MaterialColors.DARKLY_STRONG_BLUE;
-        this.focusColorLineTabbedPane = MaterialColors.LIME_A400;
-        this.disableColorTabTabbedPane = MaterialColors.COSMO_STRONG_GRAY;
+        this.highlightColorTabbedPane = new ColorUIResource(45,48,56);
+        this.borderHighlightColorTabbedPane = new ColorUIResource(45,48,56);
+        this.focusColorLineTabbedPane = new ColorUIResource(249, 192, 98);
+        this.disableColorTabTabbedPane = new ColorUIResource(170,170,170);
 
-        this.backgroundTable = MaterialColors.DARKLY_BLUE;
-        this.backgroundTableHeader = MaterialColors.DARKLY_STRONG_BLUE;
-        this.foregroundTable = MaterialColors.WHITE;
-        this.foregroundTableHeader = MaterialColors.LIME_A400;
-        this.selectionBackgroundTable = MaterialColors.LIME_A100;
-        this.selectionForegroundTable = MaterialColors.BLACK;
-        this.gridColorTable = MaterialColors.COSMO_BLACK;
-        this.alternateRowBackgroundTable = MaterialColors.DARKLY_BLUE;
+        this.backgroundTable = new ColorUIResource(45,48,56);
+        this.backgroundTableHeader = new ColorUIResource(66,179,176);
+        this.foregroundTable = textColor;
+        this.foregroundTableHeader = textColor;
+        this.selectionBackgroundTable = new ColorUIResource(126, 132, 153);
+        this.selectionForegroundTable = textColor;
+        this.gridColorTable = new ColorUIResource(151,151,151);
+        this.alternateRowBackgroundTable = new ColorUIResource(59, 62, 69);
 
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = MaterialColors.DARKLY_BLUE;
-        this.selectionBorderColorTree = MaterialColors.LIME_A400;
+        this.selectionBackgroundTree = new ColorUIResource(81, 86, 101);
+        this.selectionBorderColorTree = selectionBackgroundTree;
 
-        this.backgroundTextField = MaterialColors.DARKLY_BLUE;
+        this.backgroundTextField = new ColorUIResource(81, 86, 101);
         this.inactiveForegroundTextField = MaterialColors.WHITE;
-        this.inactiveBackgroundTextField = MaterialColors.DARKLY_BLUE;
-        this.selectionBackgroundTextField = MaterialColors.LIME_A100;
+        this.inactiveBackgroundTextField = new ColorUIResource(81, 86, 101);
+        this.selectionBackgroundTextField = new ColorUIResource(249, 192, 98);
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
-        this.activeColorLineTextField = MaterialColors.LIME_A400;
+        this.activeColorLineTextField = new ColorUIResource(249, 192, 98);;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
         this.titleOverTaskPane = MaterialColors.WHITE;
         this.specialTitleOverTaskPane = MaterialColors.WHITE;
-        this.backgroundTaskPane = MaterialColors.DARKLY_STRONG_BLUE;
-        this.borderColorTaskPane = MaterialColors.DARKLY_STRONG_BLUE;
-        this.contentBackgroundTaskPane = MaterialColors.DARKLY_STRONG_BLUE;
+        this.backgroundTaskPane = backgroundPrimary;
+        this.borderColorTaskPane = backgroundTaskPane;
+        this.contentBackgroundTaskPane = backgroundPrimary;
 
-        this.selectionBackgroundList = MaterialColors.DARKLY_BLUE;
-        this.selectionForegroundList = MaterialColors.WHITE;
+        this.selectionBackgroundList = new ColorUIResource(249, 192, 9);
+        this.selectionForegroundList = MaterialColors.BLACK;
 
-        this.backgroundProgressBar = MaterialColors.DARKLY_BLUE;
-        this.foregroundProgressBar = MaterialColors.LIME_A400;
-//------- OLD VALUE NEW
-
-        //Partial color JMars
-        this.arrowButtonBackgroundSpinner = MaterialColors.DARKLY_STRONG_BLUE;
-        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_BLUE;
-
-        this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.arrowButtonOnClickColorScrollBar = MaterialColors.DARKLY_BLUE;
-        this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
-        this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
-        this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
-
-        this.selectionBackgroundTree = MaterialColors.DARKLY_BLUE;
-        this.selectionBorderColorTree = MaterialColors.LIME_A400;
-
-        this.selectionBackgroundList = MaterialColors.DARKLY_BLUE;
-        this.selectionForegroundList = MaterialColors.WHITE;
+        this.backgroundProgressBar = new ColorUIResource(81, 86, 101);
+        this.foregroundProgressBar = MaterialColors.WHITE;
     }
-
 
     @Override
     public String getName() {

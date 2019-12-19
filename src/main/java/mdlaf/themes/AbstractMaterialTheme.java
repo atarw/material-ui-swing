@@ -557,7 +557,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public ColorUIResource getMenuArrowHoverColor(){
-        return MaterialColors.BLACK;
+        return textColor;
     }
 
     @Override

@@ -585,10 +585,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RootPane.colorChooserDialogBorder", theme.getBackgroundPrimary());
 
         //TODO not supported yet
-        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS));
-        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIIMIZE_WINDOWS));
-        table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK));
-        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS));
+        //TODO exist an bug inside the icon
+        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
+        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
+        table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE));
+        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
         table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
@@ -598,8 +599,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("InternalFrame.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
         //This is for change the TitlePane
-        table.put("Material.activeCaption", theme.getBackgroundPrimary());
-        table.put("Material.inactiveCaption", theme.getBackgroundPrimary());
+        table.put("Material.activeCaption", theme.getMenuBackground());
+        table.put("Material.inactiveCaption", theme.getMenuBackground());
         table.put("Material.activeCaptionText", theme.getTextColor());
         table.put("Material.inactiveCaptionText", theme.getDisableTextColor());
         table.put("Material.activeCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);

@@ -11,6 +11,7 @@ import org.junit.*;
  */
 public class MaterialButtonTest extends AbstractTestGUI {
 
+
     @Test
     public void testButtonColorBackgroundDefaultWhenIsClicked() {
         JButtonFixture buttonDefault = frame.button("buttonDefault");

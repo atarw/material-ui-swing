@@ -28,6 +28,8 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
+import javax.swing.*;
+
 /**
  * @author https://github.com/vincenzopalazzo
  */
