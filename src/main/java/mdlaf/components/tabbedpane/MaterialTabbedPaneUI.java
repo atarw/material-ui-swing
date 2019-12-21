@@ -23,18 +23,22 @@
  */
 package mdlaf.components.tabbedpane;
 
+import mdlaf.components.MaterialArrowButton;
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
+import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 /**
- * @author  https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
@@ -53,6 +57,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int widthLine;
     protected int heightLine;
     protected int arcLine;
+    protected boolean contentBorderBottom;
+    protected boolean contentBorderTop;
+    protected boolean contentBorderLeaft;
+    protected boolean contentBorderRight;
+    protected Integer positionXSelectedLine = null;
 
     @Override
     public void installUI(JComponent c) {
@@ -77,7 +86,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
-        component = tabbedPane;
+        this.contentBorderBottom = UIManager.getBoolean("TabbedPane[contentBorder].enableBottom");
+        this.contentBorderLeaft = UIManager.getBoolean("TabbedPane[contentBorder].enableLeaf");
+        this.contentBorderRight = UIManager.getBoolean("TabbedPane[contentBorder].enableRight");
+        this.contentBorderTop = UIManager.getBoolean("TabbedPane[contentBorder].enableTop");
+        this.component = tabbedPane;
     }
 
     @Override
@@ -98,9 +111,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.uninstallDefaults();
         super.uninstallUI(c);
     }
-     //
-     // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
-     //
+
+    //
+    // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
+    //
     @Override
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2D = (Graphics2D) g;
@@ -109,20 +123,23 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         Polygon shape = null;
         Rectangle shapeRect = null;
         //Todo remove the shape and used the shapeRect
-        if(tabPlacement == TOP){
+        if (tabPlacement == TOP) {
             xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
             yp = new int[]{(y + positionYLine + heightLine), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + heightLine, y + positionYLine + heightLine};
             shape = new Polygon(xp, yp, xp.length);
-        }else if(tabPlacement == BOTTOM){
+            if(positionXSelectedLine == null || tabIndex == 0){
+                positionXSelectedLine = x;
+            }
+        } else if (tabPlacement == BOTTOM) {
             y += 20;
             xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
             yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
             shape = new Polygon(xp, yp, xp.length);
-        }else if(tabPlacement == LEFT){
+        } else if (tabPlacement == LEFT) {
             //xp = new int[]{0, 0, 0, h, h, h, h, 0};
             //yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
             shapeRect = new Rectangle(x + heightLine - 2, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
-        }else{
+        } else {
             //super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
             shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
         }
@@ -134,17 +151,17 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
-                g2D.setColor(areaContentBackground);
-                g2D.setPaint(areaContentBackground);
+                g2D.setColor(this.component.getBackground());
+                g2D.setPaint(this.component.getBackground());
             } else {
                 g2D.setColor(disableAreaContentBackground);
                 g2D.setPaint(disableAreaContentBackground);
             }
             tabPane.setForegroundAt(tabIndex, foreground);
         }
-        if(shape != null){
+        if (shape != null) {
             g2D.fill(shape);
-        }else if (shapeRect != null){
+        } else if (shapeRect != null) {
             g2D.fill(shapeRect);
         }
     }
@@ -168,13 +185,70 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     @Override
-    protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) { }
+    protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {}
 
     @Override
-    protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) { }
+    protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {}
 
     @Override
-    protected void paintContentBorder(Graphics graphics, int i, int i1) { }
+    protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
+        //TODO I'm working here.
+        int width = tabPane.getWidth();
+        int height = tabPane.getHeight();
+        Insets insets = tabPane.getInsets();
+        Insets tabAreaInsets = getTabAreaInsets(tabPlacement);
+
+        int x = insets.left;
+        int y = insets.top;
+        int w = width - insets.right - insets.left;
+        int h = height - insets.top - insets.bottom;
+
+        switch(tabPlacement) {
+            case LEFT:
+                x += calculateTabAreaWidth(tabPlacement, runCount, maxTabWidth);
+                if (true) {
+                    x -= tabAreaInsets.right;
+                }
+                w -= (x - insets.left);
+                break;
+            case RIGHT:
+                w -= calculateTabAreaWidth(tabPlacement, runCount, maxTabWidth);
+                if (true) {
+                    w += tabAreaInsets.left;
+                }
+                break;
+            case BOTTOM:
+                h -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+                if (true) {
+                    h += tabAreaInsets.top;
+                }
+                break;
+            case TOP:
+            default:
+                y += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+                if (true) {
+                    y -= tabAreaInsets.bottom;
+                }
+                h -= (y - insets.top);
+        }
+
+        if ( tabPane.getTabCount() > 0 && tabPane.isOpaque()) {
+            // Fill region behind content area
+            Color color = UIManager.getColor("TabbedPane.contentAreaColor");
+            if (color != null) {
+                g.setColor(color);
+            }
+            else if ( selectedAreaContentBackground == null || selectedIndex == -1 ) {
+                g.setColor(tabPane.getBackground());
+            }
+            else {
+                g.setColor(selectedAreaContentBackground);
+            }
+            g.drawLine(x, y, w, y);
+        }
+        //TODO i'm work here
+        paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+    }
 
     @Override
     public void paint(Graphics g, JComponent c) {
@@ -183,7 +257,19 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected LayoutManager createLayoutManager() {
+        if(tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT){
+            return super.createLayoutManager();
+        }
         return new MaterialTabbedPaneLayout();
+    }
+
+    @Override
+    protected JButton createScrollButton(int direction) {
+        return new MaterialArrowButton(direction);
+    }
+
+    protected boolean isContentBorderEnable() {
+        return (contentBorderBottom || contentBorderTop || contentBorderRight || contentBorderLeaft);
     }
 
     protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
@@ -242,7 +328,31 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             }
             mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
+    }
 
+    //TODO I will work on this
+    protected class MaterialArrowButton extends BasicArrowButton implements UIResource,
+                                                                            SwingConstants{
 
+        public MaterialArrowButton(int direction, Color background, Color shadow, Color darkShadow, Color highlight) {
+            super(direction, background, shadow, darkShadow, highlight);
+        }
+
+        public MaterialArrowButton(int direction) {
+            super(direction);
+        }
+
+        @Override
+        public void paint(Graphics g) {
+            super.paint(g);
+            g.setColor(MaterialColors.COSMO_MEDIUM_GRAY);
+            this.setBackground(MaterialColors.GRAY_300);
+        }
+
+        @Override
+        public void paintTriangle(Graphics g, int x, int y, int size, int direction, boolean isEnabled) {
+            super.paintTriangle(g, x, y, size, direction, isEnabled);
+            g.setColor(MaterialColors.COSMO_STRONG_GRAY);
+        }
     }
 }

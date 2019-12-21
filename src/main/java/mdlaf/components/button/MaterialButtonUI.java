@@ -131,7 +131,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 
     }
 
-    private void paintBackground(Graphics g, JComponent c) {
+    protected void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D graphics = (Graphics2D) g.create();
         g.setColor(c.getBackground());
@@ -265,7 +265,7 @@ public class MaterialButtonUI extends BasicButtonUI{
             if (!c.isEnabled() && !isPaintedDisabled) {
                 isPaintedDisabled = true;
                 paintStateButton(c, g);
-            }else if(isPaintedDisabled && c.isEnabled()){
+            } else if (isPaintedDisabled && c.isEnabled()) {
                 //This condition check if the button is enable and the variable is setted to
                 // true, an example: Is the button is now enable by the event and before it was disabled
                 isPaintedDisabled = false;

@@ -176,6 +176,16 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
     }
 
     @Override
+    public void installUIDefault(UIDefaults table) {
+        super.installUIDefault(table);
+
+        table.put("TabbedPane[contentBorder].enableTop", true);
+        table.put("TabbedPane[contentBorder].enableLeaf", false);
+        table.put("TabbedPane[contentBorder].enableRight", false);
+        table.put("TabbedPane[contentBorder].enableBottom", false);
+    }
+
+    @Override
     public String getName() {
         return "JMars Dark";
     }

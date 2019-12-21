@@ -24,6 +24,7 @@
  */
 package mdlaf;
 
+import mdlaf.components.MaterialArrowButton;
 import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
@@ -398,12 +399,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.tabAreaBackground", theme.getBackgroundPrimary());
         table.put("TabbedPane.foreground", theme.getTextColor());
         table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
-        table.put("TabbedPane.contentAreaColor", theme.getBackgroundPrimary());
+        table.put("TabbedPane.contentAreaColor", theme.getButtonTextColor());
         table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
         table.put("TabbedPane.border", theme.getBorderPanel());
         table.put("TabbedPane.shadow", theme.getBackgroundPrimary());
         table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary());
-        table.put("TabbedPane.highlight", theme.getBackgroundPrimary());
+        table.put("TabbedPane.highlight", theme.getDisableTextColor());
+        table.put("TabbedPane.selected", theme.getTextColor());
         table.put("TabbedPane.light", theme.getBackgroundPrimary());
         table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
         table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
@@ -417,6 +419,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+        table.put("TabbedPane[contentBorder].enableTop", true);
+        table.put("TabbedPane[contentBorder].enableLeaf", true);
+        table.put("TabbedPane[contentBorder].enableRight", true);
+        table.put("TabbedPane[contentBorder].enableBottom", true);
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());

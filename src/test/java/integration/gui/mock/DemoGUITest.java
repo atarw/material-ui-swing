@@ -2,12 +2,14 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
+import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -23,6 +25,7 @@ public class DemoGUITest extends JFrame {
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
+
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -65,17 +68,17 @@ public class DemoGUITest extends JFrame {
 
     public void initComponent() {
 
-        for(Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()){
-            Object key =  entry.getKey();
-            if(key instanceof String){
+        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {
+            Object key = entry.getKey();
+            if (key instanceof String) {
                 String keyString = (String) key;
-                if(keyString.contains("TabbedPane")){
+                if (keyString.contains("TabbedPane")) {
                     LOGGER.debug("Key: " + keyString + " value: " + entry.getValue());
                 }
             }
-
         }
-
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
         buttonUndo.setAction(containerAction.getEnableButtonDisabled());
@@ -102,6 +105,14 @@ public class DemoGUITest extends JFrame {
 
         tabbedPane.add(panelOne, "Panel One");
         tabbedPane.add(panelTwo, "Panel two");
+        tabbedPane.add(new JPanel(), "Panel 3");
+        tabbedPane.add(new JPanel(), "Panel 4");
+        tabbedPane.add(new JPanel(), "Panel 5");
+        tabbedPane.add(new JPanel(), "Panel 6");
+        tabbedPane.add(new JPanel(), "Panel 7");
+        tabbedPane.add(new JPanel(), "Panel 8");
+        tabbedPane.add(new JPanel(), "Panel 9");
+
         this.setContentPane(tabbedPane);
 
         pack();
@@ -214,26 +225,26 @@ public class DemoGUITest extends JFrame {
         );
     }
 
-    public synchronized void reloadUI(){
+    public synchronized void reloadUI() {
         SwingUtilities.updateComponentTreeUI(this);
     }
 
-    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel){
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
         try {
-           // UIManager.getLookAndFeel().uninitialize();
+            // UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
     }
 
-    public void enableTheme(JMenuItem menuItem){
+    public void enableTheme(JMenuItem menuItem) {
         menuItem.setEnabled(false);
-        if(menuItem != material){
+        if (menuItem != material) {
             material.setEnabled(true);
-        }else if (menuItem != gtk){
+        } else if (menuItem != gtk) {
             gtk.setEnabled(true);
-        }else if (menuItem != metal){
+        } else if (menuItem != metal) {
             metal.setEnabled(true);
         }
     }
