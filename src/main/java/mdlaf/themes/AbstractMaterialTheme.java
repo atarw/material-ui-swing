@@ -713,7 +713,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLineWithTabbedPane() {
-        return 2;
+        return 5;
     }
 
     @Override
