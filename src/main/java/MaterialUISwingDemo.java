@@ -238,7 +238,7 @@ public class MaterialUISwingDemo {
                     JPanel pn = new JPanel();
                     JPanel panel3 = new JPanel();
                     JTabbedPane tp = new JTabbedPane();
-                    tp.setTabPlacement(JTabbedPane.LEFT);
+                    //tp.setTabPlacement(JTabbedPane.LEFT);
                     tp.addTab("bleh1", pn);
                     tp.addTab("bleh", sp);
                     tp.addTab("Panel 3", panel3);

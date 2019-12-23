@@ -23,7 +23,6 @@
  */
 package mdlaf.components.tabbedpane;
 
-import mdlaf.components.MaterialArrowButton;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
@@ -119,17 +118,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     //
     @Override
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-
-        int width = tabPane.getWidth();
-        int height = tabPane.getHeight();
-        Insets insets = tabPane.getInsets();
-        Insets tabAreaInsets = getTabAreaInsets(tabPlacement);
-
-        int xl = insets.left;
-        int yl = insets.top;
-        int wl = width - insets.right - insets.left;
-        int hl = height - insets.top - insets.bottom;
-
         Graphics2D g2D = (Graphics2D) g;
 
         if (isSelected) {
@@ -148,16 +136,64 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             tabPane.setForegroundAt(tabIndex, foreground);
         }
 
-        if (tabPlacement == TOP) {
-            yl += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-            g.setColor(selectedAreaContentBackground);
-            g.drawLine(xl, yl, wl, yl);
-        }else{
+        if (tabPane.getTabLayoutPolicy() != JTabbedPane.SCROLL_TAB_LAYOUT) {
+            int width = tabPane.getWidth();
+            int height = tabPane.getHeight();
+            Insets insets = tabPane.getInsets();
+            Insets tabAreaInsets = getTabAreaInsets(tabPlacement);
+
+            int xl = insets.left;
+            int yl = insets.top;
+            int wl = width - insets.right - insets.left;
+            int hl = height - insets.top - insets.bottom;
+            if (tabPlacement == TOP) {
+                yl += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+                g.setColor(selectedAreaContentBackground);
+                g.drawLine(xl, yl, wl, yl);
+            } else {
+                int xp[];
+                int yp[];
+                Polygon shape = null;
+                Rectangle shapeRect = null;
+                if (tabPlacement == BOTTOM) {
+                    y += 20;
+                    xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
+                    yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
+                    shape = new Polygon(xp, yp, xp.length);
+                } else if (tabPlacement == LEFT) {
+                    //xp = new int[]{0, 0, 0, h, h, h, h, 0};
+                    //yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
+                    shapeRect = new Rectangle(x, y, heightLine, w / (tabPane.getTabCount()));
+                } else {
+                    //super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
+                    shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
+                }
+
+                if (shape != null) {
+                    g2D.fill(shape);
+                } else if (shapeRect != null) {
+                    g2D.fill(shapeRect);
+                }
+            }
+        } else {
+
+           /* Rectangle rectangle = rects[tabIndex];
+
+            x = rectangle.x;
+            y = rectangle.y;
+            w = rectangle.width;
+            h = rectangle.height;*/
+            //System.out.println("****Scroll View: x: " + x + " y: " + y + " w: " + w + " h: " + h);
+
             int xp[];
             int yp[];
             Polygon shape = null;
             Rectangle shapeRect = null;
-            if (tabPlacement == BOTTOM) {
+            if (tabPlacement == TOP) {
+                xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
+                yp = new int[]{(y + positionYLine + heightLine), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + heightLine, y + positionYLine + heightLine};
+                shape = new Polygon(xp, yp, xp.length);
+            } else if (tabPlacement == BOTTOM) {
                 y += 20;
                 xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
                 yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
@@ -177,8 +213,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 g2D.fill(shapeRect);
             }
         }
-    }
 
+    }
 
 
     @Override
@@ -201,14 +237,15 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
+        // do nothing
     }
 
     @Override
     protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-        g.setColor(selectedAreaContentBackground);
+        // do thing, the method paintBackground painted the focus indicator.
     }
 
-    @Override
+    @Override //TODO debuggin this method, look the issue inside JMARS,
     protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
         //TODO I'm working here.
         int width = tabPane.getWidth();
@@ -224,29 +261,29 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         switch (tabPlacement) {
             case LEFT:
                 x += calculateTabAreaWidth(tabPlacement, runCount, maxTabWidth);
-               /* if (true) {
+               if (tabsOverlapBorder) {
                     x -= tabAreaInsets.right;
-                }*/
+                }
                 w -= (x - insets.left);
                 break;
             case RIGHT:
                 w -= calculateTabAreaWidth(tabPlacement, runCount, maxTabWidth);
-                /*if (true) {
+                if (tabsOverlapBorder) {
                     w += tabAreaInsets.left;
-                }*/
+                }
                 break;
             case BOTTOM:
                 h -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-                /*if (true) {
+                if (tabsOverlapBorder) {
                     h += tabAreaInsets.top;
-                }*/
+                }
                 break;
             case TOP:
             default:
                 y += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-              /*  if (true) {
+                if (tabsOverlapBorder) {
                     y -= tabAreaInsets.bottom;
-                }*/
+                }
                 h -= (y - insets.top);
         }
 
