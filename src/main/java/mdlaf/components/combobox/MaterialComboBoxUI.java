@@ -76,21 +76,17 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
+        this.configureLocalArrowButton(button);
         return button;
     }
 
     @Override
     public void configureArrowButton() {
         super.configureArrowButton();
-
-        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
-        arrowButton.setOpaque(true);
-        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
-        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
-            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
-        }
-        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
+        this.configureLocalArrowButton(arrowButton);
     }
+
+
 
     @Override
     public void unconfigureArrowButton() {
@@ -113,6 +109,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
         paint(g, c);
+        this.configureLocalArrowButton(arrowButton);
     }
 
     @Override
@@ -131,6 +128,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             comboBox.addFocusListener(focusListener);
         }
         return super.createFocusListener();
+    }
+
+    protected void configureLocalArrowButton(JButton arrowButton){
+        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+        arrowButton.setOpaque(true);
+        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
+        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
+            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
+        }
+        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
     }
 
     protected class FocusListenerColor implements FocusListener {

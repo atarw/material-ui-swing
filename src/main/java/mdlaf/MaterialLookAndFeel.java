@@ -24,7 +24,6 @@
  */
 package mdlaf;
 
-import mdlaf.components.MaterialArrowButton;
 import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
@@ -419,10 +418,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
-        table.put("TabbedPane[contentBorder].enableTop", true);
-        table.put("TabbedPane[contentBorder].enableLeaf", true);
-        table.put("TabbedPane[contentBorder].enableRight", true);
-        table.put("TabbedPane[contentBorder].enableBottom", true);
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());

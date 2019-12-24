@@ -26,31 +26,27 @@ For a change the theme to runtime you can use this code
   Look the example inside the test/java/integration/gui/mock
   
  ## Stack Overflow
-We are using the Stack Overflow to help the community because we don't have much time to write detailed documentation, but remember we worked hard to build a customizable look-and-feel. 
-If you need the help, you can write a post
-with these tags
-  
- **java**, **material**, **swing**, **look-and-feel**
- 
- ps:we use these until we have one of our own
- 
+We don't have much time to write detailed documentation, but if you want to get help, post a question on Stack Overflow with the tags `material-ui-swing`, `java`, `material`, `swing`, `look-and-feel`.
+
  ## Repository
  
  _Maven_
  
  ```
- <dependency>
-   <groupId>io.github.vincenzopalazzo</groupId>
-   <artifactId>material-ui-swing</artifactId>
-   <version>1.0.0</version>
- </dependency>
+<dependency>
+  <groupId>io.github.vincenzopalazzo</groupId>
+  <artifactId>material-ui-swing</artifactId>
+  <version>1.1.1_beta</version>
+</dependency>
  ```
 
  _Gradle_
  
 ```
- implementation 'io.github.vincenzopalazzo:material-ui-swing:1.0.0'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_beta'
 ``` 
+
+Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
 
 ## License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
@@ -60,7 +56,7 @@ _**List of projects with Material-UI-Swing theme**_
 - [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
 - [JMars Beta](https://JMars.mars.asu.edu)
 
-_Send a mail to [Vincent](https://github.com/vincenzopalazzo) if you use material-ui-swing so I add the your project at the list_
+Contact us if you use this look and feel so we can add your project to the list 🙂
 
 ## Community
 [![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -80,8 +76,12 @@ _Donors_
 
 # Screenshot
 ## MaterialLiteTheme
-![](https://i.imgur.com/K3RwlRy.png)
+![](https://i.ibb.co/MBypNKV/Selection-082.png)
 
 ## MaterialOceanicTheme
-![](https://i.imgur.com/fF6a7lj.png)
+![](https://i.ibb.co/1TzSXWk/Selection-083.png)
+
+##JMarsDarkTheme
+![Selection_071](https://i.ibb.co/TRp9wDx/Selection-084.png)
+
 Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)

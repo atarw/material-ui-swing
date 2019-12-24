@@ -91,6 +91,40 @@ public class MaterialUISwingDemo {
                         }
                     }
 
+                    JMenu menuTheme = new JMenu("Themes");
+
+                    JMenuItem oceanic = new JMenuItem();
+                    oceanic.setAction(new AbstractAction("Material Oceanic"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            System.out.println("********");
+                            MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+                    JMenuItem lite = new JMenuItem();
+                    lite.setAction(new AbstractAction("Material Lite"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+                    JMenuItem jmarsDark = new JMenuItem();
+                    jmarsDark.setAction(new AbstractAction("Material JMars Dark"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            MaterialLookAndFeel.changeTheme(new JMarsDarkTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+
+                    menuTheme.add(oceanic);
+                    menuTheme.add(lite);
+                    menuTheme.add(jmarsDark);
+
+                    bar.add(menuTheme);
+
                     JMenuItem item1 = new JMenuItem("Item 1 (Animated)");
                     item1.setAction(new ActionTestJFC(new JPanel()));
                     JMenuItem item2 = new JMenuItem("Item 2 (Not animated)");
