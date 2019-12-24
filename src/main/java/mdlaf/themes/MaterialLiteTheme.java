@@ -28,6 +28,8 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
+import javax.swing.*;
+
 /**
  * @author https://github.com/vincenzopalazzo
  */
@@ -43,7 +45,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installFonts(){
-        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+       this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
         this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
         this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
         this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
@@ -181,6 +183,15 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.foregroundProgressBar = MaterialColors.COSMO_BLUE;
     }
 
+    @Override
+    public void installUIDefault(UIDefaults table) {
+        super.installUIDefault(table);
+
+        table.put("TabbedPane[contentBorder].enableTop", false);
+        table.put("TabbedPane[contentBorder].enableLeaf", false);
+        table.put("TabbedPane[contentBorder].enableRight", false);
+        table.put("TabbedPane[contentBorder].enableBottom", false);
+    }
 
     @Override
     public String getName() {

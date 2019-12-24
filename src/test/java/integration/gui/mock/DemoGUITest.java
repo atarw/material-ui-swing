@@ -1,15 +1,15 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.themes.MaterialTheme;
+import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -25,6 +25,7 @@ public class DemoGUITest extends JFrame {
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
+
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -36,10 +37,10 @@ public class DemoGUITest extends JFrame {
     private GroupLayout layoutPanelTwo;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
-    private JButton buttonDefault = new JButton("Ok");
+    private JButtonNoMouseHoverNative buttonDefault = new JButtonNoMouseHoverNative("Ok");
     private JButton buttonUndo = new JButton("Undo");
     private JButton buttonDisabled = new JButton("I'm disabled");
-    private JButton buttonNormal = new JButton("I'm a pure jbutton");
+    private JButtonNoMouseHoverNative buttonNormal = new JButtonNoMouseHoverNative("I'm a pure jbutton");
     private ContainerAction containerAction = new ContainerAction();
     private JTextField textFieldUsername = new JTextField();
     private JPasswordField passwordFiled = new JPasswordField();
@@ -53,7 +54,10 @@ public class DemoGUITest extends JFrame {
     private JMenuItem gtk = new JMenuItem("GTK");
     private JMenuItem metal = new JMenuItem("Metal");
     private JMenuItem material = new JMenuItem("Material");
-    private JMenuItem materialDark = new JMenuItem("Material Dark");
+    private JMenuItem materialDark = new JMenuItem("Material Oceanic");
+    private JMenuItem jmarsDark = new JMenuItem("Jmars Dark");
+
+
     private JMenu arrowMenuOne = new JMenu("Root Menu 1");
     private JMenu arrowMenuTwo = new JMenu("Root Menu 2");
 
@@ -64,17 +68,17 @@ public class DemoGUITest extends JFrame {
 
     public void initComponent() {
 
-        for(Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()){
-            Object key =  entry.getKey();
-            if(key instanceof String){
+        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {
+            Object key = entry.getKey();
+            if (key instanceof String) {
                 String keyString = (String) key;
-                if(keyString.contains("TabbedPane")){
+                if (keyString.contains("TabbedPane")) {
                     LOGGER.debug("Key: " + keyString + " value: " + entry.getValue());
                 }
             }
-
         }
-
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
         buttonUndo.setAction(containerAction.getEnableButtonDisabled());
@@ -101,6 +105,14 @@ public class DemoGUITest extends JFrame {
 
         tabbedPane.add(panelOne, "Panel One");
         tabbedPane.add(panelTwo, "Panel two");
+        tabbedPane.add(new JPanel(), "Panel 3");
+        tabbedPane.add(new JPanel(), "Panel 4");
+        tabbedPane.add(new JPanel(), "Panel 5");
+        tabbedPane.add(new JPanel(), "Panel 6");
+        tabbedPane.add(new JPanel(), "Panel 7");
+        tabbedPane.add(new JPanel(), "Panel 8");
+        tabbedPane.add(new JPanel(), "Panel 9");
+
         this.setContentPane(tabbedPane);
 
         pack();
@@ -117,11 +129,13 @@ public class DemoGUITest extends JFrame {
         material.setAction(containerAction.getActionChangeTheme("Material lite"));
         metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
-        materialDark.setAction(containerAction.getActionChangeTheme("Material Dark"));
+        materialDark.setAction(containerAction.getActionChangeTheme("Material Oceanic"));
+        jmarsDark.setAction(containerAction.getActionChangeTheme("JMars Dark"));
 
         themesMenu.add(material);
         themesMenu.add(metal);
         themesMenu.add(materialDark);
+        themesMenu.add(jmarsDark);
         themesMenu.add(gtk);
 
         addSubMenus(arrowMenuOne, 5);
@@ -211,26 +225,26 @@ public class DemoGUITest extends JFrame {
         );
     }
 
-    public synchronized void reloadUI(){
+    public synchronized void reloadUI() {
         SwingUtilities.updateComponentTreeUI(this);
     }
 
-    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel){
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
         try {
-           // UIManager.getLookAndFeel().uninitialize();
+            // UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
     }
 
-    public void enableTheme(JMenuItem menuItem){
+    public void enableTheme(JMenuItem menuItem) {
         menuItem.setEnabled(false);
-        if(menuItem != material){
+        if (menuItem != material) {
             material.setEnabled(true);
-        }else if (menuItem != gtk){
+        } else if (menuItem != gtk) {
             gtk.setEnabled(true);
-        }else if (menuItem != metal){
+        } else if (menuItem != metal) {
             metal.setEnabled(true);
         }
     }
@@ -252,6 +266,11 @@ public class DemoGUITest extends JFrame {
 
     public JMenuItem getMetal() {
         return metal;
+    }
+
+
+    public JMenuItem getJmarsDark() {
+        return jmarsDark;
     }
 
     public static DemoGUITest getInstance() {

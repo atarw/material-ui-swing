@@ -1,6 +1,7 @@
 package integration.gui.test;
 
 import integration.gui.mock.DemoGUITest;
+import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialTheme;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
@@ -12,6 +13,8 @@ import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
+
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -20,7 +23,7 @@ import java.awt.*;
 public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
 
     protected FrameFixture frame;
-    protected MaterialLiteTheme theme;
+    protected MaterialTheme theme;
 
     @BeforeClass
     public static final void setUpOnce() {
@@ -44,8 +47,14 @@ public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
         this.frame = new FrameFixture(this.robot(), mainWindow);
         this.frame.show();
         onSetUp();
-        theme = new MaterialLiteTheme();
-        theme.installTheme();
+        LookAndFeel lookAndFeel = UIManager.getLookAndFeel();
+        if (lookAndFeel instanceof MaterialLookAndFeel) {
+            MaterialLookAndFeel materialLookAndFeel = (MaterialLookAndFeel) lookAndFeel;
+            theme = materialLookAndFeel.getTheme();
+        } else {
+            throw new Error("Material l&f didn't set");
+        }
+
     }
 
     protected void onSetUp() {

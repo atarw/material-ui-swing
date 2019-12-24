@@ -49,8 +49,6 @@ public class MaterialSplitPaneUI extends MetalSplitPaneUI {
         /**
          * Creates an instance of BasicSplitPaneDivider. Registers this
          * instance for mouse events and mouse dragged events.
-         *
-         * @param ui
          */
         public MaterialSplitPaneDivider(BasicSplitPaneUI ui) {
             super(ui);

@@ -15,6 +15,7 @@
  */
 package mdlaf.components.titlepane;
 
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialManagerListener;
 import sun.awt.SunToolkit;
 import sun.swing.SwingUtilities2;
@@ -195,14 +196,14 @@ public class MaterialTitlePaneUI extends JComponent {
                 myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.COLOR_CHOOSER_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.FILE_CHOOSER_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = myActiveBackground;
                 break;
             case JRootPane.WARNING_DIALOG:
                 myActiveBackground = UIManager.getColor("OptionPane.warningDialog.titlePane.background");
@@ -210,9 +211,9 @@ public class MaterialTitlePaneUI extends JComponent {
                 myActiveShadow = UIManager.getColor("OptionPane.warningDialog.titlePane.shadow");
                 break;
             case JRootPane.PLAIN_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.INFORMATION_DIALOG:
                 myActiveBackground = UIManager.getColor("OptionPane.errorDialog.titlePane.background");
@@ -297,7 +298,7 @@ public class MaterialTitlePaneUI extends JComponent {
     }
 
     protected static JButton createButton(String accessibleName, Icon icon, Action action) {
-        JButton button = new JButton();
+        JButton button = new JButtonNoMouseHoverNative();
         button.setFocusPainted(false);
         button.setFocusable(false);
         button.setOpaque(true);
@@ -310,6 +311,21 @@ public class MaterialTitlePaneUI extends JComponent {
         return button;
     }
 
+    @Override
+    public void updateUI() {
+        super.updateUI();
+
+        if (getWindowDecorationStyle() == JRootPane.FRAME) {
+            myMaximizeIcon = UIManager.getIcon("InternalFrame.maximizeIcon");
+            myMinimizeIcon = UIManager.getIcon("InternalFrame.minimizeIcon");
+            Icon iconClose = UIManager.getIcon("InternalFrame.closeIcon");
+            myCloseButton.setIcon(iconClose);
+            myIconifyButton.setIcon(myMinimizeIcon);
+            myToggleButton.setIcon(myMaximizeIcon);
+
+        }
+    }
+
     protected void createButtons() {
         myCloseButton = createButton("Close", UIManager.getIcon("InternalFrame.closeIcon"), myCloseAction);
 
@@ -319,6 +335,10 @@ public class MaterialTitlePaneUI extends JComponent {
 
             myIconifyButton = createButton("Iconify", UIManager.getIcon("InternalFrame.iconifyIcon"), myIconifyAction);
             myToggleButton = createButton("Maximize", myMaximizeIcon, myRestoreAction);
+
+            myCloseButton.setBackground(myActiveBackground);
+            myIconifyButton.setBackground(myActiveBackground);
+            myToggleButton.setBackground(myActiveBackground);
         }
     }
 
@@ -692,6 +712,44 @@ public class MaterialTitlePaneUI extends JComponent {
 
         public void windowDeactivated(WindowEvent ev) {
             setActive(false);
+        }
+    }
+
+    protected static class JButtonNoMouseHoverNative extends JButton {
+
+        public JButtonNoMouseHoverNative() {
+        }
+
+        public JButtonNoMouseHoverNative(Icon icon) {
+            super(icon);
+        }
+
+        public JButtonNoMouseHoverNative(String text) {
+            super(text);
+        }
+
+        public JButtonNoMouseHoverNative(Action a) {
+            super(a);
+        }
+
+        public JButtonNoMouseHoverNative(String text, Icon icon) {
+            super(text, icon);
+        }
+
+        @Override
+        protected void init(String text, Icon icon) {
+            super.init(text, icon);
+            setUI(new JButtonNoMouseHoverUI());
+        }
+
+        private static class JButtonNoMouseHoverUI extends MaterialButtonUI {
+
+            @Override
+            public void installUI(JComponent c) {
+                mouseHoverEnabled = false;
+                super.installUI(c);
+                c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
         }
     }
 }

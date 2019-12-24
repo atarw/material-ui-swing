@@ -557,7 +557,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public ColorUIResource getMenuArrowHoverColor(){
-        return MaterialColors.BLACK;
+        return textColor;
     }
 
     @Override
@@ -703,7 +703,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLinePositionYTabbedPane() {
-        return 50;
+        return 56;
     }
 
     @Override
@@ -713,12 +713,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLineWithTabbedPane() {
-        return 2;
+        return 5;
     }
 
     @Override
     public int getLineHeightTabbedPane() {
-        return 5;
+        return 1;
     }
 
     @Override
