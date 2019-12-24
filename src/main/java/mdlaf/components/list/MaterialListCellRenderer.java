@@ -1,6 +1,8 @@
 package mdlaf.components.list;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 /**

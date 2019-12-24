@@ -9,6 +9,9 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
 public class MaterialTreeUI extends BasicTreeUI {
 
 	public static ComponentUI createUI (JComponent c) {
@@ -18,7 +21,6 @@ public class MaterialTreeUI extends BasicTreeUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-		JTree tree = (JTree) c;
 
 		DefaultTreeCellRenderer renderer = new MaterialTreeCellRenderer ();
 		TreeCellEditor editor = new MaterialTreeCellEditor (tree, renderer);

@@ -28,6 +28,10 @@ package mdlaf.utils;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.Color;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialColors {
 
 	public static final ColorUIResource RED_50 = new ColorUIResource (255, 235, 238);
@@ -313,6 +317,12 @@ public class MaterialColors {
 	public static final ColorUIResource DARKLY_GRAY = new ColorUIResource(173, 181, 189);
 	public static final ColorUIResource COSMO_BLACK = new ColorUIResource(55, 58, 60);
 
+
+
+	//Other color
+	public static final ColorUIResource MYRTLE_GREEN = new ColorUIResource(	29, 120, 116);
+	public static final ColorUIResource DARK_JUNGLE_GREEN = new ColorUIResource(7, 30, 34);
+	public static final ColorUIResource SUNNY = new ColorUIResource(244, 232, 124);
 
 	private MaterialColors () {}
 

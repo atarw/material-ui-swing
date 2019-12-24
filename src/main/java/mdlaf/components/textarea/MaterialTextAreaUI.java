@@ -48,11 +48,13 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
         JTextArea textArea = (JTextArea) c;
         textArea.setBackground(UIManager.getColor("TextArea.background"));
         textArea.setForeground(UIManager.getColor("TextArea.foreground"));
+        textArea.setSelectedTextColor(UIManager.getColor("TextArea.selectionForeground"));
+        textArea.setSelectionColor(UIManager.getColor("TextArea.selectionBackground"));
         textArea.setFont(UIManager.getFont("TextArea.font"));
         textArea.setBorder(UIManager.getBorder("TextArea.border"));
 
         textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true); 
+        textArea.setWrapStyleWord(true);
     }
 
     @Override

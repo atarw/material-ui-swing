@@ -1,5 +1,8 @@
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialColors;
 import org.jdesktop.swingx.JXTaskPane;
 
@@ -13,7 +16,7 @@ public class MaterialUISwingDemo {
 	public static void main (String[] args) {
 		try {
 			JDialog.setDefaultLookAndFeelDecorated(true);
-			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+			UIManager.setLookAndFeel (new MaterialLookAndFeel (new MaterialLiteTheme()));
 		}
 		catch (UnsupportedLookAndFeelException e) {
 			e.printStackTrace ();
@@ -28,11 +31,44 @@ public class MaterialUISwingDemo {
 		//frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		// configuring the JMenuBar as well as its menus and items
 		JMenuBar bar = new JMenuBar ();
-		JMenu menu1 = new JMenu ("Option 1 (Animated)");
-		JMenu menu2 = new JMenu ("Option 2 (Not animated)");
+		JMenu menu1 = new JMenu ("Option 1");
+		JMenu menu2 = new JMenu ("Option 2");
+		JMenu menuTheme = new JMenu("Themes");
 
-		JMenuItem item1 = new JMenuItem ("Item 1 (Animated)");
-		JMenuItem item2 = new JMenuItem ("Item 2 (Not animated)");
+		JMenuItem oceanic = new JMenuItem();
+		oceanic.setAction(new AbstractAction("Material Oceanic"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("********");
+				MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
+				SwingUtilities.updateComponentTreeUI(frame);
+			}
+		});
+		JMenuItem lite = new JMenuItem();
+		lite.setAction(new AbstractAction("Material Lite"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
+				SwingUtilities.updateComponentTreeUI(frame);
+			}
+		});
+		JMenuItem jmarsDark = new JMenuItem();
+		jmarsDark.setAction(new AbstractAction("Material JMars Dark"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MaterialLookAndFeel.changeTheme(new JMarsDarkTheme());
+				SwingUtilities.updateComponentTreeUI(frame);
+			}
+		});
+
+		menuTheme.add(oceanic);
+		menuTheme.add(lite);
+		menuTheme.add(jmarsDark);
+
+		bar.add(menuTheme);
+
+		JMenuItem item1 = new JMenuItem ("Item 1");
+		JMenuItem item2 = new JMenuItem ("Item 2");
 
 		//Test RadioButtonMenuItem
 		JRadioButtonMenuItem jRadioButtonMenuItem = new JRadioButtonMenuItem ();

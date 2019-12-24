@@ -2,26 +2,34 @@ package mdlaf.components.tree;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
 public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
-	public MaterialTreeCellRenderer () {
-		setTextSelectionColor (UIManager.getColor ("Tree.selectionForeground"));
-		setTextNonSelectionColor (UIManager.getColor ("Tree.foreground"));
+	protected Color foreground;
+	protected Color background;
+	protected Color selectedBackground;
+	protected Color selectedForeground;
 
-		setBackgroundSelectionColor (UIManager.getColor ("Tree.selectionBackground"));
-		setBackgroundNonSelectionColor (UIManager.getColor ("Tree.background"));
-
-		setBorderSelectionColor (UIManager.getColor ("Tree.selectionBorderColor"));
-
-		setFont (UIManager.getFont ("Tree.font"));
+	public MaterialTreeCellRenderer() {
+		installColors();
 	}
 
 	@Override
 	public Component getTreeCellRendererComponent (JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 		JComponent component = (JComponent) super.getTreeCellRendererComponent (tree, value, isSelected, expanded, leaf, row, hasFocus);
 		component.setBorder (BorderFactory.createEmptyBorder (5, 2, 5, 2));
+
+		if(isSelected){
+			setBackground(selectedBackground);
+			setForeground(selectedForeground);
+		}else{
+			setBackground(background);
+			setForeground(foreground);
+		}
 
 		return component;
 	}
@@ -41,5 +49,10 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 		return UIManager.getIcon ("Tree.leafIcon");
 	}
 
-
+	protected void installColors(){
+		background = UIManager.getColor("Tree.background");
+		foreground = UIManager.getColor("Tree.foreground");
+		selectedBackground = UIManager.getColor("Tree.selectionBackground");
+		selectedForeground = UIManager.getColor("Tree.selectionForeground");
+	}
 }

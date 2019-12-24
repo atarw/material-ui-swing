@@ -91,6 +91,9 @@ public class MaterialImageFactory {
 	public static final String CLOSE_WINDOWS_WHITE = "white/close-button";
 	public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
 	public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
+	public static final String MAXIMIZE_WINDOWS_WHITE = "white/maximize";
+	public static final String MINIMIZE_WINDOWS_WHITE = "white/minimize";
+	public static final String ICONIFY_WINDOWS_WHITE = "white/restore";
 
 	private Map<String, ImageIconUIResource> cachaImage = new HashMap<>();
 

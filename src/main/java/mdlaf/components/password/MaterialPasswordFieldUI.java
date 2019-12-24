@@ -1,6 +1,7 @@
 /*
  * MIT License
  *
+ * Copyright (c) 2018 https://github.com/atarw
  * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,6 +24,7 @@
  */
 package mdlaf.components.password;
 
+import mdlaf.components.textfield.MaterialComponentField;
 import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -31,33 +33,15 @@ import javax.swing.text.Element;
 import javax.swing.text.PasswordView;
 import javax.swing.text.View;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 /**
- * @contributor https://github.com/vincenzopalazzo
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
  */
-public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
+public class MaterialPasswordFieldUI extends MaterialComponentField{
 
-	protected static final String PROPERTY_LINE_COLOR = "lineColor";
-	protected static final String PROPERTY_SELECTION_COLOR = "selectionColor";
-	protected static final String PROPERTY_SELECTION_TEXT_COLOR = "selectedTextColor";
-
-	protected boolean drawLine;
-	protected Color activeBackground;
-	protected Color activeForeground;
-	protected Color inactiveBackground;
-	protected Color inactiveForeground;
-	protected Color colorLineInactive;
-	protected Color colorLineActive;
-	protected Color colorLine;
-	protected Color background;
-	protected FocusListener focusListenerColorLine;
-	protected PropertyChangeListener propertyChangeListener;
-	protected PropertyChangeSupport propertyChangeSupport;
+	protected static final String ProprietyPrefix = "PasswordField";
+	protected BasicPasswordFieldUI basicPasswordFieldUI = new BasicPasswordFieldUI();
 
 	public MaterialPasswordFieldUI() {
 		this(true);
@@ -66,9 +50,6 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 	public MaterialPasswordFieldUI(boolean drawLine) {
 		super();
 		this.drawLine = drawLine;
-		this.focusListenerColorLine = new FocusListenerColorLine();
-		this.propertyChangeListener = new MaterialPropertyChangeListener();
-		this.propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 
 	public static ComponentUI createUI(JComponent c) {
@@ -76,27 +57,34 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 	}
 
 	@Override
+	protected String getPropertyPrefix() {
+		return ProprietyPrefix;
+	}
+
+	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
+		basicPasswordFieldUI.installUI(c);
 		JPasswordField passwordField = (JPasswordField) c;
-		passwordField.setEchoChar('\u2022');
+		passwordField.setEchoChar((Character) UIManager.get("PasswordField.echoChar"));
+		installMyDefaults(passwordField);
 	}
 
 	@Override
 	protected void installDefaults() {
 		super.installDefaults();
-		installMyDefaults();
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
-
 		c.setFont (null);
 		c.setBackground (null);
 		c.setForeground (null);
 		c.setBorder (null);
 		c.setCursor(null);
 
+		basicPasswordFieldUI.uninstallUI(c);
+		textComponent = null;
 		super.uninstallUI(c);
 	}
 
@@ -127,147 +115,11 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 		super.paintBackground(MaterialDrawingUtils.getAliasedGraphics(g));
 	}
 
-	/**
-	 * Paint line when the component is focused
-	 */
 	@Override
 	public void paintSafely(Graphics g) {
 		super.paintSafely(g);
-
+		changeColorOnFocus(g);
 		paintLine(g);
-	}
-
-	protected void logicForChangeColorOnFocus(JComponent component, Color background, Color foreground){
-		if(background == null || foreground == null){
-			throw new IllegalArgumentException("Argument function null");
-		}
-		JPasswordField passField = (JPasswordField) component;
-		passField.setForeground(foreground);
-		passField.setSelectionColor(background);
-		passField.setSelectedTextColor(foreground);
-	}
-
-	protected void installMyDefaults() {
-		this.background = UIManager.getColor("PasswordField.background");
-		this.activeBackground = UIManager.getColor("PasswordField.selectionBackground");
-		this.activeForeground = UIManager.getColor("PasswordField.selectionForeground");
-		this.inactiveBackground = UIManager.getColor("PasswordField.inactiveBackground");
-		this.inactiveForeground = UIManager.getColor("PasswordField.inactiveForeground");
-		colorLineInactive = UIManager.getColor("PasswordField[Line].inactiveColor");
-		colorLineActive = UIManager.getColor("PasswordField[Line].activeColor");
-		getComponent().setFont(UIManager.getFont("PasswordField.font"));
-		colorLine = getComponent().hasFocus() && getComponent().isEditable() ? colorLineActive : colorLineInactive;
-		getComponent().setSelectionColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeBackground : inactiveBackground);
-		getComponent().setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-		getComponent().setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
-		getComponent().setBorder(UIManager.getBorder("PasswordField.border"));
-	}
-
-	protected void logicForPropertyChange(Color newColor, boolean isForeground){
-		if(newColor == null){
-			return;
-		}
-		if (isForeground && !newColor.equals(activeForeground) && !newColor.equals(inactiveForeground)) {
-			this.activeForeground = newColor;
-			getComponent().repaint();
-		}
-		if (!isForeground && !newColor.equals(activeBackground) && !newColor.equals(inactiveBackground)) {
-			this.activeBackground = newColor;
-			getComponent().repaint();
-		}
-	}
-
-	protected void changeColorOnFocus(boolean hasFocus) {
-		JPasswordField c = (JPasswordField) getComponent();
-		if(c == null){
-			return;
-		}
-		if(hasFocus && (activeBackground != null) && (activeForeground != null)){
-			logicForChangeColorOnFocus(c, activeBackground, activeForeground);
-			//TODO create a new changePropriety
-			paintLine(c.getGraphics());
-		}
-
-		if(!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)){
-			logicForChangeColorOnFocus(c, inactiveBackground, inactiveForeground);
-			paintLine(c.getGraphics());
-		}
-		if(c.getGraphics() != null){
-			c.paint(c.getGraphics());
-		}
-	}
-
-	protected synchronized void firePropertyChange(String propertyName, Object oldValue, Object newValue){
-		if((propertyName == null || propertyName.isEmpty()) || oldValue == null || newValue == null){
-			throw new IllegalArgumentException("Some property null");
-		}
-		if (propertyChangeSupport == null || (oldValue != null && newValue != null && oldValue.equals(newValue))) {
-			return;
-		}
-		if (propertyChangeSupport == null || oldValue == newValue) {
-			return;
-		}
-		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
-	}
-
-	protected void paintLine(Graphics graphics){
-		if( graphics == null){
-			return;
-		}
-		JPasswordField c = (JPasswordField) getComponent();
-
-		if (drawLine) {
-			int x = c.getInsets().left;
-			int y = c.getInsets().top;
-			int w = c.getWidth() - c.getInsets().left - c.getInsets().right;
-			graphics.setColor(colorLine);
-
-			graphics.fillRect(x, c.getHeight() - y, w, 1);
-		}
-	}
-
-	protected class FocusListenerColorLine implements FocusListener{
-
-		@Override
-		public void focusGained(FocusEvent e) {
-			firePropertyChange(PROPERTY_LINE_COLOR, colorLineInactive, colorLineActive);
-			changeColorOnFocus(true);
-		}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			firePropertyChange(PROPERTY_LINE_COLOR, colorLineActive, colorLineInactive);
-			changeColorOnFocus(false);
-		}
-	}
-
-	protected class MaterialPropertyChangeListener implements PropertyChangeListener{
-
-		@Override
-		public void propertyChange(PropertyChangeEvent pce) {
-			if(getComponent() == null){
-				return;
-			}
-			if (pce.getPropertyName().equals(PROPERTY_SELECTION_COLOR)) {
-				Color newColor = (Color) pce.getNewValue();
-				logicForPropertyChange(newColor, false);
-			}
-
-			if (pce.getPropertyName().equals(PROPERTY_SELECTION_TEXT_COLOR)) {
-				Color newColor = (Color) pce.getNewValue();
-				logicForPropertyChange(newColor, true);
-			}
-
-			if (pce.getPropertyName().equals(PROPERTY_LINE_COLOR)) {
-				Color newColor = (Color) pce.getNewValue();
-				colorLine = newColor;
-				getComponent().repaint();
-			}
-
-			if (pce.getPropertyName().equals("background")) {
-				getComponent().repaint();
-			}
-		}
 	}
 
 	//Creating View
@@ -291,7 +143,8 @@ public class MaterialPasswordFieldUI extends BasicPasswordFieldUI {
 			FontMetrics fm = g2.getFontMetrics();
 			int r = fm.charWidth(c) - 2;
 
-			g2.setPaint(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
+			//The line with the comment introduced this bug https://github.com/vincenzopalazzo/material-ui-swing/issues/72
+			//g2.setPaint(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
 			g2.fillOval(x + 1, y + 5 - fm.getAscent(), r, r);
 			g2.dispose();
 

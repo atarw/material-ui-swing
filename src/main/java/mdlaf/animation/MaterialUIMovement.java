@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2018 atharva washimkar, Vincent Palazzo
+ * Copyright (c) 2018-2019 atharva washimkar, Vincent Palazzo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,10 @@ package mdlaf.animation;
 import javax.swing.JComponent;
 import java.awt.Color;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialUIMovement {
 
 	private MaterialUIMovement () {}

@@ -7,3 +7,5 @@ target/classes/mdlaf/
 .idea/
 
 target/
+
+material-ui-swing.iml

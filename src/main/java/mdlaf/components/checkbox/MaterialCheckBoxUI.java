@@ -7,6 +7,10 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalCheckBoxUI;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialCheckBoxUI extends MetalCheckBoxUI {
 
 	public static ComponentUI createUI(JComponent c) {

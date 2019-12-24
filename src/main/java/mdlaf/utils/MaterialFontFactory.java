@@ -41,6 +41,7 @@ public class MaterialFontFactory {
 	 * @author https://github.com/vincenzopalazzo
 	 * LINUX, WINDOWS, MAC
 	 */
+	private static final String[] SISTEM_SUPPORTED = {"linux", "windows", "mac"};
 	private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
 	/**
 	 * Tipe Font supported
@@ -61,12 +62,25 @@ public class MaterialFontFactory {
 		return SINGLETON;
 	}
 
+
+	public static Font fontUtilsDisplayable(String textDisplayable, Font withFont){
+		if(textDisplayable == null || withFont == null){
+			throw new IllegalArgumentException("Argument at the fontUtilsDisplayable function are/is null");
+		}
+
+		if(withFont.canDisplayUpTo(textDisplayable) < 0){
+			return withFont;
+		}
+
+		return new javax.swing.plaf.FontUIResource(Font.SANS_SERIF, withFont.getStyle(), withFont.getSize());
+	}
+
 	private Properties properties = new Properties();
 	private Map<String, Font> cacheFont = new HashMap<>();
 
 	private MaterialFontFactory() {
 		try {
-			loadOsProprieties();
+			loadOsPropries();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +93,7 @@ public class MaterialFontFactory {
 	 * Many dependencies, native fonts are removed from the project but this method remains for furious purposes
 	 * @throws IOException
 	 */
-	private void loadOsProprieties() throws IOException {
+	private void loadOsPropries() throws IOException {
 		properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
 	}
 
@@ -117,4 +131,5 @@ public class MaterialFontFactory {
 			throw new RuntimeException("Font " + fontPath + " wasn't loaded");
 		}
 	}
+
 }

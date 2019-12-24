@@ -8,10 +8,11 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
 import java.awt.*;
 
-/*
- * Contributed by https://github.com/downToHell
- * */
-//TODO change the icon, this comment was added by vincenzopalazzo
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ * @author https://github.com/downToHell
+ */
 public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
 	public static ComponentUI createUI(JComponent c) {

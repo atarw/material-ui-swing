@@ -32,7 +32,10 @@ import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.*;
 import java.io.File;
 
-
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
 	public MaterialFileChooserUI (JFileChooser fileChooser) {

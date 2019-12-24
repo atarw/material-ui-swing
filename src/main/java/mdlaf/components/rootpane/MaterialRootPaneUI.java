@@ -25,7 +25,6 @@
 package mdlaf.components.rootpane;
 
 import mdlaf.components.titlepane.MaterialTitlePaneUI;
-
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;

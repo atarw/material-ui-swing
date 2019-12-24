@@ -15,6 +15,7 @@
  */
 package mdlaf.components.titlepane;
 
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialManagerListener;
 import sun.awt.SunToolkit;
 import sun.swing.SwingUtilities2;
@@ -36,7 +37,7 @@ import java.util.List;
  * @author Konstantin Bulenkov
  * In this version for Titelpane the change are effectuate by
  * @author https://github.com/users/vincenzopalazzo
- *
+ * <p>
  * Thi version of code is on MIT lincenze
  * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
  */
@@ -127,9 +128,8 @@ public class MaterialTitlePaneUI extends JComponent {
         myWindow = SwingUtilities.getWindowAncestor(this);
         if (myWindow != null) {
             if (myWindow instanceof Frame) {
-                setState(((Frame)myWindow).getExtendedState());
-            }
-            else {
+                setState(((Frame) myWindow).getExtendedState());
+            } else {
                 setState(0);
             }
             setActive(myWindow.isActive());
@@ -153,8 +153,7 @@ public class MaterialTitlePaneUI extends JComponent {
             add(myIconifyButton);
             add(myToggleButton);
             add(myCloseButton);
-        }
-        else if (decorationStyle == JRootPane.PLAIN_DIALOG ||
+        } else if (decorationStyle == JRootPane.PLAIN_DIALOG ||
                 decorationStyle == JRootPane.INFORMATION_DIALOG ||
                 decorationStyle == JRootPane.ERROR_DIALOG ||
                 decorationStyle == JRootPane.COLOR_CHOOSER_DIALOG ||
@@ -197,14 +196,14 @@ public class MaterialTitlePaneUI extends JComponent {
                 myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.COLOR_CHOOSER_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.FILE_CHOOSER_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = myActiveBackground;
                 break;
             case JRootPane.WARNING_DIALOG:
                 myActiveBackground = UIManager.getColor("OptionPane.warningDialog.titlePane.background");
@@ -212,9 +211,9 @@ public class MaterialTitlePaneUI extends JComponent {
                 myActiveShadow = UIManager.getColor("OptionPane.warningDialog.titlePane.shadow");
                 break;
             case JRootPane.PLAIN_DIALOG:
-                myActiveBackground = UIManager.getColor("Material.activeCaption");
-                myActiveForeground = UIManager.getColor("Material.activeCaptionText");
-                myActiveShadow = UIManager.getColor("Material.activeCaptionBorder");
+                myActiveBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                myActiveForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                myActiveShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.INFORMATION_DIALOG:
                 myActiveBackground = UIManager.getColor("OptionPane.errorDialog.titlePane.background");
@@ -264,8 +263,7 @@ public class MaterialTitlePaneUI extends JComponent {
 
         if ((myState & Frame.ICONIFIED) != 0) {
             frame.setExtendedState(myState & ~Frame.ICONIFIED);
-        }
-        else {
+        } else {
             frame.setExtendedState(myState & ~Frame.MAXIMIZED_BOTH);
         }
     }
@@ -300,7 +298,7 @@ public class MaterialTitlePaneUI extends JComponent {
     }
 
     protected static JButton createButton(String accessibleName, Icon icon, Action action) {
-        JButton button = new JButton();
+        JButton button = new JButtonNoMouseHoverNative();
         button.setFocusPainted(false);
         button.setFocusable(false);
         button.setOpaque(true);
@@ -313,6 +311,21 @@ public class MaterialTitlePaneUI extends JComponent {
         return button;
     }
 
+    @Override
+    public void updateUI() {
+        super.updateUI();
+
+        if (getWindowDecorationStyle() == JRootPane.FRAME) {
+            myMaximizeIcon = UIManager.getIcon("InternalFrame.maximizeIcon");
+            myMinimizeIcon = UIManager.getIcon("InternalFrame.minimizeIcon");
+            Icon iconClose = UIManager.getIcon("InternalFrame.closeIcon");
+            myCloseButton.setIcon(iconClose);
+            myIconifyButton.setIcon(myMinimizeIcon);
+            myToggleButton.setIcon(myMaximizeIcon);
+
+        }
+    }
+
     protected void createButtons() {
         myCloseButton = createButton("Close", UIManager.getIcon("InternalFrame.closeIcon"), myCloseAction);
 
@@ -322,6 +335,10 @@ public class MaterialTitlePaneUI extends JComponent {
 
             myIconifyButton = createButton("Iconify", UIManager.getIcon("InternalFrame.iconifyIcon"), myIconifyAction);
             myToggleButton = createButton("Maximize", myMaximizeIcon, myRestoreAction);
+
+            myCloseButton.setBackground(myActiveBackground);
+            myIconifyButton.setBackground(myActiveBackground);
+            myToggleButton.setBackground(myActiveBackground);
         }
     }
 
@@ -361,8 +378,7 @@ public class MaterialTitlePaneUI extends JComponent {
                                 (rootPane.getBorder() instanceof UIResource)) &&
                         frame.isShowing()) {
                     rootPane.setBorder(null);
-                }
-                else if ((state & Frame.MAXIMIZED_BOTH) == 0) {
+                } else if ((state & Frame.MAXIMIZED_BOTH) == 0) {
                     // This is a croak, if state becomes bound, this can
                     // be nuked.
                     //rootPaneUI.installBorder(rootPane);
@@ -372,8 +388,7 @@ public class MaterialTitlePaneUI extends JComponent {
                         updateToggleButton(myRestoreAction, myMinimizeIcon);
                         myMaximizeAction.setEnabled(false);
                         myRestoreAction.setEnabled(true);
-                    }
-                    else {
+                    } else {
                         updateToggleButton(myMaximizeAction, myMaximizeIcon);
                         myMaximizeAction.setEnabled(true);
                         myRestoreAction.setEnabled(false);
@@ -386,8 +401,7 @@ public class MaterialTitlePaneUI extends JComponent {
                         repaint();
                     }
                     myToggleButton.setText(null);
-                }
-                else {
+                } else {
                     myMaximizeAction.setEnabled(false);
                     myRestoreAction.setEnabled(false);
                     if (myToggleButton.getParent() != null) {
@@ -396,8 +410,7 @@ public class MaterialTitlePaneUI extends JComponent {
                         repaint();
                     }
                 }
-            }
-            else {
+            } else {
                 // Not contained in a Frame
                 myMaximizeAction.setEnabled(false);
                 myRestoreAction.setEnabled(false);
@@ -422,7 +435,7 @@ public class MaterialTitlePaneUI extends JComponent {
         Window window = getWindow();
 
         if (window instanceof Frame) {
-            return (Frame)window;
+            return (Frame) window;
         }
         return null;
     }
@@ -435,10 +448,9 @@ public class MaterialTitlePaneUI extends JComponent {
         Window w = getWindow();
 
         if (w instanceof Frame) {
-            return ((Frame)w).getTitle();
-        }
-        else if (w instanceof Dialog) {
-            return ((Dialog)w).getTitle();
+            return ((Frame) w).getTitle();
+        } else if (w instanceof Dialog) {
+            return ((Dialog) w).getTitle();
         }
         return null;
     }
@@ -464,8 +476,7 @@ public class MaterialTitlePaneUI extends JComponent {
             background = myActiveBackground;
             foreground = myActiveForeground;
             darkShadow = myActiveShadow;
-        }
-        else {
+        } else {
             background = myInactiveBackground;
             foreground = myInactiveForeground;
             darkShadow = myInactiveShadow;
@@ -505,8 +516,7 @@ public class MaterialTitlePaneUI extends JComponent {
                 }
                 titleW = rect.x - xOffset - 4;
                 theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
-            }
-            else {
+            } else {
                 titleW = xOffset - rect.x - rect.width - 4;
                 theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
                 xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
@@ -605,8 +615,7 @@ public class MaterialTitlePaneUI extends JComponent {
             if (myCloseButton != null && myCloseButton.getIcon() != null) {
                 buttonHeight = myCloseButton.getIcon().getIconHeight();
                 buttonWidth = myCloseButton.getIcon().getIconWidth();
-            }
-            else {
+            } else {
                 buttonHeight = IMAGE_HEIGHT;
                 buttonWidth = IMAGE_WIDTH;
             }
@@ -664,15 +673,12 @@ public class MaterialTitlePaneUI extends JComponent {
                 if ("resizable".equals(name)) {
                     getRootPane().repaint();
                 }
-            }
-            else if ("title".equals(name)) {
+            } else if ("title".equals(name)) {
                 repaint();
-            }
-            else if ("componentOrientation".equals(name)) {
+            } else if ("componentOrientation".equals(name)) {
                 revalidate();
                 repaint();
-            }
-            else if ("iconImage".equals(name)) {
+            } else if ("iconImage".equals(name)) {
                 updateSystemIcon();
                 revalidate();
                 repaint();
@@ -706,6 +712,44 @@ public class MaterialTitlePaneUI extends JComponent {
 
         public void windowDeactivated(WindowEvent ev) {
             setActive(false);
+        }
+    }
+
+    protected static class JButtonNoMouseHoverNative extends JButton {
+
+        public JButtonNoMouseHoverNative() {
+        }
+
+        public JButtonNoMouseHoverNative(Icon icon) {
+            super(icon);
+        }
+
+        public JButtonNoMouseHoverNative(String text) {
+            super(text);
+        }
+
+        public JButtonNoMouseHoverNative(Action a) {
+            super(a);
+        }
+
+        public JButtonNoMouseHoverNative(String text, Icon icon) {
+            super(text, icon);
+        }
+
+        @Override
+        protected void init(String text, Icon icon) {
+            super.init(text, icon);
+            setUI(new JButtonNoMouseHoverUI());
+        }
+
+        private static class JButtonNoMouseHoverUI extends MaterialButtonUI {
+
+            @Override
+            public void installUI(JComponent c) {
+                mouseHoverEnabled = false;
+                super.installUI(c);
+                c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
         }
     }
 }

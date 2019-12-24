@@ -10,6 +10,10 @@ import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialMenuBarUI extends BasicMenuBarUI {
 
 	public static ComponentUI createUI (JComponent c) {

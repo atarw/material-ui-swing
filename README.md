@@ -1,4 +1,6 @@
 # Material-UI-Swing
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)](https://search.maven.org/search?q=g:%22io.github.vincenzopalazzo%22%20AND%20a:%22material-ui-swing%22)
+![GitHub All Releases](https://img.shields.io/github/downloads/atarw/material-ui-swing/total?style=for-the-badge)
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
 
 A modern, Material Design UI for Java Swing
@@ -75,10 +77,31 @@ This theming system was implemented by [@vincenzopalazzo](https://github.com/vin
 
 We don't have much time to write detailed documentation, but if you want to get help, post a question on Stack Overflow with the tags `material-ui-swing`, `java`, `material`, `swing`, `look-and-feel`.
 
+ ## Repository
+ 
+ _Maven_
+ 
+ ```
+<dependency>
+  <groupId>io.github.vincenzopalazzo</groupId>
+  <artifactId>material-ui-swing</artifactId>
+  <version>1.1.1_beta</version>
+</dependency>
+ ```
+
+ _Gradle_
+ 
+```
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_beta'
+``` 
+
+Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
+
 ## License
 ![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 
 _**List of projects with Material-UI-Swing theme**_
+- [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
 - [JMars Beta](https://JMars.mars.asu.edu)
 
 Contact us if you use this look and feel so we can add your project to the list 🙂
@@ -87,3 +110,15 @@ Contact us if you use this look and feel so we can add your project to the list 
 [![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [A fork of this project exists](https://github.com/vincenzopalazzo/material-ui-swing) and is maintained by [@vincenzopalazzo](https://github.com/vincenzopalazzo), which implements some Android components not found in the traditional Java Swing library.
+
+# Screenshot
+## MaterialLiteTheme
+![](https://i.ibb.co/mhjgBKJ/Selection-081.png)
+
+## MaterialOceanicTheme
+![](https://i.ibb.co/fdHTGf0/Selection-080.png)
+
+##JMarsDarkTheme
+![Selection_071](https://i.ibb.co/XFxkWKz/Selection-079.png)
+
+Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)

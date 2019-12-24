@@ -9,9 +9,15 @@ import javax.swing.border.Border;
 import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 
+/**
+ * @author https://github.com/vincenzopalazzo
+ * @author https://github.com/atarw
+ */
 public class MaterialBorders {
 
 	public static final BorderUIResource LIGHT_LINE_BORDER = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.GRAY_200, 1));
+	public static final BorderUIResource DARK_LINE_BORDER = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.COSMO_BLACK, 1));
+	public static final BorderUIResource OCEAN_LINE_BORDER = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.DARKLY_STRONG_BLUE, 1));
 	public static final BorderUIResource LIGHT_SHADOW_BORDER = new BorderUIResource(
 			new DropShadowBorder(Color.BLACK, 0, 4, 0.3f, 12,
 					true, true, true, true));
