@@ -118,7 +118,7 @@ Contact us if you use this look and feel so we can add your project to the list 
 ## MaterialOceanicTheme
 ![](https://i.ibb.co/fdHTGf0/Selection-080.png)
 
-##JMarsDarkTheme
+## JMarsDarkTheme
 ![Selection_071](https://i.ibb.co/XFxkWKz/Selection-079.png)
 
 Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)
