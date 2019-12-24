@@ -56,12 +56,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int widthLine;
     protected int heightLine;
     protected int arcLine;
-    protected boolean contentBorderBottom;
-    protected boolean contentBorderTop;
-    protected boolean contentBorderLeaft;
-    protected boolean contentBorderRight;
     protected boolean tabsOverlapBorder;
-    protected Integer positionXSelectedLine = null;
 
     @Override
     public void installUI(JComponent c) {
@@ -86,10 +81,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
-        this.contentBorderBottom = UIManager.getBoolean("TabbedPane[contentBorder].enableBottom");
-        this.contentBorderLeaft = UIManager.getBoolean("TabbedPane[contentBorder].enableLeaf");
-        this.contentBorderRight = UIManager.getBoolean("TabbedPane[contentBorder].enableRight");
-        this.contentBorderTop = UIManager.getBoolean("TabbedPane[contentBorder].enableTop");
         tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
         this.component = tabbedPane;
     }
@@ -162,9 +153,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                     shape = new Polygon(xp, yp, xp.length);
                 } else if (tabPlacement == LEFT) {
                     //xp = new int[]{0, 0, 0, h, h, h, h, 0};
+                    x += 5;
                     //yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
                     shapeRect = new Rectangle(x, y, heightLine, w / (tabPane.getTabCount()));
                 } else {
+                    x -= 5;
                     //super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
                     shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
                 }
@@ -327,10 +320,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected JButton createScrollButton(int direction) {
         return new MaterialArrowButton(direction);
-    }
-
-    protected boolean isContentBorderEnable() {
-        return (contentBorderBottom || contentBorderTop || contentBorderRight || contentBorderLeaft);
     }
 
     protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
