@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@ import java.awt.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
+@SuppressWarnings("all")
 public interface MaterialTheme {
 
     void installTheme();
@@ -192,6 +193,16 @@ public interface MaterialTheme {
     boolean getMouseHoverEnableScrollBar();
 
     boolean getEnableArrowScrollBar();
+
+    //--------------------------------------------------
+    //Proprieties JToggleButton
+    void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton);
+
+    void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton);
+
+    ImageIconUIResource getUnselectedIconToggleButton();
+
+    ImageIconUIResource getSelectedIconToggleButton();
 
     //---------------------------------------------------
     //Proprieties JSlider

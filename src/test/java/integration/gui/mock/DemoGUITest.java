@@ -1,6 +1,30 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
@@ -21,11 +45,10 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialOceanicTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new PersonalToggleButtonTheme()));
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
-
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -35,6 +58,7 @@ public class DemoGUITest extends JFrame {
 
     private GroupLayout layoutPanelOne;
     private GroupLayout layoutPanelTwo;
+    private GroupLayout layoutPanelToggleButton;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
     private JButtonNoMouseHoverNative buttonDefault = new JButtonNoMouseHoverNative("Ok");
@@ -56,6 +80,12 @@ public class DemoGUITest extends JFrame {
     private JMenuItem material = new JMenuItem("Material");
     private JMenuItem materialDark = new JMenuItem("Material Oceanic");
     private JMenuItem jmarsDark = new JMenuItem("Jmars Dark");
+
+    //Panel ToggleButton without icon
+    private JPanel panelToggleButton = new JPanel();
+    private JToggleButton boldButton = new JToggleButton("B");
+    private JToggleButton italicButton = new JToggleButton("I");
+    private JToggleButton underlineButton = new JToggleButton("U");
 
 
     private JMenu arrowMenuOne = new JMenu("Root Menu 1");
@@ -100,12 +130,14 @@ public class DemoGUITest extends JFrame {
 
         initLayoutContentPanelOne();
         initLayoutContentPanelTwo();
+        initLayoutContentPanelThree();
+
 
         this.getRootPane().setDefaultButton(buttonDefault);
 
         tabbedPane.add(panelOne, "Panel One");
         tabbedPane.add(panelTwo, "Panel two");
-        tabbedPane.add(new JPanel(), "Panel 3");
+        tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(new JPanel(), "Panel 4");
         tabbedPane.add(new JPanel(), "Panel 5");
         tabbedPane.add(new JPanel(), "Panel 6");
@@ -115,6 +147,7 @@ public class DemoGUITest extends JFrame {
 
         this.setContentPane(tabbedPane);
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -213,7 +246,7 @@ public class DemoGUITest extends JFrame {
         layoutPanelTwo.setAutoCreateGaps(true);
         layoutPanelTwo.setAutoCreateContainerGaps(true);
 
-        //Init position component with group layaut
+        //Init position component with group layout
         layoutPanelTwo.setHorizontalGroup(
                 layoutPanelTwo.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(table)
@@ -224,6 +257,33 @@ public class DemoGUITest extends JFrame {
                         .addComponent(table, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
+
+    public void initLayoutContentPanelThree() {
+        layoutPanelToggleButton = new GroupLayout(panelToggleButton);
+        panelToggleButton.setLayout(layoutPanelToggleButton);
+
+        layoutPanelToggleButton.setAutoCreateGaps(true);
+        layoutPanelToggleButton.setAutoCreateContainerGaps(true);
+
+        //Init position component with group layout
+        layoutPanelToggleButton.setHorizontalGroup(
+                layoutPanelToggleButton.createSequentialGroup()
+                .addComponent(italicButton)
+                        .addGap(0)
+                .addComponent(boldButton)
+                        .addGap(0)
+                .addComponent(underlineButton)
+                        .addGap(0)
+        );
+
+        layoutPanelToggleButton.setVerticalGroup(
+                layoutPanelToggleButton.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(italicButton)
+                        .addComponent(boldButton)
+                        .addComponent(underlineButton)
+        );
+    }
+
 
     public synchronized void reloadUI() {
         SwingUtilities.updateComponentTreeUI(this);

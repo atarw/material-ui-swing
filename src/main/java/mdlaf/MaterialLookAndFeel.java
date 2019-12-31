@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -456,8 +455,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());
         table.put("ToggleButton.foreground", theme.getTextColor());
         table.put("ToggleButton.disabledText", theme.getDisableTextColor());
-        table.put("ToggleButton.icon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF));
-        table.put("ToggleButton.selectedIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON));
+        table.put("ToggleButton.icon", theme.getUnselectedIconToggleButton());
+        table.put("ToggleButton.selectedIcon", theme.getSelectedIconToggleButton());
+        table.put("ToggleButton.withoutIcon", false);
 
         table.put("ToolBar.font", theme.getFontRegular());
         table.put("ToolBar.background", theme.getBackgroundPrimary());

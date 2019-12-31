@@ -54,6 +54,7 @@ import sun.swing.DefaultLookup;
  * This adapper is created for create a open BasicTabbedPaneUI for Material look and feel
  * @author https://github.com/vincenzopalazzo
  */
+@SuppressWarnings("all")
 public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements SwingConstants {
 
     protected Color selectedColor;

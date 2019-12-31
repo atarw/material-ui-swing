@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2020 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,7 @@ import javax.swing.plaf.InsetsUIResource;
 /**
  * @author https://github.com/vincenzopalazzo
  */
+@SuppressWarnings("all")
 public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ColorUIResource backgroundPrimary;
@@ -74,6 +75,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ColorUIResource buttonColorHighlight;
 
     protected BorderUIResource buttonBorder;
+
+    //---------------------------------------------------
+    //Proprieties JToggleButton
+    protected ImageIconUIResource unselectedIconToggleButton;
+
+    protected ImageIconUIResource selectedIconToggleButton;
 
     //---------------------------------------------------
     //Proprieties JCheckBox
@@ -897,6 +904,17 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     }
 
     //---------------------------------------------------
+    //Proprieties JToggleButton
+
+    public ImageIconUIResource getUnselectedIconToggleButton() {
+        return unselectedIconToggleButton;
+    }
+
+    public ImageIconUIResource getSelectedIconToggleButton() {
+        return selectedIconToggleButton;
+    }
+
+    //---------------------------------------------------
     //Proprieties JXTaskPane
     public ColorUIResource getTitleBackgroundGradientStartTaskPane() {
         return titleBackgroundGradientStartTaskPane;
@@ -1034,6 +1052,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return informationIconOptionPane;
     }
 
+
+
     @Override
     public boolean getEnableIconOptionPane() {
         return false;
@@ -1073,6 +1093,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
 
     //Setter
+    public void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton) {
+        this.unselectedIconToggleButton = unselectedIconToggleButton;
+    }
+
+    public void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton) {
+        this.selectedIconToggleButton = selectedIconToggleButton;
+    }
+
     public void setBackgroundPrimary(ColorUIResource backgroundPrimary) {
         this.backgroundPrimary = backgroundPrimary;
     }
