@@ -1,7 +1,7 @@
-/**
+/*
  * MIT License
  *
- * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package mdlaf.components.colorchooser;
+package integration.gui.mock;
+
+import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
 
 import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicColorChooserUI;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class MaterialColorChooser extends BasicColorChooserUI {
+public class PersonalToggleButtonTheme extends MaterialLiteTheme {
 
-
-    @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
-    public static ComponentUI createUI(JComponent c) {
-        return new MaterialColorChooser();
+    @Override
+    public void installUIDefault(UIDefaults table) {
+        super.installUIDefault(table);
+        table.put("ToggleButton.withoutIcon", true);
     }
 
     @Override
-    public void installUI(JComponent c) {
-        super.installUI(c);
-    }
+    protected void installIcons() {
+        super.installIcons();
 
-    @Override
-    public void uninstallUI(JComponent c) {
-        super.uninstallUI(c);
+        this.unselectedIconToggleButton = null;
+        this.selectedIconToggleButton = null;
     }
 }

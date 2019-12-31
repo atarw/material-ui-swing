@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -61,19 +60,19 @@ public class MaterialUISwingDemo {
                 try {
                     JDialog.setDefaultLookAndFeelDecorated(true);
                     JFrame.setDefaultLookAndFeelDecorated(false);
-                    MaterialLookAndFeel material = new MaterialLookAndFeel(new JMarsDarkTheme());
+                    MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());
                     UIManager.setLookAndFeel(material);
 
                     /* DEMO */
-                    JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar");
+                    JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar ♥");
                     frame.setMinimumSize(new Dimension(600, 400));
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     //Test for fix the issue https://github.com/vincenzopalazzo/material-ui-swing/projects/1#card-21599924
                     //frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
                     JMenuBar bar = new JMenuBar();
-                    JMenu menu1 = new JMenu("Option 1 (Animated)");
-                    JMenu menu2 = new JMenu("Option 2 (Not animated)");
+                    JMenu menu1 = new JMenu("Option 1 ♥");
+                    JMenu menu2 = new JMenu("Option 2 ♥");
                     class ActionTestJFC extends AbstractAction {
 
                         JComponent component;
@@ -222,7 +221,7 @@ public class MaterialUISwingDemo {
                     content.add(new JSlider(JSlider.HORIZONTAL, 0, 5, 2));
                     content.add(new JSpinner(new SpinnerListModel(new String[]{"d", "e", "f"})));
                     content.add(new JTable(new String[][]{{"a", "b", "c"}, {"d", "e", "f"}}, new String[]{"r", "e"}));
-                    content.add(new JTextField("text field"));
+                    content.add(new JTextField("text field U+1F600"));
                     content.add(new JToggleButton("toggle"));
 
                     JToolBar tb = new JToolBar("toolbar");
