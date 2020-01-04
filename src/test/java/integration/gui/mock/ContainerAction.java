@@ -166,6 +166,12 @@ public class ContainerAction {
                     }else{
                         DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new JMarsDarkTheme()));
                     }
+                }else if(e.getSource() == DemoGUITest.getInstance().getStyleToggleButton()){
+                    if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
+                        MaterialLookAndFeel.changeTheme(new PersonalToggleButtonTheme());
+                    }else{
+                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new PersonalToggleButtonTheme()));
+                    }
                 }
                 DemoGUITest.getInstance().reloadUI();
             } catch (Exception ex) {

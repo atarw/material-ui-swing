@@ -39,9 +39,12 @@ import java.awt.*;
  */
 public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
-    protected Boolean withIcon;
-    protected Integer withdWithouIcon;
-    protected Integer heightdWithouIcon;
+    protected Boolean withoutIcon;
+    protected Integer widthWithoutIcon;
+    protected Integer heightWithoutIcon;
+    protected Integer originalWidth;
+    protected Integer originalHeight;
+    protected JToggleButton toggleButton;
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialToggleButtonUI();
@@ -50,20 +53,38 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        JToggleButton toggleButton = (JToggleButton) c;
+        toggleButton = (JToggleButton) c;
         toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
         toggleButton.setBackground(UIManager.getColor("ToggleButton.background"));
         toggleButton.setForeground(UIManager.getColor("ToggleButton.foreground"));
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        toggleButton.setIcon(UIManager.getIcon("ToggleButton.icon"));
-        toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
-        this.withIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
-        if(withIcon){
-            toggleButton.setBorder(BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY));
+        /*
+        If the expression toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null is false the JToggleButton have the
+        personal icon, how inside the JFileChooser. Now the are two cases
+         1. The previous expression is true, so for this class, this event is a normal JToggleButton;
+         with these cases is possible another two cases like:
+         1.1 The variable withoutIcon is false, so the effect like this:
+         1.1 The variable withoutIcon if true, so the effect like this:
+         2. if the expression toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null is false, for this class
+            the JToggleButton has the icon set, an example is JFileChooser.
+            To default, this class will set the variable without an icon to false and toggle button border to UIManager propriety.
+         */
+        if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null){
+            toggleButton.setIcon(UIManager.getIcon("ToggleButton.icon"));
+            toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
+            this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
+            if(withoutIcon){
+                toggleButton.setBorder(BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY));
+                this.originalHeight = toggleButton.getHeight();
+                this.originalWidth = toggleButton.getWidth();
+            }else{
+                toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
+            }
         }else{
             toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
+            this.withoutIcon = Boolean.FALSE;
         }
+
     }
 
     @Override
@@ -82,7 +103,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 
-        if(withIcon != null && withIcon){
+        if(withoutIcon != null && withoutIcon){
             AbstractButton button = (AbstractButton) c;
             if(button.isSelected()){
                 button.setBackground(MaterialColors.COSMO_DARK_GRAY);
@@ -125,15 +146,14 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     }
 
 
-
-    @Override
+    @Override //TODO this method contains an bug
     public Dimension getPreferredSize(JComponent c) {
-        if(withIcon != null && withIcon){
-            if(withdWithouIcon == null && heightdWithouIcon == null){
-                withdWithouIcon = c.getWidth() + 25;
-                heightdWithouIcon = c.getHeight() + 25;
+        if(this.withoutIcon != null && this.withoutIcon){
+            if(this.widthWithoutIcon == null && this.heightWithoutIcon == null){
+                this.widthWithoutIcon = c.getWidth() + 25;
+                this.heightWithoutIcon = c.getHeight() + 25;
             }
-            return new Dimension(withdWithouIcon, heightdWithouIcon);
+            return new Dimension(this.widthWithoutIcon, this.heightWithoutIcon);
         }
         return super.getPreferredSize(c);
     }

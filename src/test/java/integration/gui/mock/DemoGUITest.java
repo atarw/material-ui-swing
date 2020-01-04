@@ -24,16 +24,15 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.Map;
 
 /**
@@ -80,12 +79,19 @@ public class DemoGUITest extends JFrame {
     private JMenuItem material = new JMenuItem("Material");
     private JMenuItem materialDark = new JMenuItem("Material Oceanic");
     private JMenuItem jmarsDark = new JMenuItem("Jmars Dark");
+    private JMenuItem styleToggleButton = new JMenuItem("ThemeToggleButton");
 
     //Panel ToggleButton without icon
     private JPanel panelToggleButton = new JPanel();
     private JToggleButton boldButton = new JToggleButton("B");
     private JToggleButton italicButton = new JToggleButton("I");
     private JToggleButton underlineButton = new JToggleButton("U");
+
+    //Personal Button
+    private JPanel personalButtonUIPanel = new JPanel();
+    private GroupLayout layoutPanelPersonalButtonUI;
+    private JButton personalButton = new JButton("Disable");
+    private JButton enableButton = new JButton("Enable");
 
 
     private JMenu arrowMenuOne = new JMenu("Root Menu 1");
@@ -128,9 +134,45 @@ public class DemoGUITest extends JFrame {
 
         table.setModel(new TableModelSecondPanel());
 
+        enableButton.setEnabled(false);
+        enableButton.setAction(new AbstractAction("Enable") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton) e.getSource();
+                if(button.isEnabled()){
+                    personalButton.setEnabled(true);
+                    button.setEnabled(false);
+                }
+            }
+        });
+
+        personalButton.setUI(new PersonalButtonUI());
+        personalButton.setAction(new AbstractAction("Disable") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton) e.getSource();
+
+                if(button.isEnabled()){
+                    BasicButtonUI buttonUI = (BasicButtonUI) button.getUI();
+                    if(buttonUI instanceof PersonalButtonUI){
+                        Color newColor = JColorChooser.showDialog(personalButtonUIPanel, "New Color", Color.WHITE);
+                        button.setEnabled(false);
+                        PersonalButtonUI personalButtonUI = (PersonalButtonUI) button.getUI();
+                        personalButtonUI.setColorDisableBackground(newColor);
+                        enableButton.setEnabled(true);
+                    }else{
+                        JOptionPane.showMessageDialog(personalButtonUIPanel, "The ButtonUI isn't a PersonalButtonUI instance");
+                    }
+
+                }
+            }
+        });
+
+
         initLayoutContentPanelOne();
         initLayoutContentPanelTwo();
         initLayoutContentPanelThree();
+        initLayoutContentPanelFour();
 
 
         this.getRootPane().setDefaultButton(buttonDefault);
@@ -138,13 +180,12 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(panelOne, "Panel One");
         tabbedPane.add(panelTwo, "Panel two");
         tabbedPane.add(panelToggleButton, "ToggleButtons");
-        tabbedPane.add(new JPanel(), "Panel 4");
+        tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(new JPanel(), "Panel 5");
         tabbedPane.add(new JPanel(), "Panel 6");
         tabbedPane.add(new JPanel(), "Panel 7");
         tabbedPane.add(new JPanel(), "Panel 8");
         tabbedPane.add(new JPanel(), "Panel 9");
-
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -164,12 +205,14 @@ public class DemoGUITest extends JFrame {
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
         materialDark.setAction(containerAction.getActionChangeTheme("Material Oceanic"));
         jmarsDark.setAction(containerAction.getActionChangeTheme("JMars Dark"));
+        styleToggleButton.setAction(containerAction.getActionChangeTheme("ThemeToggleButton"));
 
         themesMenu.add(material);
         themesMenu.add(metal);
         themesMenu.add(materialDark);
         themesMenu.add(jmarsDark);
         themesMenu.add(gtk);
+        themesMenu.add(styleToggleButton);
 
         addSubMenus(arrowMenuOne, 5);
         addSubMenus(arrowMenuTwo, 3);
@@ -284,6 +327,31 @@ public class DemoGUITest extends JFrame {
         );
     }
 
+    public void initLayoutContentPanelFour() {
+        layoutPanelPersonalButtonUI = new GroupLayout(personalButtonUIPanel);
+        personalButtonUIPanel.setLayout(layoutPanelPersonalButtonUI);
+
+        layoutPanelPersonalButtonUI.setAutoCreateGaps(true);
+        layoutPanelPersonalButtonUI.setAutoCreateContainerGaps(true);
+
+        //Init position component with group layout
+        layoutPanelPersonalButtonUI.setHorizontalGroup(
+                layoutPanelPersonalButtonUI.createSequentialGroup()
+                        .addGap(200)
+                        .addComponent(personalButton)
+                        .addGap(50)
+                        .addComponent(enableButton)
+
+        );
+
+        layoutPanelPersonalButtonUI.setVerticalGroup(
+                layoutPanelPersonalButtonUI.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(personalButton)
+                        .addComponent(enableButton)
+
+        );
+    }
+
 
     public synchronized void reloadUI() {
         SwingUtilities.updateComponentTreeUI(this);
@@ -328,6 +396,9 @@ public class DemoGUITest extends JFrame {
         return metal;
     }
 
+    public JMenuItem getStyleToggleButton() {
+        return styleToggleButton;
+    }
 
     public JMenuItem getJmarsDark() {
         return jmarsDark;

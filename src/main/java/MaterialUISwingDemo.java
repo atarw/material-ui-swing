@@ -27,9 +27,7 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialImageFactory;
-import mdlaf.utils.MaterialManagerListener;
+import mdlaf.utils.*;
 import org.jdesktop.swingx.JXTaskPane;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -71,7 +69,12 @@ public class MaterialUISwingDemo {
                     //frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
                     JMenuBar bar = new JMenuBar();
-                    JMenu menu1 = new JMenu("Option 1 ♥");
+                    int[] surrogates = {0xd83d, 0xde00};
+                    String alienEmojiString = new String(surrogates, 0, surrogates.length);
+                    System.out.println("\u263a");
+                    JMenu menu1 = new JMenu("\u263a");
+                    //menu1.setFont(new FontUIResource(Font.DIALOG, Font.BOLD, 12));
+                    menu1.setFont(new MaterialWrapperFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD).deriveFont(25f)));
                     JMenu menu2 = new JMenu("Option 2 ♥");
                     class ActionTestJFC extends AbstractAction {
 
@@ -574,7 +577,7 @@ public class MaterialUISwingDemo {
                     panel4.add(textFieldBugListener);
 
                     tp.addTab("Panel 4", panel4);
-
+                    tp.setTabPlacement(JTabbedPane.BOTTOM);
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);

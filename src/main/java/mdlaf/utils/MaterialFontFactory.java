@@ -44,14 +44,15 @@ public class MaterialFontFactory {
     private static final String[] SISTEM_SUPPORTED = {"linux", "windows", "mac"};
     private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
     /**
-     * Tipe Font supported
+     * Type Font supported
      * @author https://github.com/vincenzopalazzo
-     * REGULAR, ITALIC, BOLD, MEDIUM
+     * REGULAR, ITALIC, BOLD, MEDIUM, EMOJI
      */
     public static final String REGULAR = "REGULAR";
     public static final String BOLD = "BOLD";
     public static final String ITALIC = "ITALIC";
     public static final String MEDIUM = "MEDIUM";
+    public static final String EMOJI = "EMOJI";
 
     private static MaterialFontFactory SINGLETON;
 
@@ -104,7 +105,7 @@ public class MaterialFontFactory {
         if(cacheFont.containsKey(typeFont)){
             return new FontUIResource(cacheFont.get(typeFont));
         }
-        String propieties =properties.getProperty(typeFont);
+        String propieties = properties.getProperty(typeFont);
         Font font = loadFont(propieties);
         cacheFont.put(typeFont, font);
         return new FontUIResource(cacheFont.get(typeFont));
@@ -124,7 +125,6 @@ public class MaterialFontFactory {
 
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(fontPath)).deriveFont(fontSettings);
-            font.deriveFont(12f);
             return font;
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();

@@ -141,6 +141,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 yl += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
                 g.setColor(selectedAreaContentBackground);
                 g.drawLine(xl, yl, wl, yl);
+            } else if(tabPlacement == BOTTOM){
+                //TODO newest
+                yl -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+                g.setColor(selectedAreaContentBackground);
+                g.drawLine(xl, yl, wl, yl);
             } else {
                 int xp[];
                 int yp[];
@@ -208,7 +213,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
 
     }
-
 
     @Override
     protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
@@ -290,12 +294,12 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             } else {
                 g.setColor(selectedAreaContentBackground);
             }
-            //g.drawLine(x, y, w, y);
+            g.drawLine(x, y, w, y);
         }
         //TODO i'm work here
         if (tabPlacement == TOP) {
             paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        }/* else if (tabPlacement == BOTTOM) {
+        } /*else if (tabPlacement == BOTTOM) {
             paintContentBorderBottomEdge(g, tabPlacement, selectedIndex, x, y, w, h);
         } else if (tabPlacement == LEFT) {
             paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
