@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,6 +57,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int heightLine;
     protected int arcLine;
     protected boolean tabsOverlapBorder;
+    protected boolean lineStyle;
 
     @Override
     public void installUI(JComponent c) {
@@ -81,7 +82,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
-        tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
+        this.lineStyle = UIManager.getBoolean("");
+        this.tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
         this.component = tabbedPane;
     }
 
@@ -106,7 +108,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     //
     // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
-    //
+    // This method paint the selected line
     @Override
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2D = (Graphics2D) g;
@@ -127,7 +129,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             tabPane.setForegroundAt(tabIndex, foreground);
         }
 
-        if (tabPane.getTabLayoutPolicy() != JTabbedPane.SCROLL_TAB_LAYOUT) {
+        if (true) {
+        //if (tabPane.getTabLayoutPolicy() != JTabbedPane.SCROLL_TAB_LAYOUT) {
             int width = tabPane.getWidth();
             int height = tabPane.getHeight();
             Insets insets = tabPane.getInsets();
@@ -135,17 +138,20 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
             int xl = insets.left;
             int yl = insets.top;
-            int wl = width - insets.right - insets.left;
+            int wl = width - tabAreaInsets.right - tabAreaInsets.left;
             int hl = height - insets.top - insets.bottom;
             if (tabPlacement == TOP) {
                 yl += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
                 g.setColor(selectedAreaContentBackground);
                 g.drawLine(xl, yl, wl, yl);
-            } else if(tabPlacement == BOTTOM){
+            } else if (tabPlacement == BOTTOM) {
                 //TODO newest
-                yl -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-                g.setColor(selectedAreaContentBackground);
-                g.drawLine(xl, yl, wl, yl);
+                hl -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
+                if (tabsOverlapBorder) {
+                    hl += tabAreaInsets.top;
+                }
+                //g.setColor(selectedAreaContentBackground);
+                //g.drawLine(xl, hl, wl, hl);
             } else {
                 int xp[];
                 int yp[];
@@ -244,6 +250,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override //TODO debuggin this method, look the issue inside JMARS,
     protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
+        //super.paintContentBorder(g, tabPlacement, selectedIndex);
         //TODO I'm working here.
         int width = tabPane.getWidth();
         int height = tabPane.getHeight();
@@ -258,7 +265,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         switch (tabPlacement) {
             case LEFT:
                 x += calculateTabAreaWidth(tabPlacement, runCount, maxTabWidth);
-               if (tabsOverlapBorder) {
+                if (tabsOverlapBorder) {
                     x -= tabAreaInsets.right;
                 }
                 w -= (x - insets.left);
@@ -284,28 +291,51 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 h -= (y - insets.top);
         }
 
-        if (tabPane.getTabCount() > 0 && tabPane.isOpaque()) {
-            // Fill region behind content area
-            Color color = UIManager.getColor("TabbedPane.contentAreaColor");
-            if (color != null) {
-                g.setColor(color);
-            } else if (selectedAreaContentBackground == null || selectedIndex == -1) {
-                g.setColor(tabPane.getBackground());
-            } else {
-                g.setColor(selectedAreaContentBackground);
-            }
-            g.drawLine(x, y, w, y);
-        }
         //TODO i'm work here
         if (tabPlacement == TOP) {
             paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        } /*else if (tabPlacement == BOTTOM) {
+        } else if (tabPlacement == BOTTOM) {
             paintContentBorderBottomEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        } else if (tabPlacement == LEFT) {
+        }/* else if (tabPlacement == LEFT) {
             paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
         } else if (tabPlacement == RIGHT) {
             paintContentBorderRightEdge(g, tabPlacement, selectedIndex, x, y, w, h);
         }*/
+    }
+
+    //TODO This include the solution of the bug in the draw selected line
+    @Override
+    protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
+        Rectangle selRect = selectedIndex < 0? null :
+                getTabBounds(selectedIndex, calcRect);
+
+        g.setColor(shadow);
+
+        // Draw unbroken line if tabs are not on BOTTOM, OR
+        // selected tab is not in run adjacent to content, OR
+        // selected tab is not visible (SCROLL_TAB_LAYOUT)
+        //
+        if (tabPlacement != BOTTOM || selectedIndex < 0 ||
+                (selRect.y - 1 > h) ||
+                (selRect.x < x || selRect.x > x + w)) {
+            g.drawLine(x+1, y+h-2, x+w-2, y+h-2);
+            g.setColor(darkShadow);
+            g.drawLine(x, y+h-1, x+w-1, y+h-1);
+        } else {
+            // Break line to show visual connection to selected tab
+            g.drawLine(x+1, y+h-2, selRect.x - 1, y+h-2);
+            //g.setColor(darkShadow);
+            //g.drawLine(x, y+h-1, selRect.x - 1, y+h-1);
+            g.setColor(selectedAreaContentBackground);
+            //g.drawLine(selRect.x - 1, y+h-2, selRect.x + selRect.width, y+h-2);
+            g.drawRect(selRect.x - 1, y+h-2, selRect.width, heightLine);
+            if (selRect.x + selRect.width < x + w - 2) {
+                g.setColor(shadow);
+                g.drawLine(selRect.x + selRect.width, y+h-2, x+w-2, y+h-2);
+                //g.setColor(darkShadow);
+                //g.drawLine(selRect.x + selRect.width, y+h-1, x+w-1, y+h-1);
+            }
+        }
     }
 
     @Override

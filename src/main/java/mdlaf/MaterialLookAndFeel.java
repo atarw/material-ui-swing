@@ -400,8 +400,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.contentAreaColor", theme.getButtonTextColor());
         table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
         table.put("TabbedPane.border", theme.getBorderPanel());
-        table.put("TabbedPane.shadow", theme.getBackgroundPrimary());
-        table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary());
+        table.put("TabbedPane.shadow", theme.getDisableTextColor());
+        table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary()); //TODO add another propriety for change this color in the MaterialTheming
         table.put("TabbedPane.highlight", theme.getDisableTextColor());
         table.put("TabbedPane.selected", theme.getTextColor());
         table.put("TabbedPane.light", theme.getBackgroundPrimary());
@@ -417,6 +417,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
