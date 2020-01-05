@@ -417,6 +417,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+        table.put("TabbedPane[focus].margin", 5);
 
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());

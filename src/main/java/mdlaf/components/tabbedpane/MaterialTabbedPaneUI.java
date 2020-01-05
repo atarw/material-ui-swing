@@ -56,8 +56,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int widthLine;
     protected int heightLine;
     protected int arcLine;
+    protected int margin;
     protected boolean tabsOverlapBorder;
-    protected boolean lineStyle;
 
     @Override
     public void installUI(JComponent c) {
@@ -82,7 +82,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
-        this.lineStyle = UIManager.getBoolean("");
+        this.margin = UIManager.getInt("TabbedPane[focus].margin");
         this.tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
         this.component = tabbedPane;
     }
@@ -128,96 +128,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             }
             tabPane.setForegroundAt(tabIndex, foreground);
         }
-
-        if (true) {
-        //if (tabPane.getTabLayoutPolicy() != JTabbedPane.SCROLL_TAB_LAYOUT) {
-            int width = tabPane.getWidth();
-            int height = tabPane.getHeight();
-            Insets insets = tabPane.getInsets();
-            Insets tabAreaInsets = getTabAreaInsets(tabPlacement);
-
-            int xl = insets.left;
-            int yl = insets.top;
-            int wl = width - tabAreaInsets.right - tabAreaInsets.left;
-            int hl = height - insets.top - insets.bottom;
-            if (tabPlacement == TOP) {
-                yl += calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-                g.setColor(selectedAreaContentBackground);
-                g.drawLine(xl, yl, wl, yl);
-            } else if (tabPlacement == BOTTOM) {
-                //TODO newest
-                hl -= calculateTabAreaHeight(tabPlacement, runCount, maxTabHeight);
-                if (tabsOverlapBorder) {
-                    hl += tabAreaInsets.top;
-                }
-                //g.setColor(selectedAreaContentBackground);
-                //g.drawLine(xl, hl, wl, hl);
-            } else {
-                int xp[];
-                int yp[];
-                Polygon shape = null;
-                Rectangle shapeRect = null;
-                if (tabPlacement == BOTTOM) {
-                    y += 20;
-                    xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
-                    yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
-                    shape = new Polygon(xp, yp, xp.length);
-                } else if (tabPlacement == LEFT) {
-                    //xp = new int[]{0, 0, 0, h, h, h, h, 0};
-                    x += 5;
-                    //yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
-                    shapeRect = new Rectangle(x, y, heightLine, w / (tabPane.getTabCount()));
-                } else {
-                    x -= 5;
-                    //super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
-                    shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
-                }
-
-                if (shape != null) {
-                    g2D.fill(shape);
-                } else if (shapeRect != null) {
-                    g2D.fill(shapeRect);
-                }
-            }
-        } else {
-
-           /* Rectangle rectangle = rects[tabIndex];
-
-            x = rectangle.x;
-            y = rectangle.y;
-            w = rectangle.width;
-            h = rectangle.height;*/
-            //System.out.println("****Scroll View: x: " + x + " y: " + y + " w: " + w + " h: " + h);
-
-            int xp[];
-            int yp[];
-            Polygon shape = null;
-            Rectangle shapeRect = null;
-            if (tabPlacement == TOP) {
-                xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
-                yp = new int[]{(y + positionYLine + heightLine), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + heightLine, y + positionYLine + heightLine};
-                shape = new Polygon(xp, yp, xp.length);
-            } else if (tabPlacement == BOTTOM) {
-                y += 20;
-                xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
-                yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
-                shape = new Polygon(xp, yp, xp.length);
-            } else if (tabPlacement == LEFT) {
-                //xp = new int[]{0, 0, 0, h, h, h, h, 0};
-                //yp = new int[]{(y + heightLine), y, y, y, y, y, y + heightLine, y + heightLine};
-                shapeRect = new Rectangle(x, y, heightLine, w / (tabPane.getTabCount()));
-            } else {
-                //super.paintTabBackground(g, tabPlacement, tabIndex, x, y, w, h, isSelected);
-                shapeRect = new Rectangle(x + w - heightLine, y + (heightLine), heightLine, w / (tabPane.getTabCount()));
-            }
-
-            if (shape != null) {
-                g2D.fill(shape);
-            } else if (shapeRect != null) {
-                g2D.fill(shapeRect);
-            }
-        }
-
     }
 
     @Override
@@ -251,7 +161,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override //TODO debuggin this method, look the issue inside JMARS,
     protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
         //super.paintContentBorder(g, tabPlacement, selectedIndex);
-        //TODO I'm working here.
         int width = tabPane.getWidth();
         int height = tabPane.getHeight();
         Insets insets = tabPane.getInsets();
@@ -291,25 +200,23 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 h -= (y - insets.top);
         }
 
-        //TODO i'm work here
         if (tabPlacement == TOP) {
-            paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+            this.paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
         } else if (tabPlacement == BOTTOM) {
-            paintContentBorderBottomEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        }/* else if (tabPlacement == LEFT) {
-            paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        } else if (tabPlacement == RIGHT) {
-            paintContentBorderRightEdge(g, tabPlacement, selectedIndex, x, y, w, h);
-        }*/
+            this.paintContentBorderBottomEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+        } else if (tabPlacement == LEFT) {
+            this.paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+        }else if (tabPlacement == RIGHT) {
+            this.paintContentBorderRightEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+        }
     }
 
-    //TODO This include the solution of the bug in the draw selected line
     @Override
     protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
         Rectangle selRect = selectedIndex < 0? null :
                 getTabBounds(selectedIndex, calcRect);
 
-        g.setColor(shadow);
+        g.setColor(lightHighlight);
 
         // Draw unbroken line if tabs are not on BOTTOM, OR
         // selected tab is not in run adjacent to content, OR
@@ -335,6 +242,101 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 //g.setColor(darkShadow);
                 //g.drawLine(selRect.x + selRect.width, y+h-1, x+w-1, y+h-1);
             }
+        }
+    }
+
+    @Override
+    protected void paintContentBorderLeftEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
+        //super.paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+
+        Rectangle selRect = selectedIndex < 0? null : getTabBounds(selectedIndex, calcRect);
+
+       // g.setColor(lightHighlight);
+
+        // Draw unbroken line if tabs are not on LEFT, OR
+        // selected tab is not in run adjacent to content, OR
+        // selected tab is not visible (SCROLL_TAB_LAYOUT)
+        //
+        if (tabPlacement != LEFT || selectedIndex < 0 ||
+                (selRect.x + selRect.width + 1 < x) ||
+                (selRect.y < y || selRect.y > y + h)) {
+            g.drawLine(x, y, x, y+h-2);
+        } else {
+            // Break line to show visual connection to selected tab
+           /* g.drawLine(x, y, x, selRect.y - 1);
+            if (selRect.y + selRect.height < y + h - 2) {
+                g.drawLine(x, selRect.y + selRect.height,
+                        x, y+h-2);
+            }*/
+            g.setColor(selectedAreaContentBackground);
+            g.drawRect(selRect.x + margin, selRect.y, heightLine, selRect.height);
+        }
+    }
+
+    @Override
+    protected void paintContentBorderRightEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
+        //super.paintContentBorderRightEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+        Rectangle selRect = selectedIndex < 0? null : getTabBounds(selectedIndex, calcRect);
+
+        //g.setColor(selectedAreaContentBackground);
+
+        // Draw unbroken line if tabs are not on RIGHT, OR
+        // selected tab is not in run adjacent to content, OR
+        // selected tab is not visible (SCROLL_TAB_LAYOUT)
+        //
+        if (tabPlacement != RIGHT || selectedIndex < 0 ||
+                (selRect.x - 1 > w) ||
+                (selRect.y < y || selRect.y > y + h)) {
+            g.drawLine(x+w-2, y+1, x+w-2, y+h-3);
+            g.setColor(darkShadow);
+            g.drawLine(x+w-1, y, x+w-1, y+h-1);
+        } else {
+            // Break line to show visual connection to selected tab
+           // g.drawLine(x+w-2, y+1, x+w-2, selRect.y - 1);
+           /* g.setColor(darkShadow);
+            g.drawLine(x+w-1, y, x+w-1, selRect.y - 1);
+
+            if (selRect.y + selRect.height < y + h - 2) {
+                g.setColor(shadow);
+                g.drawLine(x+w-2, selRect.y + selRect.height,
+                        x+w-2, y+h-2);
+                g.setColor(darkShadow);
+                g.drawLine(x+w-1, selRect.y + selRect.height,
+                        x+w-1, y+h-2);
+            }*/
+           g.setColor(selectedAreaContentBackground);
+           g.drawRect(selRect.x + selRect.width - margin, selRect.y, heightLine, selRect.height);
+        }
+    }
+
+    @Override
+    protected void paintContentBorderTopEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
+        //super.paintContentBorderTopEdge(g, tabPlacement, selectedIndex, x, y, w, h);
+        Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
+
+        g.setColor(lightHighlight);
+
+        // Draw unbroken line if tabs are not on TOP, OR
+        // selected tab is not in run adjacent to content, OR
+        // selected tab is not visible (SCROLL_TAB_LAYOUT)
+        //
+        if (tabPlacement != TOP || selectedIndex < 0 ||
+                (selRect.y + selRect.height + 1 < y) ||
+                (selRect.x < x || selRect.x > x + w)) {
+            g.drawLine(x, y, x+w-2, y);
+        } else {
+            // Break line to show visual connection to selected tab
+            g.drawLine(x, y, selRect.x - 1, y);
+            if (selRect.x + selRect.width < x + w - 2) {
+                g.drawLine(selRect.x + selRect.width, y,x+w-2, y);
+            } /*else {
+                //g.setColor(shadow);
+                //g.drawLine(x+w-2, y, x+w-2, y);
+                //g.setColor(selectedAreaContentBackground);
+                //g.drawRect(selRect.x - 1, y+h-2, selRect.width, heightLine);
+            }*/
+            g.setColor(selectedAreaContentBackground);
+            g.drawRect(selRect.x - 1, y - 1, selRect.width, heightLine);
         }
     }
 

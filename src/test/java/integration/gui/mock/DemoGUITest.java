@@ -105,7 +105,7 @@ public class DemoGUITest extends JFrame {
     public void initComponent() {
 
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
+        tabbedPane.setTabPlacement(JTabbedPane.RIGHT);
 
         for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {
             Object key = entry.getKey();
