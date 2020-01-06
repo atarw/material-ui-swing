@@ -74,7 +74,7 @@ public class MaterialUISwingDemo {
                     System.out.println("\u263a");
                     JMenu menu1 = new JMenu("\u263a");
                     //menu1.setFont(new FontUIResource(Font.DIALOG, Font.BOLD, 12));
-                    menu1.setFont(new MaterialWrapperFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD).deriveFont(25f)));
+                    //menu1.setFont(new MaterialWrapperFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD).deriveFont(25f)));
                     JMenu menu2 = new JMenu("Option 2 ♥");
                     class ActionTestJFC extends AbstractAction {
 
