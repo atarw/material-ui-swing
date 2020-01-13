@@ -16,16 +16,16 @@ dependencies {
     compile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
 
     //Slf4j configuration
-    testImplementation 'ch.qos.logback:logback-classic:1.2.3'
-    testImplementation 'ch.qos.logback:logback-core:1.2.3'
-    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    testCompile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
 
     //assertj
-    testImplementation group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
-    testImplementation group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+    testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
+    //testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
 
 }
 
@@ -44,7 +44,7 @@ jar {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
+/*
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
     from javadoc
@@ -55,6 +55,7 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
+
 artifacts {
     archives javadocJar, sourcesJar
 }
@@ -62,7 +63,7 @@ artifacts {
 signing {
     sign configurations.archives
 }
-/*
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -152,7 +153,7 @@ task createPom {
             artifactId ARCHTFAT_ID
             version VERSION
 
-            inceptionYear '2019'
+            inceptionYear '2020'
             licenses {
                 license {
                     name 'MIT'

@@ -725,7 +725,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLineHeightTabbedPane() {
-        return 1;
+        return 3;
     }
 
     @Override

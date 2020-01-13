@@ -74,9 +74,9 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
             if(withoutIcon){
-                toggleButton.setBorder(BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY));
-                this.originalHeight = toggleButton.getHeight();
-                this.originalWidth = toggleButton.getWidth();
+                toggleButton.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY),
+                        BorderFactory.createLineBorder(toggleButton.getBackground(), 50)));
             }else{
                 toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
             }
@@ -84,6 +84,8 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
             this.withoutIcon = Boolean.FALSE;
         }
+
+
 
     }
 
@@ -107,15 +109,19 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             AbstractButton button = (AbstractButton) c;
             if(button.isSelected()){
                 button.setBackground(MaterialColors.COSMO_DARK_GRAY);
-                button.setBorder(BorderFactory.createLineBorder(MaterialColors.DARKLY_GRAY));
+                button.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(MaterialColors.DARKLY_GRAY),
+                        BorderFactory.createLineBorder(toggleButton.getBackground(), 8))); //TODO set thickness from UIManager
             }else{
                 button.setBackground(MaterialColors.COSMO_LIGTH_GRAY);
-                button.setBorder(BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY));
+                button.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY),
+                        BorderFactory.createLineBorder(toggleButton.getBackground(), 8)));
             }
         }
     }
 
-    @Override
+    @Override //TODO implement this effect
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         //do nothing
     }
@@ -143,18 +149,5 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
                     textRect.x - 1, textRect.y + fm.getAscent() - 1);
         }
-    }
-
-
-    @Override //TODO this method contains an bug
-    public Dimension getPreferredSize(JComponent c) {
-        if(this.withoutIcon != null && this.withoutIcon){
-            if(this.widthWithoutIcon == null && this.heightWithoutIcon == null){
-                this.widthWithoutIcon = c.getWidth() + 25;
-                this.heightWithoutIcon = c.getHeight() + 25;
-            }
-            return new Dimension(this.widthWithoutIcon, this.heightWithoutIcon);
-        }
-        return super.getPreferredSize(c);
     }
 }

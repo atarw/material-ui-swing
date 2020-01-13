@@ -235,9 +235,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             //g.drawLine(x, y+h-1, selRect.x - 1, y+h-1);
             g.setColor(selectedAreaContentBackground);
             //g.drawLine(selRect.x - 1, y+h-2, selRect.x + selRect.width, y+h-2);
-            g.drawRect(selRect.x - 1, y+h-2, selRect.width, heightLine);
+            g.fillRect(selRect.x, y+h-2, selRect.width, heightLine);
             if (selRect.x + selRect.width < x + w - 2) {
-                g.setColor(shadow);
+                g.setColor(lightHighlight);
                 g.drawLine(selRect.x + selRect.width, y+h-2, x+w-2, y+h-2);
                 //g.setColor(darkShadow);
                 //g.drawLine(selRect.x + selRect.width, y+h-1, x+w-1, y+h-1);
@@ -269,7 +269,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                         x, y+h-2);
             }*/
             g.setColor(selectedAreaContentBackground);
-            g.drawRect(selRect.x + margin, selRect.y, heightLine, selRect.height);
+            g.fillRect(selRect.x + margin , selRect.y, heightLine, selRect.height);
         }
     }
 
@@ -305,7 +305,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                         x+w-1, y+h-2);
             }*/
            g.setColor(selectedAreaContentBackground);
-           g.drawRect(selRect.x + selRect.width - margin, selRect.y, heightLine, selRect.height);
+           g.fillRect((selRect.x + selRect.width - margin) - heightLine, selRect.y, heightLine, selRect.height);
         }
     }
 
@@ -336,8 +336,13 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 //g.drawRect(selRect.x - 1, y+h-2, selRect.width, heightLine);
             }*/
             g.setColor(selectedAreaContentBackground);
-            g.drawRect(selRect.x - 1, y - 1, selRect.width, heightLine);
+            g.fillRect(selRect.x, y - heightLine + 1, selRect.width, heightLine);
         }
+    }
+
+    @Override
+    protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
+        super.paintTabArea(g, tabPlacement, selectedIndex);
     }
 
     @Override

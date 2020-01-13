@@ -131,12 +131,12 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         if (hasFocus && (activeBackground != null) && (activeForeground != null)) {
             logicForChangeColorOnFocus(c, activeBackground, activeForeground);
             //TODO create a new changePropriety
-            paintLine(c.getGraphics());
+            paintLine(g);
         }
 
         if (!hasFocus && (inactiveBackground != null) && (inactiveForeground != null)) {
             logicForChangeColorOnFocus(c, inactiveBackground, inactiveForeground);
-            paintLine(c.getGraphics());
+            paintLine(g);
         }
     }
 
