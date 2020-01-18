@@ -435,6 +435,17 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderProgressBar();
 
+    //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    public ColorUIResource getColorDividierSplitPane();
+
+    public ColorUIResource getColorDividierFocusSplitPane();
+
+    public int getSizeDividierSplitPane();
+
+    public BorderUIResource getDividierBorderSplitPane();
+
     //All type of font supported to the theme
     FontUIResource getFontBold();
 
@@ -693,5 +704,13 @@ public interface MaterialTheme {
     public void setFontRegular(FontUIResource fontRegular);
 
     public void setFontMedium(FontUIResource fontMedium);
+
+    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane);
+
+    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane);
+
+    public void setSizeDividierSplitPane(int sizeDividierSplitPane);
+
+    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane);
 
 }

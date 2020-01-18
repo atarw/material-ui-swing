@@ -207,6 +207,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
         this.withoutIconBackgroundToggleButton = backgroundPrimary;
         this.withoutIconForegroundToggleButton = textColor;
+
+        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+        this.colorDividierFocusSplitPane = MaterialColors.LIME_A400;
     }
 
     @Override

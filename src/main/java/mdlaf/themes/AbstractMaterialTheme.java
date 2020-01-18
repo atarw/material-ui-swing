@@ -314,6 +314,17 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ImageIconUIResource informationIconOptionPane;
 
     //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    protected ColorUIResource colorDividierSplitPane;
+
+    protected ColorUIResource colorDividierFocusSplitPane;
+
+    protected int sizeDividierSplitPane = 5;
+
+    protected BorderUIResource dividierBorderSplitPane;
+
+    //---------------------------------------------------
     //Proprieties JFileChooser
     protected ImageIconUIResource iconComputerFileChooser;
 
@@ -407,6 +418,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 10, 5, 10),
                 BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
+
+        dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
     }
 
     //getter
@@ -1124,6 +1137,25 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return borderProgressBar;
     }
 
+    //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    public ColorUIResource getColorDividierSplitPane() {
+        return colorDividierSplitPane;
+    }
+
+    public ColorUIResource getColorDividierFocusSplitPane() {
+        return colorDividierFocusSplitPane;
+    }
+
+    public int getSizeDividierSplitPane() {
+        return sizeDividierSplitPane;
+    }
+
+    public BorderUIResource getDividierBorderSplitPane() {
+        return dividierBorderSplitPane;
+    }
+
     //get fonts
     public FontUIResource getFontBold() {
         return fontBold;
@@ -1144,6 +1176,22 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
 
     //Setter
+    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane) {
+        this.colorDividierSplitPane = colorDividierSplitPane;
+    }
+
+    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane) {
+        this.colorDividierFocusSplitPane = colorDividierFocusSplitPane;
+    }
+
+    public void setSizeDividierSplitPane(int sizeDividierSplitPane) {
+        this.sizeDividierSplitPane = sizeDividierSplitPane;
+    }
+
+    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane) {
+        this.dividierBorderSplitPane = dividierBorderSplitPane;
+    }
+
     public void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton) {
         this.unselectedIconToggleButton = unselectedIconToggleButton;
     }

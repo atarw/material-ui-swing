@@ -184,7 +184,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectionBackgroundTextField = new ColorUIResource(249, 192, 98);
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
-        this.activeColorLineTextField = new ColorUIResource(249, 192, 98);;
+        this.activeColorLineTextField = new ColorUIResource(249, 192, 98);
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
@@ -194,7 +194,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.borderColorTaskPane = backgroundTaskPane;
         this.contentBackgroundTaskPane = backgroundPrimary;
 
-        this.selectionBackgroundList = new ColorUIResource(249, 192, 9);
+        this.selectionBackgroundList = new ColorUIResource(249, 192, 98);
         this.selectionForegroundList = MaterialColors.BLACK;
 
         this.backgroundProgressBar = new ColorUIResource(81, 86, 101);
@@ -205,6 +205,9 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
         this.withoutIconBackgroundToggleButton = backgroundPrimary;
         this.withoutIconForegroundToggleButton = MaterialColors.WHITE;
+
+        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+        this.colorDividierFocusSplitPane = new ColorUIResource(249, 192, 98);
     }
 
     @Override

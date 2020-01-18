@@ -386,13 +386,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Slider[halo].color", theme.getHaloColorSlider());
         table.put("Slider.border", theme.getBorderSlider());
 
-        //TODO configure SplitPane with the MaterialTheme
         // also, look this style https://material.io/design/platform-guidance/android-split-screen.html#usage
         table.put("SplitPane.border", theme.getBorderPanel());
         table.put("SplitPane.background", theme.getDisableTextColor());
-        table.put("SplitPane.dividerSize", 5);
-        table.put("SplitPaneDivider.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
-        table.put("SplitPaneDivider.background", theme.getBackgroundPrimary());
+        table.put("SplitPane.dividerSize", theme.getSizeDividierSplitPane());
+        table.put("SplitPaneDivider.border", theme.getDividierBorderSplitPane());
+        table.put("SplitPaneDivider.background", theme.getColorDividierSplitPane());
+        table.put("SplitPaneDivider.draggingColor", theme.getColorDividierFocusSplitPane());
 
         table.put("TabbedPane.font", theme.getFontRegular());
         table.put("TabbedPane.background", theme.getBackgroundPrimary());

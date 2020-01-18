@@ -189,6 +189,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
         this.withoutIconBackgroundToggleButton = MaterialColors.GRAY_300;
         this.withoutIconForegroundToggleButton = MaterialColors.BLACK;
+
+        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+        this.colorDividierFocusSplitPane = MaterialColors.COSMO_BLUE;
     }
 
     @Override

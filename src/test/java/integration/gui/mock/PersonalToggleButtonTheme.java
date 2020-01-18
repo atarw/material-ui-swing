@@ -23,16 +23,14 @@
  */
 package integration.gui.mock;
 
-import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.themes.MaterialOceanicTheme;
 
 import javax.swing.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class PersonalToggleButtonTheme extends MaterialOceanicTheme {
+public class PersonalToggleButtonTheme extends MaterialLiteTheme {
 
     public PersonalToggleButtonTheme() {
         this.withoutIconToggleButton = true;
