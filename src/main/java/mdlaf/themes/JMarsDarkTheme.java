@@ -102,7 +102,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                 borderSpinner,
-                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+                BorderFactory.createLineBorder(MaterialColors.COSMO_DARK_GRAY, 2)));
         borderToolBar = borderSpinner;
 
         borderDialogRootPane = borderSpinner;
@@ -199,6 +199,12 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         this.backgroundProgressBar = new ColorUIResource(81, 86, 101);
         this.foregroundProgressBar = MaterialColors.WHITE;
+
+
+        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
+        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.withoutIconForegroundToggleButton = MaterialColors.WHITE;
     }
 
     @Override

@@ -202,6 +202,11 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.backgroundProgressBar = MaterialColors.DARKLY_BLUE;
         this.foregroundProgressBar = MaterialColors.LIME_A400;
+
+        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
+        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.withoutIconForegroundToggleButton = textColor;
     }
 
     @Override

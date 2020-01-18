@@ -82,6 +82,21 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ImageIconUIResource selectedIconToggleButton;
 
+    protected boolean withoutIconToggleButton = false;
+
+    protected ColorUIResource withoutIconSelectedBackgroundToggleButton;
+
+    protected ColorUIResource withoutIconSelectedForegoundToggleButton;
+
+    protected ColorUIResource withoutIconBackgroundToggleButton;
+
+    protected ColorUIResource withoutIconForegroundToggleButton;
+
+    protected BorderUIResource withoutIconSelectedBorderToggleButton;
+
+    protected BorderUIResource withoutIconBorderToggleButton;
+
+
     //---------------------------------------------------
     //Proprieties JCheckBox
     protected ImageIconUIResource unselectedCheckBoxIcon;
@@ -384,6 +399,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
+
+        withoutIconSelectedBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                BorderFactory.createLineBorder(withoutIconSelectedBackgroundToggleButton, 1)));
+
+        withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
     }
 
     //getter
@@ -914,6 +937,34 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return selectedIconToggleButton;
     }
 
+    public boolean isWithoutIconToggleButton() {
+        return withoutIconToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton() {
+        return withoutIconSelectedBackgroundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconSelectedForegoundToggleButton() {
+        return withoutIconSelectedForegoundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconBackgroundToggleButton() {
+        return withoutIconBackgroundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconForegroundToggleButton() {
+        return withoutIconForegroundToggleButton;
+    }
+
+    public BorderUIResource getWithoutIconSelectedBorderToggleButton() {
+        return withoutIconSelectedBorderToggleButton;
+    }
+
+    public BorderUIResource getWithoutIconBorderToggleButton() {
+        return withoutIconBorderToggleButton;
+    }
+
     //---------------------------------------------------
     //Proprieties JXTaskPane
     public ColorUIResource getTitleBackgroundGradientStartTaskPane() {
@@ -1099,6 +1150,34 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     public void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton) {
         this.selectedIconToggleButton = selectedIconToggleButton;
+    }
+
+    public void setWithoutIconToggleButton(boolean withoutIconToggleButton) {
+        this.withoutIconToggleButton = withoutIconToggleButton;
+    }
+
+    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton) {
+        this.withoutIconSelectedBackgroundToggleButton = withoutIconSelectedBackgroundToggleButton;
+    }
+
+    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton) {
+        this.withoutIconSelectedForegoundToggleButton = withoutIconSelectedForegoundToggleButton;
+    }
+
+    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton) {
+        this.withoutIconBackgroundToggleButton = withoutIconBackgroundToggleButton;
+    }
+
+    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton) {
+        this.withoutIconForegroundToggleButton = withoutIconForegroundToggleButton;
+    }
+
+    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton) {
+        this.withoutIconSelectedBorderToggleButton = withoutIconSelectedBorderToggleButton;
+    }
+
+    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton) {
+        this.withoutIconBorderToggleButton = withoutIconBorderToggleButton;
     }
 
     public void setBackgroundPrimary(ColorUIResource backgroundPrimary) {

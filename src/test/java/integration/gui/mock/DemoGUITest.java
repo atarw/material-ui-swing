@@ -24,6 +24,7 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new PersonalToggleButtonTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
@@ -96,6 +97,12 @@ public class DemoGUITest extends JFrame {
 
     private JMenu arrowMenuOne = new JMenu("Root Menu 1");
     private JMenu arrowMenuTwo = new JMenu("Root Menu 2");
+
+    //Split panel bug
+    private JSplitPane splitPane = new JSplitPane();
+
+    JLabel labelSplitPane1 = new JLabel("Label one");
+    JLabel labelSplitPane2 = new JLabel("Label two");
 
 
     public JMenuItem getMaterialDark() {
@@ -169,11 +176,12 @@ public class DemoGUITest extends JFrame {
             }
         });
 
-
         initLayoutContentPanelOne();
         initLayoutContentPanelTwo();
         initLayoutContentPanelThree();
         initLayoutContentPanelFour();
+
+        initStyleSplitPanePanels();
 
 
         this.getRootPane().setDefaultButton(buttonDefault);
@@ -182,7 +190,7 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(panelTwo, "Panel two");
         tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
-        tabbedPane.add(new JPanel(), "Panel 5");
+        tabbedPane.add(splitPane, "SplitPane");
         tabbedPane.add(new JPanel(), "Panel 6");
         tabbedPane.add(new JPanel(), "Panel 7");
         tabbedPane.add(new JPanel(), "Panel 8");
@@ -193,6 +201,19 @@ public class DemoGUITest extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public void initStyleSplitPanePanels(){
+        JPanel panelLeaf = new JPanel();
+        panelLeaf.setBorder(BorderFactory.createLineBorder(MaterialColors.AMBER_500));
+        panelLeaf.add(labelSplitPane1);
+        JPanel panelRight = new JPanel();
+        panelRight.setBorder(BorderFactory.createLineBorder(MaterialColors.AMBER_500));
+        panelRight.add(labelSplitPane2);
+
+        splitPane.setDividerLocation(200);
+        splitPane.setLeftComponent(panelLeaf);
+        splitPane.setRightComponent(panelRight);
     }
 
     public void initJMenuBar() {

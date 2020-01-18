@@ -23,12 +23,11 @@
  */
 package mdlaf.components.label;
 
-import sun.swing.SwingUtilities2;
-
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
@@ -67,15 +66,10 @@ public class MaterialLabelUI extends BasicLabelUI {
     }
 
     @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-    }
-
-    @Override
     protected void paintDisabledText(JLabel l, Graphics g, String s, int textX, int textY) {
         int mnemIndex = l.getDisplayedMnemonicIndex();
         g.setColor(UIManager.getColor("Label.disabledForeground"));
-        SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
-        //BasicGraphicsUtils.drawStringUnderlineCharAt(g, s, mnemIndex, textX, textY); This isn't deprecated
+       // SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
+        BasicGraphicsUtils.drawStringUnderlineCharAt(g, s, mnemIndex, textX, textY); //This isn't deprecated
     }
 }

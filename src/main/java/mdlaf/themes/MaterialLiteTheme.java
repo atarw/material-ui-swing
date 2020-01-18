@@ -184,6 +184,11 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.backgroundProgressBar = MaterialColors.COSMO_LIGTH_BLUE;
         this.foregroundProgressBar = MaterialColors.COSMO_BLUE;
+
+        this.withoutIconSelectedBackgroundToggleButton = MaterialColors.COSMO_DARK_GRAY;
+        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+        this.withoutIconBackgroundToggleButton = MaterialColors.GRAY_300;
+        this.withoutIconForegroundToggleButton = MaterialColors.BLACK;
     }
 
     @Override

@@ -25,18 +25,22 @@ package integration.gui.mock;
 
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 
 import javax.swing.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class PersonalToggleButtonTheme extends MaterialLiteTheme {
+public class PersonalToggleButtonTheme extends MaterialOceanicTheme {
+
+    public PersonalToggleButtonTheme() {
+        this.withoutIconToggleButton = true;
+    }
 
     @Override
     public void installUIDefault(UIDefaults table) {
         super.installUIDefault(table);
-        table.put("ToggleButton.withoutIcon", true);
     }
 
     @Override

@@ -31,9 +31,6 @@ import mdlaf.utils.MaterialColors;
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
 public class Issue87ColorMouseHover extends JDialog {
 
         /**

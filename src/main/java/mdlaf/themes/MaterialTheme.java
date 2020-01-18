@@ -200,9 +200,37 @@ public interface MaterialTheme {
 
     void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton);
 
+    public void setWithoutIconToggleButton(boolean withoutIconToggleButton);
+
+    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton);
+
+    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton);
+
+    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton);
+
+    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton);
+
+    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton);
+
+    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton);
+
     ImageIconUIResource getUnselectedIconToggleButton();
 
     ImageIconUIResource getSelectedIconToggleButton();
+
+    public boolean isWithoutIconToggleButton();
+
+    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton();
+
+    public ColorUIResource getWithoutIconSelectedForegoundToggleButton();
+
+    public ColorUIResource getWithoutIconBackgroundToggleButton();
+
+    public ColorUIResource getWithoutIconForegroundToggleButton();
+
+    public BorderUIResource getWithoutIconSelectedBorderToggleButton();
+
+    public BorderUIResource getWithoutIconBorderToggleButton();
 
     //---------------------------------------------------
     //Proprieties JSlider

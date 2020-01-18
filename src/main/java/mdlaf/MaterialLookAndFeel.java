@@ -301,7 +301,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Label.font", theme.getFontRegular());
         table.put("Label.background", theme.getBackgroundPrimary());
         table.put("Label.foreground", theme.getTextColor());
-        table.put("Label.opaque", true);
+        table.put("Label.opaque", true); //TODO configure this with MaterialTheme and set default to false
         table.put("Label.disabledForeground", theme.getDisableTextColor());
         table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
@@ -386,8 +386,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Slider[halo].color", theme.getHaloColorSlider());
         table.put("Slider.border", theme.getBorderSlider());
 
+        //TODO configure SplitPane with the MaterialTheme
+        // also, look this style https://material.io/design/platform-guidance/android-split-screen.html#usage
         table.put("SplitPane.border", theme.getBorderPanel());
-        table.put("SplitPane.background", theme.getBackgroundPrimary());
+        table.put("SplitPane.background", theme.getDisableTextColor());
         table.put("SplitPane.dividerSize", 5);
         table.put("SplitPaneDivider.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
         table.put("SplitPaneDivider.background", theme.getBackgroundPrimary());
@@ -459,7 +461,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.disabledText", theme.getDisableTextColor());
         table.put("ToggleButton.icon", theme.getUnselectedIconToggleButton());
         table.put("ToggleButton.selectedIcon", theme.getSelectedIconToggleButton());
-        table.put("ToggleButton.withoutIcon", false);
+        table.put("ToggleButton.withoutIcon", theme.isWithoutIconToggleButton());
+        table.put("ToggleButton[withoutIcon].selectedBackground", theme.getWithoutIconSelectedBackgroundToggleButton());
+        table.put("ToggleButton[withoutIcon].selectedForeground", theme.getWithoutIconSelectedForegoundToggleButton());
+        table.put("ToggleButton[withoutIcon].background", theme.getWithoutIconBackgroundToggleButton());
+        table.put("ToggleButton[withoutIcon].foreground", theme.getWithoutIconForegroundToggleButton());
+        table.put("ToggleButton[withoutIcon].selectedBorder", theme.getWithoutIconSelectedBorderToggleButton());
+        table.put("ToggleButton[withoutIcon].border", theme.getWithoutIconBorderToggleButton());
 
         table.put("ToolBar.font", theme.getFontRegular());
         table.put("ToolBar.background", theme.getBackgroundPrimary());

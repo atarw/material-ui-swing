@@ -19,16 +19,10 @@ import javax.swing.WindowConstants;
 public class IssueExample {
     static {
         try {
-// UIManager.setLookAndFeel(new mdlaf.MaterialLookAndFeel(new
-// mdlaf.themes.MaterialOceanicTheme()));
             UIManager.setLookAndFeel(new mdlaf.MaterialLookAndFeel(new mdlaf.themes.MaterialLiteTheme()));
-// UIManager.setLookAndFeel(new mdlaf.MaterialLookAndFeel(new
-// mdlaf.themes.JMarsDarkTheme()));
-            UIManager.put("Button.mouseHoverEnable", false); // Because the test are more difficulte with effect mouse
-// hover
+            UIManager.put("Button.mouseHoverEnable", false);
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(false); // not support yet
-
+            JFrame.setDefaultLookAndFeelDecorated(false);
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }

@@ -23,14 +23,20 @@
  */
 package mdlaf.components.togglebutton;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialManagerListener;
 import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -45,6 +51,12 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     protected Integer originalWidth;
     protected Integer originalHeight;
     protected JToggleButton toggleButton;
+    protected Color withoutIconSelectedBackground;
+    protected Color withoutIconSelectedForeground;
+    protected Color withoutIconBackground;
+    protected Color withoutIconForeground;
+    protected Border withoutIconSelectedBorder;
+    protected Border withoutIconBorder;
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialToggleButtonUI();
@@ -74,9 +86,17 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
             if(withoutIcon){
-                toggleButton.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY),
-                        BorderFactory.createLineBorder(toggleButton.getBackground(), 50)));
+                withoutIconSelectedBorder = UIManager.getBorder("ToggleButton[withoutIcon].selectedBorder");
+                withoutIconBorder = UIManager.getBorder("ToggleButton[withoutIcon].border");
+                withoutIconSelectedBackground = UIManager.getColor("ToggleButton[withoutIcon].selectedBackground");
+                withoutIconSelectedForeground = UIManager.getColor("ToggleButton[withoutIcon].selectedForeground");
+                withoutIconBackground = UIManager.getColor("ToggleButton[withoutIcon].background");
+                withoutIconForeground = UIManager.getColor("ToggleButton[withoutIcon].foreground");
+                if(toggleButton.isSelected()){
+                    toggleButton.setBorder(withoutIconSelectedBorder);
+                }else{
+                    toggleButton.setBorder(withoutIconBorder);
+                }
             }else{
                 toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
             }
@@ -105,20 +125,29 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 
-        if(withoutIcon != null && withoutIcon){
+        if(withoutIcon != null && withoutIcon && isNotNullColor(withoutIcon)){
             AbstractButton button = (AbstractButton) c;
             if(button.isSelected()){
-                button.setBackground(MaterialColors.COSMO_DARK_GRAY);
-                button.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(MaterialColors.DARKLY_GRAY),
-                        BorderFactory.createLineBorder(toggleButton.getBackground(), 8))); //TODO set thickness from UIManager
+                button.setBackground(withoutIconSelectedBackground);
+                button.setForeground(withoutIconSelectedForeground);
+                button.setBorder(withoutIconSelectedBorder); //TODO set thickness from UIManager
             }else{
-                button.setBackground(MaterialColors.COSMO_LIGTH_GRAY);
-                button.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(MaterialColors.COSMO_STRONG_GRAY),
-                        BorderFactory.createLineBorder(toggleButton.getBackground(), 8)));
+                button.setBackground(withoutIconBackground);
+                button.setForeground(withoutIconForeground);
+                button.setBorder(withoutIconBorder);
             }
         }
+    }
+
+    private boolean isNotNullColor(boolean withoutIcon) {
+        if(withoutIcon){
+            boolean selectedColorNotNull = withoutIconSelectedBackground != null && withoutIconSelectedForeground != null;
+            boolean unselectColorNotNull = withoutIconBackground != null && withoutIconForeground != null;
+            boolean borderNotNull = withoutIconBorder != null && withoutIconSelectedBorder != null;
+            return  selectedColorNotNull && unselectColorNotNull && borderNotNull;
+        }
+        //TODO complete this logic
+        return true;
     }
 
     @Override //TODO implement this effect

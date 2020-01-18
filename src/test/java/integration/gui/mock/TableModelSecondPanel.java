@@ -60,8 +60,9 @@ public class TableModelSecondPanel extends AbstractTableModel {
         return data.length;
     }
 
-    public String getColumnName(int col) {
-        return columnNames[col];
+    @Override
+    public String getColumnName(int column) {
+        return columnNames[column];
     }
 
     public Object getValueAt(int row, int col) {
@@ -100,5 +101,7 @@ public class TableModelSecondPanel extends AbstractTableModel {
         data[row][col] = value;
         fireTableCellUpdated(row, col);
     }
+
+
 }
 
