@@ -29,6 +29,8 @@ import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -49,6 +51,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
         this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
         this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
+
+        super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
     }
 
     @Override
@@ -88,6 +92,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF);
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON);
+
+        super.colorTextTitledBorder = textColor;
     }
 
     @Override

@@ -115,6 +115,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = MaterialBorders.OCEAN_LINE_BORDER;
         this.borderTableHeader = MaterialBorders.OCEAN_LINE_BORDER;
+
+        super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
     }
 
     @Override
@@ -210,6 +212,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
         this.colorDividierFocusSplitPane = MaterialColors.LIME_A400;
+
+        super.colorTextTitledBorder = textColor;
     }
 
     @Override

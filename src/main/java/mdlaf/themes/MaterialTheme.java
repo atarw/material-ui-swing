@@ -438,13 +438,20 @@ public interface MaterialTheme {
     //---------------------------------------------------
     //Proprieties JSplitPane
 
-    public ColorUIResource getColorDividierSplitPane();
+    ColorUIResource getColorDividierSplitPane();
 
-    public ColorUIResource getColorDividierFocusSplitPane();
+    ColorUIResource getColorDividierFocusSplitPane();
 
-    public int getSizeDividierSplitPane();
+    int getSizeDividierSplitPane();
 
-    public BorderUIResource getDividierBorderSplitPane();
+    BorderUIResource getDividierBorderSplitPane();
+
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+
+    ColorUIResource getColorTextTitledBorder();
+
+    BorderUIResource getBorderTitledBorder();
 
     //All type of font supported to the theme
     FontUIResource getFontBold();
@@ -457,6 +464,10 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder);
+
+    void setBorderTitledBorder(BorderUIResource borderTitledBorder);
+
     void setBackgroundPrimary(ColorUIResource backgroundPrimary);
 
     void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary);

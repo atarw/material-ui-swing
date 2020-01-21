@@ -355,6 +355,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected BorderUIResource borderProgressBar;
 
     //---------------------------------------------------
+    //Proprieties TitledBorder
+
+    protected ColorUIResource colorTextTitledBorder;
+
+    protected BorderUIResource borderTitledBorder;
+
+    //---------------------------------------------------
     //All type of font supported to the look and feel
     protected FontUIResource fontBold;
 
@@ -420,6 +427,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
                 BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
 
         dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+
     }
 
     //getter
@@ -1116,8 +1124,6 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return informationIconOptionPane;
     }
 
-
-
     @Override
     public boolean getEnableIconOptionPane() {
         return false;
@@ -1156,6 +1162,17 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return dividierBorderSplitPane;
     }
 
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+
+    public ColorUIResource getColorTextTitledBorder() {
+        return colorTextTitledBorder;
+    }
+
+    public BorderUIResource getBorderTitledBorder() {
+        return borderTitledBorder;
+    }
+
     //get fonts
     public FontUIResource getFontBold() {
         return fontBold;
@@ -1176,6 +1193,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
 
     //Setter
+    public void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder) {
+        this.colorTextTitledBorder = colorTextTitledBorder;
+    }
+
+    public void setBorderTitledBorder(BorderUIResource borderTitledBorder) {
+        this.borderTitledBorder = borderTitledBorder;
+    }
+
     public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane) {
         this.colorDividierSplitPane = colorDividierSplitPane;
     }

@@ -112,6 +112,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = borderSpinner;
         this.borderTableHeader = borderSpinner;
+
+        super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
     }
 
     @Override
@@ -208,6 +210,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
         this.colorDividierFocusSplitPane = new ColorUIResource(249, 192, 98);
+
+        super.colorTextTitledBorder = textColor;
     }
 
     @Override

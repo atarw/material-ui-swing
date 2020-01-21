@@ -551,8 +551,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.echoChar", theme.getEchoCharPasswordField());
         table.put("PasswordField.focusInputMap", fieldInputMap);
 
-        table.put("TitledBorder.border", MaterialBorders.LIGHT_LINE_BORDER);
+        table.put("TitledBorder.border", theme.getBorderTitledBorder());
         table.put("TitledBorder.font", theme.getFontMedium());
+        table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
 
         table.put("TaskPane.font", theme.getFontMedium());
         table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
