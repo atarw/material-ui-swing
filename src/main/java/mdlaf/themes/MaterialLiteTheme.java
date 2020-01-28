@@ -174,6 +174,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.inactiveBackgroundTextField = MaterialColors.GRAY_200;
         this.selectionBackgroundTextField = MaterialColors.LIGHT_BLUE_400;
         this.selectionForegroundTextField = MaterialColors.BLACK;
+        super.disabledBackgroudnTextField = MaterialColors.GRAY_300;
+        super.disabledForegroundTextField = MaterialColors.GRAY_700;
         this.inactiveColorLineTextField = MaterialColors.BLACK;
         this.activeColorLineTextField = MaterialColors.LIGHT_BLUE_400;
 

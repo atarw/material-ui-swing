@@ -414,11 +414,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.indent", theme.getIndentTabbedPane());
         table.put("TabbedPane.tabInsets", theme.getTabInsetsTabbedPane());
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
-        table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
-        table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
-        table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
+        //table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
+        //table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
+        //table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
-        table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+        //table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
         table.put("TabbedPane[focus].margin", 5);
 
 
@@ -530,6 +530,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.background", theme.getBackgroundTextField());
         table.put("TextField.foreground", theme.getTextColor());
         table.put("TextField.font", theme.getFontRegular());
+        table.put("TextField.disabledBackground", theme.getDisabledBackgroudnTextField());
+        table.put("TextField.disabledForeground", theme.getDisabledForegroundTextField());
         table.put("TextField.inactiveForeground", theme.getInactiveForegroundTextField());
         table.put("TextField.inactiveBackground", theme.getInactiveBackgroundTextField());
         table.put("TextField.selectionBackground", theme.getSelectionBackgroundTextField());
@@ -541,6 +543,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("PasswordField.background", theme.getBackgroundTextField());
         table.put("PasswordField.foreground", theme.getTextColor());
+        table.put("PasswordField.disabledBackground", theme.getDisabledBackgroudnTextField());
+        table.put("PasswordField.disabledForeground", theme.getDisabledForegroundTextField());
         table.put("PasswordField.inactiveForeground", theme.getInactiveForegroundTextField());
         table.put("PasswordField.inactiveBackground", theme.getInactiveBackgroundTextField());
         table.put("PasswordField.selectionBackground", theme.getSelectionBackgroundTextField());

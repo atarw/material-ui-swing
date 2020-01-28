@@ -67,16 +67,6 @@ public class MaterialButtonTest extends AbstractTestGUI {
         buttonDisabled.foreground().requireNotEqualTo(theme.getButtonTextColor());
     }
 
-    @Test
-    public void testButtonUndoColorBackgroundWithChangeStatus() {
-        JButtonFixture buttonUndo = frame.button("buttonUndo");
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-        buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
-        buttonUndo.click();
-        buttonUndo.background().requireEqualTo(theme.getButtonDisabledBackground());
-        buttonUndo.foreground().requireNotEqualTo(theme.getButtonTextColor());
-    }
-
     //Test button focus
 
     @Test

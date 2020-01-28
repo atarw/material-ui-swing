@@ -343,6 +343,10 @@ public interface MaterialTheme {
 
     ColorUIResource getSelectionForegroundTextField();
 
+    ColorUIResource getDisabledBackgroudnTextField();
+
+    ColorUIResource getDisabledForegroundTextField();
+
     ColorUIResource getInactiveColorLineTextField();
 
     ColorUIResource getActiveColorLineTextField();
@@ -464,6 +468,10 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
+
+    void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField);
+
     void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder);
 
     void setBorderTitledBorder(BorderUIResource borderTitledBorder);

@@ -119,7 +119,7 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincenzo/vincenzodev/Jmars/JMars_version_9-9-2019/branches/UI/lib'
+            into '/media/vincent/vincenzodev/Jmars/JMars_version_9-9-2019/branches/UI/lib'
             rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.0_Beta.jar')
         }
     }
@@ -130,7 +130,7 @@ task deployOnDiffereProjectLocalLib {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + ".jar"
-            into '/media/vincenzo/vincenzodev/home-pc/myLocalLib/java'
+            into '/media/vincent/vincenzodev/home-pc/myLocalLib/java'
             rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
         }
     }

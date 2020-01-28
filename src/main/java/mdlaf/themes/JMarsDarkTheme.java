@@ -184,6 +184,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.inactiveForegroundTextField = MaterialColors.WHITE;
         this.inactiveBackgroundTextField = new ColorUIResource(81, 86, 101);
         this.selectionBackgroundTextField = new ColorUIResource(249, 192, 98);
+        super.disabledBackgroudnTextField = new ColorUIResource(81, 86, 101);
+        super.disabledForegroundTextField = new ColorUIResource(170,170,170);
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
         this.activeColorLineTextField = new ColorUIResource(249, 192, 98);

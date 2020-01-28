@@ -188,6 +188,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.inactiveBackgroundTextField = MaterialColors.DARKLY_BLUE;
         this.selectionBackgroundTextField = MaterialColors.LIME_A100;
         this.selectionForegroundTextField = MaterialColors.BLACK;
+        super.disabledBackgroudnTextField = MaterialColors.DARKLY_BLUE;
+        super.disabledForegroundTextField = MaterialColors.GRAY_500;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
         this.activeColorLineTextField = MaterialColors.LIME_A400;
 

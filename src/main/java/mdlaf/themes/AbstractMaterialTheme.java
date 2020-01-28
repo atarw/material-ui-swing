@@ -39,7 +39,7 @@ import javax.swing.plaf.InsetsUIResource;
  * @author https://github.com/vincenzopalazzo
  */
 @SuppressWarnings("all")
-public abstract class AbstractMaterialTheme implements MaterialTheme{
+public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource backgroundPrimary;
 
@@ -254,6 +254,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ColorUIResource selectionBackgroundTextField;
 
     protected ColorUIResource selectionForegroundTextField;
+
+    protected ColorUIResource disabledBackgroudnTextField;
+
+    protected ColorUIResource disabledForegroundTextField;
 
     protected ColorUIResource inactiveColorLineTextField;
 
@@ -909,6 +913,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return selectionForegroundTextField;
     }
 
+    public ColorUIResource getDisabledBackgroudnTextField() {
+        return disabledBackgroudnTextField;
+    }
+
+    public ColorUIResource getDisabledForegroundTextField() {
+        return disabledForegroundTextField;
+    }
+
     public ColorUIResource getInactiveColorLineTextField() {
         return inactiveColorLineTextField;
     }
@@ -1193,6 +1205,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
 
     //Setter
+    public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {
+        this.disabledBackgroudnTextField = disabledBackgroudnTextField;
+    }
+
+    public void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField) {
+        this.disabledForegroundTextField = disabledForegroundTextField;
+    }
+
     public void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder) {
         this.colorTextTitledBorder = colorTextTitledBorder;
     }

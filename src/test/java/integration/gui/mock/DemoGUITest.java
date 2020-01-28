@@ -25,6 +25,7 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.EventListener;
 import java.util.Map;
 
 /**
@@ -45,7 +47,7 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
             UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
@@ -62,7 +64,7 @@ public class DemoGUITest extends JFrame {
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
     private JButtonNoMouseHoverNative buttonDefault = new JButtonNoMouseHoverNative("Ok");
-    private JButton buttonUndo = new JButton("Undo");
+    private JButton buttonUndo = new JButton("Disable TextField");
     private JButton buttonDisabled = new JButton("I'm disabled");
     private JButtonNoMouseHoverNative buttonNormal = new JButtonNoMouseHoverNative("I'm a pure jbutton");
     private ContainerAction containerAction = new ContainerAction();
@@ -125,7 +127,11 @@ public class DemoGUITest extends JFrame {
         }
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
-        buttonUndo.setAction(containerAction.getEnableButtonDisabled());
+
+        //new Style for write the code
+        //following this example of demo https://github.com/paul-hammant/swing_component_testing/blob/master/src/main/java/demo/Demo.java
+        buttonUndo.addActionListener(event -> disableTextField());
+
         buttonDisabled.setName("buttonDisabled");
         buttonDisabled.setBackground(MaterialColors.COSMO_LIGHT_ORANGE);
         buttonDisabled.setAction(containerAction.getEnableButtonDisabled());
@@ -201,6 +207,21 @@ public class DemoGUITest extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void disableTextField() {
+        if(textFieldUsername.isEnabled()){
+            textFieldUsername.setEnabled(false);
+            buttonUndo.setText("Enable TextComponent");
+        }else{
+            textFieldUsername.setEnabled(true);
+            buttonUndo.setText("Disable TextComponent");
+        }
+        if(passwordFiled.isEnabled()){
+            passwordFiled.setEnabled(false);
+        }else{
+            passwordFiled.setEnabled(true);
+        }
     }
 
     public void initStyleSplitPanePanels(){
