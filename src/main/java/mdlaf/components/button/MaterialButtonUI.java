@@ -54,7 +54,9 @@ public class MaterialButtonUI extends BasicButtonUI{
     protected Color disabledForeground;
     protected Color defaultBackground;
     protected Color defaultForeground;
-    protected Boolean isDefaultButton = null;
+    protected Color borderColor;
+    protected Boolean defaultButton = null;
+    protected Boolean borderEnabled;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
     protected boolean isPaintedDisabled = false;
@@ -72,6 +74,8 @@ public class MaterialButtonUI extends BasicButtonUI{
         disabledForeground = UIManager.getColor("Button.disabledForeground");
         defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
+        borderColor = UIManager.getColor("Button[border].color");
+        borderEnabled = UIManager.getBoolean("Button[border].enable");
         if(mouseHoverEnabled == null){
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
@@ -115,9 +119,9 @@ public class MaterialButtonUI extends BasicButtonUI{
         if (b.isContentAreaFilled()) {
             paintBackground(g, b);
         }
-        if (isDefaultButton == null && b.isEnabled()) {
-            isDefaultButton = ((JButton) button).isDefaultButton();
-            if (isDefaultButton) {
+        if (defaultButton == null && b.isEnabled()) {
+            defaultButton = ((JButton) button).isDefaultButton();
+            if (defaultButton) {
                 if (mouseHoverEnabled) {
                     MaterialManagerListener.removeAllMaterialMouseListener(b);
                     b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
@@ -161,14 +165,14 @@ public class MaterialButtonUI extends BasicButtonUI{
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         } else {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
-            if (isDefaultButton != null && isDefaultButton) {
+            if (defaultButton != null && defaultButton) {
                 g.setColor(UIManager.getColor("Button[Default].background"));
                 if(UIManager.getBoolean("Button[Default].shadowEnable")){
                     paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
                 }
                 return;
             }
-            if(UIManager.getBoolean("Button[border].enable")){
+            if(borderEnabled != null && borderEnabled){
                 paintBorderButton(graphics, b);
             }
         }
@@ -211,7 +215,7 @@ public class MaterialButtonUI extends BasicButtonUI{
         //Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setStroke(dashed);
-        if (isDefaultButton) {
+        if (defaultButton) {
             g2.setColor(UIManager.getColor("Button[Default][focus].color"));
         } else {
             g2.setColor(UIManager.getColor("Button[focus].color"));
@@ -257,7 +261,7 @@ public class MaterialButtonUI extends BasicButtonUI{
         int h = b.getHeight() - 1;
         //int arc = 7;
 
-        graphics.setColor(UIManager.getColor("Button[border].color"));
+        graphics.setColor(borderColor);
         graphics.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
     }
 
@@ -266,7 +270,7 @@ public class MaterialButtonUI extends BasicButtonUI{
             throw new IllegalArgumentException("Input null");
         }
         JButton b = (JButton) component;
-        if (b.isEnabled() && (isDefaultButton != null && isDefaultButton) && !b.isSelected()) {
+        if (b.isEnabled() && (defaultButton != null && defaultButton) && !b.isSelected()) {
             //MaterialManagerListener.removeAllMaterialMouseListener(b);
             //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
            b.setBackground(defaultBackground);
