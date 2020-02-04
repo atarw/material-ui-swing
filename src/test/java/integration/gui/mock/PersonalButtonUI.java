@@ -29,7 +29,8 @@ public class PersonalButtonUI extends MaterialButtonUI {
 
     public void setColorDisableBackground(Color newColor){
         if(newColor == null){
-            throw new IllegalArgumentException("argument null");
+            return;
+            //throw new IllegalArgumentException("argument null");
         }
         super.disabledBackground = newColor;
         //This is bad operation because recall the paint method of the component

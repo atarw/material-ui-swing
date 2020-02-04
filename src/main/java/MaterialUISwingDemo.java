@@ -24,6 +24,7 @@
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
@@ -162,6 +163,7 @@ public class MaterialUISwingDemo {
                     // configuring a simple JButton
                     JButton button = new JButton("I'm Disabled");
                     button.setBackground(MaterialColors.COSMO_RED);
+                    button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.YELLOW_400));
                     button.setEnabled(false);
                     JPanel content = new JPanel();
                     content.add(button);

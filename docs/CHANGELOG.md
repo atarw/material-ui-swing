@@ -6,6 +6,8 @@
 - https://github.com/vincenzopalazzo/material-ui-swing/issues/98
 - Added support to JSplitPane from MaterialTheming, this feature fixes the following issue https://github.com/vincenzopalazzo/material-ui-swing/issues/102
 - Implemented example for TitledBorder with material style [https://github.com/vincenzopalazzo/material-ui-swing/issues/104](https://github.com/vincenzopalazzo/material-ui-swing/issues/104)
+- [Added new style of the Disabled TextComponent](https://github.com/vincenzopalazzo/material-ui-swing/issues/105)
+- [The mouse hover effect work wrong with disabled action on click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
 
 **JToggleButton Second Style without icons**
 

@@ -24,18 +24,18 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.EventListener;
 import java.util.Map;
 
 /**
@@ -48,7 +48,7 @@ public class DemoGUITest extends JFrame {
     static {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
-            UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
+            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
@@ -63,7 +63,7 @@ public class DemoGUITest extends JFrame {
     private GroupLayout layoutPanelToggleButton;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JPanel panelOne = new JPanel();
-    private JButtonNoMouseHoverNative buttonDefault = new JButtonNoMouseHoverNative("Ok");
+    private JButton buttonDefault = new JButton("Ok");
     private JButton buttonUndo = new JButton("Disable TextField");
     private JButton buttonDisabled = new JButton("I'm disabled");
     private JButtonNoMouseHoverNative buttonNormal = new JButtonNoMouseHoverNative("I'm a pure jbutton");
@@ -106,6 +106,12 @@ public class DemoGUITest extends JFrame {
     JLabel labelSplitPane1 = new JLabel("Label one");
     JLabel labelSplitPane2 = new JLabel("Label two");
 
+    //Mouse hover but
+    JPanel mouseHoverPanel = new JPanel();
+    GroupLayout groupLayoutMouseHoverPanel;
+    JButton buttonOneMouseHoverBug = new JButton();
+    JButton buttonTwoMouseHoverBug = new JButton();
+
 
     public JMenuItem getMaterialDark() {
         return materialDark;
@@ -143,6 +149,22 @@ public class DemoGUITest extends JFrame {
         textFieldUsername.addActionListener(containerAction.getListenerTextField());
         passwordFiled.setName("passwordField");
         passwordFiled.addActionListener(containerAction.getListenerPasswordField());
+        passwordFiled.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                disableOkButtonWithEmptyText();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                disableOkButtonWithEmptyText();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                disableOkButtonWithEmptyText();
+            }
+        });
 
         initJMenuBar();
 
@@ -153,7 +175,7 @@ public class DemoGUITest extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton button = (JButton) e.getSource();
-                if(button.isEnabled()){
+                if (button.isEnabled()) {
                     personalButton.setEnabled(true);
                     button.setEnabled(false);
                 }
@@ -166,15 +188,15 @@ public class DemoGUITest extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JButton button = (JButton) e.getSource();
 
-                if(button.isEnabled()){
+                if (button.isEnabled()) {
                     BasicButtonUI buttonUI = (BasicButtonUI) button.getUI();
-                    if(buttonUI instanceof PersonalButtonUI){
+                    if (buttonUI instanceof PersonalButtonUI) {
                         Color newColor = JColorChooser.showDialog(personalButtonUIPanel, "New Color", Color.WHITE);
                         button.setEnabled(false);
                         PersonalButtonUI personalButtonUI = (PersonalButtonUI) button.getUI();
                         personalButtonUI.setColorDisableBackground(newColor);
                         enableButton.setEnabled(true);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(personalButtonUIPanel, "The ButtonUI isn't a PersonalButtonUI instance");
                     }
 
@@ -182,12 +204,14 @@ public class DemoGUITest extends JFrame {
             }
         });
 
+        initStyleMouseHoverPanel();
+
         initLayoutContentPanelOne();
         initLayoutContentPanelTwo();
         initLayoutContentPanelThree();
         initLayoutContentPanelFour();
-
         initStyleSplitPanePanels();
+        initLayoutMouseHoverPanelFive();
 
 
         this.getRootPane().setDefaultButton(buttonDefault);
@@ -197,7 +221,7 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(splitPane, "SplitPane");
-        tabbedPane.add(new JPanel(), "Panel 6");
+        tabbedPane.add(mouseHoverPanel, "MouseHover Bug");
         tabbedPane.add(new JPanel(), "Panel 7");
         tabbedPane.add(new JPanel(), "Panel 8");
         tabbedPane.add(new JPanel(), "Panel 9");
@@ -209,22 +233,51 @@ public class DemoGUITest extends JFrame {
         setVisible(true);
     }
 
+    private void disableOkButtonWithEmptyText() {
+        String text = passwordFiled.getText();
+        LOGGER.debug("text inside the password component: " + text);
+        if (text.isEmpty()) {
+            buttonDefault.setEnabled(false);
+        } else {
+            buttonDefault.setEnabled(true);
+        }
+    }
+
     private void disableTextField() {
-        if(textFieldUsername.isEnabled()){
+        if (textFieldUsername.isEnabled()) {
             textFieldUsername.setEnabled(false);
             buttonUndo.setText("Enable TextComponent");
-        }else{
+        } else {
             textFieldUsername.setEnabled(true);
             buttonUndo.setText("Disable TextComponent");
         }
-        if(passwordFiled.isEnabled()){
+        if (passwordFiled.isEnabled()) {
             passwordFiled.setEnabled(false);
-        }else{
+        } else {
             passwordFiled.setEnabled(true);
         }
     }
 
-    public void initStyleSplitPanePanels(){
+    private void changeStateButtonMouseHover(ActionEvent event) {
+        JButton button = (JButton) event.getSource();
+        if (button.equals(buttonOneMouseHoverBug)) {
+            if (button.isEnabled()) {
+                button.setText("Disabled");
+                button.setEnabled(false);
+                buttonTwoMouseHoverBug.setEnabled(true);
+                buttonTwoMouseHoverBug.setText("Enabled");
+            }
+        } else if (button.equals(buttonTwoMouseHoverBug)) {
+            if (button.isEnabled()) {
+                button.setText("Disabled");
+                button.setEnabled(false);
+                buttonOneMouseHoverBug.setEnabled(true);
+                buttonOneMouseHoverBug.setText("Enabled");
+            }
+        }
+    }
+
+    public void initStyleSplitPanePanels() {
         JPanel panelLeaf = new JPanel();
         panelLeaf.setBorder(BorderFactory.createLineBorder(MaterialColors.AMBER_500));
         panelLeaf.add(labelSplitPane1);
@@ -235,6 +288,17 @@ public class DemoGUITest extends JFrame {
         splitPane.setDividerLocation(200);
         splitPane.setLeftComponent(panelLeaf);
         splitPane.setRightComponent(panelRight);
+    }
+
+    public void initStyleMouseHoverPanel() {
+        buttonOneMouseHoverBug = new JButton("Enable");
+        buttonOneMouseHoverBug.setEnabled(true);
+        buttonOneMouseHoverBug.setUI(new PersonalMouseHoverButtonUI());
+        buttonTwoMouseHoverBug = new JButton("Disable");
+        buttonTwoMouseHoverBug.setEnabled(false);
+        buttonTwoMouseHoverBug.setUI(new PersonalMouseHoverButtonUI());
+        buttonOneMouseHoverBug.addActionListener(event -> changeStateButtonMouseHover(event));
+        buttonTwoMouseHoverBug.addActionListener(event -> changeStateButtonMouseHover(event));
     }
 
     public void initJMenuBar() {
@@ -354,11 +418,11 @@ public class DemoGUITest extends JFrame {
         //Init position component with group layout
         layoutPanelToggleButton.setHorizontalGroup(
                 layoutPanelToggleButton.createSequentialGroup()
-                .addComponent(italicButton)
+                        .addComponent(italicButton)
                         .addGap(0)
-                .addComponent(boldButton)
+                        .addComponent(boldButton)
                         .addGap(0)
-                .addComponent(underlineButton)
+                        .addComponent(underlineButton)
                         .addGap(0)
         );
 
@@ -395,6 +459,30 @@ public class DemoGUITest extends JFrame {
         );
     }
 
+    public void initLayoutMouseHoverPanelFive() {
+        groupLayoutMouseHoverPanel = new GroupLayout(mouseHoverPanel);
+        mouseHoverPanel.setLayout(groupLayoutMouseHoverPanel);
+
+        groupLayoutMouseHoverPanel.setAutoCreateGaps(true);
+        groupLayoutMouseHoverPanel.setAutoCreateContainerGaps(true);
+
+        //Init position component with group layout
+        groupLayoutMouseHoverPanel.setHorizontalGroup(
+                groupLayoutMouseHoverPanel.createSequentialGroup()
+                        .addGap(200)
+                        .addComponent(buttonOneMouseHoverBug)
+                        .addGap(50)
+                        .addComponent(buttonTwoMouseHoverBug)
+
+        );
+
+        groupLayoutMouseHoverPanel.setVerticalGroup(
+                groupLayoutMouseHoverPanel.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonOneMouseHoverBug)
+                        .addComponent(buttonTwoMouseHoverBug)
+
+        );
+    }
 
     public synchronized void reloadUI() {
         SwingUtilities.updateComponentTreeUI(this);

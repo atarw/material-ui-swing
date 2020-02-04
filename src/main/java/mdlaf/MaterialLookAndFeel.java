@@ -253,6 +253,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.foreground", theme.getButtonTextColor());
         table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
         table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
+        table.put("Button[Default].disabledBackground", MaterialColors.LIGHT_BLUE_800);
+        table.put("Button[Default].disabledForeground", MaterialColors.COSMO_DARK_GRAY);
         table.put("Button.disabledBackground", theme.getButtonDisabledBackground());
         table.put("Button.disabledForeground", theme.getButtonDisabledForeground());
         table.put("Button.font", theme.getButtonFont());

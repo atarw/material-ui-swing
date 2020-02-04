@@ -23,6 +23,9 @@
  */
 package mdlaf.animation;
 
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -37,12 +40,14 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     private boolean forward;
     private int alpha, steps;
     private int[] forwardDeltas, backwardDeltas;
-
+    private boolean componentDisabledAfterTimer = false;
     private JComponent component;
     private Timer timer;
 
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
-        if (component == null || !component.isEnabled()) {
+        //the code  !component.isEnabled() is commented because if the button born disabled
+        //the mouse hover will never install
+        if (component == null /*|| !component.isEnabled()*/) {
             return;
         }
         if (component.getCursor().getType() == Cursor.WAIT_CURSOR) {
@@ -146,6 +151,13 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        if(!component.isEnabled()){
+            if(timer.isRunning()){
+                //timer.stop();
+                componentDisabledAfterTimer = true;
+                component.setEnabled(true);
+            }
+        }
         if (forward) {
             component.setBackground(nextColor());
             ++alpha;
@@ -162,7 +174,12 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         //when the alpha is -1 the mouse is exist from button
         if(alpha == -1){
             //Mouse exit
-            this.component.setBackground(this.from);
+            if(componentDisabledAfterTimer){
+                componentDisabledAfterTimer = false;
+                this.component.setEnabled(false);
+            }else{
+                this.component.setBackground(this.from);
+            }
         }
     }
 

@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,6 +23,7 @@
  */
 package mdlaf.components.button;
 
+import com.sun.javafx.scene.traversal.SubSceneTraversalEngine;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
@@ -40,7 +41,7 @@ import java.beans.PropertyChangeListener;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class MaterialButtonUI extends BasicButtonUI{
+public class MaterialButtonUI extends BasicButtonUI {
 
     public static ComponentUI createUI(final JComponent c) {
         return new MaterialButtonUI();
@@ -54,12 +55,14 @@ public class MaterialButtonUI extends BasicButtonUI{
     protected Color disabledForeground;
     protected Color defaultBackground;
     protected Color defaultForeground;
+    protected Color disabledDefaultBackground;
+    protected Color disabledDefaultForeground;
     protected Color borderColor;
     protected Boolean defaultButton = null;
     protected Boolean borderEnabled;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
-    protected boolean isPaintedDisabled = false;
+    protected boolean paintedDisabled = false;
 
     @Override
     public void installUI(JComponent c) {
@@ -74,9 +77,11 @@ public class MaterialButtonUI extends BasicButtonUI{
         disabledForeground = UIManager.getColor("Button.disabledForeground");
         defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
+        disabledDefaultBackground = UIManager.getColor("Button[Default].disabledBackground");
+        disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
         borderColor = UIManager.getColor("Button[border].color");
         borderEnabled = UIManager.getBoolean("Button[border].enable");
-        if(mouseHoverEnabled == null){
+        if (mouseHoverEnabled == null) {
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
         button.setBackground(background);
@@ -139,13 +144,18 @@ public class MaterialButtonUI extends BasicButtonUI{
         FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
         int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
-        if(model.isEnabled()) {
+        if (model.isEnabled()) {
             g.setColor(b.getForeground());
             BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
-        }else {
-            g.setColor(disabledForeground);
+        } else {
+            if((defaultButton != null && defaultButton)){
+                button.setBackground(disabledDefaultBackground);
+                g.setColor(disabledDefaultForeground);
+            }else{
+                g.setColor(disabledForeground);
+            }
             BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
@@ -166,13 +176,17 @@ public class MaterialButtonUI extends BasicButtonUI{
         } else {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
             if (defaultButton != null && defaultButton) {
-                g.setColor(UIManager.getColor("Button[Default].background"));
-                if(UIManager.getBoolean("Button[Default].shadowEnable")){
+                if(c.isEnabled()){
+                    g.setColor(defaultBackground);
+                }else{
+                    g.setColor(disabledDefaultBackground);
+                }
+                if (UIManager.getBoolean("Button[Default].shadowEnable")) {
                     paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
                 }
                 return;
             }
-            if(borderEnabled != null && borderEnabled){
+            if (borderEnabled != null && borderEnabled) {
                 paintBorderButton(graphics, b);
             }
         }
@@ -233,11 +247,11 @@ public class MaterialButtonUI extends BasicButtonUI{
         int valueGreen = 255;
         int valueBlue = 255;
         for (int i = pixels; i >= 0; i--) {
-            if(valueBlue > 70){
+            if (valueBlue > 70) {
                 valueRed -= 70;
                 valueGreen -= 70;
                 valueBlue -= 70;
-            }else{
+            } else {
                 valueBlue -= valueBlue;
                 valueGreen -= valueGreen;
                 valueRed -= valueRed;
@@ -251,7 +265,7 @@ public class MaterialButtonUI extends BasicButtonUI{
     }
 
     protected void paintBorderButton(Graphics2D graphics, JButton b) {
-        if(!b.isEnabled()){
+        if (!b.isEnabled()) {
             return;
         }
         graphics.setStroke(new BasicStroke(2f));
@@ -271,11 +285,14 @@ public class MaterialButtonUI extends BasicButtonUI{
         }
         JButton b = (JButton) component;
         if (b.isEnabled() && (defaultButton != null && defaultButton) && !b.isSelected()) {
-            //MaterialManagerListener.removeAllMaterialMouseListener(b);
-            //b.addMouseListener(MaterialUIMovement.getMovement(b, MaterialColors.LIGHT_BLUE_100));
-           b.setBackground(defaultBackground);
+            System.out.println("b.isEnabled() && (defaultButton != null && defaultButton)");
+            b.setBackground(defaultBackground);
             b.setForeground(defaultForeground);
-        }else if (!b.isEnabled()) {
+        }else if(!b.isEnabled() && (defaultButton != null && defaultButton)){
+            System.out.println("!b.isEnabled() && (defaultButton != null && defaultButton)");
+            b.setBackground(disabledDefaultBackground);
+            b.setForeground(disabledDefaultForeground);
+        } else if (!b.isEnabled()) {
             b.setBackground(disabledBackground);
             b.setForeground(disabledForeground);
         }
@@ -287,13 +304,13 @@ public class MaterialButtonUI extends BasicButtonUI{
             //this condition test the value for the button is enable
             //if no it check if the button is painted with style disabled
             //if no it paint the component
-            if (!c.isEnabled() && !isPaintedDisabled) {
-                isPaintedDisabled = true;
+            if (!c.isEnabled() && !paintedDisabled) {
+                paintedDisabled = true;
                 paintStateButton(c, g);
-            } else if (isPaintedDisabled && c.isEnabled()) {
+            } else if (paintedDisabled && c.isEnabled()) {
                 //This condition check if the button is enable and the variable is setted to
                 // true, an example: Is the button is now enable by the event and before it was disabled
-                isPaintedDisabled = false;
+                paintedDisabled = false;
             }
         }
     }

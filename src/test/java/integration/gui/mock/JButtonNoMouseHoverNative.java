@@ -23,7 +23,9 @@
  */
 package integration.gui.mock;
 
+import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 
@@ -54,7 +56,6 @@ public class JButtonNoMouseHoverNative extends JButton {
     @Override
     protected void init(String text, Icon icon) {
         super.init(text, icon);
-        System.out.println("called ****");
         setUI(new JButtonNoMouseHoverUI());
     }
 
@@ -64,6 +65,12 @@ public class JButtonNoMouseHoverNative extends JButton {
         public void installUI(JComponent c) {
             mouseHoverEnabled = false;
             super.installUI(c);
+            if (mouseHoverEnabled != null) {
+                JButton b = (JButton) button;
+                if (!b.isDefaultButton()) {
+                    button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.COSMO_DARK_GRAY));
+                }
+            }
         }
     }
 }

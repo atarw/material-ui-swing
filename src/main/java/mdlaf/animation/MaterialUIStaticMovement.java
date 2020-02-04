@@ -93,7 +93,7 @@ class MaterialUIStaticMovement implements MouseListener {
      */
     private void setColorComponent(MouseEvent e, Color colorComponent){
         if(e == null || colorComponent == null){
-            throw new IllegalArgumentException("The argument function is/are null");
+            throw new IllegalArgumentException("The argument is/are null");
         }
         JComponent component = (JComponent) e.getSource();
         if(component.isEnabled()){
