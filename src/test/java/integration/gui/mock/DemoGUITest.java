@@ -36,6 +36,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Map;
 
 /**
@@ -119,7 +121,7 @@ public class DemoGUITest extends JFrame {
 
     public void initComponent() {
 
-        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPane.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
         //tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
 
         for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {

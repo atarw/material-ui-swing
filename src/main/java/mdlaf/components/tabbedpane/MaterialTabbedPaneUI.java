@@ -32,6 +32,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -349,7 +350,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
     }
-
+/* Bug
     @Override
     protected LayoutManager createLayoutManager() {
         if (tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT) {
@@ -357,7 +358,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
         return new MaterialTabbedPaneLayout();
     }
-
+*/
     @Override
     protected JButton createScrollButton(int direction) {
         return new MaterialArrowButton(direction);

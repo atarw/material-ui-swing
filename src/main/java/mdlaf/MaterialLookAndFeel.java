@@ -606,7 +606,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //TODO exist an bug inside the icon
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
         table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
-        table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE));
+        table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK));
         table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS_WHITE));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
