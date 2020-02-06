@@ -49,6 +49,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource disableTextColor;
 
+    //Label proprieties
+    protected boolean opaqueLabel = false;
+
     //Button proprieties
     protected ColorUIResource buttonBackgroundColor;
 
@@ -718,6 +721,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return false;
     }
 
+    //get label
+    public boolean isOpaqueLabel() {
+        return opaqueLabel;
+    }
+
     //get jslider
     public ColorUIResource getTrackColorSlider() {
         return trackColorSlider;
@@ -1205,6 +1213,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setOpaqueLabel(boolean opaqueLabel) {
+        this.opaqueLabel = opaqueLabel;
+    }
+
     public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {
         this.disabledBackgroudnTextField = disabledBackgroudnTextField;
     }

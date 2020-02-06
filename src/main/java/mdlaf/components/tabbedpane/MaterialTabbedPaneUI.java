@@ -350,20 +350,29 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
     }
-/* Bug
+
+    //TODO remove this methods inside the version 1.2 of library.
+    //The implementation inside this method was deprecated because cause
+    //this issue: https://github.com/vincenzopalazzo/material-ui-swing/issues/109
+    // I'm deprecating this implementation with an if-else and inside the version 1.2 of the library
+    //the implementation of this method was removed such as the Implementation of MaterialTabbedPaneLayout
+    //MaterialTabbedPaneLayout was declared deprecated.
     @Override
     protected LayoutManager createLayoutManager() {
         if (tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT) {
             return super.createLayoutManager();
+        }else{
+            return super.createLayoutManager();
         }
-        return new MaterialTabbedPaneLayout();
+        //return new MaterialTabbedPaneLayout();
     }
-*/
+
     @Override
     protected JButton createScrollButton(int direction) {
         return new MaterialArrowButton(direction);
     }
 
+    @Deprecated //TODO remove this implementation inside the version 1.2 of the library.
     protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
 
         protected int spacer; // should be non-negative

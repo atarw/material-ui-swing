@@ -457,6 +457,10 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderTitledBorder();
 
+    //---------------------------------------------------
+    //Proprieties JLabel
+    boolean isOpaqueLabel();
+
     //All type of font supported to the theme
     FontUIResource getFontBold();
 
@@ -468,6 +472,8 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setOpaqueLabel(boolean opaqueLabel);
+
     void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
 
     void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField);

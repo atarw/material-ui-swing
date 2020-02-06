@@ -35,7 +35,6 @@ public class Issue101Frame extends JFrame {
         JLabel l = new JLabel("Some text", SwingConstants.CENTER);
         p.add(l, null);
         l.setBounds(0, 50, 200, 21);
-        l.setOpaque(false);
         frame.setTitle("Label issue example");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);

@@ -285,11 +285,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         JButton b = (JButton) component;
         if (b.isEnabled() && (defaultButton != null && defaultButton) && !b.isSelected()) {
-            System.out.println("b.isEnabled() && (defaultButton != null && defaultButton)");
             b.setBackground(defaultBackground);
             b.setForeground(defaultForeground);
         }else if(!b.isEnabled() && (defaultButton != null && defaultButton)){
-            System.out.println("!b.isEnabled() && (defaultButton != null && defaultButton)");
             b.setBackground(disabledDefaultBackground);
             b.setForeground(disabledDefaultForeground);
         } else if (!b.isEnabled()) {
@@ -313,6 +311,83 @@ public class MaterialButtonUI extends BasicButtonUI {
                 paintedDisabled = false;
             }
         }
+    }
+
+    public void setBackground(Color color) {
+        if(color == null){
+            throw new IllegalArgumentException("Color null");
+        }
+        if(this.defaultButton != null && this.defaultButton){
+            this.defaultBackground = color;
+        }else{
+            this.background = color;
+        }
+        button.repaint();
+    }
+
+    //Getter and setter propriety
+    public Color getForeground() {
+        return foreground;
+    }
+
+    public void setForeground(Color foreground) {
+        this.foreground = foreground;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public Color getDisabledBackground() {
+        return disabledBackground;
+    }
+
+    public void setDisabledBackground(Color disabledBackground) {
+        this.disabledBackground = disabledBackground;
+    }
+
+    public Color getDisabledForeground() {
+        return disabledForeground;
+    }
+
+    public void setDisabledForeground(Color disabledForeground) {
+        this.disabledForeground = disabledForeground;
+    }
+
+    public Color getDefaultBackground() {
+        return defaultBackground;
+    }
+
+    public void setDefaultBackground(Color defaultBackground) {
+        this.defaultBackground = defaultBackground;
+    }
+
+    public Color getDefaultForeground() {
+        return defaultForeground;
+    }
+
+    public void setDefaultForeground(Color defaultForeground) {
+        this.defaultForeground = defaultForeground;
+    }
+
+    public Color getDisabledDefaultBackground() {
+        return disabledDefaultBackground;
+    }
+
+    public void setDisabledDefaultBackground(Color disabledDefaultBackground) {
+        this.disabledDefaultBackground = disabledDefaultBackground;
+    }
+
+    public Color getDisabledDefaultForeground() {
+        return disabledDefaultForeground;
+    }
+
+    public void setDisabledDefaultForeground(Color disabledDefaultForeground) {
+        this.disabledDefaultForeground = disabledDefaultForeground;
+    }
+
+    public Boolean isDefaultButton() {
+        return defaultButton != null && defaultButton;
     }
 
     protected class EventEnableButton implements PropertyChangeListener {

@@ -303,7 +303,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Label.font", theme.getFontRegular());
         table.put("Label.background", theme.getBackgroundPrimary());
         table.put("Label.foreground", theme.getTextColor());
-        table.put("Label.opaque", true); //TODO configure this with MaterialTheme and set default to false
+        table.put("Label.opaque", theme.isOpaqueLabel());
         table.put("Label.disabledForeground", theme.getDisableTextColor());
         table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
@@ -396,6 +396,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("SplitPaneDivider.background", theme.getColorDividierSplitPane());
         table.put("SplitPaneDivider.draggingColor", theme.getColorDividierFocusSplitPane());
 
+        //TODO the comment proprieties will be remove to version 1.2 of the library
+        //for the moment are deprecated
         table.put("TabbedPane.font", theme.getFontRegular());
         table.put("TabbedPane.background", theme.getBackgroundPrimary());
         table.put("TabbedPane.tabAreaBackground", theme.getBackgroundPrimary());
@@ -412,8 +414,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
         table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
-        table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
-        table.put("TabbedPane.indent", theme.getIndentTabbedPane());
+        //table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
+        //table.put("TabbedPane.indent", theme.getIndentTabbedPane());
         table.put("TabbedPane.tabInsets", theme.getTabInsetsTabbedPane());
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
         //table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
