@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,9 @@ public class MaterialLabelUI extends BasicLabelUI {
         super.installUI(c);
 
         JLabel label = (JLabel) c;
-        label.setOpaque(UIManager.getBoolean("Label.opaque"));
+        //TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
+        //and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
+        //label.setOpaque(UIManager.getBoolean("Label.opaque"));
         label.setFont(UIManager.getFont("Label.font"));
         label.setBackground(UIManager.getColor("Label.background"));
         label.setForeground(UIManager.getColor("Label.foreground"));

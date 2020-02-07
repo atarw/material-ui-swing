@@ -8,6 +8,9 @@
 - Implemented example for TitledBorder with material style [https://github.com/vincenzopalazzo/material-ui-swing/issues/104](https://github.com/vincenzopalazzo/material-ui-swing/issues/104)
 - [Added new style of the Disabled TextComponent](https://github.com/vincenzopalazzo/material-ui-swing/issues/105)
 - [The mouse hover effect work wrong with disabled action on click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
+- [MouseHover event on JComboBox with Label.setOpaque(false)]()
+- [Wrong Layout inside JTabbedPane when resize it]()
+- [Remove call to setOpaque from MaterialLabelUI]()
 
 **JToggleButton Second Style without icons**
 

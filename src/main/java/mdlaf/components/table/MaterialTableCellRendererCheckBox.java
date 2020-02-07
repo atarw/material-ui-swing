@@ -50,7 +50,7 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
         if (value instanceof Boolean) {
             setSelected((Boolean) value);
         }
-        boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
+         boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
         Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
         Color normalColor = UIManager.getColor("Table.background");
         if(alternativeRow){

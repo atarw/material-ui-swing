@@ -38,7 +38,7 @@ public class MaterialComboBoxEditor extends BasicComboBoxEditor {
     public Component getEditorComponent() {
         Component component = super.getEditorComponent();
         component.setForeground(UIManager.getColor("ComboBox.selectionForeground"));
-        component.setForeground(MaterialColors.RED_800);
+        //component.setForeground(MaterialColors.RED_800);
         return component;
     }
 }

@@ -73,6 +73,7 @@ import sun.awt.SunToolkit;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
@@ -303,7 +304,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Label.font", theme.getFontRegular());
         table.put("Label.background", theme.getBackgroundPrimary());
         table.put("Label.foreground", theme.getTextColor());
-        table.put("Label.opaque", theme.isOpaqueLabel());
+        //TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
+        //and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
+       // table.put("Label.opaque", true);
         table.put("Label.disabledForeground", theme.getDisableTextColor());
         table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
@@ -416,7 +419,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
         //table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
         //table.put("TabbedPane.indent", theme.getIndentTabbedPane());
-        table.put("TabbedPane.tabInsets", theme.getTabInsetsTabbedPane());
+        table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
+        table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
         //table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
         //table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
@@ -435,6 +439,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table.gridColor", theme.getGridColorTable());
         table.put("Table.focusable", theme.getTableFocusable());
         table.put("Table.opaque", theme.getTableOpaque());
+        //This propriety was used also how default
+        //TODO refactoring this proprieties
+        //TODO add why
         table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
         table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
         table.put("Table[row].height", theme.getHeightRowTable());
@@ -443,12 +450,16 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table[CheckBox].selectionChecked", theme.getSelectedCheckBoxIconSelectionRowTable());
         table.put("Table[CheckBox].selectionUnchecked", theme.getUnselectedCheckBoxIconSelectionRowTable());
         table.put("Table.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
+        table.put("Table.showVerticalLines", false);
+        table.put("Table.showHorizontalLines", false);
+        table.put("Table.intercellSpacing", new java.awt.Dimension(0, 0));
 
         table.put("TableHeader.background", theme.getBackgroundTableHeader());
         table.put("TableHeader.foreground", theme.getForegroundTableHeader());
         table.put("TableHeader.border", theme.getBorderTableHeader());
         table.put("TableHeader.font", theme.getFontBold());
         table.put("TableHeader.cellBorder", theme.getCellBorderTableHeader());
+        table.put("TableHeader.gridColor", theme.getBackgroundTableHeader());
 
         table.put("TextArea.background", theme.getBackgroundTextField());
         table.put("TextArea.border", theme.getBorderTextField());
@@ -486,6 +497,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Tree.selectionBackground", theme.getSelectionBackgroundTree());
         table.put("Tree.background", theme.getBackgroundPrimary());
         table.put("Tree.selectionBorderColor", theme.getSelectionBorderColorTree());
+        table.put("Tree.border", theme.getBorderTree());
         table.put("Tree.collapsedIcon", null);
         table.put("Tree.expandedIcon", null);
         table.put("Tree.closedIcon", theme.getClosedIconTree());
@@ -608,7 +620,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //TODO exist an bug inside the icon
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
         table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
-        table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK));
+        table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
         table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS_WHITE));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);

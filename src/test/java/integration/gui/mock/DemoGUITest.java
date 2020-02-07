@@ -24,7 +24,7 @@
 package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +36,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+
 import java.util.Map;
 
 /**
@@ -49,8 +48,9 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
-            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+
+            UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
@@ -68,7 +68,7 @@ public class DemoGUITest extends JFrame {
     private JButton buttonDefault = new JButton("Ok");
     private JButton buttonUndo = new JButton("Disable TextField");
     private JButton buttonDisabled = new JButton("I'm disabled");
-    private JButtonNoMouseHoverNative buttonNormal = new JButtonNoMouseHoverNative("I'm a pure jbutton");
+    private JButton buttonNormal = new JButton("I'm a pure jbutton");
     private ContainerAction containerAction = new ContainerAction();
     private JTextField textFieldUsername = new JTextField();
     private JPasswordField passwordFiled = new JPasswordField();
@@ -107,8 +107,8 @@ public class DemoGUITest extends JFrame {
 
     JLabel labelSplitPane1 = new JLabel("Label one");
     JLabel labelSplitPane2 = new JLabel("Label two");
-
-    //Mouse hover but
+    JSpinner spinner = new JSpinner(new SpinnerListModel(new String[]{"d", "e", "f"}));
+    //Mouse hover bug
     JPanel mouseHoverPanel = new JPanel();
     GroupLayout groupLayoutMouseHoverPanel;
     JButton buttonOneMouseHoverBug = new JButton();
@@ -206,6 +206,7 @@ public class DemoGUITest extends JFrame {
             }
         });
 
+
         initStyleMouseHoverPanel();
 
         initLayoutContentPanelOne();
@@ -286,6 +287,7 @@ public class DemoGUITest extends JFrame {
         JPanel panelRight = new JPanel();
         panelRight.setBorder(BorderFactory.createLineBorder(MaterialColors.AMBER_500));
         panelRight.add(labelSplitPane2);
+        panelLeaf.add(spinner);
 
         splitPane.setDividerLocation(200);
         splitPane.setLeftComponent(panelLeaf);

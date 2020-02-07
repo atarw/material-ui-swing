@@ -331,6 +331,8 @@ public interface MaterialTheme {
 
     ImageIconUIResource getOpenIconTree();
 
+    BorderUIResource getBorderTree();
+
     //---------------------------------------------------
     //Proprieties JTextField and JPasswordField
     ColorUIResource getBackgroundTextField();
@@ -458,8 +460,8 @@ public interface MaterialTheme {
     BorderUIResource getBorderTitledBorder();
 
     //---------------------------------------------------
-    //Proprieties JLabel
-    boolean isOpaqueLabel();
+    //Proprieties TitleBorder
+    ImageIconUIResource getIconCloseTitlePane();
 
     //All type of font supported to the theme
     FontUIResource getFontBold();
@@ -472,7 +474,9 @@ public interface MaterialTheme {
 
 
     //Setter
-    void setOpaqueLabel(boolean opaqueLabel);
+    void setBorderTree(BorderUIResource borderTree);
+
+    void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane);
 
     void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
 

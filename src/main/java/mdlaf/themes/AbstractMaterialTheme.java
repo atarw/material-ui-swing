@@ -49,9 +49,6 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource disableTextColor;
 
-    //Label proprieties
-    protected boolean opaqueLabel = false;
-
     //Button proprieties
     protected ColorUIResource buttonBackgroundColor;
 
@@ -246,6 +243,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ImageIconUIResource openIconTree;
 
+    protected BorderUIResource borderTree;
+
     //---------------------------------------------------
     //Proprieties JTextField and JPasswordField
     protected ColorUIResource backgroundTextField;
@@ -363,10 +362,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties TitledBorder
-
     protected ColorUIResource colorTextTitledBorder;
 
     protected BorderUIResource borderTitledBorder;
+
+    //---------------------------------------------------
+    //Proprieties TitlePane
+    protected ImageIconUIResource iconCloseTitlePane;
 
     //---------------------------------------------------
     //All type of font supported to the look and feel
@@ -402,8 +404,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
-        borderSpinner = MaterialBorders.LIGHT_LINE_BORDER;
-        arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createEmptyBorder());
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
+        arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createLineBorder(arrowButtonBackgroundSpinner));
         borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
         arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -435,6 +437,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
         dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
 
+        borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
     }
 
     //getter
@@ -721,10 +724,6 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return false;
     }
 
-    //get label
-    public boolean isOpaqueLabel() {
-        return opaqueLabel;
-    }
 
     //get jslider
     public ColorUIResource getTrackColorSlider() {
@@ -866,7 +865,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     @Override
     public int getHeightRowTable() {
-        return 4;
+        return 10;
     }
 
     public ColorUIResource getBackgroundTableHeader() {
@@ -967,6 +966,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return openIconTree;
     }
 
+    public BorderUIResource getBorderTree() {
+        return borderTree;
+    }
     //---------------------------------------------------
     //Proprieties JToggleButton
 
@@ -1193,6 +1195,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return borderTitledBorder;
     }
 
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+    public ImageIconUIResource getIconCloseTitlePane() {
+        return iconCloseTitlePane;
+    }
+
     //get fonts
     public FontUIResource getFontBold() {
         return fontBold;
@@ -1213,8 +1221,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
-    public void setOpaqueLabel(boolean opaqueLabel) {
-        this.opaqueLabel = opaqueLabel;
+    public void setBorderTree(BorderUIResource borderTree) {
+        this.borderTree = borderTree;
+    }
+
+    public void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane) {
+        this.iconCloseTitlePane = iconCloseTitlePane;
     }
 
     public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {

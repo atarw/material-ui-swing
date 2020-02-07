@@ -91,18 +91,20 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF_WHITE);
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
+
+        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
     }
 
     @Override
     protected void installBorders() {
         super.installBorders();
         borderMenuBar = new BorderUIResource(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(225, 156, 43)));
-        borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
-        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
+        borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary));
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
-                borderSpinner,
-                BorderFactory.createLineBorder(MaterialColors.COSMO_DARK_GRAY, 2)));
+                BorderFactory.createLineBorder(backgroundTableHeader),
+                BorderFactory.createEmptyBorder(15,10,15,10)));
         borderToolBar = borderSpinner;
 
         borderDialogRootPane = borderSpinner;
@@ -145,9 +147,6 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = buttonBackgroundColor;
-        this.mouseHoverButtonColorSpinner = buttonBackgroundColorMouseHover;
-
         this.arrowButtonColorScrollBar = buttonBackgroundColor;
         this.trackColorScrollBar = new ColorUIResource(81, 86, 101);
         this.thumbColorScrollBar = new ColorUIResource(155,155,155);
@@ -177,8 +176,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = new ColorUIResource(81, 86, 101);
-        this.selectionBorderColorTree = selectionBackgroundTree;
+        this.selectionBackgroundTree = super.backgroundPrimary;
+        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = new ColorUIResource(81, 86, 101);
         this.inactiveForegroundTextField = MaterialColors.WHITE;
@@ -189,6 +188,9 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
         this.activeColorLineTextField = new ColorUIResource(249, 192, 98);
+
+        this.arrowButtonBackgroundSpinner = backgroundTextField;
+        this.mouseHoverButtonColorSpinner = backgroundPrimary;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;

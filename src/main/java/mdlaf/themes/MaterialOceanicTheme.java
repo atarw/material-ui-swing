@@ -92,6 +92,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF_WHITE);
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
+
+        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
     }
 
     @Override
@@ -101,7 +103,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
                 false, false, true, false));
         //borderMenuBar = new BorderUIResource(BorderFactory.createLineBorder(this.menuBackground, 1));;
         borderPopupMenu = MaterialBorders.OCEAN_LINE_BORDER;
-        borderSpinner = MaterialBorders.OCEAN_LINE_BORDER;
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.DARK_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                 MaterialBorders.DARK_LINE_BORDER,
@@ -148,9 +150,6 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = MaterialColors.DARKLY_STRONG_BLUE;
-        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_BLUE;
-
         this.arrowButtonColorScrollBar = MaterialColors.DARKLY_STRONG_BLUE;
         this.trackColorScrollBar = MaterialColors.DARKLY_BLUE;
         this.thumbColorScrollBar = MaterialColors.GRAY_500;
@@ -180,8 +179,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = MaterialColors.DARKLY_BLUE;
-        this.selectionBorderColorTree = MaterialColors.LIME_A400;
+        this.selectionBackgroundTree = super.backgroundPrimary;
+        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = MaterialColors.DARKLY_BLUE;
         this.inactiveForegroundTextField = MaterialColors.WHITE;
@@ -192,6 +191,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         super.disabledForegroundTextField = MaterialColors.GRAY_500;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
         this.activeColorLineTextField = MaterialColors.LIME_A400;
+
+        this.arrowButtonBackgroundSpinner = backgroundTextField;
+        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_STRONG_BLUE;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;

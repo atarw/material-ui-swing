@@ -56,7 +56,12 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 		table.setFocusable (UIManager.getBoolean ("Table.focusable"));
 		table.setRowHeight(UIManager.getInt("Table[row].height"));
-		table.getTableHeader ().setResizingAllowed (true);
+		table.setShowHorizontalLines(UIManager.getBoolean("Table.showHorizontalLines"));
+		table.setShowVerticalLines(UIManager.getBoolean("Table.showVerticalLines"));
+		table.setShowGrid(UIManager.getBoolean("Table.showHorizontalLines") && UIManager.getBoolean("Table.showVerticalLines"));
+		table.setRowHeight(UIManager.getInt("Table[row].height"));
+		table.setIntercellSpacing(UIManager.getDimension("Table.intercellSpacing"));
+		table.getTableHeader().setResizingAllowed (true);
 		int rowHeight = UIManager.getInt ("Table.rowHeight");
 		if (rowHeight > 0) {
 			table.setRowHeight (rowHeight);

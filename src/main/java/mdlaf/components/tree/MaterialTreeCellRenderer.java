@@ -43,18 +43,18 @@ public class MaterialTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	@Override
 	public Component getTreeCellRendererComponent (JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-		JComponent component = (JComponent) super.getTreeCellRendererComponent (tree, value, isSelected, expanded, leaf, row, hasFocus);
-		component.setBorder (BorderFactory.createEmptyBorder (5, 2, 5, 2));
-
+		super.getTreeCellRendererComponent (tree, value, isSelected, expanded, leaf, row, hasFocus);
+		setBorder (UIManager.getBorder("Tree.border"));
+		//setOpaque(true);
 		if(isSelected){
-			setBackground(selectedBackground);
-			setForeground(selectedForeground);
+			setBackgroundSelectionColor(selectedBackground);
+			setTextSelectionColor(selectedForeground);
 		}else{
-			setBackground(background);
-			setForeground(foreground);
+			setBackgroundNonSelectionColor(background);
+			setTextNonSelectionColor(foreground);
 		}
 
-		return component;
+		return this;
 	}
 
 	@Override

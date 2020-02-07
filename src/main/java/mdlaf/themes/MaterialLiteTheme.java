@@ -93,7 +93,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF);
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON);
 
-        super.colorTextTitledBorder = textColor;
+        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK);
     }
 
     @Override
@@ -134,9 +134,6 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.menuTextColor = MaterialColors.BLACK;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = MaterialColors.GRAY_200;
-        this.mouseHoverButtonColorSpinner = MaterialColors.GRAY_400;
-
         this.arrowButtonColorScrollBar = MaterialColors.GRAY_200;
         this.trackColorScrollBar = MaterialColors.GRAY_200;
         this.thumbColorScrollBar = MaterialColors.GRAY_500;
@@ -166,8 +163,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = MaterialColors.GRAY_200;
-        this.selectionBorderColorTree = MaterialColors.GRAY_200;
+        this.selectionBackgroundTree = super.backgroundPrimary;
+        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = MaterialColors.GRAY_200;
         this.inactiveForegroundTextField = MaterialColors.GRAY_800;
@@ -178,6 +175,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         super.disabledForegroundTextField = MaterialColors.GRAY_700;
         this.inactiveColorLineTextField = MaterialColors.BLACK;
         this.activeColorLineTextField = MaterialColors.LIGHT_BLUE_400;
+
+        this.arrowButtonBackgroundSpinner = MaterialColors.GRAY_200;
+        this.mouseHoverButtonColorSpinner = MaterialColors.GRAY_400;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
@@ -200,6 +200,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
         this.colorDividierFocusSplitPane = MaterialColors.COSMO_BLUE;
+
+        super.colorTextTitledBorder = textColor;
     }
 
     @Override

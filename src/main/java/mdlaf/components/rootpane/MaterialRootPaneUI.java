@@ -28,6 +28,7 @@ import mdlaf.components.titlepane.MaterialTitlePaneUI;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicRootPaneUI;
 import javax.swing.plaf.metal.MetalRootPaneUI;
 import java.awt.*;
 import java.awt.event.InputEvent;
