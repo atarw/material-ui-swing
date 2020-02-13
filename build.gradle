@@ -15,6 +15,11 @@ dependencies {
     // https://mvnrepository.com/artifact/org.swinglabs/swingx
     compile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
 
+    compile group: 'com.github.jiconfont', name: 'jiconfont-bundle', version: '1.4.0'
+
+    implementation 'com.github.jiconfont:jiconfont-swing:1.0.1'
+    implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
+
     //Slf4j configuration
     testCompile 'ch.qos.logback:logback-classic:1.2.3'
     testCompile 'ch.qos.logback:logback-core:1.2.3'
@@ -119,8 +124,8 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/vincenzodev/Jmars/JMars_version_9-9-2019/branches/UI/lib'
-            rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.0_Beta.jar')
+            into '/media/vincent/VincentHDD/JMARS_Developement/08_02_2020_JMars/branches/UI/lib'
+            rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.1.1.jar')
         }
     }
 }

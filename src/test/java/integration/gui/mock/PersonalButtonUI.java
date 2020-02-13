@@ -22,9 +22,9 @@ public class PersonalButtonUI extends MaterialButtonUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+        super.borderEnabled = false;
         super.disabledBackground = MaterialColors.LIGHT_BLUE_600;
         super.disabledForeground = MaterialColors.WHITE;
-        c.setFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
     }
 
     public void setColorDisableBackground(Color newColor){

@@ -405,6 +405,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.background", theme.getBackgroundPrimary());
         table.put("TabbedPane.tabAreaBackground", theme.getBackgroundPrimary());
         table.put("TabbedPane.foreground", theme.getTextColor());
+        table.put("TabbedPane.disabledForeground", theme.getDisableTextColor());
         table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane.contentAreaColor", theme.getButtonTextColor());
         table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
@@ -536,8 +537,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("EditorPane.font", theme.getFontRegular());
         table.put("EditorPane.focusInputMap", multilineInputMap);
 
-        table.put("Separator.background", MaterialColors.GRAY_300);
-        table.put("Separator.foreground", MaterialColors.GRAY_300);
+        table.put("Separator.background", theme.getBackgroundSeparator());
+        table.put("Separator.foreground", theme.getForegroundSeparator());
 
         table.put("ToolTip.background", MaterialColors.GRAY_500);
         table.put("ToolTip.foreground", MaterialColors.GRAY_50);
@@ -575,7 +576,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TitledBorder.font", theme.getFontMedium());
         table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
 
-        table.put("TaskPane.font", theme.getFontMedium());
+        table.put("TaskTaskPane.font", theme.getFontMedium());
         table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
         table.put("TaskPane.titleBackgroundGradientEnd", theme.getTitleBackgroundGradientEndTaskPane());
         table.put("TaskPane.titleOver", theme.getTitleOverTaskPane());

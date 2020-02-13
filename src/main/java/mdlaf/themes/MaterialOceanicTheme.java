@@ -218,6 +218,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.colorDividierFocusSplitPane = MaterialColors.LIME_A400;
 
         super.colorTextTitledBorder = textColor;
+
+        super.backgroundSeparator = MaterialColors.GRAY_300;
+        super.foregroundSeparator = MaterialColors.GRAY_300;
     }
 
     @Override

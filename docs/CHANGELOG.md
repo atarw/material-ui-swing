@@ -1,22 +1,25 @@
-# Material-UI-Swing 
+# Material-UI-Swing
 
 ## Version 1.1.1
 
-**Bugs Fixed** 
-- https://github.com/vincenzopalazzo/material-ui-swing/issues/98
-- Added support to JSplitPane from MaterialTheming, this feature fixes the following issue https://github.com/vincenzopalazzo/material-ui-swing/issues/102
-- Implemented example for TitledBorder with material style [https://github.com/vincenzopalazzo/material-ui-swing/issues/104](https://github.com/vincenzopalazzo/material-ui-swing/issues/104)
+**Bugs Fixed**
+- [InternalFrame + TextComponent drawing issue](https://github.com/vincenzopalazzo/material-ui-swing/issues/98)
+- [Added support to JSplitPane from MaterialTheming](https://github.com/vincenzopalazzo/material-ui-swing/issues/102)
+- [Implemented example for TitledBorder with material style](https://github.com/vincenzopalazzo/material-ui-swing/issues/104)
 - [Added new style of the Disabled TextComponent](https://github.com/vincenzopalazzo/material-ui-swing/issues/105)
 - [The mouse hover effect work wrong with disabled action on click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
 - [MouseHover event on JComboBox with Label.setOpaque(false)]()
 - [Wrong Layout inside JTabbedPane when resize it]()
-- [Remove call to setOpaque from MaterialLabelUI]()
+- [Support SpliPane with MaterialTheming](https://github.com/vincenzopalazzo/material-ui-swing/issues/102)
+- [Remove call to setOpaque from MaterialLabelUI](https://github.com/vincenzopalazzo/material-ui-swing/issues/101)
+- [Possibility to add the personal color to Tab disabled into JTabbedPane](https://github.com/vincenzopalazzo/material-ui-swing/issues/113)
+- [Mouse hover bug when the component did disabled after click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
 
 **JToggleButton Second Style without icons**
 
-From the version 1.1.1 official of the library, it was released the second style of 
-the component JToggleButton without icon, this feature was proposed from the 
-[issue 95 of the vincenzopalazzo/material-ui-swing branch](https://github.com/vincenzopalazzo/material-ui-swing/issues/95) 
+From the version 1.1.1 official of the library, it was released the second style of
+the component JToggleButton without icon, this feature was proposed from the
+[issue 95 of the vincenzopalazzo/material-ui-swing branch](https://github.com/vincenzopalazzo/material-ui-swing/issues/95)
 and an is disabled by default, and simple demo for enable this style [is here]().
 
 A screenshots of the new style are
@@ -43,7 +46,7 @@ Is possible change the border main from MaterialTheming, an example you can decl
 ```
 protected void installBorders(){
    //other proprieties
- 
+
    super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
 }
 ```
@@ -61,3 +64,39 @@ protected void installColor() {
 
 Inside the version 1.1.1 was released the first javadoc of the library, the interesting thing is the first javadoc of MaterialTheming, you can find it [here](TODO)
 
+## JSpinner style configuration supported by MaterialTheming
+
+With the version 1.1.1 you can change the style to JSeparator with this propriety inside the AbstractMaterialTheming
+
+```
+    public ColorUIResource backgroundSeparator;
+
+    public ColorUIResource foregroundSeparator;
+
+```
+
+This proprieties have setter and getter methods.
+
+## JTabbledPane Style
+
+Now is possible set the color to the text when the tab is disabled, this is the new effect:
+
+**MaterialLiteTheme**
+
+![](https://i.ibb.co/drFVYHn/Selection-034.png)
+
+
+**MaterialOceanicTheme**
+
+![](https://i.ibb.co/bX21M5G/Selection-033.png)
+
+
+**JMarsDarkTheme**
+
+![](https://i.ibb.co/k16jGqv/Selection-032.png)
+
+Also, you can found othe information inside the answer to this [issue](https://github.com/vincenzopalazzo/material-ui-swing/issues/113#issuecomment-585725423)
+
+## Used [IconFontSwing](https://jiconfont.github.io/) library for add other icons
+
+TODO

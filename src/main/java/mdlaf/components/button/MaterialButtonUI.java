@@ -63,6 +63,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
     protected boolean paintedDisabled = false;
+    protected boolean buttonBorderToAll = false;
 
     @Override
     public void installUI(JComponent c) {
@@ -81,6 +82,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
         borderColor = UIManager.getColor("Button[border].color");
         borderEnabled = UIManager.getBoolean("Button[border].enable");
+        buttonBorderToAll = UIManager.getBoolean("Button[border].toAll");
         if (mouseHoverEnabled == null) {
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
@@ -171,7 +173,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         Graphics2D graphics = (Graphics2D) g.create();
         g.setColor(c.getBackground());
         JButton b = (JButton) c;
-        if (!UIManager.getBoolean("Button[border].toAll") && (button.getIcon() != null)) {
+        if (buttonBorderToAll && (button.getIcon() != null)) {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         } else {
             g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);

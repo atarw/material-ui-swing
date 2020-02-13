@@ -23,10 +23,13 @@
  */
 package mdlaf.utils;
 
+import jiconfont.IconCode;
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import jiconfont.swing.IconFontSwing;
 import sun.swing.ImageIconUIResource;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,12 +39,25 @@ import java.util.Map;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class MaterialImageFactory {
+public class MaterialImageFactory{
+
+    //TODO start refactoring and import this library IconFontSwing
+    static {
+        IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+    }
+
+    public static void registerIcons(IconCode iconCode){
+        if(iconCode == null){
+            String errorMessage = "\n- Icon code null you can found the name icon here: " +
+                    "https://jiconfont.github.io/\n" +
+                    "An example can be this IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());";
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
 
     private static MaterialImageFactory SINGLETON;
 
     private static final String PATH_RESOUSES = "/imgs/";
-    private static final String LOCAL_PATH_SVG = "svg/";
 
     //Icon black
     public static final String RIGHT_ARROW = "right_arrow";
@@ -97,7 +113,7 @@ public class MaterialImageFactory {
     public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
     public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
 
-    private Map<String, ImageIconUIResource> cachaImage = new HashMap<>();
+    private Map<String, ImageIconUIResource> cacheImage = new HashMap<>();
 
     public static MaterialImageFactory getInstance() {
         if (SINGLETON == null) {
@@ -111,19 +127,77 @@ public class MaterialImageFactory {
 
     public ImageIconUIResource getImage(String key) {
         if (key == null) {
-            throw new IllegalArgumentException("Argument nulled");
+            throw new IllegalArgumentException("Argument null");
         }
         String path = PATH_RESOUSES.trim() + key.trim() + ".png".trim();
-        if (cachaImage.containsKey(path)) {
-            return cachaImage.get(path);
+        if (cacheImage.containsKey(path)) {
+            return cacheImage.get(path);
         }
         try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(path)) {
             BufferedImage image = ImageIO.read(inputStream);
-            cachaImage.put(path, new ImageIconUIResource(image));
-            return cachaImage.get(path);
+            cacheImage.put(path, new ImageIconUIResource(image));
+            return cacheImage.get(path);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Image " + path + " wasn't loaded");
         }
+    }
+
+    /**
+     * This method utilized this library for make the icons https://jiconfont.github.io/swing
+     * by default the material-ui-swing utilized the Google font https://jiconfont.github.io/swing
+     * but you can set other type of font with method
+     * @param iconCode
+     * @param dimension: Is the dimension of icons, by default this library used dimension = 20
+     * @param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
+     * @return
+     */
+    public ImageIconUIResource getImage(IconCode iconCode, int dimension, Color color){
+        if(iconCode == null || dimension <= 0){
+            String errorMessage = "Don't know motivation this exceptions";
+            if(iconCode == null){
+                if(errorMessage.contains("Don\'t know motivation this exceptions")){
+                    errorMessage = "";
+                }
+                errorMessage += "\n- Icon code null, you can found the name icon color here: " +
+                        "https://material.io/resources/icons/?style=baseline\n" +
+                        "an valid code can be this: " +
+                        "MaterialImageFactory.getInstance().getImage(" +
+                        "GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT, Color.BLUE);";
+            }
+            if(dimension <= 0){
+                if(errorMessage.contains("Don\'t know motivation this exceptions")){
+                    errorMessage = "";
+                }
+                errorMessage += "\n- Dimension of icon doesn't valid, you should insert the dimension > 0";
+            }
+            errorMessage += "\n\n";
+            throw new IllegalArgumentException(errorMessage);
+        }
+        String key;
+        if(color == null){
+            color = MaterialColors.BLACK;
+        }
+        key = iconCode.name() + dimension + color.toString();
+
+        if(cacheImage.containsKey(key)){
+            return cacheImage.get(key);
+        }
+
+        ImageIconUIResource icon = new ImageIconUIResource(IconFontSwing.buildImage(iconCode, dimension, color));
+        cacheImage.put(key, icon);
+        return icon;
+    }
+
+    public ImageIconUIResource getImage(IconCode iconCode, int dimension){
+        return getImage(iconCode, dimension, null);
+    }
+
+    public ImageIconUIResource getImage(IconCode iconCode){
+        return getImage(iconCode, 20, null);
+    }
+
+    public ImageIconUIResource getImage(IconCode iconCode, Color color){
+        return getImage(iconCode, 20, color);
     }
 }

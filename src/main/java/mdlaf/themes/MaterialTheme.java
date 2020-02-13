@@ -312,6 +312,12 @@ public interface MaterialTheme {
     BorderUIResource getCellBorderTableHeader();
 
     //---------------------------------------------------
+    //Proprieties JSeparator
+    ColorUIResource getBackgroundSeparator();
+
+    ColorUIResource getForegroundSeparator();
+
+    //---------------------------------------------------
     //Proprieties JToolBar
     ColorUIResource getDockingBackgroundToolBar();
 
@@ -454,7 +460,6 @@ public interface MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties TitledBorder
-
     ColorUIResource getColorTextTitledBorder();
 
     BorderUIResource getBorderTitledBorder();
@@ -474,6 +479,11 @@ public interface MaterialTheme {
 
 
     //Setter
+
+    void setBackgroundSeparator(ColorUIResource backgroundSeparator);
+
+    void setForegroundSeparator(ColorUIResource foregroundSeparator);
+
     void setBorderTree(BorderUIResource borderTree);
 
     void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane);

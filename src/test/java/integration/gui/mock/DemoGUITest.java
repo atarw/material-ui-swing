@@ -228,6 +228,9 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(new JPanel(), "Panel 7");
         tabbedPane.add(new JPanel(), "Panel 8");
         tabbedPane.add(new JPanel(), "Panel 9");
+        tabbedPane.setEnabledAt(6, false);
+        tabbedPane.setEnabledAt(7, false);
+        tabbedPane.setEnabledAt(7, false);
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

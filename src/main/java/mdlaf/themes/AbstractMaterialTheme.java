@@ -381,6 +381,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected FontUIResource fontMedium;
 
 
+    //---------------------------------------------------
+    //Proprieties JSeparator
+    public ColorUIResource backgroundSeparator;
+
+    public ColorUIResource foregroundSeparator;
+
+
     // Abstract method
     public abstract void installTheme();
 
@@ -542,6 +549,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     @Override
     public boolean getOpaqueButton() {
         return false;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JSeparator
+    public ColorUIResource getBackgroundSeparator() {
+        return backgroundSeparator;
+    }
+
+    public ColorUIResource getForegroundSeparator() {
+        return foregroundSeparator;
     }
 
     //Proprieties JCheckBox
@@ -1008,6 +1025,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return withoutIconBorderToggleButton;
     }
 
+
     //---------------------------------------------------
     //Proprieties JXTaskPane
     public ColorUIResource getTitleBackgroundGradientStartTaskPane() {
@@ -1219,8 +1237,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
 
-
     //Setter
+
+    public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
+        this.backgroundSeparator = backgroundSeparator;
+    }
+
+    public void setForegroundSeparator(ColorUIResource foregroundSeparator) {
+        this.foregroundSeparator = foregroundSeparator;
+    }
+
     public void setBorderTree(BorderUIResource borderTree) {
         this.borderTree = borderTree;
     }

@@ -23,10 +23,15 @@
  */
 package mdlaf.themes;
 
+import jiconfont.IconFont;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import jiconfont.swing.IconFontSwing;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
+import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -71,8 +76,11 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
         this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
 
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
+        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
+
+        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN);
 
         this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
         this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
@@ -202,6 +210,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.colorDividierFocusSplitPane = MaterialColors.COSMO_BLUE;
 
         super.colorTextTitledBorder = textColor;
+
+        super.backgroundSeparator = MaterialColors.GRAY_300;
+        super.foregroundSeparator = MaterialColors.GRAY_300;
     }
 
     @Override

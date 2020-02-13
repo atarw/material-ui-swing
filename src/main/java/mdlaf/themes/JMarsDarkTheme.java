@@ -23,6 +23,7 @@
  */
 package mdlaf.themes;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
@@ -70,8 +71,16 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
         this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
 
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
+        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT
+        );
+
+        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN
+        );
+
 
         this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
         this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
@@ -216,6 +225,9 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.colorDividierFocusSplitPane = new ColorUIResource(249, 192, 98);
 
         super.colorTextTitledBorder = textColor;
+
+        super.backgroundSeparator = MaterialColors.GRAY_300;
+        super.foregroundSeparator = MaterialColors.GRAY_300;
     }
 
     @Override

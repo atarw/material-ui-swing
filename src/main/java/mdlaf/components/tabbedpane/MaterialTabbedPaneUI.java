@@ -25,12 +25,14 @@ package mdlaf.components.tabbedpane;
 
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import java.awt.*;
@@ -47,11 +49,12 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     protected JTabbedPane component;
-    protected ColorUIResource selectedForeground;
-    protected ColorUIResource areaContentBackground;
-    protected ColorUIResource selectedAreaContentBackground;
-    protected ColorUIResource disableAreaContentBackground;
-    protected ColorUIResource foreground;
+    protected Color selectedForeground;
+    protected Color disabledForeground;
+    protected Color areaContentBackground;
+    protected Color selectedAreaContentBackground;
+    protected Color disableAreaContentBackground;
+    protected Color foreground;
     protected int positionYLine;
     protected int positionXLine;
     protected int widthLine;
@@ -71,6 +74,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
         tabbedPane.setForeground(foreground);
         this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
+        this.disabledForeground = UIManager.getColor("TabbedPane.disabledForeground");
         this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
         this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
         this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
@@ -107,6 +111,17 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.uninstallUI(c);
     }
 
+    @Override
+    protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
+        super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
+        int mnemIndex = this.tabPane.getDisplayedMnemonicIndexAt(tabIndex);
+        if(!tabPane.isEnabledAt(tabIndex)){
+            g.setColor(disabledForeground);
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, title, mnemIndex,
+                        textRect.x,textRect.y +  metrics.getAscent());
+        }
+    }
+
     //
     // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
     // This method paint the selected line
@@ -127,7 +142,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 g2D.setColor(disableAreaContentBackground);
                 g2D.setPaint(disableAreaContentBackground);
             }
-            tabPane.setForegroundAt(tabIndex, foreground);
+            if(tabPane.isEnabledAt(tabIndex)){
+                tabPane.setForegroundAt(tabIndex, foreground);
+            }else{
+                tabPane.setForegroundAt(tabIndex, MaterialColors.AMBER_900);
+            }
         }
     }
 
