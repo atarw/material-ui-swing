@@ -23,6 +23,7 @@
  */
 package integration.gui.test;
 
+import junit.framework.TestCase;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
@@ -63,8 +64,14 @@ public class MaterialButtonTest extends AbstractTestGUI {
         buttonDisabled.background().requireEqualTo(MaterialColors.COSMO_LIGHT_ORANGE);
         buttonDisabled.foreground().requireEqualTo(theme.getButtonTextColor());
         buttonDisabled.click();
-        buttonDisabled.background().requireEqualTo(theme.getButtonDisabledBackground());
-        buttonDisabled.foreground().requireNotEqualTo(theme.getButtonTextColor());
+        buttonDisabled.requireDisabled();
+        TestCase.assertFalse(buttonDisabled.isEnabled());
+        /*
+        if(!buttonDisabled.isEnabled()) {
+            buttonDisabled.background().requireEqualTo(theme.getButtonDisabledBackground());
+            buttonDisabled.foreground().requireEqualTo(theme.getButtonDisableTextColor());
+        }
+        */
     }
 
     //Test button focus

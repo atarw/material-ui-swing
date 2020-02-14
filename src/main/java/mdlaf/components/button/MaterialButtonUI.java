@@ -23,7 +23,6 @@
  */
 package mdlaf.components.button;
 
-import com.sun.javafx.scene.traversal.SubSceneTraversalEngine;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
@@ -55,14 +54,14 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected Color disabledForeground;
     protected Color defaultBackground;
     protected Color defaultForeground;
-    protected Color disabledDefaultBackground;
-    protected Color disabledDefaultForeground;
+    //protected Color disabledDefaultBackground;
+    //protected Color disabledDefaultForeground;
     protected Color borderColor;
     protected Boolean defaultButton = null;
     protected Boolean borderEnabled;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
-    protected boolean paintedDisabled = false;
+    //protected boolean paintedDisabled = false;
     protected boolean buttonBorderToAll = false;
 
     @Override
@@ -78,8 +77,8 @@ public class MaterialButtonUI extends BasicButtonUI {
         disabledForeground = UIManager.getColor("Button.disabledForeground");
         defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
-        disabledDefaultBackground = UIManager.getColor("Button[Default].disabledBackground");
-        disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
+        //disabledDefaultBackground = UIManager.getColor("Button[Default].disabledBackground");
+        //disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
         borderColor = UIManager.getColor("Button[border].color");
         borderEnabled = UIManager.getBoolean("Button[border].enable");
         buttonBorderToAll = UIManager.getBoolean("Button[border].toAll");
@@ -117,7 +116,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.setCursor(null);
 
         MaterialManagerListener.removeAllMaterialMouseListener(button);
-
     }
 
     @Override
@@ -133,7 +131,9 @@ public class MaterialButtonUI extends BasicButtonUI {
                     MaterialManagerListener.removeAllMaterialMouseListener(b);
                     b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
                 }
-                paintStateButton(c, g);
+                //paintBackground(g, c);
+                b.setBackground(defaultBackground);
+                b.setForeground(defaultForeground);
             }
         }
         super.paint(g, c);
@@ -152,48 +152,41 @@ public class MaterialButtonUI extends BasicButtonUI {
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
         } else {
-            if((defaultButton != null && defaultButton)){
-                button.setBackground(disabledDefaultBackground);
-                g.setColor(disabledDefaultForeground);
-            }else{
-                g.setColor(disabledForeground);
-            }
+            g.setColor(disabledForeground);
             BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
-
         }
-        //TODO POTENTIAL solution
-        //button.setFont(MaterialFontFactory.fontUtilsDisplayable(button.getText(), UIManager.getFont("Button.font")));
-
     }
 
+    /**
+     * This method paint background, inside it will paint the border to buttons.
+     * @param g Graphics Object, with this object is possible paint the component JButton
+     * @param c Component Object, rappresent the button, if possible use this object or the propriety
+     *          called button inside this class
+     */
+    //TODO tested this
     protected void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D graphics = (Graphics2D) g.create();
-        g.setColor(c.getBackground());
-        JButton b = (JButton) c;
-        if (buttonBorderToAll && (button.getIcon() != null)) {
-            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
-        } else {
-            g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
+        if (c.isEnabled()) {
             if (defaultButton != null && defaultButton) {
-                if(c.isEnabled()){
-                    g.setColor(defaultBackground);
-                }else{
-                    g.setColor(disabledDefaultBackground);
-                }
-                if (UIManager.getBoolean("Button[Default].shadowEnable")) {
-                    paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
-                }
-                return;
+                graphics.setColor(defaultBackground);
             }
-            if (borderEnabled != null && borderEnabled) {
-                paintBorderButton(graphics, b);
-            }
+            graphics.setColor(c.getBackground());
+        } else {
+            graphics.setColor(disabledBackground);
+        }
+        graphics.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
+        JButton b = (JButton) c;
+        if(buttonBorderToAll && !b.isDefaultButton()){
+            paintBorderButton(graphics, b);
+        }else if(b.getIcon() == null && !b.isDefaultButton()){
+            paintBorderButton(graphics, b);
         }
 
-        paintStateButton(c, g, StateButton.DISABLE);
+        //paintStateButton(c, g);
+        //paintStateButton(c, g, StateButton.DISABLE);
     }
 
     @Override
@@ -211,6 +204,15 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
+        if(b.isEnabled()){
+            if(defaultButton){
+                g.setColor(defaultBackground);
+            }else{
+                g.setColor(background);
+            }
+        }else{
+            g.setColor(disabledBackground);
+        }
         g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), arch, arch);
     }
 
@@ -231,7 +233,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         //Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setStroke(dashed);
-        if (defaultButton) {
+        if (defaultButton != null && defaultButton) {
             g2.setColor(UIManager.getColor("Button[Default][focus].color"));
         } else {
             g2.setColor(UIManager.getColor("Button[focus].color"));
@@ -241,38 +243,14 @@ public class MaterialButtonUI extends BasicButtonUI {
         g2.dispose();
     }
 
-    protected void paintShadow(Graphics g, JComponent c) {
-        int topOpacity = 80;
-        int pixels = UIManager.getInt("Button[Default].shadowPixel");
-        JButton b = (JButton) c;
-        int valueRed = 255;
-        int valueGreen = 255;
-        int valueBlue = 255;
-        for (int i = pixels; i >= 0; i--) {
-            if (valueBlue > 70) {
-                valueRed -= 70;
-                valueGreen -= 70;
-                valueBlue -= 70;
-            } else {
-                valueBlue -= valueBlue;
-                valueGreen -= valueGreen;
-                valueRed -= valueRed;
-            }
-
-            Color result = new Color(valueRed, valueGreen, valueBlue, topOpacity);
-            g.setColor(result);
-            g.drawRoundRect(i, i, b.getWidth() - ((i * 2) + 1), b.getHeight() - ((i * 2) + 1), arch, arch);
-        }
-
-    }
-
-    protected void paintBorderButton(Graphics2D graphics, JButton b) {
+    protected void paintBorderButton(Graphics graphics, JButton b) {
         if (!b.isEnabled()) {
             return;
         }
-        graphics.setStroke(new BasicStroke(2f));
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        graphics2D.setStroke(new BasicStroke(2f));
 
-        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int w = b.getWidth() - 1;
         int h = b.getHeight() - 1;
         //int arc = 7;
@@ -281,47 +259,17 @@ public class MaterialButtonUI extends BasicButtonUI {
         graphics.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
     }
 
-    protected void paintStateButton(JComponent component, Graphics graphics) {
-        if (component == null || graphics == null) {
-            throw new IllegalArgumentException("Input null");
-        }
-        JButton b = (JButton) component;
-        if (b.isEnabled() && (defaultButton != null && defaultButton) && !b.isSelected()) {
-            b.setBackground(defaultBackground);
-            b.setForeground(defaultForeground);
-        }else if(!b.isEnabled() && (defaultButton != null && defaultButton)){
-            b.setBackground(disabledDefaultBackground);
-            b.setForeground(disabledDefaultForeground);
-        } else if (!b.isEnabled()) {
-            b.setBackground(disabledBackground);
-            b.setForeground(disabledForeground);
-        }
-    }
-
-
-    protected void paintStateButton(JComponent c, Graphics g, StateButton disable) {
-        if (StateButton.DISABLE.equals(disable)) {
-            //this condition test the value for the button is enable
-            //if no it check if the button is painted with style disabled
-            //if no it paint the component
-            if (!c.isEnabled() && !paintedDisabled) {
-                paintedDisabled = true;
-                paintStateButton(c, g);
-            } else if (paintedDisabled && c.isEnabled()) {
-                //This condition check if the button is enable and the variable is setted to
-                // true, an example: Is the button is now enable by the event and before it was disabled
-                paintedDisabled = false;
-            }
-        }
-    }
-
+    /**
+     * This method is used inside the MaterialUITimer for reset the color at the particular event
+     * @param color
+     */
     public void setBackground(Color color) {
-        if(color == null){
+        if (color == null) {
             throw new IllegalArgumentException("Color null");
         }
-        if(this.defaultButton != null && this.defaultButton){
+        if (this.defaultButton != null && this.defaultButton) {
             this.defaultBackground = color;
-        }else{
+        } else {
             this.background = color;
         }
         button.repaint();
@@ -372,30 +320,15 @@ public class MaterialButtonUI extends BasicButtonUI {
         this.defaultForeground = defaultForeground;
     }
 
-    public Color getDisabledDefaultBackground() {
-        return disabledDefaultBackground;
-    }
-
-    public void setDisabledDefaultBackground(Color disabledDefaultBackground) {
-        this.disabledDefaultBackground = disabledDefaultBackground;
-    }
-
-    public Color getDisabledDefaultForeground() {
-        return disabledDefaultForeground;
-    }
-
-    public void setDisabledDefaultForeground(Color disabledDefaultForeground) {
-        this.disabledDefaultForeground = disabledDefaultForeground;
-    }
 
     public Boolean isDefaultButton() {
         return defaultButton != null && defaultButton;
     }
 
+
     protected class EventEnableButton implements PropertyChangeListener {
 
         private String proprietyNameEnableEvent = "enabled";
-        private String proprietyNameDefaultEvent = "defaultButton";
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -407,9 +340,6 @@ public class MaterialButtonUI extends BasicButtonUI {
                 button.setBackground(background);
                 button.setForeground(foreground);
             } else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
-                background = button.getBackground();
-                foreground = button.getForeground();
-            } else if (evt.getPropertyName().equals(proprietyNameDefaultEvent) && (boolean) evt.getNewValue()) {
                 background = button.getBackground();
                 foreground = button.getForeground();
             }

@@ -45,7 +45,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			TableCellRenderer renderer = new MaterialTableCellRendererCheckBox();
 			return renderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}
-
+/*
 		boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
 		Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
 		Color normalColor = UIManager.getColor("Table.background");
@@ -53,7 +53,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			if(!isSelected){
 				if(row%2 == 1) {
 					component.setBackground(alternativeRowColor);
-					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternativeRowColor);
+					s
 				}else{
 					component.setBackground(normalColor);
 					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
@@ -62,6 +62,13 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			}else {
 				component.setForeground(table.getSelectionForeground());
 			}
+		}*/
+		Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
+		Color normalColor = UIManager.getColor("Table.background");
+		if(row%2 == 1) {
+			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
+		}else{
+			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
 		}
 		return component;
 	}

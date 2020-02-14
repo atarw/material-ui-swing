@@ -163,6 +163,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                 }
                 timer.stop();
             }
+            //return;
         }
         if (forward) {
             component.setBackground(nextColor());
@@ -192,12 +193,23 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseMoved(MouseEvent e) {
         //do nothing this is util only implements interface MouseMotions
+        if (!component.isEnabled()) {
+            if (timer.isRunning()) {
+                if ((component instanceof JButton) &&
+                        wrapperInformationsButton != null) {
+                    System.out.println("component button set color");
+                    JButton buttonComponent = (JButton) component;
+                    wrapperInformationsButton.setOriginValues(buttonComponent);
+                }
+                timer.stop();
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         //do nothing
-        if(!component.isEnabled()) {
+        if (!component.isEnabled()) {
             if (timer.isRunning()) {
                 if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
@@ -213,7 +225,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseClicked(MouseEvent me) {
         //do nothing
-        if(!component.isEnabled()) {
+        if (!component.isEnabled()) {
             if (timer.isRunning()) {
                 if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
@@ -240,13 +252,13 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                 throw new RuntimeException("UI button's not instance of MaterialButtonUI");
             }
             MaterialButtonUI materialButtonUI = (MaterialButtonUI) button.getUI();
-            this.background = new ColorUIResource(materialButtonUI.getBackground());
-            this.foreground = new ColorUIResource(materialButtonUI.getForeground());
-            this.disabledBackground = new ColorUIResource(materialButtonUI.getDisabledBackground());
-            this.disabledForeground = new ColorUIResource(materialButtonUI.getDisabledForeground());
+            this.background = materialButtonUI.getBackground();
+            this.foreground = materialButtonUI.getForeground();
+            this.disabledBackground = materialButtonUI.getDisabledBackground();
+            this.disabledForeground = materialButtonUI.getDisabledForeground();
             if (materialButtonUI.isDefaultButton()) {
-                this.defaultBackground = new ColorUIResource(materialButtonUI.getDefaultBackground());
-                this.defaultForeground = new ColorUIResource(materialButtonUI.getDefaultForeground());
+                this.defaultBackground = materialButtonUI.getDefaultBackground();
+                this.defaultForeground = materialButtonUI.getDefaultForeground();
             }
 
         }
