@@ -174,7 +174,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectionBackgroundTable = MaterialColors.LIME_A100;
         this.selectionForegroundTable = MaterialColors.BLACK;
         this.gridColorTable = MaterialColors.COSMO_BLACK;
-        this.alternateRowBackgroundTable = MaterialColors.DARKLY_BLUE;
+        this.alternateRowBackgroundTable = MaterialColors.DARKLY_STRONG_BLUE;
 
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;

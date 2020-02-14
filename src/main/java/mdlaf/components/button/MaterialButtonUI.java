@@ -57,7 +57,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     //protected Color disabledDefaultBackground;
     //protected Color disabledDefaultForeground;
     protected Color borderColor;
-    protected Boolean defaultButton = null;
+    protected Boolean defaultButton;
     protected Boolean borderEnabled;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new EventEnableButton();
@@ -179,12 +179,13 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         graphics.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         JButton b = (JButton) c;
-        if(buttonBorderToAll && !b.isDefaultButton()){
-            paintBorderButton(graphics, b);
-        }else if(b.getIcon() == null && !b.isDefaultButton()){
-            paintBorderButton(graphics, b);
+        if(borderEnabled != null && borderEnabled){
+            if(buttonBorderToAll && !b.isDefaultButton()){
+                paintBorderButton(graphics, b);
+            }else if(b.getIcon() == null && !b.isDefaultButton()){
+                paintBorderButton(graphics, b);
+            }
         }
-
         //paintStateButton(c, g);
         //paintStateButton(c, g, StateButton.DISABLE);
     }

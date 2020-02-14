@@ -53,15 +53,17 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
         Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
         if(alternateRowColor != null){
             if(!isSelected){
-                setIcon(unchecked);
-                setSelectedIcon(checked);
+                this.setIcon(unchecked);
+                this.setSelectedIcon(checked);
                 if(row%2 == 1) {
                     this.setBackground(alternateRowColor);
+                }else{
+                    this.setBackground(table.getBackground());
                 }
                 this.setForeground(table.getForeground());
             }else{
-                setIcon(uncheckedSelectionRow);
-                setSelectedIcon(checkedSelectionRow);
+                this.setIcon(uncheckedSelectionRow);
+                this.setSelectedIcon(checkedSelectionRow);
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
