@@ -197,7 +197,6 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
             if (timer.isRunning()) {
                 if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
                     JButton buttonComponent = (JButton) component;
                     wrapperInformationsButton.setOriginValues(buttonComponent);
                 }
@@ -211,14 +210,14 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         //do nothing
         if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }
                 timer.stop();
             }
+        }
+
+        if ((component instanceof JButton) &&
+                wrapperInformationsButton != null) {
+            JButton buttonComponent = (JButton) component;
+            wrapperInformationsButton.setOriginValues(buttonComponent);
         }
     }
 
@@ -227,14 +226,14 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         //do nothing
         if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }
                 timer.stop();
             }
+        }
+
+        if ((component instanceof JButton) &&
+                wrapperInformationsButton != null) {
+            JButton buttonComponent = (JButton) component;
+            wrapperInformationsButton.setOriginValues(buttonComponent);
         }
     }
 

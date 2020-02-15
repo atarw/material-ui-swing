@@ -54,6 +54,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected Color disabledForeground;
     protected Color defaultBackground;
     protected Color defaultForeground;
+    protected Color colorMouseHoverDefaultButton;
+    protected Color colorMouseHoverNormalButton;
     //protected Color disabledDefaultBackground;
     //protected Color disabledDefaultForeground;
     protected Color borderColor;
@@ -77,6 +79,8 @@ public class MaterialButtonUI extends BasicButtonUI {
         disabledForeground = UIManager.getColor("Button.disabledForeground");
         defaultBackground = UIManager.getColor("Button[Default].background");
         defaultForeground = UIManager.getColor("Button[Default].foreground");
+        colorMouseHoverNormalButton = UIManager.getColor("Button.mouseHoverColor");
+        colorMouseHoverDefaultButton = UIManager.getColor("Button[Default].mouseHoverColor");
         //disabledDefaultBackground = UIManager.getColor("Button[Default].disabledBackground");
         //disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
         borderColor = UIManager.getColor("Button[border].color");
@@ -92,7 +96,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (mouseHoverEnabled) {
             JButton b = (JButton) button;
             if (!b.isDefaultButton()) {
-                button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("Button.mouseHoverColor")));
+                button.addMouseListener(MaterialUIMovement.getMovement(button, colorMouseHoverNormalButton));
             }
         }
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
@@ -129,7 +133,7 @@ public class MaterialButtonUI extends BasicButtonUI {
             if (defaultButton) {
                 if (mouseHoverEnabled) {
                     MaterialManagerListener.removeAllMaterialMouseListener(b);
-                    b.addMouseListener(MaterialUIMovement.getMovement(b, UIManager.getColor("Button[Default].mouseHoverColor")));
+                    b.addMouseListener(MaterialUIMovement.getMovement(b, colorMouseHoverDefaultButton));
                 }
                 //paintBackground(g, c);
                 b.setBackground(defaultBackground);
@@ -161,6 +165,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method paint background, inside it will paint the border to buttons.
+     *
      * @param g Graphics Object, with this object is possible paint the component JButton
      * @param c Component Object, rappresent the button, if possible use this object or the propriety
      *          called button inside this class
@@ -179,10 +184,10 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         graphics.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         JButton b = (JButton) c;
-        if(borderEnabled != null && borderEnabled){
-            if(buttonBorderToAll && !b.isDefaultButton()){
+        if (borderEnabled != null && borderEnabled) {
+            if (buttonBorderToAll && !b.isDefaultButton()) {
                 paintBorderButton(graphics, b);
-            }else if(b.getIcon() == null && !b.isDefaultButton()){
+            } else if (b.getIcon() == null && !b.isDefaultButton()) {
                 paintBorderButton(graphics, b);
             }
         }
@@ -194,6 +199,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         // driveLine(g, (JButton) b);
         paintFocusRing(g, (JButton) b);
+        paintBorderButton(g, b);
         //paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
     }
 
@@ -205,16 +211,17 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
-        if(b.isEnabled()){
-            if(defaultButton){
-                g.setColor(defaultBackground);
-            }else{
-                g.setColor(background);
+        if (b.isEnabled()) {
+            if (defaultButton) {
+                g.setColor(colorMouseHoverDefaultButton);
+            } else {
+                g.setColor(colorMouseHoverNormalButton);
             }
-        }else{
+        } else {
             g.setColor(disabledBackground);
         }
         g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), arch, arch);
+        paintBorderButton(g, b);
     }
 
     @Override
@@ -240,12 +247,13 @@ public class MaterialButtonUI extends BasicButtonUI {
             g2.setColor(UIManager.getColor("Button[focus].color"));
         }
         g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, arch, arch);
-
         g2.dispose();
     }
 
-    protected void paintBorderButton(Graphics graphics, JButton b) {
-        if (!b.isEnabled()) {
+    protected void paintBorderButton(Graphics graphics, JComponent b) {
+        if (!b.isEnabled() || !borderEnabled) {
+            return;
+        }else if(!buttonBorderToAll && ((JButton)b).getIcon() != null){
             return;
         }
         Graphics2D graphics2D = (Graphics2D) graphics.create();
@@ -254,14 +262,15 @@ public class MaterialButtonUI extends BasicButtonUI {
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int w = b.getWidth() - 1;
         int h = b.getHeight() - 1;
-        //int arc = 7;
 
-        graphics.setColor(borderColor);
-        graphics.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
+        graphics2D.setColor(borderColor);
+        graphics2D.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
+        graphics2D.dispose();
     }
 
     /**
      * This method is used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @param color
      */
     public void setBackground(Color color) {
