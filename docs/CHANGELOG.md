@@ -14,6 +14,7 @@
 - [Remove call to setOpaque from MaterialLabelUI](https://github.com/vincenzopalazzo/material-ui-swing/issues/101)
 - [Possibility to add the personal color to Tab disabled into JTabbedPane](https://github.com/vincenzopalazzo/material-ui-swing/issues/113)
 - [Mouse hover bug when the component did disabled after click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
+- [MaterialButtonUI.java depends on JavaFX](https://github.com/atarw/material-ui-swing/issues/95)
 
 **JToggleButton Second Style without icons**
 
@@ -99,4 +100,26 @@ Also, you can found othe information inside the answer to this [issue](https://g
 
 ## Used [IconFontSwing](https://jiconfont.github.io/) library for add other icons
 
-TODO
+The versions > to 1.1.1_beta includes the library [IconFontSwing](https://jiconfont.github.io/), with him is possible include the [Google material icons]() with personal color and personal dimension, is possible used the IconFontSwing API to create the icon but the class [MaterialImageFactory]() have the possibility to cashad the utilized icon, so if you use 1000 "settings" icons, the MaterialImageFactory returned the same object reference.
+MaterialImageFactory create the identifier of the class with this rules: NAME_ICONS + DIMENSION_ICONS + COLOR_ICON.
+
+The API for use the library IconFontSwing with MaterialImageFactory are described here:
+
+https://github.com/vincenzopalazzo/material-ui-swing/blob/c37a9830f092b2ae7ed001dba044bf5931eaaa26/src/main/java/mdlaf/utils/MaterialImageFactory.java#L192-L202
+
+an example method call is `MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT, DIMENSION, COLOR);`
+
+but there are default value for DIMENSION and COLOR
+
+- DIMENSION default is 20.
+
+- COLOR default is BLACK.
+
+So with this method call
+ `MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);`
+
+ You obtain GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT with dimension = 20 and color= black
+
+ You can consult the API class GoogleMaterialDesignIcons [here](https://jiconfont.github.io/googlematerialdesignicons).
+ 
+ You can consult the API class IconFontSwing [here](https://jiconfont.github.io/swing/).

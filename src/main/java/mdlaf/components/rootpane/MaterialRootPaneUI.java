@@ -43,8 +43,8 @@ import java.security.PrivilegedExceptionAction;
  *  The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
  *  @author https://github.com/vincenzopalazzo
  */
-public class MaterialRootPaneUI extends MetalRootPaneUI {
-
+public class MaterialRootPaneUI extends BasicRootPaneUI {
+//TODO refactoring this component
     protected static final String[] borderKeys = new String[] {
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",

@@ -68,7 +68,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
 
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN);
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, highlightBackgroundPrimary);
 
         //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
@@ -126,7 +126,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
-        this.buttonBorderColor = MaterialColors.LIGHT_BLUE_400;
+        this.buttonBorderColor = MaterialColors.COSMO_MEDIUM_GRAY;
         this.buttonColorHighlight = MaterialColors.GRAY_400;
 
         this.selectedInDropDownBackgroundComboBox = MaterialColors.COSMO_LIGTH_BLUE;
