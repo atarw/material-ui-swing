@@ -62,7 +62,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected Boolean defaultButton;
     protected Boolean borderEnabled;
     protected int arch = 7;
-    protected PropertyChangeListener enableButton = new EventEnableButton();
+    protected PropertyChangeListener enableButton = new MaterialListenerButtonEvent();
     //protected boolean paintedDisabled = false;
     protected boolean buttonBorderToAll = false;
 
@@ -211,14 +211,19 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
-        if (b.isEnabled()) {
-            if (defaultButton) {
-                g.setColor(colorMouseHoverDefaultButton);
+        //if the mouse hover is enabled I can set the mouse hover color when the button is pressed
+        if(mouseHoverEnabled){
+            if (b.isEnabled()) {
+                if (defaultButton) {
+                    g.setColor(colorMouseHoverDefaultButton);
+                } else {
+                    g.setColor(colorMouseHoverNormalButton);
+                }
             } else {
-                g.setColor(colorMouseHoverNormalButton);
+                g.setColor(disabledBackground);
             }
-        } else {
-            g.setColor(disabledBackground);
+        }else {
+            g.setColor(background);
         }
         g.fillRoundRect(0, 0, b.getWidth(), b.getHeight(), arch, arch);
         paintBorderButton(g, b);
@@ -254,6 +259,8 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (!b.isEnabled() || !borderEnabled) {
             return;
         }else if(!buttonBorderToAll && ((JButton)b).getIcon() != null){
+            return;
+        }else if(this.isDefaultButton()){
             return;
         }
         Graphics2D graphics2D = (Graphics2D) graphics.create();
@@ -330,15 +337,32 @@ public class MaterialButtonUI extends BasicButtonUI {
         this.defaultForeground = defaultForeground;
     }
 
+    public Color getColorMouseHoverDefaultButton() {
+        return colorMouseHoverDefaultButton;
+    }
+
+    public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
+        this.colorMouseHoverDefaultButton = colorMouseHoverDefaultButton;
+    }
+
+    public Color getColorMouseHoverNormalButton() {
+        return colorMouseHoverNormalButton;
+    }
+
+    public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
+        this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
+    }
 
     public Boolean isDefaultButton() {
         return defaultButton != null && defaultButton;
     }
 
 
-    protected class EventEnableButton implements PropertyChangeListener {
+    protected class MaterialListenerButtonEvent implements PropertyChangeListener {
 
-        private String proprietyNameEnableEvent = "enabled";
+        private static final String BACKGROUND_EVENT = "background";
+        private static final String FOREGROUND_EVENT = "foreground";
+        private static final String ENABLED_EVENT = "enabled";
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -346,13 +370,27 @@ public class MaterialButtonUI extends BasicButtonUI {
                 throw new IllegalArgumentException("The event null");
             }
 
-            if (evt.getPropertyName().equals(proprietyNameEnableEvent) && (boolean) evt.getNewValue()) {
-                button.setBackground(background);
-                button.setForeground(foreground);
-            } else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
+            if (evt.getPropertyName().equals(ENABLED_EVENT) && (boolean) evt.getNewValue()) {
+                //When on the JButton does call the method setEnable(true)
+                if(defaultButton != null && defaultButton){
+                    button.setBackground(defaultBackground);
+                    button.setForeground(defaultForeground);
+                }else{
+                    button.setBackground(background);
+                    button.setForeground(foreground);
+                }
+            }else if(evt.getPropertyName().equals(BACKGROUND_EVENT)){
+                //When on the JButton call the method setBackground
+                background = (Color) evt.getNewValue();
+            }else if(evt.getPropertyName().equals(FOREGROUND_EVENT)){
+                //When on the JButton call the method setForeground
+                foreground = (Color) evt.getNewValue();
+            }
+
+            /*else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
                 background = button.getBackground();
                 foreground = button.getForeground();
-            }
+            }*/
         }
     }
 }
