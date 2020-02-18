@@ -47,6 +47,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 		}
 
 		//OLD version code restored for JMars offical version
+		/*
 		boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
 		Color alternateRowColor = UIManager.getColor("Table.alternateRowBackground");
 		Color normalColor = UIManager.getColor("Table.background");
@@ -63,14 +64,15 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			}else {
 				component.setForeground(table.getSelectionForeground());
 			}
-		}
-		/*Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
+		}*/
+		//new version of the code release in pre-release6.1
+		Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
 		Color normalColor = UIManager.getColor("Table.background");
 		if(row%2 == 1) {
 			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
 		}else{
 			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
-		}*/
+		}
 		return component;
 	}
 

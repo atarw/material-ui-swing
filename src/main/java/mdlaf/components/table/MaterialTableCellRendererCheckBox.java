@@ -50,7 +50,7 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
         if (value instanceof Boolean) {
             setSelected((Boolean) value);
         }
-       /* Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
+        Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
         if(alternateRowColor != null){
             if(!isSelected){
                 this.setIcon(unchecked);
@@ -67,8 +67,9 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
-        }*/
+        }
        //Old version code restored for JMars official version
+        /*
         boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
         Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
         Color normalColor = UIManager.getColor("Table.background");
@@ -88,7 +89,7 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
-        }
+        }*/
         return this;
     }
 }

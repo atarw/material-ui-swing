@@ -443,9 +443,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //This propriety was used also how default
         //TODO refactoring this proprieties
         //TODO add why
-        table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
-        //table.put("Table.alternateRowColor", theme.getAlternateRowBackgroundTable());
-        table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
+        table.put("Table.alternateRowColor", theme.getAlternateRowBackgroundTable());
+        //table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
+        //table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
         table.put("Table[row].height", theme.getHeightRowTable());
         table.put("Table[CheckBox].checked", theme.getSelectedCheckBoxIconTable());
         table.put("Table[CheckBox].unchecked", theme.getUnselectedCheckBoxIconTable());
