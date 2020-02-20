@@ -138,7 +138,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(backgroundTableHeader),
-                BorderFactory.createEmptyBorder(15,10,15,10)));
+                BorderFactory.createEmptyBorder(5,10,5,10)));
         borderToolBar = borderSpinner;
 
         borderDialogRootPane = borderSpinner;
