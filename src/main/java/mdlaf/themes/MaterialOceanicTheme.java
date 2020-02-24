@@ -23,6 +23,7 @@
  */
 package mdlaf.themes;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
@@ -57,19 +58,31 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
     @Override
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
+        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialColors.WHITE
+        );
 
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_ON);
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_OFF);
 
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIconTable = selectedCheckBoxIcon;
+        this.unselectedCheckBoxIconTable = unselectedCheckBoxIcon;
+        this.selectedCheckBoxIconSelectionRowTable = selectedCheckBoxIcon;
+        this.unselectedCheckBoxIconSelectionRowTable = unselectedCheckBoxIcon;
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
+        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
+                MaterialColors.WHITE
+        );
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                highlightBackgroundPrimary
+        );
 
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
@@ -174,7 +187,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectionBackgroundTable = MaterialColors.LIME_A100;
         this.selectionForegroundTable = MaterialColors.BLACK;
         this.gridColorTable = MaterialColors.COSMO_BLACK;
-        this.alternateRowBackgroundTable = MaterialColors.DARKLY_BLUE;
+        this.alternateRowBackgroundTable = MaterialColors.DARKLY_STRONG_BLUE;
 
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;

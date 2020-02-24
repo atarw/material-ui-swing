@@ -23,19 +23,13 @@
  */
 package mdlaf.themes;
 
-import jiconfont.IconFont;
-import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
-import jiconfont.swing.IconFontSwing;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
-import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -62,19 +56,19 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
 
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON);
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF);
 
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
+        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
+        this.closedIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, highlightBackgroundPrimary);
 
         //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
@@ -96,6 +90,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.iconListFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LIST_BLACK);
         this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_BLACK);
         this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_BLACK);
+        this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CREATE_NEW_FOLDER);
         this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_BLACK);
 
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF);
@@ -121,8 +116,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.textColor = MaterialColors.BLACK;
         this.disableTextColor = MaterialColors.GRAY_500;
 
-        this.buttonBackgroundColor = MaterialColors.GRAY_300;
-        this.buttonBackgroundColorMouseHover = MaterialColors.GRAY_400;
+        this.buttonBackgroundColor = MaterialColors.COSMO_LIGTH_GRAY;
+        this.buttonBackgroundColorMouseHover = MaterialColors.COSMO_DARK_GRAY;
         this.buttonTextColor = MaterialColors.BLACK;
         this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
@@ -131,7 +126,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
-        this.buttonBorderColor = MaterialColors.GRAY_200;
+        this.buttonBorderColor = MaterialColors.COSMO_MEDIUM_GRAY;
         this.buttonColorHighlight = MaterialColors.GRAY_400;
 
         this.selectedInDropDownBackgroundComboBox = MaterialColors.COSMO_LIGTH_BLUE;

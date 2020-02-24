@@ -38,7 +38,7 @@ public class MaterialTableUI extends BasicTableUI {
 
 
 	public static ComponentUI createUI (JComponent c) {
-		return new MaterialTableUI ();
+		return new MaterialTableUI();
 	}
 
 	@Override

@@ -58,12 +58,17 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (component instanceof JButton) {
             JButton button = (JButton) component;
-            if (button.isDefaultButton()) {
-                this.from = UIManager.getColor("Button[Default].background");
-            } else {
-                this.from = component.getBackground();
+            if(button.getUI() instanceof MaterialButtonUI){
+                MaterialButtonUI materialButtonUI = (MaterialButtonUI) button.getUI();
+                if (button.isDefaultButton()) {
+                    this.from = UIManager.getColor("Button[Default].background");
+                    materialButtonUI.setColorMouseHoverDefaultButton(to);
+                } else {
+                    this.from = component.getBackground();
+                    materialButtonUI.setColorMouseHoverNormalButton(to);
+                }
             }
-            wrapperInformationsButton = new WrapperInformationsButton(button);
+           // wrapperInformationsButton = new WrapperInformationsButton(button);
         } else {
             this.from = component.getBackground();
         }
@@ -155,14 +160,15 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                if ((component instanceof JButton) &&
+                /*if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
                     System.out.println("component button set color");
                     JButton buttonComponent = (JButton) component;
                     wrapperInformationsButton.setOriginValues(buttonComponent);
-                }
+                }*/
                 timer.stop();
             }
+            return;
         }
         if (forward) {
             component.setBackground(nextColor());
@@ -192,40 +198,51 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseMoved(MouseEvent e) {
         //do nothing this is util only implements interface MouseMotions
+        if (!component.isEnabled()) {
+            if (timer.isRunning()) {
+            /*    if ((component instanceof JButton) &&
+                        wrapperInformationsButton != null) {
+                    JButton buttonComponent = (JButton) component;
+                    wrapperInformationsButton.setOriginValues(buttonComponent);
+                }*/
+                timer.stop();
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         //do nothing
-        if(!component.isEnabled()) {
+        if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }
                 timer.stop();
             }
         }
+/*
+        if ((component instanceof JButton) &&
+                wrapperInformationsButton != null) {
+            JButton buttonComponent = (JButton) component;
+            wrapperInformationsButton.setOriginValues(buttonComponent);
+        }*/
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
         //do nothing
-        if(!component.isEnabled()) {
+        if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }
                 timer.stop();
             }
         }
+/*
+        if ((component instanceof JButton) &&
+                wrapperInformationsButton != null) {
+            JButton buttonComponent = (JButton) component;
+            wrapperInformationsButton.setOriginValues(buttonComponent);
+        }*/
     }
 
+    @Deprecated
     private class WrapperInformationsButton {
 
         private Color background;
@@ -240,13 +257,13 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                 throw new RuntimeException("UI button's not instance of MaterialButtonUI");
             }
             MaterialButtonUI materialButtonUI = (MaterialButtonUI) button.getUI();
-            this.background = new ColorUIResource(materialButtonUI.getBackground());
-            this.foreground = new ColorUIResource(materialButtonUI.getForeground());
-            this.disabledBackground = new ColorUIResource(materialButtonUI.getDisabledBackground());
-            this.disabledForeground = new ColorUIResource(materialButtonUI.getDisabledForeground());
+            this.background = materialButtonUI.getBackground();
+            this.foreground = materialButtonUI.getForeground();
+            this.disabledBackground = materialButtonUI.getDisabledBackground();
+            this.disabledForeground = materialButtonUI.getDisabledForeground();
             if (materialButtonUI.isDefaultButton()) {
-                this.defaultBackground = new ColorUIResource(materialButtonUI.getDefaultBackground());
-                this.defaultForeground = new ColorUIResource(materialButtonUI.getDefaultForeground());
+                this.defaultBackground = materialButtonUI.getDefaultBackground();
+                this.defaultForeground = materialButtonUI.getDefaultForeground();
             }
 
         }

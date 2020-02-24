@@ -46,14 +46,16 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			return renderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}
 
+		//OLD version code restored for JMars offical version
+		/*
 		boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
-		Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
+		Color alternateRowColor = UIManager.getColor("Table.alternateRowBackground");
 		Color normalColor = UIManager.getColor("Table.background");
 		if(alternativeRow){
 			if(!isSelected){
 				if(row%2 == 1) {
-					component.setBackground(alternativeRowColor);
-					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternativeRowColor);
+					component.setBackground(alternateRowColor);
+					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
 				}else{
 					component.setBackground(normalColor);
 					setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
@@ -62,6 +64,14 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			}else {
 				component.setForeground(table.getSelectionForeground());
 			}
+		}*/
+		//new version of the code release in pre-release6.1
+		Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
+		Color normalColor = UIManager.getColor("Table.background");
+		if(row%2 == 1) {
+			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
+		}else{
+			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
 		}
 		return component;
 	}
@@ -70,7 +80,6 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 	  // With this class not working correctly the color alternate in the Jtable
 	  // in particular the IconImage without this code the cell is painted not correctly or
 	  // in the cell did print the path of the image
-
 	protected void setDefaultCellRenderWithAllType(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column, Color color) {
 		if(table == null){
 			throw new IllegalArgumentException("Table is null");

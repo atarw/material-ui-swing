@@ -254,8 +254,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button.foreground", theme.getButtonTextColor());
         table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
         table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
-        table.put("Button[Default].disabledBackground", MaterialColors.LIGHT_BLUE_800);
-        table.put("Button[Default].disabledForeground", MaterialColors.COSMO_DARK_GRAY);
+       // table.put("Button[Default].disabledBackground", MaterialColors.LIGHT_BLUE_800);
+        //table.put("Button[Default].disabledForeground", MaterialColors.COSMO_DARK_GRAY);
         table.put("Button.disabledBackground", theme.getButtonDisabledBackground());
         table.put("Button.disabledForeground", theme.getButtonDisabledForeground());
         table.put("Button.font", theme.getButtonFont());
@@ -267,7 +267,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button[focus].color", theme.getButtonFocusColor());
         table.put("Button.disabledText", theme.getButtonDisableTextColor());
         table.put("Button[Default].shadowPixel", 3);
-        table.put("Button[Default].shadowEnable", false);
+        //table.put("Button[Default].shadowEnable", false); removed
         table.put("Button[Default][focus].color", theme.getButtonDefaultFocusColor());
         table.put("Button[border].enable", theme.getButtonBorderEnable());
         table.put("Button[border].color", theme.getButtonBorderColor());
@@ -443,8 +443,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //This propriety was used also how default
         //TODO refactoring this proprieties
         //TODO add why
-        table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
-        table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
+        table.put("Table.alternateRowColor", theme.getAlternateRowBackgroundTable());
+        //table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
+        //table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
         table.put("Table[row].height", theme.getHeightRowTable());
         table.put("Table[CheckBox].checked", theme.getSelectedCheckBoxIconTable());
         table.put("Table[CheckBox].unchecked", theme.getUnselectedCheckBoxIconTable());

@@ -26,6 +26,9 @@ package mdlaf.components.button;
 /**
  * @author https://github.com/vincenzopalazzo
  */
+
+//This code after integration test with the release 1.1.1 cam be removed.
+@Deprecated
 public enum StateButton {
     DISABLE,
     DEFAULT,

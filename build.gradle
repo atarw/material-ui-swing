@@ -18,6 +18,7 @@ dependencies {
     compile group: 'com.github.jiconfont', name: 'jiconfont-bundle', version: '1.4.0'
 
     implementation 'com.github.jiconfont:jiconfont-swing:1.0.1'
+
     implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
 
     //Slf4j configuration
@@ -124,7 +125,7 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/VincentHDD/JMARS_Developement/08_02_2020_JMars/branches/UI/lib'
+            into '/media/vincent/VincentHDD/JMARS_Developement/15_02_2020_JMars/branches/UI/lib'
             rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.1.1.jar')
         }
     }
