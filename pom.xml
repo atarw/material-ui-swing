@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.0_beta</version>
-  <inceptionYear>2019</inceptionYear>
+  <version>1.1.1_pre-release_6.1</version>
+  <inceptionYear>2020</inceptionYear>
   <licenses>
     <license>
       <name>MIT</name>
@@ -19,6 +19,24 @@
       <artifactId>swingx</artifactId>
       <version>1.6.1</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jiconfont</groupId>
+      <artifactId>jiconfont-bundle</artifactId>
+      <version>1.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jiconfont</groupId>
+      <artifactId>jiconfont-swing</artifactId>
+      <version>1.0.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jiconfont</groupId>
+      <artifactId>jiconfont-google_material_design_icons</artifactId>
+      <version>2.2.0.2</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>

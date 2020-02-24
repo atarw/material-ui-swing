@@ -1,5 +1,29 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package mdlaf.themes;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
@@ -33,22 +57,55 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
+        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialColors.WHITE
+        );
 
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_ON);
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_OFF);
 
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                highlightBackgroundPrimary
+        );
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialColors.BLACK
+        );
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialColors.BLACK
+        );
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
+        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
+                MaterialColors.WHITE
+        );
 
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                highlightBackgroundPrimary
+        );
+
+        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
+        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT
+        );
+
+        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN
+        );
+
 
         this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
         this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
@@ -65,18 +122,23 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_WHITE);
         this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_WHITE);
         this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_WHITE);
+
+        this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF_WHITE);
+        this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
+
+        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
     }
 
     @Override
     protected void installBorders() {
         super.installBorders();
         borderMenuBar = new BorderUIResource(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(225, 156, 43)));
-        borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
-        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary, 1));
+        borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary));
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
-                borderSpinner,
-                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+                BorderFactory.createLineBorder(backgroundTableHeader),
+                BorderFactory.createEmptyBorder(5,10,5,10)));
         borderToolBar = borderSpinner;
 
         borderDialogRootPane = borderSpinner;
@@ -86,6 +148,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = borderSpinner;
         this.borderTableHeader = borderSpinner;
+
+        super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
     }
 
     @Override
@@ -117,9 +181,6 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = buttonBackgroundColor;
-        this.mouseHoverButtonColorSpinner = buttonBackgroundColorMouseHover;
-
         this.arrowButtonColorScrollBar = buttonBackgroundColor;
         this.trackColorScrollBar = new ColorUIResource(81, 86, 101);
         this.thumbColorScrollBar = new ColorUIResource(155,155,155);
@@ -149,16 +210,21 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = new ColorUIResource(81, 86, 101);
-        this.selectionBorderColorTree = selectionBackgroundTree;
+        this.selectionBackgroundTree = super.backgroundPrimary;
+        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = new ColorUIResource(81, 86, 101);
         this.inactiveForegroundTextField = MaterialColors.WHITE;
         this.inactiveBackgroundTextField = new ColorUIResource(81, 86, 101);
         this.selectionBackgroundTextField = new ColorUIResource(249, 192, 98);
+        super.disabledBackgroudnTextField = new ColorUIResource(81, 86, 101);
+        super.disabledForegroundTextField = new ColorUIResource(170,170,170);
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
-        this.activeColorLineTextField = new ColorUIResource(249, 192, 98);;
+        this.activeColorLineTextField = new ColorUIResource(249, 192, 98);
+
+        this.arrowButtonBackgroundSpinner = backgroundTextField;
+        this.mouseHoverButtonColorSpinner = backgroundPrimary;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
@@ -168,21 +234,30 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.borderColorTaskPane = backgroundTaskPane;
         this.contentBackgroundTaskPane = backgroundPrimary;
 
-        this.selectionBackgroundList = new ColorUIResource(249, 192, 9);
+        this.selectionBackgroundList = new ColorUIResource(249, 192, 98);
         this.selectionForegroundList = MaterialColors.BLACK;
 
         this.backgroundProgressBar = new ColorUIResource(81, 86, 101);
         this.foregroundProgressBar = MaterialColors.WHITE;
+
+
+        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
+        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.withoutIconForegroundToggleButton = MaterialColors.WHITE;
+
+        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+        this.colorDividierFocusSplitPane = new ColorUIResource(249, 192, 98);
+
+        super.colorTextTitledBorder = textColor;
+
+        super.backgroundSeparator = MaterialColors.GRAY_300;
+        super.foregroundSeparator = MaterialColors.GRAY_300;
     }
 
     @Override
     public void installUIDefault(UIDefaults table) {
         super.installUIDefault(table);
-
-        table.put("TabbedPane[contentBorder].enableTop", true);
-        table.put("TabbedPane[contentBorder].enableLeaf", false);
-        table.put("TabbedPane[contentBorder].enableRight", false);
-        table.put("TabbedPane[contentBorder].enableBottom", false);
     }
 
     @Override

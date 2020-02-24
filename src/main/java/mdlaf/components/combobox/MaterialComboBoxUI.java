@@ -1,3 +1,26 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
@@ -76,21 +99,17 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         } else {
             button = new BasicArrowButton(SwingConstants.SOUTH);
         }
+        this.configureLocalArrowButton(button);
         return button;
     }
 
     @Override
     public void configureArrowButton() {
         super.configureArrowButton();
-
-        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
-        arrowButton.setOpaque(true);
-        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
-        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
-            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
-        }
-        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
+        this.configureLocalArrowButton(arrowButton);
     }
+
+
 
     @Override
     public void unconfigureArrowButton() {
@@ -113,6 +132,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
         paint(g, c);
+        this.configureLocalArrowButton(arrowButton);
     }
 
     @Override
@@ -131,6 +151,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             comboBox.addFocusListener(focusListener);
         }
         return super.createFocusListener();
+    }
+
+    protected void configureLocalArrowButton(JButton arrowButton){
+        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
+        arrowButton.setOpaque(true);
+        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
+        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
+            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
+        }
+        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
     }
 
     protected class FocusListenerColor implements FocusListener {

@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +24,11 @@
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialImageFactory;
-import mdlaf.utils.MaterialManagerListener;
+import mdlaf.utils.*;
 import org.jdesktop.swingx.JXTaskPane;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -61,19 +59,24 @@ public class MaterialUISwingDemo {
                 try {
                     JDialog.setDefaultLookAndFeelDecorated(true);
                     JFrame.setDefaultLookAndFeelDecorated(false);
-                    MaterialLookAndFeel material = new MaterialLookAndFeel(new JMarsDarkTheme());
+                    MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());
                     UIManager.setLookAndFeel(material);
 
                     /* DEMO */
-                    JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar");
+                    JFrame frame = new JFrame("Material Design UI for Swing by atharva washimkar ♥");
                     frame.setMinimumSize(new Dimension(600, 400));
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     //Test for fix the issue https://github.com/vincenzopalazzo/material-ui-swing/projects/1#card-21599924
                     //frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
                     JMenuBar bar = new JMenuBar();
-                    JMenu menu1 = new JMenu("Option 1 (Animated)");
-                    JMenu menu2 = new JMenu("Option 2 (Not animated)");
+                    int[] surrogates = {0xd83d, 0xde00};
+                    String alienEmojiString = new String(surrogates, 0, surrogates.length);
+                    System.out.println("\u263a");
+                    JMenu menu1 = new JMenu("\u263a");
+                    //menu1.setFont(new FontUIResource(Font.DIALOG, Font.BOLD, 12));
+                    //menu1.setFont(new MaterialWrapperFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD).deriveFont(25f)));
+                    JMenu menu2 = new JMenu("Option 2 ♥");
                     class ActionTestJFC extends AbstractAction {
 
                         JComponent component;
@@ -90,6 +93,40 @@ public class MaterialUISwingDemo {
                             fileChooser.showDialog(component, "Test OK");
                         }
                     }
+
+                    JMenu menuTheme = new JMenu("Themes");
+
+                    JMenuItem oceanic = new JMenuItem();
+                    oceanic.setAction(new AbstractAction("Material Oceanic"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            System.out.println("********");
+                            MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+                    JMenuItem lite = new JMenuItem();
+                    lite.setAction(new AbstractAction("Material Lite"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+                    JMenuItem jmarsDark = new JMenuItem();
+                    jmarsDark.setAction(new AbstractAction("Material JMars Dark"){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            MaterialLookAndFeel.changeTheme(new JMarsDarkTheme());
+                            SwingUtilities.updateComponentTreeUI(frame);
+                        }
+                    });
+
+                    menuTheme.add(oceanic);
+                    menuTheme.add(lite);
+                    menuTheme.add(jmarsDark);
+
+                    bar.add(menuTheme);
 
                     JMenuItem item1 = new JMenuItem("Item 1 (Animated)");
                     item1.setAction(new ActionTestJFC(new JPanel()));
@@ -126,6 +163,7 @@ public class MaterialUISwingDemo {
                     // configuring a simple JButton
                     JButton button = new JButton("I'm Disabled");
                     button.setBackground(MaterialColors.COSMO_RED);
+                    button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.YELLOW_400));
                     button.setEnabled(false);
                     JPanel content = new JPanel();
                     content.add(button);
@@ -188,7 +226,7 @@ public class MaterialUISwingDemo {
                     content.add(new JSlider(JSlider.HORIZONTAL, 0, 5, 2));
                     content.add(new JSpinner(new SpinnerListModel(new String[]{"d", "e", "f"})));
                     content.add(new JTable(new String[][]{{"a", "b", "c"}, {"d", "e", "f"}}, new String[]{"r", "e"}));
-                    content.add(new JTextField("text field"));
+                    content.add(new JTextField("text field U+1F600"));
                     content.add(new JToggleButton("toggle"));
 
                     JToolBar tb = new JToolBar("toolbar");
@@ -238,7 +276,7 @@ public class MaterialUISwingDemo {
                     JPanel pn = new JPanel();
                     JPanel panel3 = new JPanel();
                     JTabbedPane tp = new JTabbedPane();
-                    //tp.setTabPlacement(JTabbedPane.LEFT);
+                    //tp.setTabPlacement(JTabbedPane.RIGHT);
                     tp.addTab("bleh1", pn);
                     tp.addTab("bleh", sp);
                     tp.addTab("Panel 3", panel3);
@@ -541,7 +579,6 @@ public class MaterialUISwingDemo {
                     panel4.add(textFieldBugListener);
 
                     tp.addTab("Panel 4", panel4);
-
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);

@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +38,7 @@ public class MaterialTableUI extends BasicTableUI {
 
 
 	public static ComponentUI createUI (JComponent c) {
-		return new MaterialTableUI ();
+		return new MaterialTableUI();
 	}
 
 	@Override
@@ -57,7 +56,12 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 		table.setFocusable (UIManager.getBoolean ("Table.focusable"));
 		table.setRowHeight(UIManager.getInt("Table[row].height"));
-		table.getTableHeader ().setResizingAllowed (true);
+		table.setShowHorizontalLines(UIManager.getBoolean("Table.showHorizontalLines"));
+		table.setShowVerticalLines(UIManager.getBoolean("Table.showVerticalLines"));
+		table.setShowGrid(UIManager.getBoolean("Table.showHorizontalLines") && UIManager.getBoolean("Table.showVerticalLines"));
+		table.setRowHeight(UIManager.getInt("Table[row].height"));
+		table.setIntercellSpacing(UIManager.getDimension("Table.intercellSpacing"));
+		table.getTableHeader().setResizingAllowed (true);
 		int rowHeight = UIManager.getInt ("Table.rowHeight");
 		if (rowHeight > 0) {
 			table.setRowHeight (rowHeight);

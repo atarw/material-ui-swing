@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2020 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,8 @@ import javax.swing.plaf.InsetsUIResource;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public abstract class AbstractMaterialTheme implements MaterialTheme{
+@SuppressWarnings("all")
+public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource backgroundPrimary;
 
@@ -74,6 +75,27 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ColorUIResource buttonColorHighlight;
 
     protected BorderUIResource buttonBorder;
+
+    //---------------------------------------------------
+    //Proprieties JToggleButton
+    protected ImageIconUIResource unselectedIconToggleButton;
+
+    protected ImageIconUIResource selectedIconToggleButton;
+
+    protected boolean withoutIconToggleButton = false;
+
+    protected ColorUIResource withoutIconSelectedBackgroundToggleButton;
+
+    protected ColorUIResource withoutIconSelectedForegoundToggleButton;
+
+    protected ColorUIResource withoutIconBackgroundToggleButton;
+
+    protected ColorUIResource withoutIconForegroundToggleButton;
+
+    protected BorderUIResource withoutIconSelectedBorderToggleButton;
+
+    protected BorderUIResource withoutIconBorderToggleButton;
+
 
     //---------------------------------------------------
     //Proprieties JCheckBox
@@ -221,6 +243,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     protected ImageIconUIResource openIconTree;
 
+    protected BorderUIResource borderTree;
+
     //---------------------------------------------------
     //Proprieties JTextField and JPasswordField
     protected ColorUIResource backgroundTextField;
@@ -232,6 +256,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ColorUIResource selectionBackgroundTextField;
 
     protected ColorUIResource selectionForegroundTextField;
+
+    protected ColorUIResource disabledBackgroudnTextField;
+
+    protected ColorUIResource disabledForegroundTextField;
 
     protected ColorUIResource inactiveColorLineTextField;
 
@@ -292,6 +320,17 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected ImageIconUIResource informationIconOptionPane;
 
     //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    protected ColorUIResource colorDividierSplitPane;
+
+    protected ColorUIResource colorDividierFocusSplitPane;
+
+    protected int sizeDividierSplitPane = 5;
+
+    protected BorderUIResource dividierBorderSplitPane;
+
+    //---------------------------------------------------
     //Proprieties JFileChooser
     protected ImageIconUIResource iconComputerFileChooser;
 
@@ -322,6 +361,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected BorderUIResource borderProgressBar;
 
     //---------------------------------------------------
+    //Proprieties TitledBorder
+    protected ColorUIResource colorTextTitledBorder;
+
+    protected BorderUIResource borderTitledBorder;
+
+    //---------------------------------------------------
+    //Proprieties TitlePane
+    protected ImageIconUIResource iconCloseTitlePane;
+
+    //---------------------------------------------------
     //All type of font supported to the look and feel
     protected FontUIResource fontBold;
 
@@ -330,6 +379,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     protected FontUIResource fontRegular;
 
     protected FontUIResource fontMedium;
+
+
+    //---------------------------------------------------
+    //Proprieties JSeparator
+    public ColorUIResource backgroundSeparator;
+
+    public ColorUIResource foregroundSeparator;
 
 
     // Abstract method
@@ -355,8 +411,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
-        borderSpinner = MaterialBorders.LIGHT_LINE_BORDER;
-        arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createEmptyBorder());
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
+        arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createLineBorder(arrowButtonBackgroundSpinner));
         borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
         arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -377,6 +433,18 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
+
+        withoutIconSelectedBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                BorderFactory.createLineBorder(withoutIconSelectedBackgroundToggleButton, 1)));
+
+        withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
+
+        dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+
+        borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
     }
 
     //getter
@@ -481,6 +549,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     @Override
     public boolean getOpaqueButton() {
         return false;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JSeparator
+    public ColorUIResource getBackgroundSeparator() {
+        return backgroundSeparator;
+    }
+
+    public ColorUIResource getForegroundSeparator() {
+        return foregroundSeparator;
     }
 
     //Proprieties JCheckBox
@@ -663,6 +741,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return false;
     }
 
+
     //get jslider
     public ColorUIResource getTrackColorSlider() {
         return trackColorSlider;
@@ -718,7 +797,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getLineHeightTabbedPane() {
-        return 1;
+        return 3;
     }
 
     @Override
@@ -803,7 +882,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
 
     @Override
     public int getHeightRowTable() {
-        return 4;
+        return 10;
     }
 
     public ColorUIResource getBackgroundTableHeader() {
@@ -858,6 +937,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return selectionForegroundTextField;
     }
 
+    public ColorUIResource getDisabledBackgroudnTextField() {
+        return disabledBackgroudnTextField;
+    }
+
+    public ColorUIResource getDisabledForegroundTextField() {
+        return disabledForegroundTextField;
+    }
+
     public ColorUIResource getInactiveColorLineTextField() {
         return inactiveColorLineTextField;
     }
@@ -895,6 +982,49 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     public ImageIconUIResource getOpenIconTree() {
         return openIconTree;
     }
+
+    public BorderUIResource getBorderTree() {
+        return borderTree;
+    }
+    //---------------------------------------------------
+    //Proprieties JToggleButton
+
+    public ImageIconUIResource getUnselectedIconToggleButton() {
+        return unselectedIconToggleButton;
+    }
+
+    public ImageIconUIResource getSelectedIconToggleButton() {
+        return selectedIconToggleButton;
+    }
+
+    public boolean isWithoutIconToggleButton() {
+        return withoutIconToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton() {
+        return withoutIconSelectedBackgroundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconSelectedForegoundToggleButton() {
+        return withoutIconSelectedForegoundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconBackgroundToggleButton() {
+        return withoutIconBackgroundToggleButton;
+    }
+
+    public ColorUIResource getWithoutIconForegroundToggleButton() {
+        return withoutIconForegroundToggleButton;
+    }
+
+    public BorderUIResource getWithoutIconSelectedBorderToggleButton() {
+        return withoutIconSelectedBorderToggleButton;
+    }
+
+    public BorderUIResource getWithoutIconBorderToggleButton() {
+        return withoutIconBorderToggleButton;
+    }
+
 
     //---------------------------------------------------
     //Proprieties JXTaskPane
@@ -1053,6 +1183,42 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
         return borderProgressBar;
     }
 
+    //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    public ColorUIResource getColorDividierSplitPane() {
+        return colorDividierSplitPane;
+    }
+
+    public ColorUIResource getColorDividierFocusSplitPane() {
+        return colorDividierFocusSplitPane;
+    }
+
+    public int getSizeDividierSplitPane() {
+        return sizeDividierSplitPane;
+    }
+
+    public BorderUIResource getDividierBorderSplitPane() {
+        return dividierBorderSplitPane;
+    }
+
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+
+    public ColorUIResource getColorTextTitledBorder() {
+        return colorTextTitledBorder;
+    }
+
+    public BorderUIResource getBorderTitledBorder() {
+        return borderTitledBorder;
+    }
+
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+    public ImageIconUIResource getIconCloseTitlePane() {
+        return iconCloseTitlePane;
+    }
+
     //get fonts
     public FontUIResource getFontBold() {
         return fontBold;
@@ -1071,8 +1237,92 @@ public abstract class AbstractMaterialTheme implements MaterialTheme{
     }
 
 
-
     //Setter
+
+    public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
+        this.backgroundSeparator = backgroundSeparator;
+    }
+
+    public void setForegroundSeparator(ColorUIResource foregroundSeparator) {
+        this.foregroundSeparator = foregroundSeparator;
+    }
+
+    public void setBorderTree(BorderUIResource borderTree) {
+        this.borderTree = borderTree;
+    }
+
+    public void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane) {
+        this.iconCloseTitlePane = iconCloseTitlePane;
+    }
+
+    public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {
+        this.disabledBackgroudnTextField = disabledBackgroudnTextField;
+    }
+
+    public void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField) {
+        this.disabledForegroundTextField = disabledForegroundTextField;
+    }
+
+    public void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder) {
+        this.colorTextTitledBorder = colorTextTitledBorder;
+    }
+
+    public void setBorderTitledBorder(BorderUIResource borderTitledBorder) {
+        this.borderTitledBorder = borderTitledBorder;
+    }
+
+    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane) {
+        this.colorDividierSplitPane = colorDividierSplitPane;
+    }
+
+    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane) {
+        this.colorDividierFocusSplitPane = colorDividierFocusSplitPane;
+    }
+
+    public void setSizeDividierSplitPane(int sizeDividierSplitPane) {
+        this.sizeDividierSplitPane = sizeDividierSplitPane;
+    }
+
+    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane) {
+        this.dividierBorderSplitPane = dividierBorderSplitPane;
+    }
+
+    public void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton) {
+        this.unselectedIconToggleButton = unselectedIconToggleButton;
+    }
+
+    public void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton) {
+        this.selectedIconToggleButton = selectedIconToggleButton;
+    }
+
+    public void setWithoutIconToggleButton(boolean withoutIconToggleButton) {
+        this.withoutIconToggleButton = withoutIconToggleButton;
+    }
+
+    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton) {
+        this.withoutIconSelectedBackgroundToggleButton = withoutIconSelectedBackgroundToggleButton;
+    }
+
+    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton) {
+        this.withoutIconSelectedForegoundToggleButton = withoutIconSelectedForegoundToggleButton;
+    }
+
+    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton) {
+        this.withoutIconBackgroundToggleButton = withoutIconBackgroundToggleButton;
+    }
+
+    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton) {
+        this.withoutIconForegroundToggleButton = withoutIconForegroundToggleButton;
+    }
+
+    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton) {
+        this.withoutIconSelectedBorderToggleButton = withoutIconSelectedBorderToggleButton;
+    }
+
+    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton) {
+        this.withoutIconBorderToggleButton = withoutIconBorderToggleButton;
+    }
+
     public void setBackgroundPrimary(ColorUIResource backgroundPrimary) {
         this.backgroundPrimary = backgroundPrimary;
     }

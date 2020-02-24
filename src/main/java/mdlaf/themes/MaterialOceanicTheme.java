@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
  */
 package mdlaf.themes;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
@@ -57,19 +58,31 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
     @Override
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
+        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialColors.WHITE
+        );
 
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_ON);
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_OFF);
 
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_WHITE_BOX);
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_WHITE_BOX);
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CHECKED_BLACK_BOX);
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.UNCHECKED_BLACK_BOX);
+        this.selectedCheckBoxIconTable = selectedCheckBoxIcon;
+        this.unselectedCheckBoxIconTable = unselectedCheckBoxIcon;
+        this.selectedCheckBoxIconSelectionRowTable = selectedCheckBoxIcon;
+        this.unselectedCheckBoxIconSelectionRowTable = unselectedCheckBoxIcon;
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RIGHT_ARROW);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DOWN_ARROW);
+        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
+                MaterialColors.WHITE
+        );
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                highlightBackgroundPrimary
+        );
 
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
@@ -89,6 +102,11 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_WHITE);
         this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_WHITE);
         this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_WHITE);
+
+        this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_OFF_WHITE);
+        this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
+
+        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
     }
 
     @Override
@@ -98,7 +116,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
                 false, false, true, false));
         //borderMenuBar = new BorderUIResource(BorderFactory.createLineBorder(this.menuBackground, 1));;
         borderPopupMenu = MaterialBorders.OCEAN_LINE_BORDER;
-        borderSpinner = MaterialBorders.OCEAN_LINE_BORDER;
+        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
         borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.DARK_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                 MaterialBorders.DARK_LINE_BORDER,
@@ -112,6 +130,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = MaterialBorders.OCEAN_LINE_BORDER;
         this.borderTableHeader = MaterialBorders.OCEAN_LINE_BORDER;
+
+        super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
     }
 
     @Override
@@ -143,9 +163,6 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.arrowButtonBackgroundSpinner = MaterialColors.DARKLY_STRONG_BLUE;
-        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_BLUE;
-
         this.arrowButtonColorScrollBar = MaterialColors.DARKLY_STRONG_BLUE;
         this.trackColorScrollBar = MaterialColors.DARKLY_BLUE;
         this.thumbColorScrollBar = MaterialColors.GRAY_500;
@@ -170,21 +187,26 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectionBackgroundTable = MaterialColors.LIME_A100;
         this.selectionForegroundTable = MaterialColors.BLACK;
         this.gridColorTable = MaterialColors.COSMO_BLACK;
-        this.alternateRowBackgroundTable = MaterialColors.DARKLY_BLUE;
+        this.alternateRowBackgroundTable = MaterialColors.DARKLY_STRONG_BLUE;
 
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
 
-        this.selectionBackgroundTree = MaterialColors.DARKLY_BLUE;
-        this.selectionBorderColorTree = MaterialColors.LIME_A400;
+        this.selectionBackgroundTree = super.backgroundPrimary;
+        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = MaterialColors.DARKLY_BLUE;
         this.inactiveForegroundTextField = MaterialColors.WHITE;
         this.inactiveBackgroundTextField = MaterialColors.DARKLY_BLUE;
         this.selectionBackgroundTextField = MaterialColors.LIME_A100;
         this.selectionForegroundTextField = MaterialColors.BLACK;
+        super.disabledBackgroudnTextField = MaterialColors.DARKLY_BLUE;
+        super.disabledForegroundTextField = MaterialColors.GRAY_500;
         this.inactiveColorLineTextField = MaterialColors.WHITE;
         this.activeColorLineTextField = MaterialColors.LIME_A400;
+
+        this.arrowButtonBackgroundSpinner = backgroundTextField;
+        this.mouseHoverButtonColorSpinner = MaterialColors.DARKLY_STRONG_BLUE;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
@@ -199,16 +221,24 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.backgroundProgressBar = MaterialColors.DARKLY_BLUE;
         this.foregroundProgressBar = MaterialColors.LIME_A400;
+
+        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
+        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.withoutIconForegroundToggleButton = textColor;
+
+        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+        this.colorDividierFocusSplitPane = MaterialColors.LIME_A400;
+
+        super.colorTextTitledBorder = textColor;
+
+        super.backgroundSeparator = MaterialColors.GRAY_300;
+        super.foregroundSeparator = MaterialColors.GRAY_300;
     }
 
     @Override
     public void installUIDefault(UIDefaults table) {
         super.installUIDefault(table);
-
-        table.put("TabbedPane[contentBorder].enableTop", false);
-        table.put("TabbedPane[contentBorder].enableLeaf", false);
-        table.put("TabbedPane[contentBorder].enableRight", false);
-        table.put("TabbedPane[contentBorder].enableBottom", false);
     }
 
     @Override

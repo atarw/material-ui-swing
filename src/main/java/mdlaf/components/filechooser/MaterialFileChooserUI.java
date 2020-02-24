@@ -1,19 +1,18 @@
-/*
+/**
  * MIT License
- *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
- *
+ * <p>
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,7 +29,6 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.*;
-import java.io.File;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -38,83 +36,105 @@ import java.io.File;
  */
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
-	public MaterialFileChooserUI (JFileChooser fileChooser) {
-		super (fileChooser);
-	}
+    public MaterialFileChooserUI(JFileChooser fileChooser) {
+        super(fileChooser);
+    }
 
-	public static ComponentUI createUI (JComponent c) {
-		return new MaterialFileChooserUI ((JFileChooser) c);
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialFileChooserUI((JFileChooser) c);
+    }
 
-	@Override
-	public void installUI (JComponent c) {
-		super.installUI (c);
-		JFileChooser fileChooser = (JFileChooser) c;
-		//MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
-		//all this before were ui.uninstallIcon
-		this.uninstallIcons (fileChooser);
-		this.uninstallComponents (fileChooser);
-		this.clearIconCache ();
-		this.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
-		this.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
-		this.fileIcon = UIManager.getIcon("FileChooser[icons].file");
-		this.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
-		this.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
+    @Override
+    public void installUI(JComponent c) {
+        super.installUI(c);
+        JFileChooser fileChooser = (JFileChooser) c;
+        //MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
+        //all this before were ui.uninstallIcon
+        this.uninstallIcons(fileChooser);
+        this.uninstallComponents(fileChooser);
+        this.clearIconCache();
+        this.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
+        this.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
+        this.fileIcon = UIManager.getIcon("FileChooser[icons].file");
+        this.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
+        this.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
 
-		this.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
-		this.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
-		this.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
-		this.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
-		this.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
+        this.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
+        this.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
+        this.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
+        this.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
+        this.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
 
-		this.openButtonText = "OPEN";
-		this.cancelButtonText = "CANCEL";
-		this.helpButtonText = "HELP";
-		this.saveButtonText = "SAVE";
-		this.directoryOpenButtonText = "OPEN";
-		this.updateButtonText = "UPDATE";
+        this.openButtonText = "OPEN";
+        this.cancelButtonText = "CANCEL";
+        this.helpButtonText = "HELP";
+        this.saveButtonText = "SAVE";
+        this.directoryOpenButtonText = "OPEN";
+        this.updateButtonText = "UPDATE";
 
-		this.installComponents(fileChooser);
-	}
+        this.installComponents(fileChooser);
+    }
 
-	@Override
-	public void uninstallComponents(JFileChooser fc) {
-		super.uninstallComponents(fc);
-	}
+    @Override
+    public void uninstallComponents(JFileChooser fc) {
+        super.uninstallComponents(fc);
+    }
 
-	@Override
-	public void uninstallUI(JComponent c) {
+    @Override
+    public void uninstallUI(JComponent c) {
 
-		JFileChooser fileChooser = (JFileChooser) c;
+        JFileChooser fileChooser = (JFileChooser) c;
 
-		this.uninstallIcons (fileChooser);
-		this.uninstallComponents(fileChooser);
-		this.uninstallListeners(fileChooser);
-		this.uninstallStrings(fileChooser);
-		super.uninstallUI(c);
+        this.uninstallIcons(fileChooser);
+        this.uninstallComponents(fileChooser);
+        this.uninstallListeners(fileChooser);
+        this.uninstallStrings(fileChooser);
+        super.uninstallUI(c);
 
-		this.computerIcon = null;
-		this.directoryIcon = null;
-		this.fileIcon = null;
-		this.floppyDriveIcon = null;
-		this.hardDriveIcon = null;
+        this.computerIcon = null;
+        this.directoryIcon = null;
+        this.fileIcon = null;
+        this.floppyDriveIcon = null;
+        this.hardDriveIcon = null;
 
-		this.homeFolderIcon = null;
-		this.listViewIcon = null;
-		this.detailsViewIcon = null;
-		this.newFolderIcon = null;
-		this.upFolderIcon = null;
+        this.homeFolderIcon = null;
+        this.listViewIcon = null;
+        this.detailsViewIcon = null;
+        this.newFolderIcon = null;
+        this.upFolderIcon = null;
 
-		this.openButtonText = null;
-		this.cancelButtonText = null;
-		this.helpButtonText = null;
-		this.saveButtonText = null;
-		this.directoryOpenButtonText = null;
-		this.updateButtonText = null;
-	}
+        this.openButtonText = null;
+        this.cancelButtonText = null;
+        this.helpButtonText = null;
+        this.saveButtonText = null;
+        this.directoryOpenButtonText = null;
+        this.updateButtonText = null;
+    }
 
-	@Override
-	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
-	}
+    @Override
+    public void paint(Graphics g, JComponent c) {
+        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+    }
+
+    @Override
+    protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
+        return new MetalFileChooserUI.FilterComboBoxRenderer(){
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                setBorder((UIManager.getBorder("ComboBox.borderItems")));
+                if (isSelected) {
+                    setForeground(UIManager.getColor("ComboBox[item].selectionForeground"));
+                } else {
+                    setForeground(UIManager.getColor("ComboBox.foreground"));
+                }
+                setBackground(isSelected || cellHasFocus ?
+                        UIManager.getColor("ComboBox.selectedInDropDownBackground") :
+                        UIManager.getColor("ComboBox.background"));
+
+                return this;
+            }
+        };
+    }
 }
