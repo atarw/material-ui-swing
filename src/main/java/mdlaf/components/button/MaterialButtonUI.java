@@ -379,13 +379,20 @@ public class MaterialButtonUI extends BasicButtonUI {
                     button.setBackground(background);
                     button.setForeground(foreground);
                 }
-            }else if(evt.getPropertyName().equals(BACKGROUND_EVENT)){
+            }
+            /* TODO but on mouse hover fixed but I open another bug, now doesn't is possible personalize the background
+            There is an bug inside this, so the mouse hover called setBackground of the component
+            and this change the background color.
+            I do remove this bug but I need to restore this code because isn't possible work with the personal
+            color on the button.
+
+            else if(evt.getPropertyName().equals(BACKGROUND_EVENT)){
                 //When on the JButton call the method setBackground
                 background = (Color) evt.getNewValue();
             }else if(evt.getPropertyName().equals(FOREGROUND_EVENT)){
                 //When on the JButton call the method setForeground
                 foreground = (Color) evt.getNewValue();
-            }
+            }*/
 
             /*else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
                 background = button.getBackground();

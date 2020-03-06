@@ -160,12 +160,12 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
             if (timer.isRunning()) {
-                /*if ((component instanceof JButton) &&
+                if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
                     System.out.println("component button set color");
                     JButton buttonComponent = (JButton) component;
                     wrapperInformationsButton.setOriginValues(buttonComponent);
-                }*/
+                }
                 timer.stop();
             }
             return;

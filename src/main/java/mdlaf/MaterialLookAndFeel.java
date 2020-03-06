@@ -420,8 +420,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
         //table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
         //table.put("TabbedPane.indent", theme.getIndentTabbedPane());
-        table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
-        table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
+        //table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
+        //table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
         //table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
         //table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
@@ -557,6 +557,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField[Line].inactiveColor", theme.getInactiveColorLineTextField());
         table.put("TextField[Line].activeColor", theme.getActiveColorLineTextField());
         table.put("TextField.border", theme.getBorderTextField());
+        //table.put("TextField.margin", new InsetsUIResource(5,15,5,15));
         table.put("TextField.focusInputMap", fieldInputMap);
 
         table.put("PasswordField.background", theme.getBackgroundTextField());
