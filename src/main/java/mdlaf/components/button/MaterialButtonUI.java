@@ -34,6 +34,9 @@ import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -65,6 +68,9 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected PropertyChangeListener enableButton = new MaterialListenerButtonEvent();
     //protected boolean paintedDisabled = false;
     protected boolean buttonBorderToAll = false;
+    protected boolean mouseHoverRunning = false;
+
+    protected MaterialButtonMouseListener mouseListener = new MaterialButtonMouseListener();
 
     @Override
     public void installUI(JComponent c) {
@@ -236,9 +242,16 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     @Override
+    protected void installListeners(AbstractButton b) {
+        super.installListeners(b);
+        b.addMouseListener(mouseListener);
+    }
+
+    @Override
     protected void uninstallListeners(AbstractButton b) {
         b.removePropertyChangeListener(enableButton);
         super.uninstallListeners(b);
+        b.removeMouseListener(mouseListener);
     }
 
     protected void paintFocusRing(Graphics g, JButton b) {
@@ -385,19 +398,61 @@ public class MaterialButtonUI extends BasicButtonUI {
             and this change the background color.
             I do remove this bug but I need to restore this code because isn't possible work with the personal
             color on the button.
-
-            else if(evt.getPropertyName().equals(BACKGROUND_EVENT)){
+            */
+            else if(evt.getPropertyName().equals(BACKGROUND_EVENT) && !mouseHoverRunning){
                 //When on the JButton call the method setBackground
                 background = (Color) evt.getNewValue();
-            }else if(evt.getPropertyName().equals(FOREGROUND_EVENT)){
+            }else if(evt.getPropertyName().equals(FOREGROUND_EVENT) && !mouseHoverRunning){
                 //When on the JButton call the method setForeground
                 foreground = (Color) evt.getNewValue();
-            }*/
+            }
 
             /*else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
                 background = button.getBackground();
                 foreground = button.getForeground();
             }*/
+        }
+    }
+
+    /**
+     * This Internal class is used to send feedback to mouse hover inside the JButton
+     * With this solution I can try to fix the issues on mouse hover t JButton.
+     */
+    protected class MaterialButtonMouseListener implements MouseListener, MouseMotionListener{
+
+        @Override
+        public void mouseClicked(MouseEvent mouseEvent) {
+            //do nothing
+        }
+
+        @Override
+        public void mousePressed(MouseEvent mouseEvent) {
+            //do nothing
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent mouseEvent) {
+            //do nothing
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent mouseEvent) {
+            mouseHoverRunning = true;
+        }
+
+        @Override
+        public void mouseExited(MouseEvent mouseEvent) {
+            mouseHoverRunning = false;
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent mouseEvent) {
+            //do nothing
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent mouseEvent) {
+            //do nothing
         }
     }
 }
