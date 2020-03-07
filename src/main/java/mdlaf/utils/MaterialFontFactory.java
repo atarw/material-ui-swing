@@ -117,8 +117,8 @@ public class MaterialFontFactory {
 	 */
 	private Font loadFont(String fontPath) {
 		if (fontSettings.isEmpty()) {
-			fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
-			//fontSettings.put (TextAttribute.SIZE, new Float( 14f));
+			//fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
+			fontSettings.put (TextAttribute.SIZE, 14f);
 			fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
 		}
 
