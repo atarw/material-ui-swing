@@ -41,14 +41,14 @@ We don't have much time to write detailed documentation, but if you want to get 
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.1_beta</version>
+  <version>1.1.1_pre-release_6.1</version>
 </dependency>
  ```
 
  _Gradle_
 
 ```
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_beta'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
