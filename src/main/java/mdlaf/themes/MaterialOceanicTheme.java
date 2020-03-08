@@ -209,6 +209,11 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme {
         table.put("TabbedPane[contentBorder].enableLeaf", false);
         table.put("TabbedPane[contentBorder].enableRight", false);
         table.put("TabbedPane[contentBorder].enableBottom", false);
+        
+        table.put("TextField.caretForeground", Color.WHITE);
+        table.put("TextArea.caretForeground", Color.WHITE);
+        table.put("TextPane.caretForeground", Color.WHITE);
+        table.put("PasswordField.caretForeground", Color.WHITE);
     }
 
     @Override
