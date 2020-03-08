@@ -1,6 +1,5 @@
 package mdlaf.components.button;
 
-import javafx.scene.paint.Material;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialFontFactory;
