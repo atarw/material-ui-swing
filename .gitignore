@@ -9,3 +9,6 @@ target/classes/mdlaf/
 target/
 
 material-ui-swing.iml
+/.project
+/.settings/
+/.classpath
