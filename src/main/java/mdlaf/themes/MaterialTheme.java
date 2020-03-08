@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@ import java.awt.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
+@SuppressWarnings("all")
 public interface MaterialTheme {
 
     void installTheme();
@@ -193,6 +194,44 @@ public interface MaterialTheme {
 
     boolean getEnableArrowScrollBar();
 
+    //--------------------------------------------------
+    //Proprieties JToggleButton
+    void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton);
+
+    void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton);
+
+    public void setWithoutIconToggleButton(boolean withoutIconToggleButton);
+
+    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton);
+
+    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton);
+
+    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton);
+
+    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton);
+
+    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton);
+
+    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton);
+
+    ImageIconUIResource getUnselectedIconToggleButton();
+
+    ImageIconUIResource getSelectedIconToggleButton();
+
+    public boolean isWithoutIconToggleButton();
+
+    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton();
+
+    public ColorUIResource getWithoutIconSelectedForegoundToggleButton();
+
+    public ColorUIResource getWithoutIconBackgroundToggleButton();
+
+    public ColorUIResource getWithoutIconForegroundToggleButton();
+
+    public BorderUIResource getWithoutIconSelectedBorderToggleButton();
+
+    public BorderUIResource getWithoutIconBorderToggleButton();
+
     //---------------------------------------------------
     //Proprieties JSlider
     ColorUIResource getTrackColorSlider();
@@ -273,6 +312,12 @@ public interface MaterialTheme {
     BorderUIResource getCellBorderTableHeader();
 
     //---------------------------------------------------
+    //Proprieties JSeparator
+    ColorUIResource getBackgroundSeparator();
+
+    ColorUIResource getForegroundSeparator();
+
+    //---------------------------------------------------
     //Proprieties JToolBar
     ColorUIResource getDockingBackgroundToolBar();
 
@@ -292,6 +337,8 @@ public interface MaterialTheme {
 
     ImageIconUIResource getOpenIconTree();
 
+    BorderUIResource getBorderTree();
+
     //---------------------------------------------------
     //Proprieties JTextField and JPasswordField
     ColorUIResource getBackgroundTextField();
@@ -303,6 +350,10 @@ public interface MaterialTheme {
     ColorUIResource getSelectionBackgroundTextField();
 
     ColorUIResource getSelectionForegroundTextField();
+
+    ColorUIResource getDisabledBackgroudnTextField();
+
+    ColorUIResource getDisabledForegroundTextField();
 
     ColorUIResource getInactiveColorLineTextField();
 
@@ -396,6 +447,27 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderProgressBar();
 
+    //---------------------------------------------------
+    //Proprieties JSplitPane
+
+    ColorUIResource getColorDividierSplitPane();
+
+    ColorUIResource getColorDividierFocusSplitPane();
+
+    int getSizeDividierSplitPane();
+
+    BorderUIResource getDividierBorderSplitPane();
+
+    //---------------------------------------------------
+    //Proprieties TitledBorder
+    ColorUIResource getColorTextTitledBorder();
+
+    BorderUIResource getBorderTitledBorder();
+
+    //---------------------------------------------------
+    //Proprieties TitleBorder
+    ImageIconUIResource getIconCloseTitlePane();
+
     //All type of font supported to the theme
     FontUIResource getFontBold();
 
@@ -407,6 +479,23 @@ public interface MaterialTheme {
 
 
     //Setter
+
+    void setBackgroundSeparator(ColorUIResource backgroundSeparator);
+
+    void setForegroundSeparator(ColorUIResource foregroundSeparator);
+
+    void setBorderTree(BorderUIResource borderTree);
+
+    void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane);
+
+    void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
+
+    void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField);
+
+    void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder);
+
+    void setBorderTitledBorder(BorderUIResource borderTitledBorder);
+
     void setBackgroundPrimary(ColorUIResource backgroundPrimary);
 
     void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary);
@@ -654,5 +743,13 @@ public interface MaterialTheme {
     public void setFontRegular(FontUIResource fontRegular);
 
     public void setFontMedium(FontUIResource fontMedium);
+
+    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane);
+
+    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane);
+
+    public void setSizeDividierSplitPane(int sizeDividierSplitPane);
+
+    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane);
 
 }

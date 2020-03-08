@@ -322,7 +322,6 @@ public class MaterialTitlePaneUI extends JComponent {
             myCloseButton.setIcon(iconClose);
             myIconifyButton.setIcon(myMinimizeIcon);
             myToggleButton.setIcon(myMaximizeIcon);
-
         }
     }
 
@@ -750,6 +749,18 @@ public class MaterialTitlePaneUI extends JComponent {
                 super.installUI(c);
                 c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
+
+            @Override
+            protected void paintButtonPressed(Graphics g, AbstractButton b) {
+                //doNothing
+            }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+                //do nothing
+            }
         }
+
+
     }
 }

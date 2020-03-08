@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -66,6 +65,8 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         JComponent component = (JComponent) super.getTableCellEditorComponent(table, value, isSelected, row, column);
+        //OLD version code restored for JMars version
+        /*
         boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
         Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
         Color normalColor = UIManager.getColor("Table.background");
@@ -77,7 +78,7 @@ public class MaterialTableCellEditor extends DefaultCellEditor {
                     component.setBackground(normalColor);
                 }
             }
-        }
+        }*/
         return component;
     }
 }

@@ -28,6 +28,7 @@ import mdlaf.components.titlepane.MaterialTitlePaneUI;
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicRootPaneUI;
 import javax.swing.plaf.metal.MetalRootPaneUI;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -42,8 +43,8 @@ import java.security.PrivilegedExceptionAction;
  *  The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
  *  @author https://github.com/vincenzopalazzo
  */
-public class MaterialRootPaneUI extends MetalRootPaneUI {
-
+public class MaterialRootPaneUI extends BasicRootPaneUI {
+    //TODO refactoring this component
     protected static final String[] borderKeys = new String[] {
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
