@@ -118,7 +118,11 @@ public class MaterialFontFactory {
 	private Font loadFont(String fontPath) {
 		if (fontSettings.isEmpty()) {
 			//fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
-			fontSettings.put (TextAttribute.SIZE, 14f);
+			//fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
+			// The min function is used to keep this number to reasonable bounds in cases of high DPI displays
+			// Known to cause issues with Windows 10 Display Scaling
+			int resolution=Math.min(Toolkit.getDefaultToolkit().getScreenResolution(),96);
+			fontSettings.put (TextAttribute.SIZE, 11.0f*resolution/72.0f);			
 			fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
 		}
 
