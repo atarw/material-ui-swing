@@ -328,7 +328,8 @@ public class MaterialUISwingDemo {
 		// make everything visible to the world
 		frame.pack ();
 		frame.setVisible (true);
-
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 		JFileChooser fileChooser = new JFileChooser ();
 		fileChooser.showOpenDialog (frame);
 	}

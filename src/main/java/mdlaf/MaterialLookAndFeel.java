@@ -1,8 +1,7 @@
-/*
+/**
  * MIT License
  *
- * Copyright (c) 2018-2019 atharva washimkar,
- * Copyright (c) 2019 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -74,6 +73,7 @@ import sun.awt.SunToolkit;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
@@ -254,6 +254,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Button.foreground", theme.getButtonTextColor());
 		table.put("Button[Default].background", theme.getButtonDefaultBackgroundColor());
 		table.put("Button[Default].foreground", theme.getButtonDefaultTextColor());
+		// table.put("Button[Default].disabledBackground", MaterialColors.LIGHT_BLUE_800);
+		//table.put("Button[Default].disabledForeground", MaterialColors.COSMO_DARK_GRAY);
 		table.put("Button.disabledBackground", theme.getButtonDisabledBackground());
 		table.put("Button.disabledForeground", theme.getButtonDisabledForeground());
 		table.put("Button.font", theme.getButtonFont());
@@ -265,7 +267,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Button[focus].color", theme.getButtonFocusColor());
 		table.put("Button.disabledText", theme.getButtonDisableTextColor());
 		table.put("Button[Default].shadowPixel", 3);
-		table.put("Button[Default].shadowEnable", false);
+		//table.put("Button[Default].shadowEnable", false); removed
 		table.put("Button[Default][focus].color", theme.getButtonDefaultFocusColor());
 		table.put("Button[border].enable", theme.getButtonBorderEnable());
 		table.put("Button[border].color", theme.getButtonBorderColor());
@@ -302,7 +304,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Label.font", theme.getFontRegular());
 		table.put("Label.background", theme.getBackgroundPrimary());
 		table.put("Label.foreground", theme.getTextColor());
-		table.put("Label.opaque", true);
+		//TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
+		//and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
+		// table.put("Label.opaque", true);
 		table.put("Label.disabledForeground", theme.getDisableTextColor());
 		table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
@@ -387,37 +391,45 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Slider[halo].color", theme.getHaloColorSlider());
 		table.put("Slider.border", theme.getBorderSlider());
 
+		// also, look this style https://material.io/design/platform-guidance/android-split-screen.html#usage
 		table.put("SplitPane.border", theme.getBorderPanel());
-		table.put("SplitPane.background", theme.getBackgroundPrimary());
-		table.put("SplitPane.dividerSize", 5);
-		table.put("SplitPaneDivider.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
-		table.put("SplitPaneDivider.background", theme.getBackgroundPrimary());
+		table.put("SplitPane.background", theme.getDisableTextColor());
+		table.put("SplitPane.dividerSize", theme.getSizeDividierSplitPane());
+		table.put("SplitPaneDivider.border", theme.getDividierBorderSplitPane());
+		table.put("SplitPaneDivider.background", theme.getColorDividierSplitPane());
+		table.put("SplitPaneDivider.draggingColor", theme.getColorDividierFocusSplitPane());
 
+		//TODO the comment proprieties will be remove to version 1.2 of the library
+		//for the moment are deprecated
 		table.put("TabbedPane.font", theme.getFontRegular());
 		table.put("TabbedPane.background", theme.getBackgroundPrimary());
 		table.put("TabbedPane.tabAreaBackground", theme.getBackgroundPrimary());
 		table.put("TabbedPane.foreground", theme.getTextColor());
+		table.put("TabbedPane.disabledForeground", theme.getDisableTextColor());
 		table.put("TabbedPane.selectionForeground", theme.getFocusColorLineTabbedPane());
 		table.put("TabbedPane.contentAreaColor", theme.getButtonTextColor());
 		table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
 		table.put("TabbedPane.border", theme.getBorderPanel());
 		table.put("TabbedPane.shadow", theme.getBackgroundPrimary());
-		table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary());
+		table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary()); //TODO add another propriety for change this color in the MaterialTheming
 		table.put("TabbedPane.highlight", theme.getDisableTextColor());
 		table.put("TabbedPane.selected", theme.getTextColor());
 		table.put("TabbedPane.light", theme.getBackgroundPrimary());
 		table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
 		table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
 		table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
-		table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
-		table.put("TabbedPane.indent", theme.getIndentTabbedPane());
-		table.put("TabbedPane.tabInsets", theme.getTabInsetsTabbedPane());
+		//table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
+		//table.put("TabbedPane.indent", theme.getIndentTabbedPane());
+		table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
+		table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
 		table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
-		table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
-		table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
-		table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
+		//table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
+		//table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
+		//table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
 		table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
-		table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+		//table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
+		table.put("TabbedPane[focus].margin", 5);
+
 
 		table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
 		table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
@@ -428,20 +440,28 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Table.gridColor", theme.getGridColorTable());
 		table.put("Table.focusable", theme.getTableFocusable());
 		table.put("Table.opaque", theme.getTableOpaque());
-		table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
-		table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
+		//This propriety was used also how default
+		//TODO refactoring this proprieties
+		//TODO add why
+		table.put("Table.alternateRowColor", theme.getAlternateRowBackgroundTable());
+		//table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
+		//table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
 		table.put("Table[row].height", theme.getHeightRowTable());
 		table.put("Table[CheckBox].checked", theme.getSelectedCheckBoxIconTable());
 		table.put("Table[CheckBox].unchecked", theme.getUnselectedCheckBoxIconTable());
 		table.put("Table[CheckBox].selectionChecked", theme.getSelectedCheckBoxIconSelectionRowTable());
 		table.put("Table[CheckBox].selectionUnchecked", theme.getUnselectedCheckBoxIconSelectionRowTable());
 		table.put("Table.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
+		table.put("Table.showVerticalLines", false);
+		table.put("Table.showHorizontalLines", false);
+		table.put("Table.intercellSpacing", new java.awt.Dimension(0, 0));
 
 		table.put("TableHeader.background", theme.getBackgroundTableHeader());
 		table.put("TableHeader.foreground", theme.getForegroundTableHeader());
 		table.put("TableHeader.border", theme.getBorderTableHeader());
 		table.put("TableHeader.font", theme.getFontBold());
 		table.put("TableHeader.cellBorder", theme.getCellBorderTableHeader());
+		table.put("TableHeader.gridColor", theme.getBackgroundTableHeader());
 
 		table.put("TextArea.background", theme.getBackgroundTextField());
 		table.put("TextArea.border", theme.getBorderTextField());
@@ -456,8 +476,15 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());
 		table.put("ToggleButton.foreground", theme.getTextColor());
 		table.put("ToggleButton.disabledText", theme.getDisableTextColor());
-		table.put("ToggleButton.icon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF));
-		table.put("ToggleButton.selectedIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON));
+		table.put("ToggleButton.icon", theme.getUnselectedIconToggleButton());
+		table.put("ToggleButton.selectedIcon", theme.getSelectedIconToggleButton());
+		table.put("ToggleButton.withoutIcon", theme.isWithoutIconToggleButton());
+		table.put("ToggleButton[withoutIcon].selectedBackground", theme.getWithoutIconSelectedBackgroundToggleButton());
+		table.put("ToggleButton[withoutIcon].selectedForeground", theme.getWithoutIconSelectedForegoundToggleButton());
+		table.put("ToggleButton[withoutIcon].background", theme.getWithoutIconBackgroundToggleButton());
+		table.put("ToggleButton[withoutIcon].foreground", theme.getWithoutIconForegroundToggleButton());
+		table.put("ToggleButton[withoutIcon].selectedBorder", theme.getWithoutIconSelectedBorderToggleButton());
+		table.put("ToggleButton[withoutIcon].border", theme.getWithoutIconBorderToggleButton());
 
 		table.put("ToolBar.font", theme.getFontRegular());
 		table.put("ToolBar.background", theme.getBackgroundPrimary());
@@ -472,6 +499,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Tree.selectionBackground", theme.getSelectionBackgroundTree());
 		table.put("Tree.background", theme.getBackgroundPrimary());
 		table.put("Tree.selectionBorderColor", theme.getSelectionBorderColorTree());
+		table.put("Tree.border", theme.getBorderTree());
 		table.put("Tree.collapsedIcon", null);
 		table.put("Tree.expandedIcon", null);
 		table.put("Tree.closedIcon", theme.getClosedIconTree());
@@ -510,8 +538,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("EditorPane.font", theme.getFontRegular());
 		table.put("EditorPane.focusInputMap", multilineInputMap);
 
-		table.put("Separator.background", MaterialColors.GRAY_300);
-		table.put("Separator.foreground", MaterialColors.GRAY_300);
+		table.put("Separator.background", theme.getBackgroundSeparator());
+		table.put("Separator.foreground", theme.getForegroundSeparator());
 
 		table.put("ToolTip.background", MaterialColors.GRAY_500);
 		table.put("ToolTip.foreground", MaterialColors.GRAY_50);
@@ -520,6 +548,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("TextField.background", theme.getBackgroundTextField());
 		table.put("TextField.foreground", theme.getTextColor());
 		table.put("TextField.font", theme.getFontRegular());
+		table.put("TextField.disabledBackground", theme.getDisabledBackgroudnTextField());
+		table.put("TextField.disabledForeground", theme.getDisabledForegroundTextField());
 		table.put("TextField.inactiveForeground", theme.getInactiveForegroundTextField());
 		table.put("TextField.inactiveBackground", theme.getInactiveBackgroundTextField());
 		table.put("TextField.selectionBackground", theme.getSelectionBackgroundTextField());
@@ -531,6 +561,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
 		table.put("PasswordField.background", theme.getBackgroundTextField());
 		table.put("PasswordField.foreground", theme.getTextColor());
+		table.put("PasswordField.disabledBackground", theme.getDisabledBackgroudnTextField());
+		table.put("PasswordField.disabledForeground", theme.getDisabledForegroundTextField());
 		table.put("PasswordField.inactiveForeground", theme.getInactiveForegroundTextField());
 		table.put("PasswordField.inactiveBackground", theme.getInactiveBackgroundTextField());
 		table.put("PasswordField.selectionBackground", theme.getSelectionBackgroundTextField());
@@ -541,10 +573,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("PasswordField.echoChar", theme.getEchoCharPasswordField());
 		table.put("PasswordField.focusInputMap", fieldInputMap);
 
-		table.put("TitledBorder.border", MaterialBorders.LIGHT_LINE_BORDER);
+		table.put("TitledBorder.border", theme.getBorderTitledBorder());
 		table.put("TitledBorder.font", theme.getFontMedium());
+		table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
 
-		table.put("TaskPane.font", theme.getFontMedium());
+		table.put("TaskTaskPane.font", theme.getFontMedium());
 		table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
 		table.put("TaskPane.titleBackgroundGradientEnd", theme.getTitleBackgroundGradientEndTaskPane());
 		table.put("TaskPane.titleOver", theme.getTitleOverTaskPane());
@@ -589,7 +622,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		//TODO exist an bug inside the icon
 		table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
 		table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
-		table.put("InternalFrame.closeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE));
+		table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
 		table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS_WHITE));
 		table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
 		table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
