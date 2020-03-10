@@ -101,6 +101,8 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         textComponent.setSelectedTextColor(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         textComponent.setForeground(getComponent().hasFocus() && getComponent().isEnabled() ? activeForeground : inactiveForeground);
         textComponent.setBorder(UIManager.getBorder(getPropertyPrefix() + ".border"));
+        textComponent.setCaretColor(UIManager.getColor(getPropertyPrefix() + ".caretForeground"));
+
     }
 
     protected void logicForPropertyChange(Color newColor, boolean isForeground) {
