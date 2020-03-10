@@ -239,11 +239,6 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
     @Override
     public void installUIDefault(UIDefaults table) {
         super.installUIDefault(table);
-        
-        table.put("TextField.caretForeground", Color.WHITE);
-        table.put("TextArea.caretForeground", Color.WHITE);
-        table.put("TextPane.caretForeground", Color.WHITE);
-        table.put("PasswordField.caretForeground", Color.WHITE);
     }
 
     @Override
