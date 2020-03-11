@@ -243,6 +243,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ImageIconUIResource openIconTree;
 
+    protected ImageIconUIResource leafIconTree;
+
     protected BorderUIResource borderTree;
 
     //---------------------------------------------------
@@ -975,13 +977,20 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return selectionBorderColorTree;
     }
 
+    @Override
     public ImageIconUIResource getClosedIconTree() {
         return closedIconTree;
     }
 
+    @Override
     public ImageIconUIResource getOpenIconTree() {
         return openIconTree;
     }
+    
+	@Override
+	public ImageIconUIResource getLeafIconTree() {
+		return leafIconTree;
+	}
 
     public BorderUIResource getBorderTree() {
         return borderTree;

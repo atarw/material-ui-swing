@@ -507,7 +507,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 		table.put("Tree.expandedIcon", null);
 		table.put("Tree.closedIcon", theme.getClosedIconTree());
 		table.put("Tree.openIcon", theme.getOpenIconTree());
-		table.put("Tree.leafIcon", null);
+		table.put("Tree.leafIcon", theme.getLeafIconTree());
 
 		table.put("RadioButtonMenuItem.foreground", theme.getTextColor());
 		table.put("RadioButtonMenuItem.selectionForeground", theme.getTextColor());

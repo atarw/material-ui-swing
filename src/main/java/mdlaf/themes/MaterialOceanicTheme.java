@@ -29,6 +29,7 @@ import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
+import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -82,6 +83,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.openIconTree = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
                 highlightBackgroundPrimary
+        );
+        this.leafIconTree = MaterialImageFactory.getInstance().getImage(
+        		MaterialImageFactory.BLANK
         );
 
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);

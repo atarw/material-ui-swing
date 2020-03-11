@@ -59,6 +59,9 @@ public class MaterialImageFactory{
 
 	private static final String PATH_RESOUSES = "/imgs/";
 
+	// blank image
+	public static final String BLANK = "blank";
+
 	//Icon black
 	public static final String RIGHT_ARROW = "right_arrow";
 	public static final String LEFT_ARROW = "left_arrow";

@@ -336,6 +336,8 @@ public interface MaterialTheme {
     ImageIconUIResource getClosedIconTree();
 
     ImageIconUIResource getOpenIconTree();
+    
+    ImageIconUIResource getLeafIconTree();
 
     BorderUIResource getBorderTree();
 
