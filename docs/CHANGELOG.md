@@ -15,6 +15,9 @@
 - [Possibility to add the personal color to Tab disabled into JTabbedPane](https://github.com/vincenzopalazzo/material-ui-swing/issues/113)
 - [Mouse hover bug when the component did disabled after click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
 - [MaterialButtonUI.java depends on JavaFX](https://github.com/atarw/material-ui-swing/issues/95)
+- [Nested JTree view paint wrong](https://github.com/atarw/material-ui-swing/pull/103)
+- [Font but with screen zoom](https://github.com/atarw/material-ui-swing/pull/99)
+- [Added Caret Foreground color](https://github.com/atarw/material-ui-swing/pull/102)
 
 **JToggleButton Second Style without icons**
 

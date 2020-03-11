@@ -469,6 +469,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextArea.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("TextArea.foreground", theme.getTextColor());
         table.put("TextArea.font", theme.getFontBold());
+        table.put("TextArea.caretForeground", theme.getTextColor());
 
         table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
         table.put("ToggleButton.font", theme.getFontRegular());
@@ -504,7 +505,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Tree.expandedIcon", null);
         table.put("Tree.closedIcon", theme.getClosedIconTree());
         table.put("Tree.openIcon", theme.getOpenIconTree());
-        table.put("Tree.leafIcon", null);
+        table.put("Tree.leafIcon", theme.getLeafIconTree());
 
         table.put("RadioButtonMenuItem.foreground", theme.getTextColor());
         table.put("RadioButtonMenuItem.selectionForeground", theme.getTextColor());
@@ -529,6 +530,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.inactiveForeground", theme.getDisableTextColor());
         table.put("TextPane.font", theme.getFontItalic());
         table.put("TextPane.focusInputMap", multilineInputMap);
+        table.put("TextPane.caretForeground", theme.getTextColor());
 
         table.put("EditorPane.border", theme.getBorderPanel());
         table.put("EditorPane.background", theme.getBackgroundTextField());
@@ -537,6 +539,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("EditorPane.inactiveForeground", theme.getSelectionForegroundTextField());
         table.put("EditorPane.font", theme.getFontRegular());
         table.put("EditorPane.focusInputMap", multilineInputMap);
+        table.put("EditorPane.caretForeground", theme.getTextColor());
 
         table.put("Separator.background", theme.getBackgroundSeparator());
         table.put("Separator.foreground", theme.getForegroundSeparator());
@@ -559,6 +562,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField.border", theme.getBorderTextField());
         //table.put("TextField.margin", new InsetsUIResource(5,15,5,15));
         table.put("TextField.focusInputMap", fieldInputMap);
+        table.put("TextField.caretForeground", theme.getTextColor());
 
         table.put("PasswordField.background", theme.getBackgroundTextField());
         table.put("PasswordField.foreground", theme.getTextColor());
@@ -573,6 +577,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.border", theme.getBorderTextField());
         table.put("PasswordField.echoChar", theme.getEchoCharPasswordField());
         table.put("PasswordField.focusInputMap", fieldInputMap);
+        table.put("PasswordField.caretForeground", theme.getTextColor());
 
         table.put("TitledBorder.border", theme.getBorderTitledBorder());
         table.put("TitledBorder.font", theme.getFontMedium());
@@ -598,6 +603,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
         table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("FormattedTextField.border", theme.getBorderTextField());
+        table.put("FormattedTextField.caretForeground", theme.getTextColor());
 
         table.put("List.background", theme.getBackgroundPrimary());
         table.put("List.foreground", theme.getTextColor());

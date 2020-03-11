@@ -107,6 +107,10 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
+
+        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
+                MaterialImageFactory.BLANK
+        );
     }
 
     @Override

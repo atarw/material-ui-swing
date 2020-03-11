@@ -243,6 +243,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ImageIconUIResource openIconTree;
 
+    protected ImageIconUIResource leafIconTree;
+
     protected BorderUIResource borderTree;
 
     //---------------------------------------------------
@@ -983,6 +985,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return openIconTree;
     }
 
+    public ImageIconUIResource getLeafIconTree() {
+        return leafIconTree;
+    }
+
     public BorderUIResource getBorderTree() {
         return borderTree;
     }
@@ -1245,6 +1251,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public void setForegroundSeparator(ColorUIResource foregroundSeparator) {
         this.foregroundSeparator = foregroundSeparator;
+    }
+
+    public void setLeafIconTree(ImageIconUIResource leafIconTree) {
+        this.leafIconTree = leafIconTree;
     }
 
     public void setBorderTree(BorderUIResource borderTree) {

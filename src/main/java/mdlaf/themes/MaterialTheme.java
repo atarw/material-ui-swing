@@ -337,6 +337,8 @@ public interface MaterialTheme {
 
     ImageIconUIResource getOpenIconTree();
 
+    ImageIconUIResource getLeafIconTree();
+
     BorderUIResource getBorderTree();
 
     //---------------------------------------------------
@@ -479,6 +481,7 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setLeafIconTree(ImageIconUIResource leafIconTree);
 
     void setBackgroundSeparator(ColorUIResource backgroundSeparator);
 

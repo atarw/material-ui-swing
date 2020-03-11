@@ -33,6 +33,8 @@ import org.jdesktop.swingx.JXTaskPane;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -265,7 +267,12 @@ public class MaterialUISwingDemo {
                     tb.setFloatable(true);
                     content.add(tb);
 
-                    JTree tree = new JTree(new String[]{"a", "b"});
+                    DefaultMutableTreeNode tNodeRoot=new DefaultMutableTreeNode("Root");
+                    tNodeRoot.add(new DefaultMutableTreeNode("Child1"));
+                    tNodeRoot.add(new DefaultMutableTreeNode("Child2"));
+                    TreeModel tModel=new DefaultTreeModel(tNodeRoot);
+
+                    JTree tree = new JTree (tModel);
                     tree.setEditable(true);
 
                     content.add(tree);
