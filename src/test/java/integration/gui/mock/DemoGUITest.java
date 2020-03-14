@@ -495,13 +495,17 @@ public class DemoGUITest extends JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }
 
-    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
+    public synchronized void changeThemeWith(String lookAndFeel) {
         try {
             // UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
+       changeThemeWith(lookAndFeel.getClass().getName());
     }
 
     public void enableTheme(JMenuItem menuItem) {

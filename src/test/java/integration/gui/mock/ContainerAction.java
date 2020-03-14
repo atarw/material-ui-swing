@@ -23,16 +23,21 @@
  */
 package integration.gui.mock;
 
-import com.sun.java.swing.plaf.gtk.GTKLookAndFeel;
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
-import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.themes.MaterialLiteTheme;
-
-import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -153,7 +158,7 @@ public class ContainerAction {
                 }else if(e.getSource() == DemoGUITest.getInstance().getMetal()){
                     DemoGUITest.getInstance().changeThemeWith(new NimbusLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getGtk()){
-                    DemoGUITest.getInstance().changeThemeWith(new GTKLookAndFeel());
+                    DemoGUITest.getInstance().changeThemeWith("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
                 }else if(e.getSource() == DemoGUITest.getInstance().getMaterialDark()){
                     if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
                         MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
