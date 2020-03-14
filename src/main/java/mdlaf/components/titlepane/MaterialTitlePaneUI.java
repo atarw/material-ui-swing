@@ -17,13 +17,13 @@ package mdlaf.components.titlepane;
 
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialManagerListener;
-import sun.awt.SunToolkit;
-import sun.swing.SwingUtilities2;
 
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.UIResource;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -497,7 +497,7 @@ public class MaterialTitlePaneUI extends JComponent {
 
         String theTitle = getTitle();
         if (theTitle != null) {
-            FontMetrics fm = SwingUtilities2.getFontMetrics(rootPane, g);
+            FontMetrics fm = g.getFontMetrics(rootPane.getFont());
 
             g.setColor(foreground);
 
@@ -514,14 +514,14 @@ public class MaterialTitlePaneUI extends JComponent {
                     rect.x = window.getWidth() - window.getInsets().right - 2;
                 }
                 titleW = rect.x - xOffset - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
+                theTitle = BasicGraphicsUtils.getClippedString(rootPane,fm, theTitle, titleW);
             } else {
                 titleW = xOffset - rect.x - rect.width - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
-                xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+                theTitle = BasicGraphicsUtils.getClippedString(rootPane,fm, theTitle, titleW);
+                xOffset -= BasicGraphicsUtils.getStringWidth(rootPane, fm, theTitle);
             }
-            int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
-            SwingUtilities2.drawString(rootPane, g, theTitle, xOffset, yOffset);
+            int titleLength = (int)BasicGraphicsUtils.getStringWidth(rootPane, fm, theTitle);
+            g.drawString(theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }
     }
@@ -700,7 +700,9 @@ public class MaterialTitlePaneUI extends JComponent {
         } else if (icons.size() == 1) {
             mySystemIcon = icons.get(0);
         } else {
-            mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
+        	mySystemIcon = icons.get(0);
+        	// TODO: find cross-platofrm replacement for this?
+            // mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
         }
     }
 

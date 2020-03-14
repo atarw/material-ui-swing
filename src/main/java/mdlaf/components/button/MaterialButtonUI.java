@@ -26,7 +26,6 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -153,7 +152,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
-        FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
+        FontMetrics fm = g.getFontMetrics(c.getFont());
         int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
         if (model.isEnabled()) {

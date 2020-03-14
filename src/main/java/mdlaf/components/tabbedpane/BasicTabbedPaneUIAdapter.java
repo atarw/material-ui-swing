@@ -25,7 +25,7 @@
 package mdlaf.components.tabbedpane;
 
 import mdlaf.MaterialLookAndFeel;
-import sun.swing.SwingUtilities2;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.plaf.ComponentInputMapUIResource;
@@ -39,7 +39,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.util.Vector;
 import java.util.Hashtable;
-import sun.swing.DefaultLookup;
 
 /**
  * A Basic L&amp;F implementation of TabbedPaneUI.
@@ -514,7 +513,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
 
         String title = tabPane.getTitleAt(tabIndex);
         Font font = tabPane.getFont();
-        FontMetrics metrics = SwingUtilities2.getFontMetrics(tabPane, g, font);
+        FontMetrics metrics = g.getFontMetrics(font);
         Icon icon = getIconForTab(tabIndex);
 
         layoutLabel(tabPlacement, metrics, tabIndex, title, icon,
@@ -527,9 +526,9 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
                     tabScroller.croppedEdge.getTabIndex() == tabIndex && isHorizontalTabPlacement()) {
                 int availTextWidth = tabScroller.croppedEdge.getCropline() -
                         (textRect.x - tabRect.x) - tabScroller.croppedEdge.getCroppedSideWidth();
-                clippedTitle = SwingUtilities2.clipStringIfNecessary(null, metrics, title, availTextWidth);
+                clippedTitle = BasicGraphicsUtils.getClippedString(tabPane, metrics, title, availTextWidth);
             } else if (!scrollableTabLayoutEnabled() && isHorizontalTabPlacement()) {
-                clippedTitle = SwingUtilities2.clipStringIfNecessary(null, metrics, title, textRect.width);
+                clippedTitle = BasicGraphicsUtils.getClippedString(tabPane, metrics, title, textRect.width);
             }
 
             paintText(g, tabPlacement, font, metrics,
@@ -712,17 +711,17 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
                     }
                 }
                 g.setColor(fg);
-                SwingUtilities2.drawStringUnderlineCharAt(tabPane, g,
+                BasicGraphicsUtils.drawStringUnderlineCharAt(g,
                         title, mnemIndex,
                         textRect.x, textRect.y + metrics.getAscent());
 
             } else { // tab disabled
                 g.setColor(tabPane.getBackgroundAt(tabIndex).brighter());
-                SwingUtilities2.drawStringUnderlineCharAt(tabPane, g,
+                BasicGraphicsUtils.drawStringUnderlineCharAt(g,
                         title, mnemIndex,
                         textRect.x, textRect.y + metrics.getAscent());
                 g.setColor(tabPane.getBackgroundAt(tabIndex).darker());
-                SwingUtilities2.drawStringUnderlineCharAt(tabPane, g,
+                BasicGraphicsUtils.drawStringUnderlineCharAt(g,
                         title, mnemIndex,
                         textRect.x - 1, textRect.y + metrics.getAscent() - 1);
 
@@ -734,9 +733,9 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
     protected int getTabLabelShiftX(int tabPlacement, int tabIndex, boolean isSelected) {
         Rectangle tabRect = rects[tabIndex];
         String propKey = (isSelected ? "selectedLabelShift" : "labelShift");
-        int nudge = DefaultLookup.getInt(
-                tabPane, this, "TabbedPane." + propKey, 1);
-
+        Integer nudge = UIManager.getInt("TabbedPane." + propKey);
+        if (nudge==0) nudge=1;
+        	
         switch (tabPlacement) {
             case LEFT:
                 return nudge;
@@ -751,9 +750,13 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
 
     protected int getTabLabelShiftY(int tabPlacement, int tabIndex, boolean isSelected) {
         Rectangle tabRect = rects[tabIndex];
-        int nudge = (isSelected ? DefaultLookup.getInt(tabPane, this, "TabbedPane.selectedLabelShift", -1) :
-                DefaultLookup.getInt(tabPane, this, "TabbedPane.labelShift", 1));
-
+        int nudge = (isSelected ? UIManager.getInt("TabbedPane.selectedLabelShift") :
+        	UIManager.getInt("TabbedPane.labelShift"));
+        // default values if not found
+        if (nudge==0) {
+        	nudge=isSelected?-1:1;
+        }
+        
         switch (tabPlacement) {
             case BOTTOM:
                 return -nudge;
@@ -1369,7 +1372,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
             } else {
                 // plain text
                 String title = tabPane.getTitleAt(tabIndex);
-                width += SwingUtilities2.stringWidth(tabPane, metrics, title);
+                width += BasicGraphicsUtils.getStringWidth(tabPane, metrics, title);
             }
         }
         return width;
@@ -1428,8 +1431,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
 
     protected void navigateSelectedTab(int direction) {
         int tabPlacement = tabPane.getTabPlacement();
-        int current = DefaultLookup.getBoolean(tabPane, this,
-                "TabbedPane.selectionFollowsFocus", true) ?
+        int current = UIManager.getBoolean("TabbedPane.selectionFollowsFocus") ?
                 tabPane.getSelectedIndex() : getFocusIndex();
         int tabCount = tabPane.getTabCount();
         //boolean leftToRight = BasicGraphicsUtils.isLeftToRight(tabPane);
@@ -1571,8 +1573,7 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
     }
 
     protected void navigateTo(int index) {
-        if (DefaultLookup.getBoolean(tabPane, this,
-                "TabbedPane.selectionFollowsFocus", true)) {
+        if (UIManager.getBoolean("TabbedPane.selectionFollowsFocus")) {
             tabPane.setSelectedIndex(index);
         } else {
             // Just move focus (not selection)
@@ -1760,7 +1761,9 @@ public class BasicTabbedPaneUIAdapter extends BasicTabbedPaneUI implements Swing
     }
 
     boolean requestFocusForVisibleComponent() {
-        return SwingUtilities2.tabbedPaneChangeFocusTo(getVisibleComponent());
+    	// TODO: cross platform fix?
+        // return SwingUtilities2.tabbedPaneChangeFocusTo(getVisibleComponent());
+    	return false;
     }
 
     public class MaterialTabbedPaneLayout implements LayoutManager {

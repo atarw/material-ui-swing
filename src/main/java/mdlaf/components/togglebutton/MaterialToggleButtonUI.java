@@ -23,20 +23,23 @@
  */
 package mdlaf.components.togglebutton;
 
-import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
-import sun.swing.SwingUtilities2;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JComponent;
+import javax.swing.JToggleButton;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+
+import mdlaf.utils.MaterialDrawingUtils;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -159,23 +162,23 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
-        FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
+        FontMetrics fm = g.getFontMetrics(c.getFont());
         int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
         /* Draw the Text */
         if (model.isEnabled()) {
             /*** paint the text normally */
             g.setColor(b.getForeground());
-            SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x + getTextShiftOffset(),
                     textRect.y + fm.getAscent() + getTextShiftOffset());
         } else {
             /*** paint the text disabled ***/
             g.setColor(UIManager.getColor("ToggleButton.disabledText").brighter());
-            SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x, textRect.y + fm.getAscent());
             g.setColor(UIManager.getColor("ToggleButton.disabledText").darker());
-            SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
                     textRect.x - 1, textRect.y + fm.getAscent() - 1);
         }
     }
