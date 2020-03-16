@@ -127,7 +127,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String rootPane = MaterialRootPaneUI.class.getCanonicalName();
     private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
     private static final String colorChooserUI = MaterialColorChooser.class.getCanonicalName();
-    //TODO not allineated this component with master
     private static final String splitPaneUI = MaterialSplitPaneUI.class.getCanonicalName();
 
     public static void changeTheme(MaterialTheme theme) {
