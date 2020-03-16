@@ -158,7 +158,7 @@ public class ContainerAction {
                 }else if(e.getSource() == DemoGUITest.getInstance().getMetal()){
                     DemoGUITest.getInstance().changeThemeWith(new NimbusLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getGtk()){
-                    DemoGUITest.getInstance().changeThemeWith("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+                    DemoGUITest.getInstance().changeThemeWith(UIManager.getCrossPlatformLookAndFeelClassName());
                 }else if(e.getSource() == DemoGUITest.getInstance().getMaterialDark()){
                     if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
                         MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
