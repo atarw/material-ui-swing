@@ -505,7 +505,7 @@ public class DemoGUITest extends JFrame {
     }
     
     public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
-       changeThemeWith(lookAndFeel.getClass().getName());
+       changeThemeWith(lookAndFeel.getClass().getCanonicalName());
     }
 
     public void enableTheme(JMenuItem menuItem) {
