@@ -18,6 +18,8 @@ package mdlaf.components.titlepane;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialManagerListener;
 
+import sun.swing.SwingUtilities2;
+
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -514,11 +516,12 @@ public class MaterialTitlePaneUI extends JComponent {
                     rect.x = window.getWidth() - window.getInsets().right - 2;
                 }
                 titleW = rect.x - xOffset - 4;
-                theTitle = BasicGraphicsUtils.getClippedString(rootPane,fm, theTitle, titleW);
+                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
+                xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             } else {
                 titleW = xOffset - rect.x - rect.width - 4;
-                theTitle = BasicGraphicsUtils.getClippedString(rootPane,fm, theTitle, titleW);
-                xOffset -= BasicGraphicsUtils.getStringWidth(rootPane, fm, theTitle);
+                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
+                xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             }
             int titleLength = (int)BasicGraphicsUtils.getStringWidth(rootPane, fm, theTitle);
             g.drawString(theTitle, xOffset, yOffset);
