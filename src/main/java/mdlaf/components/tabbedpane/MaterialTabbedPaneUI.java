@@ -163,6 +163,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
+        //TODO viene aggiunto ogni volta. FIX IT
         if (UIManager.getBoolean("TabbedPane[MouseHover].enable")) {
             component.addMouseMotionListener(new MouseHoverTab(rects));
         }
