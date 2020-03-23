@@ -724,7 +724,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     }
 
     public static int getFocusAcceleratorKeyMask() {
-        Toolkit tk = Toolkit.getDefaultToolkit();
         return ActionEvent.ALT_MASK;
     }
 
