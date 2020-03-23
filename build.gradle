@@ -37,11 +37,15 @@ dependencies {
 version = VERSION
 
 allprojects {
+  apply plugin: 'java'
+
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:deprecation"
         }
     }
+    sourceCompatibility = sourceCompatibility
+    targetCompatibility = targetCompatibility
 }
 
 jar {
