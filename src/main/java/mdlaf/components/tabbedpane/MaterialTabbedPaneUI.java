@@ -48,7 +48,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         return new MaterialTabbedPaneUI();
     }
 
-    protected JTabbedPane component;
     protected Color selectedForeground;
     protected Color disabledForeground;
     protected Color areaContentBackground;
@@ -62,23 +61,23 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int arcLine;
     protected int margin;
     protected boolean tabsOverlapBorder;
+    protected Boolean mouseHoverEnabled;
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JTabbedPane tabbedPane = (JTabbedPane) c;
-        tabbedPane.setOpaque(false);
-        tabbedPane.setFont(UIManager.getFont("TabbedPane.font"));
-        tabbedPane.setBackground(UIManager.getColor("TabbedPane.background"));
+        tabPane.setOpaque(false);
+        tabPane.setFont(UIManager.getFont("TabbedPane.font"));
+        tabPane.setBackground(UIManager.getColor("TabbedPane.background"));
         this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
-        tabbedPane.setForeground(foreground);
+        tabPane.setForeground(foreground);
         this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
         this.disabledForeground = UIManager.getColor("TabbedPane.disabledForeground");
         this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
         this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
         this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
-        tabbedPane.setBorder(UIManager.getBorder("TabbedPane.border"));
+        tabPane.setBorder(UIManager.getBorder("TabbedPane.border"));
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
@@ -89,7 +88,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
         this.margin = UIManager.getInt("TabbedPane[focus].margin");
         this.tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
-        this.component = tabbedPane;
+        this.mouseHoverEnabled = UIManager.getBoolean("TabbedPane[MouseHover].enable");
     }
 
     @Override
@@ -104,8 +103,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         darkShadow = null;
         shadow = null;
         lightHighlight = null;
-
-        component = null;
 
         super.uninstallDefaults();
         super.uninstallUI(c);
@@ -136,8 +133,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
-                g2D.setColor(this.component.getBackground());
-                g2D.setPaint(this.component.getBackground());
+                g2D.setColor(this.tabPane.getBackground());
+                g2D.setPaint(this.tabPane.getBackground());
             } else {
                 g2D.setColor(disableAreaContentBackground);
                 g2D.setPaint(disableAreaContentBackground);
@@ -163,9 +160,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        //TODO viene aggiunto ogni volta. FIX IT
-        if (UIManager.getBoolean("TabbedPane[MouseHover].enable")) {
-            component.addMouseMotionListener(new MouseHoverTab(rects));
+        if (mouseHoverEnabled != null && mouseHoverEnabled) {
+            tabPane.addMouseMotionListener(new MouseHoverTab(rects));
         }
     }
 
