@@ -73,7 +73,6 @@ import sun.awt.SunToolkit;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;

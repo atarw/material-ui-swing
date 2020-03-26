@@ -124,7 +124,7 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/VincentHDD/JMARS_Developement/15_02_2020_JMars/branches/UI/lib'
+            into '/media/vincent/VincentHDD/JMARS_Developement/17_03_2020_JMars_Refactoring/UI/lib'
             rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.1.1.jar')
         }
     }
