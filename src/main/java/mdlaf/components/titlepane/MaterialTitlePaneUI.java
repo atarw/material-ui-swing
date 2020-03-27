@@ -522,7 +522,7 @@ public class MaterialTitlePaneUI extends JComponent {
                 theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
                 xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             }
-            int titleLength = (int)BasicGraphicsUtils.getStringWidth(rootPane, fm, theTitle);
+            int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             g.drawString(theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }
