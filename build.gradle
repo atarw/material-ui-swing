@@ -22,8 +22,8 @@ dependencies {
     implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
 
     //Slf4j configuration
-    compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    testCompile 'ch.qos.logback:logback-core:1.2.3'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
     // Use JUnit test framework
@@ -37,11 +37,15 @@ dependencies {
 version = VERSION
 
 allprojects {
+  apply plugin: 'java'
+
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:deprecation"
         }
     }
+    sourceCompatibility = sourceCompatibility
+    targetCompatibility = targetCompatibility
 }
 
 jar {
@@ -153,12 +157,25 @@ task copyIntoLibsDir {
 }
 
 task createPom {
-    pom {
+    pom {    
         project {
             groupId GROUP_ID
             artifactId ARCHTFAT_ID
             version VERSION
-
+         
+   			properties {
+    	        project {
+     	           build {
+    	                sourceEncoding 'UTF-8'
+     	           }
+     	       	}
+      	     	maven {
+       	        	compiler {
+       	            	source '1.8'
+       	            	target '1.8'
+         	   		}
+         	  	}
+     		}
             inceptionYear '2020'
             licenses {
                 license {

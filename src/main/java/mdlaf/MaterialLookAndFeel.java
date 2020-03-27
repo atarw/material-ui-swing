@@ -69,8 +69,6 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
-import sun.awt.SunToolkit;
-
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
@@ -725,10 +723,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     }
 
     public static int getFocusAcceleratorKeyMask() {
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        if (tk instanceof SunToolkit) {
-            return ((SunToolkit) tk).getFocusAcceleratorKeyMask();
-        }
         return ActionEvent.ALT_MASK;
     }
 
