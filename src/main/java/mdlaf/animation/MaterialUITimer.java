@@ -37,7 +37,7 @@ import java.beans.PropertyChangeListener;
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
-public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     private Color from, to;
     private boolean forward;

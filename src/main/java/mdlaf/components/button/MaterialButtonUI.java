@@ -23,9 +23,10 @@
  */
 package mdlaf.components.button;
 
+import mdlaf.animation.MaterialMouseHover;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
+import mdlaf.utils.MaterialLogger;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -70,6 +71,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected boolean mouseHoverRunning = false;
 
     protected MaterialButtonMouseListener mouseListener = new MaterialButtonMouseListener();
+    protected MaterialMouseHover mouseHover;
 
     @Override
     public void installUI(JComponent c) {
@@ -101,7 +103,8 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (mouseHoverEnabled) {
             JButton b = (JButton) button;
             if (!b.isDefaultButton()) {
-                button.addMouseListener(MaterialUIMovement.getMovement(button, colorMouseHoverNormalButton));
+                this.mouseHover = MaterialUIMovement.getMovement(button, colorMouseHoverNormalButton);
+                button.addMouseListener(this.mouseHover);
             }
         }
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
@@ -123,8 +126,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.setBackground(null);
         button.setForeground(null);
         button.setCursor(null);
-
-        MaterialManagerListener.removeAllMaterialMouseListener(button);
     }
 
     @Override
@@ -137,8 +138,9 @@ public class MaterialButtonUI extends BasicButtonUI {
             defaultButton = ((JButton) button).isDefaultButton();
             if (defaultButton) {
                 if (mouseHoverEnabled) {
-                    MaterialManagerListener.removeAllMaterialMouseListener(b);
-                    b.addMouseListener(MaterialUIMovement.getMovement(b, colorMouseHoverDefaultButton));
+                    b.removeMouseListener(this.mouseHover);
+                    this.mouseHover = MaterialUIMovement.getMovement(b, colorMouseHoverDefaultButton);
+                    b.addMouseListener(this.mouseHover);
                 }
                 //paintBackground(g, c);
                 b.setBackground(defaultBackground);
@@ -225,7 +227,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
         //if the mouse hover is enabled I can set the mouse hover color when the button is pressed
-        if (mouseHoverEnabled) {
+        if (mouseHoverEnabled && mouseHoverRunning) {
             if (b.isEnabled()) {
                 if (this.isDefaultButton()) {
                     g.setColor(colorMouseHoverDefaultButton);
@@ -262,6 +264,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         b.removePropertyChangeListener(enableButton);
         super.uninstallListeners(b);
         b.removeMouseListener(mouseListener);
+        b.removeMouseListener(mouseHover);
     }
 
     protected void paintFocusRing(Graphics g, JButton b) {
@@ -316,67 +319,83 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.repaint();
     }
 
-    //Getter and setter propriety
+    //Getter and setter propriet
+    @Deprecated
     public Color getForeground() {
         return foreground;
     }
 
+    @Deprecated
     public void setForeground(Color foreground) {
         this.foreground = foreground;
     }
 
+    @Deprecated
     public Color getBackground() {
         return background;
     }
 
+    @Deprecated
     public Color getDisabledBackground() {
         return disabledBackground;
     }
 
+    @Deprecated
     public void setDisabledBackground(Color disabledBackground) {
         this.disabledBackground = disabledBackground;
     }
 
+    @Deprecated
     public Color getDisabledForeground() {
         return disabledForeground;
     }
 
+    @Deprecated
     public void setDisabledForeground(Color disabledForeground) {
         this.disabledForeground = disabledForeground;
     }
 
+    @Deprecated
     public Color getDefaultBackground() {
         return defaultBackground;
     }
 
+    @Deprecated
     public void setDefaultBackground(Color defaultBackground) {
         this.defaultBackground = defaultBackground;
     }
 
+    @Deprecated
     public Color getDefaultForeground() {
         return defaultForeground;
     }
 
+    @Deprecated
     public void setDefaultForeground(Color defaultForeground) {
         this.defaultForeground = defaultForeground;
     }
 
+    @Deprecated
     public Color getColorMouseHoverDefaultButton() {
         return colorMouseHoverDefaultButton;
     }
 
+    @Deprecated
     public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
         this.colorMouseHoverDefaultButton = colorMouseHoverDefaultButton;
     }
 
+    @Deprecated
     public Color getColorMouseHoverNormalButton() {
         return colorMouseHoverNormalButton;
     }
 
+    @Deprecated
     public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
         this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
     }
 
+    @Deprecated
     public Boolean isDefaultButton() {
         return defaultButton != null && defaultButton;
     }
@@ -452,11 +471,13 @@ public class MaterialButtonUI extends BasicButtonUI {
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
             mouseHoverRunning = true;
+            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover start");
         }
 
         @Override
         public void mouseExited(MouseEvent mouseEvent) {
             mouseHoverRunning = false;
+            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover Stop");
         }
 
         @Override

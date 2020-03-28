@@ -24,11 +24,16 @@
 package mdlaf.components.filechooser;
 
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialLogger;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -36,8 +41,11 @@ import java.awt.*;
  */
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
+    protected MaterialFileChooserEvents lifeCycleEvent;
+
     public MaterialFileChooserUI(JFileChooser fileChooser) {
         super(fileChooser);
+        lifeCycleEvent = new MaterialFileChooserEvents();
     }
 
     public static ComponentUI createUI(JComponent c) {
@@ -112,8 +120,25 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     }
 
     @Override
+    protected void installListeners(JFileChooser fc) {
+        super.installListeners(fc);
+        fc.addPropertyChangeListener(lifeCycleEvent);
+    }
+
+    /**
+     * Uninstalls the listeners.
+     *
+     * @param fc the file chooser
+     */
+    @Override
+    protected void uninstallListeners(JFileChooser fc) {
+        fc.removePropertyChangeListener(lifeCycleEvent);
+        super.uninstallListeners(fc);
+    }
+
+    @Override
     public void paint(Graphics g, JComponent c) {
-        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.paint(g, c);
     }
 
     @Override
@@ -136,5 +161,25 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
                 return this;
             }
         };
+    }
+
+
+    protected class MaterialFileChooserEvents implements PropertyChangeListener {
+
+        protected static final String CLOSE_EVENT = "JFileChooserDialogIsClosingProperty";
+
+        /**
+         * This method gets called when a bound property is changed.
+         *
+         * @param evt A PropertyChangeEvent object describing the event source
+         *            and the property that has changed.
+         */
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            if(evt.getPropertyName().equals(CLOSE_EVENT)){
+                MaterialLogger.getInstance().debug(MaterialFileChooserUI.class, "FileChooser closed");
+                getFileChooser().updateUI();
+            }
+        }
     }
 }

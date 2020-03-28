@@ -34,6 +34,6 @@
     <appender-ref ref="STDOUT" />
   </root>
 
-  <logger name="mdlaf" level="INFO"/>
+  <logger name="mdlaf" level="DEBUG"/>
 
 </configuration>
