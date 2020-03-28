@@ -48,6 +48,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
+import mdlaf.animation.MaterialMouseHover;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
@@ -74,6 +75,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int margin;
     protected boolean tabsOverlapBorder;
     protected Boolean mouseHoverEnabled;
+    protected MaterialMouseHoverTab mouseHoverTab;
 
     @Override
     public void installUI(JComponent c) {
@@ -172,8 +174,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        if (mouseHoverEnabled != null && mouseHoverEnabled) {
-            tabPane.addMouseMotionListener(new MouseHoverTab(rects));
+        if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
+            mouseHoverTab = new MaterialMouseHoverTab(rects);
+            tabPane.addMouseMotionListener(mouseHoverTab);
         }
     }
 
@@ -395,6 +398,15 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         //return new MaterialTabbedPaneLayout();
     }
 
+    /**
+     * Uninstall the listeners.
+     */
+    @Override
+    protected void uninstallListeners() {
+        super.uninstallListeners();
+        tabPane.removeMouseMotionListener(mouseHoverTab);
+    }
+
     @Override
     protected JButton createScrollButton(int direction) {
         return new MaterialArrowButton(direction);
@@ -427,11 +439,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
-    protected class MouseHoverTab implements MouseMotionListener {
+    protected class MaterialMouseHoverTab implements MaterialMouseHover {
 
         private Rectangle[] rectangles;
 
-        public MouseHoverTab(Rectangle[] rectangles) {
+        public MaterialMouseHoverTab(Rectangle[] rectangles) {
             this.rectangles = rectangles;
         }
 
@@ -456,6 +468,57 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 }
             }
             mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mousePressed(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseExited(MouseEvent e) {
+            //do nothing
         }
     }
 
