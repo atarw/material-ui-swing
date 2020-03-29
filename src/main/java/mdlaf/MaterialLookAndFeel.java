@@ -23,6 +23,7 @@
  */
 package mdlaf;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
@@ -623,10 +624,19 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         //TODO not supported yet
         //TODO exist an bug inside the icon
-        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
-        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
+        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CROP_FREE,
+                theme.getTextColor()
+        ));
+        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CROP,
+                theme.getTextColor()
+        ));
         table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
-        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS_WHITE));
+        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.REMOVE,
+                theme.getTextColor()
+        ));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
         table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
