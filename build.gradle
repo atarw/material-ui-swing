@@ -24,11 +24,10 @@ dependencies {
     //Slf4j configuration
     testCompile 'ch.qos.logback:logback-classic:1.2.3'
     testCompile 'ch.qos.logback:logback-core:1.2.3'
-    testCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
     //testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
@@ -38,11 +37,15 @@ dependencies {
 version = VERSION
 
 allprojects {
+  apply plugin: 'java'
+
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:deprecation"
         }
     }
+    sourceCompatibility = sourceCompatibility
+    targetCompatibility = targetCompatibility
 }
 
 jar {
@@ -125,7 +128,7 @@ task deployOnDiffereProjectJMars {
         copy {
             println 'init task copy source file'
             from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/VincentHDD/JMARS_Developement/15_02_2020_JMars/branches/UI/lib'
+            into '/media/vincent/VincentHDD/JMARS_Developement/test/jmars/default/branches/UI/lib'
             rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.1.1.jar')
         }
     }
@@ -135,8 +138,8 @@ task deployOnDiffereProjectLocalLib {
     doLast {
         copy {
             println 'init task copy source file'
-            from 'build/libs/' + project.name + ".jar"
-            into '/media/vincent/vincenzodev/home-pc/myLocalLib/java'
+            from 'build/libs/' + project.name + '-' + version + ".jar"
+            into '/media/vincent/VincentHDD/local-library/java'
             rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
         }
     }
@@ -154,12 +157,25 @@ task copyIntoLibsDir {
 }
 
 task createPom {
-    pom {
+    pom {    
         project {
             groupId GROUP_ID
             artifactId ARCHTFAT_ID
             version VERSION
-
+         
+   			properties {
+    	        project {
+     	           build {
+    	                sourceEncoding 'UTF-8'
+     	           }
+     	       	}
+      	     	maven {
+       	        	compiler {
+       	            	source '1.8'
+       	            	target '1.8'
+         	   		}
+         	  	}
+     		}
             inceptionYear '2020'
             licenses {
                 license {

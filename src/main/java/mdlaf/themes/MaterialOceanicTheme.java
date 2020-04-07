@@ -107,6 +107,10 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
+
+        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
+                MaterialImageFactory.BLANK
+        );
     }
 
     @Override
@@ -210,7 +214,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
-        this.titleOverTaskPane = MaterialColors.WHITE;
+        this.titleOverTaskPane = highlightBackgroundPrimary;
         this.specialTitleOverTaskPane = MaterialColors.WHITE;
         this.backgroundTaskPane = MaterialColors.DARKLY_STRONG_BLUE;
         this.borderColorTaskPane = MaterialColors.DARKLY_STRONG_BLUE;
@@ -234,6 +238,9 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         super.backgroundSeparator = MaterialColors.GRAY_300;
         super.foregroundSeparator = MaterialColors.GRAY_300;
+
+
+        super.titleColorTaskPane = MaterialColors.BLACK;
     }
 
     @Override

@@ -23,10 +23,14 @@
  */
 package mdlaf.utils;
 
+import sun.swing.SwingUtilities2;
+
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -36,23 +40,12 @@ import java.util.Properties;
  */
 public class MaterialFontFactory {
 
-    /**
-     * Tipe OS supported
-     * @author https://github.com/vincenzopalazzo
-     * LINUX, WINDOWS, MAC
-     */
-    private static final String[] SISTEM_SUPPORTED = {"linux", "windows", "mac"};
     private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
-    /**
-     * Type Font supported
-     * @author https://github.com/vincenzopalazzo
-     * REGULAR, ITALIC, BOLD, MEDIUM, EMOJI
-     */
-    public static final String REGULAR = "REGULAR";
-    public static final String BOLD = "BOLD";
-    public static final String ITALIC = "ITALIC";
-    public static final String MEDIUM = "MEDIUM";
-    public static final String EMOJI = "EMOJI";
+
+    public static final MaterialTypeFont REGULAR = MaterialTypeFont.REGULAR;
+    public static final MaterialTypeFont BOLD = MaterialTypeFont.BOLD;
+    public static final MaterialTypeFont ITALIC = MaterialTypeFont.ITALIC;
+    public static final MaterialTypeFont MEDIUM = MaterialTypeFont.MEDIUM;
 
     private static MaterialFontFactory SINGLETON;
 
@@ -63,7 +56,6 @@ public class MaterialFontFactory {
         return SINGLETON;
     }
 
-
     public static Font fontUtilsDisplayable(String textDisplayable, Font withFont){
         if(textDisplayable == null || withFont == null){
             throw new IllegalArgumentException("Argument at the fontUtilsDisplayable function are/is null");
@@ -73,11 +65,12 @@ public class MaterialFontFactory {
             return withFont;
         }
 
-        return new javax.swing.plaf.FontUIResource(Font.SANS_SERIF, withFont.getStyle(), withFont.getSize());
+        return new FontUIResource(Font.SANS_SERIF, withFont.getStyle(), withFont.getSize());
     }
 
-    private Properties properties = new Properties();
-    private Map<String, Font> cacheFont = new HashMap<>();
+    protected Properties properties = new Properties();
+    protected Map<String, FontUIResource> cacheFont = new HashMap<>();
+    protected int defaultSize = 12;
 
     private MaterialFontFactory() {
         try {
@@ -85,6 +78,71 @@ public class MaterialFontFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public FontUIResource getFont(MaterialTypeFont typeFont){
+        if(typeFont == null){
+            throw new IllegalArgumentException("Argument null");
+        }
+        String typeFontString = typeFont.toString();
+        if(cacheFont.containsKey(typeFontString)){
+            return new FontUIResource(cacheFont.get(typeFontString));
+        }
+        String propieties = properties.getProperty(typeFontString);
+        FontUIResource font = getFontWithPath(propieties);
+        cacheFont.put(typeFontString, font);
+        return new FontUIResource(font);
+    }
+
+    public FontUIResource getFontWithPath(String path){
+        if(path == null || path.isEmpty()){
+            throw new IllegalArgumentException("The path to load personal fort is null or empty");
+        }
+        InputStream stream = getClass().getResourceAsStream(path);
+        return loadFont(stream);
+    }
+
+    public FontUIResource getFontWithStream(InputStream stream){
+        if(stream == null){
+            throw new IllegalArgumentException("The stream to load personal fort is null");
+        }
+        return loadFont(stream);
+    }
+
+    /**
+     * Fix the problem with this post
+     * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
+     * @author https://github.com/vincenzopalazzo
+     */
+    private FontUIResource loadFont(InputStream inputStream) {
+        float size = defaultSize * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
+        if (fontSettings.isEmpty()) {
+            fontSettings.put (TextAttribute.SIZE, size);
+            //fontSettings.put (TextAttribute.SIZE, new Float( 14f));
+            fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
+        }
+
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(fontSettings);
+            return new FontUIResource(font);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Font " + inputStream.toString() + " wasn't loaded");
+        }
+    }
+
+    /**
+     * This is only on test, I will remove if in the next release this don't work
+     * @param component
+     * @param font
+     * @return
+     */
+    public FontUIResource doOptimizingCode(JComponent component, Font font){
+        //TODO if is null?
+        FontMetrics m = component.getGraphics().getFontMetrics(font); // g is your current Graphics object
+        float totalSize= defaultSize * (m.getAscent() + m.getDescent()) / m.getAscent();
+        FontUIResource fontOptimized= new FontUIResource(font.deriveFont(totalSize));
+        return fontOptimized;
     }
 
     /**
@@ -98,38 +156,21 @@ public class MaterialFontFactory {
         properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
     }
 
-    public FontUIResource getFont(String typeFont){
-        if(typeFont == null){
-            throw new IllegalArgumentException("Argument null");
-        }
-        if(cacheFont.containsKey(typeFont)){
-            return new FontUIResource(cacheFont.get(typeFont));
-        }
-        String propieties = properties.getProperty(typeFont);
-        Font font = loadFont(propieties);
-        cacheFont.put(typeFont, font);
-        return new FontUIResource(cacheFont.get(typeFont));
-    }
+    protected enum MaterialTypeFont {
+        REGULAR("REGULAR"),
+        BOLD("BOLD"),
+        ITALIC("ITALIC"),
+        MEDIUM("MEDIUM");
 
-    /**
-     * Fix the problem with this post
-     * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
-     * @author https://github.com/vincenzopalazzo
-     */
-    private Font loadFont(String fontPath) {
-        if (fontSettings.isEmpty()) {
-            fontSettings.put (TextAttribute.SIZE, new Float( 11 * Toolkit.getDefaultToolkit().getScreenResolution() / 72.0));
-            //fontSettings.put (TextAttribute.SIZE, new Float( 14f));
-            fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
+        private String type;
+
+        MaterialTypeFont(String type) {
+            this.type = type;
         }
 
-        try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(fontPath)).deriveFont(fontSettings);
-            return font;
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Font " + fontPath + " wasn't loaded");
+        @Override
+        public String toString() {
+            return type;
         }
     }
-
 }

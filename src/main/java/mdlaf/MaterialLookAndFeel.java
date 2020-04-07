@@ -23,6 +23,7 @@
  */
 package mdlaf;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
@@ -69,11 +70,8 @@ import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
-import sun.awt.SunToolkit;
-
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
@@ -127,7 +125,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     private static final String rootPane = MaterialRootPaneUI.class.getCanonicalName();
     private static final String optionPaneUI = MaterialOptionPaneUI.class.getCanonicalName();
     private static final String colorChooserUI = MaterialColorChooser.class.getCanonicalName();
-    //TODO not allineated this component with master
     private static final String splitPaneUI = MaterialSplitPaneUI.class.getCanonicalName();
 
     public static void changeTheme(MaterialTheme theme) {
@@ -420,8 +417,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());
         //table.put("TabbedPane.spacer", theme.getSpacerTabbedPane());
         //table.put("TabbedPane.indent", theme.getIndentTabbedPane());
-        table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
-        table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
+        //table.put("TabbedPane.tabInsets",  new InsetsUIResource(6, 12, 10, 12));
+        //table.put("TabbedPane.contentBorderInsets",  new InsetsUIResource(6, 20, 10, 20));
         table.put("TabbedPane.selectedTabPadInsets", theme.getSelectedTabInsetsTabbedPane());
         //table.put("TabbedPane.linePositionY", theme.getLinePositionYTabbedPane());
         //table.put("TabbedPane.linePositionX", theme.getLinePositionXTabbedPane());
@@ -469,6 +466,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextArea.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("TextArea.foreground", theme.getTextColor());
         table.put("TextArea.font", theme.getFontBold());
+        table.put("TextArea.caretForeground", theme.getTextColor());
 
         table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
         table.put("ToggleButton.font", theme.getFontRegular());
@@ -504,7 +502,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Tree.expandedIcon", null);
         table.put("Tree.closedIcon", theme.getClosedIconTree());
         table.put("Tree.openIcon", theme.getOpenIconTree());
-        table.put("Tree.leafIcon", null);
+        table.put("Tree.leafIcon", theme.getLeafIconTree());
 
         table.put("RadioButtonMenuItem.foreground", theme.getTextColor());
         table.put("RadioButtonMenuItem.selectionForeground", theme.getTextColor());
@@ -529,6 +527,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextPane.inactiveForeground", theme.getDisableTextColor());
         table.put("TextPane.font", theme.getFontItalic());
         table.put("TextPane.focusInputMap", multilineInputMap);
+        table.put("TextPane.caretForeground", theme.getTextColor());
 
         table.put("EditorPane.border", theme.getBorderPanel());
         table.put("EditorPane.background", theme.getBackgroundTextField());
@@ -537,6 +536,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("EditorPane.inactiveForeground", theme.getSelectionForegroundTextField());
         table.put("EditorPane.font", theme.getFontRegular());
         table.put("EditorPane.focusInputMap", multilineInputMap);
+        table.put("EditorPane.caretForeground", theme.getTextColor());
 
         table.put("Separator.background", theme.getBackgroundSeparator());
         table.put("Separator.foreground", theme.getForegroundSeparator());
@@ -557,7 +557,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextField[Line].inactiveColor", theme.getInactiveColorLineTextField());
         table.put("TextField[Line].activeColor", theme.getActiveColorLineTextField());
         table.put("TextField.border", theme.getBorderTextField());
+        //table.put("TextField.margin", new InsetsUIResource(5,15,5,15));
         table.put("TextField.focusInputMap", fieldInputMap);
+        table.put("TextField.caretForeground", theme.getTextColor());
 
         table.put("PasswordField.background", theme.getBackgroundTextField());
         table.put("PasswordField.foreground", theme.getTextColor());
@@ -572,6 +574,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.border", theme.getBorderTextField());
         table.put("PasswordField.echoChar", theme.getEchoCharPasswordField());
         table.put("PasswordField.focusInputMap", fieldInputMap);
+        table.put("PasswordField.caretForeground", theme.getTextColor());
 
         table.put("TitledBorder.border", theme.getBorderTitledBorder());
         table.put("TitledBorder.font", theme.getFontMedium());
@@ -581,6 +584,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
         table.put("TaskPane.titleBackgroundGradientEnd", theme.getTitleBackgroundGradientEndTaskPane());
         table.put("TaskPane.titleOver", theme.getTitleOverTaskPane());
+        table.put("TaskPane.titleForeground", theme.getTitleColorTaskPane());
         table.put("TaskPane.specialTitleOver", theme.getSpecialTitleOverTaskPane());
         table.put("TaskPane.background", theme.getBackgroundTaskPane());
         table.put("TaskPane.foreground", theme.getTextColor());
@@ -597,6 +601,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
         table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
         table.put("FormattedTextField.border", theme.getBorderTextField());
+        table.put("FormattedTextField.caretForeground", theme.getTextColor());
 
         table.put("List.background", theme.getBackgroundPrimary());
         table.put("List.foreground", theme.getTextColor());
@@ -620,10 +625,19 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         //TODO not supported yet
         //TODO exist an bug inside the icon
-        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MAXIMIZE_WINDOWS_WHITE));
-        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.MINIMIZE_WINDOWS_WHITE));
+        table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CROP_FREE,
+                theme.getTextColor()
+        ));
+        table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CROP,
+                theme.getTextColor()
+        ));
         table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
-        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ICONIFY_WINDOWS_WHITE));
+        table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.REMOVE,
+                theme.getTextColor()
+        ));
         table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
         table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
         table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
@@ -720,10 +734,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     }
 
     public static int getFocusAcceleratorKeyMask() {
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        if (tk instanceof SunToolkit) {
-            return ((SunToolkit) tk).getFocusAcceleratorKeyMask();
-        }
         return ActionEvent.ALT_MASK;
     }
 

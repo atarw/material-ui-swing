@@ -23,12 +23,11 @@
  */
 package mdlaf.themes;
 
-import sun.swing.ImageIconUIResource;
-
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.IconUIResource;
 import javax.swing.plaf.InsetsUIResource;
 import java.awt.*;
 
@@ -99,9 +98,9 @@ public interface MaterialTheme {
     //-----------------------------------
     //Proprieties JCheckBox
 
-    ImageIconUIResource getUnselectedCheckBoxIcon();
+    IconUIResource getUnselectedCheckBoxIcon();
 
-    ImageIconUIResource getSelectedCheckBoxIcon();
+    IconUIResource getSelectedCheckBoxIcon();
 
     //-----------------------------------
     //Proprieties JComboBox
@@ -146,9 +145,9 @@ public interface MaterialTheme {
 
     //-----------------------------------
     //Proprieties JRadioButton
-    ImageIconUIResource getUnselectedRadioButtonIcon();
+    IconUIResource getUnselectedRadioButtonIcon();
 
-    ImageIconUIResource getSelectedRadioButtonIcon();
+    IconUIResource getSelectedRadioButtonIcon();
 
     //-----------------------------------
     //Proprieties JPopupMenu
@@ -196,9 +195,9 @@ public interface MaterialTheme {
 
     //--------------------------------------------------
     //Proprieties JToggleButton
-    void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton);
+    void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton);
 
-    void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton);
+    void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton);
 
     public void setWithoutIconToggleButton(boolean withoutIconToggleButton);
 
@@ -214,9 +213,9 @@ public interface MaterialTheme {
 
     public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton);
 
-    ImageIconUIResource getUnselectedIconToggleButton();
+    IconUIResource getUnselectedIconToggleButton();
 
-    ImageIconUIResource getSelectedIconToggleButton();
+    IconUIResource getSelectedIconToggleButton();
 
     public boolean isWithoutIconToggleButton();
 
@@ -286,13 +285,13 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderTable();
 
-    ImageIconUIResource getUnselectedCheckBoxIconTable();
+    IconUIResource getUnselectedCheckBoxIconTable();
 
-    ImageIconUIResource getSelectedCheckBoxIconTable();
+    IconUIResource getSelectedCheckBoxIconTable();
 
-    ImageIconUIResource getUnselectedCheckBoxIconSelectionRowTable();
+    IconUIResource getUnselectedCheckBoxIconSelectionRowTable();
 
-    ImageIconUIResource getSelectedCheckBoxIconSelectionRowTable();
+    IconUIResource getSelectedCheckBoxIconSelectionRowTable();
 
     boolean getTableFocusable();
 
@@ -333,9 +332,11 @@ public interface MaterialTheme {
 
     ColorUIResource getSelectionBorderColorTree();
 
-    ImageIconUIResource getClosedIconTree();
+    IconUIResource getClosedIconTree();
 
-    ImageIconUIResource getOpenIconTree();
+    IconUIResource getOpenIconTree();
+
+    IconUIResource getLeafIconTree();
 
     BorderUIResource getBorderTree();
 
@@ -369,6 +370,8 @@ public interface MaterialTheme {
 
     ColorUIResource getTitleBackgroundGradientEndTaskPane();
 
+    ColorUIResource getTitleColorTaskPane();
+
     ColorUIResource getTitleOverTaskPane();
 
     ColorUIResource getSpecialTitleOverTaskPane();
@@ -381,9 +384,9 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderTaskPane();
 
-    ImageIconUIResource getYesCollapsedTaskPane();
+    IconUIResource getYesCollapsedTaskPane();
 
-    ImageIconUIResource getNoCollapsedTaskPane();
+    IconUIResource getNoCollapsedTaskPane();
 
     //---------------------------------------------------
     //Proprieties JList
@@ -407,37 +410,37 @@ public interface MaterialTheme {
     //Proprieties JOptionPane
     ColorUIResource getBackgroundOptionPane();
 
-    ImageIconUIResource getWarningIconOptionPane();
+    IconUIResource getWarningIconOptionPane();
 
-    ImageIconUIResource getErrorIconIconOptionPane();
+    IconUIResource getErrorIconIconOptionPane();
 
-    ImageIconUIResource getQuestionIconOptionPane();
+    IconUIResource getQuestionIconOptionPane();
 
-    ImageIconUIResource getInformationIconOptionPane();
+    IconUIResource getInformationIconOptionPane();
 
     boolean getEnableIconOptionPane();
 
     //---------------------------------------------------
     //Proprieties JFileChooser
-    ImageIconUIResource getIconComputerFileChooser();
+    IconUIResource getIconComputerFileChooser();
 
-    ImageIconUIResource getIconDirectoryFileChooser();
+    IconUIResource getIconDirectoryFileChooser();
 
-    ImageIconUIResource getIconFileFileChooser();
+    IconUIResource getIconFileFileChooser();
 
-    ImageIconUIResource getIconFloppyDriveFileChooser();
+    IconUIResource getIconFloppyDriveFileChooser();
 
-    ImageIconUIResource getIconHardDriveFileChooser();
+    IconUIResource getIconHardDriveFileChooser();
 
-    ImageIconUIResource getIconHomeFileChooser();
+    IconUIResource getIconHomeFileChooser();
 
-    ImageIconUIResource getIconListFileChooser();
+    IconUIResource getIconListFileChooser();
 
-    ImageIconUIResource getIconDetailsFileChooser();
+    IconUIResource getIconDetailsFileChooser();
 
-    ImageIconUIResource getIconNewFolderFileChooser();
+    IconUIResource getIconNewFolderFileChooser();
 
-    ImageIconUIResource getIconUpFolderFileChooser();
+    IconUIResource getIconUpFolderFileChooser();
 
     //---------------------------------------------------
     //Proprieties JProgressBar
@@ -466,7 +469,7 @@ public interface MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties TitleBorder
-    ImageIconUIResource getIconCloseTitlePane();
+    IconUIResource getIconCloseTitlePane();
 
     //All type of font supported to the theme
     FontUIResource getFontBold();
@@ -479,6 +482,9 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);
+
+    void setLeafIconTree(IconUIResource leafIconTree);
 
     void setBackgroundSeparator(ColorUIResource backgroundSeparator);
 
@@ -486,7 +492,7 @@ public interface MaterialTheme {
 
     void setBorderTree(BorderUIResource borderTree);
 
-    void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane);
+    void setIconCloseTitlePane(IconUIResource iconCloseTitlePane);
 
     void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
 
@@ -530,9 +536,9 @@ public interface MaterialTheme {
 
     public void setButtonBorder(BorderUIResource buttonBorder);
 
-    public void setUnselectedCheckBoxIcon(ImageIconUIResource unselectedCheckBoxIcon);
+    public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon);
 
-    public void setSelectedCheckBoxIcon(ImageIconUIResource selectedCheckBoxIcon);
+    public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon);
 
     public void setSelectedInDropDownBackgroundComboBox(ColorUIResource selectedInDropDownBackgroundComboBox);
 
@@ -550,9 +556,9 @@ public interface MaterialTheme {
 
     public void setBorderMenuBar(BorderUIResource borderMenuBar);
 
-    public void setUnselectedRadioButtonIcon(ImageIconUIResource unselectedRadioButtonIcon);
+    public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon);
 
-    public void setSelectedRadioButtonIcon(ImageIconUIResource selectedRadioButtonIcon);
+    public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon);
 
     public void setBorderPopupMenu(BorderUIResource borderPopupMenu);
 
@@ -624,13 +630,13 @@ public interface MaterialTheme {
 
     public void setCellBorderTableHeader(BorderUIResource cellBorderTableHeader);
 
-    public void setUnselectedCheckBoxIconTable(ImageIconUIResource unselectedCheckBoxIconTable);
+    public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable);
 
-    public void setSelectedCheckBoxIconTable(ImageIconUIResource selectedCheckBoxIconTable);
+    public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable);
 
-    public void setUnselectedCheckBoxIconSelectionRowTable(ImageIconUIResource unselectedCheckBoxIconSelectionRowTable);
+    public void setUnselectedCheckBoxIconSelectionRowTable(IconUIResource unselectedCheckBoxIconSelectionRowTable);
 
-    public void setSelectedCheckBoxIconSelectionRowTable(ImageIconUIResource selectedCheckBoxIconSelectionRowTable);
+    public void setSelectedCheckBoxIconSelectionRowTable(IconUIResource selectedCheckBoxIconSelectionRowTable);
 
     public void setDockingBackgroundToolBar(ColorUIResource dockingBackgroundToolBar);
 
@@ -644,9 +650,9 @@ public interface MaterialTheme {
 
     public void setSelectionBorderColorTree(ColorUIResource selectionBorderColorTree);
 
-    public void setClosedIconTree(ImageIconUIResource closedIconTree);
+    public void setClosedIconTree(IconUIResource closedIconTree);
 
-    public void setOpenIconTree(ImageIconUIResource openIconTree);
+    public void setOpenIconTree(IconUIResource openIconTree);
 
     public void setBackgroundTextField(ColorUIResource backgroundTextField);
 
@@ -680,9 +686,9 @@ public interface MaterialTheme {
 
     public void setBorderTaskPane(BorderUIResource borderTaskPane);
 
-    public void setYesCollapsedTaskPane(ImageIconUIResource yesCollapsedTaskPane);
+    public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane);
 
-    public void setNoCollapsedTaskPane(ImageIconUIResource noCollapsedTaskPane);
+    public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane);
 
     public void setSelectionBackgroundList(ColorUIResource selectionBackgroundList);
 
@@ -700,33 +706,33 @@ public interface MaterialTheme {
 
     public void setBackgroundOptionPane(ColorUIResource backgroundOptionPane);
 
-    public void setWarningIconOptionPane(ImageIconUIResource warningIconOptionPane);
+    public void setWarningIconOptionPane(IconUIResource warningIconOptionPane);
 
-    public void setErrorIconIconOptionPane(ImageIconUIResource errorIconIconOptionPane);
+    public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane);
 
-    public void setQuestionIconOptionPane(ImageIconUIResource questionIconOptionPane);
+    public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane);
 
-    public void setInformationIconOptionPane(ImageIconUIResource informationIconOptionPane);
+    public void setInformationIconOptionPane(IconUIResource informationIconOptionPane);
 
-    public void setIconComputerFileChooser(ImageIconUIResource iconComputerFileChooser);
+    public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser);
 
-    public void setIconDirectoryFileChooser(ImageIconUIResource iconDirectoryFileChooser);
+    public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser);
 
-    public void setIconFileFileChooser(ImageIconUIResource iconFileFileChooser);
+    public void setIconFileFileChooser(IconUIResource iconFileFileChooser);
 
-    public void setIconFloppyDriveFileChooser(ImageIconUIResource iconFloppyDriveFileChooser);
+    public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser);
 
-    public void setIconHardDriveFileChooser(ImageIconUIResource iconHardDriveFileChooser);
+    public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser);
 
-    public void setIconHomeFileChooser(ImageIconUIResource iconHomeFileChooser);
+    public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser);
 
-    public void setIconListFileChooser(ImageIconUIResource iconListFileChooser);
+    public void setIconListFileChooser(IconUIResource iconListFileChooser);
 
-    public void setIconDetailsFileChooser(ImageIconUIResource iconDetailsFileChooser);
+    public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser);
 
-    public void setIconNewFolderFileChooser(ImageIconUIResource iconNewFolderFileChooser);
+    public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser);
 
-    public void setIconUpFolderFileChooser(ImageIconUIResource iconUpFolderFileChooser);
+    public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser);
 
     public void setBackgroundProgressBar(ColorUIResource backgroundProgressBar);
 

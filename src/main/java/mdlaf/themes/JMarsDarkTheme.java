@@ -127,6 +127,10 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
+
+        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
+                MaterialImageFactory.BLANK
+        );
     }
 
     @Override
@@ -150,6 +154,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.borderTableHeader = borderSpinner;
 
         super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
+
+        super.titleColorTaskPane = MaterialColors.BLACK;
     }
 
     @Override
@@ -228,7 +234,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
         this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
-        this.titleOverTaskPane = MaterialColors.WHITE;
+        this.titleOverTaskPane = new ColorUIResource(249, 192, 98);
         this.specialTitleOverTaskPane = MaterialColors.WHITE;
         this.backgroundTaskPane = backgroundPrimary;
         this.borderColorTaskPane = backgroundTaskPane;

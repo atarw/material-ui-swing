@@ -30,12 +30,14 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
-public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     private Color from, to;
     private boolean forward;
@@ -68,7 +70,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                     materialButtonUI.setColorMouseHoverNormalButton(to);
                 }
             }
-           // wrapperInformationsButton = new WrapperInformationsButton(button);
+            //wrapperInformationsButton = new WrapperInformationsButton(button);
         } else {
             this.from = component.getBackground();
         }
@@ -159,15 +161,16 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
-            if (timer.isRunning()) {
+            //if (timer.isRunning()) {
                 /*if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
                     System.out.println("component button set color");
                     JButton buttonComponent = (JButton) component;
                     wrapperInformationsButton.setOriginValues(buttonComponent);
                 }*/
-                timer.stop();
-            }
+              //  timer.stop();
+            //}
+            this.stopTimer();
             return;
         }
         if (forward) {
@@ -198,26 +201,13 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseMoved(MouseEvent e) {
         //do nothing this is util only implements interface MouseMotions
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-            /*    if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }*/
-                timer.stop();
-            }
-        }
+        this.stopTimer();
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         //do nothing
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-                timer.stop();
-            }
-        }
+        this.stopTimer();
 /*
         if ((component instanceof JButton) &&
                 wrapperInformationsButton != null) {
@@ -229,11 +219,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseClicked(MouseEvent me) {
         //do nothing
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-                timer.stop();
-            }
-        }
+        this.stopTimer();
 /*
         if ((component instanceof JButton) &&
                 wrapperInformationsButton != null) {
@@ -241,6 +227,20 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
             wrapperInformationsButton.setOriginValues(buttonComponent);
         }*/
     }
+
+    protected void stopTimer(){
+        if (component != null && !component.isEnabled()) {
+            if (timer != null && timer.isRunning()) {
+            /*    if ((component instanceof JButton) &&
+                        wrapperInformationsButton != null) {
+                    JButton buttonComponent = (JButton) component;
+                    wrapperInformationsButton.setOriginValues(buttonComponent);
+                }*/
+                timer.stop();
+            }
+        }
+    }
+
 
     @Deprecated
     private class WrapperInformationsButton {

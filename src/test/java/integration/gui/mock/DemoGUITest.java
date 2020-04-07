@@ -50,7 +50,7 @@ public class DemoGUITest extends JFrame {
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
 
-            UIManager.put("Button.mouseHoverEnable", false); //Because the test are more difficulte with effect mouse hover
+            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
         } catch (UnsupportedLookAndFeelException e) {
@@ -495,13 +495,17 @@ public class DemoGUITest extends JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }
 
-    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
+    public synchronized void changeThemeWith(String lookAndFeel) {
         try {
             // UIManager.getLookAndFeel().uninitialize();
             UIManager.setLookAndFeel(lookAndFeel);
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
+       changeThemeWith(lookAndFeel.getClass().getCanonicalName());
     }
 
     public void enableTheme(JMenuItem menuItem) {

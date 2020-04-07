@@ -26,9 +26,12 @@ package mdlaf.utils;
 import jiconfont.IconCode;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
-import sun.swing.ImageIconUIResource;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.plaf.IconUIResource;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -59,6 +62,9 @@ public class MaterialImageFactory{
 
     private static final String PATH_RESOUSES = "/imgs/";
 
+    // blank image
+    public static final String BLANK = "blank";
+
     //Icon black
     public static final String RIGHT_ARROW = "right_arrow";
     public static final String LEFT_ARROW = "left_arrow";
@@ -87,9 +93,6 @@ public class MaterialImageFactory{
     public static final String QUESTION = "question";
     public static final String INFORMATION = "information";
     public static final String CLOSE_WINDOWS_BLACK = "close-button";
-    public static final String MAXIMIZE_WINDOWS_BLACK = "maximize";
-    public static final String MINIMIZE_WINDOWS_BLACK = "minimize";
-    public static final String ICONIFY_WINDOWS_BLACK = "restore";
 
     //Icon White
     public static final String RADIO_BUTTON_WHITE_OFF = "white/radio_unchecked-white";
@@ -107,13 +110,10 @@ public class MaterialImageFactory{
     public static final String NEW_FOLDER_WHITE = "white/new_folder";
     public static final String DETAILS_WHITE = "white/details";
     public static final String CLOSE_WINDOWS_WHITE = "white/close-button";
-    public static final String MAXIMIZE_WINDOWS_WHITE = "white/maximize";
-    public static final String MINIMIZE_WINDOWS_WHITE = "white/minimize";
-    public static final String ICONIFY_WINDOWS_WHITE = "white/restore";
     public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
     public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
 
-    private Map<String, ImageIconUIResource> cacheImage = new HashMap<>();
+    private Map<String, IconUIResource> cacheImage = new HashMap<>();
 
     public static MaterialImageFactory getInstance() {
         if (SINGLETON == null) {
@@ -125,7 +125,7 @@ public class MaterialImageFactory{
     private MaterialImageFactory() {
     }
 
-    public ImageIconUIResource getImage(String key) {
+    public IconUIResource getImage(String key) {
         if (key == null) {
             throw new IllegalArgumentException("Argument null");
         }
@@ -135,7 +135,7 @@ public class MaterialImageFactory{
         }
         try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(path)) {
             BufferedImage image = ImageIO.read(inputStream);
-            cacheImage.put(path, new ImageIconUIResource(image));
+            cacheImage.put(path, new IconUIResource(new ImageIcon(image)));
             return cacheImage.get(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -152,7 +152,7 @@ public class MaterialImageFactory{
      * @param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
      * @return
      */
-    public ImageIconUIResource getImage(IconCode iconCode, int dimension, Color color){
+    public IconUIResource getImage(IconCode iconCode, int dimension, Color color){
         if(iconCode == null || dimension <= 0){
             String errorMessage = "Don't know motivation this exceptions";
             if(iconCode == null){
@@ -184,20 +184,20 @@ public class MaterialImageFactory{
             return cacheImage.get(key);
         }
 
-        ImageIconUIResource icon = new ImageIconUIResource(IconFontSwing.buildImage(iconCode, dimension, color));
+        IconUIResource icon = new IconUIResource(new ImageIcon(IconFontSwing.buildImage(iconCode, dimension, color)));
         cacheImage.put(key, icon);
         return icon;
     }
 
-    public ImageIconUIResource getImage(IconCode iconCode, int dimension){
+    public IconUIResource getImage(IconCode iconCode, int dimension){
         return getImage(iconCode, dimension, null);
     }
 
-    public ImageIconUIResource getImage(IconCode iconCode){
+    public IconUIResource getImage(IconCode iconCode){
         return getImage(iconCode, 20, null);
     }
 
-    public ImageIconUIResource getImage(IconCode iconCode, Color color){
+    public IconUIResource getImage(IconCode iconCode, Color color){
         return getImage(iconCode, 20, color);
     }
 }

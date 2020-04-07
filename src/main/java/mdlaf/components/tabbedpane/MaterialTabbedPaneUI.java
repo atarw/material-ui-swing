@@ -23,21 +23,34 @@
  */
 package mdlaf.components.tabbedpane;
 
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialDrawingUtils;
-import sun.swing.SwingUtilities2;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.LayoutManager;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import javax.swing.plaf.metal.MetalTabbedPaneUI;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialDrawingUtils;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -48,7 +61,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         return new MaterialTabbedPaneUI();
     }
 
-    protected JTabbedPane component;
     protected Color selectedForeground;
     protected Color disabledForeground;
     protected Color areaContentBackground;
@@ -62,23 +74,24 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int arcLine;
     protected int margin;
     protected boolean tabsOverlapBorder;
+    protected Boolean mouseHoverEnabled;
+    protected MaterialMouseHoverTab mouseHoverTab;
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JTabbedPane tabbedPane = (JTabbedPane) c;
-        tabbedPane.setOpaque(false);
-        tabbedPane.setFont(UIManager.getFont("TabbedPane.font"));
-        tabbedPane.setBackground(UIManager.getColor("TabbedPane.background"));
+        tabPane.setOpaque(false);
+        tabPane.setFont(UIManager.getFont("TabbedPane.font"));
+        tabPane.setBackground(UIManager.getColor("TabbedPane.background"));
         this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
-        tabbedPane.setForeground(foreground);
+        tabPane.setForeground(foreground);
         this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
         this.disabledForeground = UIManager.getColor("TabbedPane.disabledForeground");
         this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
         this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
         this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
-        tabbedPane.setBorder(UIManager.getBorder("TabbedPane.border"));
+        tabPane.setBorder(UIManager.getBorder("TabbedPane.border"));
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
@@ -89,7 +102,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
         this.margin = UIManager.getInt("TabbedPane[focus].margin");
         this.tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
-        this.component = tabbedPane;
+        this.mouseHoverEnabled = UIManager.getBoolean("TabbedPane[MouseHover].enable");
     }
 
     @Override
@@ -104,8 +117,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         darkShadow = null;
         shadow = null;
         lightHighlight = null;
-
-        component = null;
 
         super.uninstallDefaults();
         super.uninstallUI(c);
@@ -136,8 +147,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
-                g2D.setColor(this.component.getBackground());
-                g2D.setPaint(this.component.getBackground());
+                g2D.setColor(this.tabPane.getBackground());
+                g2D.setPaint(this.tabPane.getBackground());
             } else {
                 g2D.setColor(disableAreaContentBackground);
                 g2D.setPaint(disableAreaContentBackground);
@@ -163,8 +174,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        if (UIManager.getBoolean("TabbedPane[MouseHover].enable")) {
-            component.addMouseMotionListener(new MouseHoverTab(rects));
+        if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
+            mouseHoverTab = new MaterialMouseHoverTab(rects);
+            tabPane.addMouseMotionListener(mouseHoverTab);
         }
     }
 
@@ -386,6 +398,15 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         //return new MaterialTabbedPaneLayout();
     }
 
+    /**
+     * Uninstall the listeners.
+     */
+    @Override
+    protected void uninstallListeners() {
+        super.uninstallListeners();
+        tabPane.removeMouseMotionListener(mouseHoverTab);
+    }
+
     @Override
     protected JButton createScrollButton(int direction) {
         return new MaterialArrowButton(direction);
@@ -418,11 +439,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
-    protected class MouseHoverTab implements MouseMotionListener {
+    protected class MaterialMouseHoverTab implements MaterialMouseHover {
 
         private Rectangle[] rectangles;
 
-        public MouseHoverTab(Rectangle[] rectangles) {
+        public MaterialMouseHoverTab(Rectangle[] rectangles) {
             this.rectangles = rectangles;
         }
 
@@ -447,6 +468,57 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 }
             }
             mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mousePressed(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            //do nothing
+        }
+
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void mouseExited(MouseEvent e) {
+            //do nothing
         }
     }
 

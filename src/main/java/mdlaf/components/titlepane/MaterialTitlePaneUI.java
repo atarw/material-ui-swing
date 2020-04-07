@@ -17,13 +17,14 @@ package mdlaf.components.titlepane;
 
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialManagerListener;
-import sun.awt.SunToolkit;
+
 import sun.swing.SwingUtilities2;
 
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.UIResource;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -38,7 +39,6 @@ import java.util.List;
  * In this version for Titelpane the change are effectuate by
  * @author https://github.com/users/vincenzopalazzo
  * <p>
- * Thi version of code is on MIT lincenze
  * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
  */
 public class MaterialTitlePaneUI extends JComponent {
@@ -497,7 +497,7 @@ public class MaterialTitlePaneUI extends JComponent {
 
         String theTitle = getTitle();
         if (theTitle != null) {
-            FontMetrics fm = SwingUtilities2.getFontMetrics(rootPane, g);
+            FontMetrics fm = g.getFontMetrics(rootPane.getFont());
 
             g.setColor(foreground);
 
@@ -521,7 +521,7 @@ public class MaterialTitlePaneUI extends JComponent {
                 xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             }
             int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
-            SwingUtilities2.drawString(rootPane, g, theTitle, xOffset, yOffset);
+            g.drawString(theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }
     }
@@ -700,7 +700,9 @@ public class MaterialTitlePaneUI extends JComponent {
         } else if (icons.size() == 1) {
             mySystemIcon = icons.get(0);
         } else {
-            mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
+        	mySystemIcon = icons.get(0);
+        	// TODO: find cross-platofrm replacement for this?
+            // mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
         }
     }
 

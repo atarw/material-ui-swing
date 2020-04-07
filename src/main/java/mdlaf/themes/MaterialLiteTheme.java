@@ -97,6 +97,10 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK);
+
+        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
+                MaterialImageFactory.BLANK
+        );
     }
 
     @Override
@@ -208,6 +212,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         super.backgroundSeparator = MaterialColors.GRAY_300;
         super.foregroundSeparator = MaterialColors.GRAY_300;
+
+        super.titleColorTaskPane = MaterialColors.BLACK;
     }
 
     @Override

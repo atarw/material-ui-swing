@@ -26,13 +26,12 @@ package mdlaf.themes;
 
 import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
-import sun.swing.ImageIconUIResource;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.IconUIResource;
 import javax.swing.plaf.InsetsUIResource;
 
 /**
@@ -78,9 +77,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JToggleButton
-    protected ImageIconUIResource unselectedIconToggleButton;
+    protected IconUIResource unselectedIconToggleButton;
 
-    protected ImageIconUIResource selectedIconToggleButton;
+    protected IconUIResource selectedIconToggleButton;
 
     protected boolean withoutIconToggleButton = false;
 
@@ -99,9 +98,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JCheckBox
-    protected ImageIconUIResource unselectedCheckBoxIcon;
+    protected IconUIResource unselectedCheckBoxIcon;
 
-    protected ImageIconUIResource selectedCheckBoxIcon;
+    protected IconUIResource selectedCheckBoxIcon;
 
     //---------------------------------------------------
     //Proprieties JComboBox
@@ -127,9 +126,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JRadioButton
-    protected ImageIconUIResource unselectedRadioButtonIcon;
+    protected IconUIResource unselectedRadioButtonIcon;
 
-    protected ImageIconUIResource selectedRadioButtonIcon;
+    protected IconUIResource selectedRadioButtonIcon;
 
     //---------------------------------------------------
     //All type of font JPopupMenu
@@ -215,13 +214,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected BorderUIResource cellBorderTableHeader;
 
-    protected ImageIconUIResource unselectedCheckBoxIconTable;
+    protected IconUIResource unselectedCheckBoxIconTable;
 
-    protected ImageIconUIResource selectedCheckBoxIconTable;
+    protected IconUIResource selectedCheckBoxIconTable;
 
-    protected ImageIconUIResource unselectedCheckBoxIconSelectionRowTable;
+    protected IconUIResource unselectedCheckBoxIconSelectionRowTable;
 
-    protected ImageIconUIResource selectedCheckBoxIconSelectionRowTable;
+    protected IconUIResource selectedCheckBoxIconSelectionRowTable;
 
     //---------------------------------------------------
     //Proprieties JToolBar
@@ -239,9 +238,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource selectionBorderColorTree;
 
-    protected ImageIconUIResource closedIconTree;
+    protected IconUIResource closedIconTree;
 
-    protected ImageIconUIResource openIconTree;
+    protected IconUIResource openIconTree;
+
+    protected IconUIResource leafIconTree;
 
     protected BorderUIResource borderTree;
 
@@ -273,6 +274,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource titleBackgroundGradientEndTaskPane;
 
+    protected ColorUIResource titleColorTaskPane;
+
     protected ColorUIResource titleOverTaskPane;
 
     protected ColorUIResource specialTitleOverTaskPane;
@@ -285,9 +288,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected BorderUIResource borderTaskPane;
 
-    protected ImageIconUIResource yesCollapsedTaskPane;
+    protected IconUIResource yesCollapsedTaskPane;
 
-    protected ImageIconUIResource noCollapsedTaskPane;
+    protected IconUIResource noCollapsedTaskPane;
 
     //---------------------------------------------------
     //Proprieties JList
@@ -311,13 +314,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     //Proprieties JOptionPane
     protected ColorUIResource backgroundOptionPane;
 
-    protected ImageIconUIResource warningIconOptionPane;
+    protected IconUIResource warningIconOptionPane;
 
-    protected ImageIconUIResource errorIconIconOptionPane;
+    protected IconUIResource errorIconIconOptionPane;
 
-    protected ImageIconUIResource questionIconOptionPane;
+    protected IconUIResource questionIconOptionPane;
 
-    protected ImageIconUIResource informationIconOptionPane;
+    protected IconUIResource informationIconOptionPane;
 
     //---------------------------------------------------
     //Proprieties JSplitPane
@@ -332,25 +335,25 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JFileChooser
-    protected ImageIconUIResource iconComputerFileChooser;
+    protected IconUIResource iconComputerFileChooser;
 
-    protected ImageIconUIResource iconDirectoryFileChooser;
+    protected IconUIResource iconDirectoryFileChooser;
 
-    protected ImageIconUIResource iconFileFileChooser;
+    protected IconUIResource iconFileFileChooser;
 
-    protected ImageIconUIResource iconFloppyDriveFileChooser;
+    protected IconUIResource iconFloppyDriveFileChooser;
 
-    protected ImageIconUIResource iconHardDriveFileChooser;
+    protected IconUIResource iconHardDriveFileChooser;
 
-    protected ImageIconUIResource iconHomeFileChooser;
+    protected IconUIResource iconHomeFileChooser;
 
-    protected ImageIconUIResource iconListFileChooser;
+    protected IconUIResource iconListFileChooser;
 
-    protected ImageIconUIResource iconDetailsFileChooser;
+    protected IconUIResource iconDetailsFileChooser;
 
-    protected ImageIconUIResource iconNewFolderFileChooser;
+    protected IconUIResource iconNewFolderFileChooser;
 
-    protected ImageIconUIResource iconUpFolderFileChooser;
+    protected IconUIResource iconUpFolderFileChooser;
 
     //---------------------------------------------------
     //Proprieties JProgressBar
@@ -368,7 +371,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties TitlePane
-    protected ImageIconUIResource iconCloseTitlePane;
+    protected IconUIResource iconCloseTitlePane;
 
     //---------------------------------------------------
     //All type of font supported to the look and feel
@@ -420,7 +423,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
                                         MaterialBorders.LIGHT_LINE_BORDER,
                                         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         borderToolBar = MaterialBorders.LIGHT_LINE_BORDER;
-        borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(3, 5, 2, 5));
+        borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
         borderTaskPane = borderPanel;
         focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
         borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
@@ -562,11 +565,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     //Proprieties JCheckBox
-    public ImageIconUIResource getUnselectedCheckBoxIcon() {
+    public IconUIResource getUnselectedCheckBoxIcon() {
         return unselectedCheckBoxIcon;
     }
 
-    public ImageIconUIResource getSelectedCheckBoxIcon() {
+    public IconUIResource getSelectedCheckBoxIcon() {
         return selectedCheckBoxIcon;
     }
 
@@ -654,11 +657,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     //get radiobutton
-    public ImageIconUIResource getUnselectedRadioButtonIcon() {
+    public IconUIResource getUnselectedRadioButtonIcon() {
         return unselectedRadioButtonIcon;
     }
 
-    public ImageIconUIResource getSelectedRadioButtonIcon() {
+    public IconUIResource getSelectedRadioButtonIcon() {
         return selectedRadioButtonIcon;
     }
 
@@ -849,19 +852,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return borderTable;
     }
 
-    public ImageIconUIResource getUnselectedCheckBoxIconTable() {
+    public IconUIResource getUnselectedCheckBoxIconTable() {
         return unselectedCheckBoxIconTable;
     }
 
-    public ImageIconUIResource getSelectedCheckBoxIconTable() {
+    public IconUIResource getSelectedCheckBoxIconTable() {
         return selectedCheckBoxIconTable;
     }
 
-    public ImageIconUIResource getUnselectedCheckBoxIconSelectionRowTable() {
+    public IconUIResource getUnselectedCheckBoxIconSelectionRowTable() {
         return unselectedCheckBoxIconSelectionRowTable;
     }
 
-    public ImageIconUIResource getSelectedCheckBoxIconSelectionRowTable() {
+    public IconUIResource getSelectedCheckBoxIconSelectionRowTable() {
         return selectedCheckBoxIconSelectionRowTable;
     }
 
@@ -975,12 +978,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return selectionBorderColorTree;
     }
 
-    public ImageIconUIResource getClosedIconTree() {
+    public IconUIResource getClosedIconTree() {
         return closedIconTree;
     }
 
-    public ImageIconUIResource getOpenIconTree() {
+    public IconUIResource getOpenIconTree() {
         return openIconTree;
+    }
+
+    public IconUIResource getLeafIconTree() {
+        return leafIconTree;
     }
 
     public BorderUIResource getBorderTree() {
@@ -989,11 +996,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     //---------------------------------------------------
     //Proprieties JToggleButton
 
-    public ImageIconUIResource getUnselectedIconToggleButton() {
+    public IconUIResource getUnselectedIconToggleButton() {
         return unselectedIconToggleButton;
     }
 
-    public ImageIconUIResource getSelectedIconToggleButton() {
+    public IconUIResource getSelectedIconToggleButton() {
         return selectedIconToggleButton;
     }
 
@@ -1036,6 +1043,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return titleBackgroundGradientEndTaskPane;
     }
 
+    public ColorUIResource getTitleColorTaskPane() {
+        return titleColorTaskPane;
+    }
+
     public ColorUIResource getTitleOverTaskPane() {
         return titleOverTaskPane;
     }
@@ -1060,11 +1071,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return borderTaskPane;
     }
 
-    public ImageIconUIResource getYesCollapsedTaskPane() {
+    public IconUIResource getYesCollapsedTaskPane() {
         return yesCollapsedTaskPane;
     }
 
-    public ImageIconUIResource getNoCollapsedTaskPane() {
+    public IconUIResource getNoCollapsedTaskPane() {
         return noCollapsedTaskPane;
     }
 
@@ -1102,43 +1113,43 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JFileChooser
-    public ImageIconUIResource getIconComputerFileChooser() {
+    public IconUIResource getIconComputerFileChooser() {
         return iconComputerFileChooser;
     }
 
-    public ImageIconUIResource getIconDirectoryFileChooser() {
+    public IconUIResource getIconDirectoryFileChooser() {
         return iconDirectoryFileChooser;
     }
 
-    public ImageIconUIResource getIconFileFileChooser() {
+    public IconUIResource getIconFileFileChooser() {
         return iconFileFileChooser;
     }
 
-    public ImageIconUIResource getIconFloppyDriveFileChooser() {
+    public IconUIResource getIconFloppyDriveFileChooser() {
         return iconFloppyDriveFileChooser;
     }
 
-    public ImageIconUIResource getIconHardDriveFileChooser() {
+    public IconUIResource getIconHardDriveFileChooser() {
         return iconHardDriveFileChooser;
     }
 
-    public ImageIconUIResource getIconHomeFileChooser() {
+    public IconUIResource getIconHomeFileChooser() {
         return iconHomeFileChooser;
     }
 
-    public ImageIconUIResource getIconListFileChooser() {
+    public IconUIResource getIconListFileChooser() {
         return iconListFileChooser;
     }
 
-    public ImageIconUIResource getIconDetailsFileChooser() {
+    public IconUIResource getIconDetailsFileChooser() {
         return iconDetailsFileChooser;
     }
 
-    public ImageIconUIResource getIconNewFolderFileChooser() {
+    public IconUIResource getIconNewFolderFileChooser() {
         return iconNewFolderFileChooser;
     }
 
-    public ImageIconUIResource getIconUpFolderFileChooser() {
+    public IconUIResource getIconUpFolderFileChooser() {
         return iconUpFolderFileChooser;
     }
 
@@ -1148,19 +1159,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return backgroundOptionPane;
     }
 
-    public ImageIconUIResource getWarningIconOptionPane() {
+    public IconUIResource getWarningIconOptionPane() {
         return warningIconOptionPane;
     }
 
-    public ImageIconUIResource getErrorIconIconOptionPane() {
+    public IconUIResource getErrorIconIconOptionPane() {
         return errorIconIconOptionPane;
     }
 
-    public ImageIconUIResource getQuestionIconOptionPane() {
+    public IconUIResource getQuestionIconOptionPane() {
         return questionIconOptionPane;
     }
 
-    public ImageIconUIResource getInformationIconOptionPane() {
+    public IconUIResource getInformationIconOptionPane() {
         return informationIconOptionPane;
     }
 
@@ -1215,7 +1226,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties TitledBorder
-    public ImageIconUIResource getIconCloseTitlePane() {
+    public IconUIResource getIconCloseTitlePane() {
         return iconCloseTitlePane;
     }
 
@@ -1238,6 +1249,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setTitleColorTaskPane(ColorUIResource titleColorTaskPane) {
+        this.titleColorTaskPane = titleColorTaskPane;
+    }
 
     public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
         this.backgroundSeparator = backgroundSeparator;
@@ -1247,11 +1261,15 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.foregroundSeparator = foregroundSeparator;
     }
 
+    public void setLeafIconTree(IconUIResource leafIconTree) {
+        this.leafIconTree = leafIconTree;
+    }
+
     public void setBorderTree(BorderUIResource borderTree) {
         this.borderTree = borderTree;
     }
 
-    public void setIconCloseTitlePane(ImageIconUIResource iconCloseTitlePane) {
+    public void setIconCloseTitlePane(IconUIResource iconCloseTitlePane) {
         this.iconCloseTitlePane = iconCloseTitlePane;
     }
 
@@ -1287,11 +1305,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.dividierBorderSplitPane = dividierBorderSplitPane;
     }
 
-    public void setUnselectedIconToggleButton(ImageIconUIResource unselectedIconToggleButton) {
+    public void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton) {
         this.unselectedIconToggleButton = unselectedIconToggleButton;
     }
 
-    public void setSelectedIconToggleButton(ImageIconUIResource selectedIconToggleButton) {
+    public void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton) {
         this.selectedIconToggleButton = selectedIconToggleButton;
     }
 
@@ -1391,11 +1409,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.buttonBorder = buttonBorder;
     }
 
-    public void setUnselectedCheckBoxIcon(ImageIconUIResource unselectedCheckBoxIcon) {
+    public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon) {
         this.unselectedCheckBoxIcon = unselectedCheckBoxIcon;
     }
 
-    public void setSelectedCheckBoxIcon(ImageIconUIResource selectedCheckBoxIcon) {
+    public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon) {
         this.selectedCheckBoxIcon = selectedCheckBoxIcon;
     }
 
@@ -1435,11 +1453,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderMenuBar = borderMenuBar;
     }
 
-    public void setUnselectedRadioButtonIcon(ImageIconUIResource unselectedRadioButtonIcon) {
+    public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon) {
         this.unselectedRadioButtonIcon = unselectedRadioButtonIcon;
     }
 
-    public void setSelectedRadioButtonIcon(ImageIconUIResource selectedRadioButtonIcon) {
+    public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon) {
         this.selectedRadioButtonIcon = selectedRadioButtonIcon;
     }
 
@@ -1583,19 +1601,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.cellBorderTableHeader = cellBorderTableHeader;
     }
 
-    public void setUnselectedCheckBoxIconTable(ImageIconUIResource unselectedCheckBoxIconTable) {
+    public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable) {
         this.unselectedCheckBoxIconTable = unselectedCheckBoxIconTable;
     }
 
-    public void setSelectedCheckBoxIconTable(ImageIconUIResource selectedCheckBoxIconTable) {
+    public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable) {
         this.selectedCheckBoxIconTable = selectedCheckBoxIconTable;
     }
 
-    public void setUnselectedCheckBoxIconSelectionRowTable(ImageIconUIResource unselectedCheckBoxIconSelectionRowTable) {
+    public void setUnselectedCheckBoxIconSelectionRowTable(IconUIResource unselectedCheckBoxIconSelectionRowTable) {
         this.unselectedCheckBoxIconSelectionRowTable = unselectedCheckBoxIconSelectionRowTable;
     }
 
-    public void setSelectedCheckBoxIconSelectionRowTable(ImageIconUIResource selectedCheckBoxIconSelectionRowTable) {
+    public void setSelectedCheckBoxIconSelectionRowTable(IconUIResource selectedCheckBoxIconSelectionRowTable) {
         this.selectedCheckBoxIconSelectionRowTable = selectedCheckBoxIconSelectionRowTable;
     }
 
@@ -1623,11 +1641,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.selectionBorderColorTree = selectionBorderColorTree;
     }
 
-    public void setClosedIconTree(ImageIconUIResource closedIconTree) {
+    public void setClosedIconTree(IconUIResource closedIconTree) {
         this.closedIconTree = closedIconTree;
     }
 
-    public void setOpenIconTree(ImageIconUIResource openIconTree) {
+    public void setOpenIconTree(IconUIResource openIconTree) {
         this.openIconTree = openIconTree;
     }
 
@@ -1695,11 +1713,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderTaskPane = borderTaskPane;
     }
 
-    public void setYesCollapsedTaskPane(ImageIconUIResource yesCollapsedTaskPane) {
+    public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane) {
         this.yesCollapsedTaskPane = yesCollapsedTaskPane;
     }
 
-    public void setNoCollapsedTaskPane(ImageIconUIResource noCollapsedTaskPane) {
+    public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane) {
         this.noCollapsedTaskPane = noCollapsedTaskPane;
     }
 
@@ -1735,59 +1753,59 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.backgroundOptionPane = backgroundOptionPane;
     }
 
-    public void setWarningIconOptionPane(ImageIconUIResource warningIconOptionPane) {
+    public void setWarningIconOptionPane(IconUIResource warningIconOptionPane) {
         this.warningIconOptionPane = warningIconOptionPane;
     }
 
-    public void setErrorIconIconOptionPane(ImageIconUIResource errorIconIconOptionPane) {
+    public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane) {
         this.errorIconIconOptionPane = errorIconIconOptionPane;
     }
 
-    public void setQuestionIconOptionPane(ImageIconUIResource questionIconOptionPane) {
+    public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane) {
         this.questionIconOptionPane = questionIconOptionPane;
     }
 
-    public void setInformationIconOptionPane(ImageIconUIResource informationIconOptionPane) {
+    public void setInformationIconOptionPane(IconUIResource informationIconOptionPane) {
         this.informationIconOptionPane = informationIconOptionPane;
     }
 
-    public void setIconComputerFileChooser(ImageIconUIResource iconComputerFileChooser) {
+    public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser) {
         this.iconComputerFileChooser = iconComputerFileChooser;
     }
 
-    public void setIconDirectoryFileChooser(ImageIconUIResource iconDirectoryFileChooser) {
+    public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser) {
         this.iconDirectoryFileChooser = iconDirectoryFileChooser;
     }
 
-    public void setIconFileFileChooser(ImageIconUIResource iconFileFileChooser) {
+    public void setIconFileFileChooser(IconUIResource iconFileFileChooser) {
         this.iconFileFileChooser = iconFileFileChooser;
     }
 
-    public void setIconFloppyDriveFileChooser(ImageIconUIResource iconFloppyDriveFileChooser) {
+    public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser) {
         this.iconFloppyDriveFileChooser = iconFloppyDriveFileChooser;
     }
 
-    public void setIconHardDriveFileChooser(ImageIconUIResource iconHardDriveFileChooser) {
+    public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser) {
         this.iconHardDriveFileChooser = iconHardDriveFileChooser;
     }
 
-    public void setIconHomeFileChooser(ImageIconUIResource iconHomeFileChooser) {
+    public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser) {
         this.iconHomeFileChooser = iconHomeFileChooser;
     }
 
-    public void setIconListFileChooser(ImageIconUIResource iconListFileChooser) {
+    public void setIconListFileChooser(IconUIResource iconListFileChooser) {
         this.iconListFileChooser = iconListFileChooser;
     }
 
-    public void setIconDetailsFileChooser(ImageIconUIResource iconDetailsFileChooser) {
+    public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser) {
         this.iconDetailsFileChooser = iconDetailsFileChooser;
     }
 
-    public void setIconNewFolderFileChooser(ImageIconUIResource iconNewFolderFileChooser) {
+    public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser) {
         this.iconNewFolderFileChooser = iconNewFolderFileChooser;
     }
 
-    public void setIconUpFolderFileChooser(ImageIconUIResource iconUpFolderFileChooser) {
+    public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser) {
         this.iconUpFolderFileChooser = iconUpFolderFileChooser;
     }
 
