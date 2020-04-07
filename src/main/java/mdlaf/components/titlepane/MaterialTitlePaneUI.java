@@ -24,7 +24,6 @@ import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.UIResource;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +39,6 @@ import java.util.List;
  * In this version for Titelpane the change are effectuate by
  * @author https://github.com/users/vincenzopalazzo
  * <p>
- * Thi version of code is on MIT lincenze
  * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
  */
 public class MaterialTitlePaneUI extends JComponent {

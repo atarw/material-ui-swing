@@ -370,6 +370,8 @@ public interface MaterialTheme {
 
     ColorUIResource getTitleBackgroundGradientEndTaskPane();
 
+    ColorUIResource getTitleColorTaskPane();
+
     ColorUIResource getTitleOverTaskPane();
 
     ColorUIResource getSpecialTitleOverTaskPane();
@@ -480,6 +482,8 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);
+
     void setLeafIconTree(IconUIResource leafIconTree);
 
     void setBackgroundSeparator(ColorUIResource backgroundSeparator);

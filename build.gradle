@@ -138,8 +138,8 @@ task deployOnDiffereProjectLocalLib {
     doLast {
         copy {
             println 'init task copy source file'
-            from 'build/libs/' + project.name + ".jar"
-            into '/media/vincent/vincenzodev/home-pc/myLocalLib/java'
+            from 'build/libs/' + project.name + '-' + version + ".jar"
+            into '/media/vincent/VincentHDD/local-library/java'
             rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
         }
     }

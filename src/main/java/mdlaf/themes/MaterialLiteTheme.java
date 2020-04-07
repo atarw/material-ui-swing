@@ -212,6 +212,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         super.backgroundSeparator = MaterialColors.GRAY_300;
         super.foregroundSeparator = MaterialColors.GRAY_300;
+
+        super.titleColorTaskPane = MaterialColors.BLACK;
     }
 
     @Override

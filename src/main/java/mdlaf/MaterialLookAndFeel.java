@@ -584,6 +584,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
         table.put("TaskPane.titleBackgroundGradientEnd", theme.getTitleBackgroundGradientEndTaskPane());
         table.put("TaskPane.titleOver", theme.getTitleOverTaskPane());
+        table.put("TaskPane.titleForeground", theme.getTitleColorTaskPane());
         table.put("TaskPane.specialTitleOver", theme.getSpecialTitleOverTaskPane());
         table.put("TaskPane.background", theme.getBackgroundTaskPane());
         table.put("TaskPane.foreground", theme.getTextColor());

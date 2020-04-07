@@ -26,7 +26,6 @@ package mdlaf.themes;
 
 import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -274,6 +273,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected ColorUIResource titleBackgroundGradientStartTaskPane;
 
     protected ColorUIResource titleBackgroundGradientEndTaskPane;
+
+    protected ColorUIResource titleColorTaskPane;
 
     protected ColorUIResource titleOverTaskPane;
 
@@ -1042,6 +1043,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return titleBackgroundGradientEndTaskPane;
     }
 
+    public ColorUIResource getTitleColorTaskPane() {
+        return titleColorTaskPane;
+    }
+
     public ColorUIResource getTitleOverTaskPane() {
         return titleOverTaskPane;
     }
@@ -1244,6 +1249,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setTitleColorTaskPane(ColorUIResource titleColorTaskPane) {
+        this.titleColorTaskPane = titleColorTaskPane;
+    }
 
     public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
         this.backgroundSeparator = backgroundSeparator;
