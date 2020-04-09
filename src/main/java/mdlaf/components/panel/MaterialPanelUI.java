@@ -43,13 +43,6 @@ public class MaterialPanelUI extends BasicPanelUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-
-		JPanel panel = (JPanel) c;
-		panel.setOpaque (true);
-		panel.setFont (UIManager.getFont ("Panel.font"));
-		panel.setBackground (UIManager.getColor ("Panel.background"));
-		panel.setBorder (UIManager.getBorder ("Panel.border"));
-
 	}
 
 	@Override
