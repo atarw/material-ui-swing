@@ -580,7 +580,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TitledBorder.font", theme.getFontMedium());
         table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
 
-        table.put("TaskTaskPane.font", theme.getFontMedium());
+        table.put("TaskPane.font", theme.getFontMedium());
         table.put("TaskPane.titleBackgroundGradientStart", theme.getTitleBackgroundGradientStartTaskPane());
         table.put("TaskPane.titleBackgroundGradientEnd", theme.getTitleBackgroundGradientEndTaskPane());
         table.put("TaskPane.titleOver", theme.getTitleOverTaskPane());
@@ -593,6 +593,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.contentBackground", theme.getContentBackgroundTaskPane());
         table.put("TaskPane.yesCollapsed", theme.getYesCollapsedTaskPane());
         table.put("TaskPane.noCollapsed", theme.getNoCollapsedTaskPane());
+        table.put("TaskPane.mouseHover", true);
+        table.put("TaskPane.arch", 15);
 
         table.put("FormattedTextField.background", theme.getBackgroundTextField());
         table.put("FormattedTextField.foreground", theme.getTextColor());

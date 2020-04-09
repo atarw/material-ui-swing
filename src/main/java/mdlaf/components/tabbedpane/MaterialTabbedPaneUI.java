@@ -33,8 +33,10 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -49,13 +51,17 @@ import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import mdlaf.animation.MaterialMouseHover;
+import mdlaf.components.taskpane.MaterialTaskPaneUI;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialLogger;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
+
+    private static final Class LOG_TAG = MaterialTaskPaneUI.class;
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialTabbedPaneUI();
@@ -74,8 +80,13 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int arcLine;
     protected int margin;
     protected boolean tabsOverlapBorder;
+    protected Map<Integer, Boolean> mouseHoverInitialized;
     protected Boolean mouseHoverEnabled;
     protected MaterialMouseHoverTab mouseHoverTab;
+
+    public MaterialTabbedPaneUI() {
+        mouseHoverInitialized = new HashMap<>();
+    }
 
     @Override
     public void installUI(JComponent c) {
@@ -123,6 +134,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     @Override
+    public void update(Graphics g, JComponent c) {
+        super.update(g, c);
+    }
+
+    @Override
     protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
         super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
         int mnemIndex = this.tabPane.getDisplayedMnemonicIndexAt(tabIndex);
@@ -144,7 +160,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             g2D.setColor(selectedAreaContentBackground);
             g2D.setPaint(selectedAreaContentBackground);
             tabPane.setForegroundAt(tabIndex, selectedForeground);
-
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
                 g2D.setColor(this.tabPane.getBackground());
@@ -159,6 +174,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 tabPane.setForegroundAt(tabIndex, MaterialColors.AMBER_900);
             }
         }
+        this.installMouseHover(tabIndex);
     }
 
     @Override
@@ -174,6 +190,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
+        //TODO Should be the cause of StackOverflowException
         if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
             mouseHoverTab = new MaterialMouseHoverTab(rects);
             tabPane.addMouseMotionListener(mouseHoverTab);
@@ -398,13 +415,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         //return new MaterialTabbedPaneLayout();
     }
 
-    /**
-     * Uninstall the listeners.
-     */
     @Override
     protected void uninstallListeners() {
         super.uninstallListeners();
-        tabPane.removeMouseMotionListener(mouseHoverTab);
+        super.tabPane.removeMouseMotionListener(mouseHoverTab);
     }
 
     @Override
@@ -412,7 +426,32 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         return new MaterialArrowButton(direction);
     }
 
-    @Deprecated //TODO remove this implementation inside the version 1.2 of the library.
+    /**
+     * TODO change the mouse hover effect, should be throws the StackOverflowException
+     *
+     * @param tabIndex
+     */
+    protected void installMouseHover(int tabIndex) {
+        if(mouseHoverEnabled && !mouseHoverInitialized.containsKey(tabIndex)){
+            mouseHoverInitialized.put(tabIndex, true);
+            JComponent componentAt = (JComponent) super.tabPane.getComponentAt(tabIndex);
+            componentAt.addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    componentAt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    componentAt.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+        }
+    }
+
+    /**
+     * @deprecated remove this implementation inside the version 1.2 of the library.
+     */
+    @Deprecated
     protected class MaterialTabbedPaneLayout extends BasicTabbedPaneUI.TabbedPaneLayout {
 
         protected int spacer; // should be non-negative
@@ -439,6 +478,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
+    /**
+     * This class require more event to work, I will chose to remove and add another effect
+     */
     protected class MaterialMouseHoverTab implements MaterialMouseHover {
 
         private Rectangle[] rectangles;
@@ -453,6 +495,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         @Override
         public void mouseMoved(MouseEvent e) {
+            MaterialLogger.getInstance().debug(LOG_TAG, "Called method mouseMoved inside MaterialMouseHoverTab class");
             JComponent mouseGenerate = (JComponent) e.getSource();
             if (!mouseGenerate.isEnabled()) {
                 return;

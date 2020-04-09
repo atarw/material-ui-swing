@@ -51,23 +51,23 @@ public final class MaterialLogger {
         //TODO implement this
         //TODO implement the if
         //System.out.println(clazz.getCanonicalName() + " " + message);
-        //Logger logger = this.getLogger(clazz);
-        //logger.debug(message);
+        Logger logger = this.getLogger(clazz);
+        logger.debug(message);
     }
 
     public void info(Class clazz, String message){
         //TODO implement this method
         //TODO implement the if
-       // Logger logger = this.getLogger(clazz);
-        //logger.info(message);
+        Logger logger = this.getLogger(clazz);
+        logger.info(message);
     }
 
     public void error(Class clazz, String message){
         //TODO implement this method
         //TODO implement the if
 
-       // Logger logger = this.getLogger(clazz);
-        //logger.error(message);
+        Logger logger = this.getLogger(clazz);
+        logger.error(message);
     }
 
     private Logger generateLogger(Class clazz){
