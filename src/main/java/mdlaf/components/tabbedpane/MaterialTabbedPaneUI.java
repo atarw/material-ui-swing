@@ -174,7 +174,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 tabPane.setForegroundAt(tabIndex, MaterialColors.AMBER_900);
             }
         }
-        this.installMouseHover(tabIndex);
+        //this.installMouseHover(tabIndex);
     }
 
     @Override
