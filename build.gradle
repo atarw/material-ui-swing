@@ -2,9 +2,8 @@ apply plugin: 'java-library'
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+apply from: 'gradle/local-deploy.gradle'
+apply from: 'gradle/release-public.gradle'
 
 repositories {
     jcenter()
@@ -22,8 +21,8 @@ dependencies {
     implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
 
     //Slf4j configuration
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'ch.qos.logback:logback-core:1.2.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
     implementation 'org.slf4j:slf4j-api:1.7.25'
 
     // Use JUnit test framework
@@ -34,8 +33,6 @@ dependencies {
 
 }
 
-version = VERSION
-
 allprojects {
   apply plugin: 'java'
 
@@ -44,146 +41,13 @@ allprojects {
             options.compilerArgs << "-Xlint:deprecation"
         }
     }
-    sourceCompatibility = sourceCompatibility
-    targetCompatibility = targetCompatibility
+    sourceCompatibility = "${JDK_VERSION}"
+    targetCompatibility = "${JDK_VERSION}"
 }
 
 jar {
+    baseName = project.name + '-' + VERSION
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
-}
-
-/*
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name archivesBaseName
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                print('Archive base name: ' + archivesBaseName)
-                groupId GROUP_ID
-                artifactId ARCHTFAT_ID
-                version VERSION
-                description archivesBaseName
-                url 'https://github.com/vincenzopalazzo/material-ui-swing'
-
-                scm {
-                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'http://foo.googlecode.com/svn/trunk/'
-                }
-
-                licenses {
-                    license {
-                        name 'MIT'
-                        url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'vincenzopalazzo'
-                        name 'Vincenzo Palazzo'
-                        email 'vincenzopalazzodev@gmail.com'
-                    }
-                }
-            }
-        }
-    }
-}
-*/
-task deployOnDiffereProjectJMars {
-    doLast {
-        copy {
-            println 'init task copy source file'
-            from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/VincentHDD/JMARS_Developement/test/jmars/default/branches/UI/lib'
-            rename(project.name + '-' + version + ".jar", 'material-ui-swing-1.1.1.jar')
-        }
-    }
-}
-
-task deployOnDiffereProjectLocalLib {
-    doLast {
-        copy {
-            println 'init task copy source file'
-            from 'build/libs/' + project.name + '-' + version + ".jar"
-            into '/media/vincent/VincentHDD/local-library/java'
-            rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
-        }
-    }
-}
-
-task copyIntoLibsDir {
-    doLast {
-        copy {
-            println 'init task copy source file'
-            from 'build/libs/' + project.name + "-" + version + ".jar"
-            into 'libs/'
-            //rename(project.name + ".jar", 'material-ui-swing-' + version + ".jar")
-        }
-    }
-}
-
-task createPom {
-    pom {    
-        project {
-            groupId GROUP_ID
-            artifactId ARCHTFAT_ID
-            version VERSION
-         
-   			properties {
-    	        project {
-     	           build {
-    	                sourceEncoding 'UTF-8'
-     	           }
-     	       	}
-      	     	maven {
-       	        	compiler {
-       	            	source '1.8'
-       	            	target '1.8'
-         	   		}
-         	  	}
-     		}
-            inceptionYear '2020'
-            licenses {
-                license {
-                    name 'MIT'
-                    url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
-                    distribution 'repo'
-                }
-            }
-        }
-    }.writeTo("pom.xml")
 }

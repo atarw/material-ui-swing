@@ -12,3 +12,5 @@ target/
 **/out/
 **/.gradle/
 /.settings/
+**/gradle-private.properties
+**/release.gradle

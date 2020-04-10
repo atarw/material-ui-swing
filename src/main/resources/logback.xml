@@ -30,10 +30,10 @@
     </encoder>
   </appender>
 
-  <root level="DEBUG">
+  <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
 
-  <logger name="mdlaf" level="DEBUG"/>
+  <logger name="mdlaf" level="INFO"/>
 
 </configuration>

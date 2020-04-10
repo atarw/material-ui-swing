@@ -827,6 +827,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
 
             // Handle a MOVE
+            // TODO Should be move in a future version the getModifiers and BUTTON1_MASK to BUTTON1_DOWN_MASK and  getModifiersEx()
+            // reference https://docs.oracle.com/javase/9/docs/api/java/awt/event/InputEvent.html
             if (dragging) {
                 if (maximized || ((e.getModifiers() &
                         InputEvent.BUTTON1_MASK) !=
