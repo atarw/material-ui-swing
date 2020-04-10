@@ -652,38 +652,50 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             if (ep.x <= i.left + resizeCornerSize) {
                 if (ep.y < resizeCornerSize + i.top) {
+                    MaterialLogger.getInstance().debug(getClass(), "Line First if with value NORTH_WEST");
                     resizeDir = NORTH_WEST;
                 } else if (ep.y > w.getHeight()
                         - resizeCornerSize - i.bottom) {
+                    MaterialLogger.getInstance().debug(getClass(), "Line First else if with value SOUTH_WEST");
                     resizeDir = SOUTH_WEST;
                 } else {
+                    MaterialLogger.getInstance().debug(getClass(), "Line First else with value WEST");
                     resizeDir = WEST;
                 }
             } else if (ep.x >= w.getWidth() - i.right - resizeCornerSize) {
                 if (ep.y < resizeCornerSize + i.top) {
+                    MaterialLogger.getInstance().debug(getClass(), "Second if with value NORTH_EAST");
                     resizeDir = NORTH_EAST;
                 } else if (ep.y > w.getHeight()
                         - resizeCornerSize - i.bottom) {
+                    MaterialLogger.getInstance().debug(getClass(), "Second else if with value SOUTH_EAST");
                     resizeDir = SOUTH_EAST;
                 } else {
+                    MaterialLogger.getInstance().debug(getClass(), "Second else with value EAST");
                     resizeDir = EAST;
                 }
             } else if (ep.y <= i.top + resizeCornerSize) {
                 if (ep.x < resizeCornerSize + i.left) {
+                    MaterialLogger.getInstance().debug(getClass(), "3th if with value NORTH_WEST");
                     resizeDir = NORTH_WEST;
                 } else if (ep.x > w.getWidth()
                         - resizeCornerSize - i.right) {
+                    MaterialLogger.getInstance().debug(getClass(), "3th else if with value NORTH_EAST");
                     resizeDir = NORTH_EAST;
                 } else {
+                    MaterialLogger.getInstance().debug(getClass(), "3th else with value NORTH");
                     resizeDir = NORTH;
                 }
             } else if (ep.y >= w.getHeight() - i.bottom - resizeCornerSize) {
                 if (ep.x < resizeCornerSize + i.left) {
+                    MaterialLogger.getInstance().debug(getClass(), "3th if with value SOUTH_WEST");
                     resizeDir = SOUTH_WEST;
                 } else if (ep.x > w.getWidth()
                         - resizeCornerSize - i.right) {
+                    MaterialLogger.getInstance().debug(getClass(), "3th else if with value SOUTH_EAST");
                     resizeDir = SOUTH_EAST;
                 } else {
+                    MaterialLogger.getInstance().debug(getClass(), "3th else with value SOUTH");
                     resizeDir = SOUTH;
                 }
             } else {
