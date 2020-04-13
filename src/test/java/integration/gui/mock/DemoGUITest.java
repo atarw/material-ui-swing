@@ -23,9 +23,14 @@
  */
 package integration.gui.mock;
 
+import integration.gui.mock.component.DemoPanelWithTabbedPane;
+import integration.gui.mock.component.PersonalButtonUI;
+import integration.gui.mock.component.PersonalMouseHoverButtonUI;
+import integration.gui.mock.component.TableModelSecondPanel;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -113,6 +118,9 @@ public class DemoGUITest extends JFrame {
     GroupLayout groupLayoutMouseHoverPanel;
     JButton buttonOneMouseHoverBug = new JButton();
     JButton buttonTwoMouseHoverBug = new JButton();
+
+    //TabbedPane test mouse hover on Tab
+    JPanel tabbedPanetest = new DemoPanelWithTabbedPane();
 
 
     public JMenuItem getMaterialDark() {
@@ -225,10 +233,9 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(splitPane, "SplitPane");
         tabbedPane.add(mouseHoverPanel, "MouseHover Bug");
-        tabbedPane.add(new JPanel(), "Panel 7");
+        tabbedPane.add(tabbedPanetest, "TabbedPane Test");
         tabbedPane.add(new JPanel(), "Panel 8");
         tabbedPane.add(new JPanel(), "Panel 9");
-        tabbedPane.setEnabledAt(6, false);
         tabbedPane.setEnabledAt(7, false);
         tabbedPane.setEnabledAt(7, false);
         this.setContentPane(tabbedPane);

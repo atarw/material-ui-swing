@@ -2,6 +2,7 @@ package integration.gui.mock;
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialBorders;
 
@@ -12,7 +13,7 @@ public class TitledBorderMaterialStyle extends javax.swing.JFrame {
 
     static {
         try {
-            MaterialLookAndFeel materialLookAndFeel = new MaterialLookAndFeel(new MaterialOceanicTheme());
+            MaterialLookAndFeel materialLookAndFeel = new MaterialLookAndFeel(new MaterialLiteTheme());
             UIManager.setLookAndFeel(materialLookAndFeel);
             //UIManager.setLookAndFeel(new MetalLookAndFeel());
         } catch (Exception ex) {

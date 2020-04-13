@@ -1,8 +1,7 @@
-package integration.gui.mock;
+package integration.gui.mock.component;
 
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFontFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
