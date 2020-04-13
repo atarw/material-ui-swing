@@ -26,7 +26,6 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialMouseHover;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -471,13 +470,11 @@ public class MaterialButtonUI extends BasicButtonUI {
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
             mouseHoverRunning = true;
-            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover start");
         }
 
         @Override
         public void mouseExited(MouseEvent mouseEvent) {
             mouseHoverRunning = false;
-            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover Stop");
         }
 
         @Override

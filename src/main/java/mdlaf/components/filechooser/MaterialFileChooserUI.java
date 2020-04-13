@@ -23,12 +23,7 @@
  */
 package mdlaf.components.filechooser;
 
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
-
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.*;
@@ -177,7 +172,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             if(evt.getPropertyName().equals(CLOSE_EVENT)){
-                MaterialLogger.getInstance().debug(MaterialFileChooserUI.class, "FileChooser closed");
                 getFileChooser().updateUI();
             }
         }

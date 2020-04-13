@@ -23,36 +23,29 @@
  */
 package mdlaf.components.taskpane;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.plaf.ComponentUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Line2D;
-import java.awt.geom.Path2D;
-
-import static org.jdesktop.swingx.SwingXUtilities.isUIInstallable;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
-    private static final Class LOG_TAG = MaterialTaskPaneUI.class;
-
     @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
     public static ComponentUI createUI(JComponent c) {
         return new MaterialTaskPaneUI();
     }
 
+    protected Color contentBackground;
+    protected Color background;
     protected Icon uncollapsed;
     protected Icon collapsed;
     protected boolean mouseHoverEnable;
@@ -70,7 +63,9 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         super.installUI(c);
         //super.group.addMouseListener(changeIcon);
         //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
-        //super.group.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
+        this.contentBackground = UIManager.getColor("TaskPane.contentBackground");
+        this.background = UIManager.getColor("TaskPane.background");
+        super.group.getContentPane().setBackground(contentBackground);
         this.uncollapsed = UIManager.getIcon("TaskPane.yesCollapsed");
         this.collapsed = UIManager.getIcon("TaskPane.noCollapsed");
         this.mouseHoverEnable = UIManager.getBoolean("TaskPane.mouseHover");
@@ -93,7 +88,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
         //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
-        //super.group.getContentPane().setBackground(UIManager.getColor("TaskPane.contentBackground"));
+        //super.group.getContentPane().setBackground(contentBackground);
     }
 
     @Override
@@ -119,9 +114,8 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
          * This set also the border to the component
          */
        protected void paintTitleBackground(JXTaskPane group, Graphics g) {
-           MaterialLogger.getInstance().debug(LOG_TAG, "Method path paintTitleBackground called");
            MaterialDrawingUtils.getAliasedGraphics(g);
-           this.label.setBackground(UIManager.getColor("TaskPane.background")); //TODO why??
+           this.label.setBackground(background); //TODO why??
             if (group.isSpecial()) {
                 g.setColor(specialTitleBackground);
             } else {

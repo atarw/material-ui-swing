@@ -54,7 +54,6 @@ import mdlaf.animation.MaterialMouseHover;
 import mdlaf.components.taskpane.MaterialTaskPaneUI;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -495,7 +494,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            MaterialLogger.getInstance().debug(LOG_TAG, "Called method mouseMoved inside MaterialMouseHoverTab class");
             JComponent mouseGenerate = (JComponent) e.getSource();
             if (!mouseGenerate.isEnabled()) {
                 return;
