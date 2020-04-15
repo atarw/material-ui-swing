@@ -29,6 +29,7 @@ import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.plaf.ComponentUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -46,11 +47,20 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     protected Color contentBackground;
     protected Color background;
+    protected Color borderColor;
+
     protected Icon uncollapsed;
     protected Icon collapsed;
     protected boolean mouseHoverEnable;
     protected int arch;
 
+    /**
+     * Action change icon on click
+     * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
+     * the function of this class is made from the native SwingX 1.6.1 class.
+     * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
+     * @author https://github.com/vincenzopalazzo
+     */
     @Deprecated
     private MouseListener changeIcon;
 
@@ -61,10 +71,12 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+        //LookAndFeel.installProperty(group, "opaque", false);
         //super.group.addMouseListener(changeIcon);
         //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         this.contentBackground = UIManager.getColor("TaskPane.contentBackground");
         this.background = UIManager.getColor("TaskPane.background");
+        this.borderColor = UIManager.getColor("TaskPane.borderColor");
         super.group.getContentPane().setBackground(contentBackground);
         this.uncollapsed = UIManager.getIcon("TaskPane.yesCollapsed");
         this.collapsed = UIManager.getIcon("TaskPane.noCollapsed");
@@ -91,6 +103,21 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         //super.group.getContentPane().setBackground(contentBackground);
     }
 
+    /**
+     *  This method is used to paint the content panel without padding
+     *  - UIManager.getBorder("TaskPane.border"); should be a border empty
+     *  - new ContentPaneBorder(borderColor); personal implementation inside this class
+     *
+     *  not call super because there is a problem with the border configuration, the border don't have the UImanager but
+     *  is created an static border with space = 10 in all direction
+     * @return border without space
+     */
+    protected Border createContentPaneBorder() {
+        Border contentPanel = new ContentPaneBorder(borderColor);
+        Border taskBorder = UIManager.getBorder("TaskPane.border");
+        return new CompoundBorder(contentPanel, taskBorder);
+    }
+
     @Override
     protected void uninstallListeners() {
         //super.group.removeMouseListener(changeIcon);
@@ -108,14 +135,20 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     }
 
 
+    /**
+     * Define the Main Panel how inside is panel the component
+     */
     protected class MaterialPaneBorder extends PaneBorder {
 
         /**
-         * This set also the border to the component
+         * This set also the border to the component.
+         *
+         * - is possible define with the propriety TaskPanel.arch if the TaskPane title should be a rettangle or an
+         *      with an arch
          */
        protected void paintTitleBackground(JXTaskPane group, Graphics g) {
            MaterialDrawingUtils.getAliasedGraphics(g);
-           this.label.setBackground(background); //TODO why??
+           this.label.setBackground(background);
             if (group.isSpecial()) {
                 g.setColor(specialTitleBackground);
             } else {
@@ -155,7 +188,8 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     /**
      * Action change icon on click
      * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
-     * the function of this class is made from the native SwingX 1.6.1 class
+     * the function of this class is made from the native SwingX 1.6.1 class.
+     * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
      * @author https://github.com/vincenzopalazzo
      */
     @Deprecated
