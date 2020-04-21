@@ -588,13 +588,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.specialTitleOver", theme.getSpecialTitleOverTaskPane());
         table.put("TaskPane.background", theme.getBackgroundTaskPane());
         table.put("TaskPane.foreground", theme.getTextColor());
-       // table.put("TaskPane.borderColor", theme.getBorderColorTaskPane());
+        table.put("TaskPane.borderColor", theme.getBorderColorTaskPane());
         table.put("TaskPane.border", theme.getBorderTaskPane());
         table.put("TaskPane.contentBackground", theme.getContentBackgroundTaskPane());
         table.put("TaskPane.yesCollapsed", theme.getYesCollapsedTaskPane());
         table.put("TaskPane.noCollapsed", theme.getNoCollapsedTaskPane());
         table.put("TaskPane.mouseHover", true);
-        table.put("TaskPane.arch", 15);
+        table.put("TaskPane.arch", 0);
 
         table.put("FormattedTextField.background", theme.getBackgroundTextField());
         table.put("FormattedTextField.foreground", theme.getTextColor());

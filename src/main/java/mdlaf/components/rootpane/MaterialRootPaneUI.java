@@ -49,7 +49,7 @@ import mdlaf.components.titlepane.MaterialTitlePaneUI;
 
 /**
  * @author Terry Kellerman
- * The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
+ * // This code is inside the Open JDK
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialRootPaneUI extends BasicRootPaneUI {
@@ -61,13 +61,18 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             "RootPane.fileChooserDialogBorder", "RootPane.questionDialogBorder",
             "RootPane.warningDialogBorder"
     };
-    protected Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-
-    protected enum CursorState {EXITED, ENTERED, NIL}
 
     protected static final int CORNER_DRAG_WIDTH = 16;
 
     protected static final int BORDER_DRAG_THICKNESS = 5;
+
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialRootPaneUI();
+    }
+
+    protected Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+
+    protected enum CursorState {EXITED, ENTERED, NIL}
 
     protected Window window;
 
@@ -82,7 +87,22 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     protected JRootPane root;
 
     private boolean dragging = false;
+
     private boolean resizing = false;
+
+    private Dimension dimensioDevices;
+
+    public MaterialRootPaneUI() {
+        super();
+        int devideWithd = 0;
+        int deviceHeight = 0;
+        GraphicsDevice graphicsDevices[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+        for(GraphicsDevice graphicsDevice : graphicsDevices){
+            devideWithd += graphicsDevice.getDisplayMode().getWidth();
+            deviceHeight += graphicsDevice.getDisplayMode().getHeight();
+        }
+         this.dimensioDevices = new Dimension(devideWithd, deviceHeight);
+    }
 
     private void cancelResize(Window w) {
         if (resizing) {
@@ -92,8 +112,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
     }
 
-    private void setupDragMode(Window f) {
-    }
+    protected void setupDragMode(Window f) {}
 
     public void beginDraggingFrame(Window f) {
         setupDragMode(f);
@@ -103,37 +122,22 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         setBoundsForFrame(w, newX, newY, w.getWidth(), w.getHeight());
     }
 
-    public void endDraggingFrame(Window f) {
-    }
+    public void endDraggingFrame(Window f) {}
 
     public void beginResizingFrame(Window f, int direction) {
         setupDragMode(f);
     }
 
-    /**
-     * Calls <code>setBoundsForFrame</code> with the new values.
-     *
-     * @param f         the component to be resized
-     * @param newX      the new x-coordinate
-     * @param newY      the new y-coordinate
-     * @param newWidth  the new width
-     * @param newHeight the new height
-     */
     public void resizeFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
         setBoundsForFrame(f, newX, newY, newWidth, newHeight);
     }
 
-    public void endResizingFrame(Window f) {
-    }
+    public void endResizingFrame(Window f) { }
 
     public void setBoundsForFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
         f.setBounds(newX, newY, newWidth, newHeight);
         // we must validate the hierarchy to not break the hw/lw mixing
         f.revalidate();
-    }
-
-    public static ComponentUI createUI(JComponent c) {
-        return new MaterialRootPaneUI();
     }
 
     public void installUI(JComponent c) {
@@ -294,12 +298,12 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 installWindowListeners(root, root.getParent());
             }
         }
-        return;
     }
 
     protected static class MaterialLayout implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
+
             Dimension cpd, mbd, tpd;
             int cpWidth = 0;
             int cpHeight = 0;
@@ -711,7 +715,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             beginResizingFrame(w, resizeDir);
             w.setCursor(s);
             resizing = true;
-            return;
+           // return;
         }
 
         public void mouseReleased(MouseEvent ev) {
@@ -788,9 +792,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 // (STEVE) Yucky work around for bug ID 4106552
                 return;
             }
-            Window w = (Window)e.getSource();
-            Point p = SwingUtilities.convertPoint((Component)e.getSource(),
-                    e.getX(), e.getY(), null);
+            Window window = (Window)e.getSource();
+            Point p = SwingUtilities.convertPoint(window, window.getX(), window.getY(), null);
 
             Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
             //fix
@@ -798,23 +801,23 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             int deltaY = absoluteY - mouseCurent.y;
             //int deltaX = _x - p.x;
             //int deltaY = _y - p.y;
-            Dimension min = w.getMinimumSize();
-            Dimension max = w.getMaximumSize();
+            Dimension min = window.getMinimumSize();
+            Dimension max = window.getMaximumSize();
             int newX, newY, newW, newH;
-            Insets i = w.getInsets();
+            Insets i = window.getInsets();
 
 
             boolean undecorated = false;
             boolean resizable = false;
             boolean maximized = false;
 
-            if (w instanceof Frame) {
-                Frame f = (Frame) w;
+            if (window instanceof Frame) {
+                Frame f = (Frame) window;
                 undecorated = f.isUndecorated();
                 resizable = f.isResizable();
                 maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
-            } else if (w instanceof Dialog) {
-                Dialog d = (Dialog) w;
+            } else if (window instanceof Dialog) {
+                Dialog d = (Dialog) window;
                 undecorated = d.isUndecorated();
                 resizable = d.isResizable();
             }
@@ -831,13 +834,14 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                     return;
                 }
                 int pWidth, pHeight;
-                Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+               // Dimension dimensioDevices = Toolkit.getDefaultToolkit().getScreenSize();
                /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
                 int width = gd.getDisplayMode().getWidth();
                 int height = gd.getDisplayMode().getHeight();
-                Dimension s = new Dimension(width, height);*/
-                pWidth = s.width;
-                pHeight = s.height;
+                Dimension dimensioDevices = new Dimension(width, height);*/
+
+                pWidth = dimensioDevices.width;
+                pHeight = dimensioDevices.height;
 
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
@@ -845,20 +849,20 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 //TODO see this point because with two display not worked well
                 // Make sure we stay in-bounds
                 if (newX + i.left <= -viewX){
-                    //What operation fo this?
+                    //What operation do this?
                     newX = -viewX - i.left + 1;
                 }else if (newY + i.top <= -viewY){
-                    //What operation fo this?
+                    //What operation do this?
                     newY = -viewY - i.top + 1;
                 }else if (newX + viewX + i.right >= pWidth){
-                    //What operation fo this?
+                    //What operation do this?
                     newX = pWidth - viewX - i.right - 1;
                 }else if (newY + viewY + i.bottom >= pHeight){
-                    //What operation fo this?
+                    //What operation do this?
                     newY = pHeight - viewY - i.bottom - 1;
                 }
-
-                dragFrame(w, newX, newY);
+                //System.out.printf("(%03d, %03d) -> (%03d, %03d)\n", viewX, viewY, newX, newY);
+                dragFrame(window, newX, newY);
                 return;
             }
 
@@ -866,10 +870,10 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 return;
             }
 
-            newX = w.getX();
-            newY = w.getY();
-            newW = w.getWidth();
-            newH = w.getHeight();
+            newX = window.getX();
+            newY = window.getY();
+            newW = window.getWidth();
+            newH = window.getHeight();
 
             //TODO should be this a problem? because in the monitor 1 worked well
             Dimension parentBounds = Toolkit.getDefaultToolkit().getScreenSize();
@@ -1031,7 +1035,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 default:
                     return;
             }
-            resizeFrame(w, newX, newY, newW, newH);
+            resizeFrame(window, newX, newY, newW, newH);
         }
 
         public void mouseEntered(MouseEvent ev) {

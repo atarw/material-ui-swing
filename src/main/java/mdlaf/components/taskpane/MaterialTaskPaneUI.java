@@ -76,7 +76,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         this.contentBackground = UIManager.getColor("TaskPane.contentBackground");
         this.background = UIManager.getColor("TaskPane.background");
-        this.borderColor = UIManager.getColor("TaskPane.borderColor");
         //this.borderColor = UIManager.getColor("TaskPane.borderColor");
         super.group.getContentPane().setBackground(contentBackground);
         this.uncollapsed = UIManager.getIcon("TaskPane.yesCollapsed");
@@ -113,9 +112,16 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      *  is created an static border with space = 10 in all direction
      * @return border without space
      */
-    protected Border createContentPaneBorder() {
+    /*protected Border createContentPaneBorder() {
         // TODO fix te problem
         super.createPaneBorder();
+        Border contentPanel = new ContentPaneBorder(borderColor);
+        Border taskBorder = UIManager.getBorder("TaskPane.border");
+        return new CompoundBorder(contentPanel, taskBorder);
+    }*/
+
+    protected Border createContentPaneBorder() {
+        this.borderColor = UIManager.getColor("TaskPane.borderColor");
         Border contentPanel = new ContentPaneBorder(borderColor);
         Border taskBorder = UIManager.getBorder("TaskPane.border");
         return new CompoundBorder(contentPanel, taskBorder);
