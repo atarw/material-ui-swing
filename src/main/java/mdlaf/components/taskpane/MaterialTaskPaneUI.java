@@ -77,6 +77,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         this.contentBackground = UIManager.getColor("TaskPane.contentBackground");
         this.background = UIManager.getColor("TaskPane.background");
         this.borderColor = UIManager.getColor("TaskPane.borderColor");
+        //this.borderColor = UIManager.getColor("TaskPane.borderColor");
         super.group.getContentPane().setBackground(contentBackground);
         this.uncollapsed = UIManager.getIcon("TaskPane.yesCollapsed");
         this.collapsed = UIManager.getIcon("TaskPane.noCollapsed");
@@ -113,6 +114,8 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      * @return border without space
      */
     protected Border createContentPaneBorder() {
+        // TODO fix te problem
+        super.createPaneBorder();
         Border contentPanel = new ContentPaneBorder(borderColor);
         Border taskBorder = UIManager.getBorder("TaskPane.border");
         return new CompoundBorder(contentPanel, taskBorder);
@@ -147,7 +150,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
          *      with an arch
          */
        protected void paintTitleBackground(JXTaskPane group, Graphics g) {
-           MaterialDrawingUtils.getAliasedGraphics(g);
            this.label.setBackground(background);
             if (group.isSpecial()) {
                 g.setColor(specialTitleBackground);

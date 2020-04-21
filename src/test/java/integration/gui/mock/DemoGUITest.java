@@ -30,7 +30,6 @@ import integration.gui.mock.component.TableModelSecondPanel;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

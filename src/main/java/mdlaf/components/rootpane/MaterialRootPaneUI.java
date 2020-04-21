@@ -24,22 +24,7 @@
  */
 package mdlaf.components.rootpane;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import java.awt.LayoutManager2;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.Window;
+import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
@@ -107,7 +92,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
     }
 
-    private void setupDragMode(Window f) { }
+    private void setupDragMode(Window f) {
+    }
 
     public void beginDraggingFrame(Window f) {
         setupDragMode(f);
@@ -117,7 +103,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         setBoundsForFrame(w, newX, newY, w.getWidth(), w.getHeight());
     }
 
-    public void endDraggingFrame(Window f) { }
+    public void endDraggingFrame(Window f) {
+    }
 
     public void beginResizingFrame(Window f, int direction) {
         setupDragMode(f);
@@ -254,8 +241,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     }
 
     protected LayoutManager createLayoutManager() {
-        return new MaterialLayaut();
-
+        return new MaterialLayout();
     }
 
     protected void setTitlePane(JRootPane root, JComponent titlePane) {
@@ -311,7 +297,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         return;
     }
 
-    protected static class MaterialLayaut implements LayoutManager2 {
+    protected static class MaterialLayout implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
             Dimension cpd, mbd, tpd;
@@ -549,9 +535,9 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
     protected class MaterialHandler implements MouseInputListener, WindowListener, WindowFocusListener, SwingConstants {
         // _x & _y are the mousePressed location in absolute coordinate system
-        int _x, _y;
+        int absoluteX, absoluteY;
         // __x & __y are the mousePressed location in source view's coordinate system
-        int __x, __y;
+        int viewX, viewY;
         Rectangle startingBounds;
         int resizeDir;
         protected final int RESIZE_NONE = 0;
@@ -590,10 +576,10 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 resizing = false;
                 updateFrameCursor(w);
             }
-            _x = 0;
-            _y = 0;
-            __x = 0;
-            __y = 0;
+            absoluteX = 0;
+            absoluteY = 0;
+            viewX = 0;
+            viewY = 0;
             startingBounds = null;
             resizeDir = RESIZE_NONE;
             // Set discardRelease to true, so that only a mousePressed()
@@ -605,10 +591,14 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         public void mousePressed(MouseEvent ev) {
             Point p = SwingUtilities.convertPoint((Component) ev.getSource(),
                     ev.getX(), ev.getY(), null);
-            __x = ev.getX();
-            __y = ev.getY();
-            _x = p.x;
-            _y = p.y;
+            viewX = ev.getX();
+            viewY = ev.getY();
+            //fix
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            absoluteX = mouseCurent.x;
+            absoluteY = mouseCurent.y;
+            //_x = p.x;
+            //_y = p.y;
             resizeDir = RESIZE_NONE;
             discardRelease = false;
             JRootPane rootPane = getRootPane();
@@ -623,7 +613,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
             startingBounds = w.getBounds();
             Insets i = w.getInsets();
-            Point ep = new Point(__x, __y);
+            Point ep = new Point(viewX, viewY);
             Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
             boolean resizable = false;
             boolean maximized = false;
@@ -731,7 +721,6 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
         public void mouseMoved(MouseEvent ev) {
             JRootPane root = getRootPane();
-
             if (root.getWindowDecorationStyle() == JRootPane.NONE) {
                 return;
             }
@@ -755,6 +744,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             Insets i = w.getInsets();
             Point ep = new Point(ev.getX(), ev.getY());
+            //Set correct cursor for resize windows
             if (resizable && !maximized) {
                 if (ep.x <= i.left + resizeCornerSize) {
                     if (ep.y < resizeCornerSize + i.top)
@@ -794,15 +784,20 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
         @SuppressWarnings("unchecked")
         public void mouseDragged(MouseEvent e) {
-            if (startingBounds == null) {
+            if ( startingBounds == null ) {
                 // (STEVE) Yucky work around for bug ID 4106552
                 return;
             }
-            Window w = (Window) e.getSource();
-            Point p = SwingUtilities.convertPoint((Component) e.getSource(),
+            Window w = (Window)e.getSource();
+            Point p = SwingUtilities.convertPoint((Component)e.getSource(),
                     e.getX(), e.getY(), null);
-            int deltaX = _x - p.x;
-            int deltaY = _y - p.y;
+
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            //fix
+            int deltaX = absoluteX - mouseCurent.x;
+            int deltaY = absoluteY - mouseCurent.y;
+            //int deltaX = _x - p.x;
+            //int deltaY = _y - p.y;
             Dimension min = w.getMinimumSize();
             Dimension max = w.getMaximumSize();
             int newX, newY, newW, newH;
@@ -837,22 +832,31 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 }
                 int pWidth, pHeight;
                 Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
+               /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+                int width = gd.getDisplayMode().getWidth();
+                int height = gd.getDisplayMode().getHeight();
+                Dimension s = new Dimension(width, height);*/
                 pWidth = s.width;
                 pHeight = s.height;
-
 
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
 
+                //TODO see this point because with two display not worked well
                 // Make sure we stay in-bounds
-                if (newX + i.left <= -__x)
-                    newX = -__x - i.left + 1;
-                if (newY + i.top <= -__y)
-                    newY = -__y - i.top + 1;
-                if (newX + __x + i.right >= pWidth)
-                    newX = pWidth - __x - i.right - 1;
-                if (newY + __y + i.bottom >= pHeight)
-                    newY = pHeight - __y - i.bottom - 1;
+                if (newX + i.left <= -viewX){
+                    //What operation fo this?
+                    newX = -viewX - i.left + 1;
+                }else if (newY + i.top <= -viewY){
+                    //What operation fo this?
+                    newY = -viewY - i.top + 1;
+                }else if (newX + viewX + i.right >= pWidth){
+                    //What operation fo this?
+                    newX = pWidth - viewX - i.right - 1;
+                }else if (newY + viewY + i.bottom >= pHeight){
+                    //What operation fo this?
+                    newY = pHeight - viewY - i.bottom - 1;
+                }
 
                 dragFrame(w, newX, newY);
                 return;
@@ -867,11 +871,13 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             newW = w.getWidth();
             newH = w.getHeight();
 
+            //TODO should be this a problem? because in the monitor 1 worked well
             Dimension parentBounds = Toolkit.getDefaultToolkit().getScreenSize();
 
+            //This mean when the windows start to resize and not dragged
             switch (resizeDir) {
                 case RESIZE_NONE:
-                    return;
+                    return; //TODO can be removed
                 case NORTH:
                     if (startingBounds.height + deltaY < min.height)
                         deltaY = -(startingBounds.height - min.height);
