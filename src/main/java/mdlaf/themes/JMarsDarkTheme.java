@@ -145,7 +145,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
                 BorderFactory.createEmptyBorder(5,10,5,10)));
         borderToolBar = borderSpinner;
 
-        borderDialogRootPane = borderSpinner;
+        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = borderSpinner;
 

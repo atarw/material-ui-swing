@@ -59,7 +59,7 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
             bottom = UIManager.getColor("InternalFrameTitlePane.selected.borderColorBottom");
         }
 
-        g.setColor(MaterialColors.GRAY_50);
+      //  g.setColor(MaterialColors.GRAY_50);
         g.drawLine(2, 0, w, 0);
         g.setColor(left);
         g.drawLine(0, 1, 0, h);
@@ -68,21 +68,23 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
     }
 
     @Override
+    public void paintComponent(Graphics g) {
+        super.paintTitleBackground(g);
+    }
+
+    @Override
     protected void createButtons() {
         super.createButtons();
 
         MaterialManagerListener.removeAllMaterialMouseListener(closeButton);
         closeButton.setBorder(null);
-        closeButton.setOpaque(false);
-        closeButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGHT_RED));
+        //closeButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGHT_RED));
 
         MaterialManagerListener.removeAllMaterialMouseListener(maxButton);
         maxButton.setBorder(null);
-        maxButton.setOpaque(false);
-        maxButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGTH_BLUE));
+        //maxButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGTH_BLUE));
 
         MaterialManagerListener.removeAllMaterialMouseListener(iconButton);
         iconButton.setBorder(null);
-        iconButton.setOpaque(false);
     }
 }

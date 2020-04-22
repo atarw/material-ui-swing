@@ -36,10 +36,8 @@ import java.util.List;
 
 /**
  * @author Konstantin Bulenkov
- * In this version for Titelpane the change are effectuate by
+ * this code is copyed by OpenJDK
  * @author https://github.com/users/vincenzopalazzo
- * <p>
- * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
  */
 public class MaterialTitlePaneUI extends JComponent {
 
@@ -571,11 +569,10 @@ public class MaterialTitlePaneUI extends JComponent {
 
 
     protected class TitlePaneLayout implements LayoutManager {
-        public void addLayoutComponent(String name, Component c) {
-        }
 
-        public void removeLayoutComponent(Component c) {
-        }
+        public void addLayoutComponent(String name, Component c) { }
+
+        public void removeLayoutComponent(Component c) {}
 
         public Dimension preferredLayoutSize(Container c) {
             int height = computeHeight();
@@ -657,7 +654,6 @@ public class MaterialTitlePaneUI extends JComponent {
             }
         }
     }
-
 
     protected class PropertyChangeHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent pce) {

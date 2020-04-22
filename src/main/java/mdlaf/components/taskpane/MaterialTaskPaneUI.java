@@ -56,10 +56,11 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     /**
      * Action change icon on click
+     *
+     * @author https://github.com/vincenzopalazzo
      * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
      * the function of this class is made from the native SwingX 1.6.1 class.
      * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
-     * @author https://github.com/vincenzopalazzo
      */
     @Deprecated
     private MouseListener changeIcon;
@@ -104,28 +105,24 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     }
 
     /**
-     *  This method is used to paint the content panel without padding
-     *  - UIManager.getBorder("TaskPane.border"); should be a border empty
-     *  - new ContentPaneBorder(borderColor); personal implementation inside this class
+     * This method is used to paint the content panel without padding
+     * - UIManager.getBorder("TaskPane.border"); should be a border empty
+     * - new ContentPaneBorder(borderColor); personal implementation inside this class
+     * - the borderColor propriety should be call inside this method because I have an color wrong is call the
+     * same code inside the installUI. TODO I will try to find a real motivation
+     * <p>
+     * not call super because there is a problem with the border configuration, the border don't have the UIManager but
+     * is created an static border with space = 10 in all direction
      *
-     *  not call super because there is a problem with the border configuration, the border don't have the UImanager but
-     *  is created an static border with space = 10 in all direction
      * @return border without space
      */
-    /*protected Border createContentPaneBorder() {
-        // TODO fix te problem
-        super.createPaneBorder();
-        Border contentPanel = new ContentPaneBorder(borderColor);
-        Border taskBorder = UIManager.getBorder("TaskPane.border");
-        return new CompoundBorder(contentPanel, taskBorder);
-    }*/
-
     protected Border createContentPaneBorder() {
         this.borderColor = UIManager.getColor("TaskPane.borderColor");
         Border contentPanel = new ContentPaneBorder(borderColor);
         Border taskBorder = UIManager.getBorder("TaskPane.border");
         return new CompoundBorder(contentPanel, taskBorder);
     }
+
 
     @Override
     protected void uninstallListeners() {
@@ -151,12 +148,12 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
         /**
          * This set also the border to the component.
-         *
+         * <p>
          * - is possible define with the propriety TaskPanel.arch if the TaskPane title should be a rettangle or an
-         *      with an arch
+         * with an arch
          */
-       protected void paintTitleBackground(JXTaskPane group, Graphics g) {
-           this.label.setBackground(background);
+        protected void paintTitleBackground(JXTaskPane group, Graphics g) {
+            this.label.setBackground(background);
             if (group.isSpecial()) {
                 g.setColor(specialTitleBackground);
             } else {
@@ -166,8 +163,8 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
             graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g = graphics2D;
             g.fillRoundRect(-2, 0, group.getWidth(), group.getHeight(), arch, arch);
-            this.paintChevronControls(group, g, 0, 0,  group.getWidth(), group.getHeight());
-       }
+            this.paintChevronControls(group, g, 0, 0, group.getWidth(), group.getHeight());
+        }
 
         @Override
         protected boolean isMouseOverBorder() {
@@ -195,10 +192,11 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     /**
      * Action change icon on click
+     *
+     * @author https://github.com/vincenzopalazzo
      * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
      * the function of this class is made from the native SwingX 1.6.1 class.
      * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
-     * @author https://github.com/vincenzopalazzo
      */
     @Deprecated
     protected class ChangeIconOnClick implements MouseListener {

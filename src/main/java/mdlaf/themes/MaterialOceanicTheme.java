@@ -127,7 +127,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         borderToolBar = MaterialBorders.OCEAN_LINE_BORDER;
 
-        borderDialogRootPane = MaterialBorders.OCEAN_LINE_BORDER;
+        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = MaterialBorders.OCEAN_LINE_BORDER;
 
