@@ -52,7 +52,7 @@ import mdlaf.components.titlepane.MaterialTitlePaneUI;
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialRootPaneUI extends BasicRootPaneUI {
-    //TODO refactoring this component
+
     protected static final String[] borderKeys = new String[]{
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
@@ -138,13 +138,22 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         setBoundsForFrame(f, newX, newY, newWidth, newHeight);
     }
 
-    public void endResizingFrame(Window f) {
-    }
+    public void endResizingFrame(Window f) {}
 
     public void setBoundsForFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
         f.setBounds(newX, newY, newWidth, newHeight);
         // we must validate the hierarchy to not break the hw/lw mixing
         f.revalidate();
+    }
+
+    @Override
+    protected void installListeners(JRootPane root) {
+        super.installListeners(root);
+    }
+
+    @Override
+    protected void uninstallListeners(JRootPane root) {
+        super.uninstallListeners(root);
     }
 
     public void installUI(JComponent c) {
@@ -169,6 +178,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     protected void uninstallBorder(JRootPane root) {
         LookAndFeel.uninstallBorder(root);
     }
+
 
     protected void installWindowListeners(JRootPane root, Component parent) {
         if (parent instanceof Window) {
@@ -831,7 +841,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
 
-                //TODO see this point because with two display not worked well
+                //TODO see this point because with two display not worked well (Resolved -> testing)
                 // Make sure we stay in-bounds
                 if (newX + i.left <= -viewX) {
                     //What operation do this?
@@ -862,8 +872,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             //This mean when the windows start to resize and not dragged
             switch (resizeDir) {
-                case RESIZE_NONE:
-                    return; //TODO can be removed
+               // case RESIZE_NONE:
+                 //   return; //TODO can be removed (Resolved => Testing)
                 case NORTH:
                     if (startingBounds.height + deltaY < min.height)
                         deltaY = -(startingBounds.height - min.height);

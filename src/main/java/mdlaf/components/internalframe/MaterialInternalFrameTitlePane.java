@@ -24,10 +24,12 @@
 package mdlaf.components.internalframe;
 
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialManagerListener;
 
 import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.awt.*;
 
@@ -47,7 +49,8 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
 
     @Override
     protected void paintBorder(Graphics g) {
-        int w = getWidth();
+        //super.paintBorder(g);
+      /*  int w = getWidth();
         int h = getHeight();
 
         Color top = UIManager.getColor("InternalFrameTitlePane.borderColorTop");
@@ -64,7 +67,7 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
         g.setColor(left);
         g.drawLine(0, 1, 0, h);
         g.setColor(bottom);
-        g.drawLine(2, h, w, h);
+        g.drawLine(2, h, w, h);*/
     }
 
     @Override
@@ -75,16 +78,18 @@ public class MaterialInternalFrameTitlePane extends BasicInternalFrameTitlePane 
     @Override
     protected void createButtons() {
         super.createButtons();
+        closeButton.setUI(new ButtonTitlePane());
+        maxButton.setUI(new ButtonTitlePane());
+        iconButton.setUI(new ButtonTitlePane());
+    }
 
-        MaterialManagerListener.removeAllMaterialMouseListener(closeButton);
-        closeButton.setBorder(null);
-        //closeButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGHT_RED));
+    protected class ButtonTitlePane extends MaterialButtonUI{
 
-        MaterialManagerListener.removeAllMaterialMouseListener(maxButton);
-        maxButton.setBorder(null);
-        //maxButton.addMouseListener(MaterialUIMovement.getMovement(closeButton, MaterialColors.COSMO_LIGTH_BLUE));
-
-        MaterialManagerListener.removeAllMaterialMouseListener(iconButton);
-        iconButton.setBorder(null);
+        @Override
+        public void installUI(JComponent c) {
+            super.mouseHoverEnabled = false;
+            super.borderEnabled = false;
+            super.installUI(c);
+        }
     }
 }

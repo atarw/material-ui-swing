@@ -640,12 +640,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
                 GoogleMaterialDesignIcons.REMOVE,
                 theme.getTextColor()
         ));
-        table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
-        table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
-        table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
-        table.put("InternalFrame.inactiveTitleForeground", MaterialColors.BLACK);
+        table.put("InternalFrame.activeTitleBackground", theme.getBackgroundPrimary());
+        table.put("InternalFrame.activeTitleForeground", theme.getTextColor());
+        table.put("InternalFrame.inactiveTitleBackground", theme.getBackgroundPrimary());
+        table.put("InternalFrame.inactiveTitleForeground", theme.getDisableTextColor());
         table.put("InternalFrame.titleFont", theme.getFontBold());
-        table.put("InternalFrame.background", MaterialColors.LIGHT_BLUE_500);
+        table.put("InternalFrame.background", theme.getBackgroundPrimary());
         table.put("InternalFrame.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
         //This is for change the TitlePane

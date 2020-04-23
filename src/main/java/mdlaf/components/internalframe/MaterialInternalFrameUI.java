@@ -26,6 +26,7 @@ package mdlaf.components.internalframe;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.plaf.metal.MetalInternalFrameUI;
 import java.awt.*;
 
 /**
@@ -51,15 +52,19 @@ public class MaterialInternalFrameUI extends BasicInternalFrameUI {
     }
 
     @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-        g.setColor(UIManager.getColor("MenuItem.background"));
-        g.fillRect(0, 0, c.getWidth(), c.getHeight());
+    public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
     }
 
     @Override
-    public void uninstallUI(JComponent c) {
-        this.titlePane = null;
-        super.uninstallUI(c);
+    public void paint(Graphics g, JComponent c) {
+        super.paint(g, c);
+        // g.setColor(UIManager.getColor("MenuItem.background"));
+        //g.fillRect(0, 0, c.getWidth(), c.getHeight());
+    }
+
+    @Override
+    protected void installListeners() {
+        super.installListeners();
     }
 }
