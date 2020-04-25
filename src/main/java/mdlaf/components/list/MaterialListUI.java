@@ -43,10 +43,10 @@ public class MaterialListUI extends BasicListUI {
         super.installUI(c);
 
         list = (JList) c;
-        list.setBackground(UIManager.getColor("List.background"));
-        list.setForeground(UIManager.getColor("List.foreground"));
-        list.setBorder(UIManager.getBorder("List.border"));
-        list.setFont(UIManager.getFont("List.font"));
+        //list.setBackground(UIManager.getColor("List.background"));
+        //list.setForeground(UIManager.getColor("List.foreground"));
+        //list.setBorder(UIManager.getBorder("List.border"));
+        //list.setFont(UIManager.getFont("List.font"));
         list.setSelectionBackground(UIManager.getColor("List.selectionBackground"));
         list.setSelectionForeground(UIManager.getColor("List.selectionForeground"));
         list.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

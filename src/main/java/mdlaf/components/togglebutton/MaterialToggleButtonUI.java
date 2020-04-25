@@ -29,11 +29,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import javax.swing.AbstractButton;
-import javax.swing.ButtonModel;
-import javax.swing.JComponent;
-import javax.swing.JToggleButton;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
@@ -69,9 +65,9 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void installUI(JComponent c) {
         super.installUI(c);
         toggleButton = (JToggleButton) c;
-        toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
-        toggleButton.setBackground(UIManager.getColor("ToggleButton.background"));
-        toggleButton.setForeground(UIManager.getColor("ToggleButton.foreground"));
+       //toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
+        //toggleButton.setBackground(UIManager.getColor("ToggleButton.background"));
+        //toggleButton.setForeground(UIManager.getColor("ToggleButton.foreground"));
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         /*
         If the expression toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null is false the JToggleButton have the
@@ -101,10 +97,10 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                     toggleButton.setBorder(withoutIconBorder);
                 }
             }else{
-                toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
+                LookAndFeel.installBorder(toggleButton,"ToggleButton.border");
             }
         }else{
-            toggleButton.setBorder(UIManager.getBorder("ToggleButton.border"));
+            LookAndFeel.installBorder(toggleButton,"ToggleButton.border" );
             this.withoutIcon = Boolean.FALSE;
         }
 
@@ -114,12 +110,12 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        JToggleButton toggleButton = (JToggleButton) c;
+       JToggleButton toggleButton = (JToggleButton) c;
         toggleButton.setIcon(null);
         toggleButton.setSelectedIcon(null);
-        toggleButton.setBorder(null);
+        /* toggleButton.setBorder(null);
         toggleButton.setBackground(null);
-        toggleButton.setForeground(null);
+        toggleButton.setForeground(null);*/
         super.uninstallUI(c);
     }
 

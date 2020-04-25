@@ -78,7 +78,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
         AbstractButton button = (AbstractButton) c;
         button.setOpaque(UIManager.getBoolean("Button.opaque"));
-        button.setBorder(UIManager.getBorder("Button.border"));
+        //button.setBorder(UIManager.getBorder("Button.border"));
         foreground = UIManager.getColor("Button.foreground");
         background = UIManager.getColor("Button.background");
         disabledBackground = UIManager.getColor("Button.disabledBackground");
@@ -95,8 +95,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (mouseHoverEnabled == null) {
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
-        button.setBackground(background);
-        button.setForeground(foreground);
+        //LookAndFeel.installColors(c, "Button.background", "Button.foreground");
+       //button.setBackground(background);
+        //button.setForeground(foreground);
         this.arch = UIManager.getInt("Button.arc");
         //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (mouseHoverEnabled) {
@@ -394,11 +395,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
     }
 
-    @Deprecated
     public Boolean isDefaultButton() {
         return defaultButton != null && defaultButton;
     }
-
 
     protected class MaterialListenerButtonEvent implements PropertyChangeListener {
 

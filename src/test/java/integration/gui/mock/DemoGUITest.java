@@ -27,8 +27,8 @@ import integration.gui.mock.component.DemoPanelWithTabbedPane;
 import integration.gui.mock.component.PersonalButtonUI;
 import integration.gui.mock.component.PersonalMouseHoverButtonUI;
 import integration.gui.mock.component.TableModelSecondPanel;
+import io.materialthemin.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,7 @@ public class DemoGUITest extends JFrame {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new DarkStackOverflowTheme()));
 
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
@@ -178,13 +178,8 @@ public class DemoGUITest extends JFrame {
 
         initJMenuBar();
 
-        JTable table = new JTable();
+        table = new JTable();
         table.setModel(new TableModelSecondPanel(new File(System.getProperty("user.home"))));
-        JScrollPane scroll = new JScrollPane(table);
-
-        scroll.setColumnHeaderView(table.getTableHeader());
-        table.setPreferredScrollableViewportSize(table.getPreferredSize());
-
 
         enableButton.setEnabled(false);
         enableButton.setAction(new AbstractAction("Enable") {
@@ -230,11 +225,10 @@ public class DemoGUITest extends JFrame {
         initStyleSplitPanePanels();
         initLayoutMouseHoverPanelFive();
 
-
         this.getRootPane().setDefaultButton(buttonDefault);
 
         tabbedPane.add(panelOne, "Panel One");
-        tabbedPane.add(scroll, "Table Home Dir");
+        tabbedPane.add(panelTwo, "Table Home Dir");
         tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(splitPane, "SplitPane");

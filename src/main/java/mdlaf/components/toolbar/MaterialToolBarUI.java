@@ -46,14 +46,14 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JToolBar toolBar = (JToolBar) c;
-
-		toolBar.setFont (UIManager.getFont ("ToolBar.font"));
+//TODO support this componenet
+		/*toolBar.setFont (UIManager.getFont ("ToolBar.font"));
 		toolBar.setBackground (UIManager.getColor ("ToolBar.background"));
 		toolBar.setForeground (UIManager.getColor ("ToolBar.foreground"));
-		toolBar.setBorder (UIManager.getBorder ("ToolBar.border"));
+		toolBar.setBorder (UIManager.getBorder ("ToolBar.border"));*/
 
-		this.dockingBorderColor = null;
-		this.floatingBorderColor = null;
+		this.dockingBorderColor = UIManager.getColor ("ToolBar.dockingBackground");
+		this.floatingBorderColor = UIManager.getColor ("ToolBar.floatingBackground");
 		this.dockingColor = UIManager.getColor ("ToolBar.dockingBackground");
 		this.floatingColor = UIManager.getColor ("ToolBar.floatingBackground");
 	}
@@ -61,11 +61,11 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		c.setFont (null);
+		/*c.setFont (null);
 		c.setBackground (null);
 		c.setForeground (null);
 		c.setBorder (null);
-		c.setCursor(null);
+		c.setCursor(null);*/
 
 		this.dockingColor = null;
 		this.floatingColor = null;

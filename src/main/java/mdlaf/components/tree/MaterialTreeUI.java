@@ -51,9 +51,9 @@ public class MaterialTreeUI extends BasicTreeUI {
 		tree.setCellRenderer (renderer);
 		tree.setCellEditor (editor);
 
-		tree.setFont (UIManager.getFont ("Tree.font"));
-		tree.setForeground (UIManager.getColor ("Tree.foreground"));
-		tree.setBackground (UIManager.getColor ("Tree.background"));
+		//tree.setFont (UIManager.getFont ("Tree.font"));
+		//tree.setForeground (UIManager.getColor ("Tree.foreground"));
+		///tree.setBackground (UIManager.getColor ("Tree.background"));
 		tree.setRowHeight (0);
 		tree.setInvokesStopCellEditing (true);
 
@@ -67,14 +67,14 @@ public class MaterialTreeUI extends BasicTreeUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		tree.setCellRenderer (null);
+		/*tree.setCellRenderer (null);
 		tree.setCellEditor (null);
 
 		tree.setFont (null);
 		tree.setForeground (null);
-		tree.setBackground (null);
+		tree.setBackground (null);*/
 
-		tree.setCursor(null);
+		tree.setCursor(Cursor.getDefaultCursor());
 
 		super.uninstallUI(c);
 	}

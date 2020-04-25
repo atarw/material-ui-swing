@@ -46,12 +46,12 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
         super.installUI(c);
 
         JTextArea textArea = (JTextArea) c;
-        textArea.setBackground(UIManager.getColor("TextArea.background"));
-        textArea.setForeground(UIManager.getColor("TextArea.foreground"));
+        //textArea.setBackground(UIManager.getColor("TextArea.background"));
+        //textArea.setForeground(UIManager.getColor("TextArea.foreground"));
         textArea.setSelectedTextColor(UIManager.getColor("TextArea.selectionForeground"));
         textArea.setSelectionColor(UIManager.getColor("TextArea.selectionBackground"));
-        textArea.setFont(UIManager.getFont("TextArea.font"));
-        textArea.setBorder(UIManager.getBorder("TextArea.border"));
+        //textArea.setFont(UIManager.getFont("TextArea.font"));
+        //textArea.setBorder(UIManager.getBorder("TextArea.border"));
 
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true); 
@@ -60,11 +60,11 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        c.setFont (null);
+        /*c.setFont (null);
         c.setBackground (null);
         c.setForeground (null);
-        c.setBorder (null);
-        c.setCursor(null);
+        c.setBorder (null);*/
+        c.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
     }

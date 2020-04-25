@@ -44,9 +44,9 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
         super.installUI(c);
 
         JCheckBox checkBox = (JCheckBox) c;
-        checkBox.setFont(UIManager.getFont("CheckBox.font"));
-        checkBox.setBackground(UIManager.getColor("CheckBox.background"));
-        checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
+        //checkBox.setFont(UIManager.getFont("CheckBox.font"));
+        //checkBox.setBackground(UIManager.getColor("CheckBox.background"));
+        //checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
         checkBox.setIcon(UIManager.getIcon("CheckBox.icon"));
         checkBox.setSelectedIcon(UIManager.getIcon("CheckBox.selectedIcon"));
         checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

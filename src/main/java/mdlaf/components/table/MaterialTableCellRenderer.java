@@ -66,12 +66,13 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 			}
 		}*/
         //new version of the code release in pre-release6.1
+        //TODO should be removed? post on StackOverflow
         Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
         Color normalColor = UIManager.getColor("Table.background");
         if (row % 2 == 1) {
-            setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
+            //setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, alternateRowColor);
         } else {
-            setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
+            //setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
         }
         return component;
     }

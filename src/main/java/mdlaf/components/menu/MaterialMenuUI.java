@@ -55,30 +55,30 @@ public class MaterialMenuUI extends BasicMenuUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JMenu menu = (JMenu) c;
-		menu.setFont (UIManager.getFont ("Menu.font"));
-		menu.setBorder (UIManager.getBorder ("Menu.border"));
-		menu.setBackground (UIManager.getColor ("Menu.background"));
-		menu.setForeground (UIManager.getColor ("Menu.foreground"));
-		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
+		//JMenu menu = (JMenu) c;
+		//menu.setFont (UIManager.getFont ("Menu.font"));
+		//menu.setBorder (UIManager.getBorder ("Menu.border"));
+		//menu.setBackground (UIManager.getColor ("Menu.background"));
+		//menu.setForeground (UIManager.getColor ("Menu.foreground"));
+		//menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO testing
-			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.black));
-		}
+		/*if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO testing
+			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.red));
+		}*/
 
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		menuItem.setFont (null);
+		/*menuItem.setFont (null);
 		menuItem.setBackground (null);
 		menuItem.setForeground (null);
-		menuItem.setBorder (null);
-		menuItem.setCursor(null);
+		menuItem.setBorder (null);*/
+		menuItem.setCursor(Cursor.getDefaultCursor());
 
-		c.removeMouseListener(mouseHover);
-		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
+//		c.removeMouseListener(mouseHover);
+//		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
 
 		super.uninstallUI(menuItem);
 	}
@@ -90,15 +90,16 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
-			c.addMouseListener(mouseHover);
-		}
+		//if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+		//	c.addMouseListener(mouseHover);
+		//}
 		return super.createChangeListener(c);
 	}
 
 	/**
 	 * @author https://github.com/vincenzopalazzo
 	 */
+	//TODO can deprecate this?
 	private class MouseHover implements MouseListener {
 
 

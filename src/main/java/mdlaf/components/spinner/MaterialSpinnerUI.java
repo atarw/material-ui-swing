@@ -50,7 +50,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
+/*
         JSpinner spinner = (JSpinner) c;
         //spinner.setOpaque(false);
         spinner.setFont(UIManager.getFont("Spinner.font"));
@@ -58,14 +58,15 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         spinner.setForeground(UIManager.getColor("Spinner.foreground"));
         spinner.getEditor().setBorder(UIManager.getBorder("Spinner.border"));
         //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+ */
     }
 
     @Override
     public void uninstallUI(JComponent c) {
         //c.setCursor(null);
-        spinner.setFont(null);
+        /*spinner.setFont(null);
         spinner.setBackground(null);
-        spinner.setForeground(null);
+        spinner.setForeground(null);*/
         spinner.getEditor().setBorder(null);
 
         super.uninstallUI(c);

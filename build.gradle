@@ -7,6 +7,9 @@ apply from: 'gradle/release-public.gradle'
 
 repositories {
     jcenter()
+    flatDir {
+        dirs '/home/vincent/Github/DarkStackOverflowTheme/build/libs'
+    }
 }
 
 dependencies {
@@ -27,6 +30,9 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
+    
+    testCompile name: 'DarkStackOverflowTheme-0.1'
+    
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
     //testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'

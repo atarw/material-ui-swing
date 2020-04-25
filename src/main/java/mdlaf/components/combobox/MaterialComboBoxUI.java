@@ -60,11 +60,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        comboBox.setFont(UIManager.getFont("ComboBox.font"));
+        //comboBox.setFont(UIManager.getFont("ComboBox.font"));
         background = UIManager.getColor("ComboBox.background");
-        comboBox.setBackground(background);
-        comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
-        comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
+        //comboBox.setBackground(background);
+        //comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
+        //comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));

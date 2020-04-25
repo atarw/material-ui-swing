@@ -49,10 +49,10 @@ public class MaterialLabelUI extends BasicLabelUI {
         //TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
         //and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
         //label.setOpaque(UIManager.getBoolean("Label.opaque"));
-        label.setFont(UIManager.getFont("Label.font"));
-        label.setBackground(UIManager.getColor("Label.background"));
-        label.setForeground(UIManager.getColor("Label.foreground"));
-        label.setBorder(UIManager.getBorder("Label.border"));
+        //label.setFont(UIManager.getFont("Label.font"));
+        //label.setBackground(UIManager.getColor("Label.background"));
+        //label.setForeground(UIManager.getColor("Label.foreground"));
+        //label.setBorder(UIManager.getBorder("Label.border"));
     }
 
     @Override

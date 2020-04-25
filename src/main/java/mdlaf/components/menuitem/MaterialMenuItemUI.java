@@ -47,13 +47,13 @@ public class MaterialMenuItemUI extends BasicMenuItemUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		menuItem.setFont (UIManager.getFont ("MenuItem.font"));
-		menuItem.setBackground (UIManager.getColor ("MenuItem.background"));
-		menuItem.setForeground (UIManager.getColor ("MenuItem.foreground"));
+		//menuItem.setFont (UIManager.getFont ("MenuItem.font"));
+		//menuItem.setBackground (UIManager.getColor ("MenuItem.background"));
+		//menuItem.setForeground (UIManager.getColor ("MenuItem.foreground"));
 		menuItem.setHorizontalAlignment (SwingConstants.LEFT);
 		menuItem.setVerticalAlignment (SwingConstants.CENTER);
-		menuItem.setBorder (UIManager.getBorder ("MenuItem.border"));
-		menuItem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		//menuItem.setBorder (UIManager.getBorder ("MenuItem.border"));
+		//menuItem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

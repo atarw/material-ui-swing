@@ -18,6 +18,7 @@
 - [Nested JTree view paint wrong](https://github.com/atarw/material-ui-swing/pull/103)
 - [Font but with screen zoom](https://github.com/atarw/material-ui-swing/pull/99)
 - [Added Caret Foreground color](https://github.com/atarw/material-ui-swing/pull/102)
+- JOptionPane Without icons: Fixed position text
 
 **JToggleButton Second Style without icons**
 

@@ -47,9 +47,9 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setFont (UIManager.getFont ("RadioButton.font"));
+		/*radioButton.setFont (UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
-		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));
+		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));*/
 		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
 		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

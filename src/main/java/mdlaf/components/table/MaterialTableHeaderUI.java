@@ -50,7 +50,7 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		header.setBackground(UIManager.getColor("TableHeader.background"));
 		header.setForeground(UIManager.getColor("TableHeader.foreground"));
 		header.setFont(UIManager.getFont("TableHeader.font"));
-		header.setBorder(UIManager.getBorder("TableHeader.border"));
+		LookAndFeel.installBorder(c, "TableHeader.border");
 	}
 
 	@Override

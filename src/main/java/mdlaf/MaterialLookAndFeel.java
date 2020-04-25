@@ -144,8 +144,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
             }
             return;
         }
-
-        throw new MaterialChangeThemeException("The look and feel setted not is MaterialLookAnfFeel");
+        throw new MaterialChangeThemeException("The look and feel set not is MaterialLookAnfFeel");
     }
 
     public MaterialLookAndFeel() {
@@ -428,7 +427,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
         table.put("TabbedPane[focus].margin", 5);
 
-
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
         table.put("Table.background", theme.getBackgroundTable());
@@ -469,7 +467,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextArea.font", theme.getFontBold());
         table.put("TextArea.caretForeground", theme.getTextColor());
 
-        table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
+        table.put("ToggleButton.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
         table.put("ToggleButton.font", theme.getFontRegular());
         table.put("ToggleButton.background", theme.getBackgroundPrimary());
         table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());
@@ -577,6 +575,22 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.focusInputMap", fieldInputMap);
         table.put("PasswordField.caretForeground", theme.getTextColor());
 
+        table.put("FormattedTextField.background", theme.getBackgroundTextField());
+        table.put("FormattedTextField.foreground", theme.getTextColor());
+        table.put("FormattedTextField.font", theme.getFontRegular());
+        table.put("FormattedTextField.disabledBackground", theme.getDisabledBackgroudnTextField());
+        table.put("FormattedTextField.disabledForeground", theme.getDisabledForegroundTextField());
+        table.put("FormattedTextField.inactiveForeground", theme.getInactiveForegroundTextField());
+        table.put("FormattedTextField.inactiveBackground", theme.getInactiveBackgroundTextField());
+        table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
+        table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
+        table.put("FormattedTextField[Line].inactiveColor", theme.getInactiveColorLineTextField());
+        table.put("FormattedTextField[Line].activeColor", theme.getActiveColorLineTextField());
+        table.put("FormattedTextField.border", theme.getBorderTextField());
+        //table.put("TextField.margin", new InsetsUIResource(5,15,5,15));
+        table.put("FormattedTextField.focusInputMap", fieldInputMap);
+        table.put("FormattedTextField.caretForeground", theme.getTextColor());
+
         table.put("TitledBorder.border", theme.getBorderTitledBorder());
         table.put("TitledBorder.font", theme.getFontMedium());
         table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
@@ -596,15 +610,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.noCollapsed", theme.getNoCollapsedTaskPane());
         table.put("TaskPane.mouseHover", true);
         table.put("TaskPane.arch", 0);
-
-        table.put("FormattedTextField.background", theme.getBackgroundTextField());
-        table.put("FormattedTextField.foreground", theme.getTextColor());
-        table.put("FormattedTextField.inactiveForeground", theme.getInactiveForegroundTextField());
-        table.put("FormattedTextField.inactiveBackground", theme.getInactiveBackgroundTextField());
-        table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
-        table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
-        table.put("FormattedTextField.border", theme.getBorderTextField());
-        table.put("FormattedTextField.caretForeground", theme.getTextColor());
 
         table.put("List.background", theme.getBackgroundPrimary());
         table.put("List.foreground", theme.getTextColor());
@@ -692,7 +697,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ProgressBar.background", theme.getBackgroundProgressBar());
         table.put("ProgressBar.foreground", theme.getForegroundProgressBar());
         //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
-        table.put("ProgressBar.verticalSize", 1);
+        //table.put("ProgressBar.verticalSize", 1); TODO this throw an exeption
 
         table.put("ColorChooser.background", theme.getBackgroundPrimary());
         table.put("ColorChooser.foreground", theme.getTextColor());
@@ -727,17 +732,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         call("uninitialize");
     }
 
-
     public MaterialTheme getTheme() {
         return theme;
     }
 
     public void setTheme(MaterialTheme theme) {
         this.theme = theme;
-    }
-
-    public static int getFocusAcceleratorKeyMask() {
-        return ActionEvent.ALT_MASK;
     }
 
     protected void call(String method) {
