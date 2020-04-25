@@ -25,8 +25,10 @@ package integration.gui.mock.component;
 
 
 import javax.swing.table.AbstractTableModel;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,70 +36,44 @@ import java.util.List;
  */
 public class TableModelSecondPanel extends AbstractTableModel {
 
-    private boolean DEBUG = true;
+    protected File dir;
+    protected String[] filenames;
 
-    private String[] columnNames = { "First Name", "Last Name", "Sport",
-            "# of Years", "Vegetarian" };
-    private List<String> columNameStringList = new ArrayList<>(Arrays.asList(columnNames));
-    private Object[][] data = {
-            { "Mary", "Campione", "Snowboarding", new Integer(5),
-                    new Boolean(false) },
-            { "Alison", "Huml", "Rowing", new Integer(3), new Boolean(true) },
-            { "Kathy", "Walrath", "Knitting", new Integer(2),
-                    new Boolean(false) },
-            { "Sharon", "Zakhour", "Speed reading", new Integer(20),
-                    new Boolean(true) },
-            { "Philip", "Milne", "Pool", new Integer(10),
-                    new Boolean(false) } };
+    protected String[] columnNames = new String[] {
+            "name", "size", "last modified", "directory?", "readable?", "writable?"
+    };
 
-    public int getColumnCount() {
-        return columnNames.length;
+    protected Class[] columnClasses = new Class[] {
+            String.class, Long.class, Date.class,
+            Boolean.class, Boolean.class, Boolean.class
+    };
+
+    // This table model works for any one given directory
+    public TableModelSecondPanel(File dir) {
+        this.dir = dir;
+        this.filenames = dir.list();  // Store a list of files in the directory
     }
 
-    public int getRowCount() {
-        return data.length;
-    }
+    // These are easy methods
+    public int getColumnCount() { return 6; }  // A constant for this model
+    public int getRowCount() { return filenames.length; }  // # of files in dir
 
-    public String getColumnName(int col) {
-        return columNameStringList.get(col);
-    }
+    // Information about each column
+    public String getColumnName(int col) { return columnNames[col]; }
+    public Class getColumnClass(int col) { return columnClasses[col]; }
 
+    // The method that must actually return the value of each cell
     public Object getValueAt(int row, int col) {
-        return data[row][col];
-    }
-
-    public Class getColumnClass(int c) {
-        return getValueAt(0, c).getClass();
-    }
-
-    public void setValueAt(Object value, int row, int col) {
-        if (DEBUG) {
-            System.out.println("Setting value at " + row + "," + col
-                    + " to " + value + " (an instance of "
-                    + value.getClass() + ")");
+        File f = new File(dir, filenames[row]);
+        switch(col) {
+            case 0: return filenames[row];
+            case 1: return new Long(f.length());
+            case 2: return new Date(f.lastModified());
+            case 3: return f.isDirectory() ? Boolean.TRUE : Boolean.FALSE;
+            case 4: return f.canRead() ? Boolean.TRUE : Boolean.FALSE;
+            case 5: return f.canWrite() ? Boolean.TRUE : Boolean.FALSE;
+            default: return null;
         }
-
-        data[row][col] = value;
-        fireTableCellUpdated(row, col);
-
-        if (DEBUG) {
-            System.out.println("New value of data:");
-            printDebugData();
-        }
-    }
-
-    private void printDebugData() {
-        int numRows = getRowCount();
-        int numCols = getColumnCount();
-
-        for (int i = 0; i < numRows; i++) {
-            System.out.print("    row " + i + ":");
-            for (int j = 0; j < numCols; j++) {
-                System.out.print("  " + data[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println("--------------------------");
     }
 }
 

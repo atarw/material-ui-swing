@@ -29,6 +29,7 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
 import java.awt.*;
+import java.util.Date;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -115,5 +116,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Date.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Long.class, new MaterialTableCellRenderer());
 	}
 }

@@ -41,6 +41,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -53,7 +54,7 @@ public class DemoGUITest extends JFrame {
     static {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(true); //not support yet
+            JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
 
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
@@ -177,7 +178,13 @@ public class DemoGUITest extends JFrame {
 
         initJMenuBar();
 
-        table.setModel(new TableModelSecondPanel());
+        JTable table = new JTable();
+        table.setModel(new TableModelSecondPanel(new File(System.getProperty("user.home"))));
+        JScrollPane scroll = new JScrollPane(table);
+
+        scroll.setColumnHeaderView(table.getTableHeader());
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
+
 
         enableButton.setEnabled(false);
         enableButton.setAction(new AbstractAction("Enable") {
@@ -227,7 +234,7 @@ public class DemoGUITest extends JFrame {
         this.getRootPane().setDefaultButton(buttonDefault);
 
         tabbedPane.add(panelOne, "Panel One");
-        tabbedPane.add(panelTwo, "Panel two");
+        tabbedPane.add(scroll, "Table Home Dir");
         tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(splitPane, "SplitPane");

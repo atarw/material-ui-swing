@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.*;
 import org.jdesktop.swingx.JXTaskPane;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -99,7 +100,7 @@ public class MaterialUISwingDemo {
                     JMenu menuTheme = new JMenu("Themes");
 
                     JMenuItem oceanic = new JMenuItem();
-                    oceanic.setAction(new AbstractAction("Material Oceanic"){
+                    oceanic.setAction(new AbstractAction("Material Oceanic") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             System.out.println("********");
@@ -108,7 +109,7 @@ public class MaterialUISwingDemo {
                         }
                     });
                     JMenuItem lite = new JMenuItem();
-                    lite.setAction(new AbstractAction("Material Lite"){
+                    lite.setAction(new AbstractAction("Material Lite") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
@@ -116,7 +117,7 @@ public class MaterialUISwingDemo {
                         }
                     });
                     JMenuItem jmarsDark = new JMenuItem();
-                    jmarsDark.setAction(new AbstractAction("Material JMars Dark"){
+                    jmarsDark.setAction(new AbstractAction("Material JMars Dark") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             MaterialLookAndFeel.changeTheme(new JMarsDarkTheme());
@@ -170,7 +171,7 @@ public class MaterialUISwingDemo {
                     JPanel content = new JPanel();
                     content.add(button);
 
-                    class ActionEnableButton extends AbstractAction{
+                    class ActionEnableButton extends AbstractAction {
 
                         private JButton button;
 
@@ -181,10 +182,10 @@ public class MaterialUISwingDemo {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if(button.isEnabled()){
+                            if (button.isEnabled()) {
                                 button.setEnabled(false);
                                 button.setText("I'm disable");
-                            }else{
+                            } else {
                                 button.setEnabled(true);
                                 button.setText("I'm enable");
                             }
@@ -225,7 +226,10 @@ public class MaterialUISwingDemo {
                     content.add(new JLabel("label"));
                     content.add(new JPasswordField("password"));
                     content.add(new JRadioButton("radio button"));
-                    content.add(new JSlider(JSlider.HORIZONTAL, 0, 5, 2));
+                    JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 5, 2);
+                    slider.setEnabled(true);
+                    slider.setFocusable(true);
+                    content.add(slider);
                     content.add(new JSpinner(new SpinnerListModel(new String[]{"d", "e", "f"})));
                     content.add(new JTable(new String[][]{{"a", "b", "c"}, {"d", "e", "f"}}, new String[]{"r", "e"}));
                     content.add(new JTextField("text field U+1F600"));
@@ -267,12 +271,12 @@ public class MaterialUISwingDemo {
                     tb.setFloatable(true);
                     content.add(tb);
 
-                    DefaultMutableTreeNode tNodeRoot=new DefaultMutableTreeNode("Root");
+                    DefaultMutableTreeNode tNodeRoot = new DefaultMutableTreeNode("Root");
                     tNodeRoot.add(new DefaultMutableTreeNode("Child1"));
                     tNodeRoot.add(new DefaultMutableTreeNode("Child2"));
-                    TreeModel tModel=new DefaultTreeModel(tNodeRoot);
+                    TreeModel tModel = new DefaultTreeModel(tNodeRoot);
 
-                    JTree tree = new JTree (tModel);
+                    JTree tree = new JTree(tModel);
                     tree.setEditable(true);
 
                     content.add(tree);
@@ -497,7 +501,7 @@ public class MaterialUISwingDemo {
                     panel3.add(buttonWarning);
 
                     JSpinner spinnerDate = new JSpinner(new SpinnerDateModel());
-
+                    spinnerDate.setEnabled(false);
                     JSpinner spinnerNumbar = new JSpinner(new SpinnerNumberModel());
 
                     ArrayList<Object> objectList = new ArrayList<>();
@@ -547,7 +551,7 @@ public class MaterialUISwingDemo {
                     MaterialManagerListener.removeAllMaterialMouseListener(buttonEnableLabel);
                     buttonEnableLabel.addMouseListener(MaterialUIMovement.getMovement(buttonEnableLabel, MaterialColors.COSMO_DARK_GRAY));
 
-                    class ActionEnableLabel extends AbstractAction{
+                    class ActionEnableLabel extends AbstractAction {
 
                         public ActionEnableLabel() {
                             putValue(Action.NAME, "Enable label");
@@ -555,7 +559,7 @@ public class MaterialUISwingDemo {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if(labelDisable.isEnabled()){
+                            if (labelDisable.isEnabled()) {
                                 labelDisable.setEnabled(false);
                                 return;
                             }

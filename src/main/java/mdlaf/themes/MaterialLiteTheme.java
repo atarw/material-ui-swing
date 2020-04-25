@@ -24,12 +24,15 @@
 package mdlaf.themes;
 
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -45,8 +48,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
     }
 
     @Override
-    protected void installFonts(){
-       this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+    protected void installFonts() {
+        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
         this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
         this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
         this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
@@ -77,7 +80,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN);
 
         this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
-        this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
+        this.errorIconIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
         this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
         this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
 
@@ -109,7 +112,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK, 12);
         this.borderTable = MaterialBorders.LIGHT_LINE_BORDER;
-        this.borderTableHeader = MaterialBorders.LIGHT_SHADOW_BORDER;
+        this.borderTableHeader = new BorderUIResource(
+                new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
+                        true, true, true, true));
     }
 
     @Override

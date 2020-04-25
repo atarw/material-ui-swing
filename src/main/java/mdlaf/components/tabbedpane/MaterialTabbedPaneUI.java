@@ -191,6 +191,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
         //TODO Should be the cause of StackOverflowException
         if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
+            System.out.println(getClass().getCanonicalName());
             mouseHoverTab = new MaterialMouseHoverTab(rects);
             tabPane.addMouseMotionListener(mouseHoverTab);
         }

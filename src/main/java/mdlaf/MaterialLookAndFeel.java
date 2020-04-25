@@ -385,6 +385,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Slider.background", theme.getBackgroundPrimary());
         table.put("Slider.foreground", theme.getHighlightBackgroundPrimary());
         table.put("Slider.trackColor", theme.getTrackColorSlider());
+        table.put("Slider.disable", MaterialColors.COSMO_DARK_GRAY);
         table.put("Slider[halo].color", theme.getHaloColorSlider());
         table.put("Slider.border", theme.getBorderSlider());
 

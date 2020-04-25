@@ -63,9 +63,15 @@ public class MaterialSplitPaneUI extends MetalSplitPaneUI {
     }
 
     @Override
+    public void paint(Graphics g, JComponent jc) {
+        super.paint(g, jc);
+    }
+
+    @Override
     public BasicSplitPaneDivider createDefaultDivider() {
         return new MaterialSplitPaneDivider(this);
     }
+
 
     protected class MaterialSplitPaneDivider extends BasicSplitPaneDivider{
 
