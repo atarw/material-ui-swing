@@ -76,16 +76,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     public void uninstallUI(JComponent c) {
 
         // comboBox.setFont(null);
-        comboBox.setBackground(null);
-        comboBox.setForeground(null);
-        comboBox.setBorder(null);
-        comboBox.setLightWeightPopupEnabled(true);
-        comboBox.setCursor(null);
-        comboBox.setRenderer(null);
-        comboBox.setEditor(null);
+        //comboBox.setBackground(null);
+        //comboBox.setForeground(null);
+        //comboBox.setBorder(null);
+        //comboBox.setLightWeightPopupEnabled(true);
+        //comboBox.setCursor(null);
+        //comboBox.setRenderer(null);
+        //comboBox.setEditor(null);
 
         comboBox.removeFocusListener(focusListener);
-        MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
+        //MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
 
         super.uninstallUI(comboBox);
     }

@@ -71,6 +71,6 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
 
     @Override
     public void update(Graphics g, JComponent c) {
-        super.update(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.update(g, c);
     }
 }

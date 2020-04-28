@@ -42,6 +42,6 @@ public class MaterialToolTipUI extends BasicToolTipUI {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.paint(g, c);
     }
 }

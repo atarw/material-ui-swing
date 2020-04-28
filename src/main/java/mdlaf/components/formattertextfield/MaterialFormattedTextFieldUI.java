@@ -63,13 +63,13 @@ public class MaterialFormattedTextFieldUI extends MaterialComponentField {
     @Override
     public void uninstallUI(JComponent c) {
 
-        JFormattedTextField formattedTextField = (JFormattedTextField) c;
+        /*JFormattedTextField formattedTextField = (JFormattedTextField) c;
         formattedTextField.setSelectionColor(null);
         formattedTextField.setSelectedTextColor(null);
         formattedTextField.setBackground(null);
         formattedTextField.setForeground(null);
         formattedTextField.setFont(null);
-        formattedTextField.setBorder(null);
+        formattedTextField.setBorder(null);*/
 
         super.uninstallUI(c);
     }

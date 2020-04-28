@@ -122,7 +122,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     @Override
     //TODO I'm working here
     public void paint(Graphics g, JComponent c) {
-        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.paint(g, c);
 
         if(withoutIcon != null && withoutIcon && isNotNullColor(withoutIcon)){
             AbstractButton button = (AbstractButton) c;

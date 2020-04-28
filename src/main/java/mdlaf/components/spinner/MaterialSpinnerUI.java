@@ -80,7 +80,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
     @Override
     public void update(Graphics g, JComponent c) {
-        super.update(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.update(g, c);
         this.configureLocalButton(this.upArrowButton);
         this.configureLocalButton(this.downArrowButton);
     }

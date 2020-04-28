@@ -59,10 +59,10 @@ public class MaterialLabelUI extends BasicLabelUI {
     public void uninstallUI(JComponent c) {
 
         JLabel label = (JLabel) c;
-        label.setFont(null);
+      /*  label.setFont(null);
         label.setBackground(null);
         label.setForeground(null);
-        label.setBorder(null);
+        label.setBorder(null);*/
 
         super.uninstallUI(c);
     }

@@ -58,15 +58,15 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		c.setFont (null);
+	/*	c.setFont (null);
 		c.setBackground (null);
 		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);
+		c.setBorder (null);*/
+		c.setCursor(Cursor.getDefaultCursor());
 
-		JRadioButton radioButton = (JRadioButton) c;
+		/*JRadioButton radioButton = (JRadioButton) c;
 		radioButton.setIcon(null);
-		radioButton.setSelectedIcon(null);
+		radioButton.setSelectedIcon(null);*/
 
 		super.uninstallUI(c);
 	}

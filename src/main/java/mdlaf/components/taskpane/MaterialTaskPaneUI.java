@@ -23,7 +23,6 @@
  */
 package mdlaf.components.taskpane;
 
-import mdlaf.utils.MaterialDrawingUtils;
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
@@ -137,7 +136,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-        super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.paint(g, c);
     }
 
 

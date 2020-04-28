@@ -58,14 +58,14 @@ public class MaterialListUI extends BasicListUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        list = (JList) c;
-        list.setBackground(null);
+       // list = (JList) c;
+       /* list.setBackground(null);
         list.setForeground(null);
         list.setBorder(null);
         list.setFont(null);
         list.setSelectionBackground(null);
-        list.setSelectionForeground(null);
-        list.setCursor(null);
+        list.setSelectionForeground(null);*/
+        list.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
     }

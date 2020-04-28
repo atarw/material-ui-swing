@@ -55,13 +55,13 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        JCheckBox checkBox = (JCheckBox) c;
-        checkBox.setFont(null);
-        checkBox.setBackground(null);
-        checkBox.setForeground(null);
-        checkBox.setIcon(null);
-        checkBox.setSelectedIcon(null);
-        checkBox.setCursor(null);
+       // JCheckBox checkBox = (JCheckBox) c;
+       // checkBox.setFont(null);
+        //checkBox.setBackground(null);
+        //checkBox.setForeground(null);
+        //checkBox.setIcon(null);
+        //checkBox.setSelectedIcon(null);
+        c.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
     }

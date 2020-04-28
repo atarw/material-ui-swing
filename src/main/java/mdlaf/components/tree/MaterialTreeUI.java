@@ -87,11 +87,6 @@ public class MaterialTreeUI extends BasicTreeUI {
 
 
 	@Override
-	protected void paintDropLine(Graphics g) {
-		super.paintDropLine(MaterialDrawingUtils.getAliasedGraphics(g));
-	}
-
-	@Override
 	protected void paintVerticalLine(Graphics g, JComponent c, int x, int top, int bottom) {
 		//do nothing
 	}

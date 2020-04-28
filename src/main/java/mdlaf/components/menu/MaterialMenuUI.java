@@ -49,7 +49,11 @@ public class MaterialMenuUI extends BasicMenuUI {
 		return new MaterialMenuUI ();
 	}
 
-	private MouseListener mouseHover = new MouseHover();
+	private MouseListener mouseHover;
+
+	public MaterialMenuUI() {
+		mouseHover = new MouseHover();
+	}
 
 	@Override
 	public void installUI (JComponent c) {
@@ -77,7 +81,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menuItem.setBorder (null);*/
 		menuItem.setCursor(Cursor.getDefaultCursor());
 
-//		c.removeMouseListener(mouseHover);
+		c.removeMouseListener(mouseHover);
 //		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
 
 		super.uninstallUI(menuItem);
@@ -90,16 +94,16 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
-		//if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
-		//	c.addMouseListener(mouseHover);
-		//}
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+			c.addMouseListener(mouseHover);
+		}
 		return super.createChangeListener(c);
 	}
 
 	/**
+	 * This mouse listener is used to selected the MenuTime when the mouse is hover
 	 * @author https://github.com/vincenzopalazzo
 	 */
-	//TODO can deprecate this?
 	private class MouseHover implements MouseListener {
 
 
@@ -136,7 +140,6 @@ public class MaterialMenuUI extends BasicMenuUI {
 				if(menu.isEnabled()){
 					menu.setSelected(false);
 				}
-
 			}
 		}
 	}
