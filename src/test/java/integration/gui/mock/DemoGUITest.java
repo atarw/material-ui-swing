@@ -29,6 +29,7 @@ import integration.gui.mock.component.PersonalMouseHoverButtonUI;
 import integration.gui.mock.component.TableModelSecondPanel;
 import io.materialthemin.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class DemoGUITest extends JFrame {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new DarkStackOverflowTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
 
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
