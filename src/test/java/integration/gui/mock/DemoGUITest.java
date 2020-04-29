@@ -27,7 +27,6 @@ import integration.gui.mock.component.DemoPanelWithTabbedPane;
 import integration.gui.mock.component.PersonalButtonUI;
 import integration.gui.mock.component.PersonalMouseHoverButtonUI;
 import integration.gui.mock.component.TableModelSecondPanel;
-import io.materialthemin.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
