@@ -144,9 +144,9 @@ public class MaterialImageFactory{
      * This method utilized this library for make the icons https://jiconfont.github.io/swing
      * by default the material-ui-swing utilized the Google font https://jiconfont.github.io/swing
      * but you can set other type of font with method
-     * @param iconCode
-     * @param dimension: Is the dimension of icons, by default this library used dimension = 20
-     * @param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
+     * param iconCode
+     * param dimension: Is the dimension of icons, by default this library used dimension = 20
+     * param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
      * @return
      */
     public IconUIResource getImage(IconCode iconCode, int dimension, Color color){

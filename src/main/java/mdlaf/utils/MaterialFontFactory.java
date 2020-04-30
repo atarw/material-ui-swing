@@ -25,7 +25,6 @@ package mdlaf.utils;
 
 import sun.font.AttributeMap;
 import sun.font.AttributeValues;
-import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -162,8 +161,8 @@ public class MaterialFontFactory {
 
     /**
      * This is only on test, I will remove if in the next release this don't work
-     * @param component
-     * @param font
+     * param component
+     * param font
      * @return
      */
     public FontUIResource doOptimizingCode(JComponent component, Font font){

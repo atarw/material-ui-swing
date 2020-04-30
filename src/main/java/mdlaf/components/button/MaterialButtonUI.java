@@ -180,8 +180,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     /**
      * This method paint background, inside it will paint the border to buttons.
      *
-     * @param g Graphics Object, with this object is possible paint the component JButton
-     * @param c Component Object, rappresent the button, if possible use this object or the propriety
+     * param g Graphics Object, with this object is possible paint the component JButton
+     * param c Component Object, rappresent the button, if possible use this object or the propriety
      *          called button inside this class
      */
     protected void paintBackground(Graphics g, JComponent c) {
@@ -302,8 +302,6 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method is used inside the MaterialUITimer for reset the color at the particular event
-     *
-     * @param color
      */
     @Deprecated
     public void setBackground(Color color) {

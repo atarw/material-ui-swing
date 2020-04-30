@@ -82,9 +82,6 @@ public class Issue87ColorMouseHover extends JDialog {
             // TODO add your handling code here:
         }
 
-        /**
-         * @param args the command line arguments
-         */
         public static void main(String args[]) {
             try {
                 MaterialLookAndFeel material = new MaterialLookAndFeel(new MaterialLiteTheme());

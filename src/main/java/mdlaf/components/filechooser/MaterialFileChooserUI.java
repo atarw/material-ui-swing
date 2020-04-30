@@ -123,7 +123,7 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     /**
      * Uninstalls the listeners.
      *
-     * @param fc the file chooser
+     * param fc the file chooser
      */
     @Override
     protected void uninstallListeners(JFileChooser fc) {
@@ -166,7 +166,7 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
         /**
          * This method gets called when a bound property is changed.
          *
-         * @param evt A PropertyChangeEvent object describing the event source
+         * param evt A PropertyChangeEvent object describing the event source
          *            and the property that has changed.
          */
         @Override

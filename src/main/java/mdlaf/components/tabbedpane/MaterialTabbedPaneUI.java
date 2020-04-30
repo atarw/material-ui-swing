@@ -426,7 +426,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     /**
      * TODO change the mouse hover effect, should be throws the StackOverflowException
-     * @param tabIndex
+     * param tabIndex
      */
     protected void installMouseHover(int tabIndex) {
         if(mouseHoverEnabled && !mouseHoverInitialized.containsKey(tabIndex)){
@@ -513,7 +513,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
          * Invoked when the mouse button has been clicked (pressed
          * and released) on a component.
          *
-         * @param e the event to be processed
+         * param e the event to be processed
          */
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -523,7 +523,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         /**
          * Invoked when a mouse button has been pressed on a component.
          *
-         * @param e the event to be processed
+         * param e the event to be processed
          */
         @Override
         public void mousePressed(MouseEvent e) {
@@ -533,7 +533,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         /**
          * Invoked when a mouse button has been released on a component.
          *
-         * @param e the event to be processed
+         * param e the event to be processed
          */
         @Override
         public void mouseReleased(MouseEvent e) {
@@ -543,7 +543,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         /**
          * Invoked when the mouse enters a component.
          *
-         * @param e the event to be processed
+         * param e the event to be processed
          */
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -553,7 +553,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         /**
          * Invoked when the mouse exits a component.
          *
-         * @param e the event to be processed
+         * param e the event to be processed
          */
         @Override
         public void mouseExited(MouseEvent e) {
