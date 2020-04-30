@@ -28,11 +28,9 @@ import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.plaf.IconUIResource;
-
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +42,6 @@ import java.util.Map;
  */
 public class MaterialImageFactory{
 
-    //TODO start refactoring and import this library IconFontSwing
     static {
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
     }

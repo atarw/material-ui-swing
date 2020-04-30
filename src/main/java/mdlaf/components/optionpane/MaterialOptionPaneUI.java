@@ -41,13 +41,9 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
     }
 
     @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
-    }
-
-    @Override
     protected Icon getIconForType(int messageType) {
         if(!UIManager.getBoolean("OptionPane.enableIcon")){
+            //Insert icon white because without icon icon the JOptionPane is paint wrong
             return MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BLANK);
         }
         return super.getIconForType(messageType);

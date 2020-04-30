@@ -98,7 +98,7 @@ public class MaterialFontFactory {
 
     public FontUIResource getFont(MaterialTypeFont typeFont, boolean withPersonalSettings){
         if(typeFont == null){
-            throw new IllegalArgumentException("Argument null");
+            throw new IllegalArgumentException("\n- Parameter type font null.\n");
         }
         String typeFontString = typeFont.toString();
         if(cacheFont.containsKey(typeFontString)){
@@ -112,7 +112,7 @@ public class MaterialFontFactory {
 
     public FontUIResource getFontWithPath(String path, boolean withPersonalSettings){
         if(path == null || path.isEmpty()){
-            throw new IllegalArgumentException("The path to load personal fort is null or empty");
+            throw new IllegalArgumentException("\n- The path to load personal fort is null or empty");
         }
         InputStream stream = getClass().getResourceAsStream(path);
         return loadFont(stream, withPersonalSettings);
@@ -120,7 +120,7 @@ public class MaterialFontFactory {
 
     public FontUIResource getFontWithStream(InputStream stream, boolean withPersonalSettings){
         if(stream == null){
-            throw new IllegalArgumentException("The stream to load personal fort is null");
+            throw new IllegalArgumentException("\n- The stream to load personal fort is null");
         }
         return loadFont(stream, withPersonalSettings);
     }
@@ -138,7 +138,6 @@ public class MaterialFontFactory {
             //int style = whatIsTypeFont();
             //fontSettings.put(TextAttribute.FAMILY, (style & ~0x03) == 0 ? style : 0);
         }
-
         try {
             Font font;
             if(withPersonalSettings){
@@ -156,7 +155,7 @@ public class MaterialFontFactory {
 
     public float doOptimizingDimensionFont(int dimension){
         if(defaultSize <= 0){
-            throw new IllegalArgumentException("The dimension should be positive (>= 0)");
+            throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
         return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
     }
@@ -168,7 +167,19 @@ public class MaterialFontFactory {
      * @return
      */
     public FontUIResource doOptimizingCode(JComponent component, Font font){
-        //TODO if is null?
+        if(component == null || font == null){
+            String messageError;
+            if(component == null){
+                messageError = "- Parameter component null.";
+                if(font == null){
+                    messageError += "\n- Parameter font null";
+                }
+            }else{
+                messageError = "- Parameter font null";
+            }
+            messageError += "\nPlease insert an correct value\n";
+            throw new IllegalArgumentException(messageError);
+        }
         FontMetrics m = component.getGraphics().getFontMetrics(font); // g is your current Graphics object
         float totalSize= defaultSize * (m.getAscent() + m.getDescent()) / m.getAscent();
         FontUIResource fontOptimized= new FontUIResource(font.deriveFont(totalSize));

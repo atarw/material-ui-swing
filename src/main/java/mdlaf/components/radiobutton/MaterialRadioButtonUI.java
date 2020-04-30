@@ -72,11 +72,6 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	}
 
 	@Override
-	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
-	}
-
-	@Override
 	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
 		//do nothing
 	}

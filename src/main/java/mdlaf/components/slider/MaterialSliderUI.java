@@ -54,8 +54,8 @@ public class MaterialSliderUI extends BasicSliderUI {
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JSlider slider = (JSlider) c;
-        /*slider.setFont(UIManager.getFont("Slider.font"));
+        /*JSlider slider = (JSlider) c;
+        slider.setFont(UIManager.getFont("Slider.font"));
         slider.setBackground(UIManager.getColor("Slider.background"));
         slider.setForeground(UIManager.getColor("Slider.foreground"));
         slider.setBorder(UIManager.getBorder("Slider.border"));*/

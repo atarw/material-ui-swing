@@ -108,7 +108,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      * - UIManager.getBorder("TaskPane.border"); should be a border empty
      * - new ContentPaneBorder(borderColor); personal implementation inside this class
      * - the borderColor propriety should be call inside this method because I have an color wrong is call the
-     * same code inside the installUI. TODO I will try to find a real motivation
+     * same code inside the installUI.
      * <p>
      * not call super because there is a problem with the border configuration, the border don't have the UIManager but
      * is created an static border with space = 10 in all direction

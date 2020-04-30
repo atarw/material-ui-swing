@@ -56,11 +56,11 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 
 	@Override
 	public void uninstallUI(JComponent c) {
-		JMenuBar menuBar = (JMenuBar) c;
+		/*JMenuBar menuBar = (JMenuBar) c;
 		menuBar.setFont (null);
 		menuBar.setBackground (null);
 		menuBar.setBorder (null);
-		menuBar.setForeground (null);
+		menuBar.setForeground (null);*/
 
 		super.uninstallUI(c);
 	}

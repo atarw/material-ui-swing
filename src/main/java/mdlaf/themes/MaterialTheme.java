@@ -24,12 +24,7 @@
 package mdlaf.themes;
 
 import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.IconUIResource;
-import javax.swing.plaf.InsetsUIResource;
-import java.awt.*;
+import javax.swing.plaf.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -110,6 +105,9 @@ public interface MaterialTheme {
     ColorUIResource getSelectedForegroundComboBox();
 
     BorderUIResource getBorderComboBox();
+
+    BorderUIResource getBorderItemComboBox();
+
 
     boolean getMouseHoverEnableComboBox();
 
@@ -388,6 +386,10 @@ public interface MaterialTheme {
 
     IconUIResource getNoCollapsedTaskPane();
 
+    boolean getMouseHoverEnableTaskPane();
+
+    int getArchTaskPane();
+
     //---------------------------------------------------
     //Proprieties JList
     ColorUIResource getSelectionBackgroundList();
@@ -482,6 +484,8 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setArchTaskPane(int archTaskPane);
+
     void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);
 
     void setLeafIconTree(IconUIResource leafIconTree);

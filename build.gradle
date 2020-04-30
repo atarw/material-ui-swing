@@ -31,12 +31,10 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
     
-    testCompile name: 'DarkStackOverflowTheme-0.1'
+    //testCompile name: 'DarkStackOverflowTheme-0.1'
     
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
-    //testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
-
 }
 
 allprojects {
@@ -52,7 +50,7 @@ allprojects {
 }
 
 jar {
-    baseName = project.name + '-' + VERSION
+    archiveBaseName = project.name + '-' + VERSION
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }

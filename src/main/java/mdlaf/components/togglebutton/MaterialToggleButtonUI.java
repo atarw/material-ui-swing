@@ -120,7 +120,6 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     }
 
     @Override
-    //TODO I'm working here
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
 

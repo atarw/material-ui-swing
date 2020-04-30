@@ -33,9 +33,11 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.concurrent.ForkJoinPool;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 
 /**
@@ -109,7 +111,12 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         this.configureLocalArrowButton(arrowButton);
     }
 
-
+    @Override
+    protected ComboPopup createPopup() {
+        BasicComboPopup comboPopup = new BasicComboPopup(comboBox);
+        comboPopup.setBorder(UIManager.getBorder("ComboBox[listItem].border"));
+        return comboPopup;
+    }
 
     @Override
     public void unconfigureArrowButton() {

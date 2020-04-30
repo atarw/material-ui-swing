@@ -45,16 +45,13 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
     private int[] forwardDeltas, backwardDeltas;
     private JComponent component;
     private Timer timer;
+    //TODO remove wrapper
     private WrapperInformationsButton wrapperInformationsButton;
 
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
         //the code  !component.isEnabled() is commented because if the button born disabled
         //the mouse hover will never install
-        if (component == null /*|| !component.isEnabled()*/) {
-            return;
-        }
-        if (component.getCursor().getType() == Cursor.WAIT_CURSOR) {
-            //TODO this is an refactoring
+        if (component == null /*|| !component.isEnabled()*/ || component.getCursor().getType() == Cursor.WAIT_CURSOR) {
             return;
         }
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

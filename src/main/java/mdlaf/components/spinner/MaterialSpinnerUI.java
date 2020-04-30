@@ -121,7 +121,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         if (arrowButton == null) {
             return;
         }
-        arrowButton.setOpaque(true);
+        //arrowButton.setOpaque(true);
         arrowButton.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
         if (UIManager.getBoolean("Spinner.mouseHoverEnabled")) {
             arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("Spinner.mouseHoverColor")));

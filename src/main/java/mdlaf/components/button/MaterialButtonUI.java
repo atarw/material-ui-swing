@@ -116,16 +116,16 @@ public class MaterialButtonUI extends BasicButtonUI {
         super.uninstallUI(c);
 
         AbstractButton button = (AbstractButton) c;
-        button.setBorder(null);
+        //button.setBorder(null);
         foreground = null;
         background = null;
         disabledBackground = null;
         disabledForeground = null;
         defaultBackground = null;
         defaultForeground = null;
-        button.setBackground(null);
-        button.setForeground(null);
-        button.setCursor(null);
+        //button.setBackground(null);
+        //button.setForeground(null);
+        button.setCursor(Cursor.getDefaultCursor());
     }
 
     @Override
@@ -184,7 +184,6 @@ public class MaterialButtonUI extends BasicButtonUI {
      * @param c Component Object, rappresent the button, if possible use this object or the propriety
      *          called button inside this class
      */
-    //TODO tested this
     protected void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D graphics = (Graphics2D) g.create();
@@ -421,7 +420,7 @@ public class MaterialButtonUI extends BasicButtonUI {
                     button.setForeground(foreground);
                 }
             }
-            /* TODO but on mouse hover fixed but I open another bug, now doesn't is possible personalize the background
+            /* TODO review this code
             There is an bug inside this, so the mouse hover called setBackground of the component
             and this change the background color.
             I do remove this bug but I need to restore this code because isn't possible work with the personal
@@ -443,8 +442,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     /**
-     * This Internal class is used to send feedback to mouse hover inside the JButton
-     * With this solution I can try to fix the issues on mouse hover t JButton.
+     * This Internal class is used to send feedback when the mouse is hover the component.
+     * With this solution I can know when the mouse is hover and I can jump the previous if-else.
      */
     protected class MaterialButtonMouseListener implements MouseListener, MouseMotionListener {
 

@@ -128,7 +128,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         shadow = null;
         lightHighlight = null;
 
-        super.uninstallDefaults();
         super.uninstallUI(c);
     }
 
@@ -189,7 +188,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        //TODO Should be the cause of StackOverflowException
         if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
             System.out.println(getClass().getCanonicalName());
             mouseHoverTab = new MaterialMouseHoverTab(rects);
@@ -428,7 +426,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     /**
      * TODO change the mouse hover effect, should be throws the StackOverflowException
-     *
      * @param tabIndex
      */
     protected void installMouseHover(int tabIndex) {
@@ -565,6 +562,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     //TODO I will work on this
+
+    /**
+     * Structure to implement the Material arrow.
+     */
     protected class MaterialArrowButton extends BasicArrowButton implements UIResource,
             SwingConstants {
 

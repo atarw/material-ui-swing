@@ -66,10 +66,6 @@ public class MaterialMenuUI extends BasicMenuUI {
 		//menu.setForeground (UIManager.getColor ("Menu.foreground"));
 		//menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		/*if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO testing
-			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.red));
-		}*/
-
 	}
 
 	@Override
@@ -82,8 +78,6 @@ public class MaterialMenuUI extends BasicMenuUI {
 		menuItem.setCursor(Cursor.getDefaultCursor());
 
 		c.removeMouseListener(mouseHover);
-//		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
-
 		super.uninstallUI(menuItem);
 	}
 
@@ -94,7 +88,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){
 			c.addMouseListener(mouseHover);
 		}
 		return super.createChangeListener(c);

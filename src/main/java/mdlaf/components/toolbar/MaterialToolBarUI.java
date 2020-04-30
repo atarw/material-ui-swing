@@ -46,7 +46,7 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JToolBar toolBar = (JToolBar) c;
-//TODO support this componenet
+		//TODO support this componenet
 		/*toolBar.setFont (UIManager.getFont ("ToolBar.font"));
 		toolBar.setBackground (UIManager.getColor ("ToolBar.background"));
 		toolBar.setForeground (UIManager.getColor ("ToolBar.foreground"));
