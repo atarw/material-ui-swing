@@ -1,4 +1,4 @@
-package integration.gui.mock;
+package integration.gui.mock.component;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;

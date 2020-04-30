@@ -127,13 +127,15 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         borderToolBar = MaterialBorders.OCEAN_LINE_BORDER;
 
-        borderDialogRootPane = MaterialBorders.OCEAN_LINE_BORDER;
+        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = MaterialBorders.OCEAN_LINE_BORDER;
 
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = MaterialBorders.OCEAN_LINE_BORDER;
-        this.borderTableHeader = MaterialBorders.OCEAN_LINE_BORDER;
+        this.borderTableHeader = new BorderUIResource(
+                new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
+                        true, true, true, true));
 
         super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
     }

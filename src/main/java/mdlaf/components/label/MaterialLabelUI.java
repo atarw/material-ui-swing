@@ -32,6 +32,10 @@ import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
 /**
+ * The don't set your personal opaque value at the component because
+ * This component is used in a lot other component and you can broke somethings.
+ * Stack Overflow https://stackoverflow.com/a/2452381/10854225
+ *
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
@@ -44,25 +48,22 @@ public class MaterialLabelUI extends BasicLabelUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        JLabel label = (JLabel) c;
-        //TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
-        //and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
+        //JLabel label = (JLabel) c;
         //label.setOpaque(UIManager.getBoolean("Label.opaque"));
-        label.setFont(UIManager.getFont("Label.font"));
-        label.setBackground(UIManager.getColor("Label.background"));
-        label.setForeground(UIManager.getColor("Label.foreground"));
-        label.setBorder(UIManager.getBorder("Label.border"));
+        //label.setFont(UIManager.getFont("Label.font"));
+        //label.setBackground(UIManager.getColor("Label.background"));
+        //label.setForeground(UIManager.getColor("Label.foreground"));
+        //label.setBorder(UIManager.getBorder("Label.border"));
     }
 
     @Override
     public void uninstallUI(JComponent c) {
 
         JLabel label = (JLabel) c;
-        label.setFont(null);
+      /*  label.setFont(null);
         label.setBackground(null);
         label.setForeground(null);
-        label.setBorder(null);
+        label.setBorder(null);*/
 
         super.uninstallUI(c);
     }

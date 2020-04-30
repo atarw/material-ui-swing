@@ -23,6 +23,8 @@
  */
 package mdlaf.components.optionpane;
 
+import mdlaf.utils.MaterialImageFactory;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
@@ -39,14 +41,10 @@ public class MaterialOptionPaneUI extends BasicOptionPaneUI {
     }
 
     @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
-    }
-
-    @Override
     protected Icon getIconForType(int messageType) {
         if(!UIManager.getBoolean("OptionPane.enableIcon")){
-            return null;
+            //Insert icon white because without icon icon the JOptionPane is paint wrong
+            return MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BLANK);
         }
         return super.getIconForType(messageType);
     }

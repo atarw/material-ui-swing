@@ -29,6 +29,7 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
 import java.awt.*;
+import java.util.Date;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -48,10 +49,10 @@ public class MaterialTableUI extends BasicTableUI {
 		//table = (JTable) c;
 		table.setOpaque (UIManager.getBoolean("Table.opaque"));
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
-		table.setBackground (UIManager.getColor ("Table.background"));
-		table.setForeground (UIManager.getColor ("Table.foreground"));
-		table.setFont (UIManager.getFont ("Table.font"));
-		table.setBorder (UIManager.getBorder ("Table.border"));
+		//table.setBackground (UIManager.getColor ("Table.background"));
+		//table.setForeground (UIManager.getColor ("Table.foreground"));
+		//table.setFont (UIManager.getFont ("Table.font"));
+		//table.setBorder (UIManager.getBorder ("Table.border"));
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
 		table.setSelectionBackground (UIManager.getColor ("Table.selectionBackground"));
 		table.setFocusable (UIManager.getBoolean ("Table.focusable"));
@@ -80,15 +81,15 @@ public class MaterialTableUI extends BasicTableUI {
 	protected void uninstallDefaults() {
 		super.uninstallDefaults();
 
-		table.setSelectionForeground (null);
-		table.setBackground (null);
-		table.setForeground (null);
-		table.setFont (null);
-		table.setBorder (null);
-		table.setSelectionBackground (null);
+		//table.setSelectionForeground (null);
+		//table.setBackground (null);
+		//table.setForeground (null);
+		//table.setFont (null);
+		//table.setBorder (null);
+		//table.setSelectionBackground (null);
 
-		table.removeEditor();
-		table.setDefaultRenderer(Object.class, null);
+		//table.removeEditor();
+		//table.setDefaultRenderer(Object.class, null);
 	}
 
 	@Override
@@ -115,5 +116,7 @@ public class MaterialTableUI extends BasicTableUI {
 		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
 		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Date.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Long.class, new MaterialTableCellRenderer());
 	}
 }

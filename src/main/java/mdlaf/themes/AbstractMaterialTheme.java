@@ -110,6 +110,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected BorderUIResource borderComboBox;
 
+    protected BorderUIResource borderItemComboBox;
+
     //---------------------------------------------------
     //Proprieties All component of the JMenu
     protected ColorUIResource menuBackground;
@@ -292,6 +294,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected IconUIResource noCollapsedTaskPane;
 
+    protected int archTaskPane;
+
     //---------------------------------------------------
     //Proprieties JList
     protected ColorUIResource selectionBackgroundList;
@@ -410,44 +414,46 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected void installBorders(){
         //button border
-        buttonBorder = new BorderUIResource(BorderFactory.createEmptyBorder(8, 12, 8, 12));
-        borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
-        borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
-        borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
-        arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createLineBorder(arrowButtonBackgroundSpinner));
-        borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
-        arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
-        borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
-        cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
+        this.buttonBorder = new BorderUIResource(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+        this.borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        this.borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
+        this.borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
+        this.borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
+        this.arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createLineBorder(arrowButtonBackgroundSpinner));
+        this.borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
+        this.arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
+        this.borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        this.cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                                         MaterialBorders.LIGHT_LINE_BORDER,
                                         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        borderToolBar = MaterialBorders.LIGHT_LINE_BORDER;
-        borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
-        borderTaskPane = borderPanel;
-        focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
-        borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
+        this.borderToolBar = MaterialBorders.LIGHT_LINE_BORDER;
+        this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
+        this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0,1,0,1));;
+        this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
+        this.borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
                                          BorderFactory.createEmptyBorder(2, 5, 2, 5)));
 
-        tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
-        selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+        this.tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+        this.selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
 
-        borderFrameRootPane = new BorderUIResource(BorderFactory.createEmptyBorder());
-        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
+        this.borderFrameRootPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+        this.borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
-        borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
+        this.borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
 
-        withoutIconSelectedBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+        this.withoutIconSelectedBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 10, 5, 10),
                 BorderFactory.createLineBorder(withoutIconSelectedBackgroundToggleButton, 1)));
 
-        withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+        this.withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 10, 5, 10),
                 BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
 
-        dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+        this.dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
 
-        borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
+        this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
+
+        this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
     }
 
     //getter
@@ -584,6 +590,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public BorderUIResource getBorderComboBox() {
         return borderComboBox;
+    }
+
+    public BorderUIResource getBorderItemComboBox() {
+        return borderItemComboBox;
     }
 
     @Override
@@ -1079,6 +1089,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return noCollapsedTaskPane;
     }
 
+    public boolean getMouseHoverEnableTaskPane(){return true;}
+
+    @Override
+    public int getArchTaskPane() {
+        return archTaskPane;
+    }
+
     //---------------------------------------------------
     //Proprieties JList
     public ColorUIResource getSelectionBackgroundList() {
@@ -1249,6 +1266,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setBorderItemComboBox(BorderUIResource borderItemComboBox) {
+        this.borderItemComboBox = borderItemComboBox;
+    }
+
+    public void setArchTaskPane(int archTaskPane) {
+        this.archTaskPane = archTaskPane;
+    }
+
     public void setTitleColorTaskPane(ColorUIResource titleColorTaskPane) {
         this.titleColorTaskPane = titleColorTaskPane;
     }

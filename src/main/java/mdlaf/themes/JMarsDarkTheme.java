@@ -24,6 +24,7 @@
 package mdlaf.themes;
 
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
+import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialFontFactory;
@@ -145,13 +146,15 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
                 BorderFactory.createEmptyBorder(5,10,5,10)));
         borderToolBar = borderSpinner;
 
-        borderDialogRootPane = borderSpinner;
+        borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
         borderProgressBar = borderSpinner;
 
         this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
         this.borderTable = borderSpinner;
-        this.borderTableHeader = borderSpinner;
+        this.borderTableHeader = new BorderUIResource(
+                new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
+                        true, true, true, true));
 
         super.borderTitledBorder = new BorderUIResource(BorderFactory.createLineBorder(MaterialColors.WHITE));
 

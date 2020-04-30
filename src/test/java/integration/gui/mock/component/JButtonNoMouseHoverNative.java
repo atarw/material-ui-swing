@@ -21,31 +21,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package integration.gui.mock;
+package integration.gui.mock.component;
 
-import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-public class PersonalToggleButtonTheme extends MaterialLiteTheme {
+public class JButtonNoMouseHoverNative extends JButton {
 
-    public PersonalToggleButtonTheme() {
-        this.withoutIconToggleButton = true;
+    public JButtonNoMouseHoverNative() {
+    }
+
+    public JButtonNoMouseHoverNative(Icon icon) {
+        super(icon);
+    }
+
+    public JButtonNoMouseHoverNative(String text) {
+        super(text);
+    }
+
+    public JButtonNoMouseHoverNative(Action a) {
+        super(a);
+    }
+
+    public JButtonNoMouseHoverNative(String text, Icon icon) {
+        super(text, icon);
     }
 
     @Override
-    public void installUIDefault(UIDefaults table) {
-        super.installUIDefault(table);
+    protected void init(String text, Icon icon) {
+        super.init(text, icon);
+        setUI(new JButtonNoMouseHoverUI());
     }
 
-    @Override
-    protected void installIcons() {
-        super.installIcons();
+    private static class JButtonNoMouseHoverUI extends MaterialButtonUI{
 
-        this.unselectedIconToggleButton = null;
-        this.selectedIconToggleButton = null;
+        @Override
+        public void installUI(JComponent c) {
+            mouseHoverEnabled = false;
+            super.installUI(c);
+            if (mouseHoverEnabled != null) {
+                JButton b = (JButton) button;
+                if (!b.isDefaultButton()) {
+                    button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.COSMO_DARK_GRAY));
+                }
+            }
+        }
     }
 }

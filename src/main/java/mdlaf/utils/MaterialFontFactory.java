@@ -23,6 +23,8 @@
  */
 package mdlaf.utils;
 
+import sun.font.AttributeMap;
+import sun.font.AttributeValues;
 import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
@@ -40,7 +42,7 @@ import java.util.Properties;
  */
 public class MaterialFontFactory {
 
-    private static final Map<TextAttribute, Object> fontSettings = new HashMap<TextAttribute, Object>();
+    private static final Map<TextAttribute, Object> fontSettings = new AttributeMap(new AttributeValues());
 
     public static final MaterialTypeFont REGULAR = MaterialTypeFont.REGULAR;
     public static final MaterialTypeFont BOLD = MaterialTypeFont.BOLD;
@@ -71,6 +73,8 @@ public class MaterialFontFactory {
     protected Properties properties = new Properties();
     protected Map<String, FontUIResource> cacheFont = new HashMap<>();
     protected int defaultSize = 12;
+    protected boolean withPersonalSettings = true;
+
 
     private MaterialFontFactory() {
         try {
@@ -80,9 +84,21 @@ public class MaterialFontFactory {
         }
     }
 
+    public FontUIResource getFontWithPath(String path){
+        return this.getFontWithPath(path, this.withPersonalSettings);
+    }
+
+    public FontUIResource getFontWithStream(InputStream stream){
+        return this.getFontWithStream(stream, this.withPersonalSettings);
+    }
+
     public FontUIResource getFont(MaterialTypeFont typeFont){
+        return this.getFont(typeFont, this.withPersonalSettings);
+    }
+
+    public FontUIResource getFont(MaterialTypeFont typeFont, boolean withPersonalSettings){
         if(typeFont == null){
-            throw new IllegalArgumentException("Argument null");
+            throw new IllegalArgumentException("\n- Parameter type font null.\n");
         }
         String typeFontString = typeFont.toString();
         if(cacheFont.containsKey(typeFontString)){
@@ -94,19 +110,19 @@ public class MaterialFontFactory {
         return new FontUIResource(font);
     }
 
-    public FontUIResource getFontWithPath(String path){
+    public FontUIResource getFontWithPath(String path, boolean withPersonalSettings){
         if(path == null || path.isEmpty()){
-            throw new IllegalArgumentException("The path to load personal fort is null or empty");
+            throw new IllegalArgumentException("\n- The path to load personal fort is null or empty");
         }
         InputStream stream = getClass().getResourceAsStream(path);
-        return loadFont(stream);
+        return loadFont(stream, withPersonalSettings);
     }
 
-    public FontUIResource getFontWithStream(InputStream stream){
+    public FontUIResource getFontWithStream(InputStream stream, boolean withPersonalSettings){
         if(stream == null){
-            throw new IllegalArgumentException("The stream to load personal fort is null");
+            throw new IllegalArgumentException("\n- The stream to load personal fort is null");
         }
-        return loadFont(stream);
+        return loadFont(stream, withPersonalSettings);
     }
 
     /**
@@ -114,21 +130,34 @@ public class MaterialFontFactory {
      * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
      * @author https://github.com/vincenzopalazzo
      */
-    private FontUIResource loadFont(InputStream inputStream) {
-        float size = defaultSize * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
-        if (fontSettings.isEmpty()) {
+    private FontUIResource loadFont(InputStream inputStream, boolean withPersonalSettings) {
+        float size = this.doOptimizingDimensionFont(this.defaultSize);
+        if (withPersonalSettings && fontSettings.isEmpty()) {
             fontSettings.put (TextAttribute.SIZE, size);
-            //fontSettings.put (TextAttribute.SIZE, new Float( 14f));
             fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
+            //int style = whatIsTypeFont();
+            //fontSettings.put(TextAttribute.FAMILY, (style & ~0x03) == 0 ? style : 0);
         }
-
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(fontSettings);
+            Font font;
+            if(withPersonalSettings){
+                font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(fontSettings);
+                return new FontUIResource(font);
+            }
+            font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(size);
+            System.out.println(font);
             return new FontUIResource(font);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
             throw new RuntimeException("Font " + inputStream.toString() + " wasn't loaded");
         }
+    }
+
+    public float doOptimizingDimensionFont(int dimension){
+        if(defaultSize <= 0){
+            throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
+        }
+        return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
     }
 
     /**
@@ -138,7 +167,19 @@ public class MaterialFontFactory {
      * @return
      */
     public FontUIResource doOptimizingCode(JComponent component, Font font){
-        //TODO if is null?
+        if(component == null || font == null){
+            String messageError;
+            if(component == null){
+                messageError = "- Parameter component null.";
+                if(font == null){
+                    messageError += "\n- Parameter font null";
+                }
+            }else{
+                messageError = "- Parameter font null";
+            }
+            messageError += "\nPlease insert an correct value\n";
+            throw new IllegalArgumentException(messageError);
+        }
         FontMetrics m = component.getGraphics().getFontMetrics(font); // g is your current Graphics object
         float totalSize= defaultSize * (m.getAscent() + m.getDescent()) / m.getAscent();
         FontUIResource fontOptimized= new FontUIResource(font.deriveFont(totalSize));

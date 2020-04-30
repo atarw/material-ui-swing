@@ -47,9 +47,9 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setFont (UIManager.getFont ("RadioButton.font"));
+		/*radioButton.setFont (UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
-		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));
+		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));*/
 		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
 		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -58,22 +58,17 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		c.setFont (null);
+	/*	c.setFont (null);
 		c.setBackground (null);
 		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);
+		c.setBorder (null);*/
+		c.setCursor(Cursor.getDefaultCursor());
 
-		JRadioButton radioButton = (JRadioButton) c;
+		/*JRadioButton radioButton = (JRadioButton) c;
 		radioButton.setIcon(null);
-		radioButton.setSelectedIcon(null);
+		radioButton.setSelectedIcon(null);*/
 
 		super.uninstallUI(c);
-	}
-
-	@Override
-	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
 	@Override

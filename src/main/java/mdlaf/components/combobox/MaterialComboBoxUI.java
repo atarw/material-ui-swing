@@ -33,9 +33,11 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.concurrent.ForkJoinPool;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 
 /**
@@ -60,11 +62,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        comboBox.setFont(UIManager.getFont("ComboBox.font"));
+        //comboBox.setFont(UIManager.getFont("ComboBox.font"));
         background = UIManager.getColor("ComboBox.background");
-        comboBox.setBackground(background);
-        comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
-        comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
+        //comboBox.setBackground(background);
+        //comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
+        //comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));
@@ -76,16 +78,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     public void uninstallUI(JComponent c) {
 
         // comboBox.setFont(null);
-        comboBox.setBackground(null);
-        comboBox.setForeground(null);
-        comboBox.setBorder(null);
-        comboBox.setLightWeightPopupEnabled(true);
-        comboBox.setCursor(null);
-        comboBox.setRenderer(null);
-        comboBox.setEditor(null);
+        //comboBox.setBackground(null);
+        //comboBox.setForeground(null);
+        //comboBox.setBorder(null);
+        //comboBox.setLightWeightPopupEnabled(true);
+        //comboBox.setCursor(null);
+        //comboBox.setRenderer(null);
+        //comboBox.setEditor(null);
 
         comboBox.removeFocusListener(focusListener);
-        MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
+        //MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
 
         super.uninstallUI(comboBox);
     }
@@ -109,7 +111,12 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         this.configureLocalArrowButton(arrowButton);
     }
 
-
+    @Override
+    protected ComboPopup createPopup() {
+        BasicComboPopup comboPopup = new BasicComboPopup(comboBox);
+        comboPopup.setBorder(UIManager.getBorder("ComboBox[listItem].border"));
+        return comboPopup;
+    }
 
     @Override
     public void unconfigureArrowButton() {

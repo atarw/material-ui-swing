@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
+import integration.gui.mock.component.PersonalToggleButtonTheme;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;

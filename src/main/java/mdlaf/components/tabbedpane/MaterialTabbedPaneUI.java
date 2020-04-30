@@ -54,7 +54,6 @@ import mdlaf.animation.MaterialMouseHover;
 import mdlaf.components.taskpane.MaterialTaskPaneUI;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -93,16 +92,16 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.installUI(c);
 
         tabPane.setOpaque(false);
-        tabPane.setFont(UIManager.getFont("TabbedPane.font"));
-        tabPane.setBackground(UIManager.getColor("TabbedPane.background"));
+       // tabPane.setFont(UIManager.getFont("TabbedPane.font"));
+        //tabPane.setBackground(UIManager.getColor("TabbedPane.background"));
         this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
-        tabPane.setForeground(foreground);
+        //tabPane.setForeground(foreground);
         this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
         this.disabledForeground = UIManager.getColor("TabbedPane.disabledForeground");
         this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
         this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
         this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
-        tabPane.setBorder(UIManager.getBorder("TabbedPane.border"));
+        //tabPane.setBorder(UIManager.getBorder("TabbedPane.border"));
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
@@ -119,17 +118,16 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        JTabbedPane tabbedPane = (JTabbedPane) c;
-        tabbedPane.setFont(null);
+       // JTabbedPane tabbedPane = (JTabbedPane) c;
+       /* tabbedPane.setFont(null);
         tabbedPane.setBackground(null);
         tabbedPane.setForeground(null);
-        tabbedPane.setBorder(null);
+        tabbedPane.setBorder(null);*/
 
         darkShadow = null;
         shadow = null;
         lightHighlight = null;
 
-        super.uninstallDefaults();
         super.uninstallUI(c);
     }
 
@@ -190,8 +188,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
         super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-        //TODO Should be the cause of StackOverflowException
         if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
+            System.out.println(getClass().getCanonicalName());
             mouseHoverTab = new MaterialMouseHoverTab(rects);
             tabPane.addMouseMotionListener(mouseHoverTab);
         }
@@ -428,7 +426,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     /**
      * TODO change the mouse hover effect, should be throws the StackOverflowException
-     *
      * @param tabIndex
      */
     protected void installMouseHover(int tabIndex) {
@@ -495,7 +492,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            MaterialLogger.getInstance().debug(LOG_TAG, "Called method mouseMoved inside MaterialMouseHoverTab class");
             JComponent mouseGenerate = (JComponent) e.getSource();
             if (!mouseGenerate.isEnabled()) {
                 return;
@@ -566,6 +562,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     //TODO I will work on this
+
+    /**
+     * Structure to implement the Material arrow.
+     */
     protected class MaterialArrowButton extends BasicArrowButton implements UIResource,
             SwingConstants {
 

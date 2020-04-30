@@ -1,8 +1,7 @@
-<!--
-/**
+/*
  * MIT License
  *
- * Copyright (c) 2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
--->
-<configuration scan="true">
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+package integration.gui.mock.component;
 
-  <root level="INFO">
-    <appender-ref ref="STDOUT" />
-  </root>
+import mdlaf.themes.MaterialLiteTheme;
 
-  <logger name="mdlaf" level="INFO"/>
+import javax.swing.*;
 
-</configuration>
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
+public class PersonalToggleButtonTheme extends MaterialLiteTheme {
+
+    public PersonalToggleButtonTheme() {
+        this.withoutIconToggleButton = true;
+    }
+
+    @Override
+    public void installUIDefault(UIDefaults table) {
+        super.installUIDefault(table);
+    }
+
+    @Override
+    protected void installIcons() {
+        super.installIcons();
+
+        this.unselectedIconToggleButton = null;
+        this.selectedIconToggleButton = null;
+    }
+}

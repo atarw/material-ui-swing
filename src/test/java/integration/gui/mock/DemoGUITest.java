@@ -23,8 +23,12 @@
  */
 package integration.gui.mock;
 
+import integration.gui.mock.component.DemoPanelWithTabbedPane;
+import integration.gui.mock.component.PersonalButtonUI;
+import integration.gui.mock.component.PersonalMouseHoverButtonUI;
+import integration.gui.mock.component.TableModelSecondPanel;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +41,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -48,11 +53,11 @@ public class DemoGUITest extends JFrame {
 
     static {
         try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new JMarsDarkTheme()));
-
-            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+
+            UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -114,6 +119,9 @@ public class DemoGUITest extends JFrame {
     JButton buttonOneMouseHoverBug = new JButton();
     JButton buttonTwoMouseHoverBug = new JButton();
 
+    //TabbedPane test mouse hover on Tab
+    JPanel tabbedPanetest = new DemoPanelWithTabbedPane();
+
 
     public JMenuItem getMaterialDark() {
         return materialDark;
@@ -170,7 +178,8 @@ public class DemoGUITest extends JFrame {
 
         initJMenuBar();
 
-        table.setModel(new TableModelSecondPanel());
+        table = new JTable();
+        table.setModel(new TableModelSecondPanel(new File(System.getProperty("user.home"))));
 
         enableButton.setEnabled(false);
         enableButton.setAction(new AbstractAction("Enable") {
@@ -216,19 +225,17 @@ public class DemoGUITest extends JFrame {
         initStyleSplitPanePanels();
         initLayoutMouseHoverPanelFive();
 
-
         this.getRootPane().setDefaultButton(buttonDefault);
 
         tabbedPane.add(panelOne, "Panel One");
-        tabbedPane.add(panelTwo, "Panel two");
+        tabbedPane.add(panelTwo, "Table Home Dir");
         tabbedPane.add(panelToggleButton, "ToggleButtons");
         tabbedPane.add(personalButtonUIPanel, "ButtonUI");
         tabbedPane.add(splitPane, "SplitPane");
         tabbedPane.add(mouseHoverPanel, "MouseHover Bug");
-        tabbedPane.add(new JPanel(), "Panel 7");
+        tabbedPane.add(tabbedPanetest, "TabbedPane Test");
         tabbedPane.add(new JPanel(), "Panel 8");
         tabbedPane.add(new JPanel(), "Panel 9");
-        tabbedPane.setEnabledAt(6, false);
         tabbedPane.setEnabledAt(7, false);
         tabbedPane.setEnabledAt(7, false);
         this.setContentPane(tabbedPane);

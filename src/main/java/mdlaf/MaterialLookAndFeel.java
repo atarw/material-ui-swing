@@ -24,16 +24,15 @@
 package mdlaf;
 
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
-import mdlaf.components.colorchooser.MaterialColorChooser;
-import mdlaf.components.rootpane.MaterialRootPaneUI;
-import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
+import mdlaf.components.colorchooser.MaterialColorChooser;
 import mdlaf.components.combobox.MaterialComboBoxUI;
 import mdlaf.components.editorpane.MaterialEditorPaneUI;
 import mdlaf.components.filechooser.MaterialFileChooserUI;
 import mdlaf.components.formattertextfield.MaterialFormattedTextFieldUI;
+import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.label.MaterialLabelUI;
 import mdlaf.components.list.MaterialListUI;
 import mdlaf.components.menu.MaterialMenuUI;
@@ -46,6 +45,7 @@ import mdlaf.components.popupmenu.MaterialPopupMenuUI;
 import mdlaf.components.progressbar.MaterialProgressBarUI;
 import mdlaf.components.radiobutton.MaterialRadioButtonUI;
 import mdlaf.components.radiobuttonmenuitem.MaterialRadioButtonMenuItemUI;
+import mdlaf.components.rootpane.MaterialRootPaneUI;
 import mdlaf.components.scrollbar.MaterialScrollBarUI;
 import mdlaf.components.separator.MaterialSeparatorUI;
 import mdlaf.components.slider.MaterialSliderUI;
@@ -67,7 +67,6 @@ import mdlaf.themes.MaterialTheme;
 import mdlaf.themes.exceptions.MaterialChangeThemeException;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
@@ -76,7 +75,6 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.lang.reflect.Method;
 
 /**
@@ -144,8 +142,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
             }
             return;
         }
-
-        throw new MaterialChangeThemeException("The look and feel setted not is MaterialLookAnfFeel");
+        throw new MaterialChangeThemeException("The look and feel set not is MaterialLookAnfFeel");
     }
 
     public MaterialLookAndFeel() {
@@ -259,7 +256,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Button[Default].mouseHoverColor", theme.getButtonDefaultBackgroundColorMouseHover());
         table.put("Button.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
         table.put("Button.mouseHoverEnable", theme.getMouseHoverButtonEnable());
-        table.put("Button.mouseHoverBorder", false); //if is true -> the mouse hover effect change the color to OnlyBorder, if false to all button
+        table.put("Button.mouseHoverBorder", false); //TODO if is true -> the mouse hover effect change the color to OnlyBorder, if false to all button
         table.put("Button.focusable", theme.getButtonFocusable());
         table.put("Button[focus].color", theme.getButtonFocusColor());
         table.put("Button.disabledText", theme.getButtonDisableTextColor());
@@ -281,6 +278,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.background", theme.getBackgroundPrimary());
         table.put("ComboBox.foreground", theme.getTextColor());
         table.put("ComboBox.border", theme.getBorderComboBox());
+        table.put("ComboBox[listItem].border", theme.getBorderItemComboBox());
         table.put("ComboBox.borderItems", new BorderUIResource(BorderFactory.createEmptyBorder(1, 2, 0, 1)));
         table.put("ComboBox.buttonBackground", theme.getBackgroundPrimary());
         table.put("ComboBox[button].border", BorderFactory.createLineBorder(theme.getBackgroundPrimary()));
@@ -301,9 +299,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Label.font", theme.getFontRegular());
         table.put("Label.background", theme.getBackgroundPrimary());
         table.put("Label.foreground", theme.getTextColor());
-        //TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
-        //and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
-       // table.put("Label.opaque", true);
         table.put("Label.disabledForeground", theme.getDisableTextColor());
         table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
@@ -311,7 +306,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Menu.border", theme.getBorderMenu());
         table.put("Menu.background", theme.getMenuBackground());
         table.put("Menu.foreground", theme.getMenuTextColor());
-        table.put("Menu.opaque", true);
         table.put("Menu.selectionBackground", theme.getMenuBackgroundMouseHover());
         table.put("Menu.selectionForeground", theme.getMenuTextColor());
         table.put("Menu.disabledForeground", theme.getMenuDisableBackground());
@@ -324,7 +318,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Menu[arrowIcon].height", theme.getMenuArrowHeight());
         table.put("Menu[arrowIcon].width", theme.getMenuArrowWidth());
 
-        table.put("MenuBar.font", MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD));
+        table.put("MenuBar.font", theme.getFontBold());
         table.put("MenuBar.background", theme.getMenuBackground());
         table.put("MenuBar.border", theme.getBorderMenuBar());
         table.put("MenuBar.foreground", theme.getMenuTextColor());
@@ -385,6 +379,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Slider.background", theme.getBackgroundPrimary());
         table.put("Slider.foreground", theme.getHighlightBackgroundPrimary());
         table.put("Slider.trackColor", theme.getTrackColorSlider());
+        table.put("Slider.disable", MaterialColors.COSMO_DARK_GRAY);
         table.put("Slider[halo].color", theme.getHaloColorSlider());
         table.put("Slider.border", theme.getBorderSlider());
 
@@ -427,7 +422,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
         table.put("TabbedPane[focus].margin", 5);
 
-
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
         table.put("Table.background", theme.getBackgroundTable());
@@ -451,7 +445,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table.focusCellHighlightBorder", new BorderUIResource(BorderFactory.createEmptyBorder()));
         table.put("Table.showVerticalLines", false);
         table.put("Table.showHorizontalLines", false);
-        table.put("Table.intercellSpacing", new java.awt.Dimension(0, 0));
+        table.put("Table.intercellSpacing", new Dimension(0, 0));
 
         table.put("TableHeader.background", theme.getBackgroundTableHeader());
         table.put("TableHeader.foreground", theme.getForegroundTableHeader());
@@ -468,7 +462,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextArea.font", theme.getFontBold());
         table.put("TextArea.caretForeground", theme.getTextColor());
 
-        table.put("ToggleButton.border", BorderFactory.createEmptyBorder());
+        table.put("ToggleButton.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
         table.put("ToggleButton.font", theme.getFontRegular());
         table.put("ToggleButton.background", theme.getBackgroundPrimary());
         table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());
@@ -576,6 +570,22 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("PasswordField.focusInputMap", fieldInputMap);
         table.put("PasswordField.caretForeground", theme.getTextColor());
 
+        table.put("FormattedTextField.background", theme.getBackgroundTextField());
+        table.put("FormattedTextField.foreground", theme.getTextColor());
+        table.put("FormattedTextField.font", theme.getFontRegular());
+        table.put("FormattedTextField.disabledBackground", theme.getDisabledBackgroudnTextField());
+        table.put("FormattedTextField.disabledForeground", theme.getDisabledForegroundTextField());
+        table.put("FormattedTextField.inactiveForeground", theme.getInactiveForegroundTextField());
+        table.put("FormattedTextField.inactiveBackground", theme.getInactiveBackgroundTextField());
+        table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
+        table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
+        table.put("FormattedTextField[Line].inactiveColor", theme.getInactiveColorLineTextField());
+        table.put("FormattedTextField[Line].activeColor", theme.getActiveColorLineTextField());
+        table.put("FormattedTextField.border", theme.getBorderTextField());
+        //table.put("TextField.margin", new InsetsUIResource(5,15,5,15));
+        table.put("FormattedTextField.focusInputMap", fieldInputMap);
+        table.put("FormattedTextField.caretForeground", theme.getTextColor());
+
         table.put("TitledBorder.border", theme.getBorderTitledBorder());
         table.put("TitledBorder.font", theme.getFontMedium());
         table.put("TitledBorder.titleColor", theme.getColorTextTitledBorder());
@@ -593,21 +603,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TaskPane.contentBackground", theme.getContentBackgroundTaskPane());
         table.put("TaskPane.yesCollapsed", theme.getYesCollapsedTaskPane());
         table.put("TaskPane.noCollapsed", theme.getNoCollapsedTaskPane());
-        table.put("TaskPane.mouseHover", true);
-        table.put("TaskPane.arch", 15);
-
-        table.put("FormattedTextField.background", theme.getBackgroundTextField());
-        table.put("FormattedTextField.foreground", theme.getTextColor());
-        table.put("FormattedTextField.inactiveForeground", theme.getInactiveForegroundTextField());
-        table.put("FormattedTextField.inactiveBackground", theme.getInactiveBackgroundTextField());
-        table.put("FormattedTextField.selectionBackground", theme.getSelectionBackgroundTextField());
-        table.put("FormattedTextField.selectionForeground", theme.getSelectionForegroundTextField());
-        table.put("FormattedTextField.border", theme.getBorderTextField());
-        table.put("FormattedTextField.caretForeground", theme.getTextColor());
+        table.put("TaskPane.mouseHover", theme.getMouseHoverEnableTaskPane());
+        table.put("TaskPane.arch", theme.getArcButton());
 
         table.put("List.background", theme.getBackgroundPrimary());
         table.put("List.foreground", theme.getTextColor());
-        table.put("List.border", MaterialBorders.LIGHT_SHADOW_BORDER);
+        table.put("List.border", theme.getBorderList());
         table.put("List.font", theme.getFontMedium());
         table.put("List.selectionBackground", theme.getSelectionBackgroundList());
         table.put("List.selectionForeground", theme.getSelectionForegroundList());
@@ -625,8 +626,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RootPane.warningDialogBorder", theme.getBorderDialogRootPane());
         table.put("RootPane.colorChooserDialogBorder", theme.getBackgroundPrimary());
 
-        //TODO not supported yet
-        //TODO exist an bug inside the icon
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.CROP_FREE,
                 theme.getTextColor()
@@ -640,12 +639,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
                 GoogleMaterialDesignIcons.REMOVE,
                 theme.getTextColor()
         ));
-        table.put("InternalFrame.activeTitleBackground", MaterialColors.COSMO_BLACK);
-        table.put("InternalFrame.activeTitleForeground", MaterialColors.BLACK);
-        table.put("InternalFrame.inactiveTitleBackground", MaterialColors.COSMO_BLACK);
-        table.put("InternalFrame.inactiveTitleForeground", MaterialColors.BLACK);
+        table.put("InternalFrame.activeTitleBackground", theme.getBackgroundPrimary());
+        table.put("InternalFrame.activeTitleForeground", theme.getTextColor());
+        table.put("InternalFrame.inactiveTitleBackground", theme.getBackgroundPrimary());
+        table.put("InternalFrame.inactiveTitleForeground", theme.getDisableTextColor());
         table.put("InternalFrame.titleFont", theme.getFontBold());
-        table.put("InternalFrame.background", MaterialColors.LIGHT_BLUE_500);
+        table.put("InternalFrame.background", theme.getBackgroundPrimary());
         table.put("InternalFrame.border", MaterialBorders.DEFAULT_SHADOW_BORDER);
 
         //This is for change the TitlePane
@@ -653,12 +652,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Material.inactiveCaption", theme.getMenuBackground());
         table.put("Material.activeCaptionText", theme.getTextColor());
         table.put("Material.inactiveCaptionText", theme.getDisableTextColor());
-        table.put("Material.activeCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);
-        table.put("Material.inactiveCaptionBorder", MaterialBorders.LIGHT_LINE_BORDER);
+        table.put("Material.activeCaptionBorder", new BorderUIResource(BorderFactory.createLineBorder(theme.getBackgroundPrimary())));
+        table.put("Material.inactiveCaptionBorder", new BorderUIResource(BorderFactory.createLineBorder(theme.getBackgroundPrimary())));
 
         table.put("OptionPane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.foreground", theme.getTextColor());
-        table.put("OptionPane.border", BorderFactory.createEmptyBorder());
+        table.put("OptionPane.border", new BorderUIResource(
+                BorderFactory.createLineBorder(theme.getBackgroundPrimary())
+        ));
         table.put("OptionPane.font", theme.getFontRegular());
         table.put("OptionPane.enableIcon", theme.getEnableIconOptionPane());
         table.put("OptionPaneUI.warningIcon", theme.getWarningIconOptionPane());
@@ -667,13 +668,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("OptionPaneUI.informationIcon", theme.getInformationIconOptionPane());
         table.put("OptionPane.errorDialog.titlePane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.errorDialog.titlePane.foreground", theme.getTextColor());
-        table.put("OptionPane.errorDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("OptionPane.errorDialog.titlePane.shadow", theme.getBackgroundPrimary());
         table.put("OptionPane.questionDialog.titlePane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.questionDialog.titlePane.foreground", theme.getTextColor());
-        table.put("OptionPane.questionDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("OptionPane.questionDialog.titlePane.shadow", theme.getBackgroundPrimary());
         table.put("OptionPane.warningDialog.titlePane.background", theme.getBackgroundPrimary());
         table.put("OptionPane.warningDialog.titlePane.foreground", theme.getTextColor());
-        table.put("OptionPane.warningDialog.titlePane.shadow", MaterialColors.COSMO_STRONG_GRAY);
+        table.put("OptionPane.warningDialog.titlePane.shadow", theme.getBackgroundPrimary());
         table.put("OptionPane.messageForeground", theme.getTextColor());
 
         table.put("FileChooser[icons].computer", theme.getIconComputerFileChooser());
@@ -690,8 +691,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ProgressBar.border", theme.getBorderProgressBar());
         table.put("ProgressBar.background", theme.getBackgroundProgressBar());
         table.put("ProgressBar.foreground", theme.getForegroundProgressBar());
-        //table.put("ProgressBar.horizontalSize", MaterialColors.COSMO_BLUE);
-        table.put("ProgressBar.verticalSize", 1);
 
         table.put("ColorChooser.background", theme.getBackgroundPrimary());
         table.put("ColorChooser.foreground", theme.getTextColor());
@@ -726,17 +725,12 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         call("uninitialize");
     }
 
-
     public MaterialTheme getTheme() {
         return theme;
     }
 
     public void setTheme(MaterialTheme theme) {
         this.theme = theme;
-    }
-
-    public static int getFocusAcceleratorKeyMask() {
-        return ActionEvent.ALT_MASK;
     }
 
     protected void call(String method) {

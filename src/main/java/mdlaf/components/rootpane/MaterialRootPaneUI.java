@@ -24,30 +24,13 @@
  */
 package mdlaf.components.rootpane;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import java.awt.LayoutManager2;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.Window;
+import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 import java.beans.PropertyChangeEvent;
-import java.security.PrivilegedExceptionAction;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -59,17 +42,17 @@ import javax.swing.UIManager;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRootPaneUI;
+import javax.swing.plaf.metal.MetalRootPaneUI;
 
 import mdlaf.components.titlepane.MaterialTitlePaneUI;
-import mdlaf.utils.MaterialLogger;
 
 /**
  * @author Terry Kellerman
- * The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
+ * // This code is inside the Open JDK
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialRootPaneUI extends BasicRootPaneUI {
-    //TODO refactoring this component
+
     protected static final String[] borderKeys = new String[]{
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
@@ -77,13 +60,12 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             "RootPane.fileChooserDialogBorder", "RootPane.questionDialogBorder",
             "RootPane.warningDialogBorder"
     };
+
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialRootPaneUI();
+    }
+
     protected Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-
-    protected enum CursorState {EXITED, ENTERED, NIL}
-
-    protected static final int CORNER_DRAG_WIDTH = 16;
-
-    protected static final int BORDER_DRAG_THICKNESS = 5;
 
     protected Window window;
 
@@ -98,7 +80,33 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     protected JRootPane root;
 
     private boolean dragging = false;
+
     private boolean resizing = false;
+
+    /**
+     * With this dimension is set the absolute space dragging
+     * What is the space inside the display/displays to move the component
+     */
+    protected Dimension dimensionDevices;
+
+    /**
+     * With this dimension is defined the dimension of dragging
+     * component
+     */
+    protected Dimension parentBounds;
+
+    public MaterialRootPaneUI() {
+        super();
+        int devideWithd = 0;
+        int deviceHeight = 0;
+        GraphicsDevice graphicDevices[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+        for (GraphicsDevice graphicsDevice : graphicDevices) {
+            devideWithd += graphicsDevice.getDisplayMode().getWidth();
+            deviceHeight += graphicsDevice.getDisplayMode().getHeight();
+        }
+        this.dimensionDevices = new Dimension(devideWithd, deviceHeight);
+        this.parentBounds = this.dimensionDevices;
+    }
 
     private void cancelResize(Window w) {
         if (resizing) {
@@ -108,7 +116,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
     }
 
-    private void setupDragMode(Window f) { }
+    protected void setupDragMode(Window f) {
+    }
 
     public void beginDraggingFrame(Window f) {
         setupDragMode(f);
@@ -118,27 +127,18 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         setBoundsForFrame(w, newX, newY, w.getWidth(), w.getHeight());
     }
 
-    public void endDraggingFrame(Window f) { }
+    public void endDraggingFrame(Window f) {
+    }
 
     public void beginResizingFrame(Window f, int direction) {
         setupDragMode(f);
     }
 
-    /**
-     * Calls <code>setBoundsForFrame</code> with the new values.
-     *
-     * @param f         the component to be resized
-     * @param newX      the new x-coordinate
-     * @param newY      the new y-coordinate
-     * @param newWidth  the new width
-     * @param newHeight the new height
-     */
     public void resizeFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
         setBoundsForFrame(f, newX, newY, newWidth, newHeight);
     }
 
-    public void endResizingFrame(Window f) {
-    }
+    public void endResizingFrame(Window f) {}
 
     public void setBoundsForFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
         f.setBounds(newX, newY, newWidth, newHeight);
@@ -146,8 +146,14 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         f.revalidate();
     }
 
-    public static ComponentUI createUI(JComponent c) {
-        return new MaterialRootPaneUI();
+    @Override
+    protected void installListeners(JRootPane root) {
+        super.installListeners(root);
+    }
+
+    @Override
+    protected void uninstallListeners(JRootPane root) {
+        super.uninstallListeners(root);
     }
 
     public void installUI(JComponent c) {
@@ -173,6 +179,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         LookAndFeel.uninstallBorder(root);
     }
 
+
     protected void installWindowListeners(JRootPane root, Component parent) {
         if (parent instanceof Window) {
             window = (Window) parent;
@@ -183,6 +190,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             if (materialHandler == null) {
                 materialHandler = createWindowHandler(root);
             }
+
             window.addMouseListener(materialHandler);
             window.addMouseMotionListener(materialHandler);
 
@@ -255,8 +263,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     }
 
     protected LayoutManager createLayoutManager() {
-        return new MaterialLayaut();
-
+        return new MaterialLayout();
     }
 
     protected void setTitlePane(JRootPane root, JComponent titlePane) {
@@ -309,12 +316,12 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 installWindowListeners(root, root.getParent());
             }
         }
-        return;
     }
 
-    protected static class MaterialLayaut implements LayoutManager2 {
+    protected static class MaterialLayout implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
+
             Dimension cpd, mbd, tpd;
             int cpWidth = 0;
             int cpHeight = 0;
@@ -516,19 +523,6 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
     }
 
-    /**
-     * Maps from positions to cursor type. Refer to calculateCorner and
-     * calculatePosition for details of this.
-     */
-    /*protected static final int[] cursorMapping = new int[]
-            {       Cursor.NW_RESIZE_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.N_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR,
-                    Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, 0, 0, 0, Cursor.DEFAULT_CURSOR,
-                    Cursor.SW_RESIZE_CURSOR, 0, 0, 0, Cursor.SE_RESIZE_CURSOR,
-                    Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR
-            };*/
     public void setMaximized() {
         Component tla = root.getTopLevelAncestor();
         //GraphicsConfiguration gc = (currentRootPaneGC != null) ? currentRootPaneGC : tla.getGraphicsConfiguration();
@@ -549,28 +543,20 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     }
 
     protected class MaterialHandler implements MouseInputListener, WindowListener, WindowFocusListener, SwingConstants {
-        // _x & _y are the mousePressed location in absolute coordinate system
-        int _x, _y;
-        // __x & __y are the mousePressed location in source view's coordinate system
-        int __x, __y;
+        // are the mousePressed location in absolute coordinate system
+        int absoluteX, absoluteY;
+        // are the mousePressed location in source view's coordinate system
+        int viewX, viewY;
         Rectangle startingBounds;
         int resizeDir;
         protected final int RESIZE_NONE = 0;
         private boolean discardRelease = false;
         int resizeCornerSize = 5;
 
-        @SuppressWarnings("unchecked")
-        private final PrivilegedExceptionAction getLocationAction = new PrivilegedExceptionAction() {
-            public Object run() throws HeadlessException {
-                return MouseInfo.getPointerInfo().getLocation();
-            }
-        };
-
         void updateFrameCursor(Window w) {
             if (resizing) {
                 return;
             }
-
             Cursor s = myLastCursor;
             if (s == null) {
                 s = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
@@ -591,10 +577,10 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 resizing = false;
                 updateFrameCursor(w);
             }
-            _x = 0;
-            _y = 0;
-            __x = 0;
-            __y = 0;
+            absoluteX = 0;
+            absoluteY = 0;
+            viewX = 0;
+            viewY = 0;
             startingBounds = null;
             resizeDir = RESIZE_NONE;
             // Set discardRelease to true, so that only a mousePressed()
@@ -604,12 +590,14 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
 
         public void mousePressed(MouseEvent ev) {
-            Point p = SwingUtilities.convertPoint((Component) ev.getSource(),
-                    ev.getX(), ev.getY(), null);
-            __x = ev.getX();
-            __y = ev.getY();
-            _x = p.x;
-            _y = p.y;
+            viewX = ev.getX();
+            viewY = ev.getY();
+            //fix
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            absoluteX = mouseCurent.x;
+            absoluteY = mouseCurent.y;
+            //_x = p.x;
+            //_y = p.y;
             resizeDir = RESIZE_NONE;
             discardRelease = false;
             JRootPane rootPane = getRootPane();
@@ -624,8 +612,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
             startingBounds = w.getBounds();
             Insets i = w.getInsets();
-            Point ep = new Point(__x, __y);
-            Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
+            Point ep = new Point(viewX, viewY);
+            //Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
             boolean resizable = false;
             boolean maximized = false;
             if (w instanceof Frame) {
@@ -722,7 +710,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             beginResizingFrame(w, resizeDir);
             w.setCursor(s);
             resizing = true;
-            return;
+            // return;
         }
 
         public void mouseReleased(MouseEvent ev) {
@@ -732,7 +720,6 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
         public void mouseMoved(MouseEvent ev) {
             JRootPane root = getRootPane();
-
             if (root.getWindowDecorationStyle() == JRootPane.NONE) {
                 return;
             }
@@ -756,6 +743,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             Insets i = w.getInsets();
             Point ep = new Point(ev.getX(), ev.getY());
+            //Set correct cursor for resize windows
             if (resizable && !maximized) {
                 if (ep.x <= i.left + resizeCornerSize) {
                     if (ep.y < resizeCornerSize + i.top)
@@ -772,7 +760,6 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                     else
                         w.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
                 } else if (ep.y <= i.top + resizeCornerSize) {
-                    MaterialLogger.getInstance().debug(this.getClass(), ep.y + "|" + i.top + "|" + ev.getY());
                     if (ep.x < resizeCornerSize + i.left)
                         w.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
                     else if (ep.x > w.getWidth() - resizeCornerSize - i.right)
@@ -800,28 +787,32 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 // (STEVE) Yucky work around for bug ID 4106552
                 return;
             }
-            Window w = (Window) e.getSource();
-            Point p = SwingUtilities.convertPoint((Component) e.getSource(),
-                    e.getX(), e.getY(), null);
-            int deltaX = _x - p.x;
-            int deltaY = _y - p.y;
-            Dimension min = w.getMinimumSize();
-            Dimension max = w.getMaximumSize();
+            Window window = (Window) e.getSource();
+            //Point p = SwingUtilities.convertPoint(window, window.getX(), window.getY(), null);
+
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            //fix
+            int deltaX = absoluteX - mouseCurent.x;
+            int deltaY = absoluteY - mouseCurent.y;
+            //int deltaX = _x - p.x;
+            //int deltaY = _y - p.y;
+            Dimension min = window.getMinimumSize();
+            Dimension max = window.getMaximumSize();
             int newX, newY, newW, newH;
-            Insets i = w.getInsets();
+            Insets i = window.getInsets();
 
 
             boolean undecorated = false;
             boolean resizable = false;
             boolean maximized = false;
 
-            if (w instanceof Frame) {
-                Frame f = (Frame) w;
+            if (window instanceof Frame) {
+                Frame f = (Frame) window;
                 undecorated = f.isUndecorated();
                 resizable = f.isResizable();
                 maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
-            } else if (w instanceof Dialog) {
-                Dialog d = (Dialog) w;
+            } else if (window instanceof Dialog) {
+                Dialog d = (Dialog) window;
                 undecorated = d.isUndecorated();
                 resizable = d.isResizable();
             }
@@ -838,25 +829,35 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                     return;
                 }
                 int pWidth, pHeight;
-                Dimension s = Toolkit.getDefaultToolkit().getScreenSize();
-                pWidth = s.width;
-                pHeight = s.height;
+                // Dimension dimensioDevices = Toolkit.getDefaultToolkit().getScreenSize();
+               /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+                int width = gd.getDisplayMode().getWidth();
+                int height = gd.getDisplayMode().getHeight();
+                Dimension dimensioDevices = new Dimension(width, height);*/
 
+                pWidth = dimensionDevices.width;
+                pHeight = dimensionDevices.height;
 
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
 
+                //TODO see this point because with two display not worked well (Resolved -> testing)
                 // Make sure we stay in-bounds
-                if (newX + i.left <= -__x)
-                    newX = -__x - i.left + 1;
-                if (newY + i.top <= -__y)
-                    newY = -__y - i.top + 1;
-                if (newX + __x + i.right >= pWidth)
-                    newX = pWidth - __x - i.right - 1;
-                if (newY + __y + i.bottom >= pHeight)
-                    newY = pHeight - __y - i.bottom - 1;
-
-                dragFrame(w, newX, newY);
+                if (newX + i.left <= -viewX) {
+                    //What operation do this?
+                    newX = -viewX - i.left + 1;
+                } else if (newY + i.top <= -viewY) {
+                    //What operation do this?
+                    newY = -viewY - i.top + 1;
+                } else if (newX + viewX + i.right >= pWidth) {
+                    //What operation do this?
+                    newX = pWidth - viewX - i.right - 1;
+                } else if (newY + viewY + i.bottom >= pHeight) {
+                    //What operation do this?
+                    newY = pHeight - viewY - i.bottom - 1;
+                }
+                //System.out.printf("(%03d, %03d) -> (%03d, %03d)\n", viewX, viewY, newX, newY);
+                dragFrame(window, newX, newY);
                 return;
             }
 
@@ -864,16 +865,15 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 return;
             }
 
-            newX = w.getX();
-            newY = w.getY();
-            newW = w.getWidth();
-            newH = w.getHeight();
+            newX = window.getX();
+            newY = window.getY();
+            newW = window.getWidth();
+            newH = window.getHeight();
 
-            Dimension parentBounds = Toolkit.getDefaultToolkit().getScreenSize();
-
+            //This mean when the windows start to resize and not dragged
             switch (resizeDir) {
-                case RESIZE_NONE:
-                    return;
+               // case RESIZE_NONE:
+                 //   return; //TODO can be removed (Resolved => Testing)
                 case NORTH:
                     if (startingBounds.height + deltaY < min.height)
                         deltaY = -(startingBounds.height - min.height);
@@ -1027,7 +1027,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 default:
                     return;
             }
-            resizeFrame(w, newX, newY, newW, newH);
+            resizeFrame(window, newX, newY, newW, newH);
         }
 
         public void mouseEntered(MouseEvent ev) {

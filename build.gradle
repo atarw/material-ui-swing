@@ -7,6 +7,9 @@ apply from: 'gradle/release-public.gradle'
 
 repositories {
     jcenter()
+    flatDir {
+        dirs '/home/vincent/Github/DarkStackOverflowTheme/build/libs'
+    }
 }
 
 dependencies {
@@ -21,16 +24,17 @@ dependencies {
     implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
 
     //Slf4j configuration
-    compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile 'ch.qos.logback:logback-core:1.2.3'
-    implementation 'org.slf4j:slf4j-api:1.7.25'
+    testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    testCompile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'org.slf4j:slf4j-api:1.7.25'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
+    
+    //testCompile name: 'DarkStackOverflowTheme-0.1'
+    
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
-    //testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
-
 }
 
 allprojects {
@@ -46,7 +50,7 @@ allprojects {
 }
 
 jar {
-    baseName = project.name + '-' + VERSION
+    archiveBaseName = project.name + '-' + VERSION
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }

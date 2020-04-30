@@ -26,7 +26,6 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialMouseHover;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialLogger;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -79,7 +78,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
         AbstractButton button = (AbstractButton) c;
         button.setOpaque(UIManager.getBoolean("Button.opaque"));
-        button.setBorder(UIManager.getBorder("Button.border"));
+        //button.setBorder(UIManager.getBorder("Button.border"));
         foreground = UIManager.getColor("Button.foreground");
         background = UIManager.getColor("Button.background");
         disabledBackground = UIManager.getColor("Button.disabledBackground");
@@ -96,8 +95,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         if (mouseHoverEnabled == null) {
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
-        button.setBackground(background);
-        button.setForeground(foreground);
+        //LookAndFeel.installColors(c, "Button.background", "Button.foreground");
+       //button.setBackground(background);
+        //button.setForeground(foreground);
         this.arch = UIManager.getInt("Button.arc");
         //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (mouseHoverEnabled) {
@@ -116,16 +116,16 @@ public class MaterialButtonUI extends BasicButtonUI {
         super.uninstallUI(c);
 
         AbstractButton button = (AbstractButton) c;
-        button.setBorder(null);
+        //button.setBorder(null);
         foreground = null;
         background = null;
         disabledBackground = null;
         disabledForeground = null;
         defaultBackground = null;
         defaultForeground = null;
-        button.setBackground(null);
-        button.setForeground(null);
-        button.setCursor(null);
+        //button.setBackground(null);
+        //button.setForeground(null);
+        button.setCursor(Cursor.getDefaultCursor());
     }
 
     @Override
@@ -184,7 +184,6 @@ public class MaterialButtonUI extends BasicButtonUI {
      * @param c Component Object, rappresent the button, if possible use this object or the propriety
      *          called button inside this class
      */
-    //TODO tested this
     protected void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D graphics = (Graphics2D) g.create();
@@ -395,11 +394,9 @@ public class MaterialButtonUI extends BasicButtonUI {
         this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
     }
 
-    @Deprecated
     public Boolean isDefaultButton() {
         return defaultButton != null && defaultButton;
     }
-
 
     protected class MaterialListenerButtonEvent implements PropertyChangeListener {
 
@@ -423,7 +420,7 @@ public class MaterialButtonUI extends BasicButtonUI {
                     button.setForeground(foreground);
                 }
             }
-            /* TODO but on mouse hover fixed but I open another bug, now doesn't is possible personalize the background
+            /* TODO review this code
             There is an bug inside this, so the mouse hover called setBackground of the component
             and this change the background color.
             I do remove this bug but I need to restore this code because isn't possible work with the personal
@@ -445,8 +442,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     /**
-     * This Internal class is used to send feedback to mouse hover inside the JButton
-     * With this solution I can try to fix the issues on mouse hover t JButton.
+     * This Internal class is used to send feedback when the mouse is hover the component.
+     * With this solution I can know when the mouse is hover and I can jump the previous if-else.
      */
     protected class MaterialButtonMouseListener implements MouseListener, MouseMotionListener {
 
@@ -471,13 +468,11 @@ public class MaterialButtonUI extends BasicButtonUI {
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
             mouseHoverRunning = true;
-            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover start");
         }
 
         @Override
         public void mouseExited(MouseEvent mouseEvent) {
             mouseHoverRunning = false;
-            MaterialLogger.getInstance().debug(this.getClass(), "Mouse hover Stop");
         }
 
         @Override

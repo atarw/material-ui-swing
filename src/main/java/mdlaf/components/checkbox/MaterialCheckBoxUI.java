@@ -44,9 +44,9 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
         super.installUI(c);
 
         JCheckBox checkBox = (JCheckBox) c;
-        checkBox.setFont(UIManager.getFont("CheckBox.font"));
-        checkBox.setBackground(UIManager.getColor("CheckBox.background"));
-        checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
+        //checkBox.setFont(UIManager.getFont("CheckBox.font"));
+        //checkBox.setBackground(UIManager.getColor("CheckBox.background"));
+        //checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
         checkBox.setIcon(UIManager.getIcon("CheckBox.icon"));
         checkBox.setSelectedIcon(UIManager.getIcon("CheckBox.selectedIcon"));
         checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -55,13 +55,13 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        JCheckBox checkBox = (JCheckBox) c;
-        checkBox.setFont(null);
-        checkBox.setBackground(null);
-        checkBox.setForeground(null);
-        checkBox.setIcon(null);
-        checkBox.setSelectedIcon(null);
-        checkBox.setCursor(null);
+       // JCheckBox checkBox = (JCheckBox) c;
+       // checkBox.setFont(null);
+        //checkBox.setBackground(null);
+        //checkBox.setForeground(null);
+        //checkBox.setIcon(null);
+        //checkBox.setSelectedIcon(null);
+        c.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
     }
