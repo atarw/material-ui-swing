@@ -1,6 +1,6 @@
 # Material-UI-Swing
 
-## Version 1.1.1
+## material-ui-swing-1.1.1-rc1
 
 **Bugs Fixed**
 - [InternalFrame + TextComponent drawing issue](https://github.com/vincenzopalazzo/material-ui-swing/issues/98)
@@ -19,6 +19,22 @@
 - [Font but with screen zoom](https://github.com/atarw/material-ui-swing/pull/99)
 - [Added Caret Foreground color](https://github.com/atarw/material-ui-swing/pull/102)
 - JOptionPane Without icons: Fixed position text
+- JOptionPane white point on the corner with Dark theme.
+- [Dialog bug when drag it with mouse](https://github.com/vincenzopalazzo/material-ui-swing/issues/128)
+- [Tree Control - Changed Selection Look](https://github.com/vincenzopalazzo/material-ui-swing/issues/127)
+- [Secondary Buttons Retain "Hover" Look After Being Clicked - 1.1.1_01](https://github.com/vincenzopalazzo/material-ui-swing/issues/126)
+- [Button Loses Border - ver 1.1.1_01](https://github.com/vincenzopalazzo/material-ui-swing/issues/125)
+- [Dialog Title Bar - Title is Cut Off in 1.1.1_02](https://github.com/vincenzopalazzo/material-ui-swing/issues/124)
+- [Task Pane - Title Bar text Color Does not Observe Theme Settings](https://github.com/vincenzopalazzo/material-ui-swing/issues/123)
+- [Infinite Loop Encountered in JMARS in mouseMoved Event](https://github.com/vincenzopalazzo/material-ui-swing/issues/122)
+- [Button Tabbing - Visual Effect](https://github.com/vincenzopalazzo/material-ui-swing/issues/120)
+- [MaterialRootPaneUI resize problem ](https://github.com/vincenzopalazzo/material-ui-swing/issues/117)
+- [The mouse hover effect work wrong with disabled action on click](https://github.com/vincenzopalazzo/material-ui-swing/issues/107)
+- [Table header no headers split](https://github.com/vincenzopalazzo/material-ui-swing/issues/103)
+- [Resize window problem it compare when I change l&f](https://github.com/vincenzopalazzo/material-ui-swing/issues/100)
+- [Can't load /imgs/white/minimize.png](https://github.com/atarw/material-ui-swing/issues/106)
+- [Problem with resizing JDialog](https://github.com/atarw/material-ui-swing/issues/105)
+
 
 **JToggleButton Second Style without icons**
 
