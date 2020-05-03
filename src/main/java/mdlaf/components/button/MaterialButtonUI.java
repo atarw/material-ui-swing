@@ -72,6 +72,10 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected MaterialButtonMouseListener mouseListener = new MaterialButtonMouseListener();
     protected MaterialMouseHover mouseHover;
 
+    /**
+     * Inside the installUI method are init only proprieties used inside this component
+     * the background or foreground ara managed to BasicButtonUI, {@see BasicButtonUI}
+     */
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
@@ -109,6 +113,17 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         button.setFocusable(UIManager.getBoolean("Button.focusable"));
         this.button = button;
+    }
+
+    /**
+     * Inside the future version 1.2 this method will contain all component that
+     * work with listener, because this method is call before the installListener and I can
+     * insert the control of the listener inside the native method.
+     * TODO make the button installDefault change
+     */
+    @Override
+    protected void installDefaults(AbstractButton b) {
+        super.installDefaults(b);
     }
 
     @Override
@@ -302,7 +317,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     /**
-     * This method is used inside the MaterialUITimer for reset the color at the particular event
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
     public void setBackground(Color color) {
@@ -317,77 +333,136 @@ public class MaterialButtonUI extends BasicButtonUI {
         button.repaint();
     }
 
-    //Getter and setter propriet
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getForeground() {
         return foreground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setForeground(Color foreground) {
         this.foreground = foreground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getBackground() {
         return background;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getDisabledBackground() {
         return disabledBackground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setDisabledBackground(Color disabledBackground) {
         this.disabledBackground = disabledBackground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getDisabledForeground() {
         return disabledForeground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setDisabledForeground(Color disabledForeground) {
         this.disabledForeground = disabledForeground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getDefaultBackground() {
         return defaultBackground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setDefaultBackground(Color defaultBackground) {
         this.defaultBackground = defaultBackground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getDefaultForeground() {
         return defaultForeground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setDefaultForeground(Color defaultForeground) {
         this.defaultForeground = defaultForeground;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getColorMouseHoverDefaultButton() {
         return colorMouseHoverDefaultButton;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
         this.colorMouseHoverDefaultButton = colorMouseHoverDefaultButton;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public Color getColorMouseHoverNormalButton() {
         return colorMouseHoverNormalButton;
     }
 
+    /**
+     * This method was used inside the MaterialUITimer for reset the color at the particular event
+     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
+     */
     @Deprecated
     public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
         this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
@@ -397,6 +472,13 @@ public class MaterialButtonUI extends BasicButtonUI {
         return defaultButton != null && defaultButton;
     }
 
+    /**
+     * This class was implement receive the change propriety from button and change the default value inside this component,
+     * as, background, foreground.
+     * It make the possibility to support the custom color set with component.setBackground
+     *
+     * @author https://github.com/vincenzopalazzo
+     */
     protected class MaterialListenerButtonEvent implements PropertyChangeListener {
 
         private static final String BACKGROUND_EVENT = "background";
@@ -443,6 +525,8 @@ public class MaterialButtonUI extends BasicButtonUI {
     /**
      * This Internal class is used to send feedback when the mouse is hover the component.
      * With this solution I can know when the mouse is hover and I can jump the previous if-else.
+     *
+     * @author https://github.com/vincenzopalazzo
      */
     protected class MaterialButtonMouseListener implements MouseListener, MouseMotionListener {
 

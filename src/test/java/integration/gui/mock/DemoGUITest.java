@@ -241,7 +241,7 @@ public class DemoGUITest extends JFrame {
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        setSize(new Dimension(800, 900));
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -259,10 +259,10 @@ public class DemoGUITest extends JFrame {
     private void disableTextField() {
         if (textFieldUsername.isEnabled()) {
             textFieldUsername.setEnabled(false);
-            buttonUndo.setText("Enable TextComponent");
+            buttonUndo.setText("Enable TextField");
         } else {
             textFieldUsername.setEnabled(true);
-            buttonUndo.setText("Disable TextComponent");
+            buttonUndo.setText("Disable TextField");
         }
         if (passwordFiled.isEnabled()) {
             passwordFiled.setEnabled(false);

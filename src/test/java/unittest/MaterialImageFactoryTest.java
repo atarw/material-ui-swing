@@ -1,15 +1,14 @@
 package unittest;
 
-import jiconfont.IconCode;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import junit.framework.TestCase;
 import mdlaf.utils.MaterialImageFactory;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.swing.*;
 import java.awt.*;
+
 
 public class MaterialImageFactoryTest {
 

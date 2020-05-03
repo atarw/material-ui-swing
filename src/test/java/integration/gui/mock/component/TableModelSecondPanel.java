@@ -72,5 +72,7 @@ public class TableModelSecondPanel extends AbstractTableModel {
             default: return null;
         }
     }
+
+
 }
 

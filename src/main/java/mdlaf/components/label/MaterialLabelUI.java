@@ -23,9 +23,9 @@
  */
 package mdlaf.components.label;
 
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.UIManager;
+import mdlaf.utils.MaterialFontFactory;
+
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicLabelUI;
@@ -54,6 +54,7 @@ public class MaterialLabelUI extends BasicLabelUI {
         //label.setBackground(UIManager.getColor("Label.background"));
         //label.setForeground(UIManager.getColor("Label.foreground"));
         //label.setBorder(UIManager.getBorder("Label.border"));
+
     }
 
     @Override
@@ -66,6 +67,11 @@ public class MaterialLabelUI extends BasicLabelUI {
         label.setBorder(null);*/
 
         super.uninstallUI(c);
+    }
+
+    @Override
+    protected void paintEnabledText(JLabel l, Graphics g, String s, int textX, int textY) {
+        super.paintEnabledText(l, g, s, textX, textY);
     }
 
     @Override

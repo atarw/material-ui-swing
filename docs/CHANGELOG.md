@@ -1,6 +1,6 @@
 # Material-UI-Swing
 
-## material-ui-swing-1.1.1-rc1
+## material-ui-swing-1.1.1-rc2
 
 **Bugs Fixed**
 - [InternalFrame + TextComponent drawing issue](https://github.com/vincenzopalazzo/material-ui-swing/issues/98)
@@ -34,9 +34,12 @@
 - [Resize window problem it compare when I change l&f](https://github.com/vincenzopalazzo/material-ui-swing/issues/100)
 - [Can't load /imgs/white/minimize.png](https://github.com/atarw/material-ui-swing/issues/106)
 - [Problem with resizing JDialog](https://github.com/atarw/material-ui-swing/issues/105)
-- Refactoring MouseHover event
+- Refactoring MouseHover event (Class MaterialUITime)
 - Refactoring JSpinner arrow button and introducing new icon inside the arrow (also, the icons are add inside the theme system)
 - Fix stack overflow exception inside the JSpinner. The bug is only inside the version 1.1.1-rc1 of the library.
+- Added a different method to load a personal font with MaterialFontFactory and now the dimension fot with JDK8 with calculate with JDKo optimizing
+to fix pixel bug in JDK8 but the dimension is setting static with JDK version >=9.
+- Fixed rolloverBorder on JToolBar.
 
 
 **JToggleButton Second Style without icons**

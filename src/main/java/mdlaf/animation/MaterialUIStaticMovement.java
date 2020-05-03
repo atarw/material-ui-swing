@@ -29,8 +29,12 @@ import java.awt.event.MouseEvent;
 
 /**
  * This class recreate a effect mouse hover static,
- * This component not implement a wake effect, and is util in all component for click, an example: The button for JSpinner, JCombobox, JScroolbar
+ * This component not implement a wake effect, and is util in all component for click, an example: The button for JSpinner, JCombobox, JScroolBar
+ *
  * @author https://github.com/vincenzopalazzo
+ *
+ * @deprecated This method will be removed inside the version 1.2, because with the new MaterialButtonApi, you can create
+ * a personal instance of the button, with an personal Listener, {@see MaterialButtonUI}
  */
 class MaterialUIStaticMovement implements MaterialMouseHover {
 

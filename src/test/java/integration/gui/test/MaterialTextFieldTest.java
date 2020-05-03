@@ -23,7 +23,6 @@
  */
 package integration.gui.test;
 
-import junit.framework.TestCase;
 import org.assertj.swing.core.KeyPressInfo;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JTextComponentFixture;
@@ -53,10 +52,9 @@ public class MaterialTextFieldTest extends AbstractTestGUI{
 
     @Test
     public void testDisabledStateTextField(){
-        JButtonFixture buttonFixture = frame.button("buttonUndo");
-        buttonFixture.click();
         JTextComponentFixture textField = frame.textBox("usernameField");
-        textField.background().requireEqualTo(theme.getDisabledBackgroudnTextField());
+        textField.background().requireNotEqualTo(theme.getDisabledBackgroudnTextField());
+        textField.background().requireEqualTo(theme.getBackgroundTextField());
 
         //The testing framework not update the last color of the component
         //Inside the BasicTextUI the foreground color of the component is inactiveForeground

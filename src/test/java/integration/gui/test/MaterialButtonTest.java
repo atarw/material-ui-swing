@@ -23,24 +23,18 @@
  */
 package integration.gui.test;
 
-import junit.framework.TestCase;
-import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.themes.MaterialTheme;
 import mdlaf.utils.MaterialColors;
 import org.assertj.swing.fixture.JButtonFixture;
-import org.junit.*;
+import org.junit.Test;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialButtonTest extends AbstractTestGUI {
 
-
     @Test
     public void testButtonColorBackgroundDefaultWhenIsClicked() {
         JButtonFixture buttonDefault = frame.button("buttonDefault");
-        buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
-        buttonDefault.click();
         buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
     }
 
@@ -54,8 +48,6 @@ public class MaterialButtonTest extends AbstractTestGUI {
     public void testButtonNormalColorBackgroundWhenIsClicked() {
         JButtonFixture buttonUndo = frame.button("buttonNormal");
         buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-        buttonUndo.click();
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
     }
 
     @Test
@@ -63,15 +55,6 @@ public class MaterialButtonTest extends AbstractTestGUI {
         JButtonFixture buttonDisabled = frame.button("buttonDisabled");
         buttonDisabled.background().requireEqualTo(MaterialColors.COSMO_LIGHT_ORANGE);
         buttonDisabled.foreground().requireEqualTo(theme.getButtonTextColor());
-        buttonDisabled.click();
-        buttonDisabled.requireDisabled();
-        TestCase.assertFalse(buttonDisabled.isEnabled());
-        /*
-        if(!buttonDisabled.isEnabled()) {
-            buttonDisabled.background().requireEqualTo(theme.getButtonDisabledBackground());
-            buttonDisabled.foreground().requireEqualTo(theme.getButtonDisableTextColor());
-        }
-        */
     }
 
     //Test button focus

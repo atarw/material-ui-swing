@@ -513,7 +513,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                                         MaterialBorders.LIGHT_LINE_BORDER,
                                         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        this.borderToolBar = MaterialBorders.LIGHT_LINE_BORDER;
+        this.borderToolBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
         this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0,1,0,1));;
         this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());

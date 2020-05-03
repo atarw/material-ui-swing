@@ -23,10 +23,6 @@
  */
 package mdlaf.utils;
 
-import sun.font.AttributeMap;
-import sun.font.AttributeValues;
-
-import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.font.TextAttribute;
@@ -37,11 +33,15 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * This class managed the font inside the library and inside the L&F, in fact
+ * this class use a flaywait patter to minimized the font instance created from the library.
+ * In fact on a lot of component you have only 4 instance of font in a normal use case.
+ *
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialFontFactory {
 
-    private static final Map<TextAttribute, Object> fontSettings = new AttributeMap(new AttributeValues());
+    private static final Map<TextAttribute, Object> fontSettings = new HashMap<>();
 
     public static final MaterialTypeFont REGULAR = MaterialTypeFont.REGULAR;
     public static final MaterialTypeFont BOLD = MaterialTypeFont.BOLD;
@@ -57,6 +57,10 @@ public class MaterialFontFactory {
         return SINGLETON;
     }
 
+    /**
+     * @deprecated this method will be removed in the version 1.2, this method is not really util fot the library.
+     */
+    @Deprecated
     public static Font fontUtilsDisplayable(String textDisplayable, Font withFont){
         if(textDisplayable == null || withFont == null){
             throw new IllegalArgumentException("Argument at the fontUtilsDisplayable function are/is null");
@@ -69,9 +73,14 @@ public class MaterialFontFactory {
         return new FontUIResource(Font.SANS_SERIF, withFont.getStyle(), withFont.getSize());
     }
 
+    /**
+     * The path font was load from a proprieties file.
+     * This can permit the user to change the font also with a proprieties file
+     * {@see The file inside resources/config/font-all-language.properties}
+     */
     protected Properties properties = new Properties();
     protected Map<String, FontUIResource> cacheFont = new HashMap<>();
-    protected int defaultSize = 12;
+    protected float defaultSize = 15f;
     protected boolean withPersonalSettings = true;
 
 
@@ -83,32 +92,60 @@ public class MaterialFontFactory {
         }
     }
 
+    /**
+     * This method load the font from a String path, in common this method should be use to load the
+     * personal font in a personal location.
+     **/
     public FontUIResource getFontWithPath(String path){
         return this.getFontWithPath(path, this.withPersonalSettings);
     }
 
+    /**
+     * This method load the font from a input resource, in common this method should be use to load the
+     * personal font in a personal resource.
+     **/
     public FontUIResource getFontWithStream(InputStream stream){
         return this.getFontWithStream(stream, this.withPersonalSettings);
     }
 
+    /**
+     * This method load the library default font, at this moment this is a Noto Sans font, you can
+     * load 4 different dimension of font, {@see MaterialTypeFont}
+     **/
     public FontUIResource getFont(MaterialTypeFont typeFont){
         return this.getFont(typeFont, this.withPersonalSettings);
     }
 
+    /**
+     * This method load the library default font, at this moment this is a Noto Sans font, you can
+     * load 4 different dimension of font, {@see MaterialTypeFont}
+     *
+     * In addition, this method have the boolean (by default this propriety is true) called withPersonalSettings
+     * to jump the personal font setting.
+     * This is util when you have other library that work with font and you want take the control on your code
+     * */
     public FontUIResource getFont(MaterialTypeFont typeFont, boolean withPersonalSettings){
         if(typeFont == null){
             throw new IllegalArgumentException("\n- Parameter type font null.\n");
         }
         String typeFontString = typeFont.toString();
         if(cacheFont.containsKey(typeFontString)){
-            return new FontUIResource(cacheFont.get(typeFontString));
+            return cacheFont.get(typeFontString);
         }
         String propieties = properties.getProperty(typeFontString);
         FontUIResource font = getFontWithPath(propieties);
         cacheFont.put(typeFontString, font);
-        return new FontUIResource(font);
+        return font;
     }
 
+    /**
+     * This method load the font from a String path, in common this method should be use to load the
+     * personal font in a personal location.
+     *
+     * In addition, this method have the boolean (by default this propriety is true) called withPersonalSettings
+     * to jump the personal font setting.
+     * This is util when you have other library that work with font and you want take the control on your code
+     * */
     public FontUIResource getFontWithPath(String path, boolean withPersonalSettings){
         if(path == null || path.isEmpty()){
             throw new IllegalArgumentException("\n- The path to load personal fort is null or empty");
@@ -117,6 +154,13 @@ public class MaterialFontFactory {
         return loadFont(stream, withPersonalSettings);
     }
 
+    /**
+     * This method load the font from a input resource, in common this method should be use to load the
+     * personal font in a personal resource.
+     * In addition, this method have the boolean (by default this propriety is true) called withPersonalSettings
+     * to jump the personal font setting.
+     * This is util when you have other library that work with font and you want take the control on your code
+     * */
     public FontUIResource getFontWithStream(InputStream stream, boolean withPersonalSettings){
         if(stream == null){
             throw new IllegalArgumentException("\n- The stream to load personal fort is null");
@@ -125,17 +169,18 @@ public class MaterialFontFactory {
     }
 
     /**
-     * Fix the problem with this post
+     * The JDK 8 paint with fin with pixel, this effect is not present in JDK version > 9
+     * But this library try to support the all JDK version and with the calculate dimension form
+     * resolution screen resolve in part the pixelated effect.
+     * This is the resource that report the optimizing font
      * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
-     * @author https://github.com/vincenzopalazzo
+     *
      */
     private FontUIResource loadFont(InputStream inputStream, boolean withPersonalSettings) {
         float size = this.doOptimizingDimensionFont(this.defaultSize);
         if (withPersonalSettings && fontSettings.isEmpty()) {
-            fontSettings.put (TextAttribute.SIZE, size);
+            fontSettings.put (TextAttribute.SIZE, defaultSize);
             fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
-            //int style = whatIsTypeFont();
-            //fontSettings.put(TextAttribute.FAMILY, (style & ~0x03) == 0 ? style : 0);
         }
         try {
             Font font;
@@ -144,7 +189,6 @@ public class MaterialFontFactory {
                 return new FontUIResource(font);
             }
             font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(size);
-            System.out.println(font);
             return new FontUIResource(font);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
@@ -152,37 +196,20 @@ public class MaterialFontFactory {
         }
     }
 
-    public float doOptimizingDimensionFont(int dimension){
+    /**
+     * In this method optimizing the font dimension with the display resolution
+     * This method to calculate the font dimension is bad, We now but the JDK 8 display the font very bad
+     * and at the moment with the JDK 8 the dimension of the font is calculate with the screen resolution
+     * and with the JDK >= 9 the font set with the defaultSize {@see defaultSize}
+     * */
+    public float doOptimizingDimensionFont(float dimension){
         if(defaultSize <= 0){
             throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
-        return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
-    }
-
-    /**
-     * This is only on test, I will remove if in the next release this don't work
-     * param component
-     * param font
-     * @return
-     */
-    public FontUIResource doOptimizingCode(JComponent component, Font font){
-        if(component == null || font == null){
-            String messageError;
-            if(component == null){
-                messageError = "- Parameter component null.";
-                if(font == null){
-                    messageError += "\n- Parameter font null";
-                }
-            }else{
-                messageError = "- Parameter font null";
-            }
-            messageError += "\nPlease insert an correct value\n";
-            throw new IllegalArgumentException(messageError);
+        if(System.getProperty("java.version").startsWith("1.")){
+            return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
         }
-        FontMetrics m = component.getGraphics().getFontMetrics(font); // g is your current Graphics object
-        float totalSize= defaultSize * (m.getAscent() + m.getDescent()) / m.getAscent();
-        FontUIResource fontOptimized= new FontUIResource(font.deriveFont(totalSize));
-        return fontOptimized;
+        return dimension;
     }
 
     /**
@@ -196,6 +223,11 @@ public class MaterialFontFactory {
         properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
     }
 
+
+    /**
+     * Enum class that. This constant is to set the library font inside the material type
+     * as, REGULAR, BOLD, ITALIC, MEDIUM
+     */
     protected enum MaterialTypeFont {
         REGULAR("REGULAR"),
         BOLD("BOLD"),

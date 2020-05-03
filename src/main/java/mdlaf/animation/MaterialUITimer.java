@@ -24,7 +24,6 @@
 package mdlaf.animation;
 
 import mdlaf.components.button.MaterialButtonUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,26 +31,37 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 /**
+ * This class implement a complex mouse hover event with a timer
+ *
+ * This event call component.setBackground() inside the timer
+ * it should be managed the live cycle more complex
+ *
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
 public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
-    private Color from, to;
+    private Color from;
+    private Color to;
     private boolean forward;
-    private int alpha, steps;
-    private int[] forwardDeltas, backwardDeltas;
+    private int alpha;
+    private int steps;
+    private int[] forwardDeltas;
+    private int[] backwardDeltas;
     private JComponent component;
     private Timer timer;
-    //TODO remove wrapper
+    /**
+     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
+     * API.
+     */
+    @Deprecated
     private WrapperInformationsButton wrapperInformationsButton;
 
+    /**
+     *  Dont use the !component.isEnabled() how check in the builder if the component
+     *  born disabled the mouse hover will never install
+     * */
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
-        //the code  !component.isEnabled() is commented because if the button born disabled
-        //the mouse hover will never install
-        if (component == null || !component.isEnabled() || component.getCursor().getType() == Cursor.WAIT_CURSOR) {
-            return;
-        }
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (component instanceof JButton) {
             JButton button = (JButton) component;
@@ -112,7 +122,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mousePressed(MouseEvent me) {
-        if (!me.getComponent().isEnabled()) {
+       if (!me.getComponent().isEnabled()) {
             return;
         }
         alpha = steps - 1;
@@ -126,6 +136,9 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mouseExited(MouseEvent me) {
+        if (!me.getComponent().isEnabled()) {
+            return;
+        }
         if (timer.isRunning()) {
             timer.stop();
         }
@@ -136,12 +149,18 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mouseEntered(MouseEvent me) {
+        if (!me.getComponent().isEnabled()) {
+            return;
+        }
         alpha = 0;
         forward = true;
         this.stopTimer();
         timer.start();
     }
 
+    /**
+     * This method is mouse hover event core, which contains all logic
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
@@ -233,8 +252,10 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         }
     }
 
-
-
+    /**
+     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
+     * API.
+     */
     @Deprecated
     private class WrapperInformationsButton {
 

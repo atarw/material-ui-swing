@@ -41,8 +41,8 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         return new MaterialSpinnerUI();
     }
 
-    //protected JButton upArrowButton;
-    //protected JButton downArrowButton;
+    protected JButton upArrowButton;
+    protected JButton downArrowButton;
 
     @Override
     public void installUI(JComponent c) {
@@ -70,16 +70,17 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     }
 
     @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-
+    public void update(Graphics g, JComponent c) {
+        super.update(g, c);
+        upArrowButton.setFocusable(false);
+        downArrowButton.setFocusable(false);
     }
-
 
     @Override
     protected Component createNextButton() {
         Icon icon = UIManager.getIcon("Spinner.nextButtonIcon");
         JButton button = this.configureLocalButton(icon);
+        this.upArrowButton = button;
         installNextButtonListeners(button);
         return button;
     }
@@ -89,14 +90,18 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         Icon icon = UIManager.getIcon("Spinner.previousButtonIcon");
         JButton button = this.configureLocalButton(icon);
         installPreviousButtonListeners(button);
+        this.downArrowButton = button;
         return button;
     }
 
     protected JButton configureLocalButton(Icon icon) {
         JButton arrowButton = new JButton(icon);
         arrowButton.setUI(new SpinnerButtonUI());
+        arrowButton.setFocusable(false);
         return arrowButton;
     }
+
+
 
     /**
      * This class use the MaterialButtonUI API to create the custom button for the icon
@@ -119,7 +124,12 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
         @Override
         protected void paintFocusRing(Graphics g, JButton b) {
-            //doNothing
+            g.setColor(super.background);
+        }
+
+        @Override
+        protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
         }
     }
 }

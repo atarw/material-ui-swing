@@ -1,0 +1,51 @@
+package unittest;
+
+import junit.framework.TestCase;
+import mdlaf.utils.MaterialFontFactory;
+import org.junit.Test;
+
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
+
+public class MaterialFontFactoryTest {
+
+    private static final String PATH = "/fonts/noto-sans/";
+    private static final String BOLD_NAME = "NotoSans-Bold.ttf";
+    private static final String REGULAR_NAME = "NotoSans-Regular.ttf";
+    private static final String MEDIUM_NAME = "NotoSans-Medium.ttf";
+    private static final String ITALIC_NAME = "NotoSans-Italic.ttf";
+
+
+    @Test
+    public void testWithString(){
+        Font fontOne = MaterialFontFactory.getInstance().getFontWithPath(PATH + BOLD_NAME);
+        Font fontTwo = MaterialFontFactory.getInstance().getFontWithPath(PATH + BOLD_NAME);
+        TestCase.assertNotNull(fontOne);
+        TestCase.assertNotNull(fontTwo);
+        TestCase.assertEquals(fontOne, fontTwo);
+        TestCase.assertTrue(fontOne instanceof FontUIResource);
+        TestCase.assertTrue(fontTwo instanceof FontUIResource);
+    }
+
+    @Test
+    public void testWithInputStream(){
+        Font fontOne = MaterialFontFactory.getInstance().getFontWithStream(getClass().getResourceAsStream(PATH + BOLD_NAME));
+        Font fontTwo = MaterialFontFactory.getInstance().getFontWithStream(getClass().getResourceAsStream(PATH + BOLD_NAME));
+        TestCase.assertNotNull(fontOne);
+        TestCase.assertNotNull(fontTwo);
+        TestCase.assertEquals(fontOne, fontTwo);
+        TestCase.assertTrue(fontOne instanceof FontUIResource);
+        TestCase.assertTrue(fontTwo instanceof FontUIResource);
+    }
+
+    @Test
+    public void testWithDefaultCall(){
+        Font fontOne = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+        Font fontTwo = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+        TestCase.assertNotNull(fontOne);
+        TestCase.assertNotNull(fontTwo);
+        TestCase.assertEquals(fontOne, fontTwo);
+        TestCase.assertTrue(fontOne instanceof FontUIResource);
+        TestCase.assertTrue(fontTwo instanceof FontUIResource);
+    }
+}
