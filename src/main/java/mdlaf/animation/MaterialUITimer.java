@@ -25,13 +25,11 @@ package mdlaf.animation;
 
 import mdlaf.components.button.MaterialButtonUI;
 
-
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -51,7 +49,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
         //the code  !component.isEnabled() is commented because if the button born disabled
         //the mouse hover will never install
-        if (component == null /*|| !component.isEnabled()*/ || component.getCursor().getType() == Cursor.WAIT_CURSOR) {
+        if (component == null || !component.isEnabled() || component.getCursor().getType() == Cursor.WAIT_CURSOR) {
             return;
         }
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -119,11 +117,8 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         }
         alpha = steps - 1;
         forward = false;
-        if (timer.isRunning()) {
-            timer.stop();
-        }
-        timer.start();
-
+        this.stopTimer();
+        //timer.start(); TODO TEST IT
         alpha = 0;
         forward = true;
         timer.start();
@@ -131,9 +126,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mouseExited(MouseEvent me) {
-        if (!me.getComponent().isEnabled()) {
-            return;
-        }
         if (timer.isRunning()) {
             timer.stop();
         }
@@ -144,14 +136,9 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        if (!me.getComponent().isEnabled()) {
-            return;
-        }
         alpha = 0;
         forward = true;
-        if (timer.isRunning()) {
-            timer.stop();
-        }
+        this.stopTimer();
         timer.start();
     }
 
@@ -167,7 +154,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
                 }*/
               //  timer.stop();
             //}
-            this.stopTimer();
+            timer.stop();
             return;
         }
         if (forward) {
@@ -178,14 +165,13 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
             --alpha;
         }
         if (alpha == steps + 1 || alpha == -1) {
-            if (timer.isRunning()) {
-                timer.stop();
-            }
+            this.stopTimer();
         }
         //For some color the algorithm not work well, so
         //when the alpha is -1 the mouse is exist from button
         if (alpha == -1) {
             //Mouse exit
+            this.stopTimer();
             this.component.setBackground(this.from);
         }
     }
@@ -225,8 +211,17 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         }*/
     }
 
+    /**
+     * Include inside the function the logic to disable the timer
+     * with all control on null object.
+     *
+     * !! DONT USE THIS METHOD IN OTHER PLACE WHEN IS CHECKED THE COMPONENT IS DISABLED
+     * !! THIS METHOD IS ONLY TO CHECK IF THE TIMER IS A VALID INSTANCE.
+     * !! Fro example: if you insert this method inside the actionPerformed, you will introduce the bug inside
+     * button when the button have been disabled after click.
+     */
     protected void stopTimer(){
-        if (component != null && !component.isEnabled()) {
+        if (component != null && component.isEnabled()) {
             if (timer != null && timer.isRunning()) {
             /*    if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
@@ -237,6 +232,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
             }
         }
     }
+
 
 
     @Deprecated

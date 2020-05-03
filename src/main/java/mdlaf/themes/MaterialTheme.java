@@ -161,6 +161,10 @@ public interface MaterialTheme {
 
     BorderUIResource getArrowButtonBorderSpinner();
 
+    IconUIResource getPreviousButtonIconSpinner();
+
+    IconUIResource getNextButtonIconSpinner();
+
     boolean getMouseHoverEnableSpinner();
 
     //-----------------------------------
@@ -191,8 +195,11 @@ public interface MaterialTheme {
 
     boolean getEnableArrowScrollBar();
 
-    //--------------------------------------------------
-    //Proprieties JToggleButton
+    //set methods
+    void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner);
+
+    void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner);
+
     void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton);
 
     void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton);

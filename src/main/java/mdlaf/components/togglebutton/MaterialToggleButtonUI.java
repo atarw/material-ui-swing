@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,19 +23,14 @@
  */
 package mdlaf.components.togglebutton;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-
-import mdlaf.utils.MaterialDrawingUtils;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -65,7 +60,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void installUI(JComponent c) {
         super.installUI(c);
         toggleButton = (JToggleButton) c;
-       //toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
+        //toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
         //toggleButton.setBackground(UIManager.getColor("ToggleButton.background"));
         //toggleButton.setForeground(UIManager.getColor("ToggleButton.foreground"));
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -80,37 +75,36 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             the JToggleButton has the icon set, an example is JFileChooser.
             To default, this class will set the variable without an icon to false and toggle button border to UIManager propriety.
          */
-        if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null){
+        if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null) {
             toggleButton.setIcon(UIManager.getIcon("ToggleButton.icon"));
             toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
-            if(withoutIcon){
+            if (withoutIcon) {
                 withoutIconSelectedBorder = UIManager.getBorder("ToggleButton[withoutIcon].selectedBorder");
                 withoutIconBorder = UIManager.getBorder("ToggleButton[withoutIcon].border");
                 withoutIconSelectedBackground = UIManager.getColor("ToggleButton[withoutIcon].selectedBackground");
                 withoutIconSelectedForeground = UIManager.getColor("ToggleButton[withoutIcon].selectedForeground");
                 withoutIconBackground = UIManager.getColor("ToggleButton[withoutIcon].background");
                 withoutIconForeground = UIManager.getColor("ToggleButton[withoutIcon].foreground");
-                if(toggleButton.isSelected()){
+                if (toggleButton.isSelected()) {
                     toggleButton.setBorder(withoutIconSelectedBorder);
-                }else{
+                } else {
                     toggleButton.setBorder(withoutIconBorder);
                 }
-            }else{
-                LookAndFeel.installBorder(toggleButton,"ToggleButton.border");
+            } else {
+                LookAndFeel.installBorder(toggleButton, "ToggleButton.border");
             }
-        }else{
-            LookAndFeel.installBorder(toggleButton,"ToggleButton.border" );
+        } else {
+            LookAndFeel.installBorder(toggleButton, "ToggleButton.border");
             this.withoutIcon = Boolean.FALSE;
         }
-
 
 
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-       JToggleButton toggleButton = (JToggleButton) c;
+        JToggleButton toggleButton = (JToggleButton) c;
         toggleButton.setIcon(null);
         toggleButton.setSelectedIcon(null);
         /* toggleButton.setBorder(null);
@@ -123,13 +117,13 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
 
-        if(withoutIcon != null && withoutIcon && isNotNullColor(withoutIcon)){
+        if (withoutIcon != null && withoutIcon && isNotNullColor(withoutIcon)) {
             AbstractButton button = (AbstractButton) c;
-            if(button.isSelected()){
+            if (button.isSelected()) {
                 button.setBackground(withoutIconSelectedBackground);
                 button.setForeground(withoutIconSelectedForeground);
                 button.setBorder(withoutIconSelectedBorder); //TODO set thickness from UIManager
-            }else{
+            } else {
                 button.setBackground(withoutIconBackground);
                 button.setForeground(withoutIconForeground);
                 button.setBorder(withoutIconBorder);
@@ -138,11 +132,11 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     }
 
     private boolean isNotNullColor(boolean withoutIcon) {
-        if(withoutIcon){
+        if (withoutIcon) {
             boolean selectedColorNotNull = withoutIconSelectedBackground != null && withoutIconSelectedForeground != null;
             boolean unselectColorNotNull = withoutIconBackground != null && withoutIconForeground != null;
             boolean borderNotNull = withoutIconBorder != null && withoutIconSelectedBorder != null;
-            return  selectedColorNotNull && unselectColorNotNull && borderNotNull;
+            return selectedColorNotNull && unselectColorNotNull && borderNotNull;
         }
         //TODO complete this logic
         return true;
@@ -157,9 +151,9 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         FontMetrics fm = g.getFontMetrics(c.getFont());
         int mnemonicIndex = b.getDisplayedMnemonicIndex();
-
         /* Draw the Text */
         if (model.isEnabled()) {
             /*** paint the text normally */

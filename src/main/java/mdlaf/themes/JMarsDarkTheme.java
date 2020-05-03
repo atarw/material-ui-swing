@@ -56,28 +56,10 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
     }
 
-    @Override
+    @Override // TODO remove the icon png and use the library
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
-                highlightBackgroundPrimary
-        );
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
-                MaterialColors.WHITE
-        );
+        super.installIcons();
 
-        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_ON);
-        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_OFF);
-
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
-                highlightBackgroundPrimary
-        );
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
-                highlightBackgroundPrimary
-        );
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.CHECK_BOX,
                 MaterialColors.BLACK
@@ -87,31 +69,9 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
                 MaterialColors.BLACK
         );
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
-                MaterialColors.WHITE
-        );
 
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
-                highlightBackgroundPrimary
-        );
-
-        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT
-        );
-
-        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN
-        );
-
-
-        this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
-        this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
-        this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
-        this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
+        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_ON);
+        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_WHITE_OFF);
 
         this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_WHITE);
         this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER_WHITE);
@@ -128,10 +88,6 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
-
-        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
-                MaterialImageFactory.BLANK
-        );
     }
 
     @Override

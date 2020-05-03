@@ -27,29 +27,13 @@ task deployOnDiffereProjectLocalLib {
             println ('from dir: ' + fromDir)
             println ("to dir: ${DIR_VAR}")
             println ("from name: ${ nameLib}")
-            println ("to name: ${VERSION_NAME_LOCAL_DEPLOY}")
-            from fromDir + nameLib
-            into "${DIR_VAR}"
-            rename(nameLib, "${VERSION_NAME_LOCAL_DEPLOY}")
-        }
-    }
-    //copyJarInDirecoty("${GENERIC_LIB}")
-}
-
-task copyIntoLibsDir {
-    doLast {
-        def DIR_VAR = projectDir.toPath().toAbsolutePath().toString() + '/libs'
-        copy {
-            println ('*********** COPY JAR INTO PROJECT LIBS DIR ***********')
-            println ('from dir: ' + fromDir)
-            println ("to dir: ${DIR_VAR}")
-            println ("from name: ${nameLib}")
-            println ("to name: ${VERSION_NAME_LOCAL_DEPLOY}")
+            println ("to name: ${nameLib}")
             from fromDir + nameLib
             into "${DIR_VAR}"
             rename(nameLib, nameLib)
         }
     }
+    //copyJarInDirecoty("${GENERIC_LIB}")
 }
 
 // TODO generalize the previus method

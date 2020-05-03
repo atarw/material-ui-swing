@@ -25,12 +25,9 @@ package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
 import java.awt.*;
 
@@ -44,13 +41,13 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
         return new MaterialSpinnerUI();
     }
 
-    protected JButton upArrowButton;
-    protected JButton downArrowButton;
+    //protected JButton upArrowButton;
+    //protected JButton downArrowButton;
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-/*
+        /*
         JSpinner spinner = (JSpinner) c;
         //spinner.setOpaque(false);
         spinner.setFont(UIManager.getFont("Spinner.font"));
@@ -63,11 +60,11 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        //c.setCursor(null);
+        c.setCursor(Cursor.getDefaultCursor());
         /*spinner.setFont(null);
         spinner.setBackground(null);
         spinner.setForeground(null);*/
-        spinner.getEditor().setBorder(null);
+        //spinner.getEditor().setBorder(null);
 
         super.uninstallUI(c);
     }
@@ -78,54 +75,51 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
     }
 
-    @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
-        this.configureLocalButton(this.upArrowButton);
-        this.configureLocalButton(this.downArrowButton);
-    }
 
     @Override
     protected Component createNextButton() {
         Icon icon = UIManager.getIcon("Spinner.nextButtonIcon");
-        JButton button;
-        if (icon != null) {
-            button = new JButton(icon);
-        } else {
-            button = new BasicArrowButton(SwingConstants.NORTH);
-        }
-        this.configureLocalButton(button);
+        JButton button = this.configureLocalButton(icon);
         installNextButtonListeners(button);
-        //button.setBorder(BorderFactory.createLineBorder(button.getBackground()));
-        this.upArrowButton = button;
         return button;
     }
 
     @Override
     protected Component createPreviousButton() {
         Icon icon = UIManager.getIcon("Spinner.previousButtonIcon");
-        JButton button;
-        if (icon != null) {
-            button = new JButton(icon);
-        } else {
-            button = new BasicArrowButton(SwingConstants.SOUTH);
-        }
-        this.configureLocalButton(button);
+        JButton button = this.configureLocalButton(icon);
         installPreviousButtonListeners(button);
-        //button.setBorder(BorderFactory.createLineBorder(button.getBackground()));
-        this.downArrowButton = button;
         return button;
     }
 
-    protected void configureLocalButton(JButton arrowButton) {
-        if (arrowButton == null) {
-            return;
+    protected JButton configureLocalButton(Icon icon) {
+        JButton arrowButton = new JButton(icon);
+        arrowButton.setUI(new SpinnerButtonUI());
+        return arrowButton;
+    }
+
+    /**
+     * This class use the MaterialButtonUI API to create the custom button for the icon
+     */
+    protected static class SpinnerButtonUI extends MaterialButtonUI {
+
+        @Override
+        public void installUI(JComponent c) {
+            super.mouseHoverEnabled = null;
+            super.installUI(c);
+            super.mouseHoverEnabled = UIManager.getBoolean("Spinner.mouseHoverEnabled");
+            super.background = UIManager.getColor("Spinner.arrowButtonBackground");
+            LookAndFeel.installColors(super.button, "Spinner.arrowButtonBackground", "Button.foreground");
+            super.button.setBorder(BorderFactory.createLineBorder(super.background));
+            if (super.mouseHoverEnabled) {
+                super.mouseHover = MaterialUIMovement.getMovement(button, UIManager.getColor("Spinner.mouseHoverColor"));
+                super.button.addMouseListener(super.mouseHover);
+            }
         }
-        //arrowButton.setOpaque(true);
-        arrowButton.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
-        if (UIManager.getBoolean("Spinner.mouseHoverEnabled")) {
-            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("Spinner.mouseHoverColor")));
+
+        @Override
+        protected void paintFocusRing(Graphics g, JButton b) {
+            //doNothing
         }
-        arrowButton.setBorder(BorderFactory.createLineBorder(arrowButton.getBackground()));
     }
 }

@@ -3,7 +3,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 apply from: 'gradle/local-deploy.gradle'
-apply from: 'gradle/release-public.gradle'
+//apply from: 'gradle/release.gradle'
 
 repositories {
     jcenter()

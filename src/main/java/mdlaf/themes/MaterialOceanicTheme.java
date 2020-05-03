@@ -58,7 +58,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
     @Override
     protected void installIcons() {
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+        super.installIcons();
+        /*this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.CHECK_BOX,
                 highlightBackgroundPrimary
         );
@@ -82,7 +83,19 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.openIconTree = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
                 highlightBackgroundPrimary
+        );*/
+
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                backgroundPrimary
         );
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                backgroundPrimary
+        );
+
+        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON);
+        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF);
 
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
@@ -107,10 +120,10 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_ON_WHITE);
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_WHITE);
-
+/*
         super.leafIconTree = MaterialImageFactory.getInstance().getImage(
                 MaterialImageFactory.BLANK
-        );
+        );*/
     }
 
     @Override
@@ -142,6 +155,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
     @Override
     protected void installColor() {
+
         this.backgroundPrimary = MaterialColors.DARKLY_STRONG_BLUE;
         this.highlightBackgroundPrimary = MaterialColors.LIME_A400;
 

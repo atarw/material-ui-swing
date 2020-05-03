@@ -34,6 +34,9 @@
 - [Resize window problem it compare when I change l&f](https://github.com/vincenzopalazzo/material-ui-swing/issues/100)
 - [Can't load /imgs/white/minimize.png](https://github.com/atarw/material-ui-swing/issues/106)
 - [Problem with resizing JDialog](https://github.com/atarw/material-ui-swing/issues/105)
+- Refactoring MouseHover event
+- Refactoring JSpinner arrow button and introducing new icon inside the arrow (also, the icons are add inside the theme system)
+- Fix stack overflow exception inside the JSpinner. The bug is only inside the version 1.1.1-rc1 of the library.
 
 
 **JToggleButton Second Style without icons**

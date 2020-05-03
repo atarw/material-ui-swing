@@ -32,7 +32,6 @@ import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
-import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -59,6 +58,8 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installIcons() {
+        super.installIcons();
+        /*
         this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
         this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
 
@@ -83,6 +84,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.errorIconIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
         this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
         this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
+*/
+        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON);
+        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF);
 
         this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK);
         this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER_BLACK);
@@ -101,9 +105,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK);
 
-        super.leafIconTree = MaterialImageFactory.getInstance().getImage(
+        /*super.leafIconTree = MaterialImageFactory.getInstance().getImage(
                 MaterialImageFactory.BLANK
-        );
+        );*/
     }
 
     @Override

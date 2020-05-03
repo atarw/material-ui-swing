@@ -23,8 +23,8 @@
  */
 package mdlaf.animation;
 
-import javax.swing.JComponent;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -59,7 +59,7 @@ public class MaterialUIMovement {
 	 * return a new MaterialUIStaticMovement this class implement a only MouseListner for moment
 	 * author https://github.com/vincenzopalazzo
 	 */
-	public static MaterialUIStaticMovement getStaticMovement(JComponent c, Color colorEffect, Color colorOnClick){
+	public static MaterialMouseHover getStaticMovement(JComponent c, Color colorEffect, Color colorOnClick){
 		if(c == null || colorEffect == null || colorOnClick == null){
 			throw new IllegalArgumentException("Che input arguments is/are null");
 		}

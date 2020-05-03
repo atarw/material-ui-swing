@@ -161,6 +161,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         FontMetrics fm = g.getFontMetrics(c.getFont());
         int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
@@ -424,10 +425,10 @@ public class MaterialButtonUI extends BasicButtonUI {
             I do remove this bug but I need to restore this code because isn't possible work with the personal
             color on the button.
             */
-            else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && !mouseHoverRunning) {
+            else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && button.isEnabled() && !mouseHoverRunning) {
                 //When on the JButton call the method setBackground
                 background = (Color) evt.getNewValue();
-            } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && !mouseHoverRunning) {
+            } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && button.isEnabled() && !mouseHoverRunning) {
                 //When on the JButton call the method setForeground
                 foreground = (Color) evt.getNewValue();
             }

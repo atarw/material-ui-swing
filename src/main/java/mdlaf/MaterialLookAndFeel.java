@@ -355,6 +355,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Spinner.arrowButtonBorder", theme.getArrowButtonBorderSpinner());
         table.put("Spinner.mouseHoverEnabled", theme.getMouseHoverEnableSpinner());
         table.put("Spinner.mouseHoverColor", theme.getMouseHoverButtonColorSpinner());
+        table.put("Spinner.previousButtonIcon", theme.getPreviousButtonIconSpinner());
+        table.put("Spinner.nextButtonIcon", theme.getNextButtonIconSpinner());
 
         table.put("ScrollBar.font", theme.getFontRegular());
         table.put("ScrollBar.track", theme.getTrackColorScrollBar());
@@ -505,6 +507,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButtonMenuItem.border", theme.getBorderMenu());
         table.put("RadioButtonMenuItem.checkIcon", theme.getUnselectedRadioButtonIcon());
         table.put("RadioButtonMenuItem.selectedCheckIcon", theme.getSelectedRadioButtonIcon());
+        table.put("RadioButtonMenuItem.font", theme.getFontRegular());
 
         table.put("CheckBoxMenuItem.background", theme.getMenuBackground());
         table.put("CheckBoxMenuItem.selectionBackground", theme.getMenuBackgroundMouseHover());
@@ -513,6 +516,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBoxMenuItem.border", theme.getBorderMenu());
         table.put("CheckBoxMenuItem.checkIcon", theme.getUnselectedCheckBoxIconTable());
         table.put("CheckBoxMenuItem.selectedCheckIcon", theme.getSelectedCheckBoxIconTable());
+        table.put("CheckBoxMenuItem.font",theme.getFontRegular());
 
         table.put("TextPane.border", theme.getBorderPanel());
         table.put("TextPane.background", theme.getBackgroundTextField());
@@ -536,6 +540,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Separator.foreground", theme.getForegroundSeparator());
 
         table.put("ToolTip.background", MaterialColors.GRAY_500);
+        table.put("ToolTip.font",theme.getFontRegular());
         table.put("ToolTip.foreground", MaterialColors.GRAY_50);
         table.put("ToolTip.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -687,14 +692,17 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("FileChooser[icons].details", theme.getIconDetailsFileChooser());
         table.put("FileChooser[icons].newFolder", theme.getIconNewFolderFileChooser());
         table.put("FileChooser[icons].upFolder", theme.getIconUpFolderFileChooser());
+        table.put("FileChooser.font", theme.getFontRegular());
 
         table.put("ProgressBar.border", theme.getBorderProgressBar());
         table.put("ProgressBar.background", theme.getBackgroundProgressBar());
         table.put("ProgressBar.foreground", theme.getForegroundProgressBar());
+        table.put("ProgressBar.font", theme.getFontRegular());
 
         table.put("ColorChooser.background", theme.getBackgroundPrimary());
         table.put("ColorChooser.foreground", theme.getTextColor());
         table.put("ColorChooser.border", theme.getBorderPanel());
+        table.put("ColorChooser.font", theme.getFontRegular());
 
         theme.installUIDefault(table);
     }

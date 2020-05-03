@@ -24,20 +24,18 @@
 package mdlaf.themes;
 
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.IconUIResource;
-import javax.swing.plaf.InsetsUIResource;
+import javax.swing.plaf.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-@SuppressWarnings("all")
+//TODO start refactoring inside the MaterialTheming
 public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource backgroundPrimary;
@@ -146,6 +144,11 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected BorderUIResource arrowButtonBorderSpinner;
 
+    public IconUIResource previousButtonIconSpinner;
+
+    public IconUIResource nextButtonIconSpinner;
+
+
     //---------------------------------------------------
     //Proprieties JPanel
     protected BorderUIResource borderPanel;
@@ -216,12 +219,26 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected BorderUIResource cellBorderTableHeader;
 
+
+    /**
+     * Whent the Table row is unselected but the checkbox is uncheck
+     */
     protected IconUIResource unselectedCheckBoxIconTable;
 
+    /**
+     * Whent the Table row is unselected but the checkbox is check
+     */
     protected IconUIResource selectedCheckBoxIconTable;
 
+    /**
+     * Whent the Table row is selected but the checkbox is check
+     */
     protected IconUIResource unselectedCheckBoxIconSelectionRowTable;
 
+
+    /**
+     * Whent the Table row is selected but the checkbox is check
+     */
     protected IconUIResource selectedCheckBoxIconSelectionRowTable;
 
     //---------------------------------------------------
@@ -408,7 +425,74 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         //Install font default
     }
 
-    protected abstract void installIcons();
+    protected void installIcons(){
+        this.previousButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.ARROW_DROP_DOWN,
+                textColor
+        );
+
+        this.nextButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.ARROW_DROP_UP,
+                textColor
+        );
+
+        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                highlightBackgroundPrimary
+        );
+
+        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                highlightBackgroundPrimary
+        );
+
+        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                highlightBackgroundPrimary
+        );
+        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                highlightBackgroundPrimary
+        );
+
+        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
+                textColor
+        );
+
+        this.openIconTree = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                highlightBackgroundPrimary
+        );
+
+        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
+        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT
+        );
+
+        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN
+        );
+
+
+        this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
+        this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
+        this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
+        this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
+
+        this.leafIconTree = MaterialImageFactory.getInstance().getImage(
+                MaterialImageFactory.BLANK
+        );
+    }
 
     public abstract String getName();
 
@@ -419,7 +503,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         this.borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
         this.borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
-        this.arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createLineBorder(arrowButtonBackgroundSpinner));
+        this.arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(arrowButtonBackgroundSpinner),
+                BorderFactory.createEmptyBorder(2,2,2,2)
+        ));
         this.borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -454,6 +541,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
 
         this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
+        this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
     }
 
     //getter
@@ -695,6 +783,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public BorderUIResource getArrowButtonBorderSpinner() {
         return arrowButtonBorderSpinner;
+    }
+
+    public IconUIResource getPreviousButtonIconSpinner() {
+        return previousButtonIconSpinner;
+    }
+
+    public IconUIResource getNextButtonIconSpinner() {
+        return nextButtonIconSpinner;
     }
 
     @Override
@@ -1266,6 +1362,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner) {
+        this.previousButtonIconSpinner = previousButtonIconSpinner;
+    }
+
+    public void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner) {
+        this.nextButtonIconSpinner = nextButtonIconSpinner;
+    }
+
     public void setBorderItemComboBox(BorderUIResource borderItemComboBox) {
         this.borderItemComboBox = borderItemComboBox;
     }

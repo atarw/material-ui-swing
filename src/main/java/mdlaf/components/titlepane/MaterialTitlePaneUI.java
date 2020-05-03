@@ -16,6 +16,7 @@
 package mdlaf.components.titlepane;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 
 import sun.swing.SwingUtilities2;
@@ -495,6 +496,7 @@ public class MaterialTitlePaneUI extends JComponent {
 
         String theTitle = getTitle();
         if (theTitle != null) {
+            g = MaterialDrawingUtils.getAliasedGraphics(g);
             FontMetrics fm = g.getFontMetrics(rootPane.getFont());
 
             g.setColor(foreground);
