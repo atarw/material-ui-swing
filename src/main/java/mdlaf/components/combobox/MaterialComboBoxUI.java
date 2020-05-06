@@ -52,10 +52,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     protected Color background;
     protected FocusListener focusListener;
-    protected int arc = 12; //default value
+    protected int arc = 10; //default value
 
     public MaterialComboBoxUI() {
-        focusListener = new FocusListenerColor();
     }
 
     @Override
@@ -70,7 +69,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));
+    }
 
+    @Override
+    protected void installDefaults() {
+        super.installDefaults();
         this.arc = UIManager.getInt("ComboBox.arc");
     }
 
@@ -86,7 +89,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         //comboBox.setRenderer(null);
         //comboBox.setEditor(null);
 
-        comboBox.removeFocusListener(focusListener);
         //MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
 
         super.uninstallUI(comboBox);
@@ -125,8 +127,15 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     @Override
+    protected void installListeners() {
+        super.installListeners();
+        focusListener = new FocusListenerColor();
+        comboBox.addFocusListener(focusListener);
+    }
+
+    @Override
     protected void uninstallListeners() {
-        if(this.comboBox.isFocusable()){
+        if(focusListener != null){
             this.comboBox.removeFocusListener(focusListener);
         }
         super.uninstallListeners();

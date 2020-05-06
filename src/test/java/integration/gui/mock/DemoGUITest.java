@@ -23,10 +23,7 @@
  */
 package integration.gui.mock;
 
-import integration.gui.mock.component.DemoPanelWithTabbedPane;
-import integration.gui.mock.component.PersonalButtonUI;
-import integration.gui.mock.component.PersonalMouseHoverButtonUI;
-import integration.gui.mock.component.TableModelSecondPanel;
+import integration.gui.mock.component.*;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;

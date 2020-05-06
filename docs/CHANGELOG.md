@@ -40,6 +40,8 @@
 - Added a different method to load a personal font with MaterialFontFactory and now the dimension fot with JDK8 with calculate with JDKo optimizing
 to fix pixel bug in JDK8 but the dimension is setting static with JDK version >=9.
 - Fixed rolloverBorder on JToolBar.
+- Fixed bugs in sub menu background.
+- Refactoring JComboBox, now is possible change the arch of the bord easy.
 
 
 **JToggleButton Second Style without icons**

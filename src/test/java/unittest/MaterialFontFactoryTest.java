@@ -3,10 +3,13 @@ package unittest;
 import junit.framework.TestCase;
 import mdlaf.utils.MaterialFontFactory;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
+@RunWith(JUnit4.class)
 public class MaterialFontFactoryTest {
 
     private static final String PATH = "/fonts/noto-sans/";

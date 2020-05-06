@@ -144,7 +144,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         borderProgressBar = MaterialBorders.OCEAN_LINE_BORDER;
 
-        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
+        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, this.getArchBorderComboBox());
         this.borderTable = MaterialBorders.OCEAN_LINE_BORDER;
         this.borderTableHeader = new BorderUIResource(
                 new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,

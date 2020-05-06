@@ -1,4 +1,4 @@
-package unittest;
+package integration.gui.test;
 
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import junit.framework.TestCase;
@@ -6,11 +6,12 @@ import mdlaf.utils.MaterialImageFactory;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
-
-public class MaterialImageFactoryTest {
+//TODO write the with assertj
+public class MaterialImageFactoryTest extends AbstractTestGUI{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterialImageFactory.class);
 

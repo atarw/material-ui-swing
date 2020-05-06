@@ -106,7 +106,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         borderProgressBar = borderSpinner;
 
-        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, 12);
+        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, this.getArchBorderComboBox());
         this.borderTable = borderSpinner;
         this.borderTableHeader = new BorderUIResource(
                 new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
@@ -141,8 +141,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectedInDropDownBackgroundComboBox = new ColorUIResource(249, 192, 98);
         this.selectedForegroundComboBox = MaterialColors.BLACK;
 
-        this.menuBackground = backgroundPrimary;
-        this.menuBackgroundMouseHover = buttonBackgroundColorMouseHover;
+        this.menuBackground = new ColorUIResource(59,62,69);
+        this.menuBackgroundMouseHover = highlightBackgroundPrimary;
         this.menuTextColor = MaterialColors.WHITE;
         this.menuDisableBackground = MaterialColors.TRANSPANENT;
 

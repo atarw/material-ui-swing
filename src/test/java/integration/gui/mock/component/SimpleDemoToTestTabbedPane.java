@@ -1,6 +1,5 @@
-package integration.gui.mock;
+package integration.gui.mock.component;
 
-import integration.gui.mock.component.DemoPanelWithTabbedPane;
 import mdlaf.MaterialLookAndFeel;
 
 import javax.swing.*;

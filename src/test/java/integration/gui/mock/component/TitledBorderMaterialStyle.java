@@ -1,10 +1,7 @@
-package integration.gui.mock;
+package integration.gui.mock.component;
 
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.utils.MaterialBorders;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

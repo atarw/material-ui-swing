@@ -206,7 +206,7 @@ public class MaterialFontFactory {
         if(defaultSize <= 0){
             throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
-        if(System.getProperty("java.version").startsWith("1.")){
+       if(System.getProperty("java.version").startsWith("1.")){
             return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) /72;
         }
         return dimension;

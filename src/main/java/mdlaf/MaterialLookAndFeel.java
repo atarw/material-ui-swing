@@ -303,6 +303,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Label.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
 
         table.put("Menu.font", theme.getFontRegular());
+        //This propriety should be true because if you remove it or you set this to false, it paint bad the subMenu (jMenuItem with arrows)
+        table.put("Menu.opaque", true);
         table.put("Menu.border", theme.getBorderMenu());
         table.put("Menu.background", theme.getMenuBackground());
         table.put("Menu.foreground", theme.getMenuTextColor());

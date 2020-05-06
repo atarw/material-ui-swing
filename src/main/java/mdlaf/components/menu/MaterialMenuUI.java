@@ -23,18 +23,10 @@
  */
 package mdlaf.components.menu;
 
-import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.basic.BasicMenuUI;
-import javax.swing.plaf.basic.BasicToolBarUI;
-import javax.swing.plaf.metal.MetalMenuBarUI;
-import javax.swing.plaf.metal.MetalToolBarUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,7 +41,8 @@ public class MaterialMenuUI extends BasicMenuUI {
 		return new MaterialMenuUI ();
 	}
 
-	private MouseListener mouseHover;
+	protected MouseListener mouseHover;
+	protected JMenu menu;
 
 	public MaterialMenuUI() {
 		mouseHover = new MouseHover();
@@ -59,31 +52,30 @@ public class MaterialMenuUI extends BasicMenuUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		//JMenu menu = (JMenu) c;
-		//menu.setFont (UIManager.getFont ("Menu.font"));
-		//menu.setBorder (UIManager.getBorder ("Menu.border"));
-		//menu.setBackground (UIManager.getColor ("Menu.background"));
-		//menu.setForeground (UIManager.getColor ("Menu.foreground"));
-		//menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
+		menu = (JMenu) c;
+		/*menu.setFont (UIManager.getFont ("Menu.font"));
+		menu.setBorder (UIManager.getBorder ("Menu.border"));
+		menu.setBackground (UIManager.getColor ("Menu.background"));
+		menu.setForeground (UIManager.getColor ("Menu.foreground"));
+		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));*/
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
 
-		/*menuItem.setFont (null);
-		menuItem.setBackground (null);
-		menuItem.setForeground (null);
-		menuItem.setBorder (null);*/
-		menuItem.setCursor(Cursor.getDefaultCursor());
+		/*c.setFont (null);
+		c.setBackground (null);
+		c.setForeground (null);
+		c.setBorder (null);*/
+		c.setCursor(Cursor.getDefaultCursor());
 
-		c.removeMouseListener(mouseHover);
 		super.uninstallUI(menuItem);
 	}
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+		super.paint (g, c);
 	}
 
 	@Override
@@ -92,6 +84,12 @@ public class MaterialMenuUI extends BasicMenuUI {
 			c.addMouseListener(mouseHover);
 		}
 		return super.createChangeListener(c);
+	}
+
+	@Override
+	protected void uninstallListeners() {
+		super.uninstallListeners();
+		menu.removeMouseListener(mouseHover);
 	}
 
 	/**
