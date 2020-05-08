@@ -1,4 +1,4 @@
-/**
+package integration.gui.mock; /**
  * MIT License
  * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com

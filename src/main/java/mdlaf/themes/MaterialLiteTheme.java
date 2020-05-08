@@ -58,6 +58,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
         this.arrowButtonOnClickColorScrollBar = MaterialColors.GRAY_400;
         this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
+        super.foregroundToolTip = MaterialColors.WHITE;
     }
 
     @Override
@@ -143,6 +144,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         super.foregroundSeparator = MaterialColors.GRAY_300;
 
         super.titleColorTaskPane = MaterialColors.BLACK;
+        super.backgroundToolTip = MaterialColors.GRAY_500;
     }
 
     @Override

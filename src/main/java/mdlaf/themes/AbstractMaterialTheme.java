@@ -34,7 +34,6 @@ import javax.swing.plaf.*;
 /**
  * @author https://github.com/vincenzopalazzo
  */
-//TODO start refactoring inside the MaterialTheming
 public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource backgroundPrimary;
@@ -426,12 +425,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JSeparator
-    public ColorUIResource backgroundSeparator;
+    protected ColorUIResource backgroundSeparator;
 
-    public ColorUIResource foregroundSeparator;
+    protected ColorUIResource foregroundSeparator;
+
+    //---------------------------------------------------
+    //Proprieties JToolTip
+    protected ColorUIResource backgroundToolTip;
+
+    protected ColorUIResource foregroundToolTip;
+
+    protected BorderUIResource borderToolTip;
 
 
-    // Abstract method
     public void installTheme(){
         installColor();
         installDefaultColor();
@@ -454,8 +460,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderColorTaskPane = backgroundTaskPane;
         this.contentBackgroundTaskPane = backgroundPrimary;
 
-        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
-        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.withoutIconSelectedBackgroundToggleButton = buttonBackgroundColorMouseHover;
+        this.withoutIconBackgroundToggleButton = buttonBackgroundColor;
         this.colorTextTitledBorder = textColor;
 
         this.arrowButtonBackgroundSpinner = backgroundTextField;
@@ -480,7 +486,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.buttonDisabledForeground = disableTextColor;
         this.buttonDefaultTextColor = textColor;
         this.buttonTextColor = textColor;
-
+        this.foregroundToolTip = textColor;
     }
 
     protected void installFonts() {
@@ -713,6 +719,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
         this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
         this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
+
+        this.borderToolTip = MaterialBorders.roundedLineColorBorder(this.backgroundToolTip, 4);
     }
 
     public abstract String getName();
@@ -829,6 +837,20 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public ColorUIResource getForegroundSeparator() {
         return foregroundSeparator;
+    }
+
+    //---------------------------------------------------
+    //Proprieties JToolTip
+    public ColorUIResource getBackgroundToolTip() {
+        return backgroundToolTip;
+    }
+
+    public ColorUIResource getForegroundToolTip() {
+        return foregroundToolTip;
+    }
+
+    public BorderUIResource getBorderToolTip() {
+        return borderToolTip;
     }
 
     //Proprieties JCheckBox
@@ -1575,8 +1597,19 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return fontMedium;
     }
 
-
     //Setter
+    public void setBackgroundToolTip(ColorUIResource backgroundToolTip) {
+        this.backgroundToolTip = backgroundToolTip;
+    }
+
+    public void setForegroundToolTip(ColorUIResource foregroundToolTip) {
+        this.foregroundToolTip = foregroundToolTip;
+    }
+
+    public void setBorderToolTip(BorderUIResource borderToolTip) {
+        this.borderToolTip = borderToolTip;
+    }
+
     public void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane) {
         this.disabledBottomIconTabbedPane = disabledBottomIconTabbedPane;
     }

@@ -73,7 +73,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * Inside the installUI method are init only proprieties used inside this component
-     * the background or foreground ara managed to BasicButtonUI, {@see BasicButtonUI}
+     * the background or foreground ara managed to BasicButtonUI, @see BasicButtonUI
      */
     @Override
     public void installUI(JComponent c) {

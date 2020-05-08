@@ -60,6 +60,11 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
                 GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
                 highlightBackgroundPrimary
         );
+
+        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                textColor
+        );
     }
 
     @Override
@@ -185,6 +190,8 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         super.foregroundSeparator = MaterialColors.GRAY_300;
 
         super.titleColorTaskPane = MaterialColors.BLACK;
+
+        super.backgroundToolTip = super.menuBackground;
     }
 
     @Override
@@ -194,6 +201,6 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
     @Override
     public String getName() {
-        return "Material Dark";
+        return "Material Oceanic";
     }
 }

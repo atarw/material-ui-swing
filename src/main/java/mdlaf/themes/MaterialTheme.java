@@ -350,6 +350,14 @@ public interface MaterialTheme {
     BorderUIResource getBorderToolBar();
 
     //---------------------------------------------------
+    //Proprieties JToolTip
+    ColorUIResource getBackgroundToolTip();
+
+    ColorUIResource getForegroundToolTip();
+
+    BorderUIResource getBorderToolTip();
+
+    //---------------------------------------------------
     //Proprieties JTree
     ColorUIResource getSelectionForegroundTree();
 
@@ -511,6 +519,11 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setBackgroundToolTip(ColorUIResource backgroundToolTip);
+
+    void setForegroundToolTip(ColorUIResource foregroundToolTip);
+
+    void setBorderToolTip(BorderUIResource borderToolTip);
 
     void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane);
 

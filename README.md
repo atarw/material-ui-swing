@@ -12,7 +12,7 @@ A modern, Material Design UI for Java Swing
 
 Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
 
-Check `src/MaterialUISwingDemo.java` for a slightly longer example of how to use this library (an explanation of what everything means/does).
+Check `src/integration.gui.mock.MaterialUISwingDemo.java` for a slightly longer example of how to use this library (an explanation of what everything means/does).
 For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
 
 This look and feel implement an method for theming personal, don't use the MetalTheme but implements

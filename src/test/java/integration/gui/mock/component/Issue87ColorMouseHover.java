@@ -52,11 +52,6 @@ public class Issue87ColorMouseHover extends JDialog {
             jButton1.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
             jButton1.addMouseListener(MaterialUIMovement.getMovement(jButton1, new ColorUIResource(23, 137, 134)));
             jButton1.setText("Test Button");
-            jButton1.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton1ActionPerformed(evt);
-                }
-            });
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -76,10 +71,6 @@ public class Issue87ColorMouseHover extends JDialog {
             );
 
             pack();
-        }
-
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            // TODO add your handling code here:
         }
 
         public static void main(String args[]) {

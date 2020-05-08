@@ -160,7 +160,7 @@ public class MaterialTitlePaneUI extends JComponent {
             createButtons();
             initMaterialButtonClose();
             myCloseButton.setFocusable(false);
-            myCloseButton.setVisible(true); //TODO this is the component
+            myCloseButton.setVisible(true);
             add(myCloseButton);
         }
     }

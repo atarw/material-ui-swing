@@ -36,7 +36,7 @@ public class MaterialUIMovement {
 
 	/**
 	 * @deprecated This method will be deprecated inside the version 1.2 of the library.
-	 * you can {@see getMovement method}
+	 * you can @see getMovement method
 	 */
 	@Deprecated
 	public static void add (JComponent c, Color fadeTo, int steps, int interval) {
@@ -45,7 +45,7 @@ public class MaterialUIMovement {
 
 	/**
 	 * @deprecated This method will be deprecated inside the version 1.2 of the library.
-	 * you can {@see getMovement method}
+	 * you can @see getMovement method
 	 */
 	@Deprecated
 	public static void add (JComponent c, Color fadeTo) {
@@ -69,7 +69,7 @@ public class MaterialUIMovement {
 	 * return a new MaterialUIStaticMovement this class implement a only MouseListner for moment
 	 * @author https://github.com/vincenzopalazzo
 	 * @deprecated This method will be removed inside the version 1.2, because with the new MaterialButtonApi, you can create
-	 * a personal instance of the button, with an personal Listener, {@see MaterialButtonUI}
+	 * a personal instance of the button, with an personal Listener, @see MaterialButtonUI
 	 */
 	@Deprecated
 	public static MaterialMouseHover getStaticMovement(JComponent c, Color colorEffect, Color colorOnClick){

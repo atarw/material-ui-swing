@@ -49,7 +49,7 @@ public class DemoGUITest extends JFrame {
     static {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(true); //not support yet
+            JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
@@ -139,6 +139,7 @@ public class DemoGUITest extends JFrame {
         buttonNormal.setName("buttonNormal");
 
         textFieldUsername.setName("usernameField");
+        textFieldUsername.setToolTipText("Test tooltip");
         textFieldUsername.setText("Hello this is an test with AssertJ");
         textFieldUsername.addActionListener(containerAction.getListenerTextField());
         passwordFiled.setName("passwordField");
@@ -176,7 +177,7 @@ public class DemoGUITest extends JFrame {
                 }
             }
         });
-
+        personalButton.setToolTipText("This button have an personal UI");
         personalButton.setUI(new PersonalButtonUI());
         personalButton.setAction(new AbstractAction("Disable") {
             @Override

@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * This class managed the font inside the library and inside the L&F, in fact
+ * This class managed the font inside the library and inside the Look and Feel, in fact
  * this class use a flaywait patter to minimized the font instance created from the library.
  * In fact on a lot of component you have only 4 instance of font in a normal use case.
  *
@@ -76,7 +76,7 @@ public class MaterialFontFactory {
     /**
      * The path font was load from a proprieties file.
      * This can permit the user to change the font also with a proprieties file
-     * {@see The file inside resources/config/font-all-language.properties}
+     * see The file inside resources/config/font-all-language.properties
      */
     protected Properties properties = new Properties();
     protected Map<String, FontUIResource> cacheFont = new HashMap<>();
@@ -110,7 +110,7 @@ public class MaterialFontFactory {
 
     /**
      * This method load the library default font, at this moment this is a Noto Sans font, you can
-     * load 4 different dimension of font, {@see MaterialTypeFont}
+     * load 4 different dimension of font, @see MaterialTypeFont
      **/
     public FontUIResource getFont(MaterialTypeFont typeFont) {
         return this.getFont(typeFont, this.withPersonalSettings);
@@ -118,7 +118,7 @@ public class MaterialFontFactory {
 
     /**
      * This method load the library default font, at this moment this is a Noto Sans font, you can
-     * load 4 different dimension of font, {@see MaterialTypeFont}
+     * load 4 different dimension of font, @see MaterialTypeFont
      * <p>
      * In addition, this method have the boolean (by default this propriety is true) called withPersonalSettings
      * to jump the personal font setting.
@@ -199,7 +199,7 @@ public class MaterialFontFactory {
      * In this method optimizing the font dimension with the display resolution
      * This method to calculate the font dimension is bad, We now but the JDK 8 display the font very bad
      * and at the moment with the JDK 8 the dimension of the font is calculate with the screen resolution
-     * and with the JDK >= 9 the font set with the defaultSize {@see defaultSize}
+     * and with the JDK9+ the font set with the defaultSize @see defaultSize
      */
     public float doOptimizingDimensionFont(float dimension) {
         if (defaultSize <= 0) {

@@ -87,9 +87,9 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                 withoutIconBackground = UIManager.getColor("ToggleButton[withoutIcon].background");
                 withoutIconForeground = UIManager.getColor("ToggleButton[withoutIcon].foreground");
                 if (toggleButton.isSelected()) {
-                    toggleButton.setBorder(withoutIconSelectedBorder);
+                    LookAndFeel.installBorder(toggleButton, "ToggleButton[withoutIcon].background");
                 } else {
-                    toggleButton.setBorder(withoutIconBorder);
+                    LookAndFeel.installBorder(toggleButton, "ToggleButton[withoutIcon].selectedForeground");
                 }
             } else {
                 LookAndFeel.installBorder(toggleButton, "ToggleButton.border");
@@ -104,10 +104,10 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        JToggleButton toggleButton = (JToggleButton) c;
+        /*JToggleButton toggleButton = (JToggleButton) c;
         toggleButton.setIcon(null);
         toggleButton.setSelectedIcon(null);
-        /* toggleButton.setBorder(null);
+         toggleButton.setBorder(null);
         toggleButton.setBackground(null);
         toggleButton.setForeground(null);*/
         super.uninstallUI(c);
@@ -122,7 +122,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             if (button.isSelected()) {
                 button.setBackground(withoutIconSelectedBackground);
                 button.setForeground(withoutIconSelectedForeground);
-                button.setBorder(withoutIconSelectedBorder); //TODO set thickness from UIManager
+                button.setBorder(withoutIconSelectedBorder);
             } else {
                 button.setBackground(withoutIconBackground);
                 button.setForeground(withoutIconForeground);
@@ -171,4 +171,6 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                     textRect.x - 1, textRect.y + fm.getAscent() - 1);
         }
     }
+
+
 }

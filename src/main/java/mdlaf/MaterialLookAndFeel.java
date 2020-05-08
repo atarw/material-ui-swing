@@ -448,12 +448,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Table.gridColor", theme.getGridColorTable());
         table.put("Table.focusable", theme.getTableFocusable());
         table.put("Table.opaque", theme.getTableOpaque());
-        //This propriety was used also how default
-        //TODO refactoring this proprieties
-        //TODO add why
+
+        //the personal implementation and now with this line the library use the default swing code
         table.put("Table.alternateRowColor", theme.getAlternateRowBackgroundTable());
+        //Previous material release, was used this configuration.
         //table.put("Table.alternateRowColor", theme.getAlternateRowColorEnableTable());
         //table.put("Table.alternateRowBackground", theme.getAlternateRowBackgroundTable());
+
         table.put("Table[row].height", theme.getHeightRowTable());
         table.put("Table[CheckBox].checked", theme.getSelectedCheckBoxIconTable());
         table.put("Table[CheckBox].unchecked", theme.getUnselectedCheckBoxIconTable());
@@ -531,8 +532,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBoxMenuItem.foreground", theme.getTextColor());
         table.put("CheckBoxMenuItem.selectionForeground", theme.getTextColor());
         table.put("CheckBoxMenuItem.border", theme.getBorderMenu());
-        table.put("CheckBoxMenuItem.checkIcon", theme.getUnselectedCheckBoxIconTable());
-        table.put("CheckBoxMenuItem.selectedCheckIcon", theme.getSelectedCheckBoxIconTable());
+        table.put("CheckBoxMenuItem.checkIcon", theme.getUnselectedCheckBoxIcon());
+        table.put("CheckBoxMenuItem.selectedCheckIcon", theme.getSelectedCheckBoxIcon());
         table.put("CheckBoxMenuItem.font",theme.getFontRegular());
 
         table.put("TextPane.border", theme.getBorderPanel());
@@ -556,11 +557,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Separator.background", theme.getBackgroundSeparator());
         table.put("Separator.foreground", theme.getForegroundSeparator());
 
-        //TODO support tool tip
-        table.put("ToolTip.background", MaterialColors.GRAY_500);
+        table.put("ToolTip.background", theme.getBackgroundToolTip());
         table.put("ToolTip.font",theme.getFontRegular());
-        table.put("ToolTip.foreground", MaterialColors.GRAY_50);
-        table.put("ToolTip.border", BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        table.put("ToolTip.foreground", theme.getForegroundToolTip());
+        table.put("ToolTip.border", theme.getBorderToolTip());
 
         table.put("TextField.background", theme.getBackgroundTextField());
         table.put("TextField.foreground", theme.getTextColor());

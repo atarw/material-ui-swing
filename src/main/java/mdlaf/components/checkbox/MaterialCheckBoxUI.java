@@ -71,8 +71,8 @@ public class MaterialCheckBoxUI extends MetalCheckBoxUI {
         super.paint(g, c);
     }
 
-    //TODO support change icon for future when is focus
-    @Override
+
+    @Override //TODO support change icon for future when is focus
     protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
         //super.paintFocus(g, textRect, size);
     }
