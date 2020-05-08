@@ -246,6 +246,14 @@ public interface MaterialTheme {
 
     //---------------------------------------------------
     //Proprieties JTabbedPane
+    IconUIResource getDisabledBottomIconTabbedPane();
+
+    IconUIResource getDisabledTopIconTabbedPane();
+
+    IconUIResource getDisabledLeftIconTabbedPane();
+
+    IconUIResource getDisabledRightIconTabbedPane();
+
     ColorUIResource getHighlightColorTabbedPane();
 
     ColorUIResource getBorderHighlightColorTabbedPane();
@@ -257,6 +265,18 @@ public interface MaterialTheme {
     InsetsUIResource getTabInsetsTabbedPane();
 
     InsetsUIResource getSelectedTabInsetsTabbedPane();
+
+    IconUIResource getBottomIconTabbedPane();
+
+    IconUIResource getTopIconTabbedPane();
+
+    IconUIResource getLeftIconTabbedPane();
+
+    IconUIResource getRightIconTabbedPane();
+
+    ColorUIResource getColorIconTabbedPane();
+
+    ColorUIResource getColorDisabledIconTabbedPane();
 
     boolean getMouseHoverEnableTabbedPane();
 
@@ -491,6 +511,27 @@ public interface MaterialTheme {
 
 
     //Setter
+
+    void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane);
+
+    void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane);
+
+    void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane);
+
+    void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane);
+
+    void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane);
+
+    void setTopIconTabbedPane(IconUIResource topIconTabbedPane);
+
+    void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane);
+
+    void setRightIconTabbedPane(IconUIResource rightIconTabbedPane);
+
+    void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane);
+
+    void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane);
+
     void setArchTaskPane(int archTaskPane);
 
     void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);

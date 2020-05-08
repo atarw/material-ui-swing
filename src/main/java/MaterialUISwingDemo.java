@@ -24,11 +24,12 @@
 
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
-import mdlaf.utils.*;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.MaterialManagerListener;
 import org.jdesktop.swingx.JXTaskPane;
 
 import javax.swing.*;
@@ -207,16 +208,15 @@ public class MaterialUISwingDemo {
                     frame.add(bar, BorderLayout.PAGE_START);
                     // frame.add (content, BorderLayout.CENTER);
 
-                    // start animating!
-                    // here, 'gray' is the color that the JComponent will transition to when the user hovers over it
-                    MaterialUIMovement.add(menu1, MaterialColors.GRAY_200);
-                    MaterialUIMovement.add(item1, MaterialColors.GRAY_200);
+                    //Deprecated, now the library add inside the class the event
+                    //MaterialUIMovement.add(menu1, MaterialColors.GRAY_200);
+                   // MaterialUIMovement.add(item1, MaterialColors.GRAY_200);
 
                     // you can also pass in extra parameters indicating how many intermediate colors to display, as well as the "frame rate" of the animation
                     // there will be 5 intermediate colors displayed in the transition from the original components color to the new one specified
                     // the "frame rate" of the transition will be 1000 / 30, or 30 FPS
                     // the animation will take 5 * 1000 / 30 = 166.666... milliseconds to complete
-                    MaterialUIMovement.add(button, MaterialColors.LIGHT_BLUE_500, 5, 1000 / 30);
+                   // MaterialUIMovement.add(button, MaterialColors.LIGHT_BLUE_500, 5, 1000 / 30);
 
                     //
                     content.add(new JCheckBox("checkbox"));

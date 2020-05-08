@@ -1,6 +1,5 @@
 package integration.gui.mock.component;
 
-import com.jhlabs.image.LightFilter;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 
@@ -66,7 +65,7 @@ public class DemoPanelWithTabbedPane extends JPanel {
 
     public void hideTabbedPane(boolean deprecatedFuntion){
         if(deprecatedFuntion){
-            tabbedPane.hide();
+            tabbedPane.setVisible(false);
         }else{
             tabbedPane.setVisible(false);
         }

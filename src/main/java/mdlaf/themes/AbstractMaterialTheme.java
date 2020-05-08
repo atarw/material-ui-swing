@@ -26,8 +26,7 @@ package mdlaf.themes;
 
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.*;
 
 import javax.swing.*;
 import javax.swing.plaf.*;
@@ -194,6 +193,26 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected InsetsUIResource tabInsetsTabbedPane;
 
     protected InsetsUIResource selectedTabInsetsTabbedPane;
+
+    protected IconUIResource bottomIconTabbedPane;
+
+    protected IconUIResource disabledBottomIconTabbedPane;
+
+    protected IconUIResource topIconTabbedPane;
+
+    protected IconUIResource leftIconTabbedPane;
+
+    protected IconUIResource rightIconTabbedPane;
+
+    protected IconUIResource disabledTopIconTabbedPane;
+
+    protected IconUIResource disabledLeftIconTabbedPane;
+
+    protected IconUIResource disabledRightIconTabbedPane;
+
+    protected ColorUIResource colorIconTabbedPane;
+
+    protected ColorUIResource colorDisabledIconTabbedPane;
 
     //---------------------------------------------------
     //Proprieties JTable
@@ -413,19 +432,112 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     // Abstract method
-    public abstract void installTheme();
+    public void installTheme(){
+        installColor();
+        installDefaultColor();
+        installFonts();
+        installBorders();
+        installIcons();
+    }
 
-    public void installUIDefault(UIDefaults table){
+    public void installUIDefault(UIDefaults table) {
         //do nothing
     }
 
     protected abstract void installColor();
 
-    protected void installFonts(){
-        //Install font default
+    protected void installDefaultColor(){
+        this.colorIconTabbedPane = textColor;
+        this.colorDisabledIconTabbedPane = disableTextColor;
+
+        this.backgroundTaskPane = backgroundPrimary;
+        this.borderColorTaskPane = backgroundTaskPane;
+        this.contentBackgroundTaskPane = backgroundPrimary;
+
+        this.withoutIconSelectedBackgroundToggleButton = highlightBackgroundPrimary;
+        this.withoutIconBackgroundToggleButton = backgroundPrimary;
+        this.colorTextTitledBorder = textColor;
+
+        this.arrowButtonBackgroundSpinner = backgroundTextField;
+
+        this.selectionBackgroundTree = this.backgroundPrimary;
+        this.selectionBorderColorTree = this.backgroundPrimary;
+
+        this.foregroundTable = textColor;
+        this.foregroundTableHeader = textColor;
+        this.selectionForegroundTable = textColor;
+
+        this.arrowButtonColorScrollBar = buttonBackgroundColor;
+        this.thumbDarkShadowColorScrollBar = thumbColorScrollBar;
+        this.thumbHighlightColorScrollBar = thumbColorScrollBar;
+        this.thumbShadowColorScrollBar = thumbColorScrollBar;
+        this.arrowButtonOnClickColorScrollBar = buttonBackgroundColorMouseHover;
+        this.mouseHoverColorScrollBar = thumbColorScrollBar;
+
+        this.menuTextColor = textColor;
+        this.menuDisableBackground = MaterialColors.TRANSPANENT;
+
+        this.buttonDisabledForeground = disableTextColor;
+        this.buttonDefaultTextColor = textColor;
+        this.buttonTextColor = textColor;
+
     }
 
-    protected void installIcons(){
+    protected void installFonts() {
+        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+        this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
+        this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
+        this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
+    }
+
+    protected void installIcons() {
+        this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.COMPUTER,
+                textColor
+        );
+        this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.FOLDER,
+                textColor
+        );
+        this.iconFileFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.INSERT_DRIVE_FILE,
+                textColor
+        );
+        this.iconFloppyDriveFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.SAVE,
+                textColor
+        );
+        this.iconHardDriveFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.STORAGE,
+                textColor
+        );
+        this.iconHomeFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.HOME,
+                textColor
+        );
+        this.iconListFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.MENU,
+                textColor
+        );
+        this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.VIEW_MODULE,
+                textColor
+        );
+        this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CREATE_NEW_FOLDER,
+                textColor
+        );
+        this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.ARROW_BACK,
+                textColor
+        );
+
+        this.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CLOSE,
+                25,
+                textColor
+        );
+
         this.previousButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.ARROW_DROP_DOWN,
                 textColor
@@ -442,7 +554,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         );
         this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
-                highlightBackgroundPrimary
+                textColor
         );
 
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
@@ -485,18 +597,76 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
         this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
-        this.errorIconIconOptionPane =  MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
+        this.errorIconIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
         this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
         this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
 
         this.leafIconTree = MaterialImageFactory.getInstance().getImage(
                 MaterialImageFactory.BLANK
         );
+
+        this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
+                WrapperJIconFont.TOGGLE_OFF,
+                26,
+                textColor
+        );
+        this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
+                WrapperJIconFont.TOGGLE_ON,
+                26,
+                highlightBackgroundPrimary
+        );
+
+        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.RADIO_BUTTON_CHECKED,
+                highlightBackgroundPrimary
+        );
+        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.RADIO_BUTTON_UNCHECKED,
+                textColor
+        );
+
+        this.topIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.EXPAND_LESS,
+                colorIconTabbedPane
+        );
+
+        this.disabledTopIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.EXPAND_LESS,
+                colorDisabledIconTabbedPane
+        );
+
+        this.bottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.EXPAND_MORE,
+                colorIconTabbedPane
+        );
+
+        this.disabledBottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.EXPAND_MORE,
+                colorDisabledIconTabbedPane
+        );
+
+        this.leftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHEVRON_LEFT,
+                colorIconTabbedPane
+        );
+
+        this.disabledLeftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHEVRON_LEFT,
+                colorDisabledIconTabbedPane
+        );
+
+        this.rightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHEVRON_RIGHT,
+                colorIconTabbedPane
+        );
+
+        this.disabledRightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHEVRON_RIGHT,
+                colorDisabledIconTabbedPane
+        );
     }
 
-    public abstract String getName();
-
-    protected void installBorders(){
+    protected void installBorders() {
         //button border
         this.buttonBorder = new BorderUIResource(BorderFactory.createEmptyBorder(8, 12, 8, 12));
         this.borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -505,20 +675,21 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
         this.arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(arrowButtonBackgroundSpinner),
-                BorderFactory.createEmptyBorder(2,2,2,2)
+                BorderFactory.createEmptyBorder(2, 2, 2, 2)
         ));
         this.borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         this.cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
-                                        MaterialBorders.LIGHT_LINE_BORDER,
-                                        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+                MaterialBorders.LIGHT_LINE_BORDER,
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         this.borderToolBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
-        this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0,1,0,1));;
+        this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0, 1, 0, 1));
+        ;
         this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
-                                         BorderFactory.createEmptyBorder(2, 5, 2, 5)));
+                BorderFactory.createEmptyBorder(2, 5, 2, 5)));
 
         this.tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
         this.selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
@@ -538,11 +709,13 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
         this.dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
 
-        this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder (3, 2, 3, 2));
+        this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder(3, 2, 3, 2));
 
         this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
         this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
     }
+
+    public abstract String getName();
 
     //getter
     public ColorUIResource getBackgroundPrimary() {
@@ -618,23 +791,23 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return buttonBorder;
     }
 
-    public FontUIResource getButtonFont(){
+    public FontUIResource getButtonFont() {
         return getFontBold();
     }
 
-    public boolean getMouseHoverButtonEnable(){
+    public boolean getMouseHoverButtonEnable() {
         return true;
     }
 
-    public boolean getButtonFocusable(){
+    public boolean getButtonFocusable() {
         return true;
     }
 
-    public boolean getButtonBorderEnable(){
+    public boolean getButtonBorderEnable() {
         return true;
     }
 
-    public boolean getButtonBorderEnableToAll(){
+    public boolean getButtonBorderEnableToAll() {
         return false;
     }
 
@@ -730,12 +903,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     @Override
-    public Icon getMenuArrowIcon(){
+    public Icon getMenuArrowIcon() {
         return new MaterialMenuArrowIcon();
     }
 
     @Override
-    public ColorUIResource getMenuArrowHoverColor(){
+    public ColorUIResource getMenuArrowHoverColor() {
         return textColor;
     }
 
@@ -887,6 +1060,46 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public InsetsUIResource getSelectedTabInsetsTabbedPane() {
         return selectedTabInsetsTabbedPane;
+    }
+
+    public IconUIResource getDisabledBottomIconTabbedPane() {
+        return disabledBottomIconTabbedPane;
+    }
+
+    public IconUIResource getDisabledTopIconTabbedPane() {
+        return disabledTopIconTabbedPane;
+    }
+
+    public IconUIResource getDisabledLeftIconTabbedPane() {
+        return disabledLeftIconTabbedPane;
+    }
+
+    public IconUIResource getDisabledRightIconTabbedPane() {
+        return disabledRightIconTabbedPane;
+    }
+
+    public IconUIResource getBottomIconTabbedPane() {
+        return bottomIconTabbedPane;
+    }
+
+    public IconUIResource getTopIconTabbedPane() {
+        return topIconTabbedPane;
+    }
+
+    public IconUIResource getLeftIconTabbedPane() {
+        return leftIconTabbedPane;
+    }
+
+    public IconUIResource getRightIconTabbedPane() {
+        return rightIconTabbedPane;
+    }
+
+    public ColorUIResource getColorIconTabbedPane() {
+        return colorIconTabbedPane;
+    }
+
+    public ColorUIResource getColorDisabledIconTabbedPane() {
+        return colorDisabledIconTabbedPane;
     }
 
     @Override
@@ -1185,7 +1398,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return noCollapsedTaskPane;
     }
 
-    public boolean getMouseHoverEnableTaskPane(){return true;}
+    public boolean getMouseHoverEnableTaskPane() {
+        return true;
+    }
 
     @Override
     public int getArchTaskPane() {
@@ -1362,6 +1577,46 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
 
     //Setter
+    public void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane) {
+        this.disabledBottomIconTabbedPane = disabledBottomIconTabbedPane;
+    }
+
+    public void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane) {
+        this.disabledTopIconTabbedPane = disabledTopIconTabbedPane;
+    }
+
+    public void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane) {
+        this.disabledLeftIconTabbedPane = disabledLeftIconTabbedPane;
+    }
+
+    public void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane) {
+        this.disabledRightIconTabbedPane = disabledRightIconTabbedPane;
+    }
+
+    public void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane) {
+        this.bottomIconTabbedPane = bottomIconTabbedPane;
+    }
+
+    public void setTopIconTabbedPane(IconUIResource topIconTabbedPane) {
+        this.topIconTabbedPane = topIconTabbedPane;
+    }
+
+    public void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane) {
+        this.leftIconTabbedPane = leftIconTabbedPane;
+    }
+
+    public void setRightIconTabbedPane(IconUIResource rightIconTabbedPane) {
+        this.rightIconTabbedPane = rightIconTabbedPane;
+    }
+
+    public void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane) {
+        this.colorIconTabbedPane = colorIconTabbedPane;
+    }
+
+    public void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane) {
+        this.colorDisabledIconTabbedPane = colorDisabledIconTabbedPane;
+    }
+
     public void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner) {
         this.previousButtonIconSpinner = previousButtonIconSpinner;
     }

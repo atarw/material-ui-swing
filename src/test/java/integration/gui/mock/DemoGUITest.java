@@ -37,9 +37,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
 import java.io.File;
-import java.util.Map;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -51,9 +49,8 @@ public class DemoGUITest extends JFrame {
     static {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
-            JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
+            JFrame.setDefaultLookAndFeelDecorated(true); //not support yet
             UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
-
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
@@ -128,16 +125,6 @@ public class DemoGUITest extends JFrame {
 
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         //tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
-
-        for (Map.Entry<Object, Object> entry : UIManager.getDefaults().entrySet()) {
-            Object key = entry.getKey();
-            if (key instanceof String) {
-                String keyString = (String) key;
-                if (keyString.contains("TabbedPane")) {
-                    LOGGER.debug("Key: " + keyString + " value: " + entry.getValue());
-                }
-            }
-        }
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");
 

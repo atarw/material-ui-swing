@@ -25,7 +25,6 @@ package integration.gui.test;
 
 import integration.gui.mock.DemoGUITest;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialTheme;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
@@ -94,9 +93,6 @@ public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
         }
     }
 
-    /**
-     * Subclasses that need to clean up resources can do so in this method. Called as <strong>first action</strong> during {@link #tearDown()}.
-     */
     protected void onTearDown() {
         // default: nothing more to tear down
     }

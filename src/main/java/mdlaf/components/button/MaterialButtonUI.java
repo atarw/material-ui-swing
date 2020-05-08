@@ -26,7 +26,6 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialMouseHover;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
@@ -317,6 +316,39 @@ public class MaterialButtonUI extends BasicButtonUI {
     }
 
     /**
+     * This method is used inside the TimerUI to set a new MouseHover color.
+     *
+     * For example: if you set a personal color on the mouseHove effect, you need to create a new mouseHover event on this component
+     * with a code as MaterialUIMovement.getMovement(COMPONENT, COLOR);
+     * The event creates to previous system call need
+     * to refresh the mouseHover color in this class to have the correct effect when the button is pressed
+     *
+     * This should be remove e override the logic with a listener, but for the moment is implemented only this solution.
+     */
+    public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
+        this.colorMouseHoverDefaultButton = colorMouseHoverDefaultButton;
+    }
+
+    /**
+     * This method is used inside the TimerUI to set a new MouseHover color.
+     *
+     * For example: if you set a personal color on the mouseHove effect, you need to create a new mouseHover event on this component
+     * with a code as MaterialUIMovement.getMovement(COMPONENT, COLOR);
+     * The event creates to previous system call need
+     * to refresh the mouseHover color in this class to have the correct effect when the button is pressed
+     *
+     * This should be remove e override the logic with a listener, but for the moment is implemented only this solution.
+     */
+    public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
+        this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
+    }
+
+    public Boolean isDefaultButton() {
+        return defaultButton != null && defaultButton;
+    }
+
+
+    /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
@@ -446,30 +478,8 @@ public class MaterialButtonUI extends BasicButtonUI {
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
-    public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
-        this.colorMouseHoverDefaultButton = colorMouseHoverDefaultButton;
-    }
-
-    /**
-     * This method was used inside the MaterialUITimer for reset the color at the particular event
-     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
-     */
-    @Deprecated
     public Color getColorMouseHoverNormalButton() {
         return colorMouseHoverNormalButton;
-    }
-
-    /**
-     * This method was used inside the MaterialUITimer for reset the color at the particular event
-     * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
-     */
-    @Deprecated
-    public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
-        this.colorMouseHoverNormalButton = colorMouseHoverNormalButton;
-    }
-
-    public Boolean isDefaultButton() {
-        return defaultButton != null && defaultButton;
     }
 
     /**

@@ -42,6 +42,7 @@ to fix pixel bug in JDK8 but the dimension is setting static with JDK version >=
 - Fixed rolloverBorder on JToolBar.
 - Fixed bugs in sub menu background.
 - Refactoring JComboBox, now is possible change the arch of the bord easy.
+- Apply anti-aliasing to some component
 
 
 **JToggleButton Second Style without icons**

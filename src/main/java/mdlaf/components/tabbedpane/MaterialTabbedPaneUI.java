@@ -23,44 +23,26 @@
  */
 package mdlaf.components.tabbedpane;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-
-import mdlaf.animation.MaterialMouseHover;
-import mdlaf.components.taskpane.MaterialTaskPaneUI;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialDrawingUtils;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
-
-    private static final Class LOG_TAG = MaterialTaskPaneUI.class;
 
     public static ComponentUI createUI(JComponent c) {
         return new MaterialTabbedPaneUI();
@@ -81,7 +63,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected boolean tabsOverlapBorder;
     protected Map<Integer, Boolean> mouseHoverInitialized;
     protected Boolean mouseHoverEnabled;
-    protected MaterialMouseHoverTab mouseHoverTab;
+    protected MaterialMouseHoverOnTab mouseHoverTab;
 
     public MaterialTabbedPaneUI() {
         mouseHoverInitialized = new HashMap<>();
@@ -105,8 +87,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
-        this.positionYLine = UIManager.getInt("TabbedPane.linePositionY");
-        this.positionXLine = UIManager.getInt("TabbedPane.linePositionX");
+       // this.positionYLine = UIManager.getInt("TabbedPane.linePositionY");
+        //this.positionXLine = UIManager.getInt("TabbedPane.linePositionX");
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
@@ -132,12 +114,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
-    }
-
-    @Override
     protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
         int mnemIndex = this.tabPane.getDisplayedMnemonicIndexAt(tabIndex);
         if(!tabPane.isEnabledAt(tabIndex)){
@@ -147,9 +125,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         }
     }
 
-    //
-    // This method was inspired me for this style, special thank https://github.com/davidsommer/material-JTabbedPane
-    // This method paint the selected line
     @Override
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2D = (Graphics2D) g;
@@ -169,7 +144,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             if(tabPane.isEnabledAt(tabIndex)){
                 tabPane.setForegroundAt(tabIndex, foreground);
             }else{
-                tabPane.setForegroundAt(tabIndex, MaterialColors.AMBER_900);
+                tabPane.setForegroundAt(tabIndex, disabledForeground);
             }
         }
         //this.installMouseHover(tabIndex);
@@ -187,10 +162,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         // for some reason tabs aren't painted properly by paint()
-        super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
+        super.paintTab(g, tabPlacement, rects, tabIndex, iconRect, textRect);
         if (mouseHoverEnabled != null && mouseHoverEnabled && mouseHoverTab == null) {
-            System.out.println(getClass().getCanonicalName());
-            mouseHoverTab = new MaterialMouseHoverTab(rects);
+            mouseHoverTab = new MaterialMouseHoverOnTab(rects);
             tabPane.addMouseMotionListener(mouseHoverTab);
         }
     }
@@ -198,6 +172,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         // do nothing
+        //TODO look the super method, with this method, should be calculate the select line,
+        // but there is problem with dimension pass from function
     }
 
     @Override
@@ -205,7 +181,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         // do thing, the method paintBackground painted the focus indicator.
     }
 
-    @Override //TODO debuggin this method, look the issue inside JMARS,
+    @Override
     protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
         //super.paintContentBorder(g, tabPlacement, selectedIndex);
         int width = tabPane.getWidth();
@@ -260,7 +236,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
-        Rectangle selRect = selectedIndex < 0? null :
+        Rectangle selRect = selectedIndex < 0 ? null :
                 getTabBounds(selectedIndex, calcRect);
 
         g.setColor(lightHighlight);
@@ -278,7 +254,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         } else {
             // Break line to show visual connection to selected tab
             g.drawLine(x+1, y+h-2, selRect.x - 1, y+h-2);
-            //g.setColor(darkShadow);
+            //g.setColor(areaContentBackground);
             //g.drawLine(x, y+h-1, selRect.x - 1, y+h-1);
             g.setColor(selectedAreaContentBackground);
             //g.drawLine(selRect.x - 1, y+h-2, selRect.x + selRect.width, y+h-2);
@@ -296,7 +272,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected void paintContentBorderLeftEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
         //super.paintContentBorderLeftEdge(g, tabPlacement, selectedIndex, x, y, w, h);
 
-        Rectangle selRect = selectedIndex < 0? null : getTabBounds(selectedIndex, calcRect);
+        Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
 
        // g.setColor(lightHighlight);
 
@@ -372,8 +348,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 (selRect.x < x || selRect.x > x + w)) {
             g.drawLine(x, y, x+w-2, y);
         } else {
-            // Break line to show visual connection to selected tab
+            // Line to left selected line
             g.drawLine(x, y, selRect.x - 1, y);
+            //line to right selected line
             if (selRect.x + selRect.width < x + w - 2) {
                 g.drawLine(selRect.x + selRect.width, y,x+w-2, y);
             } /*else {
@@ -384,18 +361,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             }*/
             g.setColor(selectedAreaContentBackground);
             g.fillRect(selRect.x, y - heightLine + 1, selRect.width, heightLine);
+            //g.drawLine(x, y, x+w-2, y);
         }
     }
 
-    @Override
-    protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
-        super.paintTabArea(g, tabPlacement, selectedIndex);
-    }
-
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-    }
 
     //TODO remove this methods inside the version 1.2 of library.
     //The implementation inside this method was deprecated because cause
@@ -403,7 +372,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     // I'm deprecating this implementation with an if-else and inside the version 1.2 of the library
     //the implementation of this method was removed such as the Implementation of MaterialTabbedPaneLayout
     //MaterialTabbedPaneLayout was declared deprecated.
-    @Override
+    /*@Override
     protected LayoutManager createLayoutManager() {
         if (tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT) {
             return super.createLayoutManager();
@@ -411,7 +380,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             return super.createLayoutManager();
         }
         //return new MaterialTabbedPaneLayout();
-    }
+    }*/
 
     @Override
     protected void uninstallListeners() {
@@ -421,28 +390,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected JButton createScrollButton(int direction) {
-        return new MaterialArrowButton(direction);
-    }
-
-    /**
-     * TODO change the mouse hover effect, should be throws the StackOverflowException
-     * param tabIndex
-     */
-    protected void installMouseHover(int tabIndex) {
-        if(mouseHoverEnabled && !mouseHoverInitialized.containsKey(tabIndex)){
-            mouseHoverInitialized.put(tabIndex, true);
-            JComponent componentAt = (JComponent) super.tabPane.getComponentAt(tabIndex);
-            componentAt.addMouseListener(new MouseAdapter(){
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    componentAt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    componentAt.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-        }
+        return new ArrowButtonTabbedPane(direction);
     }
 
     /**
@@ -476,13 +424,20 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     }
 
     /**
-     * This class require more event to work, I will chose to remove and add another effect
+     * This class implement the mouse hover effect on TabbedPane, is a mouseMotion listener
+     * and is run on all JTabbedPane component, when the mouse is hover aver the tab this event change the
+     * cursor.
+     *
+     * P.S: This event is run every time and it can be hide exception client logic, before to open the issue about the library
+     * make more test with the mouse hover on TabbedPane disabled.
+     * You can disable the mouse hover effect with this code  UIManager.put("TabbedPane[MouseHover].enable", false)
+     * after the code for setLookAndFell()
      */
-    protected class MaterialMouseHoverTab implements MaterialMouseHover {
+    protected class MaterialMouseHoverOnTab implements MaterialMouseHover {
 
         private Rectangle[] rectangles;
 
-        public MaterialMouseHoverTab(Rectangle[] rectangles) {
+        public MaterialMouseHoverOnTab(Rectangle[] rectangles) {
             this.rectangles = rectangles;
         }
 
@@ -509,85 +464,98 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
 
-        /**
-         * Invoked when the mouse button has been clicked (pressed
-         * and released) on a component.
-         *
-         * param e the event to be processed
-         */
         @Override
         public void mouseClicked(MouseEvent e) {
             //do nothing
         }
 
-        /**
-         * Invoked when a mouse button has been pressed on a component.
-         *
-         * param e the event to be processed
-         */
         @Override
         public void mousePressed(MouseEvent e) {
             //do nothing
         }
 
-        /**
-         * Invoked when a mouse button has been released on a component.
-         *
-         * param e the event to be processed
-         */
         @Override
         public void mouseReleased(MouseEvent e) {
             //do nothing
         }
 
-        /**
-         * Invoked when the mouse enters a component.
-         *
-         * param e the event to be processed
-         */
         @Override
         public void mouseEntered(MouseEvent e) {
             //do nothing
         }
 
-        /**
-         * Invoked when the mouse exits a component.
-         *
-         * param e the event to be processed
-         */
         @Override
         public void mouseExited(MouseEvent e) {
             //do nothing
         }
     }
 
-    //TODO I will work on this
+    protected class ArrowButtonTabbedPane extends JButton implements UIResource {
 
-    /**
-     * Structure to implement the Material arrow.
-     */
-    protected class MaterialArrowButton extends BasicArrowButton implements UIResource,
-            SwingConstants {
+        private static final String PREFIX = "TabbedPane[scrollButton]";
 
-        public MaterialArrowButton(int direction, Color background, Color shadow, Color darkShadow, Color highlight) {
-            super(direction, background, shadow, darkShadow, highlight);
+        protected int direction;
+        protected Icon disabled;
+        protected Icon enabled;
+
+        public ArrowButtonTabbedPane(int direction) {
+            setUI(new ArrowButtonTabbedPaneUI(direction));
+            this.direction = direction;
+            switch (direction){
+                case BasicArrowButton.WEST:
+                    this.disabled = UIManager.getIcon(getPREFIX() + ".iconLeft");
+                    this.enabled = UIManager.getIcon(getPREFIX() + ".disabledIconLeft");
+                    break;
+                case BasicArrowButton.EAST:
+                    this.disabled = UIManager.getIcon(getPREFIX() + ".disabledIconRight");
+                    this.enabled = UIManager.getIcon(getPREFIX() + ".iconRight");
+                    break;
+            }
+            this.setIcon(enabled);
+            this.setDisabledIcon(disabled);
         }
 
-        public MaterialArrowButton(int direction) {
-            super(direction);
+        public String getPREFIX() {
+            return PREFIX;
         }
 
         @Override
-        public void paint(Graphics g) {
-            super.paint(g);
-            g.setColor(MaterialColors.COSMO_MEDIUM_GRAY);
-            this.setBackground(MaterialColors.GRAY_300);
+        public void updateUI() {
+            setUI(new ArrowButtonTabbedPaneUI(this.direction));
         }
 
-        @Override
-        public void paintTriangle(Graphics g, int x, int y, int size, int direction, boolean isEnabled) {
-            super.paintTriangle(g, x, y, size, direction, isEnabled);
-            g.setColor(MaterialColors.COSMO_STRONG_GRAY);
+        protected class ArrowButtonTabbedPaneUI extends MaterialButtonUI {
+
+            protected int direction;
+
+            public ArrowButtonTabbedPaneUI(int direction) {
+                this.direction = direction;
+            }
+
+            @Override
+            public void installUI(JComponent c) {
+                super.mouseHoverEnabled = false;
+                super.installUI(c);
+                super.background = UIManager.getColor("TabbedPane.background");
+                super.disabledBackground = super.background;
+                super.borderEnabled = false;
+                c.setBorder(BorderFactory.createMatteBorder(5,5,10,5, super.background));
+            }
+
+            @Override
+            protected void paintBackground(Graphics g, JComponent c) {
+                super.paintBackground(g, c);
+            }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
+            }
+
+            @Override
+            protected void paintFocusRing(Graphics g, JButton b) {
+
+            }
         }
     }
 }

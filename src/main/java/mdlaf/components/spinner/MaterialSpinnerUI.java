@@ -25,6 +25,7 @@ package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -43,10 +44,16 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
     protected JButton upArrowButton;
     protected JButton downArrowButton;
+    protected Color spinnerDisableBackground = MaterialColors.COSMO_DARK_GRAY;
+    protected Color spinnerBackground;
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
+
+        this.spinnerBackground = UIManager.getColor("Spinner.background");
+        this.spinnerDisableBackground = UIManager.getColor("Spinner.disabledBackground");
+
         /*
         JSpinner spinner = (JSpinner) c;
         //spinner.setOpaque(false);
@@ -70,10 +77,13 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     }
 
     @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(g, c);
-        upArrowButton.setFocusable(false);
-        downArrowButton.setFocusable(false);
+    public void paint(Graphics g, JComponent c) {
+        super.paint(g, c);
+        if(!c.isEnabled()){
+            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerDisableBackground);
+        }else{
+            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerBackground);
+        }
     }
 
     @Override
@@ -95,41 +105,53 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     }
 
     protected JButton configureLocalButton(Icon icon) {
-        JButton arrowButton = new JButton(icon);
-        arrowButton.setUI(new SpinnerButtonUI());
-        arrowButton.setFocusable(false);
+        JButton arrowButton = new ArrowButtonSpinner(icon);
         return arrowButton;
     }
-
-
 
     /**
      * This class use the MaterialButtonUI API to create the custom button for the icon
      */
-    protected static class SpinnerButtonUI extends MaterialButtonUI {
+    protected class ArrowButtonSpinner extends JButton{
+
+        public ArrowButtonSpinner(Icon icon) {
+            super(icon);
+            setUI(new SpinnerButtonUI());
+        }
 
         @Override
-        public void installUI(JComponent c) {
-            super.mouseHoverEnabled = null;
-            super.installUI(c);
-            super.mouseHoverEnabled = UIManager.getBoolean("Spinner.mouseHoverEnabled");
-            super.background = UIManager.getColor("Spinner.arrowButtonBackground");
-            LookAndFeel.installColors(super.button, "Spinner.arrowButtonBackground", "Button.foreground");
-            super.button.setBorder(BorderFactory.createLineBorder(super.background));
-            if (super.mouseHoverEnabled) {
-                super.mouseHover = MaterialUIMovement.getMovement(button, UIManager.getColor("Spinner.mouseHoverColor"));
-                super.button.addMouseListener(super.mouseHover);
+        public void updateUI() {
+            setUI(new SpinnerButtonUI());
+        }
+
+        protected class SpinnerButtonUI extends MaterialButtonUI {
+
+            @Override
+            public void installUI(JComponent c) {
+                super.mouseHoverEnabled = null;
+                super.installUI(c);
+                super.mouseHoverEnabled = UIManager.getBoolean("Spinner.mouseHoverEnabled");
+                super.background = UIManager.getColor("Spinner.arrowButtonBackground");
+                super.disabledBackground = spinnerDisableBackground;
+                LookAndFeel.installColors(super.button, "Spinner.arrowButtonBackground", "Button.foreground");
+                super.button.setBorder(BorderFactory.createLineBorder(super.background));
+                if (super.mouseHoverEnabled) {
+                    super.mouseHover = MaterialUIMovement.getMovement(button, UIManager.getColor("Spinner.mouseHoverColor"));
+                    super.button.addMouseListener(super.mouseHover);
+                }
+            }
+
+            @Override
+            protected void paintFocusRing(Graphics g, JButton b) {
+                g.setColor(super.background);
+            }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
             }
         }
 
-        @Override
-        protected void paintFocusRing(Graphics g, JButton b) {
-            g.setColor(super.background);
-        }
-
-        @Override
-        protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-
-        }
     }
+
 }

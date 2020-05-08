@@ -18,14 +18,11 @@ package mdlaf.components.titlepane;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-
-import sun.swing.SwingUtilities2;
-
+import mdlaf.utils.WrapperSwingUtilities;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.UIResource;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -514,13 +511,15 @@ public class MaterialTitlePaneUI extends JComponent {
                     rect.x = window.getWidth() - window.getInsets().right - 2;
                 }
                 titleW = rect.x - xOffset - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
+                theTitle = WrapperSwingUtilities.getInstance().getClippedString(rootPane, fm, theTitle, titleW);
+                //theTitle = BasicGraphicsUtils.getClippedString(rootPane, fm, theTitle, titleW);
             } else {
                 titleW = xOffset - rect.x - rect.width - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
-                xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+                theTitle = WrapperSwingUtilities.getInstance().getClippedString(rootPane, fm, theTitle, titleW);
+                xOffset -= fm.stringWidth(theTitle);
             }
-            int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+           // int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+            int titleLength = fm.stringWidth(theTitle);
             g.drawString(theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }

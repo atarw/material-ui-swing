@@ -68,6 +68,7 @@ import mdlaf.themes.exceptions.MaterialChangeThemeException;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.WrapperJIconFont;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -350,8 +351,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.disabledText", theme.getDisableTextColor());
 
         table.put("Spinner.font", theme.getFontRegular());
-        table.put("Spinner.background", theme.getBackgroundPrimary());
-        table.put("Spinner.foreground", theme.getTextColor());
+        table.put("Spinner.background", theme.getBackgroundTextField());
+        table.put("Spinner.disabledBackground", theme.getDisabledBackgroudnTextField());
+        table.put("Spinner.foreground", theme.getInactiveForegroundTextField());
+        table.put("Spinner.disabledForeground", theme.getDisabledForegroundTextField());
         table.put("Spinner.border", theme.getBorderSpinner());
         table.put("Spinner.arrowButtonBackground", theme.getArrowButtonBackgroundSpinner());
         table.put("Spinner.arrowButtonBorder", theme.getArrowButtonBorderSpinner());
@@ -407,7 +410,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.disableContentAreaColor", theme.getDisableColorTabTabbedPane());
         table.put("TabbedPane.border", theme.getBorderPanel());
         table.put("TabbedPane.shadow", theme.getBackgroundPrimary());
-        table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary()); //TODO add another propriety for change this color in the MaterialTheming
+        table.put("TabbedPane.darkShadow", theme.getBackgroundPrimary());
         table.put("TabbedPane.highlight", theme.getDisableTextColor());
         table.put("TabbedPane.selected", theme.getTextColor());
         table.put("TabbedPane.light", theme.getBackgroundPrimary());
@@ -425,6 +428,16 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         //table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
         table.put("TabbedPane[focus].margin", 5);
+        table.put("TabbedPane[scrollButton].iconTop", theme.getTopIconTabbedPane());
+        table.put("TabbedPane[scrollButton].disabledIconTop", theme.getDisabledTopIconTabbedPane());
+        table.put("TabbedPane[scrollButton].iconLeft", theme.getLeftIconTabbedPane());
+        table.put("TabbedPane[scrollButton].disabledIconLeft", theme.getLeftIconTabbedPane());
+        table.put("TabbedPane[scrollButton].iconRight", theme.getRightIconTabbedPane());
+        table.put("TabbedPane[scrollButton].disabledIconRight", theme.getRightIconTabbedPane());
+        table.put("TabbedPane[scrollButton].iconBottom", theme.getBottomIconTabbedPane());
+        table.put("TabbedPane[scrollButton].disabledIconBottom", theme.getBottomIconTabbedPane());
+        table.put("TabbedPane[scrollButton].color", theme.getColorIconTabbedPane());
+        table.put("TabbedPane[scrollButton].disabledColor", theme.getColorDisabledIconTabbedPane());
 
         table.put("Table.selectionBackground", theme.getSelectionBackgroundTable());
         table.put("Table.selectionForeground", theme.getSelectionForegroundTable());
@@ -543,6 +556,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Separator.background", theme.getBackgroundSeparator());
         table.put("Separator.foreground", theme.getForegroundSeparator());
 
+        //TODO support tool tip
         table.put("ToolTip.background", MaterialColors.GRAY_500);
         table.put("ToolTip.font",theme.getFontRegular());
         table.put("ToolTip.foreground", MaterialColors.GRAY_50);
@@ -636,16 +650,19 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RootPane.colorChooserDialogBorder", theme.getBackgroundPrimary());
 
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CROP_FREE,
+                GoogleMaterialDesignIcons.FULLSCREEN,
+                25,
                 theme.getTextColor()
         ));
         table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CROP,
+                GoogleMaterialDesignIcons.FULLSCREEN_EXIT,
+                25,
                 theme.getTextColor()
         ));
         table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
         table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.REMOVE,
+                WrapperJIconFont.MINIMIZE,
+                25,
                 theme.getTextColor()
         ));
         table.put("InternalFrame.activeTitleBackground", theme.getBackgroundPrimary());

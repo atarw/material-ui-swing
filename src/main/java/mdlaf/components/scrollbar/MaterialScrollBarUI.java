@@ -109,6 +109,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		component.setMaximumSize(new Dimension(0, 0));
 	}
 
+	//TODO refactoring this component with new API MaterialButtonUI
 	protected JButton installButton(int orientation){
 		JButton button = new JButton();
 		MaterialManagerListener.removeAllMaterialMouseListener(button);

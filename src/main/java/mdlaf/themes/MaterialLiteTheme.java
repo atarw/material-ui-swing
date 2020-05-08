@@ -23,12 +23,9 @@
  */
 package mdlaf.themes;
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFontFactory;
-import mdlaf.utils.MaterialImageFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -39,78 +36,6 @@ import javax.swing.plaf.BorderUIResource;
 public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
-    public void installTheme() {
-        installColor();
-        installFonts();
-        installBorders();
-        installIcons();
-    }
-
-    @Override
-    protected void installFonts() {
-        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
-        this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
-        this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
-        this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
-
-        super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
-    }
-
-    @Override
-    protected void installIcons() {
-        super.installIcons();
-        /*
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
-
-        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON);
-        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF);
-
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX, highlightBackgroundPrimary);
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK);
-
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, highlightBackgroundPrimary);
-
-        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT);
-
-        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN);
-
-        this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
-        this.errorIconIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
-        this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
-        this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
-*/
-        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_ON);
-        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.RADIO_BUTTON_BLACK_OFF);
-
-        this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK);
-        this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FOLDER_BLACK);
-        this.iconFileFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FILE_BLACK);
-        this.iconFloppyDriveFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.FLOPPY_DRIVE_BLACK);
-        this.iconHardDriveFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HARD_DRIVE_BLACK);
-        this.iconHomeFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.HOME_BLACK);
-        this.iconListFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.LIST_BLACK);
-        this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.DETAILS_BLACK);
-        this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NEW_FOLDER_BLACK);
-        this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.CREATE_NEW_FOLDER);
-        this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BACK_ARROW_BLACK);
-
-        this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_OFF);
-        this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.TOGGLE_BUTTON_BLACK_ON);
-
-        super.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.CLOSE_WINDOWS_BLACK);
-
-        /*super.leafIconTree = MaterialImageFactory.getInstance().getImage(
-                MaterialImageFactory.BLANK
-        );*/
-    }
-
-    @Override
     protected void installBorders() {
         super.installBorders();
 
@@ -119,6 +44,20 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.borderTableHeader = new BorderUIResource(
                 new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
                         true, true, true, true));
+
+        super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
+    }
+
+    @Override
+    protected void installDefaultColor() {
+        super.installDefaultColor();
+        this.buttonDefaultTextColor = MaterialColors.WHITE;
+
+        this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
+        this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
+        this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
+        this.arrowButtonOnClickColorScrollBar = MaterialColors.GRAY_400;
+        this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
     }
 
     @Override
@@ -131,12 +70,9 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.buttonBackgroundColor = MaterialColors.COSMO_LIGTH_GRAY;
         this.buttonBackgroundColorMouseHover = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonTextColor = MaterialColors.BLACK;
         this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
         this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
-        this.buttonDefaultTextColor = MaterialColors.WHITE;
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDisabledForeground = MaterialColors.GRAY_500;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
         this.buttonBorderColor = MaterialColors.COSMO_MEDIUM_GRAY;
@@ -147,17 +83,10 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.menuBackground = MaterialColors.WHITE;
         this.menuBackgroundMouseHover = MaterialColors.GRAY_400;
-        this.menuTextColor = MaterialColors.BLACK;
-        this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
         this.arrowButtonColorScrollBar = MaterialColors.GRAY_200;
         this.trackColorScrollBar = MaterialColors.GRAY_200;
         this.thumbColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.arrowButtonOnClickColorScrollBar = MaterialColors.GRAY_400;
-        this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
 
         this.trackColorSlider = MaterialColors.BLACK;
         this.haloColorSlider = MaterialColors.bleach(MaterialColors.LIGHT_BLUE_400, 0.5f);
@@ -169,18 +98,12 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.backgroundTable = MaterialColors.WHITE;
         this.backgroundTableHeader = MaterialColors.GRAY_200;
-        this.foregroundTable = MaterialColors.BLACK;
-        this.foregroundTableHeader = MaterialColors.BLACK;
         this.selectionBackgroundTable = MaterialColors.COSMO_LIGTH_BLUE;
-        this.selectionForegroundTable = MaterialColors.BLACK;
         this.gridColorTable = MaterialColors.GRAY_200;
         this.alternateRowBackgroundTable = MaterialColors.GRAY_300;
 
         this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
         this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
-
-        this.selectionBackgroundTree = super.backgroundPrimary;
-        this.selectionBorderColorTree = super.backgroundPrimary;
 
         this.backgroundTextField = MaterialColors.GRAY_200;
         this.inactiveForegroundTextField = MaterialColors.GRAY_800;
@@ -192,7 +115,6 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.inactiveColorLineTextField = MaterialColors.BLACK;
         this.activeColorLineTextField = MaterialColors.LIGHT_BLUE_400;
 
-        this.arrowButtonBackgroundSpinner = MaterialColors.GRAY_200;
         this.mouseHoverButtonColorSpinner = MaterialColors.GRAY_400;
 
         this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
@@ -216,8 +138,6 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
         this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
         this.colorDividierFocusSplitPane = MaterialColors.COSMO_BLUE;
-
-        super.colorTextTitledBorder = textColor;
 
         super.backgroundSeparator = MaterialColors.GRAY_300;
         super.foregroundSeparator = MaterialColors.GRAY_300;
