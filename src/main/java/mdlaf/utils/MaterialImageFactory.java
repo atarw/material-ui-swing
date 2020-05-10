@@ -28,9 +28,9 @@ import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import javax.swing.plaf.IconUIResource;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +44,7 @@ public class MaterialImageFactory{
 
     static {
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+        IconFontSwing.register(WrapperJIconFont.getIconFont());
     }
 
     public static void registerIcons(IconCode iconCode){
