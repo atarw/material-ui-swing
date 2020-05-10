@@ -23,7 +23,7 @@
  */
 package mdlaf.components.label;
 
-import mdlaf.utils.MaterialFontFactory;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
@@ -71,7 +71,8 @@ public class MaterialLabelUI extends BasicLabelUI {
 
     @Override
     protected void paintEnabledText(JLabel l, Graphics g, String s, int textX, int textY) {
-        super.paintEnabledText(l, g, s, textX, textY);
+
+        super.paintEnabledText(l, MaterialDrawingUtils.getAliasedGraphics(g), s, textX, textY);
     }
 
     @Override
@@ -79,6 +80,6 @@ public class MaterialLabelUI extends BasicLabelUI {
         int mnemIndex = l.getDisplayedMnemonicIndex();
         g.setColor(UIManager.getColor("Label.disabledForeground"));
        // SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
-        BasicGraphicsUtils.drawStringUnderlineCharAt(g, s, mnemIndex, textX, textY); //This isn't deprecated
+        BasicGraphicsUtils.drawStringUnderlineCharAt(MaterialDrawingUtils.getAliasedGraphics(g), s, mnemIndex, textX, textY); //This isn't deprecated
     }
 }

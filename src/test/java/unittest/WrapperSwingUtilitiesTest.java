@@ -17,7 +17,7 @@ public class WrapperSwingUtilitiesTest extends AbstractTestGUI {
     public void initBeforeTest(){}
 
     @Test
-    public void testInstanceMethodXXXXXNotNull(){
+    public void testInstanceMethodGetClippedStringNotNull(){
         //The thread is necessary because if you don't use a Swing tread, assert throw an exception
         SwingUtilities.invokeLater(new Runnable() {
             @Override

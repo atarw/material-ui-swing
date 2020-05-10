@@ -24,7 +24,6 @@
 package mdlaf.components.togglebutton;
 
 import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
@@ -104,10 +103,10 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        /*JToggleButton toggleButton = (JToggleButton) c;
+        JToggleButton toggleButton = (JToggleButton) c;
         toggleButton.setIcon(null);
         toggleButton.setSelectedIcon(null);
-         toggleButton.setBorder(null);
+        /* toggleButton.setBorder(null);
         toggleButton.setBackground(null);
         toggleButton.setForeground(null);*/
         super.uninstallUI(c);
