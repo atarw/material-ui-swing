@@ -294,6 +294,7 @@ public interface MaterialTheme {
 
     int getSpacerTabbedPane();
 
+    int getHeightTabTabbedPane();
     //---------------------------------------------------
     //Proprieties JTable
     ColorUIResource getBackgroundTable();

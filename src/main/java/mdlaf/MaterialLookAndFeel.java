@@ -23,6 +23,13 @@
  */
 package mdlaf;
 
+import java.awt.*;
+import java.lang.reflect.Method;
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.basic.BasicLookAndFeel;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.text.DefaultEditorKit;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
@@ -69,14 +76,6 @@ import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.WrapperJIconFont;
-
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.basic.BasicLookAndFeel;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.text.DefaultEditorKit;
-import java.awt.*;
-import java.lang.reflect.Method;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -414,6 +413,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TabbedPane.highlight", theme.getDisableTextColor());
         table.put("TabbedPane.selected", theme.getTextColor());
         table.put("TabbedPane.light", theme.getBackgroundPrimary());
+        table.put("TabbedPane[tab].height", theme.getHeightTabTabbedPane());
         table.put("TabbedPane.borderHighlightColor", theme.getBorderHighlightColorTabbedPane());
         table.put("TabbedPane[focus].colorLine", theme.getFocusColorLineTabbedPane());
         table.put("TabbedPane[MouseHover].enable", theme.getMouseHoverEnableTabbedPane());

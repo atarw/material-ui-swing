@@ -1,7 +1,8 @@
 /**
  * MIT License
  * <p>
- * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ * Copyright (c) 2018 atharva washimkar,
+ * Copyright (c) 2018-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +24,10 @@
  */
 package mdlaf.components.tabbedpane;
 
-import mdlaf.animation.MaterialMouseHover;
-import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.utils.MaterialDrawingUtils;
-
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
@@ -34,17 +35,16 @@ import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialDrawingUtils;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
-    public static ComponentUI createUI(JComponent c) {
+    public static ComponentUI createUI( JComponent c) {
         return new MaterialTabbedPaneUI();
     }
 
@@ -60,6 +60,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     protected int heightLine;
     protected int arcLine;
     protected int margin;
+    protected int heightTab;
     protected boolean tabsOverlapBorder;
     protected Map<Integer, Boolean> mouseHoverInitialized;
     protected Boolean mouseHoverEnabled;
@@ -93,6 +94,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
         this.margin = UIManager.getInt("TabbedPane[focus].margin");
+        this.heightTab = UIManager.getInt( "TabbedPane[tab].height" );
         this.tabsOverlapBorder = UIManager.getBoolean("TabbedPane.tabsOverlapBorder");
         this.mouseHoverEnabled = UIManager.getBoolean("TabbedPane[MouseHover].enable");
     }
@@ -152,11 +154,12 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
-        if (tabPlacement == LEFT || tabPlacement == RIGHT) {
+       /* if (tabPlacement == LEFT || tabPlacement == RIGHT) {
             return super.calculateTabHeight(tabPlacement, tabIndex, fontHeight);
         } else {
             return 18 + super.calculateTabHeight(tabPlacement, tabIndex, fontHeight);
-        }
+        }*/
+        return heightTab + super.calculateTabHeight(tabPlacement, tabIndex, fontHeight);
     }
 
     @Override
@@ -502,14 +505,27 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             setUI(new ArrowButtonTabbedPaneUI(direction));
             this.direction = direction;
             switch (direction){
+                //TODO TOP? Button?
                 case BasicArrowButton.WEST:
+                	// Leaft icon
                     this.disabled = UIManager.getIcon(getPREFIX() + ".iconLeft");
                     this.enabled = UIManager.getIcon(getPREFIX() + ".disabledIconLeft");
                     break;
                 case BasicArrowButton.EAST:
+                	//Right icon
                     this.disabled = UIManager.getIcon(getPREFIX() + ".disabledIconRight");
                     this.enabled = UIManager.getIcon(getPREFIX() + ".iconRight");
                     break;
+				case BasicArrowButton.SOUTH:
+					// Bottom icon
+					this.disabled = UIManager.getIcon(getPREFIX() + ".disabledBottomRight");
+					this.enabled = UIManager.getIcon(getPREFIX() + ".iconBottom");
+					break;
+				default:
+					//TOP icon
+					this.disabled = UIManager.getIcon(getPREFIX() + ".disabledIconTop");
+					this.enabled = UIManager.getIcon(getPREFIX() + ".iconTop");
+					break;
             }
             this.setIcon(enabled);
             this.setDisabledIcon(disabled);

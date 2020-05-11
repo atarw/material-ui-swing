@@ -23,21 +23,24 @@
  */
 package integration.gui.mock;
 
-import integration.gui.mock.component.*;
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
-import mdlaf.utils.MaterialColors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
+import integration.gui.mock.component.ContainerAction;
+import integration.gui.mock.component.DemoPanelWithTabbedPane;
+import integration.gui.mock.component.PersonalButtonUI;
+import integration.gui.mock.component.PersonalMouseHoverButtonUI;
+import integration.gui.mock.component.TableModelSecondPanel;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.utils.MaterialColors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -124,6 +127,7 @@ public class DemoGUITest extends JFrame {
     public void initComponent() {
 
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPane.setTabPlacement(JTabbedPane.LEFT);
         //tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");

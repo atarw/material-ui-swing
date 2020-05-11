@@ -24,12 +24,19 @@
 package mdlaf.themes;
 
 
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.IconUIResource;
+import javax.swing.plaf.InsetsUIResource;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
-import mdlaf.utils.*;
-
-import javax.swing.*;
-import javax.swing.plaf.*;
+import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialFontFactory;
+import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.WrapperJIconFont;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -1159,7 +1166,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return 20;
     }
 
-    @Override
+	@Override
+	public int getHeightTabTabbedPane() {
+		return 18;
+	}
+
+	@Override
     public boolean getMouseHoverEnableTabbedPane() {
         return true;
     }
