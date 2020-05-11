@@ -23,7 +23,6 @@
  */
 package mdlaf.utils;
 
-import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
@@ -31,6 +30,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javax.swing.plaf.FontUIResource;
 
 /**
  * This class managed the font inside the library and inside the Look and Feel, in fact
@@ -206,7 +206,6 @@ public class MaterialFontFactory {
             throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
         if (Utils.isJavaVersionUnderJava9()) {
-            System.out.println(Toolkit.getDefaultToolkit().getScreenResolution());
             return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
         }
         return dimension;
