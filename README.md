@@ -70,7 +70,6 @@ Contact us if you use this look and feel so we can add your project to the list 
 Support this project
 
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
-![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fmaterialuiswing)
 
 _Donors_
 - [lilili87222](https://github.com/lilili87222)
