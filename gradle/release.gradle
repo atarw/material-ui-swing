@@ -1,0 +1,100 @@
+// Inside this file was described the configuration used to upload the new release on maven
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+
+			pom.project {
+				name archivesBaseName
+				packaging 'jar'
+				// optionally artifactId can be defined here
+				print('Archive base name: ' + archivesBaseName)
+				groupId GROUP_ID
+				artifactId ARCHTFAT_ID
+				version VERSION
+				description archivesBaseName
+				url 'https://github.com/vincenzopalazzo/material-ui-swing'
+
+				scm {
+					connection 'https://github.com/vincenzopalazzo/material-ui-swing'
+					developerConnection 'https://github.com/vincenzopalazzo/material-ui-swing.git'
+					url 'https://github.com/vincenzopalazzo/material-ui-swing'
+				}
+
+				licenses {
+					license {
+						name 'MIT'
+						url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
+					}
+				}
+
+				developers {
+					developer {
+						id 'vincenzopalazzo'
+						name 'Vincenzo Palazzo'
+						email 'vincenzopalazzodev@gmail.com'
+					}
+				}
+			}
+		}
+	}
+}
+
+task createPom {
+	pom {
+		project {
+			groupId GROUP_ID
+			artifactId ARCHTFAT_ID
+			version VERSION
+
+			properties {
+				project {
+					build {
+						sourceEncoding 'UTF-8'
+					}
+				}
+				maven {
+					compiler {
+						source '1.8'
+						target '1.8'
+					}
+				}
+			}
+			inceptionYear '2020'
+			licenses {
+				license {
+					name 'MIT'
+					url 'https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE'
+					distribution 'repo'
+				}
+			}
+		}
+	}.writeTo("pom.xml")
+}
