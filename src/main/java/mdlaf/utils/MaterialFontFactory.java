@@ -80,13 +80,13 @@ public class MaterialFontFactory {
      */
     protected Properties properties = new Properties();
     protected Map<String, FontUIResource> cacheFont = new HashMap<>();
-    protected float defaultSize = 15f;
+    protected float defaultSize = 14f;
     protected boolean withPersonalSettings = true;
 
 
     private MaterialFontFactory() {
         try {
-            loadOsPropries();
+            loadOsProprieties();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,7 +178,7 @@ public class MaterialFontFactory {
     private FontUIResource loadFont(InputStream inputStream, boolean withPersonalSettings) {
         float size = this.doOptimizingDimensionFont(this.defaultSize);
         if (withPersonalSettings && fontSettings.isEmpty()) {
-            fontSettings.put(TextAttribute.SIZE, defaultSize);
+            fontSettings.put(TextAttribute.SIZE, size);
             fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
         }
         try {
@@ -206,7 +206,7 @@ public class MaterialFontFactory {
             throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
         if (Utils.isJavaVersionUnderJava9()) {
-            return dimension * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
+            return 11f * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
         }
         return dimension;
     }
@@ -219,7 +219,7 @@ public class MaterialFontFactory {
      *
      * @throws IOException
      */
-    private void loadOsPropries() throws IOException {
+    private void loadOsProprieties() throws IOException {
         properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
     }
 
