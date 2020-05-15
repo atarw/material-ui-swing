@@ -127,7 +127,7 @@ public class DemoGUITest extends JFrame {
     public void initComponent() {
 
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabbedPane.setTabPlacement(JTabbedPane.LEFT);
+        tabbedPane.setTabPlacement(JTabbedPane.RIGHT);
         //tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
         buttonDefault.setName("buttonDefault");
         buttonUndo.setName("buttonUndo");

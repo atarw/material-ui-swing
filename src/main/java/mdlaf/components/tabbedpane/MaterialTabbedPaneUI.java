@@ -295,7 +295,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                         x, y+h-2);
             }*/
             g.setColor(selectedAreaContentBackground);
-            g.fillRect(selRect.x + margin , selRect.y, heightLine, selRect.height);
+            g.fillRect(selRect.x + heightLine, selRect.y, heightLine, selRect.height);
         }
     }
 
@@ -331,7 +331,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                         x+w-1, y+h-2);
             }*/
            g.setColor(selectedAreaContentBackground);
-           g.fillRect((selRect.x + selRect.width - margin) - heightLine, selRect.y, heightLine, selRect.height);
+           g.fillRect((selRect.x + selRect.width - heightLine) - heightLine, selRect.y, heightLine, selRect.height);
         }
     }
 

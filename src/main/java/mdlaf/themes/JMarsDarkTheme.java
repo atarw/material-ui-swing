@@ -23,16 +23,15 @@
  */
 package mdlaf.themes;
 
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
-
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.ColorUIResource;
-import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -139,7 +138,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.inactiveForegroundTextField = MaterialColors.WHITE;
         this.inactiveBackgroundTextField = new ColorUIResource(81, 86, 101);
         this.selectionBackgroundTextField = new ColorUIResource(249, 192, 98);
-        super.disabledBackgroudnTextField = new ColorUIResource(81, 86, 101);
+        super.disabledBackgroudnTextField = new ColorUIResource(94,94,94);
         super.disabledForegroundTextField = new ColorUIResource(170,170,170);
         this.selectionForegroundTextField = MaterialColors.BLACK;
         this.inactiveColorLineTextField = MaterialColors.WHITE;

@@ -200,6 +200,7 @@ public class MaterialFontFactory {
      * This method to calculate the font dimension is bad, We now but the JDK 8 display the font very bad
      * and at the moment with the JDK 8 the dimension of the font is calculate with the screen resolution
      * and with the JDK9+ the font set with the defaultSize @see defaultSize
+	 * @param dimension is the dimension font that you want optimizing
      */
     public float doOptimizingDimensionFont(float dimension) {
         if (defaultSize <= 0) {

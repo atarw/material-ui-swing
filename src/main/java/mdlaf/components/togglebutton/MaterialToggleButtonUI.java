@@ -23,13 +23,13 @@
  */
 package mdlaf.components.togglebutton;
 
-import mdlaf.utils.MaterialDrawingUtils;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-import java.awt.*;
+import mdlaf.utils.MaterialDrawingUtils;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -48,6 +48,8 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     protected Color withoutIconSelectedForeground;
     protected Color withoutIconBackground;
     protected Color withoutIconForeground;
+    protected Icon selected;
+    protected Icon unselected;
     protected Border withoutIconSelectedBorder;
     protected Border withoutIconBorder;
 
@@ -75,8 +77,10 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             To default, this class will set the variable without an icon to false and toggle button border to UIManager propriety.
          */
         if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null) {
-            toggleButton.setIcon(UIManager.getIcon("ToggleButton.icon"));
-            toggleButton.setSelectedIcon(UIManager.getIcon("ToggleButton.selectedIcon"));
+        	this.unselected = UIManager.getIcon("ToggleButton.icon");
+        	this.selected = UIManager.getIcon("ToggleButton.selectedIcon");
+            toggleButton.setIcon(this.unselected);
+            toggleButton.setSelectedIcon(this.selected);
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
             if (withoutIcon) {
                 withoutIconSelectedBorder = UIManager.getBorder("ToggleButton[withoutIcon].selectedBorder");
@@ -103,13 +107,17 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-        JToggleButton toggleButton = (JToggleButton) c;
-        toggleButton.setIcon(null);
-        toggleButton.setSelectedIcon(null);
+		super.uninstallUI(c);
+		JToggleButton toggleButton = (JToggleButton) c;
+        boolean removeIcon = this.unselected == toggleButton.getIcon()
+			&& this.selected == toggleButton.getSelectedIcon();
+        if(removeIcon){
+			toggleButton.setIcon(null);
+			toggleButton.setSelectedIcon(null);
+		}
         /* toggleButton.setBorder(null);
         toggleButton.setBackground(null);
         toggleButton.setForeground(null);*/
-        super.uninstallUI(c);
     }
 
     @Override

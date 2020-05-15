@@ -427,7 +427,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         //table.put("TabbedPane.lineWidth", theme.getLineWithTabbedPane());
         table.put("TabbedPane.lineHeight", theme.getLineHeightTabbedPane());
         //table.put("TabbedPane.lineArch", theme.getLineArchTabbedPane());
-        table.put("TabbedPane[focus].margin", 5);
+        table.put("TabbedPane[focus].margin", 0);
         table.put("TabbedPane[scrollButton].iconTop", theme.getTopIconTabbedPane());
         table.put("TabbedPane[scrollButton].disabledIconTop", theme.getDisabledTopIconTabbedPane());
         table.put("TabbedPane[scrollButton].iconLeft", theme.getLeftIconTabbedPane());
@@ -480,7 +480,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("TextArea.font", theme.getFontBold());
         table.put("TextArea.caretForeground", theme.getTextColor());
 
-        table.put("ToggleButton.border", new BorderUIResource(BorderFactory.createEmptyBorder()));
+        table.put("ToggleButton.border", new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         table.put("ToggleButton.font", theme.getFontRegular());
         table.put("ToggleButton.background", theme.getBackgroundPrimary());
         table.put("ToggleButton.select", theme.getHighlightBackgroundPrimary());

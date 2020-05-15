@@ -43,6 +43,9 @@ to fix pixel bug in JDK8 but the dimension is setting static with JDK version >=
 - Fixed bugs in sub menu background.
 - Refactoring JComboBox, now is possible change the arch of the bord easy.
 - Apply anti-aliasing to some component
+- [JToggleButton icon font missed](https://github.com/vincenzopalazzo/material-ui-swing/issues/136)
+- [Support configurable Tab inside JTabbedPane](https://github.com/vincenzopalazzo/material-ui-swing/issues/136)
+- Fixed line position inside the JTabbedPane when (LEFT, RIGHT)
 
 
 **JToggleButton Second Style without icons**
