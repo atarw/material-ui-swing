@@ -57,6 +57,11 @@ jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+	inputs.property("moduleName", MODULE_NAME)
+
+	manifest {
+		attributes  'Automatic-Module-Name': MODULE_NAME
+	}
 }
 
 uploadArchives.onlyIf { boolean RELEASE_ENABLE }
