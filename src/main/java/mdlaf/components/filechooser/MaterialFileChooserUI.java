@@ -23,12 +23,13 @@
  */
 package mdlaf.components.filechooser;
 
-import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.metal.MetalFileChooserUI;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.swing.*;
+import javax.swing.filechooser.FileView;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.metal.MetalFileChooserUI;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -157,7 +158,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
             }
         };
     }
-
 
     protected class MaterialFileChooserEvents implements PropertyChangeListener {
 
