@@ -64,5 +64,5 @@ jar {
 	}
 }
 
-uploadArchives.onlyIf { boolean RELEASE_ENABLE }
-signArchives.onlyIf { boolean RELEASE_ENABLE }
+uploadArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
+signArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
