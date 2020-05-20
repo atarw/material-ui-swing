@@ -23,15 +23,16 @@
  */
 package mdlaf.themes;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.ColorUIResource;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -175,5 +176,15 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
     @Override
     public String getName() {
         return "JMars Dark";
+    }
+
+    @Override
+    public int getArcButton() {
+        return 0;
+    }
+
+    @Override
+    public int getArchBorderComboBox() {
+        return 0;
     }
 }

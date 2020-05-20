@@ -26,6 +26,7 @@ package mdlaf.components.button;
 import mdlaf.animation.MaterialMouseHover;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
@@ -67,6 +68,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     //protected boolean paintedDisabled = false;
     protected boolean buttonBorderToAll = false;
     protected boolean mouseHoverRunning = false;
+    protected boolean buttonToolBarInit = false;
 
     protected MaterialButtonMouseListener mouseListener = new MaterialButtonMouseListener();
     protected MaterialMouseHover mouseHover;
@@ -137,6 +139,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         disabledForeground = null;
         defaultBackground = null;
         defaultForeground = null;
+        buttonToolBarInit = false;
         //button.setBackground(null);
         //button.setForeground(null);
         button.setCursor(Cursor.getDefaultCursor());
@@ -211,6 +214,20 @@ public class MaterialButtonUI extends BasicButtonUI {
             graphics.setColor(disabledBackground);
         }
         graphics.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
+        graphics.dispose();
+        if(!buttonToolBarInit && this.isToolBarButton(c)){
+            System.out.println("BUTTON in JToolBar");
+            borderEnabled = false;
+            mouseHoverEnabled = UIManager.getBoolean("ToolBar[button].mouseHover");
+            c.removeMouseListener(mouseHover);
+            c.setBackground(UIManager.getColor("ToolBar.background"));
+            if(mouseHoverEnabled){
+                //reset original color inside mouse color
+                mouseHover = MaterialUIMovement.getMovement(c, colorMouseHoverNormalButton);
+                c.addMouseListener(mouseHover);
+            }
+            this.buttonToolBarInit = true;
+        }
         /*JButton b = (JButton) c;
         if (borderEnabled != null && borderEnabled) {
             if (buttonBorderToAll && !b.isDefaultButton()) {
@@ -347,6 +364,15 @@ public class MaterialButtonUI extends BasicButtonUI {
         return defaultButton != null && defaultButton;
     }
 
+    protected boolean isToolBarButton(Component component){
+        Container container = component.getParent();
+        if(container instanceof JToolBar){
+            return true;
+        }else if(container != null){
+            return this.isToolBarButton(container);
+        }
+        return false;
+    }
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event

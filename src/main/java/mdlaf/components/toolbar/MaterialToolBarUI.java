@@ -24,8 +24,10 @@
 package mdlaf.components.toolbar;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToolBarUI;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -40,7 +42,7 @@ public class MaterialToolBarUI extends BasicToolBarUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-       // JToolBar toolBar = (JToolBar) c;
+        // JToolBar toolBar = (JToolBar) c;
 		/*toolBar.setFont (UIManager.getFont ("ToolBar.font"));
 		toolBar.setBackground (UIManager.getColor ("ToolBar.background"));
 		toolBar.setForeground (UIManager.getColor ("ToolBar.foreground"));
@@ -65,4 +67,29 @@ public class MaterialToolBarUI extends BasicToolBarUI {
         this.floatingColor = null;
         super.uninstallUI(c);
     }
+
+    @Override
+    protected void setBorderToRollover( Component c ) {}
+
+    @Override
+    protected void setBorderToNonRollover( Component c ) {}
+
+    @Override
+    protected void setBorderToNormal( Component c ) {}
+
+    @Override
+    protected void installRolloverBorders( JComponent c ) {}
+
+    @Override
+    protected void installNonRolloverBorders( JComponent c ) {}
+
+    @Override
+    protected void installNormalBorders( JComponent c ) {}
+
+    @Override
+    protected Border createRolloverBorder() { return null; }
+
+    @Override
+    protected Border createNonRolloverBorder() { return null; }
+
 }

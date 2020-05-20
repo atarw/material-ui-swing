@@ -23,24 +23,20 @@
  */
 package integration.gui.mock;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
+import integration.gui.mock.component.*;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.utils.MaterialColors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicLookAndFeel;
-import integration.gui.mock.component.ContainerAction;
-import integration.gui.mock.component.DemoPanelWithTabbedPane;
-import integration.gui.mock.component.PersonalButtonUI;
-import integration.gui.mock.component.PersonalMouseHoverButtonUI;
-import integration.gui.mock.component.TableModelSecondPanel;
-import integration.gui.mock.component.ThemeExampleChangeTabHeight;
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.utils.MaterialColors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -118,6 +114,8 @@ public class DemoGUITest extends JFrame {
 
     //TabbedPane test mouse hover on Tab
     JPanel tabbedPanetest = new DemoPanelWithTabbedPane();
+
+    private JToolBar toolBarEditor;
 
 
     public JMenuItem getMaterialDark() {
@@ -204,6 +202,18 @@ public class DemoGUITest extends JFrame {
             }
         });
 
+        this.toolBarEditor = new JToolBar();
+        toolBarEditor.setLayout(new BorderLayout());
+
+        ToolBarButtonsCodeContainer containerButtonsCode = new ToolBarButtonsCodeContainer();
+
+        ToolBarCompilerComponent containerCompilerInfo = new ToolBarCompilerComponent();
+
+        toolBarEditor.add(containerButtonsCode, BorderLayout.CENTER);
+        toolBarEditor.add(containerCompilerInfo, BorderLayout.EAST);
+
+        JPanel panelToolBar = new JPanel();
+        panelToolBar.add(toolBarEditor);
 
         initStyleMouseHoverPanel();
 
@@ -223,10 +233,9 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(splitPane, "SplitPane");
         tabbedPane.add(mouseHoverPanel, "MouseHover Bug");
         tabbedPane.add(tabbedPanetest, "TabbedPane Test");
-        tabbedPane.add(new JPanel(), "Panel 8");
+        tabbedPane.add(panelToolBar, "ToolBar");
         tabbedPane.add(new JPanel(), "Panel 9");
-        tabbedPane.setEnabledAt(7, false);
-        tabbedPane.setEnabledAt(7, false);
+        tabbedPane.setEnabledAt(8, false);
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

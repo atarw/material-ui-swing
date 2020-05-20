@@ -23,13 +23,6 @@
  */
 package mdlaf;
 
-import java.awt.*;
-import java.lang.reflect.Method;
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.basic.BasicLookAndFeel;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.text.DefaultEditorKit;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
@@ -76,6 +69,14 @@ import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.WrapperJIconFont;
+
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.basic.BasicLookAndFeel;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.text.DefaultEditorKit;
+import java.awt.*;
+import java.lang.reflect.Method;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -504,6 +505,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToolBar.rolloverBorder", new BorderUIResource(BorderFactory.createEmptyBorder(5,5,5,5)));
         table.put("ToolBar.dockingBackground", theme.getDockingBackgroundToolBar());
         table.put("ToolBar.floatingBackground", theme.getFloatingBackgroundToolBar());
+        table.put("ToolBar[button].mouseHover", theme.getMouseHoverButtonEnable());
 
         table.put("Tree.font", theme.getFontRegular());
         table.put("Tree.selectionForeground", theme.getHighlightBackgroundPrimary());
