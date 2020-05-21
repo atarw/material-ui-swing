@@ -1,6 +1,5 @@
 package integration.gui.mock.component;
 
-import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
@@ -87,7 +86,7 @@ public class DemoPanelWithTabbedPane extends JPanel {
         button.setMinimumSize(new Dimension(20, 5));
         button.setMaximumSize(new Dimension(20, 5));
         button.setBackground(MaterialColors.PINK_500);
-        button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.PINK_300));
+        //button.addMouseListener(MaterialUIMovement.getMovement(button, MaterialColors.PINK_300));
         button.setForeground(MaterialColors.COSMO_LIGTH_GRAY);
     }
 }

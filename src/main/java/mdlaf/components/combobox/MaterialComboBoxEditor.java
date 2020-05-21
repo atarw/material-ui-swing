@@ -23,8 +23,6 @@
  */
 package mdlaf.components.combobox;
 
-import mdlaf.utils.MaterialColors;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import java.awt.*;

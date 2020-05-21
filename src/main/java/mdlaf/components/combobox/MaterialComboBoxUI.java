@@ -1,18 +1,18 @@
 /**
  * MIT License
- *
+ * <p>
  * Copyright (c) 2018-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzo1996@gmail.com
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,22 +23,24 @@
  */
 package mdlaf.components.combobox;
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.animation.MaterialUIMovement;
+import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.MaterialManagerListener;
+import sun.swing.DefaultLookup;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -97,21 +99,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     protected JButton createArrowButton() {
         Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
-        JButton button;
-        if (icon != null) {
-            button = new JButton(icon);
-        } else {
-            button = new BasicArrowButton(SwingConstants.SOUTH);
-        }
-        this.configureLocalArrowButton(button);
-        return button;
+        return new ArrowButtonComboBox(icon);
     }
 
-    @Override
-    public void configureArrowButton() {
-        super.configureArrowButton();
-        this.configureLocalArrowButton(arrowButton);
-    }
 
     @Override
     protected ComboPopup createPopup() {
@@ -135,7 +125,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected void uninstallListeners() {
-        if(focusListener != null){
+        if (focusListener != null) {
             this.comboBox.removeFocusListener(focusListener);
         }
         super.uninstallListeners();
@@ -148,7 +138,54 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
         paint(g, c);
-        this.configureLocalArrowButton(arrowButton);
+    }
+
+    @Override
+    public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
+        ListCellRenderer renderer = comboBox.getRenderer();
+        Component c;
+
+        if (hasFocus && !isPopupVisible(comboBox)) {
+            c = renderer.getListCellRendererComponent(listBox,
+                    comboBox.getSelectedItem(),
+                    -1,
+                    true,
+                    false);
+        } else {
+            c = renderer.getListCellRendererComponent(listBox,
+                    comboBox.getSelectedItem(),
+                    -1,
+                    false,
+                    false);
+            c.setBackground(UIManager.getColor("ComboBox.background"));
+        }
+        c.setFont(comboBox.getFont());
+
+        if (comboBox.isEnabled()) {
+            c.setForeground(comboBox.getForeground());
+            c.setBackground(comboBox.getBackground());
+        } else {
+            c.setForeground(DefaultLookup.getColor(
+                    comboBox, this, "ComboBox.disabledForeground", null));
+            c.setBackground(DefaultLookup.getColor(
+                    comboBox, this, "ComboBox.disabledBackground", null));
+        }
+
+        // Fix for 4238829: should lay out the JPanel.
+        boolean shouldValidate = false;
+        if (c instanceof JPanel) {
+            shouldValidate = true;
+        }
+
+        int x = bounds.x, y = bounds.y, w = bounds.width, h = bounds.height;
+        if (padding != null) {
+            x = bounds.x + padding.left;
+            y = bounds.y + padding.top;
+            w = bounds.width - (padding.left + padding.right);
+            h = bounds.height - (padding.top + padding.bottom);
+        }
+
+        currentValuePane.paintComponent(g, c, comboBox, x, y, w, h, shouldValidate);
     }
 
     @Override
@@ -163,20 +200,10 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected FocusListener createFocusListener() {
-        if(comboBox.isFocusable()){
+        if (comboBox.isFocusable()) {
             comboBox.addFocusListener(focusListener);
         }
         return super.createFocusListener();
-    }
-
-    protected void configureLocalArrowButton(JButton arrowButton){
-        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
-        arrowButton.setOpaque(true);
-        arrowButton.setBackground(UIManager.getColor("ComboBox.buttonBackground"));
-        if (UIManager.getBoolean("ComboBox.mouseHoverEnabled")) {
-            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
-        }
-        arrowButton.setBorder(UIManager.getBorder("ComboBox[button].border"));
     }
 
     protected class FocusListenerColor implements FocusListener {
@@ -210,6 +237,52 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             if (unfocus != null) {
                 cb.setBorder(unfocus);
                 cb.repaint();
+            }
+        }
+    }
+
+    protected class ArrowButtonComboBox extends JButton{
+
+        public ArrowButtonComboBox(Icon icon) {
+            super(icon);
+        }
+
+        @Override
+        public void updateUI() {
+            this.setUI(new ArrowButtonComboboxBoxUI());
+        }
+
+
+        protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI{
+
+            @Override
+            public void installUI(JComponent c) {
+                borderEnabled = false;
+                mouseHoverEnabled = false;
+                super.installUI(c);
+                super.background = UIManager.getColor("ComboBox.buttonBackground");
+                c.setBackground(super.background);
+                mouseHoverEnabled = UIManager.getBoolean("ComboBox.mouseHoverEnabled");
+                if(mouseHoverEnabled){
+                    c.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
+                }
+                c.setBorder(UIManager.getBorder("ComboBox[button].border"));
+            }
+
+            @Override //TODO refactoring ICON with UIManager
+            protected void paintBackground(Graphics g, JComponent c) {
+                super.paintBackground(g, c);
+                if(isPopupVisible(comboBox)){
+                    button.setIcon(MaterialImageFactory.getInstance().getImage(
+                            GoogleMaterialDesignIcons.KEYBOARD_ARROW_UP,
+                            this.foreground
+                    ));
+                }else{
+                    button.setIcon(MaterialImageFactory.getInstance().getImage(
+                            GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                            this.foreground
+                    ));
+                }
             }
         }
     }

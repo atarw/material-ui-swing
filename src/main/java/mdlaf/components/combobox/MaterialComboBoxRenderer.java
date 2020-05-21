@@ -36,8 +36,8 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 	@Override
 	public Component getListCellRendererComponent (JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 		super.getListCellRendererComponent (list, value, index, isSelected, cellHasFocus);
-
-		setBorder((UIManager.getBorder("ComboBox.borderItems")));
+		//TODO I can remove this comments in the release 1.2
+		/*setBorder((UIManager.getBorder("ComboBox.borderItems")));
 		if(isSelected){
 			setForeground(UIManager.getColor("ComboBox[item].selectionForeground"));
 		}else{
@@ -45,7 +45,7 @@ public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 		}
 		setBackground (isSelected || cellHasFocus ?
 		                         UIManager.getColor ("ComboBox.selectedInDropDownBackground") :
-		                         UIManager.getColor ("ComboBox.background"));
+		                         UIManager.getColor ("ComboBox.background"));*/
 
 		return this;
 	}

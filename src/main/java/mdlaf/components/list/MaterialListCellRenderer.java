@@ -24,14 +24,12 @@
 package mdlaf.components.list;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
  */
-class MaterialListCellRenderer extends DefaultListCellRenderer {
+public class MaterialListCellRenderer extends DefaultListCellRenderer {
 
 
     @Override

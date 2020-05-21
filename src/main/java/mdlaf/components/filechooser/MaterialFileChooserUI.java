@@ -23,13 +23,11 @@
  */
 package mdlaf.components.filechooser;
 
-import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import javax.swing.*;
-import javax.swing.filechooser.FileView;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -38,6 +36,7 @@ import javax.swing.plaf.metal.MetalFileChooserUI;
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
     protected MaterialFileChooserEvents lifeCycleEvent;
+    protected JFileChooser fileChooser;
 
     public MaterialFileChooserUI(JFileChooser fileChooser) {
         super(fileChooser);
@@ -87,7 +86,7 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     @Override
     public void uninstallUI(JComponent c) {
 
-        JFileChooser fileChooser = (JFileChooser) c;
+        fileChooser = (JFileChooser) c;
 
         this.uninstallIcons(fileChooser);
         this.uninstallComponents(fileChooser);
@@ -132,32 +131,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
         super.uninstallListeners(fc);
     }
 
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-    }
-
-    @Override
-    protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
-        return new MetalFileChooserUI.FilterComboBoxRenderer(){
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-
-                setBorder((UIManager.getBorder("ComboBox.borderItems")));
-                if (isSelected) {
-                    setForeground(UIManager.getColor("ComboBox[item].selectionForeground"));
-                } else {
-                    setForeground(UIManager.getColor("ComboBox.foreground"));
-                }
-                setBackground(isSelected || cellHasFocus ?
-                        UIManager.getColor("ComboBox.selectedInDropDownBackground") :
-                        UIManager.getColor("ComboBox.background"));
-
-                return this;
-            }
-        };
-    }
 
     protected class MaterialFileChooserEvents implements PropertyChangeListener {
 

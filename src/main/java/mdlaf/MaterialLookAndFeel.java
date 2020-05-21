@@ -34,6 +34,7 @@ import mdlaf.components.filechooser.MaterialFileChooserUI;
 import mdlaf.components.formattertextfield.MaterialFormattedTextFieldUI;
 import mdlaf.components.internalframe.MaterialInternalFrameUI;
 import mdlaf.components.label.MaterialLabelUI;
+import mdlaf.components.list.MaterialListCellRenderer;
 import mdlaf.components.list.MaterialListUI;
 import mdlaf.components.menu.MaterialMenuUI;
 import mdlaf.components.menubar.MaterialMenuBarUI;
@@ -276,6 +277,10 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.selectedIcon", theme.getSelectedCheckBoxIcon());
 
         table.put("ComboBox.font", theme.getFontRegular());
+        table.put("ComboBox.buttonIcon", MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                theme.getTextColor()
+        ));
         table.put("ComboBox.background", theme.getBackgroundPrimary());
         table.put("ComboBox.foreground", theme.getTextColor());
         table.put("ComboBox.border", theme.getBorderComboBox());
@@ -285,8 +290,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox[button].border", BorderFactory.createLineBorder(theme.getBackgroundPrimary()));
         table.put("ComboBox.disabledBackground", theme.getBackgroundPrimary());
         table.put("ComboBox.disabledForeground", theme.getDisableTextColor());
-        table.put("ComboBox.selectionBackground", theme.getBackgroundPrimary());
-        table.put("ComboBox.selectionForeground", theme.getTextColor());
+        table.put("ComboBox.selectionBackground", theme.getSelectedInDropDownBackgroundComboBox());
+        table.put("ComboBox.selectionForeground", theme.getSelectedForegroundComboBox());
+        //TODO I can remove this following propriety because is an old bug, I can remove this in the release 1.1.1
         table.put("ComboBox[item].selectionForeground", theme.getSelectedForegroundComboBox());
         table.put("ComboBox.selectedInDropDownBackground", theme.getSelectedInDropDownBackgroundComboBox());
         table.put("ComboBox.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
@@ -636,10 +642,13 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("List.border", theme.getBorderList());
         table.put("List.font", theme.getFontMedium());
         table.put("List.selectionBackground", theme.getSelectionBackgroundList());
+        table.put("List.dropCellBackground", theme.getSelectionBackgroundList());
         table.put("List.selectionForeground", theme.getSelectionForegroundList());
+        table.put("List.dropCellForeground", theme.getSelectionForegroundList());
         table.put("List.focusCellHighlightBorder", theme.getFocusCellHighlightBorder());
         table.put("List[item].border", theme.getBorderItemList());
         table.put("List.focusable", true);
+        table.put("List.cellRenderer", new MaterialListCellRenderer());
 
         table.put("RootPane.frameBorder", theme.getBorderFrameRootPane());
         table.put("RootPane.background", theme.getBackgroundPrimary());

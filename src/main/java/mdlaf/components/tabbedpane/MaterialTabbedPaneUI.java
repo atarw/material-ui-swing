@@ -24,10 +24,10 @@
  */
 package mdlaf.components.tabbedpane;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
@@ -35,9 +35,10 @@ import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import mdlaf.animation.MaterialMouseHover;
-import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.utils.MaterialDrawingUtils;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -277,7 +278,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
         Rectangle selRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
 
-       // g.setColor(lightHighlight);
+       g.setColor(lightHighlight);
 
         // Draw unbroken line if tabs are not on LEFT, OR
         // selected tab is not in run adjacent to content, OR
@@ -289,13 +290,14 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             g.drawLine(x, y, x, y+h-2);
         } else {
             // Break line to show visual connection to selected tab
-           /* g.drawLine(x, y, x, selRect.y - 1);
+            /*g.drawLine(x, y, x, selRect.y - 1);
             if (selRect.y + selRect.height < y + h - 2) {
                 g.drawLine(x, selRect.y + selRect.height,
                         x, y+h-2);
             }*/
             g.setColor(selectedAreaContentBackground);
             g.fillRect(selRect.x + heightLine, selRect.y, heightLine, selRect.height);
+            //g.fillRect(tabPane.getX() + heightLine, selRect.y, heightLine, selRect.height);
         }
     }
 
@@ -304,7 +306,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         //super.paintContentBorderRightEdge(g, tabPlacement, selectedIndex, x, y, w, h);
         Rectangle selRect = selectedIndex < 0? null : getTabBounds(selectedIndex, calcRect);
 
-        //g.setColor(selectedAreaContentBackground);
+        g.setColor(lightHighlight);
 
         // Draw unbroken line if tabs are not on RIGHT, OR
         // selected tab is not in run adjacent to content, OR
@@ -318,11 +320,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             g.drawLine(x+w-1, y, x+w-1, y+h-1);
         } else {
             // Break line to show visual connection to selected tab
-           // g.drawLine(x+w-2, y+1, x+w-2, selRect.y - 1);
-           /* g.setColor(darkShadow);
-            g.drawLine(x+w-1, y, x+w-1, selRect.y - 1);
+            //g.drawLine(x+w-2, y+1, x+w-2, selRect.y - 1);
+           // g.setColor(darkShadow);
+           // g.drawLine(x+w-1, y, x+w-1, selRect.y - 1);
 
-            if (selRect.y + selRect.height < y + h - 2) {
+            /*if (selRect.y + selRect.height < y + h - 2) {
                 g.setColor(shadow);
                 g.drawLine(x+w-2, selRect.y + selRect.height,
                         x+w-2, y+h-2);
@@ -330,6 +332,8 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
                 g.drawLine(x+w-1, selRect.y + selRect.height,
                         x+w-1, y+h-2);
             }*/
+           //g.drawLine(x + w + selRect.width - (heightLine * 2), y, (selRect.x + selRect.width - heightLine) - heightLine, selRect.y);
+           //g.drawLine(x + w + selRect.width - (heightLine * 2), selRect.y + selRect.height, x + w + selRect.width - (heightLine * 2), y + h);
            g.setColor(selectedAreaContentBackground);
            g.fillRect((selRect.x + selRect.width - heightLine) - heightLine, selRect.y, heightLine, selRect.height);
         }
