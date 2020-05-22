@@ -23,12 +23,10 @@
  */
 package mdlaf.components.combobox;
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.MaterialManagerListener;
 import sun.swing.DefaultLookup;
 
@@ -55,9 +53,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     protected Color background;
     protected FocusListener focusListener;
     protected int arc = 10; //default value
+    protected Border disabledBorder;
 
-    public MaterialComboBoxUI() {
-    }
+    public MaterialComboBoxUI() {}
 
     @Override
     public void installUI(JComponent c) {
@@ -71,6 +69,8 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));
+        this.disabledBorder = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.disabledColor"), arc);
+
     }
 
     @Override
@@ -97,11 +97,18 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     }
 
     @Override
+    public void paint(Graphics g, JComponent c) {
+        super.paint(g, c);
+        if(!c.isEnabled()){
+            c.setBorder(this.disabledBorder);
+        }
+    }
+
+    @Override
     protected JButton createArrowButton() {
         Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
         return new ArrowButtonComboBox(icon);
     }
-
 
     @Override
     protected ComboPopup createPopup() {
@@ -208,8 +215,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     protected class FocusListenerColor implements FocusListener {
 
-        private Border focus;
-        private Border unfocus;
+        protected Border focus;
+        protected Border unfocus;
+        protected Border disabled;
 
         public FocusListenerColor() {
             focus = MaterialBorders.roundedLineColorBorder(UIManager.getColor("ComboBox.focusColor"), arc);
@@ -245,6 +253,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         public ArrowButtonComboBox(Icon icon) {
             super(icon);
+            this.setDisabledIcon( UIManager.getIcon("ComboBox.buttonDisabledIcon"));
         }
 
         @Override
@@ -255,33 +264,34 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI{
 
+            protected Icon selectIcon;
+            protected Icon icon;
+            protected Icon disabled;
+
             @Override
             public void installUI(JComponent c) {
                 borderEnabled = false;
                 mouseHoverEnabled = false;
                 super.installUI(c);
                 super.background = UIManager.getColor("ComboBox.buttonBackground");
+                super.disabledBackground = super.background;
                 c.setBackground(super.background);
                 mouseHoverEnabled = UIManager.getBoolean("ComboBox.mouseHoverEnabled");
                 if(mouseHoverEnabled){
                     c.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
                 }
                 c.setBorder(UIManager.getBorder("ComboBox[button].border"));
+                this.icon = UIManager.getIcon("ComboBox.buttonIcon");
+                this.selectIcon = UIManager.getIcon("ComboBox.buttonSelectIcon");
             }
 
-            @Override //TODO refactoring ICON with UIManager
+            @Override
             protected void paintBackground(Graphics g, JComponent c) {
                 super.paintBackground(g, c);
                 if(isPopupVisible(comboBox)){
-                    button.setIcon(MaterialImageFactory.getInstance().getImage(
-                            GoogleMaterialDesignIcons.KEYBOARD_ARROW_UP,
-                            this.foreground
-                    ));
+                    button.setIcon(selectIcon);
                 }else{
-                    button.setIcon(MaterialImageFactory.getInstance().getImage(
-                            GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
-                            this.foreground
-                    ));
+                    button.setIcon(icon);
                 }
             }
         }

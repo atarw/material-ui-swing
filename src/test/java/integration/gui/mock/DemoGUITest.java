@@ -234,8 +234,9 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(mouseHoverPanel, "MouseHover Bug");
         tabbedPane.add(tabbedPanetest, "TabbedPane Test");
         tabbedPane.add(panelToolBar, "ToolBar");
+        tabbedPane.add(new ChooseValueComponentViewPanel(), "Choose Component");
         tabbedPane.add(new JPanel(), "Panel 9");
-        tabbedPane.setEnabledAt(8, false);
+        tabbedPane.setEnabledAt(9, false);
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

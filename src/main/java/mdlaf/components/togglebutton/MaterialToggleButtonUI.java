@@ -23,13 +23,14 @@
  */
 package mdlaf.components.togglebutton;
 
-import java.awt.*;
+import mdlaf.utils.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
-import mdlaf.utils.MaterialDrawingUtils;
+import java.awt.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -68,7 +69,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
         /*
         If the expression toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null is false the JToggleButton have the
         personal icon, how inside the JFileChooser. Now the are two cases
-         1. The previous expression is true, so for this class, this event is a normal JToggleButton;
+         1. The previous expression is true, so for this class, this event is a normal material JToggleButton;
          with these cases is possible another two cases like:
          1.1 The variable withoutIcon is false, so the effect like this:
          1.1 The variable withoutIcon if true, so the effect like this:
@@ -152,6 +153,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     @Override //TODO implement this effect
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         //do nothing
+        //TODO CHANGE ICON WHEN THIS COMPONENT IS FOCUSED
     }
 
     @Override

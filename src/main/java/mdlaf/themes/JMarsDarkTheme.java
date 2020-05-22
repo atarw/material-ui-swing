@@ -111,7 +111,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.selectedForegroundComboBox = MaterialColors.BLACK;
 
         this.menuBackground = new ColorUIResource(59,62,69);
-        this.menuBackgroundMouseHover = MaterialColors.COSMO_DARK_GRAY;
+        this.menuBackgroundMouseHover = new ColorUIResource(249, 192, 98);
 
         this.trackColorScrollBar = new ColorUIResource(81, 86, 101);
         this.thumbColorScrollBar = new ColorUIResource(155,155,155);
@@ -171,6 +171,13 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
     @Override
     protected void installDefaultColor() {
         super.installDefaultColor();
+    }
+
+    @Override
+    public void installUIDefault(UIDefaults table) {
+        super.installUIDefault(table);
+        table.put("Menu.selectionForeground", MaterialColors.BLACK);
+        table.put("MenuItem.selectionForeground", MaterialColors.BLACK);
     }
 
     @Override

@@ -23,11 +23,7 @@
  */
 package mdlaf.components.radiobutton;
 
-import mdlaf.utils.MaterialDrawingUtils;
-
-import javax.swing.JComponent;
-import javax.swing.JRadioButton;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
@@ -74,5 +70,6 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	@Override
 	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
 		//do nothing
+		//TODO CHANGE ICON WHEN IT IS FOXUSED
 	}
 }

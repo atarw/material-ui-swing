@@ -277,10 +277,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.selectedIcon", theme.getSelectedCheckBoxIcon());
 
         table.put("ComboBox.font", theme.getFontRegular());
-        table.put("ComboBox.buttonIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
-                theme.getTextColor()
-        ));
+        table.put("ComboBox.buttonIcon", theme.getButtonIconComboBox());
+        table.put("ComboBox.buttonSelectIcon", theme.getButtonSelectIconComboBox());
+        table.put("ComboBox.buttonDisabledIcon", theme.getButtonDisabledIconComboBox());
         table.put("ComboBox.background", theme.getBackgroundPrimary());
         table.put("ComboBox.foreground", theme.getTextColor());
         table.put("ComboBox.border", theme.getBorderComboBox());
@@ -293,10 +292,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ComboBox.selectionBackground", theme.getSelectedInDropDownBackgroundComboBox());
         table.put("ComboBox.selectionForeground", theme.getSelectedForegroundComboBox());
         //TODO I can remove this following propriety because is an old bug, I can remove this in the release 1.1.1
-        table.put("ComboBox[item].selectionForeground", theme.getSelectedForegroundComboBox());
-        table.put("ComboBox.selectedInDropDownBackground", theme.getSelectedInDropDownBackgroundComboBox());
+        //table.put("ComboBox[item].selectionForeground", theme.getSelectedForegroundComboBox());
+        //table.put("ComboBox.selectedInDropDownBackground", theme.getSelectedInDropDownBackgroundComboBox());
         table.put("ComboBox.mouseHoverColor", theme.getButtonBackgroundColorMouseHover());
         table.put("ComboBox.unfocusColor", theme.getTextColor());
+        table.put("ComboBox.disabledColor", theme.getDisableTextColor());
         table.put("ComboBox.focusColor", theme.getHighlightBackgroundPrimary());
         table.put("ComboBox.mouseHoverEnabled", theme.getMouseHoverEnableComboBox());
         table.put("ComboBox.arc", theme.getArchBorderComboBox());

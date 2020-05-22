@@ -99,7 +99,6 @@ public interface MaterialTheme {
 
     //-----------------------------------
     //Proprieties JComboBox
-
     ColorUIResource getSelectedInDropDownBackgroundComboBox();
 
     ColorUIResource getSelectedForegroundComboBox();
@@ -108,6 +107,11 @@ public interface MaterialTheme {
 
     BorderUIResource getBorderItemComboBox();
 
+    IconUIResource getButtonIconComboBox();
+
+    IconUIResource getButtonSelectIconComboBox();
+
+    IconUIResource getButtonDisabledIconComboBox();
 
     boolean getMouseHoverEnableComboBox();
 
@@ -196,6 +200,12 @@ public interface MaterialTheme {
     boolean getEnableArrowScrollBar();
 
     //set methods
+    void setButtonIconComboBox(IconUIResource buttonIconComboBox);
+
+    void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox);
+
+    void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox);
+
     void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner);
 
     void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner);

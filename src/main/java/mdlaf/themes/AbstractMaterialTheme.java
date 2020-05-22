@@ -24,19 +24,12 @@
 package mdlaf.themes;
 
 
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.IconUIResource;
-import javax.swing.plaf.InsetsUIResource;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
-import mdlaf.utils.MaterialFontFactory;
-import mdlaf.utils.MaterialImageFactory;
-import mdlaf.utils.WrapperJIconFont;
+import mdlaf.utils.*;
+
+import javax.swing.*;
+import javax.swing.plaf.*;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -114,6 +107,12 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected BorderUIResource borderComboBox;
 
     protected BorderUIResource borderItemComboBox;
+
+    protected IconUIResource buttonIconComboBox;
+
+    protected IconUIResource buttonSelectIconComboBox;
+
+    protected IconUIResource buttonDisabledIconComboBox;
 
     //---------------------------------------------------
     //Proprieties All component of the JMenu
@@ -677,6 +676,21 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
                 GoogleMaterialDesignIcons.CHEVRON_RIGHT,
                 colorDisabledIconTabbedPane
         );
+
+        this.buttonIconComboBox = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                textColor
+        );
+
+        this.buttonSelectIconComboBox = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_UP,
+                textColor
+        );
+
+        this.buttonDisabledIconComboBox = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                disableTextColor
+        );
     }
 
     protected void installBorders() {
@@ -884,6 +898,26 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public BorderUIResource getBorderItemComboBox() {
         return borderItemComboBox;
+    }
+
+    @Override
+    public IconUIResource getButtonIconComboBox() {
+        return buttonIconComboBox;
+    }
+
+    @Override
+    public IconUIResource getButtonSelectIconComboBox() {
+        return buttonSelectIconComboBox;
+    }
+
+    @Override
+    public IconUIResource getButtonDisabledIconComboBox() {
+        return buttonDisabledIconComboBox;
+    }
+
+    @Override
+    public void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox) {
+        this.buttonDisabledIconComboBox = buttonDisabledIconComboBox;
     }
 
     @Override
@@ -1610,6 +1644,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     //Setter
+    public void setButtonIconComboBox(IconUIResource buttonIconComboBox) {
+        this.buttonIconComboBox = buttonIconComboBox;
+    }
+
+    public void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox) {
+        this.buttonSelectIconComboBox = buttonSelectIconComboBox;
+    }
+
     public void setBackgroundToolTip(ColorUIResource backgroundToolTip) {
         this.backgroundToolTip = backgroundToolTip;
     }
