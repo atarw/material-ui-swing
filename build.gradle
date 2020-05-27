@@ -45,7 +45,7 @@ allprojects {
 
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:deprecation"
+            options.compilerArgs << "-Xlint:deprecation,unchecked"
         }
     }
     sourceCompatibility = "${JDK_VERSION}"
@@ -53,15 +53,24 @@ allprojects {
 }
 
 jar {
-    archiveBaseName = project.name + '-' + VERSION
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+    archiveVersion.set(VERSION as String)
+
 	inputs.property("moduleName", MODULE_NAME)
 
 	manifest {
-		attributes  'Automatic-Module-Name': MODULE_NAME
+		attributes 'Automatic-Module-Name': MODULE_NAME
 	}
+}
+
+task jarWithDependencies(type: Jar) {
+    archiveVersion.set(VERSION as String)
+    archiveClassifier.set('with-dependencies')
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    with jar
 }
 
 uploadArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
