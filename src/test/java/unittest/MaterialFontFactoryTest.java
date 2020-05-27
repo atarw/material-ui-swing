@@ -2,12 +2,16 @@ package unittest;
 
 import junit.framework.TestCase;
 import mdlaf.utils.MaterialFontFactory;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+
+import static java.awt.GraphicsEnvironment.isHeadless;
+import static org.junit.Assume.assumeFalse;
 
 @RunWith(JUnit4.class)
 public class MaterialFontFactoryTest {
@@ -18,6 +22,10 @@ public class MaterialFontFactoryTest {
     private static final String MEDIUM_NAME = "NotoSans-Medium.ttf";
     private static final String ITALIC_NAME = "NotoSans-Italic.ttf";
 
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        assumeFalse("Font tests can't run in headless env.", isHeadless());
+    }
 
     @Test
     public void testWithString(){

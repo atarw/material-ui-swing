@@ -3,6 +3,7 @@ package unittest;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import junit.framework.TestCase;
 import mdlaf.utils.MaterialImageFactory;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +11,17 @@ import org.slf4j.LoggerFactory;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.awt.GraphicsEnvironment.isHeadless;
+import static org.junit.Assume.assumeFalse;
+
 public class MaterialImageFactoryTest{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterialImageFactory.class);
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        assumeFalse("Image tests can't run in headless env.", isHeadless());
+    }
 
     @Test
     public void testIconFontSwingIconsOne() throws Throwable{
