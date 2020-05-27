@@ -24,6 +24,7 @@
 package integration.gui.mock;
 
 import integration.gui.mock.component.*;
+import integration.gui.mock.uiexample.button.ContainedButtonUI;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
@@ -116,6 +117,9 @@ public class DemoGUITest extends JFrame {
     JPanel tabbedPanetest = new DemoPanelWithTabbedPane();
 
     private JToolBar toolBarEditor;
+
+    private JPanel buttonsPanel;
+    private JButton containedTypeButton;
 
 
     public JMenuItem getMaterialDark() {
@@ -223,6 +227,7 @@ public class DemoGUITest extends JFrame {
         initLayoutContentPanelFour();
         initStyleSplitPanePanels();
         initLayoutMouseHoverPanelFive();
+        initLayoutButtonsPanel();
 
         this.getRootPane().setDefaultButton(buttonDefault);
 
@@ -235,14 +240,36 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(tabbedPanetest, "TabbedPane Test");
         tabbedPane.add(panelToolBar, "ToolBar");
         tabbedPane.add(new ChooseValueComponentViewPanel(), "Choose Component");
-        tabbedPane.add(new JPanel(), "Panel 9");
-        tabbedPane.setEnabledAt(9, false);
+        tabbedPane.add(buttonsPanel, "Button Type");
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(new Dimension(800, 900));
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void initLayoutButtonsPanel() {
+        buttonsPanel = new JPanel();
+        containedTypeButton = new JButton();
+        containedTypeButton.setText("ContainedButton");
+        containedTypeButton.setUI(new ContainedButtonUI());
+
+        GroupLayout layout = new GroupLayout(buttonsPanel);
+        buttonsPanel.setLayout(layout);
+
+        layout.setHorizontalGroup(
+                layout.createParallelGroup()
+                        .addGap(50)
+                        .addComponent(containedTypeButton)
+                        .addGap(25)
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addComponent(containedTypeButton)
+                        .addGap(25)
+        );
     }
 
     private void disableOkButtonWithEmptyText() {
@@ -509,9 +536,9 @@ public class DemoGUITest extends JFrame {
             e.printStackTrace();
         }
     }
-    
+
     public synchronized void changeThemeWith(BasicLookAndFeel lookAndFeel) {
-       changeThemeWith(lookAndFeel.getClass().getCanonicalName());
+        changeThemeWith(lookAndFeel.getClass().getCanonicalName());
     }
 
     public void enableTheme(JMenuItem menuItem) {
