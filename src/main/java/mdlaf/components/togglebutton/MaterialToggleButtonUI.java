@@ -180,6 +180,4 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                     textRect.x - 1, textRect.y + fm.getAscent() - 1);
         }
     }
-
-
 }

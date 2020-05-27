@@ -107,7 +107,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     protected JButton createArrowButton() {
         Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
-        return new ArrowButtonComboBox(icon);
+        JButton button = new ArrowButtonComboBox(icon);
+        button.setFocusable(false);
+        return button;
     }
 
     @Override
@@ -283,6 +285,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 c.setBorder(UIManager.getBorder("ComboBox[button].border"));
                 this.icon = UIManager.getIcon("ComboBox.buttonIcon");
                 this.selectIcon = UIManager.getIcon("ComboBox.buttonSelectIcon");
+                c.setFocusable(false);
             }
 
             @Override
