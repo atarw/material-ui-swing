@@ -56,6 +56,7 @@ public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
     @Before
     public final void setUp() {
         this.setUpRobot();
+        onBeforeGuiSetUp();
         // initialize the graphical user interface
         DemoGUITest mainWindow = GuiActionRunner.execute(new GuiQuery<DemoGUITest>() {
 
@@ -77,6 +78,10 @@ public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
             throw new Error("Material l&f didn't set");
         }
 
+    }
+
+    protected void onBeforeGuiSetUp() {
+        // default: everything is already configured
     }
 
     protected void onSetUp() {
