@@ -36,7 +36,7 @@ uploadArchives {
 				// optionally artifactId can be defined here
 				print('Archive base name: ' + archivesBaseName)
 				groupId GROUP_ID
-				artifactId ARCHTFAT_ID
+				artifactId ARTIFACT_ID
 				version VERSION
 				description archivesBaseName
 				url 'https://github.com/vincenzopalazzo/material-ui-swing'
@@ -70,7 +70,7 @@ task createPom {
 	pom {
 		project {
 			groupId GROUP_ID
-			artifactId ARCHTFAT_ID
+			artifactId ARTIFACT_ID
 			version VERSION
 
 			properties {

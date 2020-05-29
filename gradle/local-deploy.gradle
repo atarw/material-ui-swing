@@ -1,6 +1,7 @@
 // Inside this file was described all local deploy in the computer for testing
 def fromDir = buildDir.toPath().toAbsolutePath().toString() + '/libs/'
-def nameLib = project.name + '-' + VERSION + ".jar"
+def cleanNameLib = project.name + '-' + VERSION + ".jar"
+def nameLib = project.name + '-' + VERSION + "-with-dependencies.jar"
 
 task deployOnDiffereProjectJMars {
     doLast {
@@ -30,7 +31,7 @@ task deployOnDiffereProjectLocalLib {
             println ("to name: ${nameLib}")
             from fromDir + nameLib
             into "${DIR_VAR}"
-            rename(nameLib, nameLib)
+            rename(nameLib, cleanNameLib)
         }
     }
     //copyJarInDirecoty("${GENERIC_LIB}")
