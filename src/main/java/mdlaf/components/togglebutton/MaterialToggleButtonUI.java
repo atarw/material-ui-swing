@@ -23,6 +23,7 @@
  */
 package mdlaf.components.togglebutton;
 
+import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
@@ -78,8 +79,8 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             To default, this class will set the variable without an icon to false and toggle button border to UIManager propriety.
          */
         if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null) {
-        	this.unselected = UIManager.getIcon("ToggleButton.icon");
-        	this.selected = UIManager.getIcon("ToggleButton.selectedIcon");
+            this.unselected = UIManager.getIcon("ToggleButton.icon");
+            this.selected = UIManager.getIcon("ToggleButton.selectedIcon");
             toggleButton.setIcon(this.unselected);
             toggleButton.setSelectedIcon(this.selected);
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
@@ -102,20 +103,18 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             LookAndFeel.installBorder(toggleButton, "ToggleButton.border");
             this.withoutIcon = Boolean.FALSE;
         }
-
-
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-		super.uninstallUI(c);
-		JToggleButton toggleButton = (JToggleButton) c;
+        super.uninstallUI(c);
+        JToggleButton toggleButton = (JToggleButton) c;
         boolean removeIcon = this.unselected == toggleButton.getIcon()
-			&& this.selected == toggleButton.getSelectedIcon();
-        if(removeIcon){
-			toggleButton.setIcon(null);
-			toggleButton.setSelectedIcon(null);
-		}
+                && this.selected == toggleButton.getSelectedIcon();
+        if (removeIcon) {
+            toggleButton.setIcon(null);
+            toggleButton.setSelectedIcon(null);
+        }
         /* toggleButton.setBorder(null);
         toggleButton.setBackground(null);
         toggleButton.setForeground(null);*/
@@ -137,6 +136,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                 button.setBorder(withoutIconBorder);
             }
         }
+
     }
 
     private boolean isNotNullColor(boolean withoutIcon) {
@@ -150,10 +150,8 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
         return true;
     }
 
-    @Override //TODO implement this effect
+    @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        //do nothing
-        //TODO CHANGE ICON WHEN THIS COMPONENT IS FOCUSED
     }
 
     @Override
@@ -180,4 +178,6 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                     textRect.x - 1, textRect.y + fm.getAscent() - 1);
         }
     }
+
+
 }

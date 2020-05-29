@@ -357,6 +357,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.icon", theme.getUnselectedRadioButtonIcon());
         table.put("RadioButton.selectedIcon", theme.getSelectedRadioButtonIcon());
         table.put("RadioButton.disabledText", theme.getDisableTextColor());
+        table.put("RadioButton.mouseHoverEnabled", true);
+        table.put("RadioButton.mouseHoverColor", theme.getHighlightBackgroundPrimary()); //TODO add this propriety to material theming
 
         table.put("Spinner.font", theme.getFontRegular());
         table.put("Spinner.background", theme.getBackgroundTextField());

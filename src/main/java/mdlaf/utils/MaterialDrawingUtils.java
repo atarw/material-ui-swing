@@ -23,10 +23,7 @@
  */
 package mdlaf.utils;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -63,5 +60,12 @@ public class MaterialDrawingUtils {
 
         //g2d.addRenderingHints (new RenderingHints (RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
         return g;
+    }
+
+    public static void drawCircle(Graphics g, int x, int y, int radius, Color color){
+        g = getAliasedGraphics(g);
+        Color shadowColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 65);
+        g.setColor(shadowColor);
+        g.fillOval(x, y, radius * 2, radius * 2);
     }
 }

@@ -71,7 +71,7 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         super.installDefaults(b);
         this.mouseHoverEnable = UIManager.getBoolean("CheckBox.mouseHoverEnabled");
         if (this.mouseHoverEnable) {
-            mouseHover = new MouseHoverComboBox();
+            mouseHover = new MouseHoverEvent();
         }
     }
 
@@ -110,7 +110,7 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         super.paint(g, c);
         if (isHover) {
             Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
-            drawCircle(g, 0, 0, DRAG_RADIUS, color);
+            MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
         }
     }
 
@@ -118,17 +118,10 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
     protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
         //super.paintFocus(g, textRect, size);
         Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
-        drawCircle(g, 0, 0, DRAG_RADIUS, color);
+        MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
     }
 
-    protected void drawCircle(Graphics g, int x, int y, int radius, Color color) {
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
-        Color shadowColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 65);
-        g.setColor(shadowColor);
-        g.fillOval(x, y, radius * 2, radius * 2);
-    }
-
-    protected class MouseHoverComboBox implements MaterialMouseHover {
+    protected class MouseHoverEvent implements MaterialMouseHover {
 
         @Override
         public void mouseClicked(MouseEvent e) {

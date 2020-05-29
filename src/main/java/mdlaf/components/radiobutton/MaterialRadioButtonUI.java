@@ -23,10 +23,14 @@
  */
 package mdlaf.components.radiobutton;
 
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.utils.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -39,16 +43,32 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 		return new MaterialRadioButtonUI ();
 	}
 
+	protected JRadioButton radioButton;
+	protected Boolean mouseHoverEnable;
+	protected Color mouseHoverColor;
+	protected boolean isHover;
+	protected MaterialMouseHover mouseHover;
+
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-		JRadioButton radioButton = (JRadioButton) c;
+		this.radioButton = (JRadioButton) c;
 		/*radioButton.setFont (UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
 		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));*/
 		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
 		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.mouseHoverColor = UIManager.getColor("RadioButton.mouseHoverColor");
+	}
+
+	@Override
+	public void installDefaults(AbstractButton b) {
+		super.installDefaults(b);
+		this.mouseHoverEnable = UIManager.getBoolean("RadioButton.mouseHoverEnabled");
+		if (this.mouseHoverEnable){
+			this.mouseHover = new MouseHoverEvent();
+		}
 	}
 
 	@Override
@@ -68,8 +88,77 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	}
 
 	@Override
+	public synchronized void paint(Graphics g, JComponent c) {
+		super.paint(g, c);
+		if(this.mouseHoverEnable && this.isHover){
+			paintFocusEffect(g);
+		}
+	}
+
+	@Override
 	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
 		//do nothing
-		//TODO CHANGE ICON WHEN IT IS FOXUSED
+		paintFocusEffect(g);
+	}
+
+	protected void paintFocusEffect(Graphics g){
+		Color color = this.radioButton.isSelected() ? this.mouseHoverColor : this.radioButton.getForeground();
+		MaterialDrawingUtils.drawCircle(g, 0, 0, 14, color);
+	}
+
+	@Override
+	protected void installListeners(AbstractButton button) {
+		super.installListeners(button);
+		if(this.mouseHoverEnable){
+			button.addMouseListener(this.mouseHover);
+		}
+	}
+
+	@Override
+	protected void uninstallListeners(AbstractButton button) {
+		super.uninstallListeners(button);
+		if(this.mouseHoverEnable){
+			button.removeMouseListener(this.mouseHover);
+		}
+	}
+
+	protected class MouseHoverEvent implements MaterialMouseHover {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			isHover = true;
+			radioButton.repaint();
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			isHover = false;
+			radioButton.repaint();
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+
+		}
 	}
 }

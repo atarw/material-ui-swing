@@ -297,6 +297,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                     button.setIcon(icon);
                 }
             }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
+            }
         }
     }
 }
