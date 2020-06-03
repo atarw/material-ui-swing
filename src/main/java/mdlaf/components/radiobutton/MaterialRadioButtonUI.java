@@ -28,6 +28,7 @@ import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -44,6 +45,8 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	}
 
 	protected JRadioButton radioButton;
+	protected AnimatedIconAdapter iconUnSelected;
+	protected AnimatedIconAdapter iconSelected;
 	protected Boolean mouseHoverEnable;
 	protected Color mouseHoverColor;
 	protected boolean isHover;
@@ -56,10 +59,12 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 		/*radioButton.setFont (UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
 		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));*/
-		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
-		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.mouseHoverColor = UIManager.getColor("RadioButton.mouseHoverColor");
+		iconUnSelected = new AnimatedIconAdapter(UIManager.getIcon ("RadioButton.icon"), radioButton.getForeground());
+		radioButton.setIcon(iconUnSelected);
+		iconSelected = new AnimatedIconAdapter(UIManager.getIcon ("RadioButton.selectedIcon"), this.mouseHoverColor);
+		radioButton.setSelectedIcon(iconSelected);
 	}
 
 	@Override
@@ -90,15 +95,15 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	@Override
 	public synchronized void paint(Graphics g, JComponent c) {
 		super.paint(g, c);
-		if(this.mouseHoverEnable && this.isHover){
+		/*if(this.mouseHoverEnable && this.isHover){
 			paintFocusEffect(g);
-		}
+		}*/
 	}
 
 	@Override
 	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
 		//do nothing
-		paintFocusEffect(g);
+		//paintFocusEffect(g);
 	}
 
 	protected void paintFocusEffect(Graphics g){
@@ -159,6 +164,42 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 
+		}
+
+		@Override
+		public boolean isRunning() {
+			return isHover;
+		}
+	}
+
+	protected class AnimatedIconAdapter implements Icon, UIResource {
+
+		private Icon adapter;
+		private Color color;
+
+		public AnimatedIconAdapter(Icon adapter, Color color) {
+			this.adapter = adapter;
+			this.color = color;
+		}
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+			adapter.paintIcon(c, g, x, y);
+			if (mouseHoverEnable && (isHover || c.hasFocus())) {
+				Graphics g2 = g.create();
+				MaterialDrawingUtils.drawCircle(g2, x, y, 12, color);
+				g2.dispose();
+			}
+		}
+
+		@Override
+		public int getIconWidth() {
+			return adapter.getIconWidth();
+		}
+
+		@Override
+		public int getIconHeight() {
+			return adapter.getIconHeight();
 		}
 	}
 }

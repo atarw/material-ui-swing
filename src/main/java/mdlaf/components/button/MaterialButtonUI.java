@@ -243,6 +243,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         // driveLine(g, (JButton) b);
+        if(!button.isEnabled()) return;
         paintFocusRing(g, (JButton) b);
         //paintBorderButton(g, b);
         //paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
@@ -258,7 +259,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
         //if the mouse hover is enabled I can set the mouse hover color when the button is pressed
-        if (mouseHoverEnabled && mouseHoverRunning) {
+        if (mouseHoverEnabled) {
             if (b.isEnabled()) {
                 if (this.isDefaultButton()) {
                     g.setColor(colorMouseHoverDefaultButton);
@@ -543,12 +544,16 @@ public class MaterialButtonUI extends BasicButtonUI {
             I do remove this bug but I need to restore this code because isn't possible work with the personal
             color on the button.
             */
-            else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && button.isEnabled() && !mouseHoverRunning) {
+            else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && button.isEnabled()) {
                 //When on the JButton call the method setBackground
-                background = (Color) evt.getNewValue();
-            } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && button.isEnabled() && !mouseHoverRunning) {
+                if(mouseHover != null && !mouseHover.isRunning()){
+                    background = (Color) evt.getNewValue();
+                }
+            } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && button.isEnabled()) {
                 //When on the JButton call the method setForeground
-                foreground = (Color) evt.getNewValue();
+                if(mouseHover != null && !mouseHover.isRunning()){
+                    foreground = (Color) evt.getNewValue();
+                }
             }
 
             /*else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {

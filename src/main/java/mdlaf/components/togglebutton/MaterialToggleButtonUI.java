@@ -23,7 +23,6 @@
  */
 package mdlaf.components.togglebutton;
 
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;

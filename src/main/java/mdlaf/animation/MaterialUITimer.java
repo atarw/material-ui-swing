@@ -25,6 +25,7 @@ package mdlaf.animation;
 
 import mdlaf.components.button.MaterialButtonUI;
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,7 +109,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         int bValue = from.getBlue() - alpha * forwardDeltas[2];
         int aValue = from.getAlpha() - alpha * forwardDeltas[3];
 
-        return new Color(rValue, gValue, bValue, aValue);
+        return new ColorUIResource(new Color(rValue, gValue, bValue, aValue));
     }
 
     private Color previousColor() {
@@ -117,7 +118,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         int bValue = to.getBlue() - (steps - alpha) * backwardDeltas[2];
         int aValue = to.getAlpha() - (steps - alpha) * backwardDeltas[3];
 
-        return new Color(rValue, gValue, bValue, aValue);
+        return new ColorUIResource(new Color(rValue, gValue, bValue, aValue));
     }
 
     @Override
@@ -128,10 +129,15 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         alpha = steps - 1;
         forward = false;
         this.stopTimer();
-        //timer.start(); TODO TEST IT
+        //timer.start(); //TODO TEST IT
         alpha = 0;
         forward = true;
-        timer.start();
+        //timer.start();
+        //TODO test this in the future but this is the
+        //solution when the button return the status pressed because the
+        //!!!! This solution fix the bug that when open a modal dialog the button stayed paint pressed !!!!
+        // !!!! TEST !!!!
+        this.component.setBackground(this.from);
     }
 
     @Override
@@ -145,6 +151,7 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         alpha = steps - 1;
         forward = false;
         timer.start();
+        //this.component.setBackground(this.from);
     }
 
     @Override
@@ -185,14 +192,11 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         }
         if (alpha == steps + 1 || alpha == -1) {
             this.stopTimer();
+            if(alpha == -1){
+                this.component.setBackground(this.from);
+            }
         }
-        //For some color the algorithm not work well, so
-        //when the alpha is -1 the mouse is exist from button
-        if (alpha == -1) {
-            //Mouse exit
-            this.stopTimer();
-            this.component.setBackground(this.from);
-        }
+
     }
 
     @Override
@@ -250,6 +254,14 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
                 timer.stop();
             }
         }
+    }
+
+    @Override
+    public boolean isRunning() {
+        if(timer != null){
+            return timer.isRunning();
+        }
+        return false;
     }
 
     /**

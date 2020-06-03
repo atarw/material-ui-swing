@@ -275,7 +275,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.disabledText", theme.getDisableTextColor());
         table.put("CheckBox.icon", theme.getUnselectedCheckBoxIcon());
         table.put("CheckBox.selectedIcon", theme.getSelectedCheckBoxIcon());
-        table.put("CheckBox.mouseHoverEnabled", true);
+        table.put("CheckBox.mouseHoverEnabled", false);
         table.put("CheckBox.mouseHoverColor", theme.getHighlightBackgroundPrimary()); //TODO add this propriety
 
         table.put("ComboBox.font", theme.getFontRegular());
@@ -357,7 +357,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.icon", theme.getUnselectedRadioButtonIcon());
         table.put("RadioButton.selectedIcon", theme.getSelectedRadioButtonIcon());
         table.put("RadioButton.disabledText", theme.getDisableTextColor());
-        table.put("RadioButton.mouseHoverEnabled", true);
+        table.put("RadioButton.mouseHoverEnabled", false);
         table.put("RadioButton.mouseHoverColor", theme.getHighlightBackgroundPrimary()); //TODO add this propriety to material theming
 
         table.put("Spinner.font", theme.getFontRegular());

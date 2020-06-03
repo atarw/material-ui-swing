@@ -29,6 +29,7 @@ import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -45,6 +46,8 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
     }
 
     protected JCheckBox checkBox;
+    protected AnimatedIconAdapter icon;
+    protected AnimatedIconAdapter iconSelected;
     protected boolean isHover;
     protected boolean mouseHoverEnable;
     protected Color hoverColor;
@@ -59,11 +62,12 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         //checkBox.setFont(UIManager.getFont("CheckBox.font"));
         //checkBox.setBackground(UIManager.getColor("CheckBox.background"));
         //checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
-        checkBox.setIcon(UIManager.getIcon("CheckBox.icon"));
-        checkBox.setSelectedIcon(UIManager.getIcon("CheckBox.selectedIcon"));
         checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.hoverColor = UIManager.getColor("CheckBox.mouseHoverColor");
-
+        icon = new AnimatedIconAdapter(UIManager.getIcon("CheckBox.icon"), checkBox.getForeground());
+        checkBox.setIcon(icon);
+        iconSelected = new AnimatedIconAdapter(UIManager.getIcon("CheckBox.selectedIcon"), this.hoverColor);
+        checkBox.setSelectedIcon(iconSelected);
     }
 
     @Override
@@ -108,17 +112,17 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
     @Override
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
-        if (isHover) {
+        /*if (isHover) {
             Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
             MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
-        }
+        }*/
     }
 
     @Override
     protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
         //super.paintFocus(g, textRect, size);
-        Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
-        MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
+        // Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
+        //MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
     }
 
     protected class MouseHoverEvent implements MaterialMouseHover {
@@ -158,6 +162,42 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         @Override
         public void mouseMoved(MouseEvent e) {
 
+        }
+
+        @Override
+        public boolean isRunning() {
+            return isHover;
+        }
+    }
+
+    protected class AnimatedIconAdapter implements Icon, UIResource {
+
+        private Icon adapter;
+        private Color color;
+
+        public AnimatedIconAdapter(Icon adapter, Color color) {
+            this.adapter = adapter;
+            this.color = color;
+        }
+
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            adapter.paintIcon(c, g, x, y);
+            if (mouseHoverEnable && (isHover || c.hasFocus())) {
+                Graphics g2 = g.create();
+                MaterialDrawingUtils.drawCircle(g2, x, y, 12, color);
+                g2.dispose();
+            }
+        }
+
+        @Override
+        public int getIconWidth() {
+            return adapter.getIconWidth();
+        }
+
+        @Override
+        public int getIconHeight() {
+            return adapter.getIconHeight();
         }
     }
 }

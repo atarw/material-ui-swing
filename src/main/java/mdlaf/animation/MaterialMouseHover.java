@@ -8,4 +8,7 @@ import java.awt.event.MouseMotionListener;
  *
  * @author https://github.com/vincenzopalazzo
  */
-public interface MaterialMouseHover extends MouseListener, MouseMotionListener { }
+public interface MaterialMouseHover extends MouseListener, MouseMotionListener {
+
+    boolean isRunning();
+}

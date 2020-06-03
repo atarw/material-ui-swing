@@ -97,4 +97,9 @@ class MaterialUIStaticMovement implements MaterialMouseHover {
 
     @Override
     public void mouseMoved(MouseEvent e) { }
+
+    @Override
+    public boolean isRunning() {
+        return false;
+    }
 }

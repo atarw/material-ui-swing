@@ -39,7 +39,7 @@ public class MaterialDrawingUtils {
     }
 
     /**
-     * The documentayion https://docs.oracle.com/javase/tutorial/2d/text/renderinghints.html
+     * The documentation https://docs.oracle.com/javase/tutorial/2d/text/renderinghints.html
      */
     public static Graphics getAliasedGraphics(Graphics g) {
         Map<RenderingHints.Key, Object> hints = (Map<RenderingHints.Key, Object>) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");

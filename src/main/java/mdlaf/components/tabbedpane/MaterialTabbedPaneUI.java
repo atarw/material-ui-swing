@@ -495,6 +495,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         public void mouseExited(MouseEvent e) {
             //do nothing
         }
+
+        @Override
+        public boolean isRunning() {
+            return false;
+        }
     }
 
     protected class ArrowButtonTabbedPane extends JButton implements UIResource {

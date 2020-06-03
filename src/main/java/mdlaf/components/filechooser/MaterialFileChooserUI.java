@@ -131,7 +131,10 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
         super.uninstallListeners(fc);
     }
 
-
+    //TODO look inside the MaterialTimeUI you will find the following comment.
+    //solution when the button return the status pressed because the
+    //!!!! This solution fix the bug that when open a modal dialog the button stayed paint pressed !!!!
+    // !!!! TEST !!!!
     protected class MaterialFileChooserEvents implements PropertyChangeListener {
 
         protected static final String CLOSE_EVENT = "JFileChooserDialogIsClosingProperty";
