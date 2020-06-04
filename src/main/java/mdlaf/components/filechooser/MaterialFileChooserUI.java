@@ -35,6 +35,11 @@ import java.beans.PropertyChangeListener;
  */
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
+    /**
+     * @deprecated This propriety is deprecated because the developer found an bun inside mouse hover effect on button
+     * This propriety will be removed inside the version 1.1.1 after the test inside the version rc4.
+     */
+    @Deprecated
     protected MaterialFileChooserEvents lifeCycleEvent;
     protected JFileChooser fileChooser;
 
@@ -117,7 +122,7 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     @Override
     protected void installListeners(JFileChooser fc) {
         super.installListeners(fc);
-        fc.addPropertyChangeListener(lifeCycleEvent);
+        //fc.addPropertyChangeListener(lifeCycleEvent);
     }
 
     /**
@@ -127,7 +132,7 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
      */
     @Override
     protected void uninstallListeners(JFileChooser fc) {
-        fc.removePropertyChangeListener(lifeCycleEvent);
+        //fc.removePropertyChangeListener(lifeCycleEvent);
         super.uninstallListeners(fc);
     }
 
@@ -135,6 +140,11 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     //solution when the button return the status pressed because the
     //!!!! This solution fix the bug that when open a modal dialog the button stayed paint pressed !!!!
     // !!!! TEST !!!!
+    /**
+     * @deprecated This class is deprecated because the developer found an bun inside mouse hover effect on button
+     * This class will be removed inside the version 1.1.1 after the test inside the version rc4.
+     */
+    @Deprecated
     protected class MaterialFileChooserEvents implements PropertyChangeListener {
 
         protected static final String CLOSE_EVENT = "JFileChooserDialogIsClosingProperty";

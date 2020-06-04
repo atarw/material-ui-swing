@@ -125,6 +125,21 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         //MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
     }
 
+    @Override
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+        //MaterialDrawingUtils.drawCircle(g, iconRect.x, iconRect.y, DRAG_RADIUS, Color.green);
+    }
+
+    @Override
+    protected void paintIcon(Graphics g, AbstractButton b, Rectangle iconRect) {
+        super.paintIcon(g, b, iconRect);
+    }
+
+    @Override
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+        super.paintText(g, c, textRect, text);
+    }
+
     protected class MouseHoverEvent implements MaterialMouseHover {
 
         @Override
