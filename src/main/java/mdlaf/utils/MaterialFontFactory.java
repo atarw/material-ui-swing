@@ -23,6 +23,7 @@
  */
 package mdlaf.utils;
 
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
@@ -30,7 +31,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import javax.swing.plaf.FontUIResource;
 
 /**
  * This class managed the font inside the library and inside the Look and Feel, in fact
@@ -132,8 +132,8 @@ public class MaterialFontFactory {
         if (cacheFont.containsKey(typeFontString)) {
             return cacheFont.get(typeFontString);
         }
-        String propieties = properties.getProperty(typeFontString);
-        FontUIResource font = getFontWithPath(propieties);
+        String proprieties = properties.getProperty(typeFontString);
+        FontUIResource font = getFontWithPath(proprieties);
         cacheFont.put(typeFontString, font);
         return font;
     }
@@ -176,7 +176,7 @@ public class MaterialFontFactory {
      * https://stackoverflow.com/questions/5829703/java-getting-a-font-with-a-specific-height-in-pixels
      */
     private FontUIResource loadFont(InputStream inputStream, boolean withPersonalSettings) {
-        float size = this.doOptimizingDimensionFont(this.defaultSize);
+        float size = withPersonalSettings ? this.doOptimizingDimensionFont(this.defaultSize) :  this.defaultSize;
         if (withPersonalSettings && fontSettings.isEmpty()) {
             fontSettings.put(TextAttribute.SIZE, size);
             fontSettings.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
@@ -207,7 +207,12 @@ public class MaterialFontFactory {
             throw new IllegalArgumentException("\n- The dimension should be positive (>= 0)");
         }
         if (Utils.isJavaVersionUnderJava9()) {
-            return 11f * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
+            float dimensionOptimized = 11f * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
+            if(dimensionOptimized <= (dimension - 5)){
+                // ON OSX with display 4k in some cases the font dimension is equal to 5.
+                return (11f * 96) / 72;
+            }
+            return dimensionOptimized;
         }
         return dimension;
     }

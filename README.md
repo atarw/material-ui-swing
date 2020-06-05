@@ -24,6 +24,7 @@ A modern, Material Design UI for Java Swing
 - [Screenshots](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Screenshots)
 - [Built with]()
 - [Community]()
+- [License](https://github.com/vincenzopalazzo/material-ui-swing/tree/development#license)
 
  ## Repository
 
@@ -78,7 +79,8 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
   <img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" width="150" height="150"/>
 </div>
 
-Copyright (c) 2018 atharva washimkar
+Copyright (c) 2018 atharva washimkar.
+
 Copyright (c) 2019-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzodev@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 

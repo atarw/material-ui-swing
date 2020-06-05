@@ -127,7 +127,6 @@ public class DemoGUITest extends JFrame {
     }
 
     public void initComponent() {
-
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         tabbedPane.setTabPlacement(JTabbedPane.RIGHT);
         //tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
