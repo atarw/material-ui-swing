@@ -41,22 +41,10 @@ public class MaterialTextPaneUI extends BasicTextPaneUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        /*c.setBackground(UIManager.getColor("TextPane.background"));
-        c.setForeground(UIManager.getColor("TextPane.foreground"));
-        c.setBorder(UIManager.getBorder("TextPane.border"));
-        c.setFont(UIManager.getFont("TextPane.font"));*/
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-       /* c.setFont (null);
-        c.setBackground (null);
-        c.setForeground (null);
-        c.setBorder (null);
-        c.setCursor(null);*/
-
         super.uninstallUI(c);
     }
 }

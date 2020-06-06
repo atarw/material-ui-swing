@@ -23,9 +23,6 @@
  */
 package mdlaf.components.checkboxmenuitem;
 
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialFontFactory;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
@@ -43,20 +40,12 @@ public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-        //c.setBackground(UIManager.getColor("CheckBoxMenuItem.background"));
-        //c.setForeground(UIManager.getColor("CheckBoxMenuItem.foreground"));
-        //c.setBorder(UIManager.getBorder("CheckBoxMenuItem.border"));
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-        //c.setBackground(null);
-        //c.setForeground(null);
-        //c.setBorder(null);
         c.setCursor(Cursor.getDefaultCursor());
-
         super.uninstallUI(c);
     }
 

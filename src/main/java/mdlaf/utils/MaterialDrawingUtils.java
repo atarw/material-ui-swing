@@ -23,6 +23,8 @@
  */
 package mdlaf.utils;
 
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import java.awt.*;
 import java.util.Map;
 
@@ -50,7 +52,7 @@ public class MaterialDrawingUtils {
             hints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_DEFAULT);
             //hints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
             hints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-            hints.put(RenderingHints.KEY_TEXT_ANTIALIASING,  RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            hints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             //hints.put(RenderingHints.KEY_TEXT_ANTIALIASING,	RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
 
             Graphics2D g2d = (Graphics2D) g;
@@ -62,10 +64,22 @@ public class MaterialDrawingUtils {
         return g;
     }
 
-    public static void drawCircle(Graphics g, int x, int y, int radius, Color color){
+    public static void drawCircle(Graphics g, int x, int y, int radius, Color color) {
         g = getAliasedGraphics(g);
         Color shadowColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 65);
         g.setColor(shadowColor);
         g.fillOval(x, y, radius * 2, radius * 2);
+    }
+
+    public static void drawString(JComponent c, Graphics g, String text, Rectangle textRect, int shiftOffset, Color color) {
+        AbstractButton b = (AbstractButton) c;
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
+        FontMetrics fm = g.getFontMetrics(c.getFont());
+        int mnemonicIndex = b.getDisplayedMnemonicIndex();
+
+        g.setColor(color);
+        BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
+                textRect.x + shiftOffset,
+                textRect.y + fm.getAscent() + shiftOffset);
     }
 }

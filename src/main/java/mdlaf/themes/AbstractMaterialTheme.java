@@ -77,6 +77,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected IconUIResource selectedIconToggleButton;
 
+    protected IconUIResource disabledUnselectedIconToggleButton;
+
+    protected IconUIResource disabledSelectedIconToggleButton;
+
     protected boolean withoutIconToggleButton = false;
 
     protected ColorUIResource withoutIconSelectedBackgroundToggleButton;
@@ -97,6 +101,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected IconUIResource unselectedCheckBoxIcon;
 
     protected IconUIResource selectedCheckBoxIcon;
+
+    protected IconUIResource disabledUnselectedCheckBoxIcon;
+
+    protected IconUIResource disabledSelectedCheckBoxIcon;
 
     //---------------------------------------------------
     //Proprieties JComboBox
@@ -133,6 +141,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     protected IconUIResource unselectedRadioButtonIcon;
 
     protected IconUIResource selectedRadioButtonIcon;
+
+    protected IconUIResource disabledUnselectedRadioButtonIcon;
+
+    protected IconUIResource disabledSelectedRadioButtonIcon;
 
     //---------------------------------------------------
     //All type of font JPopupMenu
@@ -564,9 +576,20 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
                 GoogleMaterialDesignIcons.CHECK_BOX,
                 highlightBackgroundPrimary
         );
+
         this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
                 textColor
+        );
+
+        this.disabledUnselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                disableTextColor
+        );
+
+        this.disabledSelectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.CHECK_BOX,
+                disableTextColor
         );
 
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
@@ -628,6 +651,17 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
                 highlightBackgroundPrimary
         );
 
+        this.disabledUnselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
+                WrapperJIconFont.TOGGLE_OFF,
+                26,
+                disableTextColor
+        );
+        this.disabledSelectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
+                WrapperJIconFont.TOGGLE_ON,
+                26,
+                disableTextColor
+        );
+
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.RADIO_BUTTON_CHECKED,
                 highlightBackgroundPrimary
@@ -635,6 +669,15 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
                 GoogleMaterialDesignIcons.RADIO_BUTTON_UNCHECKED,
                 textColor
+        );
+
+        this.disabledSelectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.RADIO_BUTTON_CHECKED,
+                disableTextColor
+        );
+        this.disabledUnselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
+                GoogleMaterialDesignIcons.RADIO_BUTTON_UNCHECKED,
+                disableTextColor
         );
 
         this.topIconTabbedPane = MaterialImageFactory.getInstance().getImage(
@@ -883,6 +926,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return selectedCheckBoxIcon;
     }
 
+    public IconUIResource getDisabledUnselectedCheckBoxIcon() {
+        return disabledUnselectedCheckBoxIcon;
+    }
+
+    public IconUIResource getDisabledSelectedCheckBoxIcon() {
+        return disabledSelectedCheckBoxIcon;
+    }
+
     //Proprieties JComboBox
     public ColorUIResource getSelectedInDropDownBackgroundComboBox() {
         return selectedInDropDownBackgroundComboBox;
@@ -997,6 +1048,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     public IconUIResource getSelectedRadioButtonIcon() {
         return selectedRadioButtonIcon;
+    }
+
+    public IconUIResource getDisabledUnselectedRadioButtonIcon() {
+        return disabledUnselectedRadioButtonIcon;
+    }
+
+    public IconUIResource getDisabledSelectedRadioButtonIcon() {
+        return disabledSelectedRadioButtonIcon;
     }
 
     // get for JPopupMenu
@@ -1391,6 +1450,14 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return selectedIconToggleButton;
     }
 
+    public IconUIResource getDisabledUnselectedIconToggleButton() {
+        return disabledUnselectedIconToggleButton;
+    }
+
+    public IconUIResource getDisabledSelectedIconToggleButton() {
+        return disabledSelectedIconToggleButton;
+    }
+
     public boolean isWithoutIconToggleButton() {
         return withoutIconToggleButton;
     }
@@ -1644,6 +1711,30 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     //Setter
+    public void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton) {
+        this.disabledUnselectedIconToggleButton = disabledUnselectedIconToggleButton;
+    }
+
+    public void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton) {
+        this.disabledSelectedIconToggleButton = disabledSelectedIconToggleButton;
+    }
+
+    public void setDisabledUnselectedRadioButtonIcon(IconUIResource disabledUnselectedRadioButtonIcon) {
+        this.disabledUnselectedRadioButtonIcon = disabledUnselectedRadioButtonIcon;
+    }
+
+    public void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon) {
+        this.disabledSelectedRadioButtonIcon = disabledSelectedRadioButtonIcon;
+    }
+
+    public void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon) {
+        this.disabledUnselectedCheckBoxIcon = disabledUnselectedCheckBoxIcon;
+    }
+
+    public void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon) {
+        this.disabledSelectedCheckBoxIcon = disabledSelectedCheckBoxIcon;
+    }
+
     public void setButtonIconComboBox(IconUIResource buttonIconComboBox) {
         this.buttonIconComboBox = buttonIconComboBox;
     }

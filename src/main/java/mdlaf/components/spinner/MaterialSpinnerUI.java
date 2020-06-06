@@ -53,26 +53,11 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
         this.spinnerBackground = UIManager.getColor("Spinner.background");
         this.spinnerDisableBackground = UIManager.getColor("Spinner.disabledBackground");
-
-        /*
-        JSpinner spinner = (JSpinner) c;
-        //spinner.setOpaque(false);
-        spinner.setFont(UIManager.getFont("Spinner.font"));
-        spinner.setBackground(UIManager.getColor("Spinner.background"));
-        spinner.setForeground(UIManager.getColor("Spinner.foreground"));
-        spinner.getEditor().setBorder(UIManager.getBorder("Spinner.border"));
-        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
- */
     }
 
     @Override
     public void uninstallUI(JComponent c) {
         c.setCursor(Cursor.getDefaultCursor());
-        /*spinner.setFont(null);
-        spinner.setBackground(null);
-        spinner.setForeground(null);*/
-        //spinner.getEditor().setBorder(null);
-
         super.uninstallUI(c);
     }
 

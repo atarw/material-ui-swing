@@ -71,12 +71,8 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-        //LookAndFeel.installProperty(group, "opaque", false);
-        //super.group.addMouseListener(changeIcon);
-        //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
         this.contentBackground = UIManager.getColor("TaskPane.contentBackground");
         this.background = UIManager.getColor("TaskPane.background");
-        //this.borderColor = UIManager.getColor("TaskPane.borderColor");
         super.group.getContentPane().setBackground(contentBackground);
         this.uncollapsed = UIManager.getIcon("TaskPane.yesCollapsed");
         this.collapsed = UIManager.getIcon("TaskPane.noCollapsed");
@@ -86,11 +82,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-
-       /* c.setFont(null);
-        c.setBackground(null);
-        c.setForeground(null);
-        c.setBorder(null);*/
         c.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
@@ -99,8 +90,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
-        //super.group.setIcon(super.group.isCollapsed() ? UIManager.getIcon("TaskPane.yesCollapsed") : UIManager.getIcon("TaskPane.noCollapsed"));
-        //super.group.getContentPane().setBackground(contentBackground);
     }
 
     /**
@@ -125,7 +114,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
     @Override
     protected void uninstallListeners() {
-        //super.group.removeMouseListener(changeIcon);
         super.uninstallListeners();
     }
 

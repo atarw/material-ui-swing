@@ -42,22 +42,12 @@ public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-		/*c.setBackground(UIManager.getColor("RadioButtonMenuItem.background"));
-		c.setForeground(UIManager.getColor("RadioButtonMenuItem.foreground"));
-		c.setBorder(UIManager.getBorder("RadioButtonMenuItem.border"));*/
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-		/*c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);*/
         c.setCursor(Cursor.getDefaultCursor());
-
         super.uninstallUI(c);
     }
 

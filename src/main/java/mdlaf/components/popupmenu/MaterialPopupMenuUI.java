@@ -45,22 +45,10 @@ public class MaterialPopupMenuUI extends BasicPopupMenuUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-		/*JPopupMenu popupMenu = (JPopupMenu) c;
-		popupMenu.setBorder (UIManager.getBorder ("PopupMenu.border"));
-		popupMenu.setBackground (UIManager.getColor ("PopupMenu.background"));
-		popupMenu.setForeground (UIManager.getColor ("PopupMenu.foreground"));*/
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-		/*c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);*/
-
         super.uninstallUI(c);
     }
 

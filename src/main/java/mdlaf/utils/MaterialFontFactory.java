@@ -76,7 +76,7 @@ public class MaterialFontFactory {
     /**
      * The path font was load from a proprieties file.
      * This can permit the user to change the font also with a proprieties file
-     * see The file inside resources/config/font-all-language.properties
+     * see The file inside resources/config/fonts.properties
      */
     protected Properties properties = new Properties();
     protected Map<String, FontUIResource> cacheFont = new HashMap<>();
@@ -226,7 +226,7 @@ public class MaterialFontFactory {
      * @throws IOException
      */
     private void loadOsProprieties() throws IOException {
-        properties.load(getClass().getResourceAsStream("/config/font-all-language.properties"));
+        properties.load(getClass().getResourceAsStream("/config/fonts.properties"));
     }
 
 

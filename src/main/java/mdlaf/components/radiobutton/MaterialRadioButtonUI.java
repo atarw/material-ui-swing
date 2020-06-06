@@ -45,8 +45,6 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	}
 
 	protected JRadioButton radioButton;
-	protected AnimatedIconAdapter iconUnSelected;
-	protected AnimatedIconAdapter iconSelected;
 	protected Boolean mouseHoverEnable;
 	protected Color mouseHoverColor;
 	protected boolean isHover;
@@ -56,15 +54,9 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 	public void installUI (JComponent c) {
 		super.installUI (c);
 		this.radioButton = (JRadioButton) c;
-		/*radioButton.setFont (UIManager.getFont ("RadioButton.font"));
-		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
-		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));*/
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.mouseHoverColor = UIManager.getColor("RadioButton.mouseHoverColor");
-		iconUnSelected = new AnimatedIconAdapter(UIManager.getIcon ("RadioButton.icon"), radioButton.getForeground());
-		radioButton.setIcon(iconUnSelected);
-		iconSelected = new AnimatedIconAdapter(UIManager.getIcon ("RadioButton.selectedIcon"), this.mouseHoverColor);
-		radioButton.setSelectedIcon(iconSelected);
+		icon = new MaterialRadioButtonIcon(this.getPropertyPrefix());
 	}
 
 	@Override
@@ -78,17 +70,7 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 
 	@Override
 	public void uninstallUI(JComponent c) {
-
-	/*	c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);*/
 		c.setCursor(Cursor.getDefaultCursor());
-
-		/*JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setIcon(null);
-		radioButton.setSelectedIcon(null);*/
-
 		super.uninstallUI(c);
 	}
 
@@ -169,6 +151,48 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 		@Override
 		public boolean isRunning() {
 			return isHover;
+		}
+	}
+
+	protected class MaterialRadioButtonIcon implements  Icon, UIResource {
+
+		protected Icon unselectedIcon;
+		protected Icon selectedIcon;
+		protected Icon disabledIcon;
+		protected Icon disabledSelectedIcon;
+
+		public MaterialRadioButtonIcon(String componentPrefix) {
+			unselectedIcon = UIManager.getIcon(componentPrefix + "icon");
+			selectedIcon = UIManager.getIcon(componentPrefix + "selectedIcon");
+			disabledIcon = UIManager.getIcon(componentPrefix + "disabledIcon");
+			disabledSelectedIcon = UIManager.getIcon(componentPrefix + "disabledSelectedIcon");
+		}
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+			if(radioButton.isEnabled()){
+				if(radioButton.isSelected()){
+					this.selectedIcon.paintIcon(c, g, x, y);
+				}else{
+					this.unselectedIcon.paintIcon(c, g, x, y);
+				}
+			}else{
+				if(radioButton.isSelected()){
+					this.disabledSelectedIcon.paintIcon(c, g, x, y);
+				}else{
+					this.disabledIcon.paintIcon(c, g, x, y);
+				}
+			}
+		}
+
+		@Override
+		public int getIconWidth() {
+			return selectedIcon.getIconWidth();
+		}
+
+		@Override
+		public int getIconHeight() {
+			return selectedIcon.getIconHeight();
 		}
 	}
 

@@ -53,21 +53,11 @@ public class MaterialMenuUI extends BasicMenuUI {
 		super.installUI (c);
 
 		menu = (JMenu) c;
-		/*menu.setFont (UIManager.getFont ("Menu.font"));
-		menu.setBorder (UIManager.getBorder ("Menu.border"));
-		menu.setBackground (UIManager.getColor ("Menu.background"));
-		menu.setForeground (UIManager.getColor ("Menu.foreground"));
-		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));*/
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
-
-		/*c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);*/
 		c.setCursor(Cursor.getDefaultCursor());
 
 		super.uninstallUI(menuItem);

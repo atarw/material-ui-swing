@@ -60,12 +60,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        //comboBox.setFont(UIManager.getFont("ComboBox.font"));
         background = UIManager.getColor("ComboBox.background");
-        //comboBox.setBackground(background);
-        //comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
-        //comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
         comboBox.setLightWeightPopupEnabled(true);
         comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         comboBox.setFocusable(UIManager.getBoolean("ComboBox.focusable"));
@@ -81,18 +76,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-
-        // comboBox.setFont(null);
-        //comboBox.setBackground(null);
-        //comboBox.setForeground(null);
-        //comboBox.setBorder(null);
-        //comboBox.setLightWeightPopupEnabled(true);
-        //comboBox.setCursor(null);
-        //comboBox.setRenderer(null);
-        //comboBox.setEditor(null);
-
-        //MaterialManagerListener.removeAllMaterialMouseListener(comboBox);
-
         super.uninstallUI(comboBox);
     }
 
@@ -142,7 +125,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void update(Graphics g, JComponent c) {
-        //super.update(g, c);
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         g.setColor(c.getBackground());
         g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);

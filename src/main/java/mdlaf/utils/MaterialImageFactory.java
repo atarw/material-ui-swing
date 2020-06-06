@@ -63,53 +63,36 @@ public class MaterialImageFactory{
     // blank image
     public static final String BLANK = "blank";
 
-    //Icon black
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
     public static final String RIGHT_ARROW = "right_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
     public static final String LEFT_ARROW = "left_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
     public static final String DOWN_ARROW = "down_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
     public static final String UP_ARROW = "up_arrow";
-    public static final String CHECKED_BLACK_BOX = "painted_checked_box";
-    public static final String UNCHECKED_BLACK_BOX = "unchecked_box";
-    public static final String RADIO_BUTTON_BLACK_ON = "radio_button_on";
-    public static final String RADIO_BUTTON_BLACK_OFF = "radio_button_off";
-    public static final String TOGGLE_BUTTON_BLACK_ON = "toggle_on";
-    public static final String TOGGLE_BUTTON_BLACK_OFF = "toggle_off";
-    public static final String BACK_ARROW_BLACK = "back_arrow";
-    public static final String COMPUTER_BLACK = "computer";
-    public static final String FILE_BLACK = "file";
-    public static final String FLOPPY_DRIVE_BLACK = "floppy_drive";
-    public static final String FOLDER_BLACK = "folder";
-    public static final String HARD_DRIVE_BLACK = "hard_drive";
-    public static final String HOME_BLACK = "home";
-    public static final String LIST_BLACK = "list";
-    public static final String NEW_FOLDER_BLACK = "new_folder";
-    public static final String DETAILS_BLACK = "details";
-    public static final String YES_COLLAPSED = "yes-collapsed";
-    public static final String NO_COLLAPSED = "no-collapsed";
+
     public static final String ERROR = "error";
     public static final String WARNING = "warning";
     public static final String QUESTION = "question";
     public static final String INFORMATION = "information";
-    public static final String CLOSE_WINDOWS_BLACK = "close-button";
 
-    //Icon White
-    public static final String RADIO_BUTTON_WHITE_OFF = "white/radio_unchecked-white";
-    public static final String CHECKED_WHITE_BOX = "white/checked_white";
-    public static final String RADIO_BUTTON_WHITE_ON = "white/radio-checked-white";
-    public static final String UNCHECKED_WHITE_BOX = "white/unchecked_white";
-    public static final String BACK_ARROW_WHITE = "white/back_arrow";
-    public static final String COMPUTER_WHITE = "white/computer";
-    public static final String FILE_WHITE = "white/file";
-    public static final String FLOPPY_DRIVE_WHITE = "white/floppy_drive";
-    public static final String FOLDER_WHITE = "white/folder";
-    public static final String HARD_DRIVE_WHITE = "white/hard_drive";
-    public static final String HOME_WHITE = "white/home";
-    public static final String LIST_WHITE = "white/list";
-    public static final String NEW_FOLDER_WHITE = "white/new_folder";
-    public static final String DETAILS_WHITE = "white/details";
-    public static final String CLOSE_WINDOWS_WHITE = "white/close-button";
-    public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
-    public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
 
     private Map<String, IconUIResource> cacheImage = new HashMap<>();
 

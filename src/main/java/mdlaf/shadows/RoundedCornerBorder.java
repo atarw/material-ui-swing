@@ -48,7 +48,6 @@ public class RoundedCornerBorder extends AbstractBorder {
 
     public RoundedCornerBorder(Color colorLine) {
         this.colorLine = colorLine;
-        //alphaZero = new Color(0x0, true);
     }
 
     public RoundedCornerBorder(Color colorLine, int arch) {

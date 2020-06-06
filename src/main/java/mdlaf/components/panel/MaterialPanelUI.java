@@ -23,8 +23,6 @@
  */
 package mdlaf.components.panel;
 
-import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicPanelUI;
@@ -47,13 +45,6 @@ public class MaterialPanelUI extends BasicPanelUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-/*
-		c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);
-*/
         super.uninstallUI(c);
     }
 

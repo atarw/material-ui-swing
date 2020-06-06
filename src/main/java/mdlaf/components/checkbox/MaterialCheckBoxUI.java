@@ -39,15 +39,12 @@ import java.awt.event.MouseEvent;
  */
 public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 
-    protected static final int DRAG_RADIUS = 14;
-
     public static ComponentUI createUI(JComponent c) {
         return new MaterialCheckBoxUI();
     }
 
     protected JCheckBox checkBox;
-    protected AnimatedIconAdapter icon;
-    protected AnimatedIconAdapter iconSelected;
+    protected Color disabledForeground;
     protected boolean isHover;
     protected boolean mouseHoverEnable;
     protected Color hoverColor;
@@ -57,37 +54,41 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        checkBox = (JCheckBox) c;
-        //checkBox.setFont(UIManager.getFont("CheckBox.font"));
-        //checkBox.setBackground(UIManager.getColor("CheckBox.background"));
-        //checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
-        checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        this.hoverColor = UIManager.getColor("CheckBox.mouseHoverColor");
-        icon = new AnimatedIconAdapter(UIManager.getIcon("CheckBox.icon"), checkBox.getForeground());
-        checkBox.setIcon(icon);
-        iconSelected = new AnimatedIconAdapter(UIManager.getIcon("CheckBox.selectedIcon"), this.hoverColor);
-        checkBox.setSelectedIcon(iconSelected);
+        this.checkBox = (JCheckBox) c;
+        c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
     protected void installDefaults(AbstractButton b) {
         super.installDefaults(b);
-        this.mouseHoverEnable = UIManager.getBoolean("CheckBox.mouseHoverEnabled");
+        icon = new MaterialCheckBoxIcon(this.getPropertyPrefix());
+        this.mouseHoverEnable = UIManager.getBoolean(this.getPropertyPrefix() + "mouseHoverEnabled");
+        this.hoverColor = UIManager.getColor(this.getPropertyPrefix() + "mouseHoverColor");
+        this.disabledForeground = UIManager.getColor(this.getPropertyPrefix() + "disabledText");
         if (this.mouseHoverEnable) {
             mouseHover = new MouseHoverEvent();
         }
     }
 
     @Override
-    public void uninstallUI(JComponent c) {
+    public synchronized void paint(Graphics g, JComponent c) {
+        super.paint(g, c);
+    }
 
-        // JCheckBox checkBox = (JCheckBox) c;
-        // checkBox.setFont(null);
-        //checkBox.setBackground(null);
-        //checkBox.setForeground(null);
-        //checkBox.setIcon(null);
-        //checkBox.setSelectedIcon(null);
+    @Override
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+        AbstractButton b = (AbstractButton) c;
+        ButtonModel model = b.getModel();
+
+        if (model.isEnabled()) {
+            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), b.getForeground());
+        } else {
+            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
+        }
+    }
+
+    @Override
+    public void uninstallUI(JComponent c) {
         c.setCursor(Cursor.getDefaultCursor());
         this.hoverColor = null;
         super.uninstallUI(c);
@@ -96,48 +97,11 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
     @Override
     protected void installListeners(AbstractButton button) {
         super.installListeners(button);
-        if (mouseHover != null) {
-            button.addMouseListener(mouseHover);
-        }
     }
 
     @Override
     protected void uninstallListeners(AbstractButton button) {
         super.uninstallListeners(button);
-        if (mouseHover != null) {
-            button.removeMouseListener(mouseHover);
-        }
-    }
-
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-        /*if (isHover) {
-            Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
-            MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
-        }*/
-    }
-
-    @Override
-    protected void paintFocus(Graphics g, Rectangle textRect, Dimension size) {
-        //super.paintFocus(g, textRect, size);
-        // Color color = checkBox.isSelected() ? hoverColor : checkBox.getForeground();
-        //MaterialDrawingUtils.drawCircle(g, 0, 0, DRAG_RADIUS, color);
-    }
-
-    @Override
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        //MaterialDrawingUtils.drawCircle(g, iconRect.x, iconRect.y, DRAG_RADIUS, Color.green);
-    }
-
-    @Override
-    protected void paintIcon(Graphics g, AbstractButton b, Rectangle iconRect) {
-        super.paintIcon(g, b, iconRect);
-    }
-
-    @Override
-    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
-        super.paintText(g, c, textRect, text);
     }
 
     protected class MouseHoverEvent implements MaterialMouseHover {
@@ -185,34 +149,45 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         }
     }
 
-    protected class AnimatedIconAdapter implements Icon, UIResource {
+    protected class MaterialCheckBoxIcon implements  Icon, UIResource{
 
-        private Icon adapter;
-        private Color color;
+        protected Icon unselectedIcon;
+        protected Icon selectedIcon;
+        protected Icon disabledIcon;
+        protected Icon disabledSelectedIcon;
 
-        public AnimatedIconAdapter(Icon adapter, Color color) {
-            this.adapter = adapter;
-            this.color = color;
+        public MaterialCheckBoxIcon(String componentPrefix) {
+            unselectedIcon = UIManager.getIcon(componentPrefix + "icon");
+            selectedIcon = UIManager.getIcon(componentPrefix + "selectedIcon");
+            disabledIcon = UIManager.getIcon(componentPrefix + "disabledIcon");
+            disabledSelectedIcon = UIManager.getIcon(componentPrefix + "disabledSelectedIcon");
         }
 
         @Override
         public void paintIcon(Component c, Graphics g, int x, int y) {
-            adapter.paintIcon(c, g, x, y);
-            if (mouseHoverEnable && (isHover || c.hasFocus())) {
-                Graphics g2 = g.create();
-                MaterialDrawingUtils.drawCircle(g2, x, y, 12, color);
-                g2.dispose();
+            if(checkBox.isEnabled()){
+                if(checkBox.isSelected()){
+                    this.selectedIcon.paintIcon(c, g, x, y);
+                }else{
+                    this.unselectedIcon.paintIcon(c, g, x, y);
+                }
+            }else{
+                if(checkBox.isSelected()){
+                    this.disabledSelectedIcon.paintIcon(c, g, x, y);
+                }else{
+                    this.disabledIcon.paintIcon(c, g, x, y);
+                }
             }
         }
 
         @Override
         public int getIconWidth() {
-            return adapter.getIconWidth();
+            return unselectedIcon.getIconWidth();
         }
 
         @Override
         public int getIconHeight() {
-            return adapter.getIconHeight();
+            return unselectedIcon.getIconHeight();
         }
     }
 }

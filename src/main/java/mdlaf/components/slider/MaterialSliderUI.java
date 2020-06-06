@@ -53,23 +53,11 @@ public class MaterialSliderUI extends BasicSliderUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
-        /*JSlider slider = (JSlider) c;
-        slider.setFont(UIManager.getFont("Slider.font"));
-        slider.setBackground(UIManager.getColor("Slider.background"));
-        slider.setForeground(UIManager.getColor("Slider.foreground"));
-        slider.setBorder(UIManager.getBorder("Slider.border"));*/
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-        /*c.setFont(null);
-        c.setBackground(null);
-        c.setForeground(null);
-        c.setBorder(null);
-        c.setCursor(null);*/
-
         super.uninstallUI(c);
     }
 
@@ -86,7 +74,6 @@ public class MaterialSliderUI extends BasicSliderUI {
         int cy = thumbRect.y + thumbRect.height / 2;
 
         if (isDragging()) {
-            //g.setColor (MaterialColors.bleach (UIManager.getColor("Slider[halo].color"), 0.5f));
             g.setColor(UIManager.getColor("Slider[halo].color"));
             drawCircle(g, cx, cy, DRAG_THUMB_RADIUS);
         }

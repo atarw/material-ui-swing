@@ -42,30 +42,11 @@ public class MaterialListUI extends BasicListUI {
     public void installUI(JComponent c) {
         super.installUI(c);
         list.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        //list.setBackground(UIManager.getColor("List.background"));
-        //list.setForeground(UIManager.getColor("List.foreground"));
-        //list.setBorder(UIManager.getBorder("List.border"));
-        //list.setFont(UIManager.getFont("List.font"));
-        //list.setSelectionBackground(UIManager.getColor("List.selectionBackground"));
-        //list.setSelectionForeground(UIManager.getColor("List.selectionForeground"));
-        //list.setFocusable(UIManager.getBoolean("List.focusable"));
-
-        //list.setCellRenderer(new MaterialListCellRenderer());
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-       // list = (JList) c;
-       /* list.setBackground(null);
-        list.setForeground(null);
-        list.setBorder(null);
-        list.setFont(null);
-        list.setSelectionBackground(null);
-        list.setSelectionForeground(null);*/
         list.setCursor(Cursor.getDefaultCursor());
-
         super.uninstallUI(c);
     }
 

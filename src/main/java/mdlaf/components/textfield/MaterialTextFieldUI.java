@@ -67,12 +67,7 @@ public class MaterialTextFieldUI extends MaterialComponentField {
     @Override
     public void uninstallUI(JComponent c) {
         super.uninstallUI(c);
-
-        c.setFont (null);
-        c.setBackground (null);
-        c.setForeground (null);
-        c.setBorder (null);
-        c.setCursor(null);
+        c.setCursor(Cursor.getDefaultCursor());
     }
 
     @Override

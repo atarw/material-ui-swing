@@ -43,22 +43,10 @@ public class MaterialMenuBarUI extends BasicMenuBarUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-
-		/*JMenuBar menuBar = (JMenuBar) c;
-		menuBar.setFont (UIManager.getFont ("MenuBar.font"));
-		menuBar.setBackground (UIManager.getColor ("MenuBar.background"));
-		menuBar.setForeground (UIManager.getColor ("MenuBar.foreground"));
-		menuBar.setBorder (UIManager.getBorder ("MenuBar.border"));*/
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
-		/*JMenuBar menuBar = (JMenuBar) c;
-		menuBar.setFont (null);
-		menuBar.setBackground (null);
-		menuBar.setBorder (null);
-		menuBar.setForeground (null);*/
-
 		super.uninstallUI(c);
 	}
 

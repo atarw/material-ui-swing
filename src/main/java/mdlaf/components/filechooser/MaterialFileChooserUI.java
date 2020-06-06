@@ -122,7 +122,6 @@ public class MaterialFileChooserUI extends MetalFileChooserUI {
     @Override
     protected void installListeners(JFileChooser fc) {
         super.installListeners(fc);
-        //fc.addPropertyChangeListener(lifeCycleEvent);
     }
 
     /**

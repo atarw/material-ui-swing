@@ -97,6 +97,10 @@ public interface MaterialTheme {
 
     IconUIResource getSelectedCheckBoxIcon();
 
+    IconUIResource getDisabledUnselectedCheckBoxIcon();
+
+    IconUIResource getDisabledSelectedCheckBoxIcon();
+
     //-----------------------------------
     //Proprieties JComboBox
     ColorUIResource getSelectedInDropDownBackgroundComboBox();
@@ -151,6 +155,10 @@ public interface MaterialTheme {
 
     IconUIResource getSelectedRadioButtonIcon();
 
+    IconUIResource getDisabledUnselectedRadioButtonIcon();
+
+    IconUIResource getDisabledSelectedRadioButtonIcon();
+
     //-----------------------------------
     //Proprieties JPopupMenu
     BorderUIResource getBorderPopupMenu();
@@ -200,6 +208,10 @@ public interface MaterialTheme {
     boolean getEnableArrowScrollBar();
 
     //set methods
+    void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon);
+
+    void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon);
+
     void setButtonIconComboBox(IconUIResource buttonIconComboBox);
 
     void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox);
@@ -231,6 +243,10 @@ public interface MaterialTheme {
     IconUIResource getUnselectedIconToggleButton();
 
     IconUIResource getSelectedIconToggleButton();
+
+    IconUIResource getDisabledUnselectedIconToggleButton();
+
+    IconUIResource getDisabledSelectedIconToggleButton();
 
     public boolean isWithoutIconToggleButton();
 
@@ -305,6 +321,7 @@ public interface MaterialTheme {
     int getSpacerTabbedPane();
 
     int getHeightTabTabbedPane();
+
     //---------------------------------------------------
     //Proprieties JTable
     ColorUIResource getBackgroundTable();
@@ -530,6 +547,14 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton);
+
+    void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton);
+
+    void setDisabledUnselectedRadioButtonIcon(IconUIResource disabledUnselectedRadioButtonIcon);
+
+    void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon);
+
     void setBackgroundToolTip(ColorUIResource backgroundToolTip);
 
     void setForegroundToolTip(ColorUIResource foregroundToolTip);

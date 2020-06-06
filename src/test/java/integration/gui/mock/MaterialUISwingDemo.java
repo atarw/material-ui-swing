@@ -22,6 +22,7 @@ package integration.gui.mock; /**
  * SOFTWARE.
  */
 
+import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.themes.JMarsDarkTheme;
@@ -345,7 +346,9 @@ public class MaterialUISwingDemo {
                     pn.add(buttonTwoo);
 
                     JButton bottoneConImmagine = new JButton();
-                    bottoneConImmagine.setIcon(MaterialImageFactory.getInstance().getImage(MaterialImageFactory.COMPUTER_BLACK));
+                    bottoneConImmagine.setIcon(MaterialImageFactory.getInstance().getImage(
+                            GoogleMaterialDesignIcons.HOME
+                    ));
                     pn.add(bottoneConImmagine);
 
                     JButton buttonTestTextFieled = new JButton("Test JtexFiele");

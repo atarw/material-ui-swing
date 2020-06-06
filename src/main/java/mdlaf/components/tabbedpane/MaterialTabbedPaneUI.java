@@ -76,21 +76,15 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
         super.installUI(c);
 
         tabPane.setOpaque(false);
-       // tabPane.setFont(UIManager.getFont("TabbedPane.font"));
-        //tabPane.setBackground(UIManager.getColor("TabbedPane.background"));
         this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
-        //tabPane.setForeground(foreground);
         this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectionForeground"));
         this.disabledForeground = UIManager.getColor("TabbedPane.disabledForeground");
         this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
         this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disableContentAreaColor"));
         this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane[focus].colorLine"));
-        //tabPane.setBorder(UIManager.getBorder("TabbedPane.border"));
         darkShadow = UIManager.getColor("TabbedPane.darkShadow");
         shadow = UIManager.getColor("TabbedPane.shadow");
         lightHighlight = UIManager.getColor("TabbedPane.highlight");
-       // this.positionYLine = UIManager.getInt("TabbedPane.linePositionY");
-        //this.positionXLine = UIManager.getInt("TabbedPane.linePositionX");
         this.widthLine = UIManager.getInt("TabbedPane.lineWidth");
         this.heightLine = UIManager.getInt("TabbedPane.lineHeight");
         this.arcLine = UIManager.getInt("TabbedPane.lineArch");
@@ -102,17 +96,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     public void uninstallUI(JComponent c) {
-
-       // JTabbedPane tabbedPane = (JTabbedPane) c;
-       /* tabbedPane.setFont(null);
-        tabbedPane.setBackground(null);
-        tabbedPane.setForeground(null);
-        tabbedPane.setBorder(null);*/
-
         darkShadow = null;
         shadow = null;
         lightHighlight = null;
-
         super.uninstallUI(c);
     }
 

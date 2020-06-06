@@ -80,6 +80,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
 		thumbLightShadowColor = UIManager.getColor ("ScrollBar.thumbShadow");
 	}
 
+	//TODO refactoring this component
 	protected void setIconArrowButton(JButton button, int orientation) {
 		if(button == null){
 			throw new IllegalArgumentException("Input null");

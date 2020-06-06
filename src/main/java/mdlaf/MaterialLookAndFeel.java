@@ -241,7 +241,6 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     protected void initComponentDefaults(UIDefaults table) {
         super.initComponentDefaults(table);
 
-        //The shadow on JButton is not active because the shadow effect I don't like me
         table.put("Button.highlight", theme.getButtonColorHighlight());
         table.put("Button.opaque", theme.getOpaqueButton());
         table.put("Button.background", theme.getButtonBackgroundColor());
@@ -275,8 +274,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("CheckBox.disabledText", theme.getDisableTextColor());
         table.put("CheckBox.icon", theme.getUnselectedCheckBoxIcon());
         table.put("CheckBox.selectedIcon", theme.getSelectedCheckBoxIcon());
-        table.put("CheckBox.mouseHoverEnabled", false);
-        table.put("CheckBox.mouseHoverColor", theme.getHighlightBackgroundPrimary()); //TODO add this propriety
+        table.put("CheckBox.disabledIcon", theme.getDisabledUnselectedCheckBoxIcon());
+        table.put("CheckBox.disabledSelectedIcon", theme.getDisabledSelectedCheckBoxIcon());
 
         table.put("ComboBox.font", theme.getFontRegular());
         table.put("ComboBox.buttonIcon", theme.getButtonIconComboBox());
@@ -356,9 +355,9 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RadioButton.foreground", theme.getTextColor());
         table.put("RadioButton.icon", theme.getUnselectedRadioButtonIcon());
         table.put("RadioButton.selectedIcon", theme.getSelectedRadioButtonIcon());
+        table.put("RadioButton.disabledIcon", theme.getDisabledUnselectedRadioButtonIcon());
+        table.put("RadioButton.disabledSelectedIcon", theme.getDisabledSelectedRadioButtonIcon());
         table.put("RadioButton.disabledText", theme.getDisableTextColor());
-        table.put("RadioButton.mouseHoverEnabled", false);
-        table.put("RadioButton.mouseHoverColor", theme.getHighlightBackgroundPrimary()); //TODO add this propriety to material theming
 
         table.put("Spinner.font", theme.getFontRegular());
         table.put("Spinner.background", theme.getBackgroundTextField());
@@ -499,6 +498,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("ToggleButton.disabledText", theme.getDisableTextColor());
         table.put("ToggleButton.icon", theme.getUnselectedIconToggleButton());
         table.put("ToggleButton.selectedIcon", theme.getSelectedIconToggleButton());
+        table.put("ToggleButton.disabledIcon", theme.getDisabledUnselectedIconToggleButton());
+        table.put("ToggleButton.disabledSelectedIcon", theme.getDisabledSelectedIconToggleButton());
         table.put("ToggleButton.withoutIcon", theme.isWithoutIconToggleButton());
         table.put("ToggleButton[withoutIcon].selectedBackground", theme.getWithoutIconSelectedBackgroundToggleButton());
         table.put("ToggleButton[withoutIcon].selectedForeground", theme.getWithoutIconSelectedForegoundToggleButton());

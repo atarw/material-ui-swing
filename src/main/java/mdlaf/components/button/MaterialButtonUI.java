@@ -31,11 +31,7 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -58,19 +54,14 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected Color defaultForeground;
     protected Color colorMouseHoverDefaultButton;
     protected Color colorMouseHoverNormalButton;
-    //protected Color disabledDefaultBackground;
-    //protected Color disabledDefaultForeground;
     protected Color borderColor;
     protected Boolean defaultButton;
     protected Boolean borderEnabled;
     protected int arch = 7;
     protected PropertyChangeListener enableButton = new MaterialListenerButtonEvent();
-    //protected boolean paintedDisabled = false;
     protected boolean buttonBorderToAll = false;
     protected boolean mouseHoverRunning = false;
     protected boolean buttonToolBarInit = false;
-
-    protected MaterialButtonMouseListener mouseListener = new MaterialButtonMouseListener();
     protected MaterialMouseHover mouseHover;
 
     /**
@@ -83,7 +74,6 @@ public class MaterialButtonUI extends BasicButtonUI {
 
         AbstractButton button = (AbstractButton) c;
         button.setOpaque(UIManager.getBoolean("Button.opaque"));
-        //button.setBorder(UIManager.getBorder("Button.border"));
         foreground = UIManager.getColor("Button.foreground");
         background = UIManager.getColor("Button.background");
         disabledBackground = UIManager.getColor("Button.disabledBackground");
@@ -92,19 +82,13 @@ public class MaterialButtonUI extends BasicButtonUI {
         defaultForeground = UIManager.getColor("Button[Default].foreground");
         colorMouseHoverNormalButton = UIManager.getColor("Button.mouseHoverColor");
         colorMouseHoverDefaultButton = UIManager.getColor("Button[Default].mouseHoverColor");
-        //disabledDefaultBackground = UIManager.getColor("Button[Default].disabledBackground");
-        //disabledDefaultForeground = UIManager.getColor("Button[Default].disabledForeground");
         borderColor = UIManager.getColor("Button[border].color");
         borderEnabled = UIManager.getBoolean("Button[border].enable");
         buttonBorderToAll = UIManager.getBoolean("Button[border].toAll");
         if (mouseHoverEnabled == null) {
             mouseHoverEnabled = UIManager.getBoolean("Button.mouseHoverEnable");
         }
-        //LookAndFeel.installColors(c, "Button.background", "Button.foreground");
-       //button.setBackground(background);
-        //button.setForeground(foreground);
         this.arch = UIManager.getInt("Button.arc");
-        //button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (mouseHoverEnabled) {
             JButton b = (JButton) button;
             if (!b.isDefaultButton()) {
@@ -132,7 +116,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         super.uninstallUI(c);
 
         AbstractButton button = (AbstractButton) c;
-        //button.setBorder(null);
         foreground = null;
         background = null;
         disabledBackground = null;
@@ -140,8 +123,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         defaultBackground = null;
         defaultForeground = null;
         buttonToolBarInit = false;
-        //button.setBackground(null);
-        //button.setForeground(null);
         button.setCursor(Cursor.getDefaultCursor());
     }
 
@@ -159,7 +140,6 @@ public class MaterialButtonUI extends BasicButtonUI {
                     this.mouseHover = MaterialUIMovement.getMovement(b, colorMouseHoverDefaultButton);
                     b.addMouseListener(this.mouseHover);
                 }
-                //paintBackground(g, c);
                 b.setBackground(defaultBackground);
                 b.setForeground(defaultForeground);
             }
@@ -178,29 +158,20 @@ public class MaterialButtonUI extends BasicButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
-        FontMetrics fm = g.getFontMetrics(c.getFont());
-        int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
         if (model.isEnabled()) {
-            g.setColor(b.getForeground());
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
-                    textRect.x + getTextShiftOffset(),
-                    textRect.y + fm.getAscent() + getTextShiftOffset());
-        } else {
-            g.setColor(disabledForeground);
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
-                    textRect.x + getTextShiftOffset(),
-                    textRect.y + fm.getAscent() + getTextShiftOffset());
+            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), b.getForeground());
+            return;
         }
+        MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
     }
 
     /**
      * This method paint background, inside it will paint the border to buttons.
-     *
+     * <p>
      * param g Graphics Object, with this object is possible paint the component JButton
      * param c Component Object, rappresent the button, if possible use this object or the propriety
-     *          called button inside this class
+     * called button inside this class
      */
     protected void paintBackground(Graphics g, JComponent c) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
@@ -215,45 +186,30 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         graphics.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), arch, arch);
         graphics.dispose();
-        if(!buttonToolBarInit && this.isToolBarButton(c)){
-            System.out.println("BUTTON in JToolBar");
+        if (!buttonToolBarInit && this.isToolBarButton(c)) {
             borderEnabled = false;
             mouseHoverEnabled = UIManager.getBoolean("ToolBar[button].mouseHover");
             c.removeMouseListener(mouseHover);
             c.setBackground(UIManager.getColor("ToolBar.background"));
-            if(mouseHoverEnabled){
+            if (mouseHoverEnabled) {
                 //reset original color inside mouse color
                 mouseHover = MaterialUIMovement.getMovement(c, colorMouseHoverNormalButton);
                 c.addMouseListener(mouseHover);
             }
             this.buttonToolBarInit = true;
         }
-        /*JButton b = (JButton) c;
-        if (borderEnabled != null && borderEnabled) {
-            if (buttonBorderToAll && !b.isDefaultButton()) {
-                paintBorderButton(graphics, b);
-            } else if (b.getIcon() == null && !b.isDefaultButton()) {
-                paintBorderButton(graphics, b);
-            }
-        }*/
-        //paintStateButton(c, g);
-        //paintStateButton(c, g, StateButton.DISABLE);
     }
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        // driveLine(g, (JButton) b);
-        if(!button.isEnabled()) return;
+        if (!button.isEnabled()) return;
         paintFocusRing(g, (JButton) b);
-        //paintBorderButton(g, b);
-        //paintShadow(MaterialDrawingUtils.getAliasedGraphics(g), button);
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
         paintBorderButton(g, c);
-        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     @Override
@@ -263,10 +219,8 @@ public class MaterialButtonUI extends BasicButtonUI {
             if (b.isEnabled()) {
                 if (this.isDefaultButton()) {
                     g.setColor(colorMouseHoverDefaultButton);
-                    //g.setColor(defaultBackground);
                 } else {
                     g.setColor(colorMouseHoverNormalButton);
-                    //g.setColor(background);
                 }
             } else {
                 g.setColor(disabledBackground);
@@ -288,20 +242,17 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void installListeners(AbstractButton b) {
         super.installListeners(b);
-        b.addMouseListener(mouseListener);
     }
 
     @Override
     protected void uninstallListeners(AbstractButton b) {
         b.removePropertyChangeListener(enableButton);
         super.uninstallListeners(b);
-        b.removeMouseListener(mouseListener);
         b.removeMouseListener(mouseHover);
     }
 
     protected void paintFocusRing(Graphics g, JButton b) {
         Stroke dashed = new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f, new float[]{0f, 3f}, 10.0f);
-        //Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setStroke(dashed);
         if (defaultButton != null && defaultButton) {
@@ -335,12 +286,12 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method is used inside the TimerUI to set a new MouseHover color.
-     *
+     * <p>
      * For example: if you set a personal color on the mouseHove effect, you need to create a new mouseHover event on this component
      * with a code as MaterialUIMovement.getMovement(COMPONENT, COLOR);
      * The event creates to previous system call need
      * to refresh the mouseHover color in this class to have the correct effect when the button is pressed
-     *
+     * <p>
      * This should be remove e override the logic with a listener, but for the moment is implemented only this solution.
      */
     public void setColorMouseHoverDefaultButton(Color colorMouseHoverDefaultButton) {
@@ -349,12 +300,12 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method is used inside the TimerUI to set a new MouseHover color.
-     *
+     * <p>
      * For example: if you set a personal color on the mouseHove effect, you need to create a new mouseHover event on this component
      * with a code as MaterialUIMovement.getMovement(COMPONENT, COLOR);
      * The event creates to previous system call need
      * to refresh the mouseHover color in this class to have the correct effect when the button is pressed
-     *
+     * <p>
      * This should be remove e override the logic with a listener, but for the moment is implemented only this solution.
      */
     public void setColorMouseHoverNormalButton(Color colorMouseHoverNormalButton) {
@@ -365,11 +316,11 @@ public class MaterialButtonUI extends BasicButtonUI {
         return defaultButton != null && defaultButton;
     }
 
-    protected boolean isToolBarButton(Component component){
+    protected boolean isToolBarButton(Component component) {
         Container container = component.getParent();
-        if(container instanceof JToolBar){
+        if (container instanceof JToolBar) {
             return true;
-        }else if(container != null){
+        } else if (container != null) {
             return this.isToolBarButton(container);
         }
         return false;
@@ -377,6 +328,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -394,6 +346,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -403,6 +356,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -412,6 +366,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -421,6 +376,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -430,6 +386,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -439,6 +396,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -448,6 +406,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -457,6 +416,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -466,6 +426,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -475,6 +436,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -484,6 +446,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -493,6 +456,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -502,6 +466,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     /**
      * This method was used inside the MaterialUITimer for reset the color at the particular event
+     *
      * @deprecated This method will be removed inside the version 1.2, it is a old method used inside the Timer to restore the default value
      */
     @Deprecated
@@ -538,77 +503,18 @@ public class MaterialButtonUI extends BasicButtonUI {
                     button.setForeground(foreground);
                 }
             }
-            /* TODO review this code
-            There is an bug inside this, so the mouse hover called setBackground of the component
-            and this change the background color.
-            I do remove this bug but I need to restore this code because isn't possible work with the personal
-            color on the button.
-            */
             else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && button.isEnabled()) {
                 //When on the JButton call the method setBackground
-                if(mouseHover != null && !mouseHover.isRunning()){
+                if (mouseHover != null && !mouseHover.isRunning()) {
                     background = (Color) evt.getNewValue();
                 }
             } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && button.isEnabled()) {
                 //When on the JButton call the method setForeground
-                if(mouseHover != null && !mouseHover.isRunning()){
+                if (mouseHover != null && !mouseHover.isRunning()) {
                     foreground = (Color) evt.getNewValue();
                 }
             }
-
-            /*else if (evt.getPropertyName().equals(proprietyNameEnableEvent) && !(boolean) evt.getNewValue()) {
-                background = button.getBackground();
-                foreground = button.getForeground();
-            }*/
         }
     }
 
-    /**
-     * This Internal class is used to send feedback when the mouse is hover the component.
-     * With this solution I can know when the mouse is hover and I can jump the previous if-else.
-     *
-     * @author https://github.com/vincenzopalazzo
-     */
-    protected class MaterialButtonMouseListener implements MouseListener, MouseMotionListener {
-
-        @Override
-        public void mouseClicked(MouseEvent mouseEvent) {
-            //do nothing
-            mouseHoverRunning = true;
-        }
-
-        @Override
-        public void mousePressed(MouseEvent mouseEvent) {
-            //do nothing
-            mouseHoverRunning = true;
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent mouseEvent) {
-            //do nothing
-            mouseHoverRunning = true;
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent mouseEvent) {
-            mouseHoverRunning = true;
-        }
-
-        @Override
-        public void mouseExited(MouseEvent mouseEvent) {
-            mouseHoverRunning = false;
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent mouseEvent) {
-            //do nothing
-            mouseHoverRunning = true;
-        }
-
-        @Override
-        public void mouseMoved(MouseEvent mouseEvent) {
-            //do nothing
-            mouseHoverRunning = true;
-        }
-    }
 }

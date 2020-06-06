@@ -28,7 +28,7 @@ import mdlaf.utils.MaterialDrawingUtils;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
+import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicToggleButtonUI;
 import java.awt.*;
 
@@ -40,15 +40,12 @@ import java.awt.*;
 public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     protected Boolean withoutIcon;
-    protected Integer widthWithoutIcon;
-    protected Integer heightWithoutIcon;
-    protected Integer originalWidth;
-    protected Integer originalHeight;
     protected JToggleButton toggleButton;
     protected Color withoutIconSelectedBackground;
     protected Color withoutIconSelectedForeground;
     protected Color withoutIconBackground;
     protected Color withoutIconForeground;
+    protected Color disabledForeground;
     protected Icon selected;
     protected Icon unselected;
     protected Border withoutIconSelectedBorder;
@@ -62,9 +59,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     public void installUI(JComponent c) {
         super.installUI(c);
         toggleButton = (JToggleButton) c;
-        //toggleButton.setFont(UIManager.getFont("ToggleButton.font"));
-        //toggleButton.setBackground(UIManager.getColor("ToggleButton.background"));
-        //toggleButton.setForeground(UIManager.getColor("ToggleButton.foreground"));
+        this.disabledForeground = UIManager.getColor("RadioButton.disabledText");
         c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         /*
         If the expression toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null is false the JToggleButton have the
@@ -78,10 +73,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             To default, this class will set the variable without an icon to false and toggle button border to UIManager propriety.
          */
         if (toggleButton.getIcon() == null && toggleButton.getSelectedIcon() == null) {
-            this.unselected = UIManager.getIcon("ToggleButton.icon");
-            this.selected = UIManager.getIcon("ToggleButton.selectedIcon");
-            toggleButton.setIcon(this.unselected);
-            toggleButton.setSelectedIcon(this.selected);
+            this.unselected = new MaterialToggleButtonIcon(this.getPropertyPrefix());
             this.withoutIcon = UIManager.getBoolean("ToggleButton.withoutIcon");
             if (withoutIcon) {
                 withoutIconSelectedBorder = UIManager.getBorder("ToggleButton[withoutIcon].selectedBorder");
@@ -96,6 +88,7 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
                     LookAndFeel.installBorder(toggleButton, "ToggleButton[withoutIcon].selectedForeground");
                 }
             } else {
+                toggleButton.setIcon(this.unselected);
                 LookAndFeel.installBorder(toggleButton, "ToggleButton.border");
             }
         } else {
@@ -114,9 +107,6 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
             toggleButton.setIcon(null);
             toggleButton.setSelectedIcon(null);
         }
-        /* toggleButton.setBorder(null);
-        toggleButton.setBackground(null);
-        toggleButton.setForeground(null);*/
     }
 
     @Override
@@ -155,28 +145,54 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
 
     @Override
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
-        AbstractButton b = (AbstractButton) c;
-        ButtonModel model = b.getModel();
-        g = MaterialDrawingUtils.getAliasedGraphics(g);
-        FontMetrics fm = g.getFontMetrics(c.getFont());
-        int mnemonicIndex = b.getDisplayedMnemonicIndex();
-        /* Draw the Text */
+        ButtonModel model = toggleButton.getModel();
         if (model.isEnabled()) {
-            /*** paint the text normally */
-            g.setColor(b.getForeground());
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
-                    textRect.x + getTextShiftOffset(),
-                    textRect.y + fm.getAscent() + getTextShiftOffset());
-        } else {
-            /*** paint the text disabled ***/
-            g.setColor(UIManager.getColor("ToggleButton.disabledText").brighter());
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
-                    textRect.x, textRect.y + fm.getAscent());
-            g.setColor(UIManager.getColor("ToggleButton.disabledText").darker());
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,
-                    textRect.x - 1, textRect.y + fm.getAscent() - 1);
+            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), toggleButton.getForeground());
+            return;
         }
+        MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
     }
 
+    protected class MaterialToggleButtonIcon implements  Icon, UIResource {
+
+        protected Icon unselectedIcon;
+        protected Icon selectedIcon;
+        protected Icon disabledIcon;
+        protected Icon disabledSelectedIcon;
+
+        public MaterialToggleButtonIcon(String componentPrefix) {
+            unselectedIcon = UIManager.getIcon(componentPrefix + "icon");
+            selectedIcon = UIManager.getIcon(componentPrefix + "selectedIcon");
+            disabledIcon = UIManager.getIcon(componentPrefix + "disabledIcon");
+            disabledSelectedIcon = UIManager.getIcon(componentPrefix + "disabledSelectedIcon");
+        }
+
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            if(toggleButton.isEnabled()){
+                if(toggleButton.isSelected()){
+                    this.selectedIcon.paintIcon(c, g, x, y);
+                }else{
+                    this.unselectedIcon.paintIcon(c, g, x, y);
+                }
+            }else{
+                if(toggleButton.isSelected()){
+                    this.disabledSelectedIcon.paintIcon(c, g, x, y);
+                }else{
+                    this.disabledIcon.paintIcon(c, g, x, y);
+                }
+            }
+        }
+
+        @Override
+        public int getIconWidth() {
+            return selectedIcon.getIconWidth();
+        }
+
+        @Override
+        public int getIconHeight() {
+            return selectedIcon.getIconHeight();
+        }
+    }
 
 }
