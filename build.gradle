@@ -18,13 +18,11 @@ dependencies {
     // https://mvnrepository.com/artifact/org.swinglabs/swingx
     implementation 'org.swinglabs:swingx:1.6.1'
 
-    implementation 'com.github.jiconfont:jiconfont-bundle:1.4.0'
+    //implementation 'com.github.jiconfont:jiconfont-bundle:1.4.0'
 
     implementation 'com.github.jiconfont:jiconfont-swing:1.0.1'
 
     implementation 'com.github.jiconfont:jiconfont-google_material_design_icons:2.2.0.2'
-
-    //compile name: 'jiconfont-google_material_design_icons-2.2.0.3-SNAPSHOT'
 
     //Slf4j configuration
     testCompile 'ch.qos.logback:logback-classic:1.2.3'
@@ -33,9 +31,7 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    
-    //testCompile name: 'DarkStackOverflowTheme-0.1'
-
+    testCompile name: 'DarkStackOverflowTheme-0.1'
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
 }

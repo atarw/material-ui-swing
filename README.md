@@ -29,19 +29,22 @@ A modern, Material Design UI for Java Swing
  ## Repository
 
  _Maven_
-
- ```
+ ```xml
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.1_pre-release_6.1</version>
+  <version>1.1.1-rc3</version>
 </dependency>
  ```
 
- _Gradle_
-
+ _Gradle (Groovy)_
+```groovy
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1-rc3'
 ```
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
+
+ _Gradle (Kotlin)_
+```kotlin
+implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.1-rc3")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
@@ -57,14 +60,9 @@ Contact us if you use this look and feel, so we can add your project to the list
 - Arizona State University
 
 ## Performance
-
-![](https://www.yourkit.com/images/yklogo.png)
-
-From version 1.1.1 the material-ui-swing library will be support to YourKit and now th library will 
-start to increase the performance.
-
-Stay tuned that the future version 1.1.1 official will be more optimize.
-
+<div align="center">
+  <img src="https://www.yourkit.com/images/yklogo.png" width="150" height="150"/>
+</div>
 The YourKit is used also by Google, Microsoft, PayPal, ecc.
 
 - **YourKit**: it supports open source projects with innovative and intelligent tools

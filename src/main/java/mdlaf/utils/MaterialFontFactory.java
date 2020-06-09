@@ -208,7 +208,7 @@ public class MaterialFontFactory {
         }
         if (Utils.isJavaVersionUnderJava9()) {
             float dimensionOptimized = 11f * Math.min(Toolkit.getDefaultToolkit().getScreenResolution(), 96) / 72;
-            if(dimensionOptimized <= (dimension - 5)){
+            if(dimensionOptimized <= (dimension - 3)){
                 // ON OSX with display 4k in some cases the font dimension is equal to 5.
                 return (11f * 96) / 72;
             }

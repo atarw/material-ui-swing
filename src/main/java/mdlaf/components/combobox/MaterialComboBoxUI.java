@@ -27,12 +27,11 @@ import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
-import sun.swing.DefaultLookup;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
@@ -89,8 +88,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected JButton createArrowButton() {
-        Icon icon = UIManager.getIcon("ComboBox.buttonIcon");
-        JButton button = new ArrowButtonComboBox(icon);
+        JButton button = new ArrowButtonComboBox();
         button.setFocusable(false);
         return button;
     }
@@ -104,7 +102,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     public void unconfigureArrowButton() {
-        MaterialManagerListener.removeAllMaterialMouseListener(arrowButton);
         super.unconfigureArrowButton();
     }
 
@@ -156,10 +153,8 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             c.setForeground(comboBox.getForeground());
             c.setBackground(comboBox.getBackground());
         } else {
-            c.setForeground(DefaultLookup.getColor(
-                    comboBox, this, "ComboBox.disabledForeground", null));
-            c.setBackground(DefaultLookup.getColor(
-                    comboBox, this, "ComboBox.disabledBackground", null));
+            c.setForeground(UIManager.getColor("ComboBox.disabledForeground"));
+            c.setBackground(UIManager.getColor("ComboBox.disabledBackground"));
         }
 
         // Fix for 4238829: should lay out the JPanel.
@@ -235,9 +230,8 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     protected class ArrowButtonComboBox extends JButton{
 
-        public ArrowButtonComboBox(Icon icon) {
-            super(icon);
-            this.setDisabledIcon( UIManager.getIcon("ComboBox.buttonDisabledIcon"));
+        public ArrowButtonComboBox() {
+            super();
         }
 
         @Override
@@ -248,9 +242,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI{
 
-            protected Icon selectIcon;
-            protected Icon icon;
-            protected Icon disabled;
 
             @Override
             public void installUI(JComponent c) {
@@ -264,25 +255,49 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 if(mouseHoverEnabled){
                     c.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
                 }
+                this.button.setIcon(new ArrowIcon("ComboBox.")); //TODO this code have an bug
                 c.setBorder(UIManager.getBorder("ComboBox[button].border"));
-                this.icon = UIManager.getIcon("ComboBox.buttonIcon");
-                this.selectIcon = UIManager.getIcon("ComboBox.buttonSelectIcon");
                 c.setFocusable(false);
             }
 
             @Override
-            protected void paintBackground(Graphics g, JComponent c) {
-                super.paintBackground(g, c);
-                if(isPopupVisible(comboBox)){
-                    button.setIcon(selectIcon);
-                }else{
-                    button.setIcon(icon);
-                }
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {}
+        }
+
+        protected class ArrowIcon implements Icon, UIResource{
+
+            protected Icon unselectedIcon;
+            protected Icon selectedIcon;
+            protected Icon disabledIcon;
+
+            public ArrowIcon(String prefix) {
+                this.unselectedIcon = UIManager.getIcon(prefix + "buttonIcon");
+                this.disabledIcon = UIManager.getIcon(prefix + "buttonIcon");
+                this.selectedIcon = UIManager.getIcon(prefix + "buttonSelectIcon");
             }
 
             @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+            public void paintIcon(Component c, Graphics g, int x, int y) {
+                if(comboBox.isEnabled()){
+                    if(comboBox.isPopupVisible()){
+                        this.selectedIcon.paintIcon(c, g, x, y);
+                    }else{
+                        this.unselectedIcon.paintIcon(c, g, x, y);
+                    }
+                }else{
+                    this.disabledIcon.paintIcon(c, g, x, y);
+                }
 
+            }
+
+            @Override
+            public int getIconWidth() {
+                return unselectedIcon.getIconWidth();
+            }
+
+            @Override
+            public int getIconHeight() {
+                return unselectedIcon.getIconHeight();
             }
         }
     }

@@ -322,11 +322,11 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Menu.acceleratorSelectionForeground", theme.getMenuTextColor());
         table.put("Menu.menuPopupOffsetY", 3);
         table.put("Menu[MouseOver].enable", theme.getMouseHoverEnableMenu());
-        table.put("Menu.arrowIcon", theme.getMenuArrowIcon());
         table.put("Menu[arrowIcon].hoverColor", theme.getMenuArrowHoverColor());
         table.put("Menu[arrowIcon].color", theme.getMenuTextColor());
         table.put("Menu[arrowIcon].height", theme.getMenuArrowHeight());
         table.put("Menu[arrowIcon].width", theme.getMenuArrowWidth());
+        table.put("Menu.arrowIcon", theme.getMenuArrowIcon());
 
         table.put("MenuBar.font", theme.getFontBold());
         table.put("MenuBar.background", theme.getMenuBackground());
