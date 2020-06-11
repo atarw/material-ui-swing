@@ -25,8 +25,8 @@ package integration.gui.mock;
 
 import integration.gui.mock.component.*;
 import integration.gui.mock.uiexample.button.ContainedButtonUI;
-import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,8 @@ public class DemoGUITest extends JFrame {
         try {
             JDialog.setDefaultLookAndFeelDecorated(true);
             JFrame.setDefaultLookAndFeelDecorated(false); //not support yet
-            UIManager.setLookAndFeel(new MaterialLookAndFeel(new DarkStackOverflowTheme()));
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+            //UIManager.setLookAndFeel(new MaterialLookAndFeel(new DarkStackOverflowTheme()));
             UIManager.put("Button.mouseHoverEnable", true); //Because the test are more difficulte with effect mouse hover
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();

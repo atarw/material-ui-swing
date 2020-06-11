@@ -31,7 +31,7 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    testCompile name: 'DarkStackOverflowTheme-0.1'
+    //testCompile name: 'DarkStackOverflowTheme-0.1'
     //assertj
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
 }
