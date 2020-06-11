@@ -61,7 +61,7 @@ Contact us if you use this look and feel, so we can add your project to the list
 
 ## Performance
 <div align="center">
-  <img src="https://www.yourkit.com/images/yklogo.png"/>
+  <img src="https://www.yourkit.com/images/yklogo.png" width="150" height="150"/>
 </div>
 The YourKit is used also by Google, Microsoft, PayPal, ecc.
 
