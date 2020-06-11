@@ -38,6 +38,8 @@ import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -49,12 +51,14 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         return new MaterialComboBoxUI();
     }
 
+    protected JButton arrowButton;
     protected Color background;
-    protected FocusListener focusListener;
+    protected FocusListenerColor focusListener;
     protected int arc = 10; //default value
     protected Border disabledBorder;
 
-    public MaterialComboBoxUI() {}
+    public MaterialComboBoxUI() {
+    }
 
     @Override
     public void installUI(JComponent c) {
@@ -81,16 +85,16 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
-        if(!c.isEnabled()){
+        if (!c.isEnabled()) {
             c.setBorder(this.disabledBorder);
         }
     }
 
     @Override
     protected JButton createArrowButton() {
-        JButton button = new ArrowButtonComboBox();
-        button.setFocusable(false);
-        return button;
+        this.arrowButton = new ArrowButtonComboBox();
+        arrowButton.setFocusable(false);
+        return arrowButton;
     }
 
     @Override
@@ -110,12 +114,14 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         super.installListeners();
         focusListener = new FocusListenerColor();
         comboBox.addFocusListener(focusListener);
+        comboBox.addMouseListener(focusListener);
     }
 
     @Override
     protected void uninstallListeners() {
         if (focusListener != null) {
             this.comboBox.removeFocusListener(focusListener);
+            this.comboBox.removeMouseListener(focusListener);
         }
         super.uninstallListeners();
     }
@@ -192,7 +198,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         return super.createFocusListener();
     }
 
-    protected class FocusListenerColor implements FocusListener {
+    protected class FocusListenerColor implements FocusListener, MouseListener {
 
         protected Border focus;
         protected Border unfocus;
@@ -211,7 +217,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             JComboBox cb = (JComboBox) e.getComponent();
             if (focus != null) {
                 cb.setBorder(focus);
-                cb.repaint();
+                cb.revalidate();
             }
         }
 
@@ -223,16 +229,39 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             JComboBox cb = (JComboBox) e.getComponent();
             if (unfocus != null) {
                 cb.setBorder(unfocus);
-                cb.repaint();
+                cb.revalidate();
             }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(arrowButton != null){
+                arrowButton.repaint();
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 
-    protected class ArrowButtonComboBox extends JButton{
-
-        public ArrowButtonComboBox() {
-            super();
-        }
+    protected class ArrowButtonComboBox extends JButton {
 
         @Override
         public void updateUI() {
@@ -240,7 +269,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         }
 
 
-        protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI{
+        protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI {
 
 
             @Override
@@ -252,7 +281,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 super.disabledBackground = super.background;
                 c.setBackground(super.background);
                 mouseHoverEnabled = UIManager.getBoolean("ComboBox.mouseHoverEnabled");
-                if(mouseHoverEnabled){
+                if (mouseHoverEnabled) {
                     c.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
                 }
                 this.button.setIcon(new ArrowIcon("ComboBox.")); //TODO this code have an bug
@@ -261,10 +290,11 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
             }
 
             @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {}
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+            }
         }
 
-        protected class ArrowIcon implements Icon, UIResource{
+        protected class ArrowIcon implements Icon, UIResource {
 
             protected Icon unselectedIcon;
             protected Icon selectedIcon;
@@ -278,13 +308,13 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
             @Override
             public void paintIcon(Component c, Graphics g, int x, int y) {
-                if(comboBox.isEnabled()){
-                    if(comboBox.isPopupVisible()){
+                if (comboBox.isEnabled()) {
+                    if (comboBox.isPopupVisible()) {
                         this.selectedIcon.paintIcon(c, g, x, y);
-                    }else{
+                    } else {
                         this.unselectedIcon.paintIcon(c, g, x, y);
                     }
-                }else{
+                } else {
                     this.disabledIcon.paintIcon(c, g, x, y);
                 }
 
