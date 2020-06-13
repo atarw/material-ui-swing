@@ -77,7 +77,7 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
 
         borderProgressBar = borderSpinner;
 
-        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, this.getArchBorderComboBox());
+       // this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.WHITE, this.getArchBorderComboBox());
         this.borderTable = borderSpinner;
         this.borderTableHeader = new BorderUIResource(
                 new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,

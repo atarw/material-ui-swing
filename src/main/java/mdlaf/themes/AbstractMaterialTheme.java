@@ -756,7 +756,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.borderToolBar = MaterialBorders.LIGHT_SHADOW_BORDER;
         this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
         this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0, 1, 0, 1));
-        ;
+
         this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
         this.borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
                 BorderFactory.createEmptyBorder(2, 5, 2, 5)));
@@ -781,6 +781,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
         this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder(3, 2, 3, 2));
 
+        this.borderComboBox = MaterialBorders.roundedLineColorBorder(this.textColor, this.getArchBorderComboBox());
         this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
         this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
 

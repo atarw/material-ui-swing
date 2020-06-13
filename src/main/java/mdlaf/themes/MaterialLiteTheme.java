@@ -39,7 +39,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
     protected void installBorders() {
         super.installBorders();
 
-        this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK, this.getArchBorderComboBox());
+        //this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK, this.getArchBorderComboBox());
         this.borderTable = MaterialBorders.LIGHT_LINE_BORDER;
         this.borderTableHeader = new BorderUIResource(
                 new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
