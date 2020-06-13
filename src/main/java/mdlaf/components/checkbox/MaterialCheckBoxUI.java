@@ -81,9 +81,9 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
         ButtonModel model = b.getModel();
 
         if (model.isEnabled()) {
-            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), b.getForeground());
+            MaterialDrawingUtils.drawString(c, g, text, textRect, b.getDisplayedMnemonicIndex(), getTextShiftOffset(), b.getForeground());
         } else {
-            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
+            MaterialDrawingUtils.drawString(c, g, text, textRect, b.getDisplayedMnemonicIndex(), getTextShiftOffset(), disabledForeground);
         }
     }
 

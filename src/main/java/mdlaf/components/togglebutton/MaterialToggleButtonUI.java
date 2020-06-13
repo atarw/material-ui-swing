@@ -147,10 +147,10 @@ public class MaterialToggleButtonUI extends BasicToggleButtonUI {
     protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         ButtonModel model = toggleButton.getModel();
         if (model.isEnabled()) {
-            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), toggleButton.getForeground());
+            MaterialDrawingUtils.drawString(c, g, text, textRect, toggleButton.getDisplayedMnemonicIndex(), getTextShiftOffset(), toggleButton.getForeground());
             return;
         }
-        MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
+        MaterialDrawingUtils.drawString(c, g, text, textRect, toggleButton.getDisplayedMnemonicIndex(), getTextShiftOffset(), disabledForeground);
     }
 
     protected class MaterialToggleButtonIcon implements  Icon, UIResource {
