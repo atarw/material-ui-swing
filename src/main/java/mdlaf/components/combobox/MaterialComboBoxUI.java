@@ -57,8 +57,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     protected int arc = 10; //default value
     protected Border disabledBorder;
 
-    public MaterialComboBoxUI() {
-    }
 
     @Override
     public void installUI(JComponent c) {
@@ -99,9 +97,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected ComboPopup createPopup() {
-        BasicComboPopup comboPopup = new BasicComboPopup(comboBox);
-        comboPopup.setBorder(UIManager.getBorder("ComboBox[listItem].border"));
-        return comboPopup;
+        return new MaterilaComboBoxPopup(comboBox);
     }
 
     @Override
@@ -114,14 +110,12 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         super.installListeners();
         focusListener = new FocusListenerColor();
         comboBox.addFocusListener(focusListener);
-        comboBox.addMouseListener(focusListener);
     }
 
     @Override
     protected void uninstallListeners() {
         if (focusListener != null) {
             this.comboBox.removeFocusListener(focusListener);
-            this.comboBox.removeMouseListener(focusListener);
         }
         super.uninstallListeners();
     }
@@ -198,7 +192,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         return super.createFocusListener();
     }
 
-    protected class FocusListenerColor implements FocusListener, MouseListener {
+    protected class FocusListenerColor implements FocusListener {
 
         protected Border focus;
         protected Border unfocus;
@@ -232,32 +226,37 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 cb.revalidate();
             }
         }
+    }
+
+    protected class MaterilaComboBoxPopup extends BasicComboPopup{
+
+        public MaterilaComboBoxPopup(JComboBox<Object> combo) {
+            super(combo);
+            setBorder(UIManager.getBorder("ComboBox[listItem].border"));
+        }
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void show() {
+            super.show();
             if(arrowButton != null){
                 arrowButton.repaint();
             }
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
-
+        public void hide() {
+            super.hide();
+            if(arrowButton != null){
+                arrowButton.repaint();
+            }
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
+        protected void firePopupMenuCanceled() {
+            super.firePopupMenuCanceled();
+            if(arrowButton != null){
+                arrowButton.repaint();
+            }
         }
     }
 

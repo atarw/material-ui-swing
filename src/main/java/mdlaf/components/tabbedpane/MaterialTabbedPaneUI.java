@@ -33,7 +33,6 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -105,12 +104,11 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
-        super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
-        int mnemIndex = this.tabPane.getDisplayedMnemonicIndexAt(tabIndex);
         if(!tabPane.isEnabledAt(tabIndex)){
-            g.setColor(disabledForeground);
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g, title, mnemIndex,
-                        textRect.x,textRect.y +  metrics.getAscent());
+            int mnemIndex = this.tabPane.getDisplayedMnemonicIndexAt(tabIndex);
+            MaterialDrawingUtils.drawString(tabPane, g, title, textRect, mnemIndex, 0, disabledForeground);
+        }else{
+            super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
         }
     }
 

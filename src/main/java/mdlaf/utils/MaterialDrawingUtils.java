@@ -71,11 +71,9 @@ public class MaterialDrawingUtils {
         g.fillOval(x, y, radius * 2, radius * 2);
     }
 
-    public static void drawString(JComponent c, Graphics g, String text, Rectangle textRect, int shiftOffset, Color color) {
-        AbstractButton b = (AbstractButton) c;
+    public static void drawString(JComponent c, Graphics g, String text, Rectangle textRect, int mnemonicIndex, int shiftOffset, Color color) {
         g = MaterialDrawingUtils.getAliasedGraphics(g);
         FontMetrics fm = g.getFontMetrics(c.getFont());
-        int mnemonicIndex = b.getDisplayedMnemonicIndex();
 
         g.setColor(color);
         BasicGraphicsUtils.drawStringUnderlineCharAt(g, text, mnemonicIndex,

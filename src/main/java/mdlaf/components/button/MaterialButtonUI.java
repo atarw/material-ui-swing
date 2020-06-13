@@ -160,10 +160,10 @@ public class MaterialButtonUI extends BasicButtonUI {
         ButtonModel model = b.getModel();
 
         if (model.isEnabled()) {
-            MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), b.getForeground());
+            MaterialDrawingUtils.drawString(c, g, text, textRect, b.getDisplayedMnemonicIndex(), getTextShiftOffset(), b.getForeground());
             return;
         }
-        MaterialDrawingUtils.drawString(c, g, text, textRect, getTextShiftOffset(), disabledForeground);
+        MaterialDrawingUtils.drawString(c, g, text, textRect, b.getDisplayedMnemonicIndex(), getTextShiftOffset(), disabledForeground);
     }
 
     /**
