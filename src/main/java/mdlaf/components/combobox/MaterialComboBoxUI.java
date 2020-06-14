@@ -38,8 +38,6 @@ import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -91,7 +89,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
     @Override
     protected JButton createArrowButton() {
         this.arrowButton = new ArrowButtonComboBox();
-        arrowButton.setFocusable(false);
         return arrowButton;
     }
 
@@ -301,7 +298,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
             public ArrowIcon(String prefix) {
                 this.unselectedIcon = UIManager.getIcon(prefix + "buttonIcon");
-                this.disabledIcon = UIManager.getIcon(prefix + "buttonIcon");
+                this.disabledIcon = UIManager.getIcon(prefix + "buttonDisabledIcon");
                 this.selectedIcon = UIManager.getIcon(prefix + "buttonSelectIcon");
             }
 
