@@ -23,11 +23,11 @@
  */
 package mdlaf.themes;
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.icons.MaterialIconFont;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -44,25 +44,25 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         super.installIcons();
 
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
-                MaterialColors.COSMO_DARK_GRAY
+                MaterialIconFont.CHECK_BOX,
+                MaterialColors.COSMO_BLACK
         );
         this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
-                MaterialColors.COSMO_DARK_GRAY
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
+                MaterialColors.COSMO_BLACK
         );
 
         this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialIconFont.CHECK_BOX,
                 highlightBackgroundPrimary
         );
         this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 highlightBackgroundPrimary
         );
 
         this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 textColor
         );
     }

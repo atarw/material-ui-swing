@@ -23,10 +23,12 @@
  */
 package mdlaf.themes;
 
-
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
-import mdlaf.utils.*;
+import mdlaf.utils.MaterialBorders;
+import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialFontFactory;
+import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.icons.MaterialIconFont;
 
 import javax.swing.*;
 import javax.swing.plaf.*;
@@ -516,118 +518,118 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected void installIcons() {
         this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.COMPUTER,
+                MaterialIconFont.COMPUTER,
                 textColor
         );
         this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.FOLDER,
+                MaterialIconFont.FOLDER,
                 textColor
         );
         this.iconFileFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.INSERT_DRIVE_FILE,
+                MaterialIconFont.INSERT_DRIVE_FILE,
                 textColor
         );
         this.iconFloppyDriveFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.SAVE,
+                MaterialIconFont.SAVE,
                 textColor
         );
         this.iconHardDriveFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.STORAGE,
+                MaterialIconFont.STORAGE,
                 textColor
         );
         this.iconHomeFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.HOME,
+                MaterialIconFont.HOME,
                 textColor
         );
         this.iconListFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.MENU,
+                MaterialIconFont.MENU,
                 textColor
         );
         this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.VIEW_MODULE,
+                MaterialIconFont.VIEW_MODULE,
                 textColor
         );
         this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CREATE_NEW_FOLDER,
+                MaterialIconFont.CREATE_NEW_FOLDER,
                 textColor
         );
         this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.ARROW_BACK,
+                MaterialIconFont.ARROW_BACK,
                 textColor
         );
 
         this.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CLOSE,
+                MaterialIconFont.CLOSE,
                 25,
                 textColor
         );
 
         this.previousButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.ARROW_DROP_DOWN,
+                MaterialIconFont.ARROW_DROP_DOWN,
                 textColor
         );
 
         this.nextButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.ARROW_DROP_UP,
+                MaterialIconFont.ARROW_DROP_UP,
                 textColor
         );
 
         this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialIconFont.CHECK_BOX,
                 highlightBackgroundPrimary
         );
 
         this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 textColor
         );
 
         this.disabledUnselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 disableTextColor
         );
 
         this.disabledSelectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialIconFont.CHECK_BOX,
                 disableTextColor
         );
 
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialIconFont.CHECK_BOX,
                 highlightBackgroundPrimary
         );
         this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 highlightBackgroundPrimary
         );
 
         this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX,
+                MaterialIconFont.CHECK_BOX,
                 highlightBackgroundPrimary
         );
         this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHECK_BOX_OUTLINE_BLANK,
+                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
                 highlightBackgroundPrimary
         );
 
         this.closedIconTree = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT,
+                MaterialIconFont.KEYBOARD_ARROW_RIGHT,
                 textColor
         );
 
         this.openIconTree = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                MaterialIconFont.KEYBOARD_ARROW_DOWN,
                 highlightBackgroundPrimary
         );
 
         //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
         this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT
+                MaterialIconFont.KEYBOARD_ARROW_RIGHT
         );
 
         //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
         this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN
+                MaterialIconFont.KEYBOARD_ARROW_DOWN
         );
 
 
@@ -641,97 +643,97 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         );
 
         this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                WrapperJIconFont.TOGGLE_OFF,
+                MaterialIconFont.TOGGLE_OFF,
                 26,
                 textColor
         );
         this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                WrapperJIconFont.TOGGLE_ON,
+                MaterialIconFont.TOGGLE_ON,
                 26,
                 highlightBackgroundPrimary
         );
 
         this.disabledUnselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                WrapperJIconFont.TOGGLE_OFF,
+                MaterialIconFont.TOGGLE_OFF,
                 26,
                 disableTextColor
         );
         this.disabledSelectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                WrapperJIconFont.TOGGLE_ON,
+                MaterialIconFont.TOGGLE_ON,
                 26,
                 disableTextColor
         );
 
         this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.RADIO_BUTTON_CHECKED,
+                MaterialIconFont.RADIO_BUTTON_CHECKED,
                 highlightBackgroundPrimary
         );
         this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.RADIO_BUTTON_UNCHECKED,
+                MaterialIconFont.RADIO_BUTTON_UNCHECKED,
                 textColor
         );
 
         this.disabledSelectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.RADIO_BUTTON_CHECKED,
+                MaterialIconFont.RADIO_BUTTON_CHECKED,
                 disableTextColor
         );
         this.disabledUnselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.RADIO_BUTTON_UNCHECKED,
+                MaterialIconFont.RADIO_BUTTON_UNCHECKED,
                 disableTextColor
         );
 
         this.topIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.EXPAND_LESS,
+                MaterialIconFont.EXPAND_LESS,
                 colorIconTabbedPane
         );
 
         this.disabledTopIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.EXPAND_LESS,
+                MaterialIconFont.EXPAND_LESS,
                 colorDisabledIconTabbedPane
         );
 
         this.bottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.EXPAND_MORE,
+                MaterialIconFont.EXPAND_MORE,
                 colorIconTabbedPane
         );
 
         this.disabledBottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.EXPAND_MORE,
+                MaterialIconFont.EXPAND_MORE,
                 colorDisabledIconTabbedPane
         );
 
         this.leftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHEVRON_LEFT,
+                MaterialIconFont.CHEVRON_LEFT,
                 colorIconTabbedPane
         );
 
         this.disabledLeftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHEVRON_LEFT,
+                MaterialIconFont.CHEVRON_LEFT,
                 colorDisabledIconTabbedPane
         );
 
         this.rightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHEVRON_RIGHT,
+                MaterialIconFont.CHEVRON_RIGHT,
                 colorIconTabbedPane
         );
 
         this.disabledRightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.CHEVRON_RIGHT,
+                MaterialIconFont.CHEVRON_RIGHT,
                 colorDisabledIconTabbedPane
         );
 
         this.buttonIconComboBox = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                MaterialIconFont.KEYBOARD_ARROW_DOWN,
                 textColor
         );
 
         this.buttonSelectIconComboBox = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_UP,
+                MaterialIconFont.KEYBOARD_ARROW_UP,
                 textColor
         );
 
         this.buttonDisabledIconComboBox = MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN,
+                MaterialIconFont.KEYBOARD_ARROW_DOWN,
                 disableTextColor
         );
     }

@@ -1,8 +1,8 @@
 package unittest;
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import junit.framework.TestCase;
 import mdlaf.utils.MaterialImageFactory;
+import mdlaf.utils.icons.MaterialIconFont;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class MaterialImageFactoryTest{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Icon icon = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
+                Icon icon = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
                 TestCase.assertNotNull(icon);
             }
         });
@@ -39,8 +39,8 @@ public class MaterialImageFactoryTest{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Icon iconOne = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
-                Icon iconTwo = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
+                Icon iconOne = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
+                Icon iconTwo = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
                 TestCase.assertEquals(iconOne, iconTwo);
             }
         });
@@ -51,8 +51,8 @@ public class MaterialImageFactoryTest{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Icon iconOne = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
-                Icon iconTwo = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, Color.BLUE);
+                Icon iconOne = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, 25, Color.BLUE);
+                Icon iconTwo = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, Color.BLUE);
                 TestCase.assertNotSame(iconOne, iconTwo);
             }
         });
@@ -63,8 +63,8 @@ public class MaterialImageFactoryTest{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Icon iconOne = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, 20, Color.BLUE);
-                Icon iconTwo = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_DOWN, Color.BLUE);
+                Icon iconOne = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, 20, Color.BLUE);
+                Icon iconTwo = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, Color.BLUE);
                 TestCase.assertEquals(iconOne, iconTwo);
             }
         });
@@ -94,7 +94,7 @@ public class MaterialImageFactoryTest{
             @Override
             public void run() {
                 try{
-                    Icon iconOne = MaterialImageFactory.getInstance().getImage(GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT, -20, Color.BLUE);
+                    Icon iconOne = MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_RIGHT, -20, Color.BLUE);
                     TestCase.fail("without exceptions");
                 }catch (IllegalArgumentException e){
                     LOGGER.debug(e.getMessage());

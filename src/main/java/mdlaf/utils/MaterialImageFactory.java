@@ -24,8 +24,9 @@
 package mdlaf.utils;
 
 import jiconfont.IconCode;
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
+import mdlaf.utils.icons.IMaterialIconCode;
+import mdlaf.utils.icons.MaterialIconFont;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -43,8 +44,8 @@ import java.util.Map;
 public class MaterialImageFactory{
 
     static {
-        IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
-        IconFontSwing.register(WrapperJIconFont.getIconFont());
+        //IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+        IconFontSwing.register(MaterialIconFont.getIconFont());
     }
 
     public static void registerIcons(IconCode iconCode){
@@ -131,9 +132,8 @@ public class MaterialImageFactory{
      * param iconCode
      * param dimension: Is the dimension of icons, by default this library used dimension = 20
      * param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
-     * @return
      */
-    public IconUIResource getImage(IconCode iconCode, int dimension, Color color){
+    public IconUIResource getImage(IMaterialIconCode iconCode, int dimension, Color color){
         if(iconCode == null || dimension <= 0){
             String errorMessage = "Don't know motivation this exceptions";
             if(iconCode == null){
@@ -170,15 +170,15 @@ public class MaterialImageFactory{
         return icon;
     }
 
-    public IconUIResource getImage(IconCode iconCode, int dimension){
+    public IconUIResource getImage(IMaterialIconCode iconCode, int dimension){
         return getImage(iconCode, dimension, null);
     }
 
-    public IconUIResource getImage(IconCode iconCode){
+    public IconUIResource getImage(IMaterialIconCode iconCode){
         return getImage(iconCode, 20, null);
     }
 
-    public IconUIResource getImage(IconCode iconCode, Color color){
+    public IconUIResource getImage(IMaterialIconCode iconCode, Color color){
         return getImage(iconCode, 20, color);
     }
 }

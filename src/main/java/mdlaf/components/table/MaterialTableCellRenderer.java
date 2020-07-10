@@ -36,7 +36,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        JComponent component = (JComponent) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         // hides yellow selection highlight
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setVerticalAlignment(SwingConstants.CENTER);
@@ -65,6 +65,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 				component.setForeground(table.getSelectionForeground());
 			}
 		}*/
+
         //new version of the code release in pre-release6.1
         //TODO should be removed? post on StackOverflow
         Color alternateRowColor = UIManager.getColor("Table.alternateRowColor");
@@ -74,7 +75,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
         } else {
             //setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, normalColor);
         }
-        return component;
+        return this;
     }
 
     // This method setting a MaterialCellRender at the particular class

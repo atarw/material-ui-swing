@@ -22,7 +22,6 @@ package integration.gui.mock; /**
  * SOFTWARE.
  */
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.themes.JMarsDarkTheme;
@@ -31,6 +30,7 @@ import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.MaterialManagerListener;
+import mdlaf.utils.icons.MaterialIconFont;
 import org.jdesktop.swingx.JXTaskPane;
 
 import javax.swing.*;
@@ -347,7 +347,7 @@ public class MaterialUISwingDemo {
 
                     JButton bottoneConImmagine = new JButton();
                     bottoneConImmagine.setIcon(MaterialImageFactory.getInstance().getImage(
-                            GoogleMaterialDesignIcons.HOME
+                            MaterialIconFont.HOME
                     ));
                     pn.add(bottoneConImmagine);
 

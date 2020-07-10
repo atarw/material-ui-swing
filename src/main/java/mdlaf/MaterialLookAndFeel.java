@@ -23,7 +23,6 @@
  */
 package mdlaf;
 
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import mdlaf.components.button.MaterialButtonUI;
 import mdlaf.components.checkbox.MaterialCheckBoxUI;
 import mdlaf.components.checkboxmenuitem.MaterialCheckBoxMenuItemUI;
@@ -69,7 +68,7 @@ import mdlaf.themes.exceptions.MaterialChangeThemeException;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
-import mdlaf.utils.WrapperJIconFont;
+import mdlaf.utils.icons.MaterialIconFont;
 
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
@@ -666,18 +665,18 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("RootPane.colorChooserDialogBorder", theme.getBackgroundPrimary());
 
         table.put("InternalFrame.maximizeIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.FULLSCREEN,
+                MaterialIconFont.FULLSCREEN,
                 25,
                 theme.getTextColor()
         ));
         table.put("InternalFrame.minimizeIcon", MaterialImageFactory.getInstance().getImage(
-                GoogleMaterialDesignIcons.FULLSCREEN_EXIT,
+                MaterialIconFont.FULLSCREEN_EXIT,
                 25,
                 theme.getTextColor()
         ));
         table.put("InternalFrame.closeIcon", theme.getIconCloseTitlePane());
         table.put("InternalFrame.iconifyIcon", MaterialImageFactory.getInstance().getImage(
-                WrapperJIconFont.MINIMIZE,
+                MaterialIconFont.MINIMIZE,
                 25,
                 theme.getTextColor()
         ));
