@@ -164,7 +164,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
     @Override
     public String getName() {
-        return "Material Look And Feel with: " + theme.getName();
+        return "Material-UI-Swing";
     }
 
     @Override
