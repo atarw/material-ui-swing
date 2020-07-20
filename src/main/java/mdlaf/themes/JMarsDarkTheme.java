@@ -132,9 +132,6 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.gridColorTable = new ColorUIResource(151,151,151);
         this.alternateRowBackgroundTable = new ColorUIResource(59, 62, 69);
 
-        this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
-        this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
-
         this.backgroundTextField = new ColorUIResource(81, 86, 101);
         this.inactiveForegroundTextField = MaterialColors.WHITE;
         this.inactiveBackgroundTextField = new ColorUIResource(81, 86, 101);

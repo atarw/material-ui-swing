@@ -103,9 +103,6 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
         this.gridColorTable = MaterialColors.GRAY_200;
         this.alternateRowBackgroundTable = MaterialColors.GRAY_300;
 
-        this.dockingBackgroundToolBar = MaterialColors.LIGHT_GREEN_A100;
-        this.floatingBackgroundToolBar = MaterialColors.GRAY_200;
-
         this.backgroundTextField = MaterialColors.GRAY_200;
         this.inactiveForegroundTextField = MaterialColors.GRAY_800;
         this.inactiveBackgroundTextField = MaterialColors.GRAY_200;

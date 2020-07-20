@@ -509,13 +509,14 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
 
         table.put("ToolBar.font", theme.getFontRegular());
         table.put("ToolBar.background", theme.getBackgroundPrimary());
-        table.put("ToolBar.dockingForeground", theme.getBackgroundPrimary());
         table.put("ToolBar.foreground", theme.getTextColor());
         table.put("ToolBar.border", theme.getBorderToolBar());
         table.put("ToolBar.rolloverBorder", new BorderUIResource(BorderFactory.createEmptyBorder(5,5,5,5)));
-        table.put("ToolBar.dockingBackground", theme.getDockingBackgroundToolBar());
-        table.put("ToolBar.floatingBackground", theme.getFloatingBackgroundToolBar());
-        table.put("ToolBar[button].mouseHover", theme.getMouseHoverButtonEnable());
+        table.put("ToolBar.dockingBackground", theme.getBackgroundPrimary());
+        table.put("ToolBar.floatingBackground", theme.getBackgroundPrimary());
+        table.put("ToolBar.dockingForeground", theme.getTextColor());
+        table.put("ToolBar.floatingForeground", theme.getTextColor());
+        table.put("ToolBar[button].mouseHover", false);
 
         table.put("Tree.font", theme.getFontRegular());
         table.put("Tree.selectionForeground", theme.getHighlightBackgroundPrimary());

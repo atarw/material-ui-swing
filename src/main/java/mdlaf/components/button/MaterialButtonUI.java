@@ -215,7 +215,7 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
         //if the mouse hover is enabled I can set the mouse hover color when the button is pressed
-        if (mouseHoverEnabled) {
+        if (mouseHoverEnabled && b.getModel().isPressed()) {
             if (b.isEnabled()) {
                 if (this.isDefaultButton()) {
                     g.setColor(colorMouseHoverDefaultButton);

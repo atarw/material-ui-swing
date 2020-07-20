@@ -511,6 +511,9 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.foregroundToolTip = textColor;
 
         this.disabledColorSlider = buttonDisabledBackground;
+
+        this.dockingBackgroundToolBar = this.backgroundPrimary;
+        this.floatingBackgroundToolBar = this.textColor;
     }
 
     protected void installFonts() {

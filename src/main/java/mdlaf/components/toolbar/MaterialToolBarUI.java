@@ -28,6 +28,8 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicToolBarUI;
 import java.awt.*;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -56,6 +58,29 @@ public class MaterialToolBarUI extends BasicToolBarUI {
     }
 
     @Override
+    protected ContainerListener createToolBarContListener() {
+        return new ToolBarContListener() {
+            @Override
+            public void componentAdded( ContainerEvent e ) {
+                super.componentAdded( e );
+
+                Component c = e.getChild();
+                if( c instanceof AbstractButton )
+                    c.setFocusable( false );
+            }
+
+            @Override
+            public void componentRemoved( ContainerEvent e ) {
+                super.componentRemoved( e );
+
+                Component c = e.getChild();
+                if( c instanceof AbstractButton )
+                    c.setFocusable( true );
+            }
+        };
+    }
+
+    @Override
     protected void setBorderToRollover( Component c ) {}
 
     @Override
@@ -78,5 +103,4 @@ public class MaterialToolBarUI extends BasicToolBarUI {
 
     @Override
     protected Border createNonRolloverBorder() { return null; }
-
 }
