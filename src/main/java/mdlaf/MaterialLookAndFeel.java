@@ -66,7 +66,6 @@ import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialTheme;
 import mdlaf.themes.exceptions.MaterialChangeThemeException;
 import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialColors;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.icons.MaterialIconFont;
 
@@ -394,7 +393,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
         table.put("Slider.background", theme.getBackgroundPrimary());
         table.put("Slider.foreground", theme.getHighlightBackgroundPrimary());
         table.put("Slider.trackColor", theme.getTrackColorSlider());
-        table.put("Slider.disable", MaterialColors.COSMO_DARK_GRAY);
+        table.put("Slider.tickColor", theme.getTextColor());
+        table.put("Slider.disable", theme.getDisabledColorSlider());
         table.put("Slider[halo].color", theme.getHaloColorSlider());
         table.put("Slider.border", theme.getBorderSlider());
 

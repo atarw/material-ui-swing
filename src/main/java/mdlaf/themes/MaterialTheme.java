@@ -268,6 +268,8 @@ public interface MaterialTheme {
 
     ColorUIResource getHaloColorSlider();
 
+    ColorUIResource getDisabledColorSlider();
+
     BorderUIResource getBorderSlider();
 
     //---------------------------------------------------
@@ -547,6 +549,8 @@ public interface MaterialTheme {
 
 
     //Setter
+    void setDisabledColorSlider(ColorUIResource disabledColorSlider);
+
     void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton);
 
     void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton);

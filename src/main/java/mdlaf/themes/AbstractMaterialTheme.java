@@ -197,6 +197,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     protected ColorUIResource haloColorSlider;
 
+    protected ColorUIResource disabledColorSlider;
+
     protected BorderUIResource borderSlider;
 
     //---------------------------------------------------
@@ -507,6 +509,8 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         this.buttonDefaultTextColor = textColor;
         this.buttonTextColor = textColor;
         this.foregroundToolTip = textColor;
+
+        this.disabledColorSlider = buttonDisabledBackground;
     }
 
     protected void installFonts() {
@@ -1158,6 +1162,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
         return haloColorSlider;
     }
 
+    public ColorUIResource getDisabledColorSlider() {
+        return disabledColorSlider;
+    }
+
     public BorderUIResource getBorderSlider() {
         return borderSlider;
     }
@@ -1714,6 +1722,10 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     //Setter
+    public void setDisabledColorSlider(ColorUIResource disabledColorSlider) {
+        this.disabledColorSlider = disabledColorSlider;
+    }
+
     public void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton) {
         this.disabledUnselectedIconToggleButton = disabledUnselectedIconToggleButton;
     }
