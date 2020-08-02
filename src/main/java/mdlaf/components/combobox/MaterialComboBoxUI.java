@@ -94,7 +94,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
     @Override
     protected ComboPopup createPopup() {
-        return new MaterilaComboBoxPopup(comboBox);
+        return new MaterialComboBoxPopup(comboBox);
     }
 
     @Override
@@ -225,9 +225,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         }
     }
 
-    protected class MaterilaComboBoxPopup extends BasicComboPopup{
+    protected class MaterialComboBoxPopup extends BasicComboPopup{
 
-        public MaterilaComboBoxPopup(JComboBox<Object> combo) {
+        public MaterialComboBoxPopup(JComboBox<Object> combo) {
             super(combo);
             setBorder(UIManager.getBorder("ComboBox[listItem].border"));
         }
@@ -267,7 +267,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
         protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI {
 
-
             @Override
             public void installUI(JComponent c) {
                 borderEnabled = false;
@@ -280,7 +279,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 if (mouseHoverEnabled) {
                     c.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("ComboBox.mouseHoverColor")));
                 }
-                this.button.setIcon(new ArrowIcon("ComboBox.")); //TODO this code have an bug
+                this.button.setIcon(new ArrowIcon("ComboBox."));
                 c.setBorder(UIManager.getBorder("ComboBox[button].border"));
                 c.setFocusable(false);
             }

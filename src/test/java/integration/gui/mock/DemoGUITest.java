@@ -25,8 +25,11 @@ package integration.gui.mock;
 
 import integration.gui.mock.component.*;
 import integration.gui.mock.uiexample.button.ContainedButtonUI;
+import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 import mdlaf.utils.MaterialColors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,9 +85,10 @@ public class DemoGUITest extends JFrame {
     private JTable table = new JTable();
     private JMenuItem gtk = new JMenuItem("GTK");
     private JMenuItem metal = new JMenuItem("Metal");
-    private JMenuItem material = new JMenuItem("Material");
-    private JMenuItem materialDark = new JMenuItem("Material Oceanic");
-    private JMenuItem jmarsDark = new JMenuItem("Jmars Dark");
+    private JMenuItem material = new JMenuItem(new MaterialLookAndFeel().getName());
+    private JMenuItem materialOceanic = new JMenuItem(new MaterialOceanicTheme().getName());
+    private JMenuItem jmarsDark = new JMenuItem(new JMarsDarkTheme().getName());
+    private JMenuItem darkstackoverflow = new JMenuItem("StackOverflowTheme");
     private JMenuItem styleToggleButton = new JMenuItem("ThemeToggleButton");
 
     //Panel ToggleButton without icon
@@ -124,8 +128,8 @@ public class DemoGUITest extends JFrame {
     private JButton containedTypeButton;
 
 
-    public JMenuItem getMaterialDark() {
-        return materialDark;
+    public JMenuItem getMaterialOceanic() {
+        return materialOceanic;
     }
 
     public void initComponent() {
@@ -348,19 +352,21 @@ public class DemoGUITest extends JFrame {
         menuFile.add(menuItemJFileChooser);
         menuFile.setName("nameFile");
 
-        material.setAction(containerAction.getActionChangeTheme("Material lite"));
+        material.setAction(containerAction.getActionChangeTheme(new MaterialLiteTheme().getName()));
         metal.setAction(containerAction.getActionChangeTheme("Nimbus"));
         gtk.setAction(containerAction.getActionChangeTheme("GTK"));
-        materialDark.setAction(containerAction.getActionChangeTheme("Material Oceanic"));
-        jmarsDark.setAction(containerAction.getActionChangeTheme("JMars Dark"));
+        materialOceanic.setAction(containerAction.getActionChangeTheme(new MaterialOceanicTheme().getName()));
+        jmarsDark.setAction(containerAction.getActionChangeTheme(new JMarsDarkTheme().getName()));
+        darkstackoverflow.setAction(containerAction.getActionChangeTheme(new DarkStackOverflowTheme().getName()));
         styleToggleButton.setAction(containerAction.getActionChangeTheme("ThemeToggleButton"));
 
         themesMenu.add(material);
-        themesMenu.add(metal);
-        themesMenu.add(materialDark);
+        themesMenu.add(materialOceanic);
         themesMenu.add(jmarsDark);
-        themesMenu.add(gtk);
+        themesMenu.add(darkstackoverflow);
         themesMenu.add(styleToggleButton);
+        themesMenu.add(metal);
+        themesMenu.add(gtk);
 
         addSubMenus(arrowMenuOne, 5);
         addSubMenus(arrowMenuTwo, 3);
@@ -578,6 +584,10 @@ public class DemoGUITest extends JFrame {
 
     public JMenuItem getJmarsDark() {
         return jmarsDark;
+    }
+
+    public JMenuItem getDarkStackOverflow() {
+        return darkstackoverflow;
     }
 
     public static DemoGUITest getInstance() {

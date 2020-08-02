@@ -83,9 +83,7 @@ public class MaterialUISwingDemo {
                     //menu1.setFont(new MaterialWrapperFont(MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD).deriveFont(25f)));
                     JMenu menu2 = new JMenu("Option 2 ♥");
                     class ActionTestJFC extends AbstractAction {
-
                         JComponent component;
-
                         public ActionTestJFC(JComponent component) {
                             this.component = component;
                             putValue(Action.NAME, "Test JFileChooser (Animated)");

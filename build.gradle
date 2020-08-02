@@ -14,9 +14,7 @@ repositories {
 }
 
 dependencies {
-
     implementation 'org.swinglabs:swingx:1.6.1'
-
     implementation 'com.github.jiconfont:jiconfont-swing:1.0.1'
 
     //Slf4j configuration
@@ -27,6 +25,7 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
+    testCompile 'io.github.material-ui-swing:DarkStackOverflowTheme:0.0.1-rc2'
 }
 
 allprojects {
@@ -54,11 +53,9 @@ jar {
 task jarWithDependencies(type: Jar) {
     archiveVersion.set(VERSION as String)
     archiveClassifier.set('with-dependencies')
-
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
-
     with jar
 }
 

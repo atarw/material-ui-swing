@@ -24,6 +24,7 @@
 package integration.gui.mock.component;
 
 import integration.gui.mock.DemoGUITest;
+import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.JMarsDarkTheme;
 import mdlaf.themes.MaterialLiteTheme;
@@ -43,6 +44,7 @@ public class ContainerAction {
     private ActionListener listenerTextField = new ActionListenerTextField();
     private ActionListener listenerPasswordField = new ActionListenerPasswordField();
     private Action actionFileChooser = new ActionOpenFileChooser();
+    //TODO use the action listener to change remove the string paramiter.
     private Action actionChangeTheme;
 
     public Action getActionChangeTheme(String name) {
@@ -154,7 +156,7 @@ public class ContainerAction {
                     DemoGUITest.getInstance().changeThemeWith(new NimbusLookAndFeel());
                 }else if(e.getSource() == DemoGUITest.getInstance().getGtk()){
                     DemoGUITest.getInstance().changeThemeWith(UIManager.getCrossPlatformLookAndFeelClassName());
-                }else if(e.getSource() == DemoGUITest.getInstance().getMaterialDark()){
+                }else if(e.getSource() == DemoGUITest.getInstance().getMaterialOceanic()){
                     if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
                         MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
                     }else{
@@ -171,6 +173,12 @@ public class ContainerAction {
                         MaterialLookAndFeel.changeTheme(new PersonalToggleButtonTheme());
                     }else{
                         DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new PersonalToggleButtonTheme()));
+                    }
+                }else if(e.getSource() == DemoGUITest.getInstance().getDarkStackOverflow()){
+                    if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
+                        MaterialLookAndFeel.changeTheme(new DarkStackOverflowTheme());
+                    }else{
+                        DemoGUITest.getInstance().changeThemeWith(new MaterialLookAndFeel(new DarkStackOverflowTheme()));
                     }
                 }
                 DemoGUITest.getInstance().reloadUI();
