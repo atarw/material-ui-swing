@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.MaterialCheckBoxIcon.html" title="class in mdlaf.components.checkbox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?mdlaf/components/checkbox/MaterialCheckBoxUI.html" target="_top">Frames</a></li>
@@ -72,14 +72,14 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.javax.swing.plaf.metal.MetalRadioButtonUI">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -113,15 +113,10 @@ var activeTableTab = "activeTableTab";
 <li>javax.swing.plaf.basic.BasicRadioButtonUI</li>
 <li>
 <ul class="inheritance">
-<li>javax.swing.plaf.metal.MetalRadioButtonUI</li>
-<li>
-<ul class="inheritance">
-<li>javax.swing.plaf.metal.MetalCheckBoxUI</li>
+<li>javax.swing.plaf.basic.BasicCheckBoxUI</li>
 <li>
 <ul class="inheritance">
 <li>mdlaf.components.checkbox.MaterialCheckBoxUI</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -143,26 +138,73 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">MaterialCheckBoxUI</span>
-extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
+extends javax.swing.plaf.basic.BasicCheckBoxUI</pre>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.MaterialCheckBoxIcon.html" title="class in mdlaf.components.checkbox">MaterialCheckBoxUI.MaterialCheckBoxIcon</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.MouseHoverEvent.html" title="class in mdlaf.components.checkbox">MaterialCheckBoxUI.MouseHoverEvent</a></span></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="fields.inherited.from.class.javax.swing.plaf.metal.MetalRadioButtonUI">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;javax.swing.plaf.metal.MetalRadioButtonUI</h3>
-<code>disabledTextColor, focusColor, selectColor</code></li>
-</ul>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected javax.swing.JCheckBox</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#checkBox">checkBox</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected java.awt.Color</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#disabledForeground">disabledForeground</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected java.awt.Color</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#hoverColor">hoverColor</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#isHover">isHover</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../mdlaf/animation/MaterialMouseHover.html" title="interface in mdlaf.animation">MaterialMouseHover</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#mouseHover">mouseHover</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#mouseHoverEnable">mouseHoverEnable</a></span></code>&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="fields.inherited.from.class.javax.swing.plaf.basic.BasicRadioButtonUI">
 <!--   -->
@@ -213,45 +255,51 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#createUI-javax.swing.JComponent-">createUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#installDefaults-javax.swing.AbstractButton-">installDefaults</a></span>(javax.swing.AbstractButton&nbsp;b)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#installListeners-javax.swing.AbstractButton-">installListeners</a></span>(javax.swing.AbstractButton&nbsp;button)</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#installUI-javax.swing.JComponent-">installUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#paint-java.awt.Graphics-javax.swing.JComponent-">paint</a></span>(java.awt.Graphics&nbsp;g,
      javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#paintFocus-java.awt.Graphics-java.awt.Rectangle-java.awt.Dimension-">paintFocus</a></span>(java.awt.Graphics&nbsp;g,
-          java.awt.Rectangle&nbsp;textRect,
-          java.awt.Dimension&nbsp;size)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#paintText-java.awt.Graphics-javax.swing.JComponent-java.awt.Rectangle-java.lang.String-">paintText</a></span>(java.awt.Graphics&nbsp;g,
+         javax.swing.JComponent&nbsp;c,
+         java.awt.Rectangle&nbsp;textRect,
+         java.lang.String&nbsp;text)</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#uninstallListeners-javax.swing.AbstractButton-">uninstallListeners</a></span>(javax.swing.AbstractButton&nbsp;button)</code>&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.html#uninstallUI-javax.swing.JComponent-">uninstallUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.metal.MetalCheckBoxUI">
+<li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.basic.BasicCheckBoxUI">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;javax.swing.plaf.metal.MetalCheckBoxUI</h3>
-<code>getPropertyPrefix, installDefaults, uninstallDefaults</code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.metal.MetalRadioButtonUI">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;javax.swing.plaf.metal.MetalRadioButtonUI</h3>
-<code>getDisabledTextColor, getFocusColor, getSelectColor</code></li>
+<h3>Methods inherited from class&nbsp;javax.swing.plaf.basic.BasicCheckBoxUI</h3>
+<code>getPropertyPrefix</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.basic.BasicRadioButtonUI">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;javax.swing.plaf.basic.BasicRadioButtonUI</h3>
-<code>getDefaultIcon, getPreferredSize, installListeners, uninstallListeners</code></li>
+<code>getDefaultIcon, getPreferredSize, paintFocus, uninstallDefaults</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.basic.BasicToggleButtonUI">
@@ -265,7 +313,7 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;javax.swing.plaf.basic.BasicButtonUI</h3>
-<code>clearTextShiftOffset, createButtonListener, getBaseline, getBaselineResizeBehavior, getDefaultTextIconGap, getMaximumSize, getMinimumSize, installKeyboardActions, paintButtonPressed, paintFocus, paintIcon, paintText, paintText, setTextShiftOffset, uninstallKeyboardActions</code></li>
+<code>clearTextShiftOffset, createButtonListener, getBaseline, getBaselineResizeBehavior, getDefaultTextIconGap, getMaximumSize, getMinimumSize, installKeyboardActions, paintButtonPressed, paintFocus, paintIcon, paintText, setTextShiftOffset, uninstallKeyboardActions</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.ComponentUI">
@@ -289,6 +337,68 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="checkBox">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>checkBox</h4>
+<pre>protected&nbsp;javax.swing.JCheckBox checkBox</pre>
+</li>
+</ul>
+<a name="disabledForeground">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>disabledForeground</h4>
+<pre>protected&nbsp;java.awt.Color disabledForeground</pre>
+</li>
+</ul>
+<a name="isHover">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isHover</h4>
+<pre>protected&nbsp;boolean isHover</pre>
+</li>
+</ul>
+<a name="mouseHoverEnable">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mouseHoverEnable</h4>
+<pre>protected&nbsp;boolean mouseHoverEnable</pre>
+</li>
+</ul>
+<a name="hoverColor">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hoverColor</h4>
+<pre>protected&nbsp;java.awt.Color hoverColor</pre>
+</li>
+</ul>
+<a name="mouseHover">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>mouseHover</h4>
+<pre>protected&nbsp;<a href="../../../mdlaf/animation/MaterialMouseHover.html" title="interface in mdlaf.animation">MaterialMouseHover</a> mouseHover</pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -334,16 +444,16 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 </dl>
 </li>
 </ul>
-<a name="uninstallUI-javax.swing.JComponent-">
+<a name="installDefaults-javax.swing.AbstractButton-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>uninstallUI</h4>
-<pre>public&nbsp;void&nbsp;uninstallUI(javax.swing.JComponent&nbsp;c)</pre>
+<h4>installDefaults</h4>
+<pre>protected&nbsp;void&nbsp;installDefaults(javax.swing.AbstractButton&nbsp;b)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>uninstallUI</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicButtonUI</code></dd>
+<dd><code>installDefaults</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicRadioButtonUI</code></dd>
 </dl>
 </li>
 </ul>
@@ -357,22 +467,62 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
                   javax.swing.JComponent&nbsp;c)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>paint</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.metal.MetalRadioButtonUI</code></dd>
+<dd><code>paint</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicRadioButtonUI</code></dd>
 </dl>
 </li>
 </ul>
-<a name="paintFocus-java.awt.Graphics-java.awt.Rectangle-java.awt.Dimension-">
+<a name="paintText-java.awt.Graphics-javax.swing.JComponent-java.awt.Rectangle-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>paintText</h4>
+<pre>protected&nbsp;void&nbsp;paintText(java.awt.Graphics&nbsp;g,
+                         javax.swing.JComponent&nbsp;c,
+                         java.awt.Rectangle&nbsp;textRect,
+                         java.lang.String&nbsp;text)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>paintText</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicButtonUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="uninstallUI-javax.swing.JComponent-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>uninstallUI</h4>
+<pre>public&nbsp;void&nbsp;uninstallUI(javax.swing.JComponent&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>uninstallUI</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicButtonUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="installListeners-javax.swing.AbstractButton-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>installListeners</h4>
+<pre>protected&nbsp;void&nbsp;installListeners(javax.swing.AbstractButton&nbsp;button)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>installListeners</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicRadioButtonUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="uninstallListeners-javax.swing.AbstractButton-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>paintFocus</h4>
-<pre>protected&nbsp;void&nbsp;paintFocus(java.awt.Graphics&nbsp;g,
-                          java.awt.Rectangle&nbsp;textRect,
-                          java.awt.Dimension&nbsp;size)</pre>
+<h4>uninstallListeners</h4>
+<pre>protected&nbsp;void&nbsp;uninstallListeners(javax.swing.AbstractButton&nbsp;button)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>paintFocus</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.metal.MetalRadioButtonUI</code></dd>
+<dd><code>uninstallListeners</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicRadioButtonUI</code></dd>
 </dl>
 </li>
 </ul>
@@ -404,7 +554,7 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../mdlaf/components/checkbox/MaterialCheckBoxUI.MaterialCheckBoxIcon.html" title="class in mdlaf.components.checkbox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?mdlaf/components/checkbox/MaterialCheckBoxUI.html" target="_top">Frames</a></li>
@@ -428,14 +578,14 @@ extends javax.swing.plaf.metal.MetalCheckBoxUI</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.javax.swing.plaf.metal.MetalRadioButtonUI">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

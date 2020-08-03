@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -162,30 +162,34 @@ implements <a href="../../../mdlaf/animation/MaterialMouseHover.html" title="int
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseClicked-java.awt.event.MouseEvent-">mouseClicked</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#isRunning--">isRunning</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseDragged-java.awt.event.MouseEvent-">mouseDragged</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseClicked-java.awt.event.MouseEvent-">mouseClicked</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseEntered-java.awt.event.MouseEvent-">mouseEntered</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseDragged-java.awt.event.MouseEvent-">mouseDragged</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseExited-java.awt.event.MouseEvent-">mouseExited</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseEntered-java.awt.event.MouseEvent-">mouseEntered</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseMoved-java.awt.event.MouseEvent-">mouseMoved</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseExited-java.awt.event.MouseEvent-">mouseExited</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mousePressed-java.awt.event.MouseEvent-">mousePressed</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseMoved-java.awt.event.MouseEvent-">mouseMoved</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mousePressed-java.awt.event.MouseEvent-">mousePressed</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/tabbedpane/MaterialTabbedPaneUI.MaterialMouseHoverOnTab.html#mouseReleased-java.awt.event.MouseEvent-">mouseReleased</a></span>(java.awt.event.MouseEvent&nbsp;e)</code>&nbsp;</td>
 </tr>
@@ -309,13 +313,26 @@ implements <a href="../../../mdlaf/animation/MaterialMouseHover.html" title="int
 <a name="mouseExited-java.awt.event.MouseEvent-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>mouseExited</h4>
 <pre>public&nbsp;void&nbsp;mouseExited(java.awt.event.MouseEvent&nbsp;e)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>mouseExited</code>&nbsp;in interface&nbsp;<code>java.awt.event.MouseListener</code></dd>
+</dl>
+</li>
+</ul>
+<a name="isRunning--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isRunning</h4>
+<pre>public&nbsp;boolean&nbsp;isRunning()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../mdlaf/animation/MaterialMouseHover.html#isRunning--">isRunning</a></code>&nbsp;in interface&nbsp;<code><a href="../../../mdlaf/animation/MaterialMouseHover.html" title="interface in mdlaf.animation">MaterialMouseHover</a></code></dd>
 </dl>
 </li>
 </ul>

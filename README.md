@@ -19,11 +19,11 @@ A modern, Material Design UI for Java Swing
 
 - [Introduction](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Introduction)
 - [Component Supported](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Component-Supported)
-- [Material Theming]()
-- [Develop a new Theme]()
+- [Material Theming](#TODO)
+- [Develop a new Theme](#TODO)
 - [Screenshots](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Screenshots)
-- [Built with]()
-- [Community]()
+- [Built with](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Built-with)
+- [Community](https://gitter.im/material-ui-swing/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 - [License](https://github.com/vincenzopalazzo/material-ui-swing/tree/development#license)
 
  ## Repository
@@ -33,31 +33,32 @@ A modern, Material Design UI for Java Swing
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.1-rc4</version>
+  <version>1.1.1</version>
 </dependency>
  ```
 
  _Gradle (Groovy)_
 ```groovy
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1-rc4'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1'
 ```
 
  _Gradle (Kotlin)_
 ```kotlin
-implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.1-rc4")
+implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.1")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
 
 _**List of projects with Material-UI-Swing theme**_
 - [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
-- [JMars Beta](https://JMars.mars.asu.edu)
+- [JMars 5](https://JMars.mars.asu.edu): Used by NASA and United Arab Emirates (UAE) for the last Mars missions.
 
 Contact us if you use this look and feel, so we can add your project to the list 🙂
 
 ### _Donors_
 - [lilili87222](https://github.com/lilili87222)
 - Arizona State University
+- [zanderson9](https://github.com/zanderson9)
 
 ## Performance
 <div align="center">

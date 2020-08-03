@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":9,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../mdlaf/components/combobox/MaterialComboBoxRenderer.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.FocusListenerColor.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.ArrowButtonComboBox.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?mdlaf/components/combobox/MaterialComboBoxUI.html" target="_top">Frames</a></li>
@@ -144,7 +144,15 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.ArrowButtonComboBox.html" title="class in mdlaf.components.combobox">MaterialComboBoxUI.ArrowButtonComboBox</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.FocusListenerColor.html" title="class in mdlaf.components.combobox">MaterialComboBoxUI.FocusListenerColor</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.MaterialComboBoxPopup.html" title="class in mdlaf.components.combobox">MaterialComboBoxUI.MaterialComboBoxPopup</a></span></code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -173,11 +181,19 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#arc">arc</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected javax.swing.JButton</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#arrowButton">arrowButton</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Color</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#background">background</a></span></code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected javax.swing.border.Border</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#disabledBorder">disabledBorder</a></span></code>&nbsp;</td>
+</tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.awt.event.FocusListener</code></td>
+<td class="colFirst"><code>protected <a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.FocusListenerColor.html" title="class in mdlaf.components.combobox">MaterialComboBoxUI.FocusListenerColor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#focusListener">focusListener</a></span></code>&nbsp;</td>
 </tr>
 </table>
@@ -186,7 +202,7 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;javax.swing.plaf.basic.BasicComboBoxUI</h3>
-<code>arrowButton, cachedMinimumSize, comboBox, currentValuePane, editor, hasFocus, isMinimumSizeDirty, itemListener, keyListener, listBox, listDataListener, padding, popup, popupKeyListener, popupMouseListener, popupMouseMotionListener, propertyChangeListener, squareButton</code></li>
+<code>cachedMinimumSize, comboBox, currentValuePane, editor, hasFocus, isMinimumSizeDirty, itemListener, keyListener, listBox, listDataListener, padding, popup, popupKeyListener, popupMouseListener, popupMouseMotionListener, propertyChangeListener, squareButton</code></li>
 </ul>
 </li>
 </ul>
@@ -220,48 +236,51 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#configureArrowButton--">configureArrowButton</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#configureLocalArrowButton-javax.swing.JButton-">configureLocalArrowButton</a></span>(javax.swing.JButton&nbsp;arrowButton)</code>&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected javax.swing.JButton</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createArrowButton--">createArrowButton</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected javax.swing.ComboBoxEditor</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createEditor--">createEditor</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected java.awt.event.FocusListener</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createFocusListener--">createFocusListener</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected javax.swing.plaf.basic.ComboPopup</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createPopup--">createPopup</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>protected javax.swing.ListCellRenderer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createRenderer--">createRenderer</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static javax.swing.plaf.ComponentUI</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#createUI-javax.swing.JComponent-">createUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#installDefaults--">installDefaults</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#installListeners--">installListeners</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#installUI-javax.swing.JComponent-">installUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#paint-java.awt.Graphics-javax.swing.JComponent-">paint</a></span>(java.awt.Graphics&nbsp;g,
+     javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.html#paintCurrentValue-java.awt.Graphics-java.awt.Rectangle-boolean-">paintCurrentValue</a></span>(java.awt.Graphics&nbsp;g,
+                 java.awt.Rectangle&nbsp;bounds,
+                 boolean&nbsp;hasFocus)</code>&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -286,7 +305,7 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;javax.swing.plaf.basic.BasicComboBoxUI</h3>
-<code>addEditor, configureEditor, createItemListener, createKeyListener, createLayoutManager, createListDataListener, createPropertyChangeListener, getAccessibleChild, getAccessibleChildrenCount, getBaseline, getBaselineResizeBehavior, getDefaultSize, getDisplaySize, getInsets, getMaximumSize, getMinimumSize, getPreferredSize, getSizeForComponent, installComponents, installKeyboardActions, isFocusTraversable, isNavigationKey, isPopupVisible, paint, paintCurrentValue, paintCurrentValueBackground, rectangleForCurrentValue, removeEditor, selectNextPossibleValue, selectPreviousPossibleValue, setPopupVisible, toggleOpenClose, unconfigureEditor, uninstallComponents, uninstallDefaults, uninstallKeyboardActions</code></li>
+<code>addEditor, configureArrowButton, configureEditor, createItemListener, createKeyListener, createLayoutManager, createListDataListener, createPropertyChangeListener, getAccessibleChild, getAccessibleChildrenCount, getBaseline, getBaselineResizeBehavior, getDefaultSize, getDisplaySize, getInsets, getMaximumSize, getMinimumSize, getPreferredSize, getSizeForComponent, installComponents, installKeyboardActions, isFocusTraversable, isNavigationKey, isPopupVisible, paintCurrentValueBackground, rectangleForCurrentValue, removeEditor, selectNextPossibleValue, selectPreviousPossibleValue, setPopupVisible, toggleOpenClose, unconfigureEditor, uninstallComponents, uninstallDefaults, uninstallKeyboardActions</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.ComponentUI">
@@ -316,6 +335,15 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
+<a name="arrowButton">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>arrowButton</h4>
+<pre>protected&nbsp;javax.swing.JButton arrowButton</pre>
+</li>
+</ul>
 <a name="background">
 <!--   -->
 </a>
@@ -331,16 +359,25 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>focusListener</h4>
-<pre>protected&nbsp;java.awt.event.FocusListener focusListener</pre>
+<pre>protected&nbsp;<a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.FocusListenerColor.html" title="class in mdlaf.components.combobox">MaterialComboBoxUI.FocusListenerColor</a> focusListener</pre>
 </li>
 </ul>
 <a name="arc">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>arc</h4>
 <pre>protected&nbsp;int arc</pre>
+</li>
+</ul>
+<a name="disabledBorder">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>disabledBorder</h4>
+<pre>protected&nbsp;javax.swing.border.Border disabledBorder</pre>
 </li>
 </ul>
 </li>
@@ -416,6 +453,20 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 </dl>
 </li>
 </ul>
+<a name="paint-java.awt.Graphics-javax.swing.JComponent-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>paint</h4>
+<pre>public&nbsp;void&nbsp;paint(java.awt.Graphics&nbsp;g,
+                  javax.swing.JComponent&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>paint</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicComboBoxUI</code></dd>
+</dl>
+</li>
+</ul>
 <a name="createArrowButton--">
 <!--   -->
 </a>
@@ -426,19 +477,6 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>createArrowButton</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicComboBoxUI</code></dd>
-</dl>
-</li>
-</ul>
-<a name="configureArrowButton--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>configureArrowButton</h4>
-<pre>public&nbsp;void&nbsp;configureArrowButton()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>configureArrowButton</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicComboBoxUI</code></dd>
 </dl>
 </li>
 </ul>
@@ -508,6 +546,21 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 </dl>
 </li>
 </ul>
+<a name="paintCurrentValue-java.awt.Graphics-java.awt.Rectangle-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>paintCurrentValue</h4>
+<pre>public&nbsp;void&nbsp;paintCurrentValue(java.awt.Graphics&nbsp;g,
+                              java.awt.Rectangle&nbsp;bounds,
+                              boolean&nbsp;hasFocus)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>paintCurrentValue</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicComboBoxUI</code></dd>
+</dl>
+</li>
+</ul>
 <a name="createRenderer--">
 <!--   -->
 </a>
@@ -537,7 +590,7 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <a name="createFocusListener--">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>createFocusListener</h4>
 <pre>protected&nbsp;java.awt.event.FocusListener&nbsp;createFocusListener()</pre>
@@ -545,15 +598,6 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>createFocusListener</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicComboBoxUI</code></dd>
 </dl>
-</li>
-</ul>
-<a name="configureLocalArrowButton-javax.swing.JButton-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>configureLocalArrowButton</h4>
-<pre>protected&nbsp;void&nbsp;configureLocalArrowButton(javax.swing.JButton&nbsp;arrowButton)</pre>
 </li>
 </ul>
 </li>
@@ -584,7 +628,7 @@ extends javax.swing.plaf.basic.BasicComboBoxUI</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../mdlaf/components/combobox/MaterialComboBoxRenderer.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.FocusListenerColor.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../mdlaf/components/combobox/MaterialComboBoxUI.ArrowButtonComboBox.html" title="class in mdlaf.components.combobox"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?mdlaf/components/combobox/MaterialComboBoxUI.html" target="_top">Frames</a></li>

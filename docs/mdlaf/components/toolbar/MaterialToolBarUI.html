@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -201,14 +201,50 @@ extends javax.swing.plaf.basic.BasicToolBarUI</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>protected javax.swing.border.Border</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#createNonRolloverBorder--">createNonRolloverBorder</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>protected javax.swing.border.Border</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#createRolloverBorder--">createRolloverBorder</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>protected java.awt.event.ContainerListener</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#createToolBarContListener--">createToolBarContListener</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static javax.swing.plaf.ComponentUI</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#createUI-javax.swing.JComponent-">createUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#installNonRolloverBorders-javax.swing.JComponent-">installNonRolloverBorders</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#installNormalBorders-javax.swing.JComponent-">installNormalBorders</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#installRolloverBorders-javax.swing.JComponent-">installRolloverBorders</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#installUI-javax.swing.JComponent-">installUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#setBorderToNonRollover-java.awt.Component-">setBorderToNonRollover</a></span>(java.awt.Component&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#setBorderToNormal-java.awt.Component-">setBorderToNormal</a></span>(java.awt.Component&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#setBorderToRollover-java.awt.Component-">setBorderToRollover</a></span>(java.awt.Component&nbsp;c)</code>&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../mdlaf/components/toolbar/MaterialToolBarUI.html#uninstallUI-javax.swing.JComponent-">uninstallUI</a></span>(javax.swing.JComponent&nbsp;c)</code>&nbsp;</td>
 </tr>
@@ -218,7 +254,7 @@ extends javax.swing.plaf.basic.BasicToolBarUI</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;javax.swing.plaf.basic.BasicToolBarUI</h3>
-<code>canDock, createDockingListener, createDragWindow, createFloatingFrame, createFloatingWindow, createFrameListener, createNonRolloverBorder, createPropertyListener, createRolloverBorder, createToolBarContListener, createToolBarFocusListener, dragTo, floatAt, getDockingColor, getFloatingColor, getNonRolloverBorder, getRolloverBorder, installComponents, installDefaults, installKeyboardActions, installListeners, installNonRolloverBorders, installNormalBorders, installRolloverBorders, isFloating, isRolloverBorders, navigateFocusedComp, paintDragWindow, setBorderToNonRollover, setBorderToNormal, setBorderToRollover, setDockingColor, setFloating, setFloatingColor, setFloatingLocation, setOrientation, setRolloverBorders, uninstallComponents, uninstallDefaults, uninstallKeyboardActions, uninstallListeners</code></li>
+<code>canDock, createDockingListener, createDragWindow, createFloatingFrame, createFloatingWindow, createFrameListener, createPropertyListener, createToolBarFocusListener, dragTo, floatAt, getDockingColor, getFloatingColor, getNonRolloverBorder, getRolloverBorder, installComponents, installDefaults, installKeyboardActions, installListeners, isFloating, isRolloverBorders, navigateFocusedComp, paintDragWindow, setDockingColor, setFloating, setFloatingColor, setFloatingLocation, setOrientation, setRolloverBorders, uninstallComponents, uninstallDefaults, uninstallKeyboardActions, uninstallListeners</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.javax.swing.plaf.ComponentUI">
@@ -290,13 +326,130 @@ extends javax.swing.plaf.basic.BasicToolBarUI</pre>
 <a name="uninstallUI-javax.swing.JComponent-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>uninstallUI</h4>
 <pre>public&nbsp;void&nbsp;uninstallUI(javax.swing.JComponent&nbsp;c)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>uninstallUI</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="createToolBarContListener--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>createToolBarContListener</h4>
+<pre>protected&nbsp;java.awt.event.ContainerListener&nbsp;createToolBarContListener()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>createToolBarContListener</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setBorderToRollover-java.awt.Component-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setBorderToRollover</h4>
+<pre>protected&nbsp;void&nbsp;setBorderToRollover(java.awt.Component&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>setBorderToRollover</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setBorderToNonRollover-java.awt.Component-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setBorderToNonRollover</h4>
+<pre>protected&nbsp;void&nbsp;setBorderToNonRollover(java.awt.Component&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>setBorderToNonRollover</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setBorderToNormal-java.awt.Component-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setBorderToNormal</h4>
+<pre>protected&nbsp;void&nbsp;setBorderToNormal(java.awt.Component&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>setBorderToNormal</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="installRolloverBorders-javax.swing.JComponent-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>installRolloverBorders</h4>
+<pre>protected&nbsp;void&nbsp;installRolloverBorders(javax.swing.JComponent&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>installRolloverBorders</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="installNonRolloverBorders-javax.swing.JComponent-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>installNonRolloverBorders</h4>
+<pre>protected&nbsp;void&nbsp;installNonRolloverBorders(javax.swing.JComponent&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>installNonRolloverBorders</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="installNormalBorders-javax.swing.JComponent-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>installNormalBorders</h4>
+<pre>protected&nbsp;void&nbsp;installNormalBorders(javax.swing.JComponent&nbsp;c)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>installNormalBorders</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="createRolloverBorder--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>createRolloverBorder</h4>
+<pre>protected&nbsp;javax.swing.border.Border&nbsp;createRolloverBorder()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>createRolloverBorder</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
+</dl>
+</li>
+</ul>
+<a name="createNonRolloverBorder--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>createNonRolloverBorder</h4>
+<pre>protected&nbsp;javax.swing.border.Border&nbsp;createNonRolloverBorder()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>createNonRolloverBorder</code>&nbsp;in class&nbsp;<code>javax.swing.plaf.basic.BasicToolBarUI</code></dd>
 </dl>
 </li>
 </ul>
