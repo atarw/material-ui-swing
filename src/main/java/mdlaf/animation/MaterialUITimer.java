@@ -24,37 +24,45 @@
 package mdlaf.animation;
 
 import mdlaf.components.button.MaterialButtonUI;
-
-
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 /**
+ * This class implement a complex mouse hover event with a timer
+ *
+ * This event call component.setBackground() inside the timer
+ * it should be managed the live cycle more complex
+ *
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
-public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
+public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
-    private Color from, to;
+    private Color from;
+    private Color to;
     private boolean forward;
-    private int alpha, steps;
-    private int[] forwardDeltas, backwardDeltas;
+    private int alpha;
+    private int steps;
+    private int[] forwardDeltas;
+    private int[] backwardDeltas;
     private JComponent component;
     private Timer timer;
+    /**
+     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
+     * API.
+     */
+    @Deprecated
     private WrapperInformationsButton wrapperInformationsButton;
 
+    /**
+     *  Dont use the !component.isEnabled() how check in the builder if the component
+     *  born disabled the mouse hover will never install
+     * */
     protected MaterialUITimer(JComponent component, Color to, int steps, int interval) {
-        //the code  !component.isEnabled() is commented because if the button born disabled
-        //the mouse hover will never install
-        if (component == null /*|| !component.isEnabled()*/) {
-            return;
-        }
-        if (component.getCursor().getType() == Cursor.WAIT_CURSOR) {
-            //TODO this is an refactoring
-            return;
-        }
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if (component instanceof JButton) {
             JButton button = (JButton) component;
@@ -68,7 +76,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
                     materialButtonUI.setColorMouseHoverNormalButton(to);
                 }
             }
-            // wrapperInformationsButton = new WrapperInformationsButton(button);
+            //wrapperInformationsButton = new WrapperInformationsButton(button);
         } else {
             this.from = component.getBackground();
         }
@@ -101,7 +109,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         int bValue = from.getBlue() - alpha * forwardDeltas[2];
         int aValue = from.getAlpha() - alpha * forwardDeltas[3];
 
-        return new Color(rValue, gValue, bValue, aValue);
+        return new ColorUIResource(new Color(rValue, gValue, bValue, aValue));
     }
 
     private Color previousColor() {
@@ -110,24 +118,26 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         int bValue = to.getBlue() - (steps - alpha) * backwardDeltas[2];
         int aValue = to.getAlpha() - (steps - alpha) * backwardDeltas[3];
 
-        return new Color(rValue, gValue, bValue, aValue);
+        return new ColorUIResource(new Color(rValue, gValue, bValue, aValue));
     }
 
     @Override
     public void mousePressed(MouseEvent me) {
-        if (!me.getComponent().isEnabled()) {
+       if (!me.getComponent().isEnabled()) {
             return;
         }
         alpha = steps - 1;
         forward = false;
-        if (timer.isRunning()) {
-            timer.stop();
-        }
-        timer.start();
-
+        this.stopTimer();
+        //timer.start(); //TODO TEST IT
         alpha = 0;
         forward = true;
-        timer.start();
+        //timer.start();
+        //TODO test this in the future but this is the
+        //solution when the button return the status pressed because the
+        //!!!! This solution fix the bug that when open a modal dialog the button stayed paint pressed !!!!
+        // !!!! TEST !!!!
+        this.component.setBackground(this.from);
     }
 
     @Override
@@ -141,6 +151,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         alpha = steps - 1;
         forward = false;
         timer.start();
+        //this.component.setBackground(this.from);
     }
 
     @Override
@@ -150,24 +161,26 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }
         alpha = 0;
         forward = true;
-        if (timer.isRunning()) {
-            timer.stop();
-        }
+        this.stopTimer();
         timer.start();
     }
 
+    /**
+     * This method is mouse hover event core, which contains all logic
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
-            if (timer.isRunning()) {
+            //if (timer.isRunning()) {
                 /*if ((component instanceof JButton) &&
                         wrapperInformationsButton != null) {
                     System.out.println("component button set color");
                     JButton buttonComponent = (JButton) component;
                     wrapperInformationsButton.setOriginValues(buttonComponent);
                 }*/
-                timer.stop();
-            }
+              //  timer.stop();
+            //}
+            timer.stop();
             return;
         }
         if (forward) {
@@ -178,16 +191,12 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
             --alpha;
         }
         if (alpha == steps + 1 || alpha == -1) {
-            if (timer.isRunning()) {
-                timer.stop();
+            this.stopTimer();
+            if(alpha == -1){
+                this.component.setBackground(this.from);
             }
         }
-        //For some color the algorithm not work well, so
-        //when the alpha is -1 the mouse is exist from button
-        if (alpha == -1) {
-            //Mouse exit
-            this.component.setBackground(this.from);
-        }
+
     }
 
     @Override
@@ -198,26 +207,13 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseMoved(MouseEvent e) {
         //do nothing this is util only implements interface MouseMotions
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-            /*    if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }*/
-                timer.stop();
-            }
-        }
+        this.stopTimer();
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         //do nothing
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-                timer.stop();
-            }
-        }
+        this.stopTimer();
 /*
         if ((component instanceof JButton) &&
                 wrapperInformationsButton != null) {
@@ -229,11 +225,7 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     @Override
     public void mouseClicked(MouseEvent me) {
         //do nothing
-        if (!component.isEnabled()) {
-            if (timer.isRunning()) {
-                timer.stop();
-            }
-        }
+        this.stopTimer();
 /*
         if ((component instanceof JButton) &&
                 wrapperInformationsButton != null) {
@@ -242,6 +234,40 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         }*/
     }
 
+    /**
+     * Include inside the function the logic to disable the timer
+     * with all control on null object.
+     *
+     * !! DONT USE THIS METHOD IN OTHER PLACE WHEN IS CHECKED THE COMPONENT IS DISABLED
+     * !! THIS METHOD IS ONLY TO CHECK IF THE TIMER IS A VALID INSTANCE.
+     * !! Fro example: if you insert this method inside the actionPerformed, you will introduce the bug inside
+     * button when the button have been disabled after click.
+     */
+    protected void stopTimer(){
+        if (component != null && component.isEnabled()) {
+            if (timer != null && timer.isRunning()) {
+            /*    if ((component instanceof JButton) &&
+                        wrapperInformationsButton != null) {
+                    JButton buttonComponent = (JButton) component;
+                    wrapperInformationsButton.setOriginValues(buttonComponent);
+                }*/
+                timer.stop();
+            }
+        }
+    }
+
+    @Override
+    public boolean isRunning() {
+        if(timer != null){
+            return timer.isRunning();
+        }
+        return false;
+    }
+
+    /**
+     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
+     * API.
+     */
     @Deprecated
     private class WrapperInformationsButton {
 

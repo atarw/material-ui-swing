@@ -23,8 +23,6 @@
  */
 package mdlaf.components.textarea;
 
-import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTextAreaUI;
@@ -34,7 +32,6 @@ import java.awt.*;
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialTextAreaUI extends BasicTextAreaUI {
-
 
     @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
     public static ComponentUI createUI(JComponent c) {
@@ -46,31 +43,21 @@ public class MaterialTextAreaUI extends BasicTextAreaUI {
         super.installUI(c);
 
         JTextArea textArea = (JTextArea) c;
-        textArea.setBackground(UIManager.getColor("TextArea.background"));
-        textArea.setForeground(UIManager.getColor("TextArea.foreground"));
         textArea.setSelectedTextColor(UIManager.getColor("TextArea.selectionForeground"));
         textArea.setSelectionColor(UIManager.getColor("TextArea.selectionBackground"));
-        textArea.setFont(UIManager.getFont("TextArea.font"));
-        textArea.setBorder(UIManager.getBorder("TextArea.border"));
-
         textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
+        textArea.setWrapStyleWord(true); 
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-
-        c.setFont (null);
-        c.setBackground (null);
-        c.setForeground (null);
-        c.setBorder (null);
-        c.setCursor(null);
+        c.setCursor(Cursor.getDefaultCursor());
 
         super.uninstallUI(c);
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
-        super.update(MaterialDrawingUtils.getAliasedGraphics(g), c);
+        super.update(g, c);
     }
 }

@@ -1,12 +1,35 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzo1996@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package mdlaf.shadows;
 
 import mdlaf.utils.MaterialColors;
+import mdlaf.utils.MaterialDrawingUtils;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.Objects;
 
@@ -25,7 +48,6 @@ public class RoundedCornerBorder extends AbstractBorder {
 
     public RoundedCornerBorder(Color colorLine) {
         this.colorLine = colorLine;
-        //alphaZero = new Color(0x0, true);
     }
 
     public RoundedCornerBorder(Color colorLine, int arch) {
@@ -41,14 +63,14 @@ public class RoundedCornerBorder extends AbstractBorder {
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g = MaterialDrawingUtils.getAliasedGraphics(g);
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setStroke(new BasicStroke(withBorder));
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int r = arch;
         int w = width - 1;
         int h = height - 1;
 
-        Area round = new Area(new RoundRectangle2D.Float(x, y, w, h, r, r));
+        Area round = new Area(new RoundRectangle2D.Double(x, y, w, h, r, r));
         if (c instanceof JPopupMenu) {
             g2.setPaint(c.getBackground());
             g2.fill(round);
@@ -56,7 +78,7 @@ public class RoundedCornerBorder extends AbstractBorder {
             Container parent = c.getParent();
             if (Objects.nonNull(parent)) {
                 g2.setPaint(parent.getBackground());
-                Area corner = new Area(new Rectangle2D.Float(x, y, width, height));
+                Area corner = new Area(new RoundRectangle2D.Float(x, y, width, height, r, r));
                 corner.subtract(round);
                 g2.fill(corner);
             }

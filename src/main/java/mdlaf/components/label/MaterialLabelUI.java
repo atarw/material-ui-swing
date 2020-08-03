@@ -23,55 +23,49 @@
  */
 package mdlaf.components.label;
 
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.UIManager;
+import mdlaf.utils.MaterialDrawingUtils;
+
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
 /**
+ * The don't set your personal opaque value at the component because
+ * This component is used in a lot other component and you can broke somethings.
+ * Stack Overflow https://stackoverflow.com/a/2452381/10854225
+ *
  * @author https://github.com/vincenzopalazzo
  * @author https://github.com/atarw
  */
 public class MaterialLabelUI extends BasicLabelUI {
 
-	public static ComponentUI createUI(JComponent c) {
-		return new MaterialLabelUI();
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialLabelUI();
+    }
 
-	@Override
-	public void installUI(JComponent c) {
-		super.installUI(c);
+    @Override
+    public void installUI(JComponent c) {
+        super.installUI(c);
 
-		JLabel label = (JLabel) c;
-		//TODO remove set opaque to material-ui-swing because this propriety is an ""BUG""
-		//and this is an good answer implementation on stack overflow https://stackoverflow.com/a/2452381/10854225
-		//label.setOpaque(UIManager.getBoolean("Label.opaque"));
-		label.setFont(UIManager.getFont("Label.font"));
-		label.setBackground(UIManager.getColor("Label.background"));
-		label.setForeground(UIManager.getColor("Label.foreground"));
-		label.setBorder(UIManager.getBorder("Label.border"));
-	}
+    }
 
-	@Override
-	public void uninstallUI(JComponent c) {
+    @Override
+    public void uninstallUI(JComponent c) {
+        super.uninstallUI(c);
+    }
 
-		JLabel label = (JLabel) c;
-		label.setFont(null);
-		label.setBackground(null);
-		label.setForeground(null);
-		label.setBorder(null);
+    @Override
+    protected void paintEnabledText(JLabel l, Graphics g, String s, int textX, int textY) {
 
-		super.uninstallUI(c);
-	}
+        super.paintEnabledText(l, MaterialDrawingUtils.getAliasedGraphics(g), s, textX, textY);
+    }
 
-	@Override
-	protected void paintDisabledText(JLabel l, Graphics g, String s, int textX, int textY) {
-		int mnemIndex = l.getDisplayedMnemonicIndex();
-		g.setColor(UIManager.getColor("Label.disabledForeground"));
-		// SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
-		BasicGraphicsUtils.drawStringUnderlineCharAt(g, s, mnemIndex, textX, textY); //This isn't deprecated
-	}
+    @Override
+    protected void paintDisabledText(JLabel l, Graphics g, String s, int textX, int textY) {
+        int mnemIndex = l.getDisplayedMnemonicIndex();
+        g.setColor(UIManager.getColor("Label.disabledForeground"));
+        BasicGraphicsUtils.drawStringUnderlineCharAt(MaterialDrawingUtils.getAliasedGraphics(g), s, mnemIndex, textX, textY); //This isn't deprecated
+    }
 }

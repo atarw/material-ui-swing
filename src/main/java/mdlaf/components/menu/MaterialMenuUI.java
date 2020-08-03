@@ -23,18 +23,10 @@
  */
 package mdlaf.components.menu;
 
-import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialDrawingUtils;
-import mdlaf.utils.MaterialManagerListener;
-
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.basic.BasicMenuUI;
-import javax.swing.plaf.basic.BasicToolBarUI;
-import javax.swing.plaf.metal.MetalMenuBarUI;
-import javax.swing.plaf.metal.MetalToolBarUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,54 +41,49 @@ public class MaterialMenuUI extends BasicMenuUI {
 		return new MaterialMenuUI ();
 	}
 
-	private MouseListener mouseHover = new MouseHover();
+	protected MouseListener mouseHover;
+	protected JMenu menu;
+
+	public MaterialMenuUI() {
+		mouseHover = new MouseHover();
+	}
 
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
 
-		JMenu menu = (JMenu) c;
-		menu.setFont (UIManager.getFont ("Menu.font"));
-		menu.setBorder (UIManager.getBorder ("Menu.border"));
-		menu.setBackground (UIManager.getColor ("Menu.background"));
-		menu.setForeground (UIManager.getColor ("Menu.foreground"));
-		menu.setOpaque (UIManager.getBoolean ("Menu.opaque"));
+		menu = (JMenu) c;
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO testing
-			menu.addMouseMotionListener(MaterialUIMovement.getMovement(menu, Color.black));
-		}
-
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
-
-		menuItem.setFont (null);
-		menuItem.setBackground (null);
-		menuItem.setForeground (null);
-		menuItem.setBorder (null);
-		menuItem.setCursor(null);
-
-		c.removeMouseListener(mouseHover);
-		MaterialManagerListener.removeAllMaterialMouseListener(menuItem);
+		c.setCursor(Cursor.getDefaultCursor());
 
 		super.uninstallUI(menuItem);
 	}
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+		super.paint (g, c);
 	}
 
 	@Override
 	protected ChangeListener createChangeListener(JComponent c) {
-		if(UIManager.getBoolean("Menu[MouseOver].enable")){ //TODO Testing
+		if(UIManager.getBoolean("Menu[MouseOver].enable")){
 			c.addMouseListener(mouseHover);
 		}
 		return super.createChangeListener(c);
 	}
 
+	@Override
+	protected void uninstallListeners() {
+		super.uninstallListeners();
+		menu.removeMouseListener(mouseHover);
+	}
+
 	/**
+	 * This mouse listener is used to selected the MenuTime when the mouse is hover
 	 * @author https://github.com/vincenzopalazzo
 	 */
 	private class MouseHover implements MouseListener {
@@ -135,7 +122,6 @@ public class MaterialMenuUI extends BasicMenuUI {
 				if(menu.isEnabled()){
 					menu.setSelected(false);
 				}
-
 			}
 		}
 	}

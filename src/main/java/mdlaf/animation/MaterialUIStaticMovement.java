@@ -26,14 +26,17 @@ package mdlaf.animation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * This class recreate a effect mouse hover static,
- * This component not implement a wake effect, and is util in all component for click, an example: The button for JSpinner, JCombobox, JScroolbar
+ * This component not implement a wake effect, and is util in all component for click, an example: The button for JSpinner, JCombobox, JScroolBar
+ *
  * @author https://github.com/vincenzopalazzo
+ *
+ * @deprecated This method will be removed inside the version 1.2, because with the new MaterialButtonApi, you can create
+ * a personal instance of the button, with an personal Listener, {@see MaterialButtonUI}
  */
-class MaterialUIStaticMovement implements MouseListener {
+class MaterialUIStaticMovement implements MaterialMouseHover {
 
     private Color before;
     private Color after;
@@ -47,11 +50,7 @@ class MaterialUIStaticMovement implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        /*For effect click, need create a timer ?*/
-      /* if(e == null){
-            throw new IllegalArgumentException("MouseEvent null");
-        }
-        setColorComponent(e, after);*/
+        setColorComponent(e, after);
     }
 
     @Override
@@ -66,38 +65,41 @@ class MaterialUIStaticMovement implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         /*For effect click, need create a timer ?*/
-        if(e == null){
-            return;
-        }
-        setColorComponent(e, after);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        if(e == null){
-            return;
-        }
-        setColorComponent(e, after);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        if(e == null){
+       if(e == null){
             return;
         }
         setColorComponent(e, before);
     }
 
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setColorComponent(e, after).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        setColorComponent(e, before).setCursor(Cursor.getDefaultCursor());
+    }
+
     /***
      * This is service method for recicle code
      */
-    private void setColorComponent(MouseEvent e, Color colorComponent){
-        if(e == null || colorComponent == null){
-            throw new IllegalArgumentException("The argument is/are null");
-        }
+    private JComponent setColorComponent(MouseEvent e, Color colorComponent){
         JComponent component = (JComponent) e.getSource();
         if(component.isEnabled()){
             component.setBackground(colorComponent);
         }
+        return component;
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) { }
+
+    @Override
+    public void mouseMoved(MouseEvent e) { }
+
+    @Override
+    public boolean isRunning() {
+        return false;
     }
 }

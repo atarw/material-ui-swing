@@ -1,166 +1,53 @@
-# Material-UI-Swing
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)](https://search.maven.org/search?q=g:%22io.github.vincenzopalazzo%22%20AND%20a:%22material-ui-swing%22)
-![GitHub All Releases](https://img.shields.io/github/downloads/atarw/material-ui-swing/total?style=for-the-badge)
+# DemoSwingRatio
 
-<div align="center">
-<img src="https://raw.githubusercontent.com/vincenzopalazzo/material-ui-swing-donations/master/images/iconMaterialOfficial.png" />
-</div>
+This application is a simple app to present material-ui-swing lib. In addition, the app is under developing (too slowly).
 
-A modern, Material Design UI for Java Swing
+You can download the jar at this [link](https://gitlab.com/palazzovincenzo/demoswingratio/-/tree/master/bin)
 
-Skins JComponents to have a Material Design Look and Feel. Most components are responsive, with hover effects, and click effects (no ripple unfortunately). Fonts included.
+## Results
 
-Screenshot in action below (chessboard not included 😛):
+After the first test with the demo Swing, I can conclude that is possible set the personal ratio at runtime with *complex* panels, like Mars use case [JMars](http://jmars.mars.asu.edu/)
 
-## Screenshot
-![Screenshot](http://i.imgur.com/WsprAM6.png?1)
+_Waiting other tests_
 
-Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)
+At the moment the image generate with the demo are:
 
-# Usage
-Go to the releases (or just the `target/classes` folder in the repo) and download the latest version of `material-ui-swing.jar`. The OSGi version is available under `target`. Add it to your project's build path (e.g. for IntelliJ [this](https://www.jetbrains.com/help/idea/import-project-from-existing-sources-libraries-page.html) might help), and you're all set!
+### 4:9
 
-## Example
+![](results/images-generated/bane_gotham_4:9.png)
 
-````java
-import mdlaf.*;
-import mdlaf.animation.*;
-import javax.swing.*;
-import java.awt.*;
+### 1:1
 
-public class MaterialUISwingDemo {
+![](results/images-generated/bane_gotham_1:1.png)
 
-	public static void main (String[] args) {
-		try {
-			UIManager.setLookAndFeel (new MaterialLookAndFeel ());
-		}
-		catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace ();
-		}
+### 16:9
 
-		JFrame frame = new JFrame ("Material Design UI for Swing by atharva washimkar");
-		frame.setMinimumSize (new Dimension (600, 400));
+![](results/images-generated/bane_gotham_16:9.png)
 
-		JButton button = new JButton ("PRESS ME");
-		button.setMaximumSize (new Dimension (200, 200));
+### Profiler
 
-		JPanel content = new JPanel ();
-		content.add (button);
-		frame.add (content, BorderLayout.CENTER);
+You can found also the profiler snapshot YourKit[Download](https://gitlab.com/vincenzopalazzo/demoswingratio/-/raw/master/results/profiler-snapshot/RUN-2020-04-04.snapshot?inline=false)
 
-		// on hover, button will change to a light gray
-		MaterialUIMovement.add (button, MaterialColors.GRAY_100);
+# TODO list
 
-		frame.pack ();
-		frame.setVisible (true);
-	}
-}
-````
+- [X] [Create a method to generate the image from a component](https://stackoverflow.com/questions/1349220/convert-jpanel-to-image)
+- [X] [Create a method to load personal image inside the JPanel (like powerpoint)](https://stackoverflow.com/questions/22162398/how-to-set-a-background-picture-in-jpanel)
 
-Check `src/main/java/MaterialUISwingDemo.java` for a slightly longer example of how to use this library (and an explanation of what everything means/does).
-For a real-world example of usage, see [here](https://github.com/atarw/washer-chess).
+# Sponsor
 
-## Version 1.0.0
-
-This look and feel implements theming to change the color scheme of the Material UI. Currently this isn't completely stable, but if you want to implement a theme for this look and feel, you can extend and implement the abstract class `AbstractMaterialTheme` (look at `mdlaf.themes.MaterialLiteTheme` for an example).
-
-To change the theme, use the below code:
-
-```
- if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel){
-     MaterialLookAndFeel.changeTheme(new MaterialDarkTheme());
- }
-```
-
-A working example is also found [here](https://github.com/vincenzopalazzo/material-ui-swing/tree/masternow/src/test/java/integration/gui/mock).
-
-This theming system was implemented by [@vincenzopalazzo](https://github.com/vincenzopalazzo)
-
-## Stack Overflow
-
-We don't have much time to write detailed documentation, but if you want to get help, post a question on Stack Overflow with the tags `material-ui-swing`, `java`, `material`, `swing`, `look-and-feel`.
-
- ## Repository
-
- _Maven_
-
- ```
-<dependency>
-  <groupId>io.github.vincenzopalazzo</groupId>
-  <artifactId>material-ui-swing</artifactId>
-  <version>1.1.1_pre-release_6.1</version>
-</dependency>
- ```
-
- _Gradle_
-
-```
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1_pre-release_6.1'
-```
-
-Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
-
-## License
-![License](https://img.shields.io/github/license/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
-
-_**List of projects with Material-UI-Swing theme**_
-- [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
-- [JMars Beta](https://JMars.mars.asu.edu)
-
-Contact us if you use this look and feel so we can add your project to the list 🙂
-
-## Community
-[![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-### Sponsors
-Support this project
+If my work was utils to other developers, you can make a little donation at the following link (if you want :))
 
 [![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
+
 ![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fmaterialuiswing)
 
-_Donors_
-- [lilili87222](https://github.com/lilili87222)
-- Arizona State University
+[Github donations](https://github.com/sponsors/vincenzopalazzo?preview=true)
 
-# Screenshot
-## MaterialLiteTheme
-![](https://i.ibb.co/mhjgBKJ/Selection-081.png)
+[Liberapay](https://liberapay.com/vincenzopalazzo)
 
-## MaterialOceanicTheme
-![](https://i.ibb.co/fdHTGf0/Selection-080.png)
+<p align="center" style="font-weight: bold;"> This demo is developed in collaborations with Arizona State University. </p>
 
-## JMarsDarkTheme
-![](https://i.ibb.co/XFxkWKz/Selection-079.png)
+<div align="center">
+<img src="https://sundevilgymnastics.com/wp-content/uploads/2016/10/ASU-Womens-Gymnastics-Website.png" />
+</div>
 
-Other screenshot you can found  [here](https://github.com/vincenzopalazzo/material-ui-swing/releases)
-
-## Java doc
-
-You can consult the javadoc at [this link](https://vincenzopalazzo.github.io/material-ui-swing/)
-
-## Built with
-
-- **[jIconFont-Swing](https://jiconfont.github.io/swing)**: It is a API to provide icons generated by any IconFont. These icons can be used in Swing. 
-
-## Performance
-
-![](https://www.yourkit.com/images/yklogo.png)
-
-From version 1.1.1 the material-ui-swing library will be support to YourKit and now th library will 
-start to increase the performance.
-
-Stay tuned that the future version 1.1.1 official will be more optimize.
-
-The YourKit is used also by Google, Microsoft, PayPal, ecc.
-
-- **YourKit**: it supports open source projects with innovative and intelligent tools
-for monitoring and profiling Java and .NET applications.
-YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
-<a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
-and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
-
-## Dev
-
-This is the official repository of material-ui-swing but the developing of a new feature we do in this
-in this repository [vincenzopalazzo/material-ui-swing](https://github.com/vincenzopalazzo/material-ui-swing) and after testing
-the official release will release in this branch.

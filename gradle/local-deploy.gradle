@@ -1,0 +1,57 @@
+// Inside this file was described all local deploy in the computer for testing
+def fromDir = buildDir.toPath().toAbsolutePath().toString() + '/libs/'
+def cleanNameLib = project.name + '-' + VERSION + ".jar"
+def nameLib = project.name + '-' + VERSION + "-with-dependencies.jar"
+
+task deployOnDiffereProjectJMars {
+    doLast {
+        def DIR_VAR = JMARS_DIR;
+        copy {
+            println ('*********** COPY JAR INTO JMARS ***********')
+            println ('from dir: ' + fromDir)
+            println ("to dir: ${DIR_VAR}")
+            println ("from name: ${ nameLib}")
+            println ("to name: ${VERSION_NAME_LOCAL_DEPLOY}")
+            from fromDir + nameLib
+            into "${DIR_VAR}"
+            rename(nameLib, "${VERSION_NAME_LOCAL_DEPLOY}")
+        }
+    }
+    //copyJarInDirecoty("${JMARS_DIR}")
+}
+
+task deployOnDiffereProjectLocalLib {
+    doLast {
+        def DIR_VAR = GENERIC_LIB;
+        copy {
+            println ('*********** COPY JAR INTO JMARS ***********')
+            println ('from dir: ' + fromDir)
+            println ("to dir: ${DIR_VAR}")
+            println ("from name: ${ nameLib}")
+            println ("to name: ${nameLib}")
+            from fromDir + nameLib
+            into "${DIR_VAR}"
+            rename(nameLib, cleanNameLib)
+        }
+    }
+    //copyJarInDirecoty("${GENERIC_LIB}")
+}
+
+// TODO generalize the previus method
+def copyJarInDirectory(def dir){
+    return tasks.create('copyJarInDirecoty', Copy){
+        doLast {
+            def DIR_VAR = dir
+            copy {
+                println ('*********** COPY JAR INTO LOCAL LIB ***********')
+                println ('from dir: ' + fromDir)
+                println ("to dir: ${DIR_VAR}")
+                println ("from name: ${nameLib}")
+                println ("to name: ${VERSION_NAME_LOCAL_DEPLOY}")
+                from fromDir + nameLib
+                into "${DIR_VAR}"
+                rename(nameLib, "${nameLib}")
+            }
+        }
+    }
+}

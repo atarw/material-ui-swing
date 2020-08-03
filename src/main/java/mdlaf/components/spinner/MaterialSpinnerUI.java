@@ -25,12 +25,10 @@ package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
-import mdlaf.utils.MaterialBorders;
-import mdlaf.utils.MaterialDrawingUtils;
+import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicSpinnerUI;
 import java.awt.*;
 
@@ -46,85 +44,99 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 
     protected JButton upArrowButton;
     protected JButton downArrowButton;
+    protected Color spinnerDisableBackground = MaterialColors.COSMO_DARK_GRAY;
+    protected Color spinnerBackground;
 
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        JSpinner spinner = (JSpinner) c;
-        //spinner.setOpaque(false);
-        spinner.setFont(UIManager.getFont("Spinner.font"));
-        spinner.setBackground(UIManager.getColor("Spinner.background"));
-        spinner.setForeground(UIManager.getColor("Spinner.foreground"));
-        spinner.getEditor().setBorder(UIManager.getBorder("Spinner.border"));
-        //c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.spinnerBackground = UIManager.getColor("Spinner.background");
+        this.spinnerDisableBackground = UIManager.getColor("Spinner.disabledBackground");
     }
 
     @Override
     public void uninstallUI(JComponent c) {
-        //c.setCursor(null);
-        spinner.setFont(null);
-        spinner.setBackground(null);
-        spinner.setForeground(null);
-        spinner.getEditor().setBorder(null);
-
+        c.setCursor(Cursor.getDefaultCursor());
         super.uninstallUI(c);
     }
 
     @Override
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
-
-    }
-
-    @Override
-    public void update(Graphics g, JComponent c) {
-        super.update(MaterialDrawingUtils.getAliasedGraphics(g), c);
-        this.configureLocalButton(this.upArrowButton);
-        this.configureLocalButton(this.downArrowButton);
+        if(!c.isEnabled()){
+            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerDisableBackground);
+        }else{
+            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerBackground);
+        }
     }
 
     @Override
     protected Component createNextButton() {
         Icon icon = UIManager.getIcon("Spinner.nextButtonIcon");
-        JButton button;
-        if (icon != null) {
-            button = new JButton(icon);
-        } else {
-            button = new BasicArrowButton(SwingConstants.NORTH);
-        }
-        this.configureLocalButton(button);
-        installNextButtonListeners(button);
-        //button.setBorder(BorderFactory.createLineBorder(button.getBackground()));
+        JButton button = this.configureLocalButton(icon);
         this.upArrowButton = button;
+        installNextButtonListeners(button);
         return button;
     }
 
     @Override
     protected Component createPreviousButton() {
         Icon icon = UIManager.getIcon("Spinner.previousButtonIcon");
-        JButton button;
-        if (icon != null) {
-            button = new JButton(icon);
-        } else {
-            button = new BasicArrowButton(SwingConstants.SOUTH);
-        }
-        this.configureLocalButton(button);
+        JButton button = this.configureLocalButton(icon);
         installPreviousButtonListeners(button);
-        //button.setBorder(BorderFactory.createLineBorder(button.getBackground()));
         this.downArrowButton = button;
         return button;
     }
 
-    protected void configureLocalButton(JButton arrowButton) {
-        if (arrowButton == null) {
-            return;
-        }
-        arrowButton.setOpaque(true);
-        arrowButton.setBackground(UIManager.getColor("Spinner.arrowButtonBackground"));
-        if (UIManager.getBoolean("Spinner.mouseHoverEnabled")) {
-            arrowButton.addMouseListener(MaterialUIMovement.getMovement(arrowButton, UIManager.getColor("Spinner.mouseHoverColor")));
-        }
-        arrowButton.setBorder(BorderFactory.createLineBorder(arrowButton.getBackground()));
+    protected JButton configureLocalButton(Icon icon) {
+        JButton arrowButton = new ArrowButtonSpinner(icon);
+        return arrowButton;
     }
+
+    /**
+     * This class use the MaterialButtonUI API to create the custom button for the icon
+     */
+    protected class ArrowButtonSpinner extends JButton{
+
+        public ArrowButtonSpinner(Icon icon) {
+            super(icon);
+            setUI(new SpinnerButtonUI());
+        }
+
+        @Override
+        public void updateUI() {
+            setUI(new SpinnerButtonUI());
+        }
+
+        protected class SpinnerButtonUI extends MaterialButtonUI {
+
+            @Override
+            public void installUI(JComponent c) {
+                super.mouseHoverEnabled = null;
+                super.installUI(c);
+                super.mouseHoverEnabled = UIManager.getBoolean("Spinner.mouseHoverEnabled");
+                super.background = UIManager.getColor("Spinner.arrowButtonBackground");
+                super.disabledBackground = spinnerDisableBackground;
+                LookAndFeel.installColors(super.button, "Spinner.arrowButtonBackground", "Button.foreground");
+                super.button.setBorder(BorderFactory.createLineBorder(super.background));
+                if (super.mouseHoverEnabled) {
+                    super.mouseHover = MaterialUIMovement.getMovement(button, UIManager.getColor("Spinner.mouseHoverColor"));
+                    super.button.addMouseListener(super.mouseHover);
+                }
+            }
+
+            @Override
+            protected void paintFocusRing(Graphics g, JButton b) {
+                g.setColor(super.background);
+            }
+
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+
+            }
+        }
+
+    }
+
 }

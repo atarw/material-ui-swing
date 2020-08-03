@@ -16,10 +16,9 @@
 package mdlaf.components.titlepane;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
-import sun.awt.SunToolkit;
-import sun.swing.SwingUtilities2;
-
+import mdlaf.utils.WrapperSwingUtilities;
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -35,11 +34,8 @@ import java.util.List;
 
 /**
  * @author Konstantin Bulenkov
- * In this version for Titelpane the change are effectuate by
+ * this code is copyed by OpenJDK
  * @author https://github.com/users/vincenzopalazzo
- * <p>
- * Thi version of code is on MIT lincenze
- * https://github.com/vincenzopalazzo/material-ui-swing/blob/masternow/LICENSE
  */
 public class MaterialTitlePaneUI extends JComponent {
 
@@ -164,7 +160,7 @@ public class MaterialTitlePaneUI extends JComponent {
             createButtons();
             initMaterialButtonClose();
             myCloseButton.setFocusable(false);
-            myCloseButton.setVisible(true); //TODO this is the component
+            myCloseButton.setVisible(true);
             add(myCloseButton);
         }
     }
@@ -497,7 +493,8 @@ public class MaterialTitlePaneUI extends JComponent {
 
         String theTitle = getTitle();
         if (theTitle != null) {
-            FontMetrics fm = SwingUtilities2.getFontMetrics(rootPane, g);
+            g = MaterialDrawingUtils.getAliasedGraphics(g);
+            FontMetrics fm = g.getFontMetrics(rootPane.getFont());
 
             g.setColor(foreground);
 
@@ -514,14 +511,16 @@ public class MaterialTitlePaneUI extends JComponent {
                     rect.x = window.getWidth() - window.getInsets().right - 2;
                 }
                 titleW = rect.x - xOffset - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
+                theTitle = WrapperSwingUtilities.getInstance().getClippedString(rootPane, fm, theTitle, titleW);
+                //theTitle = BasicGraphicsUtils.getClippedString(rootPane, fm, theTitle, titleW);
             } else {
                 titleW = xOffset - rect.x - rect.width - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
-                xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+                theTitle = WrapperSwingUtilities.getInstance().getClippedString(rootPane, fm, theTitle, titleW);
+                xOffset -= fm.stringWidth(theTitle);
             }
-            int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
-            SwingUtilities2.drawString(rootPane, g, theTitle, xOffset, yOffset);
+           // int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
+            int titleLength = fm.stringWidth(theTitle);
+            g.drawString(theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }
     }
@@ -571,11 +570,10 @@ public class MaterialTitlePaneUI extends JComponent {
 
 
     protected class TitlePaneLayout implements LayoutManager {
-        public void addLayoutComponent(String name, Component c) {
-        }
 
-        public void removeLayoutComponent(Component c) {
-        }
+        public void addLayoutComponent(String name, Component c) { }
+
+        public void removeLayoutComponent(Component c) {}
 
         public Dimension preferredLayoutSize(Container c) {
             int height = computeHeight();
@@ -658,7 +656,6 @@ public class MaterialTitlePaneUI extends JComponent {
         }
     }
 
-
     protected class PropertyChangeHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent pce) {
             String name = pce.getPropertyName();
@@ -700,7 +697,9 @@ public class MaterialTitlePaneUI extends JComponent {
         } else if (icons.size() == 1) {
             mySystemIcon = icons.get(0);
         } else {
-            mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
+        	mySystemIcon = icons.get(0);
+        	// TODO: find cross-platofrm replacement for this?
+            // mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
         }
     }
 

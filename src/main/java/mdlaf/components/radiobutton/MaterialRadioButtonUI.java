@@ -23,14 +23,15 @@
  */
 package mdlaf.components.radiobutton;
 
+import mdlaf.animation.MaterialMouseHover;
 import mdlaf.utils.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JRadioButton;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -43,41 +44,186 @@ public class MaterialRadioButtonUI extends MetalRadioButtonUI {
 		return new MaterialRadioButtonUI ();
 	}
 
+	protected JRadioButton radioButton;
+	protected Boolean mouseHoverEnable;
+	protected Color mouseHoverColor;
+	protected boolean isHover;
+	protected MaterialMouseHover mouseHover;
+
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-		JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setFont (UIManager.getFont ("RadioButton.font"));
-		radioButton.setBackground (UIManager.getColor ("RadioButton.background"));
-		radioButton.setForeground (UIManager.getColor ("RadioButton.foreground"));
-		radioButton.setIcon (UIManager.getIcon ("RadioButton.icon"));
-		radioButton.setSelectedIcon (UIManager.getIcon ("RadioButton.selectedIcon"));
+		this.radioButton = (JRadioButton) c;
 		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.mouseHoverColor = UIManager.getColor("RadioButton.mouseHoverColor");
+		icon = new MaterialRadioButtonIcon(this.getPropertyPrefix());
+	}
+
+	@Override
+	public void installDefaults(AbstractButton b) {
+		super.installDefaults(b);
+		this.mouseHoverEnable = UIManager.getBoolean("RadioButton.mouseHoverEnabled");
+		if (this.mouseHoverEnable){
+			this.mouseHover = new MouseHoverEvent();
+		}
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
-
-		c.setFont (null);
-		c.setBackground (null);
-		c.setForeground (null);
-		c.setBorder (null);
-		c.setCursor(null);
-
-		JRadioButton radioButton = (JRadioButton) c;
-		radioButton.setIcon(null);
-		radioButton.setSelectedIcon(null);
-
+		c.setCursor(Cursor.getDefaultCursor());
 		super.uninstallUI(c);
 	}
 
 	@Override
-	public void paint (Graphics g, JComponent c) {
-		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
+	public synchronized void paint(Graphics g, JComponent c) {
+		super.paint(g, c);
+		/*if(this.mouseHoverEnable && this.isHover){
+			paintFocusEffect(g);
+		}*/
 	}
 
 	@Override
 	protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
 		//do nothing
+		//paintFocusEffect(g);
+	}
+
+	protected void paintFocusEffect(Graphics g){
+		Color color = this.radioButton.isSelected() ? this.mouseHoverColor : this.radioButton.getForeground();
+		MaterialDrawingUtils.drawCircle(g, 0, 0, 14, color);
+	}
+
+	@Override
+	protected void installListeners(AbstractButton button) {
+		super.installListeners(button);
+		if(this.mouseHoverEnable){
+			button.addMouseListener(this.mouseHover);
+		}
+	}
+
+	@Override
+	protected void uninstallListeners(AbstractButton button) {
+		super.uninstallListeners(button);
+		if(this.mouseHoverEnable){
+			button.removeMouseListener(this.mouseHover);
+		}
+	}
+
+	protected class MouseHoverEvent implements MaterialMouseHover {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			isHover = true;
+			radioButton.repaint();
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			isHover = false;
+			radioButton.repaint();
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+
+		}
+
+		@Override
+		public boolean isRunning() {
+			return isHover;
+		}
+	}
+
+	protected class MaterialRadioButtonIcon implements  Icon, UIResource {
+
+		protected Icon unselectedIcon;
+		protected Icon selectedIcon;
+		protected Icon disabledIcon;
+		protected Icon disabledSelectedIcon;
+
+		public MaterialRadioButtonIcon(String componentPrefix) {
+			unselectedIcon = UIManager.getIcon(componentPrefix + "icon");
+			selectedIcon = UIManager.getIcon(componentPrefix + "selectedIcon");
+			disabledIcon = UIManager.getIcon(componentPrefix + "disabledIcon");
+			disabledSelectedIcon = UIManager.getIcon(componentPrefix + "disabledSelectedIcon");
+		}
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+			if(radioButton.isEnabled()){
+				if(radioButton.isSelected()){
+					this.selectedIcon.paintIcon(c, g, x, y);
+				}else{
+					this.unselectedIcon.paintIcon(c, g, x, y);
+				}
+			}else{
+				if(radioButton.isSelected()){
+					this.disabledSelectedIcon.paintIcon(c, g, x, y);
+				}else{
+					this.disabledIcon.paintIcon(c, g, x, y);
+				}
+			}
+		}
+
+		@Override
+		public int getIconWidth() {
+			return selectedIcon.getIconWidth();
+		}
+
+		@Override
+		public int getIconHeight() {
+			return selectedIcon.getIconHeight();
+		}
+	}
+
+	protected class AnimatedIconAdapter implements Icon, UIResource {
+
+		private Icon adapter;
+		private Color color;
+
+		public AnimatedIconAdapter(Icon adapter, Color color) {
+			this.adapter = adapter;
+			this.color = color;
+		}
+
+		@Override
+		public void paintIcon(Component c, Graphics g, int x, int y) {
+			adapter.paintIcon(c, g, x, y);
+			if (mouseHoverEnable && (isHover || c.hasFocus())) {
+				Graphics g2 = g.create();
+				MaterialDrawingUtils.drawCircle(g2, x, y, 12, color);
+				g2.dispose();
+			}
+		}
+
+		@Override
+		public int getIconWidth() {
+			return adapter.getIconWidth();
+		}
+
+		@Override
+		public int getIconHeight() {
+			return adapter.getIconHeight();
+		}
 	}
 }

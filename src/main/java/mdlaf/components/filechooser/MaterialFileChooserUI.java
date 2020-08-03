@@ -23,12 +23,11 @@
  */
 package mdlaf.components.filechooser;
 
-import mdlaf.utils.MaterialDrawingUtils;
-
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalFileChooserUI;
-import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -36,105 +35,130 @@ import java.awt.*;
  */
 public class MaterialFileChooserUI extends MetalFileChooserUI {
 
-	public MaterialFileChooserUI(JFileChooser fileChooser) {
-		super(fileChooser);
-	}
+    /**
+     * @deprecated This propriety is deprecated because the developer found an bun inside mouse hover effect on button
+     * This propriety will be removed inside the version 1.1.1 after the test inside the version rc4.
+     */
+    @Deprecated
+    protected MaterialFileChooserEvents lifeCycleEvent;
+    protected JFileChooser fileChooser;
 
-	public static ComponentUI createUI(JComponent c) {
-		return new MaterialFileChooserUI((JFileChooser) c);
-	}
+    public MaterialFileChooserUI(JFileChooser fileChooser) {
+        super(fileChooser);
+        lifeCycleEvent = new MaterialFileChooserEvents();
+    }
 
-	@Override
-	public void installUI(JComponent c) {
-		super.installUI(c);
-		JFileChooser fileChooser = (JFileChooser) c;
-		//MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
-		//all this before were ui.uninstallIcon
-		this.uninstallIcons(fileChooser);
-		this.uninstallComponents(fileChooser);
-		this.clearIconCache();
-		this.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
-		this.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
-		this.fileIcon = UIManager.getIcon("FileChooser[icons].file");
-		this.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
-		this.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialFileChooserUI((JFileChooser) c);
+    }
 
-		this.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
-		this.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
-		this.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
-		this.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
-		this.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
+    @Override
+    public void installUI(JComponent c) {
+        super.installUI(c);
+        JFileChooser fileChooser = (JFileChooser) c;
+        //MaterialFileChooserUI ui = (MaterialFileChooserUI) fileChooser.getUI ();
+        //all this before were ui.uninstallIcon
+        this.uninstallIcons(fileChooser);
+        this.uninstallComponents(fileChooser);
+        this.clearIconCache();
+        this.computerIcon = UIManager.getIcon("FileChooser[icons].computer");
+        this.directoryIcon = UIManager.getIcon("FileChooser[icons].directory");
+        this.fileIcon = UIManager.getIcon("FileChooser[icons].file");
+        this.floppyDriveIcon = UIManager.getIcon("FileChooser[icons].floppyDrive");
+        this.hardDriveIcon = UIManager.getIcon("FileChooser[icons].hardDrive");
 
-		this.openButtonText = "OPEN";
-		this.cancelButtonText = "CANCEL";
-		this.helpButtonText = "HELP";
-		this.saveButtonText = "SAVE";
-		this.directoryOpenButtonText = "OPEN";
-		this.updateButtonText = "UPDATE";
+        this.homeFolderIcon = UIManager.getIcon("FileChooser[icons].home");
+        this.listViewIcon = UIManager.getIcon("FileChooser[icons].list");
+        this.detailsViewIcon = UIManager.getIcon("FileChooser[icons].details");
+        this.newFolderIcon = UIManager.getIcon("FileChooser[icons].newFolder");
+        this.upFolderIcon = UIManager.getIcon("FileChooser[icons].upFolder");
 
-		this.installComponents(fileChooser);
-	}
+        this.openButtonText = "OPEN";
+        this.cancelButtonText = "CANCEL";
+        this.helpButtonText = "HELP";
+        this.saveButtonText = "SAVE";
+        this.directoryOpenButtonText = "OPEN";
+        this.updateButtonText = "UPDATE";
 
-	@Override
-	public void uninstallComponents(JFileChooser fc) {
-		super.uninstallComponents(fc);
-	}
+        this.installComponents(fileChooser);
+    }
 
-	@Override
-	public void uninstallUI(JComponent c) {
+    @Override
+    public void uninstallComponents(JFileChooser fc) {
+        super.uninstallComponents(fc);
+    }
 
-		JFileChooser fileChooser = (JFileChooser) c;
+    @Override
+    public void uninstallUI(JComponent c) {
 
-		this.uninstallIcons(fileChooser);
-		this.uninstallComponents(fileChooser);
-		this.uninstallListeners(fileChooser);
-		this.uninstallStrings(fileChooser);
-		super.uninstallUI(c);
+        fileChooser = (JFileChooser) c;
 
-		this.computerIcon = null;
-		this.directoryIcon = null;
-		this.fileIcon = null;
-		this.floppyDriveIcon = null;
-		this.hardDriveIcon = null;
+        this.uninstallIcons(fileChooser);
+        this.uninstallComponents(fileChooser);
+        this.uninstallListeners(fileChooser);
+        this.uninstallStrings(fileChooser);
+        super.uninstallUI(c);
 
-		this.homeFolderIcon = null;
-		this.listViewIcon = null;
-		this.detailsViewIcon = null;
-		this.newFolderIcon = null;
-		this.upFolderIcon = null;
+        this.computerIcon = null;
+        this.directoryIcon = null;
+        this.fileIcon = null;
+        this.floppyDriveIcon = null;
+        this.hardDriveIcon = null;
 
-		this.openButtonText = null;
-		this.cancelButtonText = null;
-		this.helpButtonText = null;
-		this.saveButtonText = null;
-		this.directoryOpenButtonText = null;
-		this.updateButtonText = null;
-	}
+        this.homeFolderIcon = null;
+        this.listViewIcon = null;
+        this.detailsViewIcon = null;
+        this.newFolderIcon = null;
+        this.upFolderIcon = null;
 
-	@Override
-	public void paint(Graphics g, JComponent c) {
-		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
-	}
+        this.openButtonText = null;
+        this.cancelButtonText = null;
+        this.helpButtonText = null;
+        this.saveButtonText = null;
+        this.directoryOpenButtonText = null;
+        this.updateButtonText = null;
+    }
 
-	@Override
-	protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
-		return new MetalFileChooserUI.FilterComboBoxRenderer(){
-			@Override
-			public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-				super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+    @Override
+    protected void installListeners(JFileChooser fc) {
+        super.installListeners(fc);
+    }
 
-				setBorder((UIManager.getBorder("ComboBox.borderItems")));
-				if (isSelected) {
-					setForeground(UIManager.getColor("ComboBox[item].selectionForeground"));
-				} else {
-					setForeground(UIManager.getColor("ComboBox.foreground"));
-				}
-				setBackground(isSelected || cellHasFocus ?
-						UIManager.getColor("ComboBox.selectedInDropDownBackground") :
-						UIManager.getColor("ComboBox.background"));
+    /**
+     * Uninstalls the listeners.
+     *
+     * param fc the file chooser
+     */
+    @Override
+    protected void uninstallListeners(JFileChooser fc) {
+        //fc.removePropertyChangeListener(lifeCycleEvent);
+        super.uninstallListeners(fc);
+    }
 
-				return this;
-			}
-		};
-	}
+    //TODO look inside the MaterialTimeUI you will find the following comment.
+    //solution when the button return the status pressed because the
+    //!!!! This solution fix the bug that when open a modal dialog the button stayed paint pressed !!!!
+    // !!!! TEST !!!!
+    /**
+     * @deprecated This class is deprecated because the developer found an bun inside mouse hover effect on button
+     * This class will be removed inside the version 1.1.1 after the test inside the version rc4.
+     */
+    @Deprecated
+    protected class MaterialFileChooserEvents implements PropertyChangeListener {
+
+        protected static final String CLOSE_EVENT = "JFileChooserDialogIsClosingProperty";
+
+        /**
+         * This method gets called when a bound property is changed.
+         *
+         * param evt A PropertyChangeEvent object describing the event source
+         *            and the property that has changed.
+         */
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            if(evt.getPropertyName().equals(CLOSE_EVENT)){
+                getFileChooser().updateUI();
+            }
+        }
+    }
 }

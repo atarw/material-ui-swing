@@ -24,28 +24,36 @@
  */
 package mdlaf.components.rootpane;
 
-import mdlaf.components.titlepane.MaterialTitlePaneUI;
-import javax.swing.*;
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JRootPane;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRootPaneUI;
 import javax.swing.plaf.metal.MetalRootPaneUI;
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.security.AccessController;
-import java.security.PrivilegedActionException;
-import java.security.PrivilegedExceptionAction;
+
+import mdlaf.components.titlepane.MaterialTitlePaneUI;
 
 /**
  * @author Terry Kellerman
- *  The source code is here http://hg.openjdk.java.net/jdk/client/file/3ec2f3f942b4/src/java.desktop/share/classes/javax/swing/plaf/basic/BasicTabbedPaneUI.java
- *  @author https://github.com/vincenzopalazzo
+ * // This code is inside the Open JDK
+ * @author https://github.com/vincenzopalazzo
  */
 public class MaterialRootPaneUI extends BasicRootPaneUI {
-    //TODO refactoring this component
-    protected static final String[] borderKeys = new String[] {
+
+    protected static final String[] borderKeys = new String[]{
             null, "RootPane.frameBorder", "RootPane.plainDialogBorder",
             "RootPane.informationDialogBorder",
             "RootPane.errorDialogBorder", "RootPane.colorChooserDialogBorder",
@@ -53,19 +61,17 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             "RootPane.warningDialogBorder"
     };
 
+    public static ComponentUI createUI(JComponent c) {
+        return new MaterialRootPaneUI();
+    }
+
     protected Cursor myLastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-
-    protected enum CursorState {EXITED, ENTERED, NIL}
-
-    protected static final int CORNER_DRAG_WIDTH = 16;
-
-    protected static final int BORDER_DRAG_THICKNESS = 5;
 
     protected Window window;
 
     protected JComponent titlePane;
 
-    protected MouseInputListener mouseInputListener;
+    protected MaterialHandler materialHandler;
 
     protected LayoutManager layoutManager;
 
@@ -73,13 +79,86 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
     protected JRootPane root;
 
-    public static ComponentUI createUI(JComponent c) {
-        return new MaterialRootPaneUI();
+    private boolean dragging = false;
+
+    private boolean resizing = false;
+
+    /**
+     * With this dimension is set the absolute space dragging
+     * What is the space inside the display/displays to move the component
+     */
+    protected Dimension dimensionDevices;
+
+    /**
+     * With this dimension is defined the dimension of dragging
+     * component
+     */
+    protected Dimension parentBounds;
+
+    public MaterialRootPaneUI() {
+        super();
+        int devideWithd = 0;
+        int deviceHeight = 0;
+        GraphicsDevice graphicDevices[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+        for (GraphicsDevice graphicsDevice : graphicDevices) {
+            devideWithd += graphicsDevice.getDisplayMode().getWidth();
+            deviceHeight += graphicsDevice.getDisplayMode().getHeight();
+        }
+        this.dimensionDevices = new Dimension(devideWithd, deviceHeight);
+        this.parentBounds = this.dimensionDevices;
+    }
+
+    private void cancelResize(Window w) {
+        if (resizing) {
+            if (materialHandler != null) {
+                materialHandler.finishMouseReleased(w);
+            }
+        }
+    }
+
+    protected void setupDragMode(Window f) {
+    }
+
+    public void beginDraggingFrame(Window f) {
+        setupDragMode(f);
+    }
+
+    public void dragFrame(Window w, int newX, int newY) {
+        setBoundsForFrame(w, newX, newY, w.getWidth(), w.getHeight());
+    }
+
+    public void endDraggingFrame(Window f) {
+    }
+
+    public void beginResizingFrame(Window f, int direction) {
+        setupDragMode(f);
+    }
+
+    public void resizeFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
+        setBoundsForFrame(f, newX, newY, newWidth, newHeight);
+    }
+
+    public void endResizingFrame(Window f) {}
+
+    public void setBoundsForFrame(Window f, int newX, int newY, int newWidth, int newHeight) {
+        f.setBounds(newX, newY, newWidth, newHeight);
+        // we must validate the hierarchy to not break the hw/lw mixing
+        f.revalidate();
+    }
+
+    @Override
+    protected void installListeners(JRootPane root) {
+        super.installListeners(root);
+    }
+
+    @Override
+    protected void uninstallListeners(JRootPane root) {
+        super.uninstallListeners(root);
     }
 
     public void installUI(JComponent c) {
         super.installUI(c);
-        root = (JRootPane)c;
+        root = (JRootPane) c;
         root.setBackground(UIManager.getColor("RootPane.background"));
         int style = root.getWindowDecorationStyle();
         if (style != JRootPane.NONE) {
@@ -92,7 +171,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         uninstallClientDecorations(root);
 
         layoutManager = null;
-        mouseInputListener = null;
+        materialHandler = null;
         root = null;
     }
 
@@ -100,26 +179,32 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         LookAndFeel.uninstallBorder(root);
     }
 
+
     protected void installWindowListeners(JRootPane root, Component parent) {
         if (parent instanceof Window) {
-            window = (Window)parent;
-        }
-        else {
+            window = (Window) parent;
+        } else {
             window = SwingUtilities.getWindowAncestor(parent);
         }
         if (window != null) {
-            if (mouseInputListener == null) {
-                mouseInputListener = createWindowMouseInputListener(root);
+            if (materialHandler == null) {
+                materialHandler = createWindowHandler(root);
             }
-            window.addMouseListener(mouseInputListener);
-            window.addMouseMotionListener(mouseInputListener);
+
+            window.addMouseListener(materialHandler);
+            window.addMouseMotionListener(materialHandler);
+
+            window.addWindowFocusListener(materialHandler);
+            window.addWindowListener(materialHandler);
         }
     }
 
     protected void uninstallWindowListeners(JRootPane root) {
         if (window != null) {
-            window.removeMouseListener(mouseInputListener);
-            window.removeMouseMotionListener(mouseInputListener);
+            window.removeMouseListener(materialHandler);
+            window.removeMouseMotionListener(materialHandler);
+            window.removeWindowFocusListener(materialHandler);
+            window.removeWindowListener(materialHandler);
         }
     }
 
@@ -173,13 +258,12 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         return new MaterialTitlePaneUI(root);
     }
 
-    protected MouseInputListener createWindowMouseInputListener(JRootPane root) {
-        return new MaterialRootPaneUI.MouseInputHandler();
+    protected MaterialHandler createWindowHandler(JRootPane root) {
+        return new MaterialRootPaneUI.MaterialHandler();
     }
 
     protected LayoutManager createLayoutManager() {
-        return new MaterialLayaut();
-
+        return new MaterialLayout();
     }
 
     protected void setTitlePane(JRootPane root, JComponent titlePane) {
@@ -209,11 +293,11 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         super.propertyChange(e);
 
         String propertyName = e.getPropertyName();
-        if(propertyName == null) {
+        if (propertyName == null) {
             return;
         }
 
-        if(propertyName.equals("windowDecorationStyle")) {
+        if (propertyName.equals("windowDecorationStyle")) {
             JRootPane root = (JRootPane) e.getSource();
             int style = root.getWindowDecorationStyle();
 
@@ -225,20 +309,19 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             if (style != JRootPane.NONE) {
                 installClientDecorations(root);
             }
-        }
-        else if (propertyName.equals("ancestor")) {
+        } else if (propertyName.equals("ancestor")) {
             uninstallWindowListeners(root);
-            if (((JRootPane)e.getSource()).getWindowDecorationStyle() !=
+            if (((JRootPane) e.getSource()).getWindowDecorationStyle() !=
                     JRootPane.NONE) {
                 installWindowListeners(root, root.getParent());
             }
         }
-        return;
     }
 
-    protected static class MaterialLayaut implements LayoutManager2 {
+    protected static class MaterialLayout implements LayoutManager2 {
 
         public Dimension preferredLayoutSize(Container parent) {
+
             Dimension cpd, mbd, tpd;
             int cpWidth = 0;
             int cpHeight = 0;
@@ -249,7 +332,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             Insets i = parent.getInsets();
             JRootPane root = (JRootPane) parent;
 
-            if(root.getContentPane() != null) {
+            if (root.getContentPane() != null) {
                 cpd = root.getContentPane().getPreferredSize();
             } else {
                 cpd = root.getSize();
@@ -259,7 +342,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 cpHeight = cpd.height;
             }
 
-            if(root.getJMenuBar() != null) {
+            if (root.getJMenuBar() != null) {
                 mbd = root.getJMenuBar().getPreferredSize();
                 if (mbd != null) {
                     mbWidth = mbd.width;
@@ -269,7 +352,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             if (root.getWindowDecorationStyle() != JRootPane.NONE &&
                     (root.getUI() instanceof MaterialRootPaneUI)) {
-                JComponent titlePane = ((MaterialRootPaneUI)root.getUI()).getTitlePane();
+                JComponent titlePane = ((MaterialRootPaneUI) root.getUI()).getTitlePane();
                 if (titlePane != null) {
                     tpd = titlePane.getPreferredSize();
                     if (tpd != null) {
@@ -294,7 +377,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             Insets i = parent.getInsets();
             JRootPane root = (JRootPane) parent;
 
-            if(root.getContentPane() != null) {
+            if (root.getContentPane() != null) {
                 cpd = root.getContentPane().getMinimumSize();
             } else {
                 cpd = root.getSize();
@@ -304,7 +387,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 cpHeight = cpd.height;
             }
 
-            if(root.getJMenuBar() != null) {
+            if (root.getJMenuBar() != null) {
                 mbd = root.getJMenuBar().getMinimumSize();
                 if (mbd != null) {
                     mbWidth = mbd.width;
@@ -313,7 +396,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
             if (root.getWindowDecorationStyle() != JRootPane.NONE &&
                     (root.getUI() instanceof MaterialRootPaneUI)) {
-                JComponent titlePane = ((MaterialRootPaneUI)root.getUI()).getTitlePane();
+                JComponent titlePane = ((MaterialRootPaneUI) root.getUI()).getTitlePane();
                 if (titlePane != null) {
                     tpd = titlePane.getMinimumSize();
                     if (tpd != null) {
@@ -338,7 +421,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             Insets i = target.getInsets();
             JRootPane root = (JRootPane) target;
 
-            if(root.getContentPane() != null) {
+            if (root.getContentPane() != null) {
                 cpd = root.getContentPane().getMaximumSize();
                 if (cpd != null) {
                     cpWidth = cpd.width;
@@ -346,7 +429,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 }
             }
 
-            if(root.getJMenuBar() != null) {
+            if (root.getJMenuBar() != null) {
                 mbd = root.getJMenuBar().getMaximumSize();
                 if (mbd != null) {
                     mbWidth = mbd.width;
@@ -356,10 +439,9 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
             if (root.getWindowDecorationStyle() != JRootPane.NONE &&
                     (root.getUI() instanceof MaterialRootPaneUI)) {
-                JComponent titlePane = ((MaterialRootPaneUI)root.getUI()).
+                JComponent titlePane = ((MaterialRootPaneUI) root.getUI()).
                         getTitlePane();
-                if (titlePane != null)
-                {
+                if (titlePane != null) {
                     tpd = titlePane.getMaximumSize();
                     if (tpd != null) {
                         tpWidth = tpd.width;
@@ -389,15 +471,15 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             int w = b.width - i.right - i.left;
             int h = b.height - i.top - i.bottom;
 
-            if(root.getLayeredPane() != null) {
+            if (root.getLayeredPane() != null) {
                 root.getLayeredPane().setBounds(i.left, i.top, w, h);
             }
-            if(root.getGlassPane() != null) {
+            if (root.getGlassPane() != null) {
                 root.getGlassPane().setBounds(i.left, i.top, w, h);
             }
             if (root.getWindowDecorationStyle() != JRootPane.NONE &&
                     (root.getUI() instanceof MaterialRootPaneUI)) {
-                JComponent titlePane = ((MaterialRootPaneUI)root.getUI()).
+                JComponent titlePane = ((MaterialRootPaneUI) root.getUI()).
                         getTitlePane();
                 if (titlePane != null) {
                     Dimension tpd = titlePane.getPreferredSize();
@@ -408,39 +490,38 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                     }
                 }
             }
-            if(root.getJMenuBar() != null) {
+            if (root.getJMenuBar() != null) {
                 Dimension mbd = root.getJMenuBar().getPreferredSize();
                 root.getJMenuBar().setBounds(0, nextY, w, mbd.height);
                 nextY += mbd.height;
             }
-            if(root.getContentPane() != null) {
+            if (root.getContentPane() != null) {
                 Dimension cpd = root.getContentPane().getPreferredSize();
                 root.getContentPane().setBounds(0, nextY, w,
                         h < nextY ? 0 : h - nextY);
             }
         }
 
-        public void addLayoutComponent(String name, Component comp) {}
-        public void removeLayoutComponent(Component comp) {}
-        public void addLayoutComponent(Component comp, Object constraints) {}
-        public float getLayoutAlignmentX(Container target) { return 0.0f; }
-        public float getLayoutAlignmentY(Container target) { return 0.0f; }
-        public void invalidateLayout(Container target) {}
-    }
+        public void addLayoutComponent(String name, Component comp) {
+        }
 
-    /**
-     * Maps from positions to cursor type. Refer to calculateCorner and
-     * calculatePosition for details of this.
-     */
-    protected static final int[] cursorMapping = new int[]
-            {       Cursor.NW_RESIZE_CURSOR, Cursor.DEFAULT_CURSOR, Cursor.N_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR,
-                    Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, 0, 0, 0, Cursor.DEFAULT_CURSOR,
-                    Cursor.SW_RESIZE_CURSOR, 0, 0, 0, Cursor.SE_RESIZE_CURSOR,
-                    Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
-                    Cursor.DEFAULT_CURSOR, Cursor.DEFAULT_CURSOR
-            };
+        public void removeLayoutComponent(Component comp) {
+        }
+
+        public void addLayoutComponent(Component comp, Object constraints) {
+        }
+
+        public float getLayoutAlignmentX(Container target) {
+            return 0.0f;
+        }
+
+        public float getLayoutAlignmentY(Container target) {
+            return 0.0f;
+        }
+
+        public void invalidateLayout(Container target) {
+        }
+    }
 
     public void setMaximized() {
         Component tla = root.getTopLevelAncestor();
@@ -457,238 +538,522 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 screenBounds.height
                         - ((screenInsets.top + screenInsets.bottom)));
         if (tla instanceof JFrame) {
-            ((JFrame)tla).setMaximizedBounds(maxBounds);
+            ((JFrame) tla).setMaximizedBounds(maxBounds);
         }
     }
 
-    protected class MouseInputHandler implements MouseInputListener {
+    protected class MaterialHandler implements MouseInputListener, WindowListener, WindowFocusListener, SwingConstants {
+        // are the mousePressed location in absolute coordinate system
+        int absoluteX, absoluteY;
+        // are the mousePressed location in source view's coordinate system
+        int viewX, viewY;
+        Rectangle startingBounds;
+        int resizeDir;
+        protected final int RESIZE_NONE = 0;
+        private boolean discardRelease = false;
+        int resizeCornerSize = 5;
 
-        private boolean isMovingWindow;
-        private int dragCursor;
-        private int dragOffsetX;
-        private int dragOffsetY;
-        private int dragWidth;
-        private int dragHeight;
-
-        @SuppressWarnings("unchecked")
-        private final PrivilegedExceptionAction getLocationAction = new PrivilegedExceptionAction() {
-            public Object run() throws HeadlessException {
-                return MouseInfo.getPointerInfo().getLocation();
+        void updateFrameCursor(Window w) {
+            if (resizing) {
+                return;
             }
-        };
+            Cursor s = myLastCursor;
+            if (s == null) {
+                s = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+            }
+            w.setCursor(s);
+        }
+
+        void finishMouseReleased(Window w) {
+            if (discardRelease) {
+                discardRelease = false;
+                return;
+            }
+            if (resizeDir == RESIZE_NONE) {
+                endDraggingFrame(w);
+                dragging = false;
+            } else {
+                endResizingFrame(w);
+                resizing = false;
+                updateFrameCursor(w);
+            }
+            absoluteX = 0;
+            absoluteY = 0;
+            viewX = 0;
+            viewY = 0;
+            startingBounds = null;
+            resizeDir = RESIZE_NONE;
+            // Set discardRelease to true, so that only a mousePressed()
+            // which sets it to false, will allow entry to the above code
+            // for finishing a resize.
+            discardRelease = true;
+        }
 
         public void mousePressed(MouseEvent ev) {
+            viewX = ev.getX();
+            viewY = ev.getY();
+            //fix
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            absoluteX = mouseCurent.x;
+            absoluteY = mouseCurent.y;
+            //_x = p.x;
+            //_y = p.y;
+            resizeDir = RESIZE_NONE;
+            discardRelease = false;
             JRootPane rootPane = getRootPane();
 
             if (rootPane.getWindowDecorationStyle() == JRootPane.NONE) {
                 return;
             }
             Point dragWindowOffset = ev.getPoint();
-            Window w = (Window)ev.getSource();
+            Window w = (Window) ev.getSource();
             if (w != null) {
                 w.toFront();
             }
-            Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
-
-            Frame f = null;
-            Dialog d = null;
-
+            startingBounds = w.getBounds();
+            Insets i = w.getInsets();
+            Point ep = new Point(viewX, viewY);
+            //Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
+            boolean resizable = false;
+            boolean maximized = false;
             if (w instanceof Frame) {
-                f = (Frame)w;
-            }
-            else if (w instanceof Dialog) {
-                d = (Dialog)w;
+                Frame f = (Frame) w;
+                resizable = f.isResizable();
+                maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
+            } else if (w instanceof Dialog) {
+                Dialog d = (Dialog) w;
+                resizable = d.isResizable();
             }
 
-            int frameState = (f != null) ? f.getExtendedState() : 0;
-
-            if ((getTitlePane() != null)
-                    && getTitlePane().contains(
-                    convertedDragWindowOffset)) {
-                if ((((f != null) && ((frameState & Frame.MAXIMIZED_BOTH) == 0)) || (d != null))
-                        && (dragWindowOffset.y >= BORDER_DRAG_THICKNESS)
-                        && (dragWindowOffset.x >= BORDER_DRAG_THICKNESS)
-                        && (dragWindowOffset.x < w.getWidth() - BORDER_DRAG_THICKNESS)) {
-                    isMovingWindow = true;
-                    dragOffsetX = dragWindowOffset.x;
-                    dragOffsetY = dragWindowOffset.y;
+            if (getTitlePane().getBounds().contains(ev.getPoint())) {
+                if (ev.getX() > i.left + resizeCornerSize &&
+                        ev.getX() < w.getWidth() - i.right - resizeCornerSize &&
+                        ev.getY() > i.top + resizeCornerSize) {
+                    beginDraggingFrame(w);
+                    dragging = true;
+                    return;
                 }
             }
-            else if (((f != null) && f.isResizable() && ((frameState & Frame.MAXIMIZED_BOTH) == 0))
-                    || ((d != null) && d.isResizable())) {
-                dragOffsetX = dragWindowOffset.x;
-                dragOffsetY = dragWindowOffset.y;
-                dragWidth = w.getWidth();
-                dragHeight = w.getHeight();
-                dragCursor = getCursor(calculateCorner(w,
-                        dragWindowOffset.x, dragWindowOffset.y));
+            if (!resizable || maximized) {
+                return;
             }
+
+            if (ep.x <= i.left + resizeCornerSize) {
+                if (ep.y < resizeCornerSize + i.top) {
+                    resizeDir = NORTH_WEST;
+                } else if (ep.y > w.getHeight()
+                        - resizeCornerSize - i.bottom) {
+                    resizeDir = SOUTH_WEST;
+                } else {
+                    resizeDir = WEST;
+                }
+            } else if (ep.x >= w.getWidth() - i.right - resizeCornerSize) {
+                if (ep.y < resizeCornerSize + i.top) {
+                    resizeDir = NORTH_EAST;
+                } else if (ep.y > w.getHeight()
+                        - resizeCornerSize - i.bottom) {
+                    resizeDir = SOUTH_EAST;
+                } else {
+                    resizeDir = EAST;
+                }
+            } else if (ep.y <= i.top + resizeCornerSize) {
+                if (ep.x < resizeCornerSize + i.left) {
+                    resizeDir = NORTH_WEST;
+                } else if (ep.x > w.getWidth()
+                        - resizeCornerSize - i.right) {
+                    resizeDir = NORTH_EAST;
+                } else {
+                    resizeDir = NORTH;
+                }
+            } else if (ep.y >= w.getHeight() - i.bottom - resizeCornerSize) {
+                if (ep.x < resizeCornerSize + i.left) {
+                    resizeDir = SOUTH_WEST;
+                } else if (ep.x > w.getWidth()
+                        - resizeCornerSize - i.right) {
+                    resizeDir = SOUTH_EAST;
+                } else {
+                    resizeDir = SOUTH;
+                }
+            } else {
+             /* the mouse press happened inside the frame, not in the
+                border */
+                discardRelease = true;
+                return;
+            }
+            Cursor s = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+            switch (resizeDir) {
+                case SOUTH:
+                    s = Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);
+                    break;
+                case NORTH:
+                    s = Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR);
+                    break;
+                case WEST:
+                    s = Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR);
+                    break;
+                case EAST:
+                    s = Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR);
+                    break;
+                case SOUTH_EAST:
+                    s = Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR);
+                    break;
+                case SOUTH_WEST:
+                    s = Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR);
+                    break;
+                case NORTH_WEST:
+                    s = Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR);
+                    break;
+                case NORTH_EAST:
+                    s = Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR);
+                    break;
+            }
+            beginResizingFrame(w, resizeDir);
+            w.setCursor(s);
+            resizing = true;
+            // return;
         }
 
         public void mouseReleased(MouseEvent ev) {
-            if ((dragCursor != 0)
-                    && (window != null)
-                    && !window.isValid()) {
-                window.validate();
-                getRootPane().repaint();
-            }
-            isMovingWindow = false;
-            dragCursor = 0;
+            Window w = (Window) ev.getSource();
+            finishMouseReleased(w);
         }
 
         public void mouseMoved(MouseEvent ev) {
             JRootPane root = getRootPane();
-
             if (root.getWindowDecorationStyle() == JRootPane.NONE) {
                 return;
             }
 
-            Window w = (Window)ev.getSource();
+            Window w = (Window) ev.getSource();
 
-            Frame f = null;
-            Dialog d = null;
+            boolean undecorated = false;
+            boolean resizable = false;
+            boolean maximized = false;
 
             if (w instanceof Frame) {
-                f = (Frame)w;
-            }
-            else if (w instanceof Dialog) {
-                d = (Dialog)w;
+                Frame f = (Frame) w;
+                undecorated = f.isUndecorated();
+                resizable = f.isResizable();
+                maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
+            } else if (w instanceof Dialog) {
+                Dialog d = (Dialog) w;
+                undecorated = d.isUndecorated();
+                resizable = d.isResizable();
             }
 
-            int cursor = getCursor(calculateCorner(w, ev.getX(), ev.getY()));
-
-            if ((cursor != 0)
-                    && (((f != null) && (f.isResizable() && ((f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0)))
-                    || ((d != null) && d.isResizable()))) {
-                w.setCursor(Cursor.getPredefinedCursor(cursor));
-            }else {
-                w.setCursor(myLastCursor);
-            }
-        }
-
-        private void adjust(Rectangle bounds, Dimension min, int deltaX,
-                            int deltaY, int deltaWidth, int deltaHeight) {
-            bounds.x += deltaX;
-            bounds.y += deltaY;
-            bounds.width += deltaWidth;
-            bounds.height += deltaHeight;
-            if (min != null) {
-                if (bounds.width < min.width) {
-                    int correction = min.width - bounds.width;
-                    if (deltaX != 0) {
-                        bounds.x -= correction;
-                    }
-                    bounds.width = min.width;
+            Insets i = w.getInsets();
+            Point ep = new Point(ev.getX(), ev.getY());
+            //Set correct cursor for resize windows
+            if (resizable && !maximized) {
+                if (ep.x <= i.left + resizeCornerSize) {
+                    if (ep.y < resizeCornerSize + i.top)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+                    else if (ep.y > w.getHeight() - resizeCornerSize - i.bottom)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+                    else
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
+                } else if (ep.x >= w.getWidth() - i.right - resizeCornerSize) {
+                    if (ev.getY() < resizeCornerSize + i.top)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+                    else if (ep.y > w.getHeight() - resizeCornerSize - i.bottom)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
+                    else
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
+                } else if (ep.y <= i.top + resizeCornerSize) {
+                    if (ep.x < resizeCornerSize + i.left)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+                    else if (ep.x > w.getWidth() - resizeCornerSize - i.right)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+                    else
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
+                } else if (ep.y >= w.getHeight() - i.bottom - resizeCornerSize) {
+                    if (ep.x < resizeCornerSize + i.left)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+                    else if (ep.x > w.getWidth() - resizeCornerSize - i.right)
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
+                    else
+                        w.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
+                } else {
+                    updateFrameCursor(w);
                 }
-                if (bounds.height < min.height) {
-                    int correction = min.height - bounds.height;
-                    if (deltaY != 0) {
-                        bounds.y -= correction;
-                    }
-                    bounds.height = min.height;
-                }
+            } else {
+                updateFrameCursor(w);
             }
         }
 
         @SuppressWarnings("unchecked")
-        public void mouseDragged(MouseEvent ev) {
-            Window w = (Window)ev.getSource();
-            Point pt = ev.getPoint();
-
-            if (isMovingWindow) {
-                Point windowPt;
-                try {
-                    windowPt = (Point) AccessController
-                            .doPrivileged(getLocationAction);
-                    windowPt.x = windowPt.x - dragOffsetX;
-                    windowPt.y = windowPt.y - dragOffsetY;
-                    w.setLocation(windowPt);
-                }
-                catch (PrivilegedActionException e) {
-                }
+        public void mouseDragged(MouseEvent e) {
+            if (startingBounds == null) {
+                // (STEVE) Yucky work around for bug ID 4106552
+                return;
             }
-            else if (dragCursor != 0) {
-                Rectangle r = w.getBounds();
-                Rectangle startBounds = new Rectangle(r);
-                Dimension min = w.getMinimumSize();
+            Window window = (Window) e.getSource();
+            //Point p = SwingUtilities.convertPoint(window, window.getX(), window.getY(), null);
 
-                switch (dragCursor) {
-                    case Cursor.E_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0, pt.x
-                                + (dragWidth - dragOffsetX) - r.width, 0);
-                        break;
-                    case Cursor.S_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0, 0, pt.y
-                                + (dragHeight - dragOffsetY) - r.height);
-                        break;
-                    case Cursor.N_RESIZE_CURSOR:
-                        adjust(r, min, 0, pt.y - dragOffsetY, 0,
-                                -(pt.y - dragOffsetY));
-                        break;
-                    case Cursor.W_RESIZE_CURSOR:
-                        adjust(r, min, pt.x - dragOffsetX, 0,
-                                -(pt.x - dragOffsetX), 0);
-                        break;
-                    case Cursor.NE_RESIZE_CURSOR:
-                        adjust(r, min, 0, pt.y - dragOffsetY, pt.x
-                                        + (dragWidth - dragOffsetX) - r.width,
-                                -(pt.y - dragOffsetY));
-                        break;
-                    case Cursor.SE_RESIZE_CURSOR:
-                        adjust(r, min, 0, 0, pt.x
-                                        + (dragWidth - dragOffsetX) - r.width,
-                                pt.y + (dragHeight - dragOffsetY)
-                                        - r.height);
-                        break;
-                    case Cursor.NW_RESIZE_CURSOR:
-                        adjust(r, min, pt.x - dragOffsetX, pt.y
-                                        - dragOffsetY, -(pt.x - dragOffsetX),
-                                -(pt.y - dragOffsetY));
-                        break;
-                    case Cursor.SW_RESIZE_CURSOR:
-                        adjust(r, min, pt.x - dragOffsetX, 0,
-                                -(pt.x - dragOffsetX), pt.y
-                                        + (dragHeight - dragOffsetY)
-                                        - r.height);
-                        break;
-                    default:
-                        break;
+            Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
+            //fix
+            int deltaX = absoluteX - mouseCurent.x;
+            int deltaY = absoluteY - mouseCurent.y;
+            //int deltaX = _x - p.x;
+            //int deltaY = _y - p.y;
+            Dimension min = window.getMinimumSize();
+            Dimension max = window.getMaximumSize();
+            int newX, newY, newW, newH;
+            Insets i = window.getInsets();
+
+
+            boolean undecorated = false;
+            boolean resizable = false;
+            boolean maximized = false;
+
+            if (window instanceof Frame) {
+                Frame f = (Frame) window;
+                undecorated = f.isUndecorated();
+                resizable = f.isResizable();
+                maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
+            } else if (window instanceof Dialog) {
+                Dialog d = (Dialog) window;
+                undecorated = d.isUndecorated();
+                resizable = d.isResizable();
+            }
+
+            // Handle a MOVE
+            // TODO Should be move in a future version the getModifiers and BUTTON1_MASK to BUTTON1_DOWN_MASK and  getModifiersEx()
+            // reference https://docs.oracle.com/javase/9/docs/api/java/awt/event/InputEvent.html
+            if (dragging) {
+                if (maximized || ((e.getModifiers() &
+                        InputEvent.BUTTON1_MASK) !=
+                        InputEvent.BUTTON1_MASK)) {
+                    // don't allow moving of frames if maximixed or left mouse
+                    // button was not used.
+                    return;
                 }
-                if (!r.equals(startBounds)) {
-                    w.setBounds(r);
-                    if (Toolkit.getDefaultToolkit().isDynamicLayoutActive()) {
-                        w.validate();
-                        getRootPane().repaint();
+                int pWidth, pHeight;
+                // Dimension dimensioDevices = Toolkit.getDefaultToolkit().getScreenSize();
+               /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+                int width = gd.getDisplayMode().getWidth();
+                int height = gd.getDisplayMode().getHeight();
+                Dimension dimensioDevices = new Dimension(width, height);*/
+
+                pWidth = dimensionDevices.width;
+                pHeight = dimensionDevices.height;
+
+                newX = startingBounds.x - deltaX;
+                newY = startingBounds.y - deltaY;
+
+                //TODO see this point because with two display not worked well (Resolved -> testing)
+                // Make sure we stay in-bounds
+                if (newX + i.left <= -viewX) {
+                    //What operation do this?
+                    newX = -viewX - i.left + 1;
+                } else if (newY + i.top <= -viewY) {
+                    //What operation do this?
+                    newY = -viewY - i.top + 1;
+                } else if (newX + viewX + i.right >= pWidth) {
+                    //What operation do this?
+                    newX = pWidth - viewX - i.right - 1;
+                } else if (newY + viewY + i.bottom >= pHeight) {
+                    //What operation do this?
+                    newY = pHeight - viewY - i.bottom - 1;
+                }
+                //System.out.printf("(%03d, %03d) -> (%03d, %03d)\n", viewX, viewY, newX, newY);
+                dragFrame(window, newX, newY);
+                return;
+            }
+
+            if (!resizable) {
+                return;
+            }
+
+            newX = window.getX();
+            newY = window.getY();
+            newW = window.getWidth();
+            newH = window.getHeight();
+
+            //This mean when the windows start to resize and not dragged
+            switch (resizeDir) {
+               // case RESIZE_NONE:
+                 //   return; //TODO can be removed (Resolved => Testing)
+                case NORTH:
+                    if (startingBounds.height + deltaY < min.height)
+                        deltaY = -(startingBounds.height - min.height);
+                    else if (startingBounds.height + deltaY > max.height)
+                        deltaY = max.height - startingBounds.height;
+                    if (startingBounds.y - deltaY < 0) {
+                        deltaY = startingBounds.y;
                     }
-                }
+
+                    newX = startingBounds.x;
+                    newY = startingBounds.y - deltaY;
+                    newW = startingBounds.width;
+                    newH = startingBounds.height + deltaY;
+                    break;
+                case NORTH_EAST:
+                    if (startingBounds.height + deltaY < min.height)
+                        deltaY = -(startingBounds.height - min.height);
+                    else if (startingBounds.height + deltaY > max.height)
+                        deltaY = max.height - startingBounds.height;
+                    if (startingBounds.y - deltaY < 0) {
+                        deltaY = startingBounds.y;
+                    }
+
+                    if (startingBounds.width - deltaX < min.width)
+                        deltaX = startingBounds.width - min.width;
+                    else if (startingBounds.width - deltaX > max.width)
+                        deltaX = -(max.width - startingBounds.width);
+                    if (startingBounds.x + startingBounds.width - deltaX >
+                            parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width -
+                                parentBounds.width;
+                    }
+
+                    newX = startingBounds.x;
+                    newY = startingBounds.y - deltaY;
+                    newW = startingBounds.width - deltaX;
+                    newH = startingBounds.height + deltaY;
+                    break;
+                case EAST:
+                    if (startingBounds.width - deltaX < min.width)
+                        deltaX = startingBounds.width - min.width;
+                    else if (startingBounds.width - deltaX > max.width)
+                        deltaX = -(max.width - startingBounds.width);
+                    if (startingBounds.x + startingBounds.width - deltaX >
+                            parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width -
+                                parentBounds.width;
+                    }
+
+                    newW = startingBounds.width - deltaX;
+                    newH = startingBounds.height;
+                    break;
+                case SOUTH_EAST:
+                    if (startingBounds.width - deltaX < min.width)
+                        deltaX = startingBounds.width - min.width;
+                    else if (startingBounds.width - deltaX > max.width)
+                        deltaX = -(max.width - startingBounds.width);
+                    if (startingBounds.x + startingBounds.width - deltaX >
+                            parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width -
+                                parentBounds.width;
+                    }
+
+                    if (startingBounds.height - deltaY < min.height)
+                        deltaY = startingBounds.height - min.height;
+                    else if (startingBounds.height - deltaY > max.height)
+                        deltaY = -(max.height - startingBounds.height);
+                    if (startingBounds.y + startingBounds.height - deltaY >
+                            parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height -
+                                parentBounds.height;
+                    }
+
+                    newW = startingBounds.width - deltaX;
+                    newH = startingBounds.height - deltaY;
+                    break;
+                case SOUTH:
+                    if (startingBounds.height - deltaY < min.height)
+                        deltaY = startingBounds.height - min.height;
+                    else if (startingBounds.height - deltaY > max.height)
+                        deltaY = -(max.height - startingBounds.height);
+                    if (startingBounds.y + startingBounds.height - deltaY >
+                            parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height -
+                                parentBounds.height;
+                    }
+
+                    newW = startingBounds.width;
+                    newH = startingBounds.height - deltaY;
+                    break;
+                case SOUTH_WEST:
+                    if (startingBounds.height - deltaY < min.height)
+                        deltaY = startingBounds.height - min.height;
+                    else if (startingBounds.height - deltaY > max.height)
+                        deltaY = -(max.height - startingBounds.height);
+                    if (startingBounds.y + startingBounds.height - deltaY >
+                            parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height -
+                                parentBounds.height;
+                    }
+
+                    if (startingBounds.width + deltaX < min.width)
+                        deltaX = -(startingBounds.width - min.width);
+                    else if (startingBounds.width + deltaX > max.width)
+                        deltaX = max.width - startingBounds.width;
+                    if (startingBounds.x - deltaX < 0) {
+                        deltaX = startingBounds.x;
+                    }
+
+                    newX = startingBounds.x - deltaX;
+                    newY = startingBounds.y;
+                    newW = startingBounds.width + deltaX;
+                    newH = startingBounds.height - deltaY;
+                    break;
+                case WEST:
+                    if (startingBounds.width + deltaX < min.width)
+                        deltaX = -(startingBounds.width - min.width);
+                    else if (startingBounds.width + deltaX > max.width)
+                        deltaX = max.width - startingBounds.width;
+                    if (startingBounds.x - deltaX < 0) {
+                        deltaX = startingBounds.x;
+                    }
+
+                    newX = startingBounds.x - deltaX;
+                    newY = startingBounds.y;
+                    newW = startingBounds.width + deltaX;
+                    newH = startingBounds.height;
+                    break;
+                case NORTH_WEST:
+                    if (startingBounds.width + deltaX < min.width)
+                        deltaX = -(startingBounds.width - min.width);
+                    else if (startingBounds.width + deltaX > max.width)
+                        deltaX = max.width - startingBounds.width;
+                    if (startingBounds.x - deltaX < 0) {
+                        deltaX = startingBounds.x;
+                    }
+
+                    if (startingBounds.height + deltaY < min.height)
+                        deltaY = -(startingBounds.height - min.height);
+                    else if (startingBounds.height + deltaY > max.height)
+                        deltaY = max.height - startingBounds.height;
+                    if (startingBounds.y - deltaY < 0) {
+                        deltaY = startingBounds.y;
+                    }
+
+                    newX = startingBounds.x - deltaX;
+                    newY = startingBounds.y - deltaY;
+                    newW = startingBounds.width + deltaX;
+                    newH = startingBounds.height + deltaY;
+                    break;
+                default:
+                    return;
             }
+            resizeFrame(window, newX, newY, newW, newH);
         }
 
-        private CursorState cursorState = CursorState.NIL;
-
         public void mouseEntered(MouseEvent ev) {
-            Window w = (Window)ev.getSource();
-            if (cursorState == CursorState.EXITED || cursorState == CursorState.NIL) {
+            Window w = (Window) ev.getSource();
+            updateFrameCursor(w);
+            /*if (cursorState == CursorState.EXITED || cursorState == CursorState.NIL) {
                 myLastCursor = w.getCursor();
             }
             cursorState = CursorState.ENTERED;
-            mouseMoved(ev);
+            mouseMoved(ev);*/
         }
 
         public void mouseExited(MouseEvent ev) {
-            Window w = (Window)ev.getSource();
-            w.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            cursorState = CursorState.EXITED;
+            Window w = (Window) ev.getSource();
+            updateFrameCursor(w);
+            //w.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            //cursorState = CursorState.EXITED;
         }
 
         public void mouseClicked(MouseEvent ev) {
-            Window w = (Window)ev.getSource();
+            Window w = (Window) ev.getSource();
             Frame f;
 
             if (w instanceof Frame) {
-                f = (Frame)w;
-            }
-            else {
+                f = (Frame) w;
+            } else {
                 return;
             }
 
@@ -707,8 +1072,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                         if ((state & Frame.MAXIMIZED_BOTH) != 0) {
                             setMaximized();
                             f.setExtendedState(state & ~Frame.MAXIMIZED_BOTH);
-                        }
-                        else {
+                        } else {
                             setMaximized();
                             f.setExtendedState(state | Frame.MAXIMIZED_BOTH);
                         }
@@ -717,38 +1081,46 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
         }
 
-        private int calculateCorner(Window w, int x, int y) {
-            Insets insets = w.getInsets();
-            int xPosition = calculatePosition(x - insets.left, w.getWidth() - insets.left - insets.right);
-            int yPosition = calculatePosition(y - insets.top, w.getHeight() - insets.top - insets.bottom);
-
-            if ((xPosition == -1) || (yPosition == -1)) {
-                return -1;
-            }
-            return yPosition + xPosition;
+        @Override
+        public void windowOpened(WindowEvent e) {
         }
 
-        private int getCursor(int corner) {
-            if (corner == -1) {
-                return 0;
-            }
-            return cursorMapping[corner];
+        @Override
+        public void windowClosing(WindowEvent e) {
         }
 
-        private int calculatePosition(int spot, int width) {
-            if (spot < BORDER_DRAG_THICKNESS) {
-                return 0;
-            }
-            if (spot < CORNER_DRAG_WIDTH) {
-                return 1;
-            }
-            if (spot >= (width - BORDER_DRAG_THICKNESS)) {
-                return 4;
-            }
-            if (spot >= (width - CORNER_DRAG_WIDTH)) {
-                return 3;
-            }
-            return 2;
+        @Override
+        public void windowClosed(WindowEvent e) {
+            cancelResize(e.getWindow());
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowGainedFocus(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowLostFocus(WindowEvent e) {
+            cancelResize(e.getWindow());
         }
     }
 
@@ -757,8 +1129,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
         if (style == JRootPane.NONE) {
             LookAndFeel.uninstallBorder(root);
-        }
-        else {
+        } else {
             LookAndFeel.installBorder(root, borderKeys[style]);
         }
     }

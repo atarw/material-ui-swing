@@ -1,4 +1,5 @@
-package mdlaf.shadows;/*
+package mdlaf.shadows;
+/*
  * $Id: mdlaf.shadows.DropShadowBorder.java,v 1.10 2005/10/13 17:19:34 rbair Exp $
  *
  * Copyright 2004 Sun Microsystems, Inc., 4150 Network Circle,
@@ -18,9 +19,6 @@ package mdlaf.shadows;/*
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-//package org.jdesktop.swingx.border;
-
 import javax.swing.UIManager;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
@@ -50,8 +48,7 @@ import java.util.Map;
  */
 public class DropShadowBorder extends AbstractBorder implements Border {
 
-	private static final Map<Integer, Map<Position, BufferedImage>> CACHE
-			= new HashMap<Integer, Map<Position, BufferedImage>> ();
+	private static final Map<Integer, Map<Position, BufferedImage>> CACHE =  new HashMap<Integer, Map<Position, BufferedImage>> ();
 	private Color lineColor;
 	private int lineWidth;
 	private int shadowSize;
@@ -88,9 +85,7 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 		this.showRightShadow = showRightShadow;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+
 	public void paintBorder (Component c, Graphics graphics, int x, int y, int width, int height) {
 		/*
 		 * 1) Get images for this border
@@ -293,9 +288,6 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 		return images;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public Insets getBorderInsets (Component c) {
 		int top = 4 + (showTopShadow ? lineWidth + shadowSize : lineWidth);
 		int left = 4 + (showLeftShadow ? lineWidth + shadowSize : lineWidth);
@@ -305,9 +297,6 @@ public class DropShadowBorder extends AbstractBorder implements Border {
 		return new Insets (top, left, bottom, right);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public boolean isBorderOpaque () {
 		return true;
 	}

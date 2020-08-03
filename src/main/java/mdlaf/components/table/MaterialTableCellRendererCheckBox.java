@@ -68,7 +68,7 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
                 this.setBackground(table.getSelectionBackground());
             }
         }
-        //Old version code restored for JMars official version
+       //Old version code restored for JMars official version
         /*
         boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
         Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");

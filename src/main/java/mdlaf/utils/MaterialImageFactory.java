@@ -24,11 +24,13 @@
 package mdlaf.utils;
 
 import jiconfont.IconCode;
-import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
-import sun.swing.ImageIconUIResource;
+import mdlaf.utils.icons.IMaterialIconCode;
+import mdlaf.utils.icons.MaterialIconFont;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.plaf.IconUIResource;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -41,163 +43,142 @@ import java.util.Map;
  */
 public class MaterialImageFactory{
 
-	//TODO start refactoring and import this library IconFontSwing
-	static {
-		IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
-	}
+    static {
+        //IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
+        IconFontSwing.register(MaterialIconFont.getIconFont());
+    }
 
-	public static void registerIcons(IconCode iconCode){
-		if(iconCode == null){
-			String errorMessage = "\n- Icon code null you can found the name icon here: " +
-					"https://jiconfont.github.io/\n" +
-					"An example can be this IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());";
-			throw new IllegalArgumentException(errorMessage);
-		}
-	}
+    public static void registerIcons(IconCode iconCode){
+        if(iconCode == null){
+            String errorMessage = "\n- Icon code null you can found the name icon here: " +
+                    "https://jiconfont.github.io/\n" +
+                    "An example can be this IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());";
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
 
-	private static MaterialImageFactory SINGLETON;
+    private static MaterialImageFactory SINGLETON;
 
-	private static final String PATH_RESOUSES = "/imgs/";
+    private static final String PATH_RESOUSES = "/imgs/";
 
-	//Icon black
-	public static final String RIGHT_ARROW = "right_arrow";
-	public static final String LEFT_ARROW = "left_arrow";
-	public static final String DOWN_ARROW = "down_arrow";
-	public static final String UP_ARROW = "up_arrow";
-	public static final String CHECKED_BLACK_BOX = "painted_checked_box";
-	public static final String UNCHECKED_BLACK_BOX = "unchecked_box";
-	public static final String RADIO_BUTTON_BLACK_ON = "radio_button_on";
-	public static final String RADIO_BUTTON_BLACK_OFF = "radio_button_off";
-	public static final String TOGGLE_BUTTON_BLACK_ON = "toggle_on";
-	public static final String TOGGLE_BUTTON_BLACK_OFF = "toggle_off";
-	public static final String BACK_ARROW_BLACK = "back_arrow";
-	public static final String COMPUTER_BLACK = "computer";
-	public static final String FILE_BLACK = "file";
-	public static final String FLOPPY_DRIVE_BLACK = "floppy_drive";
-	public static final String FOLDER_BLACK = "folder";
-	public static final String HARD_DRIVE_BLACK = "hard_drive";
-	public static final String HOME_BLACK = "home";
-	public static final String LIST_BLACK = "list";
-	public static final String NEW_FOLDER_BLACK = "new_folder";
-	public static final String DETAILS_BLACK = "details";
-	public static final String YES_COLLAPSED = "yes-collapsed";
-	public static final String NO_COLLAPSED = "no-collapsed";
-	public static final String ERROR = "error";
-	public static final String WARNING = "warning";
-	public static final String QUESTION = "question";
-	public static final String INFORMATION = "information";
-	public static final String CLOSE_WINDOWS_BLACK = "close-button";
-	public static final String MAXIMIZE_WINDOWS_BLACK = "maximize";
-	public static final String MINIMIZE_WINDOWS_BLACK = "minimize";
-	public static final String ICONIFY_WINDOWS_BLACK = "restore";
+    // blank image
+    public static final String BLANK = "blank";
 
-	//Icon White
-	public static final String RADIO_BUTTON_WHITE_OFF = "white/radio_unchecked-white";
-	public static final String CHECKED_WHITE_BOX = "white/checked_white";
-	public static final String RADIO_BUTTON_WHITE_ON = "white/radio-checked-white";
-	public static final String UNCHECKED_WHITE_BOX = "white/unchecked_white";
-	public static final String BACK_ARROW_WHITE = "white/back_arrow";
-	public static final String COMPUTER_WHITE = "white/computer";
-	public static final String FILE_WHITE = "white/file";
-	public static final String FLOPPY_DRIVE_WHITE = "white/floppy_drive";
-	public static final String FOLDER_WHITE = "white/folder";
-	public static final String HARD_DRIVE_WHITE = "white/hard_drive";
-	public static final String HOME_WHITE = "white/home";
-	public static final String LIST_WHITE = "white/list";
-	public static final String NEW_FOLDER_WHITE = "white/new_folder";
-	public static final String DETAILS_WHITE = "white/details";
-	public static final String CLOSE_WINDOWS_WHITE = "white/close-button";
-	public static final String MAXIMIZE_WINDOWS_WHITE = "white/maximize";
-	public static final String MINIMIZE_WINDOWS_WHITE = "white/minimize";
-	public static final String ICONIFY_WINDOWS_WHITE = "white/restore";
-	public static final String TOGGLE_BUTTON_ON_WHITE = "white/toggle_on";
-	public static final String TOGGLE_BUTTON_OFF_WHITE = "white/toggle_off";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
+    public static final String RIGHT_ARROW = "right_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
+    public static final String LEFT_ARROW = "left_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
+    public static final String DOWN_ARROW = "down_arrow";
+    /**
+     * @deprecated Use iconfont, look the documentation here
+     * https://github.com/vincenzopalazzo/material-ui-swing/blob/master/docs/CHANGELOG.md#used-iconfontswing-library-for-add-other-icons
+     */
+    @Deprecated
+    public static final String UP_ARROW = "up_arrow";
 
-	private Map<String, ImageIconUIResource> cacheImage = new HashMap<>();
+    public static final String ERROR = "error";
+    public static final String WARNING = "warning";
+    public static final String QUESTION = "question";
+    public static final String INFORMATION = "information";
 
-	public static MaterialImageFactory getInstance() {
-		if (SINGLETON == null) {
-			SINGLETON = new MaterialImageFactory();
-		}
-		return SINGLETON;
-	}
 
-	private MaterialImageFactory() {
-	}
+    private Map<String, IconUIResource> cacheImage = new HashMap<>();
 
-	public ImageIconUIResource getImage(String key) {
-		if (key == null) {
-			throw new IllegalArgumentException("Argument null");
-		}
-		String path = PATH_RESOUSES.trim() + key.trim() + ".png".trim();
-		if (cacheImage.containsKey(path)) {
-			return cacheImage.get(path);
-		}
-		try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(path)) {
-			BufferedImage image = ImageIO.read(inputStream);
-			cacheImage.put(path, new ImageIconUIResource(image));
-			return cacheImage.get(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Image " + path + " wasn't loaded");
-		}
-	}
+    public static MaterialImageFactory getInstance() {
+        if (SINGLETON == null) {
+            SINGLETON = new MaterialImageFactory();
+        }
+        return SINGLETON;
+    }
 
-	/**
-	 * This method utilized this library for make the icons https://jiconfont.github.io/swing
-	 * by default the material-ui-swing utilized the Google font https://jiconfont.github.io/swing
-	 * but you can set other type of font with method
-	 * @param iconCode
-	 * @param dimension: Is the dimension of icons, by default this library used dimension = 20
-	 * @param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
-	 * @return
-	 */
-	public ImageIconUIResource getImage(IconCode iconCode, int dimension, Color color){
-		if(iconCode == null || dimension <= 0){
-			String errorMessage = "Don't know motivation this exceptions";
-			if(iconCode == null){
-				if(errorMessage.contains("Don\'t know motivation this exceptions")){
-					errorMessage = "";
-				}
-				errorMessage += "\n- Icon code null, you can found the name icon color here: " +
-						"https://material.io/resources/icons/?style=baseline\n" +
-						"an valid code can be this: " +
-						"MaterialImageFactory.getInstance().getImage(" +
-						"GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT, Color.BLUE);";
-			}
-			if(dimension <= 0){
-				if(errorMessage.contains("Don\'t know motivation this exceptions")){
-					errorMessage = "";
-				}
-				errorMessage += "\n- Dimension of icon doesn't valid, you should insert the dimension > 0";
-			}
-			errorMessage += "\n\n";
-			throw new IllegalArgumentException(errorMessage);
-		}
-		String key;
-		if(color == null){
-			color = MaterialColors.BLACK;
-		}
-		key = iconCode.name() + dimension + color.toString();
+    private MaterialImageFactory() {
+    }
 
-		if(cacheImage.containsKey(key)){
-			return cacheImage.get(key);
-		}
+    public IconUIResource getImage(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Argument null");
+        }
+        String path = PATH_RESOUSES.trim() + key.trim() + ".png".trim();
+        if (cacheImage.containsKey(path)) {
+            return cacheImage.get(path);
+        }
+        try (InputStream inputStream = MaterialImageFactory.class.getResourceAsStream(path)) {
+            BufferedImage image = ImageIO.read(inputStream);
+            cacheImage.put(path, new IconUIResource(new ImageIcon(image)));
+            return cacheImage.get(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Image " + path + " wasn't loaded");
+        }
+    }
 
-		ImageIconUIResource icon = new ImageIconUIResource(IconFontSwing.buildImage(iconCode, dimension, color));
-		cacheImage.put(key, icon);
-		return icon;
-	}
+    /**
+     * This method utilized this library for make the icons https://jiconfont.github.io/swing
+     * by default the material-ui-swing utilized the Google font https://jiconfont.github.io/swing
+     * but you can set other type of font with method
+     * param iconCode
+     * param dimension: Is the dimension of icons, by default this library used dimension = 20
+     * param color: Is the color of icons, by default this library used color = MaterialColors.BLACK;
+     */
+    public IconUIResource getImage(IMaterialIconCode iconCode, int dimension, Color color){
+        if(iconCode == null || dimension <= 0){
+            String errorMessage = "Don't know motivation this exceptions";
+            if(iconCode == null){
+                if(errorMessage.contains("Don\'t know motivation this exceptions")){
+                    errorMessage = "";
+                }
+                errorMessage += "\n- Icon code null, you can found the name icon color here: " +
+                        "https://material.io/resources/icons/?style=baseline\n" +
+                        "an valid code can be this: " +
+                        "MaterialImageFactory.getInstance().getImage(" +
+                        "GoogleMaterialDesignIcons.KEYBOARD_ARROW_RIGHT, Color.BLUE);";
+            }
+            if(dimension <= 0){
+                if(errorMessage.contains("Don\'t know motivation this exceptions")){
+                    errorMessage = "";
+                }
+                errorMessage += "\n- Dimension of icon doesn't valid, you should insert the dimension > 0";
+            }
+            errorMessage += "\n\n";
+            throw new IllegalArgumentException(errorMessage);
+        }
+        String key;
+        if(color == null){
+            color = MaterialColors.BLACK;
+        }
+        key = iconCode.name() + dimension + color.toString();
 
-	public ImageIconUIResource getImage(IconCode iconCode, int dimension){
-		return getImage(iconCode, dimension, null);
-	}
+        if(cacheImage.containsKey(key)){
+            return cacheImage.get(key);
+        }
 
-	public ImageIconUIResource getImage(IconCode iconCode){
-		return getImage(iconCode, 20, null);
-	}
+        IconUIResource icon = new IconUIResource(new ImageIcon(IconFontSwing.buildImage(iconCode, dimension, color)));
+        cacheImage.put(key, icon);
+        return icon;
+    }
 
-	public ImageIconUIResource getImage(IconCode iconCode, Color color){
-		return getImage(iconCode, 20, color);
-	}
+    public IconUIResource getImage(IMaterialIconCode iconCode, int dimension){
+        return getImage(iconCode, dimension, null);
+    }
+
+    public IconUIResource getImage(IMaterialIconCode iconCode){
+        return getImage(iconCode, 20, null);
+    }
+
+    public IconUIResource getImage(IMaterialIconCode iconCode, Color color){
+        return getImage(iconCode, 20, color);
+    }
 }

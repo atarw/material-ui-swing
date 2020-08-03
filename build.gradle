@@ -1,0 +1,62 @@
+apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply from: 'gradle/local-deploy.gradle'
+apply from: 'gradle/release.gradle'
+
+repositories {
+    jcenter()
+    flatDir {
+        dirs '/home/vincent/Github/DarkStackOverflowTheme/build/libs'
+        dirs '/home/vincent/Github/jiconfont-google_material_design_icons/target'
+    }
+}
+
+dependencies {
+    implementation 'org.swinglabs:swingx:1.6.1'
+    implementation 'com.github.jiconfont:jiconfont-swing:1.0.1'
+
+    //Slf4j configuration
+    testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    testCompile 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'org.slf4j:slf4j-api:1.7.25'
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
+    testCompile 'io.github.material-ui-swing:DarkStackOverflowTheme:0.0.1-rc2'
+}
+
+allprojects {
+  apply plugin: 'java'
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation,unchecked"
+        }
+    }
+    sourceCompatibility = "${JDK_VERSION}"
+    targetCompatibility = "${JDK_VERSION}"
+}
+
+jar {
+    archiveVersion.set(VERSION as String)
+
+	inputs.property("moduleName", MODULE_NAME)
+
+	manifest {
+		attributes 'Automatic-Module-Name': MODULE_NAME
+	}
+}
+
+task jarWithDependencies(type: Jar) {
+    archiveVersion.set(VERSION as String)
+    archiveClassifier.set('with-dependencies')
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+uploadArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
+signArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
