@@ -6,6 +6,8 @@
 <img src="https://raw.githubusercontent.com/vincenzopalazzo/material-ui-swing-donations/master/images/iconMaterialOfficial.png" />
 </div>
 
+> This repository contains anly the official version, and it is not updated often because all develop activity is do on [vincenzopalazzo/material-ui-swing](https://github.com/vincenzopalazzo/material-ui-swing)
+
 ## Description
 ![GitHub issues](https://img.shields.io/github/issues/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
