@@ -45,7 +45,7 @@ public class MaterialTableUI extends BasicTableUI {
 	@Override
 	public void installUI (JComponent c) {
 		super.installUI (c);
-
+		table.setBorder(UIManager.getBorder("Table.border"));
 		table.setOpaque (UIManager.getBoolean("Table.opaque"));
 		table.setSelectionForeground (UIManager.getColor ("Table.selectionForeground"));
 		table.setGridColor (UIManager.getColor ("Table.gridColor"));
