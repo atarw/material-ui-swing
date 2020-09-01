@@ -59,7 +59,15 @@ Contact us if you use this look and feel, so we can add your project to the list
 ### _Donors_
 - [lilili87222](https://github.com/lilili87222)
 - Arizona State University
-- [zanderson9](https://github.com/zanderson9)
+- [zanderson9](https://github.com/zanderson9
+
+## Supporters
+
+<div align="center">
+  <img src="docs/jetbrains-logos/jetbrains-variant-4.png" width="325" height="180"/>
+</div>
+
+[JetBrains' support](https://www.jetbrains.com/?from=material-ui-swing)
 
 ## Performance
 <div align="center">
