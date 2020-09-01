@@ -24,27 +24,15 @@
  */
 package mdlaf.components.rootpane;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
-import java.beans.PropertyChangeEvent;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JRootPane;
-import javax.swing.LookAndFeel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import mdlaf.components.titlepane.MaterialTitlePaneUI;
+
+import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicRootPaneUI;
-import javax.swing.plaf.metal.MetalRootPaneUI;
-
-import mdlaf.components.titlepane.MaterialTitlePaneUI;
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
 
 /**
  * @author Terry Kellerman
@@ -546,7 +534,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         // are the mousePressed location in absolute coordinate system
         int absoluteX, absoluteY;
         // are the mousePressed location in source view's coordinate system
-        int viewX, viewY;
+        int windiwNowX, windowNowY;
         Rectangle startingBounds;
         int resizeDir;
         protected final int RESIZE_NONE = 0;
@@ -579,8 +567,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
             absoluteX = 0;
             absoluteY = 0;
-            viewX = 0;
-            viewY = 0;
+            windiwNowX = 0;
+            windowNowY = 0;
             startingBounds = null;
             resizeDir = RESIZE_NONE;
             // Set discardRelease to true, so that only a mousePressed()
@@ -590,8 +578,8 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
         }
 
         public void mousePressed(MouseEvent ev) {
-            viewX = ev.getX();
-            viewY = ev.getY();
+            windiwNowX = ev.getX();
+            windowNowY = ev.getY();
             //fix
             Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
             absoluteX = mouseCurent.x;
@@ -612,7 +600,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             }
             startingBounds = w.getBounds();
             Insets i = w.getInsets();
-            Point ep = new Point(viewX, viewY);
+            Point ep = new Point(windiwNowX, windowNowY);
             //Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset, getTitlePane());
             boolean resizable = false;
             boolean maximized = false;
@@ -799,21 +787,18 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             Dimension min = window.getMinimumSize();
             Dimension max = window.getMaximumSize();
             int newX, newY, newW, newH;
-            Insets i = window.getInsets();
+            Insets windows = window.getInsets();
 
 
-            boolean undecorated = false;
             boolean resizable = false;
             boolean maximized = false;
 
             if (window instanceof Frame) {
                 Frame f = (Frame) window;
-                undecorated = f.isUndecorated();
                 resizable = f.isResizable();
                 maximized = (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0;
             } else if (window instanceof Dialog) {
                 Dialog d = (Dialog) window;
-                undecorated = d.isUndecorated();
                 resizable = d.isResizable();
             }
 
@@ -841,21 +826,22 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
 
+                /**
                 //TODO see this point because with two display not worked well (Resolved -> testing)
                 // Make sure we stay in-bounds
-                if (newX + i.left <= -viewX) {
+                if (newX + windows.left <= -windiwNowX) {
                     //What operation do this?
-                    newX = -viewX - i.left + 1;
-                } else if (newY + i.top <= -viewY) {
+                    newX = -windiwNowX - windows.left + 1;
+                } else if (newY + windows.top <= -windowNowY) {
                     //What operation do this?
-                    newY = -viewY - i.top + 1;
-                } else if (newX + viewX + i.right >= pWidth) {
+                    newY = -windowNowY - windows.top + 1;
+                } else if (newX + windiwNowX + windows.right >= pWidth) {
                     //What operation do this?
-                    newX = pWidth - viewX - i.right - 1;
-                } else if (newY + viewY + i.bottom >= pHeight) {
+                    newX = pWidth - windiwNowX - windows.right - 1;
+                } else if (newY + windowNowY + windows.bottom >= pHeight) {
                     //What operation do this?
-                    newY = pHeight - viewY - i.bottom - 1;
-                }
+                    newY = pHeight - windowNowY - windows.bottom - 1;
+                } **/
                 //System.out.printf("(%03d, %03d) -> (%03d, %03d)\n", viewX, viewY, newX, newY);
                 dragFrame(window, newX, newY);
                 return;
