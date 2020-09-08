@@ -484,7 +484,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 nextY += mbd.height;
             }
             if (root.getContentPane() != null) {
-                Dimension cpd = root.getContentPane().getPreferredSize();
+                //Dimension cpd = root.getContentPane().getPreferredSize();
                 root.getContentPane().setBounds(0, nextY, w,
                         h < nextY ? 0 : h - nextY);
             }
@@ -782,6 +782,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
             //fix
             int deltaX = absoluteX - mouseCurent.x;
             int deltaY = absoluteY - mouseCurent.y;
+            //Bug
             //int deltaX = _x - p.x;
             //int deltaY = _y - p.y;
             Dimension min = window.getMinimumSize();
@@ -813,15 +814,14 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                     // button was not used.
                     return;
                 }
-                int pWidth, pHeight;
                 // Dimension dimensioDevices = Toolkit.getDefaultToolkit().getScreenSize();
                /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
                 int width = gd.getDisplayMode().getWidth();
                 int height = gd.getDisplayMode().getHeight();
                 Dimension dimensioDevices = new Dimension(width, height);*/
 
-                pWidth = dimensionDevices.width;
-                pHeight = dimensionDevices.height;
+                int parentWidth = dimensionDevices.width;
+                int parentHeight = dimensionDevices.height;
 
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
