@@ -26,7 +26,6 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-swing-junit', version: '3.9.2'
     testCompile 'io.github.material-ui-swing:DarkStackOverflowTheme:0.0.1-rc2'
     testCompile group: 'com.toedter', name: 'jcalendar', version: '1.4'
-
 }
 
 allprojects {

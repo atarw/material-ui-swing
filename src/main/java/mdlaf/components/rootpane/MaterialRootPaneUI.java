@@ -826,7 +826,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 newX = startingBounds.x - deltaX;
                 newY = startingBounds.y - deltaY;
 
-                /**
+
                 //TODO see this point because with two display not worked well (Resolved -> testing)
                 // Make sure we stay in-bounds
                 if (newX + windows.left <= -windiwNowX) {
@@ -835,13 +835,13 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
                 } else if (newY + windows.top <= -windowNowY) {
                     //What operation do this?
                     newY = -windowNowY - windows.top + 1;
-                } else if (newX + windiwNowX + windows.right >= pWidth) {
+                } else if (newX + windiwNowX + windows.right >= parentWidth) {
                     //What operation do this?
-                    newX = pWidth - windiwNowX - windows.right - 1;
-                } else if (newY + windowNowY + windows.bottom >= pHeight) {
+                    newX = parentWidth - windiwNowX - windows.right - 1;
+                } else if (newY + windowNowY + windows.bottom >= parentHeight) {
                     //What operation do this?
-                    newY = pHeight - windowNowY - windows.bottom - 1;
-                } **/
+                    newY = parentHeight - windowNowY - windows.bottom - 1;
+                }
                 //System.out.printf("(%03d, %03d) -> (%03d, %03d)\n", viewX, viewY, newX, newY);
                 dragFrame(window, newX, newY);
                 return;

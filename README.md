@@ -33,18 +33,18 @@ A modern, Material Design UI for Java Swing
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-rc1</version>
 </dependency>
  ```
 
  _Gradle (Groovy)_
 ```groovy
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.1'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1'
 ```
 
  _Gradle (Kotlin)_
 ```kotlin
-implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.1")
+implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
