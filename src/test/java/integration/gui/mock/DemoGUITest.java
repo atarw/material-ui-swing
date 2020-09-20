@@ -23,6 +23,7 @@
  */
 package integration.gui.mock;
 
+import com.toedter.calendar.JDateChooser;
 import integration.gui.mock.component.*;
 import integration.gui.mock.uiexample.button.ContainedButtonUI;
 import io.materialtheme.darkstackoverflow.DarkStackOverflowTheme;
@@ -42,6 +43,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.Date;
 
 /**
  * @author https://github.com/vincenzopalazzo
@@ -123,11 +125,13 @@ public class DemoGUITest extends JFrame {
     //TabbedPane test mouse hover on Tab
     JPanel tabbedPanetest = new DemoPanelWithTabbedPane();
 
+    //ToolBar Tab pane
     private JToolBar toolBarEditor;
-
     private JPanel buttonsPanel;
     private JButton containedTypeButton;
 
+    //JCalendar demo tab
+    JDateChooser dateNasc;
 
     public JMenuItem getMaterialOceanic() {
         return materialOceanic;
@@ -225,6 +229,13 @@ public class DemoGUITest extends JFrame {
         JPanel panelToolBar = new JPanel();
         panelToolBar.add(toolBarEditor);
 
+        JPanel calendarPanel = new JPanel();
+        dateNasc = new JDateChooser();
+        dateNasc.setDateFormatString("dd/MM/yyyy");
+        dateNasc.setMaxSelectableDate(new Date());
+        dateNasc.setDate(new Date());
+        calendarPanel.add(dateNasc);
+
         initStyleMouseHoverPanel();
 
         initLayoutContentPanelOne();
@@ -247,6 +258,7 @@ public class DemoGUITest extends JFrame {
         tabbedPane.add(panelToolBar, "ToolBar");
         tabbedPane.add(new ChooseValueComponentViewPanel(), "Choose Component");
         tabbedPane.add(buttonsPanel, "Button Type");
+        tabbedPane.add(calendarPanel, "JCalendar");
         this.setContentPane(tabbedPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

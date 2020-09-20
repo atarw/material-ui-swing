@@ -50,7 +50,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);
-
         this.spinnerBackground = UIManager.getColor("Spinner.background");
         this.spinnerDisableBackground = UIManager.getColor("Spinner.disabledBackground");
     }
@@ -64,11 +63,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     @Override
     public void paint(Graphics g, JComponent c) {
         super.paint(g, c);
-        if(!c.isEnabled()){
-            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerDisableBackground);
-        }else{
-            ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField().setBackground(spinnerBackground);
-        }
     }
 
     @Override
@@ -132,9 +126,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             }
 
             @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-
-            }
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {}
         }
 
     }
