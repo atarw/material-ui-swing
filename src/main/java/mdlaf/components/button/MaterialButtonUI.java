@@ -203,7 +203,7 @@ public class MaterialButtonUI extends BasicButtonUI {
 
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-        if (!button.isEnabled() || b.getIcon() == null) return;
+        if (!button.isEnabled()) return;
         paintFocusRing(g, (JButton) b);
     }
 
