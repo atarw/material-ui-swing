@@ -204,13 +204,15 @@ public class MaterialButtonUI extends BasicButtonUI {
     @Override
     protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         if (!button.isEnabled()) return;
-        paintFocusRing(g, (JButton) b);
+        //paintFocusRing(g, (JButton) b);
+        paintFocusBorder(g, (JButton) b);
     }
 
     @Override
     public void update(Graphics g, JComponent c) {
         super.update(g, c);
-        paintBorderButton(g, c);
+        if (!button.isFocusOwner())
+            paintBorderButton(g, c);
     }
 
     @Override
@@ -252,6 +254,7 @@ public class MaterialButtonUI extends BasicButtonUI {
         b.removeMouseListener(mouseHover);
     }
 
+    @Deprecated
     protected void paintFocusRing(Graphics g, JButton b) {
         Stroke dashed = new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f, new float[]{0f, 3f}, 10.0f);
         Graphics2D g2 = (Graphics2D) g.create();
@@ -263,6 +266,29 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
         g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, arch, arch);
         g2.dispose();
+    }
+
+    @Deprecated
+    protected void paintFocusBorder(Graphics graphics, JButton b) {
+        if (!b.isEnabled() || !borderEnabled) {
+            return;
+        }
+        Color color;
+        if (defaultButton != null && defaultButton) {
+            color = UIManager.getColor("Button[Default][focus].color");
+        } else {
+            color = UIManager.getColor("Button[focus].color");
+        }
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        graphics2D.setStroke(new BasicStroke(2f));
+
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int w = b.getWidth() - 1;
+        int h = b.getHeight() - 1;
+
+        graphics2D.setColor(color);
+        graphics2D.drawRoundRect(0, 0, w, h, arch + 2, arch + 2);
+        graphics2D.dispose();
     }
 
     protected void paintBorderButton(Graphics graphics, JComponent b) {

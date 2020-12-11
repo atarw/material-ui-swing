@@ -895,7 +895,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     @Override
     public int getArcButton() {
-        return 7;
+        return 0;
     }
 
     @Override

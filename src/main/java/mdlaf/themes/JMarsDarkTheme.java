@@ -102,8 +102,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         this.buttonDefaultBackgroundColor = new ColorUIResource(66,179,176);
         this.buttonDisabledBackground = new ColorUIResource(66,69,76);
 
-        this.buttonFocusColor = MaterialColors.WHITE;
-        this.buttonDefaultFocusColor = MaterialColors.BLACK;
+        this.buttonFocusColor = buttonDefaultBackgroundColor;
+        this.buttonDefaultFocusColor = MaterialColors.WHITE;
         this.buttonBorderColor = MaterialColors.WHITE;
         this.buttonColorHighlight = buttonBackgroundColorMouseHover;
 

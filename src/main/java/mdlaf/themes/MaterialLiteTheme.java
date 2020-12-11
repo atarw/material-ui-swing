@@ -52,7 +52,6 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
     protected void installDefaultColor() {
         super.installDefaultColor();
         this.buttonDefaultTextColor = MaterialColors.WHITE;
-
         this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
         this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
         this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
