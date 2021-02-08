@@ -1,9 +1,4 @@
-# These are supported funding model platforms
-
 github: [vincenzopalazzo]
-
-open_collective: # Replace with a single Open Collective username
-ko_fi: # Replace with a single Ko-fi username
-tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
 liberapay: vincenzopalazzo
-custom: https://vincenzopalazzo.github.io/material-ui-swing-donations/
+buymeacoffee: vincenzopalazzo
+custom: https://material-ui-swing.github.io/material-ui-swing-donations/
