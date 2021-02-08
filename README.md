@@ -10,7 +10,7 @@
 ## Description
 ![GitHub issues](https://img.shields.io/github/issues/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)
-[![Donation](https://img.shields.io/website/http/vincenzopalazzo.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://vincenzopalazzo.github.io/material-ui-swing-donations)
+[![Donation](https://img.shields.io/website/http/material-ui-swing.github.io/material-ui-swing-donations.svg?style=for-the-badge&up_color=yellow&up_message=Donation)](https://material-ui-swing.github.io/material-ui-swing-donations)
 [![Gitter chat](https://img.shields.io/gitter/room/vincenzopalazzo/material-ui-swing.svg?style=for-the-badge)](https://gitter.im/material-ui-swing/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 A modern, Material Design UI for Java Swing
@@ -19,8 +19,8 @@ A modern, Material Design UI for Java Swing
 
 - [Introduction](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Introduction)
 - [Component Supported](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Component-Supported)
-- [Material Theming](#TODO)
-- [Develop a new Theme](#TODO)
+- [Material Theming](https://github.com/vincenzopalazzo/material-ui-swing/wiki)
+- [Develop a new Theme](https://github.com/vincenzopalazzo/material-ui-swing/wiki)
 - [Screenshots](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Screenshots)
 - [Built with](https://github.com/vincenzopalazzo/material-ui-swing/wiki/Built-with)
 - [Community](https://gitter.im/material-ui-swing/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
@@ -60,6 +60,8 @@ Contact us if you use this look and feel, so we can add your project to the list
 - Arizona State University
 - [zanderson9](https://github.com/zanderson9)
 
+You can support the project on the [Material-UI-Swing donation site](https://material-ui-swing.github.io/material-ui-swing-donations/)
+
 ## Supporters
 
 <div align="center">
@@ -68,7 +70,6 @@ Contact us if you use this look and feel, so we can add your project to the list
 
 [JetBrains' support](https://www.jetbrains.com/?from=material-ui-swing)
 
-## Performance
 <div align="center">
   <img src="https://www.yourkit.com/images/yklogo.png"/>
 </div>
@@ -89,6 +90,8 @@ and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 Copyright (c) 2018 atharva washimkar.
 
 Copyright (c) 2019-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzodev@gmail.com
+
+Copyright (c) 2021 Vincenzo Palazzo vincenzopalazzodev@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, 
