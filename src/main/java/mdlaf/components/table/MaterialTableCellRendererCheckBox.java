@@ -68,29 +68,19 @@ class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRe
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
-        }
-       //Old version code restored for JMars official version
-        /*
-        boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
-        Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
-        Color normalColor = UIManager.getColor("Table.background");
-        if (alternativeRow) {
-            if (!isSelected) {
-                setIcon(unchecked);
-                setSelectedIcon(checked);
-                if (row % 2 == 1) {
-                    this.setBackground(alternativeRowColor);
-                } else {
-                    this.setBackground(normalColor);
-                }
+        } else {
+            if(!isSelected){
+                this.setIcon(unchecked);
+                this.setSelectedIcon(checked);
+                this.setBackground(table.getBackground());
                 this.setForeground(table.getForeground());
-            } else {
-                setIcon(uncheckedSelectionRow);
-                setSelectedIcon(checkedSelectionRow);
+            }else{
+                this.setIcon(uncheckedSelectionRow);
+                this.setSelectedIcon(checkedSelectionRow);
                 this.setForeground(table.getSelectionForeground());
                 this.setBackground(table.getSelectionBackground());
             }
-        }*/
+        }
         return this;
     }
 }

@@ -47,26 +47,12 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     protected Color contentBackground;
     protected Color background;
     protected Color borderColor;
-
     protected Icon uncollapsed;
     protected Icon collapsed;
     protected boolean mouseHoverEnable;
     protected int arch;
 
-    /**
-     * Action change icon on click
-     *
-     * @author https://github.com/vincenzopalazzo
-     * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
-     * the function of this class is made from the native SwingX 1.6.1 class.
-     * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
-     */
-    @Deprecated
-    private MouseListener changeIcon;
-
-    public MaterialTaskPaneUI() {
-        changeIcon = new ChangeIconOnClick();
-    }
+    public MaterialTaskPaneUI() { }
 
     @Override
     public void installUI(JComponent c) {
@@ -83,7 +69,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
     @Override
     public void uninstallUI(JComponent c) {
         c.setCursor(Cursor.getDefaultCursor());
-
         super.uninstallUI(c);
     }
 
@@ -111,7 +96,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
         return new CompoundBorder(contentPanel, taskBorder);
     }
 
-
     @Override
     protected void uninstallListeners() {
         super.uninstallListeners();
@@ -129,7 +113,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
 
 
     /**
-     * Define the Main Panel how inside is panel the component
+     * Define the Main Panel how the component should be inside is panel
      */
     protected class MaterialPaneBorder extends PaneBorder {
 
@@ -174,47 +158,6 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
             } else {
                 group.setIcon(uncollapsed);
             }
-        }
-    }
-
-    /**
-     * Action change icon on click
-     *
-     * @author https://github.com/vincenzopalazzo
-     * @deprecated This class is deprecated from version 1.1.1 official and will be removed in the version 1.2
-     * the function of this class is made from the native SwingX 1.6.1 class.
-     * Look the class MaterialPaneBorder, the icons now is changed inside the paintChevronControls method
-     */
-    @Deprecated
-    protected class ChangeIconOnClick implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if (group.isCollapsed()) {
-                group.setIcon(collapsed);
-                return;
-            }
-            group.setIcon(uncollapsed);
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
         }
     }
 }
