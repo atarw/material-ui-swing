@@ -1339,11 +1339,6 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     }
 
     @Override
-    public boolean getAlternateRowColorEnableTable() {
-        return true;
-    }
-
-    @Override
     public int getHeightRowTable() {
         return 10;
     }

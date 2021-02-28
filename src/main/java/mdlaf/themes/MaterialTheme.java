@@ -352,8 +352,6 @@ public interface MaterialTheme {
 
     boolean getTableOpaque();
 
-    boolean getAlternateRowColorEnableTable();
-
     int getHeightRowTable();
 
     //JTableHeader

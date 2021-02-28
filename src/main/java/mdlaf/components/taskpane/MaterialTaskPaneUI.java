@@ -23,6 +23,8 @@
  */
 package mdlaf.components.taskpane;
 
+import mdlaf.animation.MaterialMouseHover;
+import mdlaf.animation.MaterialUIMovement;
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
