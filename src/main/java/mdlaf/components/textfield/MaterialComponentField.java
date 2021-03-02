@@ -27,6 +27,9 @@ package mdlaf.components.textfield;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import javax.swing.text.JTextComponent;
+
+import mdlaf.utils.MaterialDrawingUtils;
+
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -149,6 +152,11 @@ public abstract class MaterialComponentField extends BasicTextFieldUI {
         }
 
         propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
+    }
+
+    @Override
+    protected void paintSafely(Graphics g) {
+        super.paintSafely(MaterialDrawingUtils.getAliasedGraphics(g));
     }
 
     protected void paintLine(Graphics graphics) {

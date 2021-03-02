@@ -27,6 +27,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuUI;
+
+import mdlaf.utils.MaterialDrawingUtils;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -65,7 +68,7 @@ public class MaterialMenuUI extends BasicMenuUI {
 
 	@Override
 	public void paint (Graphics g, JComponent c) {
-		super.paint (g, c);
+		super.paint (MaterialDrawingUtils.getAliasedGraphics (g), c);
 	}
 
 	@Override
