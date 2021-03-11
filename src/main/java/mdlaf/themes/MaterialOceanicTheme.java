@@ -41,17 +41,19 @@ import java.awt.*;
  */
 public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
+    private ColorUIResource selectedBackground = new ColorUIResource(50, 66, 74);
+
     @Override
     protected void installIcons() {
         super.installIcons();
 
         this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
                 MaterialIconFont.CHECK_BOX,
-                MaterialColors.COSMO_BLACK
+                highlightBackgroundPrimary
         );
         this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
                 MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
-                MaterialColors.COSMO_BLACK
+                highlightBackgroundPrimary
         );
 
         this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
@@ -102,13 +104,13 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.buttonDefaultTextColor = this.textColor;
 
         this.foregroundTableHeader = this.textColor;
-        this.selectionForegroundTable =this.highlightBackgroundPrimary;
+        this.selectionForegroundTable = this.highlightBackgroundPrimary;
     }
 
     @Override
     protected void installColor() {
         this.backgroundPrimary = new ColorUIResource(38, 50, 56);
-        this.highlightBackgroundPrimary = new ColorUIResource(84, 110, 122);
+        this.highlightBackgroundPrimary = new ColorUIResource(0, 150, 136);
 
         this.textColor = new ColorUIResource(176, 190, 197);
         this.disableTextColor = new ColorUIResource(65, 89, 103);
@@ -117,7 +119,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.buttonBackgroundColorMouseHover = new ColorUIResource(84, 110, 122);
         this.buttonDefaultBackgroundColorMouseHover = new ColorUIResource(84, 110, 122);
         this.buttonDefaultBackgroundColor = new ColorUIResource(50, 66, 74);
-        this.buttonDisabledBackground = new ColorUIResource(65, 89, 103);
+        this.buttonDisabledBackground = this.buttonBackgroundColor;
         this.buttonDisabledForeground = this.disableTextColor;
         this.buttonFocusColor = this.buttonBackgroundColorMouseHover;
         this.buttonDefaultFocusColor = this.buttonDefaultBackgroundColorMouseHover;
@@ -128,16 +130,16 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
         this.selectedForegroundComboBox = this.textColor;
 
         this.menuBackground = this.backgroundPrimary;
-        this.menuBackgroundMouseHover = this.highlightBackgroundPrimary;
+        this.menuBackgroundMouseHover = selectedBackground;
 
         this.arrowButtonColorScrollBar = this.buttonBackgroundColor;
         this.trackColorScrollBar = new ColorUIResource(30, 39, 44);
-        this.thumbColorScrollBar = this.highlightBackgroundPrimary;
+        this.thumbColorScrollBar = selectedBackground;
         this.arrowButtonOnClickColorScrollBar = this.buttonBackgroundColorMouseHover;
         this.mouseHoverColorScrollBar = this.buttonBackgroundColorMouseHover;
 
-        this.trackColorSlider = this.buttonBackgroundColor;
-        this.haloColorSlider = MaterialColors.bleach(this.buttonBackgroundColor, 0.5f);
+        this.trackColorSlider = this.highlightBackgroundPrimary;
+        this.haloColorSlider = MaterialColors.bleach(this.highlightBackgroundPrimary, 0.5f);
 
         this.highlightColorTabbedPane = this.highlightBackgroundPrimary;
         this.borderHighlightColorTabbedPane = this.highlightBackgroundPrimary;
@@ -146,7 +148,7 @@ public class MaterialOceanicTheme extends AbstractMaterialTheme{
 
         this.backgroundTable = new ColorUIResource(30, 39, 44);
         this.backgroundTableHeader = new ColorUIResource(30, 39, 44);
-        this.selectionBackgroundTable = this.highlightBackgroundPrimary;
+        this.selectionBackgroundTable = selectedBackground;
         this.gridColorTable = new ColorUIResource(30, 39, 44);
         this.alternateRowBackgroundTable = null; // To disable it
 

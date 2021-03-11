@@ -67,7 +67,8 @@ public class JMarsDarkTheme extends AbstractMaterialTheme {
         borderMenuBar = new BorderUIResource(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(225, 156, 43)));
         borderPopupMenu = new BorderUIResource(BorderFactory.createLineBorder(backgroundPrimary));
         borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
-        borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(borderSpinner,
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(backgroundTableHeader),
                 BorderFactory.createEmptyBorder(5,10,5,10)));

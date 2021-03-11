@@ -26,11 +26,13 @@ package mdlaf.themes;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
-
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
 
 /**
+ * Reference: https://www.material-theme.com/docs/reference/color-palette
+ *
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialLiteTheme extends AbstractMaterialTheme {
@@ -62,16 +64,16 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
 
     @Override
     protected void installColor() {
-        this.backgroundPrimary = MaterialColors.WHITE;
-        this.highlightBackgroundPrimary = MaterialColors.LIGHT_BLUE_300;
+        this.backgroundPrimary = new ColorUIResource(240, 240, 240);
+        this.highlightBackgroundPrimary = MaterialColors.WHITE;
 
-        this.textColor = MaterialColors.BLACK;
+        this.textColor = new ColorUIResource(84, 110, 122);
         this.disableTextColor = MaterialColors.GRAY_500;
 
-        this.buttonBackgroundColor = MaterialColors.COSMO_LIGTH_GRAY;
-        this.buttonBackgroundColorMouseHover = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
-        this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
+        this.buttonBackgroundColor = new ColorUIResource(243, 244, 245);
+        this.buttonBackgroundColorMouseHover = new ColorUIResource(220,239,237);
+        this.buttonDefaultBackgroundColorMouseHover = this.buttonBackgroundColorMouseHover;
+        this.buttonDefaultBackgroundColor = new ColorUIResource(231, 231, 232);
         this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
         this.buttonFocusColor = MaterialColors.GRAY_900;
         this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
