@@ -44,7 +44,8 @@ public class MaterialDrawingUtils {
      * The documentation https://docs.oracle.com/javase/tutorial/2d/text/renderinghints.html
      */
     public static Graphics getAliasedGraphics(Graphics g) {
-        Map<RenderingHints.Key, Object> hints = (Map<RenderingHints.Key, Object>) Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
+        Map<RenderingHints.Key, Object> hints = (Map<RenderingHints.Key, Object>)
+                Toolkit.getDefaultToolkit().getDesktopProperty("awt.font.desktophints");
 
         if (hints != null) {
             hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

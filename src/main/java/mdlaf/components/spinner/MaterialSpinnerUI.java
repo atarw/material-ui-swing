@@ -92,7 +92,7 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
     /**
      * This class use the MaterialButtonUI API to create the custom button for the icon
      */
-    protected class ArrowButtonSpinner extends JButton{
+    protected class ArrowButtonSpinner extends JButton {
 
         public ArrowButtonSpinner(Icon icon) {
             super(icon);
@@ -127,7 +127,8 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             }
 
             @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {}
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
+            }
         }
 
     }

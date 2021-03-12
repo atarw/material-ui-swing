@@ -254,7 +254,6 @@ public class MaterialButtonUI extends BasicButtonUI {
         b.removeMouseListener(mouseHover);
     }
 
-    @Deprecated
     protected void paintFocusRing(Graphics g, JButton b) {
         Stroke dashed = new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f, new float[]{0f, 3f}, 10.0f);
         Graphics2D g2 = (Graphics2D) g.create();

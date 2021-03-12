@@ -226,9 +226,9 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         }
     }
 
-    protected class MaterialComboBoxPopup extends BasicComboPopup{
+    protected class MaterialComboBoxPopup extends BasicComboPopup {
 
-        public MaterialComboBoxPopup(JComboBox<Object> combo) {
+        public MaterialComboBoxPopup(JComboBox<?> combo) {
             super(combo);
             setBorder(UIManager.getBorder("ComboBox[listItem].border"));
         }
@@ -236,7 +236,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         @Override
         public void show() {
             super.show();
-            if(arrowButton != null){
+            if (arrowButton != null) {
                 arrowButton.repaint();
             }
         }
@@ -244,7 +244,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         @Override
         public void hide() {
             super.hide();
-            if(arrowButton != null){
+            if (arrowButton != null) {
                 arrowButton.repaint();
             }
         }
@@ -252,7 +252,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         @Override
         protected void firePopupMenuCanceled() {
             super.firePopupMenuCanceled();
-            if(arrowButton != null){
+            if (arrowButton != null) {
                 arrowButton.repaint();
             }
         }

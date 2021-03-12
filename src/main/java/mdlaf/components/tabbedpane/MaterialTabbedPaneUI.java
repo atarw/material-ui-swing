@@ -557,14 +557,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
             }
 
             @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-
-            }
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) { }
 
             @Override
-            protected void paintFocusRing(Graphics g, JButton b) {
-
-            }
+            protected void paintFocusRing(Graphics g, JButton b) { }
         }
     }
 }
