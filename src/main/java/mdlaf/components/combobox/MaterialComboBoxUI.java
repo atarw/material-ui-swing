@@ -221,7 +221,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
   protected class MaterialComboBoxPopup extends BasicComboPopup {
 
-    public MaterialComboBoxPopup(JComboBox<?> combo) {
+    public MaterialComboBoxPopup(JComboBox<Object> combo) {
       super(combo);
       setBorder(UIManager.getBorder("ComboBox[listItem].border"));
     }
