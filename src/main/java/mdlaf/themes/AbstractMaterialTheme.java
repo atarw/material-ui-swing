@@ -998,7 +998,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
     @Override
     public int getArchBorderComboBox() {
-        return 8;
+        return 0;
     }
 
     //Getter for all component of the menu

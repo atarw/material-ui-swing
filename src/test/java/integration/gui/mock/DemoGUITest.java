@@ -290,7 +290,7 @@ public class DemoGUITest extends JFrame {
     }
 
     private void disableOkButtonWithEmptyText() {
-        String text = passwordFiled.getText();
+        String text = String.valueOf(passwordFiled.getPassword());
         LOGGER.debug("text inside the password component: " + text);
         if (text.isEmpty()) {
             buttonDefault.setEnabled(false);

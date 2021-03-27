@@ -25,7 +25,7 @@
 package mdlaf.components.combobox;
 
 import mdlaf.animation.MaterialUIMovement;
-import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.button.MaterialButtonsComponentsUI;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialDrawingUtils;
 
@@ -266,12 +266,10 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
         }
 
 
-        protected class ArrowButtonComboboxBoxUI extends MaterialButtonUI {
+        protected class ArrowButtonComboboxBoxUI extends MaterialButtonsComponentsUI {
 
             @Override
             public void installUI(JComponent c) {
-                borderEnabled = false;
-                mouseHoverEnabled = false;
                 super.installUI(c);
                 super.background = UIManager.getColor("ComboBox.buttonBackground");
                 super.disabledBackground = super.background;
@@ -282,11 +280,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
                 }
                 this.button.setIcon(new ArrowIcon("ComboBox."));
                 c.setBorder(UIManager.getBorder("ComboBox[button].border"));
-                c.setFocusable(false);
-            }
-
-            @Override
-            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
             }
         }
 

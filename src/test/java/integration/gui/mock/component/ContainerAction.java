@@ -114,7 +114,7 @@ public class ContainerAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             JPasswordField passwField = (JPasswordField) e.getSource();
-            String actualText = passwField.getText();
+            String actualText = new String(passwField.getPassword());
             if (actualText.isEmpty()) {
                 passwField.setText(textOne);
             } else {

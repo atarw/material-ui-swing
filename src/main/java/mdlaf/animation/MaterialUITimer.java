@@ -52,12 +52,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
     private int[] backwardDeltas;
     private JComponent component;
     private Timer timer;
-    /**
-     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
-     * API.
-     */
-    @Deprecated
-    private WrapperInformationsButton wrapperInformationsButton;
 
     /**
      *  Dont use the !component.isEnabled() how check in the builder if the component
@@ -77,7 +71,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
                     materialButtonUI.setColorMouseHoverNormalButton(to);
                 }
             }
-            //wrapperInformationsButton = new WrapperInformationsButton(button);
         } else {
             this.from = component.getBackground();
         }
@@ -152,7 +145,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         alpha = steps - 1;
         forward = false;
         timer.start();
-        //this.component.setBackground(this.from);
     }
 
     @Override
@@ -166,21 +158,9 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
         timer.start();
     }
 
-    /**
-     * This method is mouse hover event core, which contains all logic
-     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!component.isEnabled()) {
-            //if (timer.isRunning()) {
-                /*if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    System.out.println("component button set color");
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }*/
-              //  timer.stop();
-            //}
             timer.stop();
             return;
         }
@@ -197,7 +177,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
                 this.component.setBackground(this.from);
             }
         }
-
     }
 
     @Override
@@ -207,32 +186,17 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        //do nothing this is util only implements interface MouseMotions
         this.stopTimer();
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        //do nothing
         this.stopTimer();
-/*
-        if ((component instanceof JButton) &&
-                wrapperInformationsButton != null) {
-            JButton buttonComponent = (JButton) component;
-            wrapperInformationsButton.setOriginValues(buttonComponent);
-        }*/
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        //do nothing
         this.stopTimer();
-/*
-        if ((component instanceof JButton) &&
-                wrapperInformationsButton != null) {
-            JButton buttonComponent = (JButton) component;
-            wrapperInformationsButton.setOriginValues(buttonComponent);
-        }*/
     }
 
     /**
@@ -247,11 +211,6 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
     protected void stopTimer(){
         if (component != null && component.isEnabled()) {
             if (timer != null && timer.isRunning()) {
-            /*    if ((component instanceof JButton) &&
-                        wrapperInformationsButton != null) {
-                    JButton buttonComponent = (JButton) component;
-                    wrapperInformationsButton.setOriginValues(buttonComponent);
-                }*/
                 timer.stop();
             }
         }
@@ -263,61 +222,5 @@ public class MaterialUITimer implements ActionListener, MaterialMouseHover {
             return timer.isRunning();
         }
         return false;
-    }
-
-    /**
-     * @deprecated This propriety will be remove in the version 1.2, the solution now was resolved to MaterialButtonUI
-     * API.
-     */
-    @Deprecated
-    private class WrapperInformationsButton {
-
-        private Color background;
-        private Color foreground;
-        private Color defaultBackground;
-        private Color defaultForeground;
-        private Color disabledForeground;
-        private Color disabledBackground;
-
-        public WrapperInformationsButton(JButton button) {
-            if (!(button.getUI() instanceof MaterialButtonUI)) {
-                throw new RuntimeException("UI button's not instance of MaterialButtonUI");
-            }
-            MaterialButtonUI materialButtonUI = (MaterialButtonUI) button.getUI();
-            this.background = materialButtonUI.getBackground();
-            this.foreground = materialButtonUI.getForeground();
-            this.disabledBackground = materialButtonUI.getDisabledBackground();
-            this.disabledForeground = materialButtonUI.getDisabledForeground();
-            if (materialButtonUI.isDefaultButton()) {
-                this.defaultBackground = materialButtonUI.getDefaultBackground();
-                this.defaultForeground = materialButtonUI.getDefaultForeground();
-            }
-
-        }
-
-        public synchronized void setOriginValues(JButton button) {
-            if (button == null || !(button.getUI() instanceof MaterialButtonUI)) {
-                String messsage;
-                if (button == null) {
-                    messsage = "Button component null";
-                } else {
-                    messsage = "UI button's not instance of MaterialButtonUI";
-                }
-                throw new RuntimeException(messsage);
-            }
-            MaterialButtonUI materialButtonUI = (MaterialButtonUI) button.getUI();
-            materialButtonUI.setBackground(this.background);
-            materialButtonUI.setForeground(this.foreground);
-            materialButtonUI.setDisabledBackground(this.disabledBackground);
-            materialButtonUI.setDisabledForeground(this.disabledForeground);
-            if (materialButtonUI.isDefaultButton()) {
-                if (this.defaultBackground == null || this.defaultForeground == null) {
-                    throw new RuntimeException("Value defaultBackground or/and defaultForeground is/are null");
-                }
-                materialButtonUI.setDefaultBackground(this.defaultBackground);
-                materialButtonUI.setDefaultForeground(this.defaultForeground);
-            }
-            button.repaint();
-        }
     }
 }

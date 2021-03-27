@@ -16,6 +16,7 @@
 package mdlaf.components.titlepane;
 
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.button.MaterialButtonsComponentsUI;
 import mdlaf.utils.MaterialDrawingUtils;
 import mdlaf.utils.MaterialManagerListener;
 import mdlaf.utils.WrapperSwingUtilities;
@@ -740,11 +741,10 @@ public class MaterialTitlePaneUI extends JComponent {
             setUI(new JButtonNoMouseHoverUI());
         }
 
-        private static class JButtonNoMouseHoverUI extends MaterialButtonUI {
+        private static class JButtonNoMouseHoverUI extends MaterialButtonsComponentsUI {
 
             @Override
             public void installUI(JComponent c) {
-                mouseHoverEnabled = false;
                 super.installUI(c);
                 c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }

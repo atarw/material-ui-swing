@@ -26,6 +26,7 @@ package mdlaf.components.spinner;
 
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.components.button.MaterialButtonsComponentsUI;
 import mdlaf.utils.MaterialColors;
 
 import javax.swing.*;
@@ -104,11 +105,10 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
             setUI(new SpinnerButtonUI());
         }
 
-        protected class SpinnerButtonUI extends MaterialButtonUI {
+        protected class SpinnerButtonUI extends MaterialButtonsComponentsUI {
 
             @Override
             public void installUI(JComponent c) {
-                super.mouseHoverEnabled = null;
                 super.installUI(c);
                 super.mouseHoverEnabled = UIManager.getBoolean("Spinner.mouseHoverEnabled");
                 super.background = UIManager.getColor("Spinner.arrowButtonBackground");
