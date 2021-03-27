@@ -11,7 +11,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Build with Gradle
+    - name: Veryfy Java Code Style
       run: ./gradlew verifyGoogleJavaFormat
     - name: Build with Gradle
       run: ./gradlew build
