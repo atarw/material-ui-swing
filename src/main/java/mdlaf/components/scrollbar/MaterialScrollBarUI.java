@@ -115,7 +115,7 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
     button.setOpaque(true);
     button.setFocusable(
         false); // This must be false because the button focus have an effect that this button
-                // mustn't be have
+    // mustn't be have
     button.setBackground(UIManager.getColor("ScrollBar.arrowButtonBackground"));
     if (!UIManager.getBoolean("ScrollBar.enableArrow")) {
       createInvisibleButton(button);

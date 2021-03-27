@@ -261,7 +261,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     table.put(
         "Button.mouseHoverBorder",
         false); // TODO if is true -> the mouse hover effect change the color to OnlyBorder, if
-                // false to all button
+    // false to all button
     table.put("Button.focusable", theme.getButtonFocusable());
     table.put("Button[focus].color", theme.getButtonFocusColor());
     table.put("Button.disabledText", theme.getButtonDisableTextColor());
@@ -272,9 +272,8 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
     table.put("Button[border].color", theme.getButtonBorderColor());
     table.put(
         "Button[border].toAll",
-        theme
-            .getButtonBorderEnableToAll()); // if is true -> the border do have all button if it is
-                                            // false the border do have only button without icon
+        theme.getButtonBorderEnableToAll()); // if is true -> the border do have all button if it is
+    // false the border do have only button without icon
 
     table.put("CheckBox.font", theme.getFontRegular());
     table.put("CheckBox.background", theme.getBackgroundPrimary());
