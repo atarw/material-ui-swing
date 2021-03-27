@@ -27,6 +27,7 @@ import jiconfont.IconCode;
 
 /**
  * TAG interface
+ *
  * @author https://github.com/vincenzopalazzo
  */
-public interface IMaterialIconCode extends IconCode { }
+public interface IMaterialIconCode extends IconCode {}

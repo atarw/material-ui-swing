@@ -4,9 +4,8 @@ import mdlaf.themes.JMarsDarkTheme;
 
 public class ThemeExampleChangeTabHeight extends JMarsDarkTheme {
 
-	@Override
-	public int getHeightTabTabbedPane() {
-		return 25;
-	}
+  @Override
+  public int getHeightTabTabbedPane() {
+    return 25;
+  }
 }
-

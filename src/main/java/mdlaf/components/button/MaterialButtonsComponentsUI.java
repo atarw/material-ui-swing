@@ -23,35 +23,33 @@
  */
 package mdlaf.components.button;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
- * This component is a helper component to make a button that is without border in any case
- * this type of component it is useful in the library because help us to refactoring the code in
- * only one class and have the power to make the change in one place.
+ * This component is a helper component to make a button that is without border in any case this
+ * type of component it is useful in the library because help us to refactoring the code in only one
+ * class and have the power to make the change in one place.
  *
- * The component that use this helper component are
- * - JSpinner
- * - JComboBox
- * - TitlePane buttons
- * - other minors component around the library.
+ * <p>The component that use this helper component are - JSpinner - JComboBox - TitlePane buttons -
+ * other minors component around the library.
  *
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialButtonsComponentsUI extends MaterialButtonUI {
 
-    @Override
-    public void installUI(JComponent c) {
-        borderEnabled = false;
-        mouseHoverEnabled = false;
-        super.installUI(c);
-        buttonBorderToAll = false;
-    }
+  @Override
+  public void installUI(JComponent c) {
+    borderEnabled = false;
+    mouseHoverEnabled = false;
+    super.installUI(c);
+    buttonBorderToAll = false;
+  }
 
-    @Override
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) { }
+  @Override
+  protected void paintFocus(
+      Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {}
 
-    @Override
-    protected void paintBorderButton(Graphics graphics, JComponent b) { }
+  @Override
+  protected void paintBorderButton(Graphics graphics, JComponent b) {}
 }

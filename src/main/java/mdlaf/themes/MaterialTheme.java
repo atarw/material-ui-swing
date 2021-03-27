@@ -26,839 +26,846 @@ package mdlaf.themes;
 import javax.swing.*;
 import javax.swing.plaf.*;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 @SuppressWarnings("all")
 public interface MaterialTheme {
 
-    void installTheme();
+  void installTheme();
 
-    void installUIDefault(UIDefaults table);
+  void installUIDefault(UIDefaults table);
 
-    String getName();
+  String getName();
 
-    //Getter for global constant
-    ColorUIResource getBackgroundPrimary();
+  // Getter for global constant
+  ColorUIResource getBackgroundPrimary();
 
-    ColorUIResource getHighlightBackgroundPrimary();
+  ColorUIResource getHighlightBackgroundPrimary();
 
-    ColorUIResource getTextColor();
+  ColorUIResource getTextColor();
 
-    ColorUIResource getDisableTextColor();
+  ColorUIResource getDisableTextColor();
 
-    //getter for button propriety
-    ColorUIResource getButtonBackgroundColor();
+  // getter for button propriety
+  ColorUIResource getButtonBackgroundColor();
 
-    ColorUIResource getButtonTextColor();
+  ColorUIResource getButtonTextColor();
 
-    ColorUIResource getButtonBackgroundColorMouseHover();
+  ColorUIResource getButtonBackgroundColorMouseHover();
 
-    ColorUIResource getButtonDefaultBackgroundColor();
+  ColorUIResource getButtonDefaultBackgroundColor();
 
-    ColorUIResource getButtonDefaultTextColor();
+  ColorUIResource getButtonDefaultTextColor();
 
-    ColorUIResource getButtonDefaultBackgroundColorMouseHover();
+  ColorUIResource getButtonDefaultBackgroundColorMouseHover();
 
-    ColorUIResource getButtonDisabledBackground();
+  ColorUIResource getButtonDisabledBackground();
 
-    ColorUIResource getButtonDisabledForeground();
+  ColorUIResource getButtonDisabledForeground();
 
-    ColorUIResource getButtonFocusColor();
+  ColorUIResource getButtonFocusColor();
 
-    ColorUIResource getButtonDisableTextColor();
+  ColorUIResource getButtonDisableTextColor();
 
-    ColorUIResource getButtonDefaultFocusColor();
+  ColorUIResource getButtonDefaultFocusColor();
 
-    ColorUIResource getButtonBorderColor();
+  ColorUIResource getButtonBorderColor();
 
-    ColorUIResource getButtonColorHighlight();
+  ColorUIResource getButtonColorHighlight();
 
-    BorderUIResource getButtonBorder();
+  BorderUIResource getButtonBorder();
 
-    FontUIResource getButtonFont();
+  FontUIResource getButtonFont();
 
-    boolean getMouseHoverButtonEnable();
+  boolean getMouseHoverButtonEnable();
 
-    boolean getButtonFocusable();
+  boolean getButtonFocusable();
 
-    boolean getButtonBorderEnable();
+  boolean getButtonBorderEnable();
 
-    boolean getButtonBorderEnableToAll();
+  boolean getButtonBorderEnableToAll();
 
-    boolean getOpaqueButton();
+  boolean getOpaqueButton();
 
-    int getArcButton();
+  int getArcButton();
 
-    //-----------------------------------
-    //Proprieties JCheckBox
+  // -----------------------------------
+  // Proprieties JCheckBox
 
-    IconUIResource getUnselectedCheckBoxIcon();
+  IconUIResource getUnselectedCheckBoxIcon();
 
-    IconUIResource getSelectedCheckBoxIcon();
+  IconUIResource getSelectedCheckBoxIcon();
 
-    IconUIResource getDisabledUnselectedCheckBoxIcon();
+  IconUIResource getDisabledUnselectedCheckBoxIcon();
 
-    IconUIResource getDisabledSelectedCheckBoxIcon();
+  IconUIResource getDisabledSelectedCheckBoxIcon();
 
-    //-----------------------------------
-    //Proprieties JComboBox
-    ColorUIResource getSelectedInDropDownBackgroundComboBox();
+  // -----------------------------------
+  // Proprieties JComboBox
+  ColorUIResource getSelectedInDropDownBackgroundComboBox();
 
-    ColorUIResource getSelectedForegroundComboBox();
+  ColorUIResource getSelectedForegroundComboBox();
 
-    BorderUIResource getBorderComboBox();
+  BorderUIResource getBorderComboBox();
 
-    BorderUIResource getBorderItemComboBox();
+  BorderUIResource getBorderItemComboBox();
 
-    IconUIResource getButtonIconComboBox();
+  IconUIResource getButtonIconComboBox();
 
-    IconUIResource getButtonSelectIconComboBox();
+  IconUIResource getButtonSelectIconComboBox();
 
-    IconUIResource getButtonDisabledIconComboBox();
+  IconUIResource getButtonDisabledIconComboBox();
 
-    boolean getMouseHoverEnableComboBox();
+  boolean getMouseHoverEnableComboBox();
 
-    boolean getLightWeightPopupEnabledComboBox();
+  boolean getLightWeightPopupEnabledComboBox();
 
-    boolean getFocusableComboBox();
+  boolean getFocusableComboBox();
 
-    int getArchBorderComboBox();
+  int getArchBorderComboBox();
 
-    //-----------------------------------
-    //Proprieties All component inside the menu
-    ColorUIResource getMenuBackground();
+  // -----------------------------------
+  // Proprieties All component inside the menu
+  ColorUIResource getMenuBackground();
 
-    ColorUIResource getMenuTextColor();
+  ColorUIResource getMenuTextColor();
 
-    ColorUIResource getMenuBackgroundMouseHover();
+  ColorUIResource getMenuBackgroundMouseHover();
 
-    ColorUIResource getMenuDisableBackground();
+  ColorUIResource getMenuDisableBackground();
 
-    BorderUIResource getBorderMenu();
+  BorderUIResource getBorderMenu();
 
-    BorderUIResource getBorderMenuBar();
+  BorderUIResource getBorderMenuBar();
 
-    boolean getMouseHoverEnableMenu();
+  boolean getMouseHoverEnableMenu();
 
-    Icon getMenuArrowIcon();
+  Icon getMenuArrowIcon();
 
-    ColorUIResource getMenuArrowHoverColor();
+  ColorUIResource getMenuArrowHoverColor();
 
-    int getMenuArrowHeight();
+  int getMenuArrowHeight();
 
-    int getMenuArrowWidth();
+  int getMenuArrowWidth();
 
-    //-----------------------------------
-    //Proprieties JRadioButton
-    IconUIResource getUnselectedRadioButtonIcon();
+  // -----------------------------------
+  // Proprieties JRadioButton
+  IconUIResource getUnselectedRadioButtonIcon();
 
-    IconUIResource getSelectedRadioButtonIcon();
+  IconUIResource getSelectedRadioButtonIcon();
 
-    IconUIResource getDisabledUnselectedRadioButtonIcon();
+  IconUIResource getDisabledUnselectedRadioButtonIcon();
 
-    IconUIResource getDisabledSelectedRadioButtonIcon();
+  IconUIResource getDisabledSelectedRadioButtonIcon();
 
-    //-----------------------------------
-    //Proprieties JPopupMenu
-    BorderUIResource getBorderPopupMenu();
+  // -----------------------------------
+  // Proprieties JPopupMenu
+  BorderUIResource getBorderPopupMenu();
 
-    //-----------------------------------
-    //Proprieties JSpinner
-    ColorUIResource getArrowButtonBackgroundSpinner();
+  // -----------------------------------
+  // Proprieties JSpinner
+  ColorUIResource getArrowButtonBackgroundSpinner();
 
-    ColorUIResource getMouseHoverButtonColorSpinner();
+  ColorUIResource getMouseHoverButtonColorSpinner();
 
-    BorderUIResource getBorderSpinner();
+  BorderUIResource getBorderSpinner();
 
-    BorderUIResource getArrowButtonBorderSpinner();
+  BorderUIResource getArrowButtonBorderSpinner();
 
-    IconUIResource getPreviousButtonIconSpinner();
+  IconUIResource getPreviousButtonIconSpinner();
 
-    IconUIResource getNextButtonIconSpinner();
+  IconUIResource getNextButtonIconSpinner();
 
-    boolean getMouseHoverEnableSpinner();
+  boolean getMouseHoverEnableSpinner();
 
-    //-----------------------------------
-    //Proprieties JPanel JScrollPane
-    BorderUIResource getBorderPanel();
+  // -----------------------------------
+  // Proprieties JPanel JScrollPane
+  BorderUIResource getBorderPanel();
 
-    //---------------------------------------------------
-    //Proprieties JScrollBar
-    ColorUIResource getTrackColorScrollBar();
+  // ---------------------------------------------------
+  // Proprieties JScrollBar
+  ColorUIResource getTrackColorScrollBar();
 
-    ColorUIResource getThumbColorScrollBar();
+  ColorUIResource getThumbColorScrollBar();
 
-    ColorUIResource getThumbDarkShadowColorScrollBar();
+  ColorUIResource getThumbDarkShadowColorScrollBar();
 
-    ColorUIResource getThumbHighlightColorScrollBar();
+  ColorUIResource getThumbHighlightColorScrollBar();
 
-    ColorUIResource getThumbShadowColorScrollBar();
+  ColorUIResource getThumbShadowColorScrollBar();
 
-    ColorUIResource getMouseHoverColorScrollBar();
+  ColorUIResource getMouseHoverColorScrollBar();
 
-    ColorUIResource getArrowButtonColorScrollBar();
+  ColorUIResource getArrowButtonColorScrollBar();
 
-    ColorUIResource getArrowButtonOnClickColorScrollBar();
+  ColorUIResource getArrowButtonOnClickColorScrollBar();
 
-    BorderUIResource getArrowButtonBorderScrollBar();
+  BorderUIResource getArrowButtonBorderScrollBar();
 
-    boolean getMouseHoverEnableScrollBar();
+  boolean getMouseHoverEnableScrollBar();
 
-    boolean getEnableArrowScrollBar();
+  boolean getEnableArrowScrollBar();
 
-    //set methods
-    void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon);
+  // set methods
+  void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon);
 
-    void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon);
+  void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon);
 
-    void setButtonIconComboBox(IconUIResource buttonIconComboBox);
+  void setButtonIconComboBox(IconUIResource buttonIconComboBox);
 
-    void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox);
+  void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox);
 
-    void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox);
+  void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox);
 
-    void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner);
+  void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner);
 
-    void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner);
+  void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner);
 
-    void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton);
+  void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton);
 
-    void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton);
+  void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton);
 
-    public void setWithoutIconToggleButton(boolean withoutIconToggleButton);
+  public void setWithoutIconToggleButton(boolean withoutIconToggleButton);
 
-    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton);
+  public void setWithoutIconSelectedBackgroundToggleButton(
+      ColorUIResource withoutIconSelectedBackgroundToggleButton);
 
-    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton);
+  public void setWithoutIconSelectedForegoundToggleButton(
+      ColorUIResource withoutIconSelectedForegoundToggleButton);
 
-    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton);
+  public void setWithoutIconBackgroundToggleButton(
+      ColorUIResource withoutIconBackgroundToggleButton);
 
-    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton);
+  public void setWithoutIconForegroundToggleButton(
+      ColorUIResource withoutIconForegroundToggleButton);
 
-    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton);
+  public void setWithoutIconSelectedBorderToggleButton(
+      BorderUIResource withoutIconSelectedBorderToggleButton);
 
-    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton);
+  public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton);
 
-    IconUIResource getUnselectedIconToggleButton();
+  IconUIResource getUnselectedIconToggleButton();
 
-    IconUIResource getSelectedIconToggleButton();
+  IconUIResource getSelectedIconToggleButton();
 
-    IconUIResource getDisabledUnselectedIconToggleButton();
+  IconUIResource getDisabledUnselectedIconToggleButton();
 
-    IconUIResource getDisabledSelectedIconToggleButton();
+  IconUIResource getDisabledSelectedIconToggleButton();
 
-    public boolean isWithoutIconToggleButton();
+  public boolean isWithoutIconToggleButton();
 
-    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton();
+  public ColorUIResource getWithoutIconSelectedBackgroundToggleButton();
 
-    public ColorUIResource getWithoutIconSelectedForegoundToggleButton();
+  public ColorUIResource getWithoutIconSelectedForegoundToggleButton();
 
-    public ColorUIResource getWithoutIconBackgroundToggleButton();
+  public ColorUIResource getWithoutIconBackgroundToggleButton();
 
-    public ColorUIResource getWithoutIconForegroundToggleButton();
+  public ColorUIResource getWithoutIconForegroundToggleButton();
 
-    public BorderUIResource getWithoutIconSelectedBorderToggleButton();
+  public BorderUIResource getWithoutIconSelectedBorderToggleButton();
 
-    public BorderUIResource getWithoutIconBorderToggleButton();
+  public BorderUIResource getWithoutIconBorderToggleButton();
 
-    //---------------------------------------------------
-    //Proprieties JSlider
-    ColorUIResource getTrackColorSlider();
+  // ---------------------------------------------------
+  // Proprieties JSlider
+  ColorUIResource getTrackColorSlider();
 
-    ColorUIResource getHaloColorSlider();
+  ColorUIResource getHaloColorSlider();
 
-    ColorUIResource getDisabledColorSlider();
+  ColorUIResource getDisabledColorSlider();
 
-    BorderUIResource getBorderSlider();
+  BorderUIResource getBorderSlider();
 
-    //---------------------------------------------------
-    //Proprieties JTabbedPane
-    IconUIResource getDisabledBottomIconTabbedPane();
+  // ---------------------------------------------------
+  // Proprieties JTabbedPane
+  IconUIResource getDisabledBottomIconTabbedPane();
 
-    IconUIResource getDisabledTopIconTabbedPane();
+  IconUIResource getDisabledTopIconTabbedPane();
 
-    IconUIResource getDisabledLeftIconTabbedPane();
+  IconUIResource getDisabledLeftIconTabbedPane();
 
-    IconUIResource getDisabledRightIconTabbedPane();
+  IconUIResource getDisabledRightIconTabbedPane();
 
-    ColorUIResource getHighlightColorTabbedPane();
+  ColorUIResource getHighlightColorTabbedPane();
 
-    ColorUIResource getBorderHighlightColorTabbedPane();
+  ColorUIResource getBorderHighlightColorTabbedPane();
 
-    ColorUIResource getFocusColorLineTabbedPane();
+  ColorUIResource getFocusColorLineTabbedPane();
 
-    ColorUIResource getDisableColorTabTabbedPane();
+  ColorUIResource getDisableColorTabTabbedPane();
 
-    InsetsUIResource getTabInsetsTabbedPane();
+  InsetsUIResource getTabInsetsTabbedPane();
 
-    InsetsUIResource getSelectedTabInsetsTabbedPane();
+  InsetsUIResource getSelectedTabInsetsTabbedPane();
 
-    IconUIResource getBottomIconTabbedPane();
+  IconUIResource getBottomIconTabbedPane();
 
-    IconUIResource getTopIconTabbedPane();
+  IconUIResource getTopIconTabbedPane();
 
-    IconUIResource getLeftIconTabbedPane();
+  IconUIResource getLeftIconTabbedPane();
 
-    IconUIResource getRightIconTabbedPane();
+  IconUIResource getRightIconTabbedPane();
 
-    ColorUIResource getColorIconTabbedPane();
+  ColorUIResource getColorIconTabbedPane();
 
-    ColorUIResource getColorDisabledIconTabbedPane();
+  ColorUIResource getColorDisabledIconTabbedPane();
 
-    boolean getMouseHoverEnableTabbedPane();
+  boolean getMouseHoverEnableTabbedPane();
 
-    int getLinePositionYTabbedPane();
+  int getLinePositionYTabbedPane();
 
-    int getLinePositionXTabbedPane();
+  int getLinePositionXTabbedPane();
 
-    int getLineWithTabbedPane();
+  int getLineWithTabbedPane();
 
-    int getLineHeightTabbedPane();
+  int getLineHeightTabbedPane();
 
-    int getLineArchTabbedPane();
+  int getLineArchTabbedPane();
 
-    int getIndentTabbedPane();
+  int getIndentTabbedPane();
 
-    int getSpacerTabbedPane();
+  int getSpacerTabbedPane();
 
-    int getHeightTabTabbedPane();
+  int getHeightTabTabbedPane();
 
-    //---------------------------------------------------
-    //Proprieties JTable
-    ColorUIResource getBackgroundTable();
+  // ---------------------------------------------------
+  // Proprieties JTable
+  ColorUIResource getBackgroundTable();
 
-    ColorUIResource getForegroundTable();
+  ColorUIResource getForegroundTable();
 
-    ColorUIResource getSelectionBackgroundTable();
+  ColorUIResource getSelectionBackgroundTable();
 
-    ColorUIResource getSelectionForegroundTable();
+  ColorUIResource getSelectionForegroundTable();
 
-    ColorUIResource getGridColorTable();
+  ColorUIResource getGridColorTable();
 
-    ColorUIResource getAlternateRowBackgroundTable();
+  ColorUIResource getAlternateRowBackgroundTable();
 
-    BorderUIResource getBorderTable();
+  BorderUIResource getBorderTable();
 
-    IconUIResource getUnselectedCheckBoxIconTable();
+  IconUIResource getUnselectedCheckBoxIconTable();
 
-    IconUIResource getSelectedCheckBoxIconTable();
+  IconUIResource getSelectedCheckBoxIconTable();
 
-    IconUIResource getUnselectedCheckBoxIconSelectionRowTable();
+  IconUIResource getUnselectedCheckBoxIconSelectionRowTable();
 
-    IconUIResource getSelectedCheckBoxIconSelectionRowTable();
+  IconUIResource getSelectedCheckBoxIconSelectionRowTable();
 
-    boolean getTableFocusable();
+  boolean getTableFocusable();
 
-    boolean getTableOpaque();
+  boolean getTableOpaque();
 
-    int getHeightRowTable();
+  int getHeightRowTable();
 
-    //JTableHeader
-    ColorUIResource getBackgroundTableHeader();
+  // JTableHeader
+  ColorUIResource getBackgroundTableHeader();
 
-    ColorUIResource getForegroundTableHeader();
+  ColorUIResource getForegroundTableHeader();
 
-    BorderUIResource getBorderTableHeader();
+  BorderUIResource getBorderTableHeader();
 
-    BorderUIResource getCellBorderTableHeader();
+  BorderUIResource getCellBorderTableHeader();
 
-    //---------------------------------------------------
-    //Proprieties JSeparator
-    ColorUIResource getBackgroundSeparator();
+  // ---------------------------------------------------
+  // Proprieties JSeparator
+  ColorUIResource getBackgroundSeparator();
 
-    ColorUIResource getForegroundSeparator();
+  ColorUIResource getForegroundSeparator();
 
-    //---------------------------------------------------
-    //Proprieties JToolBar
-    ColorUIResource getDockingBackgroundToolBar();
+  // ---------------------------------------------------
+  // Proprieties JToolBar
+  ColorUIResource getDockingBackgroundToolBar();
 
-    ColorUIResource getFloatingBackgroundToolBar();
+  ColorUIResource getFloatingBackgroundToolBar();
 
-    BorderUIResource getBorderToolBar();
+  BorderUIResource getBorderToolBar();
 
-    //---------------------------------------------------
-    //Proprieties JToolTip
-    ColorUIResource getBackgroundToolTip();
+  // ---------------------------------------------------
+  // Proprieties JToolTip
+  ColorUIResource getBackgroundToolTip();
 
-    ColorUIResource getForegroundToolTip();
+  ColorUIResource getForegroundToolTip();
 
-    BorderUIResource getBorderToolTip();
+  BorderUIResource getBorderToolTip();
 
-    //---------------------------------------------------
-    //Proprieties JTree
-    ColorUIResource getSelectionForegroundTree();
+  // ---------------------------------------------------
+  // Proprieties JTree
+  ColorUIResource getSelectionForegroundTree();
 
-    ColorUIResource getSelectionBackgroundTree();
+  ColorUIResource getSelectionBackgroundTree();
 
-    ColorUIResource getSelectionBorderColorTree();
+  ColorUIResource getSelectionBorderColorTree();
 
-    IconUIResource getClosedIconTree();
+  IconUIResource getClosedIconTree();
 
-    IconUIResource getOpenIconTree();
+  IconUIResource getOpenIconTree();
 
-    IconUIResource getLeafIconTree();
+  IconUIResource getLeafIconTree();
 
-    BorderUIResource getBorderTree();
+  BorderUIResource getBorderTree();
 
-    //---------------------------------------------------
-    //Proprieties JTextField and JPasswordField
-    ColorUIResource getBackgroundTextField();
+  // ---------------------------------------------------
+  // Proprieties JTextField and JPasswordField
+  ColorUIResource getBackgroundTextField();
 
-    ColorUIResource getInactiveForegroundTextField();
+  ColorUIResource getInactiveForegroundTextField();
 
-    ColorUIResource getInactiveBackgroundTextField();
+  ColorUIResource getInactiveBackgroundTextField();
 
-    ColorUIResource getSelectionBackgroundTextField();
+  ColorUIResource getSelectionBackgroundTextField();
 
-    ColorUIResource getSelectionForegroundTextField();
+  ColorUIResource getSelectionForegroundTextField();
 
-    ColorUIResource getDisabledBackgroudnTextField();
+  ColorUIResource getDisabledBackgroudnTextField();
 
-    ColorUIResource getDisabledForegroundTextField();
+  ColorUIResource getDisabledForegroundTextField();
 
-    ColorUIResource getInactiveColorLineTextField();
+  ColorUIResource getInactiveColorLineTextField();
 
-    ColorUIResource getActiveColorLineTextField();
+  ColorUIResource getActiveColorLineTextField();
 
-    BorderUIResource getBorderTextField();
+  BorderUIResource getBorderTextField();
 
-    char getEchoCharPasswordField();
+  char getEchoCharPasswordField();
 
-    //---------------------------------------------------
-    //Proprieties JXTaskPane
-    ColorUIResource getTitleBackgroundGradientStartTaskPane();
+  // ---------------------------------------------------
+  // Proprieties JXTaskPane
+  ColorUIResource getTitleBackgroundGradientStartTaskPane();
 
-    ColorUIResource getTitleBackgroundGradientEndTaskPane();
+  ColorUIResource getTitleBackgroundGradientEndTaskPane();
 
-    ColorUIResource getTitleColorTaskPane();
+  ColorUIResource getTitleColorTaskPane();
 
-    ColorUIResource getTitleOverTaskPane();
+  ColorUIResource getTitleOverTaskPane();
 
-    ColorUIResource getSpecialTitleOverTaskPane();
+  ColorUIResource getSpecialTitleOverTaskPane();
 
-    ColorUIResource getBackgroundTaskPane();
+  ColorUIResource getBackgroundTaskPane();
 
-    ColorUIResource getBorderColorTaskPane();
+  ColorUIResource getBorderColorTaskPane();
 
-    ColorUIResource getContentBackgroundTaskPane();
+  ColorUIResource getContentBackgroundTaskPane();
 
-    BorderUIResource getBorderTaskPane();
+  BorderUIResource getBorderTaskPane();
 
-    IconUIResource getYesCollapsedTaskPane();
+  IconUIResource getYesCollapsedTaskPane();
 
-    IconUIResource getNoCollapsedTaskPane();
+  IconUIResource getNoCollapsedTaskPane();
 
-    boolean getMouseHoverEnableTaskPane();
+  boolean getMouseHoverEnableTaskPane();
 
-    int getArchTaskPane();
+  int getArchTaskPane();
 
-    //---------------------------------------------------
-    //Proprieties JList
-    ColorUIResource getSelectionBackgroundList();
+  // ---------------------------------------------------
+  // Proprieties JList
+  ColorUIResource getSelectionBackgroundList();
 
-    ColorUIResource getSelectionForegroundList();
+  ColorUIResource getSelectionForegroundList();
 
-    BorderUIResource getFocusCellHighlightBorder();
+  BorderUIResource getFocusCellHighlightBorder();
 
-    BorderUIResource getBorderItemList();
+  BorderUIResource getBorderItemList();
 
-    BorderUIResource getBorderList();
+  BorderUIResource getBorderList();
 
-    //---------------------------------------------------
-    //Proprieties JRootPane
-    BorderUIResource getBorderFrameRootPane();
+  // ---------------------------------------------------
+  // Proprieties JRootPane
+  BorderUIResource getBorderFrameRootPane();
 
-    BorderUIResource getBorderDialogRootPane();
+  BorderUIResource getBorderDialogRootPane();
 
-    //---------------------------------------------------
-    //Proprieties JOptionPane
-    ColorUIResource getBackgroundOptionPane();
+  // ---------------------------------------------------
+  // Proprieties JOptionPane
+  ColorUIResource getBackgroundOptionPane();
 
-    IconUIResource getWarningIconOptionPane();
+  IconUIResource getWarningIconOptionPane();
 
-    IconUIResource getErrorIconIconOptionPane();
+  IconUIResource getErrorIconIconOptionPane();
 
-    IconUIResource getQuestionIconOptionPane();
+  IconUIResource getQuestionIconOptionPane();
 
-    IconUIResource getInformationIconOptionPane();
+  IconUIResource getInformationIconOptionPane();
 
-    boolean getEnableIconOptionPane();
+  boolean getEnableIconOptionPane();
 
-    //---------------------------------------------------
-    //Proprieties JFileChooser
-    IconUIResource getIconComputerFileChooser();
+  // ---------------------------------------------------
+  // Proprieties JFileChooser
+  IconUIResource getIconComputerFileChooser();
 
-    IconUIResource getIconDirectoryFileChooser();
+  IconUIResource getIconDirectoryFileChooser();
 
-    IconUIResource getIconFileFileChooser();
+  IconUIResource getIconFileFileChooser();
 
-    IconUIResource getIconFloppyDriveFileChooser();
+  IconUIResource getIconFloppyDriveFileChooser();
 
-    IconUIResource getIconHardDriveFileChooser();
+  IconUIResource getIconHardDriveFileChooser();
 
-    IconUIResource getIconHomeFileChooser();
+  IconUIResource getIconHomeFileChooser();
 
-    IconUIResource getIconListFileChooser();
+  IconUIResource getIconListFileChooser();
 
-    IconUIResource getIconDetailsFileChooser();
+  IconUIResource getIconDetailsFileChooser();
 
-    IconUIResource getIconNewFolderFileChooser();
+  IconUIResource getIconNewFolderFileChooser();
 
-    IconUIResource getIconUpFolderFileChooser();
+  IconUIResource getIconUpFolderFileChooser();
 
-    //---------------------------------------------------
-    //Proprieties JProgressBar
-    ColorUIResource getBackgroundProgressBar();
+  // ---------------------------------------------------
+  // Proprieties JProgressBar
+  ColorUIResource getBackgroundProgressBar();
 
-    ColorUIResource getForegroundProgressBar();
+  ColorUIResource getForegroundProgressBar();
 
-    BorderUIResource getBorderProgressBar();
+  BorderUIResource getBorderProgressBar();
 
-    //---------------------------------------------------
-    //Proprieties JSplitPane
+  // ---------------------------------------------------
+  // Proprieties JSplitPane
 
-    ColorUIResource getColorDividierSplitPane();
+  ColorUIResource getColorDividierSplitPane();
 
-    ColorUIResource getColorDividierFocusSplitPane();
+  ColorUIResource getColorDividierFocusSplitPane();
 
-    int getSizeDividierSplitPane();
+  int getSizeDividierSplitPane();
 
-    BorderUIResource getDividierBorderSplitPane();
+  BorderUIResource getDividierBorderSplitPane();
 
-    //---------------------------------------------------
-    //Proprieties TitledBorder
-    ColorUIResource getColorTextTitledBorder();
+  // ---------------------------------------------------
+  // Proprieties TitledBorder
+  ColorUIResource getColorTextTitledBorder();
 
-    BorderUIResource getBorderTitledBorder();
+  BorderUIResource getBorderTitledBorder();
 
-    //---------------------------------------------------
-    //Proprieties TitleBorder
-    IconUIResource getIconCloseTitlePane();
+  // ---------------------------------------------------
+  // Proprieties TitleBorder
+  IconUIResource getIconCloseTitlePane();
 
-    //All type of font supported to the theme
-    FontUIResource getFontBold();
+  // All type of font supported to the theme
+  FontUIResource getFontBold();
 
-    FontUIResource getFontItalic();
+  FontUIResource getFontItalic();
 
-    FontUIResource getFontRegular();
+  FontUIResource getFontRegular();
 
-    FontUIResource getFontMedium();
+  FontUIResource getFontMedium();
 
+  // Setter
+  void setDisabledColorSlider(ColorUIResource disabledColorSlider);
 
-    //Setter
-    void setDisabledColorSlider(ColorUIResource disabledColorSlider);
+  void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton);
 
-    void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton);
+  void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton);
 
-    void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton);
+  void setDisabledUnselectedRadioButtonIcon(IconUIResource disabledUnselectedRadioButtonIcon);
 
-    void setDisabledUnselectedRadioButtonIcon(IconUIResource disabledUnselectedRadioButtonIcon);
+  void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon);
 
-    void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon);
+  void setBackgroundToolTip(ColorUIResource backgroundToolTip);
 
-    void setBackgroundToolTip(ColorUIResource backgroundToolTip);
+  void setForegroundToolTip(ColorUIResource foregroundToolTip);
 
-    void setForegroundToolTip(ColorUIResource foregroundToolTip);
+  void setBorderToolTip(BorderUIResource borderToolTip);
 
-    void setBorderToolTip(BorderUIResource borderToolTip);
+  void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane);
 
-    void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane);
+  void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane);
 
-    void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane);
+  void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane);
 
-    void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane);
+  void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane);
 
-    void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane);
+  void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane);
 
-    void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane);
+  void setTopIconTabbedPane(IconUIResource topIconTabbedPane);
 
-    void setTopIconTabbedPane(IconUIResource topIconTabbedPane);
+  void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane);
 
-    void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane);
+  void setRightIconTabbedPane(IconUIResource rightIconTabbedPane);
 
-    void setRightIconTabbedPane(IconUIResource rightIconTabbedPane);
+  void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane);
 
-    void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane);
+  void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane);
 
-    void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane);
+  void setArchTaskPane(int archTaskPane);
 
-    void setArchTaskPane(int archTaskPane);
+  void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);
 
-    void setTitleColorTaskPane(ColorUIResource titleColorTaskPane);
+  void setLeafIconTree(IconUIResource leafIconTree);
 
-    void setLeafIconTree(IconUIResource leafIconTree);
+  void setBackgroundSeparator(ColorUIResource backgroundSeparator);
 
-    void setBackgroundSeparator(ColorUIResource backgroundSeparator);
+  void setForegroundSeparator(ColorUIResource foregroundSeparator);
 
-    void setForegroundSeparator(ColorUIResource foregroundSeparator);
+  void setBorderTree(BorderUIResource borderTree);
 
-    void setBorderTree(BorderUIResource borderTree);
+  void setIconCloseTitlePane(IconUIResource iconCloseTitlePane);
 
-    void setIconCloseTitlePane(IconUIResource iconCloseTitlePane);
+  void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
 
-    void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField);
+  void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField);
 
-    void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField);
+  void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder);
 
-    void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder);
+  void setBorderTitledBorder(BorderUIResource borderTitledBorder);
 
-    void setBorderTitledBorder(BorderUIResource borderTitledBorder);
+  void setBackgroundPrimary(ColorUIResource backgroundPrimary);
 
-    void setBackgroundPrimary(ColorUIResource backgroundPrimary);
+  void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary);
 
-    void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary);
+  void setTextColor(ColorUIResource textColor);
 
-    void setTextColor(ColorUIResource textColor);
+  public void setDisableTextColor(ColorUIResource disableTextColor);
 
-    public void setDisableTextColor(ColorUIResource disableTextColor);
+  public void setButtonBackgroundColor(ColorUIResource buttonBackgroundColor);
 
-    public void setButtonBackgroundColor(ColorUIResource buttonBackgroundColor);
+  public void setButtonTextColor(ColorUIResource buttonTextColor);
 
-    public void setButtonTextColor(ColorUIResource buttonTextColor);
+  public void setButtonBackgroundColorMouseHover(ColorUIResource buttonBackgroundColorMouseHover);
 
-    public void setButtonBackgroundColorMouseHover(ColorUIResource buttonBackgroundColorMouseHover);
+  public void setButtonDefaultBackgroundColor(ColorUIResource buttonDefaultBackgroundColor);
 
-    public void setButtonDefaultBackgroundColor(ColorUIResource buttonDefaultBackgroundColor);
+  public void setButtonDefaultTextColor(ColorUIResource buttonDefaultTextColor);
 
-    public void setButtonDefaultTextColor(ColorUIResource buttonDefaultTextColor);
+  public void setButtonDefaultBackgroundColorMouseHover(
+      ColorUIResource buttonDefaultBackgroundColorMouseHover);
 
-    public void setButtonDefaultBackgroundColorMouseHover(ColorUIResource buttonDefaultBackgroundColorMouseHover);
+  public void setButtonDisabledBackground(ColorUIResource buttonDisabledBackground);
 
-    public void setButtonDisabledBackground(ColorUIResource buttonDisabledBackground);
+  public void setButtonDisabledForeground(ColorUIResource buttonDisabledForeground);
 
-    public void setButtonDisabledForeground(ColorUIResource buttonDisabledForeground);
+  public void setButtonFocusColor(ColorUIResource buttonFocusColor);
 
-    public void setButtonFocusColor(ColorUIResource buttonFocusColor);
+  public void setButtonDefaultFocusColor(ColorUIResource buttonDefaultFocusColor);
 
-    public void setButtonDefaultFocusColor(ColorUIResource buttonDefaultFocusColor);
+  public void setButtonBorderColor(ColorUIResource buttonBorderColor);
 
-    public void setButtonBorderColor(ColorUIResource buttonBorderColor);
+  public void setButtonColorHighlight(ColorUIResource buttonColorHighlight);
 
-    public void setButtonColorHighlight(ColorUIResource buttonColorHighlight);
+  public void setButtonBorder(BorderUIResource buttonBorder);
 
-    public void setButtonBorder(BorderUIResource buttonBorder);
+  public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon);
 
-    public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon);
+  public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon);
 
-    public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon);
+  public void setSelectedInDropDownBackgroundComboBox(
+      ColorUIResource selectedInDropDownBackgroundComboBox);
 
-    public void setSelectedInDropDownBackgroundComboBox(ColorUIResource selectedInDropDownBackgroundComboBox);
+  public void setSelectedForegroundComboBox(ColorUIResource selectedForegroundComboBox);
 
-    public void setSelectedForegroundComboBox(ColorUIResource selectedForegroundComboBox);
+  public void setMenuBackground(ColorUIResource menuBackground);
 
-    public void setMenuBackground(ColorUIResource menuBackground);
+  public void setMenuTextColor(ColorUIResource menuTextColor);
 
-    public void setMenuTextColor(ColorUIResource menuTextColor);
+  public void setMenuBackgroundMouseHover(ColorUIResource menuBackgroundMouseHover);
 
-    public void setMenuBackgroundMouseHover(ColorUIResource menuBackgroundMouseHover);
+  public void setMenuDisableBackground(ColorUIResource menuDisableBackground);
 
-    public void setMenuDisableBackground(ColorUIResource menuDisableBackground);
+  public void setBorderMenu(BorderUIResource borderMenu);
 
-    public void setBorderMenu(BorderUIResource borderMenu);
+  public void setBorderMenuBar(BorderUIResource borderMenuBar);
 
-    public void setBorderMenuBar(BorderUIResource borderMenuBar);
+  public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon);
 
-    public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon);
+  public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon);
 
-    public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon);
+  public void setBorderPopupMenu(BorderUIResource borderPopupMenu);
 
-    public void setBorderPopupMenu(BorderUIResource borderPopupMenu);
+  public void setArrowButtonBackgroundSpinner(ColorUIResource arrowButtonBackgroundSpinner);
 
-    public void setArrowButtonBackgroundSpinner(ColorUIResource arrowButtonBackgroundSpinner);
+  public void setMouseHoverButtonColorSpinner(ColorUIResource mouseHoverButtonColorSpinner);
 
-    public void setMouseHoverButtonColorSpinner(ColorUIResource mouseHoverButtonColorSpinner);
+  public void setBorderSpinner(BorderUIResource borderSpinner);
 
-    public void setBorderSpinner(BorderUIResource borderSpinner);
+  public void setArrowButtonBorderSpinner(BorderUIResource arrowButtonBorderSpinner);
 
-    public void setArrowButtonBorderSpinner(BorderUIResource arrowButtonBorderSpinner);
+  public void setBorderPanel(BorderUIResource borderPanel);
 
-    public void setBorderPanel(BorderUIResource borderPanel);
+  public void setTrackColorScrollBar(ColorUIResource trackColorScrollBar);
 
-    public void setTrackColorScrollBar(ColorUIResource trackColorScrollBar);
+  public void setThumbColorScrollBar(ColorUIResource thumbColorScrollBar);
 
-    public void setThumbColorScrollBar(ColorUIResource thumbColorScrollBar);
+  public void setThumbDarkShadowColorScrollBar(ColorUIResource thumbDarkShadowColorScrollBar);
 
-    public void setThumbDarkShadowColorScrollBar(ColorUIResource thumbDarkShadowColorScrollBar);
+  public void setThumbHighlightColorScrollBar(ColorUIResource thumbHighlightColorScrollBar);
 
-    public void setThumbHighlightColorScrollBar(ColorUIResource thumbHighlightColorScrollBar);
+  public void setThumbShadowColorScrollBar(ColorUIResource thumbShadowColorScrollBar);
 
-    public void setThumbShadowColorScrollBar(ColorUIResource thumbShadowColorScrollBar);
+  public void setMouseHoverColorScrollBar(ColorUIResource mouseHoverColorScrollBar);
 
-    public void setMouseHoverColorScrollBar(ColorUIResource mouseHoverColorScrollBar);
+  public void setArrowButtonColorScrollBar(ColorUIResource arrowButtonColorScrollBar);
 
-    public void setArrowButtonColorScrollBar(ColorUIResource arrowButtonColorScrollBar);
+  public void setArrowButtonOnClickColorScrollBar(ColorUIResource arrowButtonOnClickColorScrollBar);
 
-    public void setArrowButtonOnClickColorScrollBar(ColorUIResource arrowButtonOnClickColorScrollBar);
+  public void setArrowButtonBorderScrollBar(BorderUIResource arrowButtonBorderScrollBar);
 
-    public void setArrowButtonBorderScrollBar(BorderUIResource arrowButtonBorderScrollBar);
+  public void setTrackColorSlider(ColorUIResource trackColorSlider);
 
-    public void setTrackColorSlider(ColorUIResource trackColorSlider);
+  public void setHaloColorSlider(ColorUIResource haloColorSlider);
 
-    public void setHaloColorSlider(ColorUIResource haloColorSlider);
+  public void setBorderSlider(BorderUIResource borderSlider);
 
-    public void setBorderSlider(BorderUIResource borderSlider);
+  public void setHighlightColorTabbedPane(ColorUIResource highlightColorTabbedPane);
 
-    public void setHighlightColorTabbedPane(ColorUIResource highlightColorTabbedPane);
+  public void setBorderHighlightColorTabbedPane(ColorUIResource borderHighlightColorTabbedPane);
 
-    public void setBorderHighlightColorTabbedPane(ColorUIResource borderHighlightColorTabbedPane);
+  public void setFocusColorLineTabbedPane(ColorUIResource focusColorLineTabbedPane);
 
-    public void setFocusColorLineTabbedPane(ColorUIResource focusColorLineTabbedPane);
+  public void setDisableColorTabTabbedPane(ColorUIResource disableColorTabTabbedPane);
 
-    public void setDisableColorTabTabbedPane(ColorUIResource disableColorTabTabbedPane);
+  public void setTabInsetsTabbedPane(InsetsUIResource tabInsetsTabbedPane);
 
-    public void setTabInsetsTabbedPane(InsetsUIResource tabInsetsTabbedPane);
+  public void setSelectedTabInsetsTabbedPane(InsetsUIResource selectedTabInsetsTabbedPane);
 
-    public void setSelectedTabInsetsTabbedPane(InsetsUIResource selectedTabInsetsTabbedPane);
+  public void setBackgroundTable(ColorUIResource backgroundTable);
 
-    public void setBackgroundTable(ColorUIResource backgroundTable);
+  public void setBackgroundTableHeader(ColorUIResource backgroundTableHeader);
 
-    public void setBackgroundTableHeader(ColorUIResource backgroundTableHeader);
+  public void setForegroundTable(ColorUIResource foregroundTable);
 
-    public void setForegroundTable(ColorUIResource foregroundTable);
+  public void setForegroundTableHeader(ColorUIResource foregroundTableHeader);
 
-    public void setForegroundTableHeader(ColorUIResource foregroundTableHeader);
+  public void setSelectionBackgroundTable(ColorUIResource selectionBackgroundTable);
 
-    public void setSelectionBackgroundTable(ColorUIResource selectionBackgroundTable);
+  public void setSelectionForegroundTable(ColorUIResource selectionForegroundTable);
 
-    public void setSelectionForegroundTable(ColorUIResource selectionForegroundTable);
+  public void setGridColorTable(ColorUIResource gridColorTable);
 
-    public void setGridColorTable(ColorUIResource gridColorTable);
+  public void setAlternateRowBackgroundTable(ColorUIResource alternateRowBackgroundTable);
 
-    public void setAlternateRowBackgroundTable(ColorUIResource alternateRowBackgroundTable);
+  public void setBorderTable(BorderUIResource borderTable);
 
-    public void setBorderTable(BorderUIResource borderTable);
+  public void setBorderTableHeader(BorderUIResource borderTableHeader);
 
-    public void setBorderTableHeader(BorderUIResource borderTableHeader);
+  public void setCellBorderTableHeader(BorderUIResource cellBorderTableHeader);
 
-    public void setCellBorderTableHeader(BorderUIResource cellBorderTableHeader);
+  public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable);
 
-    public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable);
+  public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable);
 
-    public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable);
+  public void setUnselectedCheckBoxIconSelectionRowTable(
+      IconUIResource unselectedCheckBoxIconSelectionRowTable);
 
-    public void setUnselectedCheckBoxIconSelectionRowTable(IconUIResource unselectedCheckBoxIconSelectionRowTable);
+  public void setSelectedCheckBoxIconSelectionRowTable(
+      IconUIResource selectedCheckBoxIconSelectionRowTable);
 
-    public void setSelectedCheckBoxIconSelectionRowTable(IconUIResource selectedCheckBoxIconSelectionRowTable);
+  public void setDockingBackgroundToolBar(ColorUIResource dockingBackgroundToolBar);
 
-    public void setDockingBackgroundToolBar(ColorUIResource dockingBackgroundToolBar);
+  public void setFloatingBackgroundToolBar(ColorUIResource floatingBackgroundToolBar);
 
-    public void setFloatingBackgroundToolBar(ColorUIResource floatingBackgroundToolBar);
+  public void setBorderToolBar(BorderUIResource borderToolBar);
 
-    public void setBorderToolBar(BorderUIResource borderToolBar);
+  public void setSelectionForegroundTree(ColorUIResource selectionForegroundTree);
 
-    public void setSelectionForegroundTree(ColorUIResource selectionForegroundTree);
+  public void setSelectionBackgroundTree(ColorUIResource selectionBackgroundTree);
 
-    public void setSelectionBackgroundTree(ColorUIResource selectionBackgroundTree);
+  public void setSelectionBorderColorTree(ColorUIResource selectionBorderColorTree);
 
-    public void setSelectionBorderColorTree(ColorUIResource selectionBorderColorTree);
+  public void setClosedIconTree(IconUIResource closedIconTree);
 
-    public void setClosedIconTree(IconUIResource closedIconTree);
+  public void setOpenIconTree(IconUIResource openIconTree);
 
-    public void setOpenIconTree(IconUIResource openIconTree);
+  public void setBackgroundTextField(ColorUIResource backgroundTextField);
 
-    public void setBackgroundTextField(ColorUIResource backgroundTextField);
+  public void setInactiveForegroundTextField(ColorUIResource inactiveForegroundTextField);
 
-    public void setInactiveForegroundTextField(ColorUIResource inactiveForegroundTextField);
+  public void setInactiveBackgroundTextField(ColorUIResource inactiveBackgroundTextField);
 
-    public void setInactiveBackgroundTextField(ColorUIResource inactiveBackgroundTextField);
+  public void setSelectionBackgroundTextField(ColorUIResource selectionBackgroundTextField);
 
-    public void setSelectionBackgroundTextField(ColorUIResource selectionBackgroundTextField);
+  public void setSelectionForegroundTextField(ColorUIResource selectionForegroundTextField);
 
-    public void setSelectionForegroundTextField(ColorUIResource selectionForegroundTextField);
+  public void setInactiveColorLineTextField(ColorUIResource inactiveColorLineTextField);
 
-    public void setInactiveColorLineTextField(ColorUIResource inactiveColorLineTextField);
+  public void setActiveColorLineTextField(ColorUIResource activeColorLineTextField);
 
-    public void setActiveColorLineTextField(ColorUIResource activeColorLineTextField);
+  public void setBorderTextField(BorderUIResource borderTextField);
 
-    public void setBorderTextField(BorderUIResource borderTextField);
+  public void setTitleBackgroundGradientStartTaskPane(
+      ColorUIResource titleBackgroundGradientStartTaskPane);
 
-    public void setTitleBackgroundGradientStartTaskPane(ColorUIResource titleBackgroundGradientStartTaskPane);
+  public void setTitleBackgroundGradientEndTaskPane(
+      ColorUIResource titleBackgroundGradientEndTaskPane);
 
-    public void setTitleBackgroundGradientEndTaskPane(ColorUIResource titleBackgroundGradientEndTaskPane);
+  public void setTitleOverTaskPane(ColorUIResource titleOverTaskPane);
 
-    public void setTitleOverTaskPane(ColorUIResource titleOverTaskPane);
+  public void setSpecialTitleOverTaskPane(ColorUIResource specialTitleOverTaskPane);
 
-    public void setSpecialTitleOverTaskPane(ColorUIResource specialTitleOverTaskPane);
+  public void setBackgroundTaskPane(ColorUIResource backgroundTaskPane);
 
-    public void setBackgroundTaskPane(ColorUIResource backgroundTaskPane);
+  public void setBorderColorTaskPane(ColorUIResource borderColorTaskPane);
 
-    public void setBorderColorTaskPane(ColorUIResource borderColorTaskPane);
+  public void setContentBackgroundTaskPane(ColorUIResource contentBackgroundTaskPane);
 
-    public void setContentBackgroundTaskPane(ColorUIResource contentBackgroundTaskPane);
+  public void setBorderTaskPane(BorderUIResource borderTaskPane);
 
-    public void setBorderTaskPane(BorderUIResource borderTaskPane);
+  public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane);
 
-    public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane);
+  public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane);
 
-    public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane);
+  public void setSelectionBackgroundList(ColorUIResource selectionBackgroundList);
 
-    public void setSelectionBackgroundList(ColorUIResource selectionBackgroundList);
+  public void setSelectionForegroundList(ColorUIResource selectionForegroundList);
 
-    public void setSelectionForegroundList(ColorUIResource selectionForegroundList);
+  public void setFocusCellHighlightBorder(BorderUIResource focusCellHighlightBorder);
 
-    public void setFocusCellHighlightBorder(BorderUIResource focusCellHighlightBorder);
+  public void setBorderItemList(BorderUIResource borderItemList);
 
-    public void setBorderItemList(BorderUIResource borderItemList);
+  public void setBorderList(BorderUIResource borderList);
 
-    public void setBorderList(BorderUIResource borderList);
+  public void setBorderFrameRootPane(BorderUIResource borderFrameRootPane);
 
-    public void setBorderFrameRootPane(BorderUIResource borderFrameRootPane);
+  public void setBorderDialogRootPane(BorderUIResource borderDialogRootPane);
 
-    public void setBorderDialogRootPane(BorderUIResource borderDialogRootPane);
+  public void setBackgroundOptionPane(ColorUIResource backgroundOptionPane);
 
-    public void setBackgroundOptionPane(ColorUIResource backgroundOptionPane);
+  public void setWarningIconOptionPane(IconUIResource warningIconOptionPane);
 
-    public void setWarningIconOptionPane(IconUIResource warningIconOptionPane);
+  public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane);
 
-    public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane);
+  public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane);
 
-    public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane);
+  public void setInformationIconOptionPane(IconUIResource informationIconOptionPane);
 
-    public void setInformationIconOptionPane(IconUIResource informationIconOptionPane);
+  public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser);
 
-    public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser);
+  public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser);
 
-    public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser);
+  public void setIconFileFileChooser(IconUIResource iconFileFileChooser);
 
-    public void setIconFileFileChooser(IconUIResource iconFileFileChooser);
+  public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser);
 
-    public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser);
+  public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser);
 
-    public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser);
+  public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser);
 
-    public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser);
+  public void setIconListFileChooser(IconUIResource iconListFileChooser);
 
-    public void setIconListFileChooser(IconUIResource iconListFileChooser);
+  public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser);
 
-    public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser);
+  public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser);
 
-    public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser);
+  public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser);
 
-    public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser);
+  public void setBackgroundProgressBar(ColorUIResource backgroundProgressBar);
 
-    public void setBackgroundProgressBar(ColorUIResource backgroundProgressBar);
+  public void setForegroundProgressBar(ColorUIResource foregroundProgressBar);
 
-    public void setForegroundProgressBar(ColorUIResource foregroundProgressBar);
+  public void setBorderComboBox(BorderUIResource borderComboBox);
 
-    public void setBorderComboBox(BorderUIResource borderComboBox);
+  public void setBorderProgressBar(BorderUIResource borderProgressBar);
 
-    public void setBorderProgressBar(BorderUIResource borderProgressBar);
+  public void setFontBold(FontUIResource fontBold);
 
-    public void setFontBold(FontUIResource fontBold);
+  public void setFontItalic(FontUIResource fontItalic);
 
-    public void setFontItalic(FontUIResource fontItalic);
+  public void setFontRegular(FontUIResource fontRegular);
 
-    public void setFontRegular(FontUIResource fontRegular);
+  public void setFontMedium(FontUIResource fontMedium);
 
-    public void setFontMedium(FontUIResource fontMedium);
+  public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane);
 
-    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane);
+  public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane);
 
-    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane);
+  public void setSizeDividierSplitPane(int sizeDividierSplitPane);
 
-    public void setSizeDividierSplitPane(int sizeDividierSplitPane);
-
-    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane);
-
+  public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane);
 }

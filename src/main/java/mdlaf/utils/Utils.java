@@ -23,14 +23,12 @@
  */
 package mdlaf.utils;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class Utils {
 
-    public static boolean isJavaVersionUnderJava9(){
-        return System.getProperty("java.version").startsWith("1.");
-    }
+  public static boolean isJavaVersionUnderJava9() {
+    return System.getProperty("java.version").startsWith("1.");
+  }
 
-    private Utils(){}
+  private Utils() {}
 }
