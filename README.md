@@ -1,5 +1,6 @@
 # Material-UI-Swing
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)](https://search.maven.org/search?q=g:%22io.github.vincenzopalazzo%22%20AND%20a:%22material-ui-swing%22)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vincenzopalazzo/material-ui-swing/build?style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/vincenzopalazzo/material-ui-swing/total?color=%234caf50&style=for-the-badge)
 
@@ -49,6 +50,28 @@ implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1")
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
 
+## Code Style
+> We live in a world where robots can drive a car, so we shouldn't just write code, we should write elegant code.
+
+This repository use [google-java-format](https://github.com/sherter/google-java-format-gradle-plugin) to maintains the code of the repository elegant, so
+before submit the code check the Java format with the following command on the root of the directory
+
+```bash
+./gradlew verifyGoogleJavaFormat
+```
+
+It any error are reported please run the following command to try to fix it
+
+```bash
+./gradlew googleJavaFormat
+```
+
+p.s: The gradle plugin work with all the JDK version >= 9 (or better with java byte code version compatible with the version  55.0)
+
+For more details about the JDK support see the [this issue](https://github.com/sherter/google-java-format-gradle-plugin/issues/58) 
+and to know more about the Google Java code Style see the [this reference](https://google.github.io/styleguide/javaguide.html)
+
+## Build with Material-UI-Swing
 _**List of projects with Material-UI-Swing theme**_
 - [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
 - [JMars 5](https://JMars.mars.asu.edu): Used by NASA and United Arab Emirates (UAE) for the last Mars missions.

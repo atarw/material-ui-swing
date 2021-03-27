@@ -23,43 +23,40 @@
  */
 package integration.gui.test;
 
+import javax.swing.*;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.junit.Test;
 
-import javax.swing.*;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class MaterialFocusedButtonTest extends AbstractTestGUI {
 
-    @Override
-    protected void onBeforeGuiSetUp() {
-        UIManager.put("Button.mouseHoverEnable", false);
-    }
+  @Override
+  protected void onBeforeGuiSetUp() {
+    UIManager.put("Button.mouseHoverEnable", false);
+  }
 
-    @Override
-    protected void onTearDown() {
-        UIManager.put("Button.mouseHoverEnable", true);
-    }
+  @Override
+  protected void onTearDown() {
+    UIManager.put("Button.mouseHoverEnable", true);
+  }
 
-    @Test
-    public void testButtonNormalColorBackgroundWhenIsFocused() {
-        JButtonFixture buttonUndo = frame.button("buttonNormal");
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-        buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
-        buttonUndo.focus();
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-        buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
-    }
+  @Test
+  public void testButtonNormalColorBackgroundWhenIsFocused() {
+    JButtonFixture buttonUndo = frame.button("buttonNormal");
+    buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
+    buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
+    buttonUndo.focus();
+    buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
+    buttonUndo.foreground().requireEqualTo(theme.getButtonTextColor());
+  }
 
-    @Test
-    public void testButtonColorBackgroundDefaultWhenIsFocused() {
-        JButtonFixture buttonDefault = frame.button("buttonDefault");
-        buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
-        buttonDefault.foreground().requireEqualTo(theme.getButtonDefaultTextColor());
-        buttonDefault.focus();
-        buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
-        buttonDefault.foreground().requireEqualTo(theme.getButtonDefaultTextColor());
-    }
+  @Test
+  public void testButtonColorBackgroundDefaultWhenIsFocused() {
+    JButtonFixture buttonDefault = frame.button("buttonDefault");
+    buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
+    buttonDefault.foreground().requireEqualTo(theme.getButtonDefaultTextColor());
+    buttonDefault.focus();
+    buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
+    buttonDefault.foreground().requireEqualTo(theme.getButtonDefaultTextColor());
+  }
 }

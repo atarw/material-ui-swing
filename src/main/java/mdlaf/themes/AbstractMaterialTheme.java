@@ -23,6 +23,8 @@
  */
 package mdlaf.themes;
 
+import javax.swing.*;
+import javax.swing.plaf.*;
 import mdlaf.components.menu.MaterialMenuArrowIcon;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
@@ -30,2390 +32,2330 @@ import mdlaf.utils.MaterialFontFactory;
 import mdlaf.utils.MaterialImageFactory;
 import mdlaf.utils.icons.MaterialIconFont;
 
-import javax.swing.*;
-import javax.swing.plaf.*;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public abstract class AbstractMaterialTheme implements MaterialTheme {
 
-    protected ColorUIResource backgroundPrimary;
+  protected ColorUIResource backgroundPrimary;
 
-    protected ColorUIResource highlightBackgroundPrimary;
+  protected ColorUIResource highlightBackgroundPrimary;
 
-    protected ColorUIResource textColor;
+  protected ColorUIResource textColor;
 
-    protected ColorUIResource disableTextColor;
+  protected ColorUIResource disableTextColor;
 
-    //Button proprieties
-    protected ColorUIResource buttonBackgroundColor;
+  // Button proprieties
+  protected ColorUIResource buttonBackgroundColor;
 
-    protected ColorUIResource buttonTextColor;
+  protected ColorUIResource buttonTextColor;
 
-    protected ColorUIResource buttonBackgroundColorMouseHover;
+  protected ColorUIResource buttonBackgroundColorMouseHover;
 
-    protected ColorUIResource buttonDefaultBackgroundColor;
+  protected ColorUIResource buttonDefaultBackgroundColor;
 
-    protected ColorUIResource buttonDefaultTextColor;
+  protected ColorUIResource buttonDefaultTextColor;
 
-    protected ColorUIResource buttonDefaultBackgroundColorMouseHover;
+  protected ColorUIResource buttonDefaultBackgroundColorMouseHover;
 
-    protected ColorUIResource buttonDisabledBackground;
+  protected ColorUIResource buttonDisabledBackground;
 
-    protected ColorUIResource buttonDisabledForeground;
+  protected ColorUIResource buttonDisabledForeground;
 
-    protected ColorUIResource buttonFocusColor;
+  protected ColorUIResource buttonFocusColor;
 
-    protected ColorUIResource buttonDefaultFocusColor;
+  protected ColorUIResource buttonDefaultFocusColor;
 
-    protected ColorUIResource buttonBorderColor;
+  protected ColorUIResource buttonBorderColor;
 
-    protected ColorUIResource buttonColorHighlight;
+  protected ColorUIResource buttonColorHighlight;
 
-    protected BorderUIResource buttonBorder;
+  protected BorderUIResource buttonBorder;
 
-    //---------------------------------------------------
-    //Proprieties JToggleButton
-    protected IconUIResource unselectedIconToggleButton;
+  // ---------------------------------------------------
+  // Proprieties JToggleButton
+  protected IconUIResource unselectedIconToggleButton;
 
-    protected IconUIResource selectedIconToggleButton;
+  protected IconUIResource selectedIconToggleButton;
 
-    protected IconUIResource disabledUnselectedIconToggleButton;
+  protected IconUIResource disabledUnselectedIconToggleButton;
 
-    protected IconUIResource disabledSelectedIconToggleButton;
+  protected IconUIResource disabledSelectedIconToggleButton;
 
-    protected boolean withoutIconToggleButton = false;
+  protected boolean withoutIconToggleButton = false;
 
-    protected ColorUIResource withoutIconSelectedBackgroundToggleButton;
+  protected ColorUIResource withoutIconSelectedBackgroundToggleButton;
 
-    protected ColorUIResource withoutIconSelectedForegoundToggleButton;
+  protected ColorUIResource withoutIconSelectedForegoundToggleButton;
 
-    protected ColorUIResource withoutIconBackgroundToggleButton;
+  protected ColorUIResource withoutIconBackgroundToggleButton;
 
-    protected ColorUIResource withoutIconForegroundToggleButton;
+  protected ColorUIResource withoutIconForegroundToggleButton;
 
-    protected BorderUIResource withoutIconSelectedBorderToggleButton;
+  protected BorderUIResource withoutIconSelectedBorderToggleButton;
 
-    protected BorderUIResource withoutIconBorderToggleButton;
+  protected BorderUIResource withoutIconBorderToggleButton;
 
+  // ---------------------------------------------------
+  // Proprieties JCheckBox
+  protected IconUIResource unselectedCheckBoxIcon;
 
-    //---------------------------------------------------
-    //Proprieties JCheckBox
-    protected IconUIResource unselectedCheckBoxIcon;
+  protected IconUIResource selectedCheckBoxIcon;
 
-    protected IconUIResource selectedCheckBoxIcon;
+  protected IconUIResource disabledUnselectedCheckBoxIcon;
 
-    protected IconUIResource disabledUnselectedCheckBoxIcon;
+  protected IconUIResource disabledSelectedCheckBoxIcon;
 
-    protected IconUIResource disabledSelectedCheckBoxIcon;
+  // ---------------------------------------------------
+  // Proprieties JComboBox
+  protected ColorUIResource selectedInDropDownBackgroundComboBox;
 
-    //---------------------------------------------------
-    //Proprieties JComboBox
-    protected ColorUIResource selectedInDropDownBackgroundComboBox;
+  protected ColorUIResource selectedForegroundComboBox;
 
-    protected ColorUIResource selectedForegroundComboBox;
+  protected BorderUIResource borderComboBox;
 
-    protected BorderUIResource borderComboBox;
+  protected BorderUIResource borderItemComboBox;
 
-    protected BorderUIResource borderItemComboBox;
+  protected IconUIResource buttonIconComboBox;
 
-    protected IconUIResource buttonIconComboBox;
+  protected IconUIResource buttonSelectIconComboBox;
 
-    protected IconUIResource buttonSelectIconComboBox;
+  protected IconUIResource buttonDisabledIconComboBox;
 
-    protected IconUIResource buttonDisabledIconComboBox;
+  // ---------------------------------------------------
+  // Proprieties All component of the JMenu
+  protected ColorUIResource menuBackground;
 
-    //---------------------------------------------------
-    //Proprieties All component of the JMenu
-    protected ColorUIResource menuBackground;
+  protected ColorUIResource menuTextColor;
 
-    protected ColorUIResource menuTextColor;
+  protected ColorUIResource menuBackgroundMouseHover;
 
-    protected ColorUIResource menuBackgroundMouseHover;
+  protected ColorUIResource menuDisableBackground;
 
-    protected ColorUIResource menuDisableBackground;
+  protected BorderUIResource borderMenu;
 
-    protected BorderUIResource borderMenu;
+  protected BorderUIResource borderMenuBar;
 
-    protected BorderUIResource borderMenuBar;
+  // ---------------------------------------------------
+  // Proprieties JRadioButton
+  protected IconUIResource unselectedRadioButtonIcon;
 
-    //---------------------------------------------------
-    //Proprieties JRadioButton
-    protected IconUIResource unselectedRadioButtonIcon;
+  protected IconUIResource selectedRadioButtonIcon;
 
-    protected IconUIResource selectedRadioButtonIcon;
+  protected IconUIResource disabledUnselectedRadioButtonIcon;
 
-    protected IconUIResource disabledUnselectedRadioButtonIcon;
+  protected IconUIResource disabledSelectedRadioButtonIcon;
 
-    protected IconUIResource disabledSelectedRadioButtonIcon;
+  // ---------------------------------------------------
+  // All type of font JPopupMenu
+  protected BorderUIResource borderPopupMenu;
 
-    //---------------------------------------------------
-    //All type of font JPopupMenu
-    protected BorderUIResource borderPopupMenu;
+  // ---------------------------------------------------
+  // All type of font JSpinner
+  protected ColorUIResource arrowButtonBackgroundSpinner;
 
-    //---------------------------------------------------
-    //All type of font JSpinner
-    protected ColorUIResource arrowButtonBackgroundSpinner;
+  protected ColorUIResource mouseHoverButtonColorSpinner;
 
-    protected ColorUIResource mouseHoverButtonColorSpinner;
+  protected BorderUIResource borderSpinner;
 
-    protected BorderUIResource borderSpinner;
+  protected BorderUIResource arrowButtonBorderSpinner;
 
-    protected BorderUIResource arrowButtonBorderSpinner;
+  public IconUIResource previousButtonIconSpinner;
 
-    public IconUIResource previousButtonIconSpinner;
+  public IconUIResource nextButtonIconSpinner;
 
-    public IconUIResource nextButtonIconSpinner;
+  // ---------------------------------------------------
+  // Proprieties JPanel
+  protected BorderUIResource borderPanel;
 
+  // ---------------------------------------------------
+  // Proprieties JScrollBar
+  protected ColorUIResource trackColorScrollBar;
 
-    //---------------------------------------------------
-    //Proprieties JPanel
-    protected BorderUIResource borderPanel;
+  protected ColorUIResource thumbColorScrollBar;
 
-    //---------------------------------------------------
-    //Proprieties JScrollBar
-    protected ColorUIResource trackColorScrollBar;
+  protected ColorUIResource thumbDarkShadowColorScrollBar;
 
-    protected ColorUIResource thumbColorScrollBar;
+  protected ColorUIResource thumbHighlightColorScrollBar;
 
-    protected ColorUIResource thumbDarkShadowColorScrollBar;
+  protected ColorUIResource thumbShadowColorScrollBar;
 
-    protected ColorUIResource thumbHighlightColorScrollBar;
+  protected ColorUIResource mouseHoverColorScrollBar;
 
-    protected ColorUIResource thumbShadowColorScrollBar;
+  protected ColorUIResource arrowButtonColorScrollBar;
 
-    protected ColorUIResource mouseHoverColorScrollBar;
+  protected ColorUIResource arrowButtonOnClickColorScrollBar;
 
-    protected ColorUIResource arrowButtonColorScrollBar;
+  protected BorderUIResource arrowButtonBorderScrollBar;
 
-    protected ColorUIResource arrowButtonOnClickColorScrollBar;
+  // ---------------------------------------------------
+  // Proprieties JSlider
+  protected ColorUIResource trackColorSlider;
 
-    protected BorderUIResource arrowButtonBorderScrollBar;
+  protected ColorUIResource haloColorSlider;
 
-    //---------------------------------------------------
-    //Proprieties JSlider
-    protected ColorUIResource trackColorSlider;
+  protected ColorUIResource disabledColorSlider;
 
-    protected ColorUIResource haloColorSlider;
+  protected BorderUIResource borderSlider;
 
-    protected ColorUIResource disabledColorSlider;
+  // ---------------------------------------------------
+  // Proprieties JTabbedPane
+  protected ColorUIResource highlightColorTabbedPane;
 
-    protected BorderUIResource borderSlider;
+  protected ColorUIResource borderHighlightColorTabbedPane;
 
-    //---------------------------------------------------
-    //Proprieties JTabbedPane
-    protected ColorUIResource highlightColorTabbedPane;
+  protected ColorUIResource focusColorLineTabbedPane;
 
-    protected ColorUIResource borderHighlightColorTabbedPane;
+  protected ColorUIResource disableColorTabTabbedPane;
 
-    protected ColorUIResource focusColorLineTabbedPane;
+  protected InsetsUIResource tabInsetsTabbedPane;
 
-    protected ColorUIResource disableColorTabTabbedPane;
+  protected InsetsUIResource selectedTabInsetsTabbedPane;
 
-    protected InsetsUIResource tabInsetsTabbedPane;
+  protected IconUIResource bottomIconTabbedPane;
 
-    protected InsetsUIResource selectedTabInsetsTabbedPane;
+  protected IconUIResource disabledBottomIconTabbedPane;
 
-    protected IconUIResource bottomIconTabbedPane;
+  protected IconUIResource topIconTabbedPane;
 
-    protected IconUIResource disabledBottomIconTabbedPane;
+  protected IconUIResource leftIconTabbedPane;
 
-    protected IconUIResource topIconTabbedPane;
+  protected IconUIResource rightIconTabbedPane;
 
-    protected IconUIResource leftIconTabbedPane;
+  protected IconUIResource disabledTopIconTabbedPane;
 
-    protected IconUIResource rightIconTabbedPane;
+  protected IconUIResource disabledLeftIconTabbedPane;
 
-    protected IconUIResource disabledTopIconTabbedPane;
+  protected IconUIResource disabledRightIconTabbedPane;
 
-    protected IconUIResource disabledLeftIconTabbedPane;
+  protected ColorUIResource colorIconTabbedPane;
 
-    protected IconUIResource disabledRightIconTabbedPane;
+  protected ColorUIResource colorDisabledIconTabbedPane;
 
-    protected ColorUIResource colorIconTabbedPane;
+  // ---------------------------------------------------
+  // Proprieties JTable
+  protected ColorUIResource backgroundTable;
 
-    protected ColorUIResource colorDisabledIconTabbedPane;
+  protected ColorUIResource backgroundTableHeader;
 
-    //---------------------------------------------------
-    //Proprieties JTable
-    protected ColorUIResource backgroundTable;
+  protected ColorUIResource foregroundTable;
 
-    protected ColorUIResource backgroundTableHeader;
+  protected ColorUIResource foregroundTableHeader;
 
-    protected ColorUIResource foregroundTable;
+  protected ColorUIResource selectionBackgroundTable;
 
-    protected ColorUIResource foregroundTableHeader;
+  protected ColorUIResource selectionForegroundTable;
 
-    protected ColorUIResource selectionBackgroundTable;
+  protected ColorUIResource gridColorTable;
 
-    protected ColorUIResource selectionForegroundTable;
+  protected ColorUIResource alternateRowBackgroundTable;
 
-    protected ColorUIResource gridColorTable;
+  protected BorderUIResource borderTable;
 
-    protected ColorUIResource alternateRowBackgroundTable;
+  protected BorderUIResource borderTableHeader;
 
-    protected BorderUIResource borderTable;
+  protected BorderUIResource cellBorderTableHeader;
 
-    protected BorderUIResource borderTableHeader;
+  /** Whent the Table row is unselected but the checkbox is uncheck */
+  protected IconUIResource unselectedCheckBoxIconTable;
 
-    protected BorderUIResource cellBorderTableHeader;
+  /** Whent the Table row is unselected but the checkbox is check */
+  protected IconUIResource selectedCheckBoxIconTable;
 
+  /** Whent the Table row is selected but the checkbox is check */
+  protected IconUIResource unselectedCheckBoxIconSelectionRowTable;
 
-    /**
-     * Whent the Table row is unselected but the checkbox is uncheck
-     */
-    protected IconUIResource unselectedCheckBoxIconTable;
+  /** Whent the Table row is selected but the checkbox is check */
+  protected IconUIResource selectedCheckBoxIconSelectionRowTable;
 
-    /**
-     * Whent the Table row is unselected but the checkbox is check
-     */
-    protected IconUIResource selectedCheckBoxIconTable;
+  // ---------------------------------------------------
+  // Proprieties JToolBar
+  protected ColorUIResource dockingBackgroundToolBar;
 
-    /**
-     * Whent the Table row is selected but the checkbox is check
-     */
-    protected IconUIResource unselectedCheckBoxIconSelectionRowTable;
+  protected ColorUIResource floatingBackgroundToolBar;
 
+  protected BorderUIResource borderToolBar;
 
-    /**
-     * Whent the Table row is selected but the checkbox is check
-     */
-    protected IconUIResource selectedCheckBoxIconSelectionRowTable;
+  // ---------------------------------------------------
+  // Proprieties JTree
+  protected ColorUIResource selectionForegroundTree;
 
-    //---------------------------------------------------
-    //Proprieties JToolBar
-    protected ColorUIResource dockingBackgroundToolBar;
+  protected ColorUIResource selectionBackgroundTree;
 
-    protected ColorUIResource floatingBackgroundToolBar;
+  protected ColorUIResource selectionBorderColorTree;
 
-    protected BorderUIResource borderToolBar;
+  protected IconUIResource closedIconTree;
 
-    //---------------------------------------------------
-    //Proprieties JTree
-    protected ColorUIResource selectionForegroundTree;
+  protected IconUIResource openIconTree;
 
-    protected ColorUIResource selectionBackgroundTree;
+  protected IconUIResource leafIconTree;
 
-    protected ColorUIResource selectionBorderColorTree;
+  protected BorderUIResource borderTree;
 
-    protected IconUIResource closedIconTree;
+  // ---------------------------------------------------
+  // Proprieties JTextField and JPasswordField
+  protected ColorUIResource backgroundTextField;
 
-    protected IconUIResource openIconTree;
+  protected ColorUIResource inactiveForegroundTextField;
 
-    protected IconUIResource leafIconTree;
+  protected ColorUIResource inactiveBackgroundTextField;
 
-    protected BorderUIResource borderTree;
+  protected ColorUIResource selectionBackgroundTextField;
 
-    //---------------------------------------------------
-    //Proprieties JTextField and JPasswordField
-    protected ColorUIResource backgroundTextField;
+  protected ColorUIResource selectionForegroundTextField;
 
-    protected ColorUIResource inactiveForegroundTextField;
+  protected ColorUIResource disabledBackgroudnTextField;
 
-    protected ColorUIResource inactiveBackgroundTextField;
+  protected ColorUIResource disabledForegroundTextField;
 
-    protected ColorUIResource selectionBackgroundTextField;
+  protected ColorUIResource inactiveColorLineTextField;
 
-    protected ColorUIResource selectionForegroundTextField;
+  protected ColorUIResource activeColorLineTextField;
 
-    protected ColorUIResource disabledBackgroudnTextField;
+  protected BorderUIResource borderTextField;
 
-    protected ColorUIResource disabledForegroundTextField;
+  // ---------------------------------------------------
+  // Proprieties JXTaskPane
+  protected ColorUIResource titleBackgroundGradientStartTaskPane;
 
-    protected ColorUIResource inactiveColorLineTextField;
+  protected ColorUIResource titleBackgroundGradientEndTaskPane;
 
-    protected ColorUIResource activeColorLineTextField;
+  protected ColorUIResource titleColorTaskPane;
 
-    protected BorderUIResource borderTextField;
+  protected ColorUIResource titleOverTaskPane;
 
-    //---------------------------------------------------
-    //Proprieties JXTaskPane
-    protected ColorUIResource titleBackgroundGradientStartTaskPane;
+  protected ColorUIResource specialTitleOverTaskPane;
 
-    protected ColorUIResource titleBackgroundGradientEndTaskPane;
+  protected ColorUIResource backgroundTaskPane;
 
-    protected ColorUIResource titleColorTaskPane;
+  protected ColorUIResource borderColorTaskPane;
 
-    protected ColorUIResource titleOverTaskPane;
+  protected ColorUIResource contentBackgroundTaskPane;
 
-    protected ColorUIResource specialTitleOverTaskPane;
+  protected BorderUIResource borderTaskPane;
 
-    protected ColorUIResource backgroundTaskPane;
+  protected IconUIResource yesCollapsedTaskPane;
 
-    protected ColorUIResource borderColorTaskPane;
+  protected IconUIResource noCollapsedTaskPane;
 
-    protected ColorUIResource contentBackgroundTaskPane;
+  protected int archTaskPane;
 
-    protected BorderUIResource borderTaskPane;
+  // ---------------------------------------------------
+  // Proprieties JList
+  protected ColorUIResource selectionBackgroundList;
 
-    protected IconUIResource yesCollapsedTaskPane;
+  protected ColorUIResource selectionForegroundList;
 
-    protected IconUIResource noCollapsedTaskPane;
+  protected BorderUIResource focusCellHighlightBorder;
 
-    protected int archTaskPane;
+  protected BorderUIResource borderItemList;
 
-    //---------------------------------------------------
-    //Proprieties JList
-    protected ColorUIResource selectionBackgroundList;
+  protected BorderUIResource borderList;
 
-    protected ColorUIResource selectionForegroundList;
+  // ---------------------------------------------------
+  // Proprieties JRootPane
+  protected BorderUIResource borderFrameRootPane;
 
-    protected BorderUIResource focusCellHighlightBorder;
+  protected BorderUIResource borderDialogRootPane;
 
-    protected BorderUIResource borderItemList;
+  // ---------------------------------------------------
+  // Proprieties JOptionPane
+  protected ColorUIResource backgroundOptionPane;
 
-    protected BorderUIResource borderList;
+  protected IconUIResource warningIconOptionPane;
 
-    //---------------------------------------------------
-    //Proprieties JRootPane
-    protected BorderUIResource borderFrameRootPane;
+  protected IconUIResource errorIconIconOptionPane;
 
-    protected BorderUIResource borderDialogRootPane;
+  protected IconUIResource questionIconOptionPane;
 
-    //---------------------------------------------------
-    //Proprieties JOptionPane
-    protected ColorUIResource backgroundOptionPane;
+  protected IconUIResource informationIconOptionPane;
 
-    protected IconUIResource warningIconOptionPane;
+  // ---------------------------------------------------
+  // Proprieties JSplitPane
 
-    protected IconUIResource errorIconIconOptionPane;
+  protected ColorUIResource colorDividierSplitPane;
 
-    protected IconUIResource questionIconOptionPane;
+  protected ColorUIResource colorDividierFocusSplitPane;
 
-    protected IconUIResource informationIconOptionPane;
+  protected int sizeDividierSplitPane = 5;
 
-    //---------------------------------------------------
-    //Proprieties JSplitPane
+  protected BorderUIResource dividierBorderSplitPane;
 
-    protected ColorUIResource colorDividierSplitPane;
+  // ---------------------------------------------------
+  // Proprieties JFileChooser
+  protected IconUIResource iconComputerFileChooser;
 
-    protected ColorUIResource colorDividierFocusSplitPane;
+  protected IconUIResource iconDirectoryFileChooser;
 
-    protected int sizeDividierSplitPane = 5;
+  protected IconUIResource iconFileFileChooser;
 
-    protected BorderUIResource dividierBorderSplitPane;
+  protected IconUIResource iconFloppyDriveFileChooser;
 
-    //---------------------------------------------------
-    //Proprieties JFileChooser
-    protected IconUIResource iconComputerFileChooser;
+  protected IconUIResource iconHardDriveFileChooser;
 
-    protected IconUIResource iconDirectoryFileChooser;
+  protected IconUIResource iconHomeFileChooser;
 
-    protected IconUIResource iconFileFileChooser;
+  protected IconUIResource iconListFileChooser;
 
-    protected IconUIResource iconFloppyDriveFileChooser;
+  protected IconUIResource iconDetailsFileChooser;
 
-    protected IconUIResource iconHardDriveFileChooser;
+  protected IconUIResource iconNewFolderFileChooser;
 
-    protected IconUIResource iconHomeFileChooser;
+  protected IconUIResource iconUpFolderFileChooser;
 
-    protected IconUIResource iconListFileChooser;
+  // ---------------------------------------------------
+  // Proprieties JProgressBar
+  protected ColorUIResource backgroundProgressBar;
 
-    protected IconUIResource iconDetailsFileChooser;
+  protected ColorUIResource foregroundProgressBar;
 
-    protected IconUIResource iconNewFolderFileChooser;
+  protected BorderUIResource borderProgressBar;
 
-    protected IconUIResource iconUpFolderFileChooser;
+  // ---------------------------------------------------
+  // Proprieties TitledBorder
+  protected ColorUIResource colorTextTitledBorder;
 
-    //---------------------------------------------------
-    //Proprieties JProgressBar
-    protected ColorUIResource backgroundProgressBar;
+  protected BorderUIResource borderTitledBorder;
 
-    protected ColorUIResource foregroundProgressBar;
+  // ---------------------------------------------------
+  // Proprieties TitlePane
+  protected IconUIResource iconCloseTitlePane;
 
-    protected BorderUIResource borderProgressBar;
+  // ---------------------------------------------------
+  // All type of font supported to the look and feel
+  protected FontUIResource fontBold;
 
-    //---------------------------------------------------
-    //Proprieties TitledBorder
-    protected ColorUIResource colorTextTitledBorder;
+  protected FontUIResource fontItalic;
 
-    protected BorderUIResource borderTitledBorder;
+  protected FontUIResource fontRegular;
 
-    //---------------------------------------------------
-    //Proprieties TitlePane
-    protected IconUIResource iconCloseTitlePane;
+  protected FontUIResource fontMedium;
 
-    //---------------------------------------------------
-    //All type of font supported to the look and feel
-    protected FontUIResource fontBold;
+  // ---------------------------------------------------
+  // Proprieties JSeparator
+  protected ColorUIResource backgroundSeparator;
 
-    protected FontUIResource fontItalic;
+  protected ColorUIResource foregroundSeparator;
 
-    protected FontUIResource fontRegular;
+  // ---------------------------------------------------
+  // Proprieties JToolTip
+  protected ColorUIResource backgroundToolTip;
 
-    protected FontUIResource fontMedium;
+  protected ColorUIResource foregroundToolTip;
 
+  protected BorderUIResource borderToolTip;
 
-    //---------------------------------------------------
-    //Proprieties JSeparator
-    protected ColorUIResource backgroundSeparator;
+  public void installTheme() {
+    installColor();
+    installDefaultColor();
+    installFonts();
+    installBorders();
+    installIcons();
+  }
 
-    protected ColorUIResource foregroundSeparator;
+  public void installUIDefault(UIDefaults table) {
+    // do nothing
+  }
 
-    //---------------------------------------------------
-    //Proprieties JToolTip
-    protected ColorUIResource backgroundToolTip;
+  protected abstract void installColor();
 
-    protected ColorUIResource foregroundToolTip;
+  protected void installDefaultColor() {
+    this.colorIconTabbedPane = textColor;
+    this.colorDisabledIconTabbedPane = disableTextColor;
 
-    protected BorderUIResource borderToolTip;
+    this.backgroundTaskPane = backgroundPrimary;
+    this.borderColorTaskPane = backgroundTaskPane;
+    this.contentBackgroundTaskPane = backgroundPrimary;
 
+    this.withoutIconSelectedBackgroundToggleButton = buttonBackgroundColorMouseHover;
+    this.withoutIconBackgroundToggleButton = buttonBackgroundColor;
+    this.colorTextTitledBorder = textColor;
 
-    public void installTheme(){
-        installColor();
-        installDefaultColor();
-        installFonts();
-        installBorders();
-        installIcons();
-    }
+    this.arrowButtonBackgroundSpinner = backgroundTextField;
 
-    public void installUIDefault(UIDefaults table) {
-        //do nothing
-    }
+    this.selectionBackgroundTree = this.backgroundPrimary;
+    this.selectionBorderColorTree = this.backgroundPrimary;
 
-    protected abstract void installColor();
+    this.foregroundTable = textColor;
+    this.foregroundTableHeader = textColor;
+    this.selectionForegroundTable = textColor;
 
-    protected void installDefaultColor(){
-        this.colorIconTabbedPane = textColor;
-        this.colorDisabledIconTabbedPane = disableTextColor;
+    this.arrowButtonColorScrollBar = buttonBackgroundColor;
+    this.thumbDarkShadowColorScrollBar = thumbColorScrollBar;
+    this.thumbHighlightColorScrollBar = thumbColorScrollBar;
+    this.thumbShadowColorScrollBar = thumbColorScrollBar;
+    this.arrowButtonOnClickColorScrollBar = buttonBackgroundColorMouseHover;
+    this.mouseHoverColorScrollBar = thumbColorScrollBar;
 
-        this.backgroundTaskPane = backgroundPrimary;
-        this.borderColorTaskPane = backgroundTaskPane;
-        this.contentBackgroundTaskPane = backgroundPrimary;
+    this.menuTextColor = textColor;
+    this.menuDisableBackground = MaterialColors.TRANSPANENT;
 
-        this.withoutIconSelectedBackgroundToggleButton = buttonBackgroundColorMouseHover;
-        this.withoutIconBackgroundToggleButton = buttonBackgroundColor;
-        this.colorTextTitledBorder = textColor;
+    this.buttonDisabledForeground = disableTextColor;
+    this.buttonDefaultTextColor = textColor;
+    this.buttonTextColor = textColor;
+    this.foregroundToolTip = textColor;
 
-        this.arrowButtonBackgroundSpinner = backgroundTextField;
+    this.disabledColorSlider = buttonDisabledBackground;
 
-        this.selectionBackgroundTree = this.backgroundPrimary;
-        this.selectionBorderColorTree = this.backgroundPrimary;
+    this.dockingBackgroundToolBar = this.backgroundPrimary;
+    this.floatingBackgroundToolBar = this.textColor;
+  }
 
-        this.foregroundTable = textColor;
-        this.foregroundTableHeader = textColor;
-        this.selectionForegroundTable = textColor;
+  protected void installFonts() {
+    this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
+    this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
+    this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
+    this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
+  }
 
-        this.arrowButtonColorScrollBar = buttonBackgroundColor;
-        this.thumbDarkShadowColorScrollBar = thumbColorScrollBar;
-        this.thumbHighlightColorScrollBar = thumbColorScrollBar;
-        this.thumbShadowColorScrollBar = thumbColorScrollBar;
-        this.arrowButtonOnClickColorScrollBar = buttonBackgroundColorMouseHover;
-        this.mouseHoverColorScrollBar = thumbColorScrollBar;
+  protected void installIcons() {
+    this.iconComputerFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.COMPUTER, textColor);
+    this.iconDirectoryFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.FOLDER, textColor);
+    this.iconFileFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.INSERT_DRIVE_FILE, textColor);
+    this.iconFloppyDriveFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.SAVE, textColor);
+    this.iconHardDriveFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.STORAGE, textColor);
+    this.iconHomeFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.HOME, textColor);
+    this.iconListFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.MENU, textColor);
+    this.iconDetailsFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.VIEW_MODULE, textColor);
+    this.iconNewFolderFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.CREATE_NEW_FOLDER, textColor);
+    this.iconUpFolderFileChooser =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.ARROW_BACK, textColor);
 
-        this.menuTextColor = textColor;
-        this.menuDisableBackground = MaterialColors.TRANSPANENT;
+    this.iconCloseTitlePane =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.CLOSE, 25, textColor);
 
-        this.buttonDisabledForeground = disableTextColor;
-        this.buttonDefaultTextColor = textColor;
-        this.buttonTextColor = textColor;
-        this.foregroundToolTip = textColor;
+    this.previousButtonIconSpinner =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.ARROW_DROP_DOWN, textColor);
 
-        this.disabledColorSlider = buttonDisabledBackground;
+    this.nextButtonIconSpinner =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.ARROW_DROP_UP, textColor);
 
-        this.dockingBackgroundToolBar = this.backgroundPrimary;
-        this.floatingBackgroundToolBar = this.textColor;
-    }
+    this.selectedCheckBoxIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX, highlightBackgroundPrimary);
 
-    protected void installFonts() {
-        this.fontBold = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.BOLD);
-        this.fontItalic = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.ITALIC);
-        this.fontMedium = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.MEDIUM);
-        this.fontRegular = MaterialFontFactory.getInstance().getFont(MaterialFontFactory.REGULAR);
-    }
+    this.unselectedCheckBoxIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX_OUTLINE_BLANK, textColor);
 
-    protected void installIcons() {
-        this.iconComputerFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.COMPUTER,
-                textColor
-        );
-        this.iconDirectoryFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.FOLDER,
-                textColor
-        );
-        this.iconFileFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.INSERT_DRIVE_FILE,
-                textColor
-        );
-        this.iconFloppyDriveFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.SAVE,
-                textColor
-        );
-        this.iconHardDriveFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.STORAGE,
-                textColor
-        );
-        this.iconHomeFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.HOME,
-                textColor
-        );
-        this.iconListFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.MENU,
-                textColor
-        );
-        this.iconDetailsFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.VIEW_MODULE,
-                textColor
-        );
-        this.iconNewFolderFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CREATE_NEW_FOLDER,
-                textColor
-        );
-        this.iconUpFolderFileChooser = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.ARROW_BACK,
-                textColor
-        );
+    this.disabledUnselectedCheckBoxIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX_OUTLINE_BLANK, disableTextColor);
 
-        this.iconCloseTitlePane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CLOSE,
-                25,
-                textColor
-        );
+    this.disabledSelectedCheckBoxIcon =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.CHECK_BOX, disableTextColor);
 
-        this.previousButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.ARROW_DROP_DOWN,
-                textColor
-        );
+    this.selectedCheckBoxIconSelectionRowTable =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX, highlightBackgroundPrimary);
+    this.unselectedCheckBoxIconSelectionRowTable =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX_OUTLINE_BLANK, highlightBackgroundPrimary);
 
-        this.nextButtonIconSpinner = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.ARROW_DROP_UP,
-                textColor
-        );
+    this.selectedCheckBoxIconTable =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX, highlightBackgroundPrimary);
+    this.unselectedCheckBoxIconTable =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHECK_BOX_OUTLINE_BLANK, highlightBackgroundPrimary);
 
-        this.selectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX,
-                highlightBackgroundPrimary
-        );
+    this.closedIconTree =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.KEYBOARD_ARROW_RIGHT, textColor);
 
-        this.unselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
-                textColor
-        );
+    this.openIconTree =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, highlightBackgroundPrimary);
 
-        this.disabledUnselectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
-                disableTextColor
-        );
+    // this.yesCollapsedTaskPane =
+    // MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
+    this.noCollapsedTaskPane =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_RIGHT);
 
-        this.disabledSelectedCheckBoxIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX,
-                disableTextColor
-        );
+    // this.noCollapsedTaskPane =
+    // MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
+    this.yesCollapsedTaskPane =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN);
 
-        this.selectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX,
-                highlightBackgroundPrimary
-        );
-        this.unselectedCheckBoxIconSelectionRowTable = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
-                highlightBackgroundPrimary
-        );
+    this.warningIconOptionPane =
+        MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
+    this.errorIconIconOptionPane =
+        MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
+    this.questionIconOptionPane =
+        MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
+    this.informationIconOptionPane =
+        MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
 
-        this.selectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX,
-                highlightBackgroundPrimary
-        );
-        this.unselectedCheckBoxIconTable = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHECK_BOX_OUTLINE_BLANK,
-                highlightBackgroundPrimary
-        );
+    this.leafIconTree = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BLANK);
 
-        this.closedIconTree = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_RIGHT,
-                textColor
-        );
+    this.unselectedIconToggleButton =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.TOGGLE_OFF, 26, textColor);
+    this.selectedIconToggleButton =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.TOGGLE_ON, 26, highlightBackgroundPrimary);
 
-        this.openIconTree = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_DOWN,
-                highlightBackgroundPrimary
-        );
+    this.disabledUnselectedIconToggleButton =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.TOGGLE_OFF, 26, disableTextColor);
+    this.disabledSelectedIconToggleButton =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.TOGGLE_ON, 26, disableTextColor);
 
-        //this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.YES_COLLAPSED);
-        this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_RIGHT
-        );
+    this.selectedRadioButtonIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.RADIO_BUTTON_CHECKED, highlightBackgroundPrimary);
+    this.unselectedRadioButtonIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.RADIO_BUTTON_UNCHECKED, textColor);
 
-        //this.noCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.NO_COLLAPSED);
-        this.yesCollapsedTaskPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_DOWN
-        );
+    this.disabledSelectedRadioButtonIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.RADIO_BUTTON_CHECKED, disableTextColor);
+    this.disabledUnselectedRadioButtonIcon =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.RADIO_BUTTON_UNCHECKED, disableTextColor);
 
+    this.topIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.EXPAND_LESS, colorIconTabbedPane);
 
-        this.warningIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.WARNING);
-        this.errorIconIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.ERROR);
-        this.questionIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.QUESTION);
-        this.informationIconOptionPane = MaterialImageFactory.getInstance().getImage(MaterialImageFactory.INFORMATION);
+    this.disabledTopIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.EXPAND_LESS, colorDisabledIconTabbedPane);
 
-        this.leafIconTree = MaterialImageFactory.getInstance().getImage(
-                MaterialImageFactory.BLANK
-        );
+    this.bottomIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.EXPAND_MORE, colorIconTabbedPane);
 
-        this.unselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.TOGGLE_OFF,
-                26,
-                textColor
-        );
-        this.selectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.TOGGLE_ON,
-                26,
-                highlightBackgroundPrimary
-        );
+    this.disabledBottomIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.EXPAND_MORE, colorDisabledIconTabbedPane);
 
-        this.disabledUnselectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.TOGGLE_OFF,
-                26,
-                disableTextColor
-        );
-        this.disabledSelectedIconToggleButton = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.TOGGLE_ON,
-                26,
-                disableTextColor
-        );
+    this.leftIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHEVRON_LEFT, colorIconTabbedPane);
 
-        this.selectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.RADIO_BUTTON_CHECKED,
-                highlightBackgroundPrimary
-        );
-        this.unselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.RADIO_BUTTON_UNCHECKED,
-                textColor
-        );
+    this.disabledLeftIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHEVRON_LEFT, colorDisabledIconTabbedPane);
 
-        this.disabledSelectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.RADIO_BUTTON_CHECKED,
-                disableTextColor
-        );
-        this.disabledUnselectedRadioButtonIcon = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.RADIO_BUTTON_UNCHECKED,
-                disableTextColor
-        );
+    this.rightIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHEVRON_RIGHT, colorIconTabbedPane);
 
-        this.topIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.EXPAND_LESS,
-                colorIconTabbedPane
-        );
+    this.disabledRightIconTabbedPane =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.CHEVRON_RIGHT, colorDisabledIconTabbedPane);
 
-        this.disabledTopIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.EXPAND_LESS,
-                colorDisabledIconTabbedPane
-        );
+    this.buttonIconComboBox =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, textColor);
 
-        this.bottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.EXPAND_MORE,
-                colorIconTabbedPane
-        );
+    this.buttonSelectIconComboBox =
+        MaterialImageFactory.getInstance().getImage(MaterialIconFont.KEYBOARD_ARROW_UP, textColor);
 
-        this.disabledBottomIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.EXPAND_MORE,
-                colorDisabledIconTabbedPane
-        );
+    this.buttonDisabledIconComboBox =
+        MaterialImageFactory.getInstance()
+            .getImage(MaterialIconFont.KEYBOARD_ARROW_DOWN, disableTextColor);
+  }
 
-        this.leftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHEVRON_LEFT,
-                colorIconTabbedPane
-        );
-
-        this.disabledLeftIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHEVRON_LEFT,
-                colorDisabledIconTabbedPane
-        );
-
-        this.rightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHEVRON_RIGHT,
-                colorIconTabbedPane
-        );
-
-        this.disabledRightIconTabbedPane = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.CHEVRON_RIGHT,
-                colorDisabledIconTabbedPane
-        );
-
-        this.buttonIconComboBox = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_DOWN,
-                textColor
-        );
-
-        this.buttonSelectIconComboBox = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_UP,
-                textColor
-        );
-
-        this.buttonDisabledIconComboBox = MaterialImageFactory.getInstance().getImage(
-                MaterialIconFont.KEYBOARD_ARROW_DOWN,
-                disableTextColor
-        );
-    }
-
-    protected void installBorders() {
-        //button border
-        this.buttonBorder = new BorderUIResource(BorderFactory.createEmptyBorder(8, 12, 8, 12));
-        this.borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        this.borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
-        this.borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
-        this.borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
-        this.arrowButtonBorderSpinner = new BorderUIResource(BorderFactory.createCompoundBorder(
+  protected void installBorders() {
+    // button border
+    this.buttonBorder = new BorderUIResource(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+    this.borderMenu = new BorderUIResource(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+    this.borderMenuBar = MaterialBorders.LIGHT_SHADOW_BORDER;
+    this.borderPopupMenu = MaterialBorders.LIGHT_LINE_BORDER;
+    this.borderSpinner = new BorderUIResource(BorderFactory.createLineBorder(backgroundTextField));
+    this.arrowButtonBorderSpinner =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(arrowButtonBackgroundSpinner),
-                BorderFactory.createEmptyBorder(2, 2, 2, 2)
-        ));
-        this.borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
-        this.arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
-        this.borderSlider = new BorderUIResource(BorderFactory.createCompoundBorder(MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(15, 15, 15, 15)));
-        this.cellBorderTableHeader = new BorderUIResource(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+    this.borderPanel = new BorderUIResource(BorderFactory.createEmptyBorder());
+    this.arrowButtonBorderScrollBar = new BorderUIResource(BorderFactory.createEmptyBorder());
+    this.borderSlider =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
                 MaterialBorders.LIGHT_LINE_BORDER,
-                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        this.borderToolBar = MaterialBorders.LIGHT_SHADOW_BORDER;
-        this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
-        this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0, 1, 0, 1));
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+    this.cellBorderTableHeader =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
+                MaterialBorders.LIGHT_LINE_BORDER, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+    this.borderToolBar = MaterialBorders.LIGHT_SHADOW_BORDER;
+    this.borderTextField = new BorderUIResource(BorderFactory.createEmptyBorder(2, 2, 1, 2));
+    this.borderTaskPane = new BorderUIResource(BorderFactory.createEmptyBorder(0, 1, 0, 1));
 
-        this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
-        this.borderItemList = new BorderUIResource(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(),
-                BorderFactory.createEmptyBorder(2, 5, 2, 5)));
+    this.focusCellHighlightBorder = new BorderUIResource(BorderFactory.createEmptyBorder());
+    this.borderItemList =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(), BorderFactory.createEmptyBorder(2, 5, 2, 5)));
 
-        this.tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
-        this.selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+    this.tabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
+    this.selectedTabInsetsTabbedPane = new InsetsUIResource(6, 10, 10, 10);
 
-        this.borderFrameRootPane = new BorderUIResource(BorderFactory.createEmptyBorder());
-        this.borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
+    this.borderFrameRootPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+    this.borderDialogRootPane = MaterialBorders.LIGHT_SHADOW_BORDER;
 
-        this.borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
+    this.borderProgressBar = MaterialBorders.LIGHT_LINE_BORDER;
 
-        this.withoutIconSelectedBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+    this.withoutIconSelectedBorderToggleButton =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 10, 5, 10),
                 BorderFactory.createLineBorder(withoutIconSelectedBackgroundToggleButton, 1)));
 
-        this.withoutIconBorderToggleButton = new BorderUIResource(BorderFactory.createCompoundBorder(
+    this.withoutIconBorderToggleButton =
+        new BorderUIResource(
+            BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 10, 5, 10),
                 BorderFactory.createLineBorder(withoutIconBackgroundToggleButton, 1)));
 
-        this.dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
+    this.dividierBorderSplitPane = new BorderUIResource(BorderFactory.createEmptyBorder());
 
-        this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder(3, 2, 3, 2));
+    this.borderTree = new BorderUIResource(BorderFactory.createEmptyBorder(3, 2, 3, 2));
 
-        this.borderComboBox = MaterialBorders.roundedLineColorBorder(this.textColor, this.getArchBorderComboBox());
-        this.borderItemComboBox = new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
-        this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
+    this.borderComboBox =
+        MaterialBorders.roundedLineColorBorder(this.textColor, this.getArchBorderComboBox());
+    this.borderItemComboBox =
+        new BorderUIResource(BorderFactory.createLineBorder(this.backgroundPrimary));
+    this.borderList = MaterialBorders.DEFAULT_SHADOW_BORDER;
 
-        this.borderToolTip = MaterialBorders.roundedLineColorBorder(this.backgroundToolTip, 4);
-    }
+    this.borderToolTip = MaterialBorders.roundedLineColorBorder(this.backgroundToolTip, 4);
+  }
 
-    public abstract String getName();
+  public abstract String getName();
 
-    //getter
-    public ColorUIResource getBackgroundPrimary() {
-        return backgroundPrimary;
-    }
+  // getter
+  public ColorUIResource getBackgroundPrimary() {
+    return backgroundPrimary;
+  }
 
-    public ColorUIResource getHighlightBackgroundPrimary() {
-        return highlightBackgroundPrimary;
-    }
-
-    public ColorUIResource getTextColor() {
-        return textColor;
-    }
-
-    public ColorUIResource getDisableTextColor() {
-        return disableTextColor;
-    }
-
-    //Getter for button
-    public ColorUIResource getButtonBackgroundColor() {
-        return buttonBackgroundColor;
-    }
-
-    public ColorUIResource getButtonTextColor() {
-        return buttonTextColor;
-    }
-
-    public ColorUIResource getButtonBackgroundColorMouseHover() {
-        return buttonBackgroundColorMouseHover;
-    }
-
-    public ColorUIResource getButtonDefaultBackgroundColor() {
-        return buttonDefaultBackgroundColor;
-    }
-
-    public ColorUIResource getButtonDefaultTextColor() {
-        return buttonDefaultTextColor;
-    }
-
-    public ColorUIResource getButtonDefaultBackgroundColorMouseHover() {
-        return buttonDefaultBackgroundColorMouseHover;
-    }
-
-    public ColorUIResource getButtonDisabledBackground() {
-        return buttonDisabledBackground;
-    }
-
-    public ColorUIResource getButtonDisabledForeground() {
-        return buttonDisabledForeground;
-    }
-
-    public ColorUIResource getButtonDisableTextColor() {
-        return this.getDisableTextColor();
-    }
-
-    public ColorUIResource getButtonFocusColor() {
-        return buttonFocusColor;
-    }
-
-    public ColorUIResource getButtonDefaultFocusColor() {
-        return buttonDefaultFocusColor;
-    }
-
-    public ColorUIResource getButtonBorderColor() {
-        return buttonBorderColor;
-    }
-
-    public ColorUIResource getButtonColorHighlight() {
-        return buttonColorHighlight;
-    }
-
-    public BorderUIResource getButtonBorder() {
-        return buttonBorder;
-    }
-
-    public FontUIResource getButtonFont() {
-        return getFontBold();
-    }
-
-    public boolean getMouseHoverButtonEnable() {
-        return true;
-    }
-
-    public boolean getButtonFocusable() {
-        return true;
-    }
-
-    public boolean getButtonBorderEnable() {
-        return true;
-    }
-
-    public boolean getButtonBorderEnableToAll() {
-        return false;
-    }
-
-    @Override
-    public int getArcButton() {
-        return 7;
-    }
-
-    @Override
-    public boolean getOpaqueButton() {
-        return false;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JSeparator
-    public ColorUIResource getBackgroundSeparator() {
-        return backgroundSeparator;
-    }
-
-    public ColorUIResource getForegroundSeparator() {
-        return foregroundSeparator;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JToolTip
-    public ColorUIResource getBackgroundToolTip() {
-        return backgroundToolTip;
-    }
-
-    public ColorUIResource getForegroundToolTip() {
-        return foregroundToolTip;
-    }
-
-    public BorderUIResource getBorderToolTip() {
-        return borderToolTip;
-    }
-
-    //Proprieties JCheckBox
-    public IconUIResource getUnselectedCheckBoxIcon() {
-        return unselectedCheckBoxIcon;
-    }
-
-    public IconUIResource getSelectedCheckBoxIcon() {
-        return selectedCheckBoxIcon;
-    }
-
-    public IconUIResource getDisabledUnselectedCheckBoxIcon() {
-        return disabledUnselectedCheckBoxIcon;
-    }
-
-    public IconUIResource getDisabledSelectedCheckBoxIcon() {
-        return disabledSelectedCheckBoxIcon;
-    }
-
-    //Proprieties JComboBox
-    public ColorUIResource getSelectedInDropDownBackgroundComboBox() {
-        return selectedInDropDownBackgroundComboBox;
-    }
-
-    public ColorUIResource getSelectedForegroundComboBox() {
-        return selectedForegroundComboBox;
-    }
-
-    public BorderUIResource getBorderComboBox() {
-        return borderComboBox;
-    }
-
-    public BorderUIResource getBorderItemComboBox() {
-        return borderItemComboBox;
-    }
-
-    @Override
-    public IconUIResource getButtonIconComboBox() {
-        return buttonIconComboBox;
-    }
-
-    @Override
-    public IconUIResource getButtonSelectIconComboBox() {
-        return buttonSelectIconComboBox;
-    }
-
-    @Override
-    public IconUIResource getButtonDisabledIconComboBox() {
-        return buttonDisabledIconComboBox;
-    }
-
-    @Override
-    public void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox) {
-        this.buttonDisabledIconComboBox = buttonDisabledIconComboBox;
-    }
-
-    @Override
-    public boolean getMouseHoverEnableComboBox() {
-        return false;
-    }
-
-    @Override
-    public boolean getLightWeightPopupEnabledComboBox() {
-        return true;
-    }
-
-    @Override
-    public boolean getFocusableComboBox() {
-        return true;
-    }
-
-    @Override
-    public int getArchBorderComboBox() {
-        return 8;
-    }
-
-    //Getter for all component of the menu
-    public ColorUIResource getMenuBackground() {
-        return menuBackground;
-    }
-
-    public ColorUIResource getMenuTextColor() {
-        return menuTextColor;
-    }
-
-    public ColorUIResource getMenuBackgroundMouseHover() {
-        return menuBackgroundMouseHover;
-    }
-
-    public ColorUIResource getMenuDisableBackground() {
-        return menuDisableBackground;
-    }
-
-    public BorderUIResource getBorderMenu() {
-        return borderMenu;
-    }
-
-    public BorderUIResource getBorderMenuBar() {
-        return borderMenuBar;
-    }
-
-    @Override
-    public Icon getMenuArrowIcon() {
-        return new MaterialMenuArrowIcon();
-    }
-
-    @Override
-    public ColorUIResource getMenuArrowHoverColor() {
-        return textColor;
-    }
-
-    @Override
-    public int getMenuArrowHeight() {
-        return 8;
-    }
-
-    @Override
-    public int getMenuArrowWidth() {
-        return 4;
-    }
-
-    @Override
-    public boolean getMouseHoverEnableMenu() {
-        return true;
-    }
-
-    //get radiobutton
-    public IconUIResource getUnselectedRadioButtonIcon() {
-        return unselectedRadioButtonIcon;
-    }
-
-    public IconUIResource getSelectedRadioButtonIcon() {
-        return selectedRadioButtonIcon;
-    }
-
-    public IconUIResource getDisabledUnselectedRadioButtonIcon() {
-        return disabledUnselectedRadioButtonIcon;
-    }
-
-    public IconUIResource getDisabledSelectedRadioButtonIcon() {
-        return disabledSelectedRadioButtonIcon;
-    }
-
-    // get for JPopupMenu
-    public BorderUIResource getBorderPopupMenu() {
-        return borderPopupMenu;
-    }
-
-    // get for JSpinner
-    public ColorUIResource getArrowButtonBackgroundSpinner() {
-        return arrowButtonBackgroundSpinner;
-    }
-
-    public ColorUIResource getMouseHoverButtonColorSpinner() {
-        return mouseHoverButtonColorSpinner;
-    }
-
-    public BorderUIResource getBorderSpinner() {
-        return borderSpinner;
-    }
-
-    public BorderUIResource getArrowButtonBorderSpinner() {
-        return arrowButtonBorderSpinner;
-    }
-
-    public IconUIResource getPreviousButtonIconSpinner() {
-        return previousButtonIconSpinner;
-    }
-
-    public IconUIResource getNextButtonIconSpinner() {
-        return nextButtonIconSpinner;
-    }
-
-    @Override
-    public boolean getMouseHoverEnableSpinner() {
-        return true;
-    }
-
-    //get fro JPanel and JScrollPanel
-    public BorderUIResource getBorderPanel() {
-        return borderPanel;
-    }
-
-    //getter JScrollBar
-    public ColorUIResource getTrackColorScrollBar() {
-        return trackColorScrollBar;
-    }
-
-    public ColorUIResource getThumbColorScrollBar() {
-        return thumbColorScrollBar;
-    }
-
-    public ColorUIResource getThumbDarkShadowColorScrollBar() {
-        return thumbDarkShadowColorScrollBar;
-    }
-
-    public ColorUIResource getThumbHighlightColorScrollBar() {
-        return thumbHighlightColorScrollBar;
-    }
-
-    public ColorUIResource getThumbShadowColorScrollBar() {
-        return thumbShadowColorScrollBar;
-    }
-
-    public ColorUIResource getMouseHoverColorScrollBar() {
-        return mouseHoverColorScrollBar;
-    }
-
-    public ColorUIResource getArrowButtonColorScrollBar() {
-        return arrowButtonColorScrollBar;
-    }
-
-    public ColorUIResource getArrowButtonOnClickColorScrollBar() {
-        return arrowButtonOnClickColorScrollBar;
-    }
-
-    public BorderUIResource getArrowButtonBorderScrollBar() {
-        return arrowButtonBorderScrollBar;
-    }
-
-    @Override
-    public boolean getMouseHoverEnableScrollBar() {
-        return true;
-    }
-
-    @Override
-    public boolean getEnableArrowScrollBar() {
-        return false;
-    }
-
-
-    //get jslider
-    public ColorUIResource getTrackColorSlider() {
-        return trackColorSlider;
-    }
-
-    public ColorUIResource getHaloColorSlider() {
-        return haloColorSlider;
-    }
-
-    public ColorUIResource getDisabledColorSlider() {
-        return disabledColorSlider;
-    }
-
-    public BorderUIResource getBorderSlider() {
-        return borderSlider;
-    }
-
-    //get for JTabbedPane
-    public ColorUIResource getHighlightColorTabbedPane() {
-        return highlightColorTabbedPane;
-    }
-
-    public ColorUIResource getBorderHighlightColorTabbedPane() {
-        return borderHighlightColorTabbedPane;
-    }
-
-    public ColorUIResource getFocusColorLineTabbedPane() {
-        return focusColorLineTabbedPane;
-    }
-
-    public ColorUIResource getDisableColorTabTabbedPane() {
-        return disableColorTabTabbedPane;
-    }
-
-    public InsetsUIResource getTabInsetsTabbedPane() {
-        return tabInsetsTabbedPane;
-    }
-
-    public InsetsUIResource getSelectedTabInsetsTabbedPane() {
-        return selectedTabInsetsTabbedPane;
-    }
-
-    public IconUIResource getDisabledBottomIconTabbedPane() {
-        return disabledBottomIconTabbedPane;
-    }
-
-    public IconUIResource getDisabledTopIconTabbedPane() {
-        return disabledTopIconTabbedPane;
-    }
-
-    public IconUIResource getDisabledLeftIconTabbedPane() {
-        return disabledLeftIconTabbedPane;
-    }
-
-    public IconUIResource getDisabledRightIconTabbedPane() {
-        return disabledRightIconTabbedPane;
-    }
-
-    public IconUIResource getBottomIconTabbedPane() {
-        return bottomIconTabbedPane;
-    }
-
-    public IconUIResource getTopIconTabbedPane() {
-        return topIconTabbedPane;
-    }
-
-    public IconUIResource getLeftIconTabbedPane() {
-        return leftIconTabbedPane;
-    }
-
-    public IconUIResource getRightIconTabbedPane() {
-        return rightIconTabbedPane;
-    }
-
-    public ColorUIResource getColorIconTabbedPane() {
-        return colorIconTabbedPane;
-    }
-
-    public ColorUIResource getColorDisabledIconTabbedPane() {
-        return colorDisabledIconTabbedPane;
-    }
-
-    @Override
-    public int getLinePositionYTabbedPane() {
-        return 56;
-    }
-
-    @Override
-    public int getLinePositionXTabbedPane() {
-        return 0;
-    }
-
-    @Override
-    public int getLineWithTabbedPane() {
-        return 5;
-    }
-
-    @Override
-    public int getLineHeightTabbedPane() {
-        return 3;
-    }
-
-    @Override
-    public int getLineArchTabbedPane() {
-        return 0;
-    }
-
-    @Override
-    public int getIndentTabbedPane() {
-        return 4;
-    }
-
-    @Override
-    public int getSpacerTabbedPane() {
-        return 20;
-    }
-
-	@Override
-	public int getHeightTabTabbedPane() {
-		return 18;
-	}
-
-	@Override
-    public boolean getMouseHoverEnableTabbedPane() {
-        return true;
-    }
-
-    //Getter for JTable
-    public ColorUIResource getBackgroundTable() {
-        return backgroundTable;
-    }
-
-    public ColorUIResource getForegroundTable() {
-        return foregroundTable;
-    }
-
-    public ColorUIResource getSelectionBackgroundTable() {
-        return selectionBackgroundTable;
-    }
-
-    public ColorUIResource getSelectionForegroundTable() {
-        return selectionForegroundTable;
-    }
-
-    public ColorUIResource getGridColorTable() {
-        return gridColorTable;
-    }
-
-    public ColorUIResource getAlternateRowBackgroundTable() {
-        return alternateRowBackgroundTable;
-    }
-
-    public BorderUIResource getBorderTable() {
-        return borderTable;
-    }
-
-    public IconUIResource getUnselectedCheckBoxIconTable() {
-        return unselectedCheckBoxIconTable;
-    }
-
-    public IconUIResource getSelectedCheckBoxIconTable() {
-        return selectedCheckBoxIconTable;
-    }
-
-    public IconUIResource getUnselectedCheckBoxIconSelectionRowTable() {
-        return unselectedCheckBoxIconSelectionRowTable;
-    }
-
-    public IconUIResource getSelectedCheckBoxIconSelectionRowTable() {
-        return selectedCheckBoxIconSelectionRowTable;
-    }
-
-    @Override
-    public boolean getTableFocusable() {
-        return true;
-    }
-
-    @Override
-    public boolean getTableOpaque() {
-        return false;
-    }
-
-    @Override
-    public boolean getAlternateRowColorEnableTable() {
-        return true;
-    }
-
-    @Override
-    public int getHeightRowTable() {
-        return 10;
-    }
-
-    public ColorUIResource getBackgroundTableHeader() {
-        return backgroundTableHeader;
-    }
-
-    public ColorUIResource getForegroundTableHeader() {
-        return foregroundTableHeader;
-    }
-
-    public BorderUIResource getBorderTableHeader() {
-        return borderTableHeader;
-    }
-
-    public BorderUIResource getCellBorderTableHeader() {
-        return cellBorderTableHeader;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JToolBar
-    public ColorUIResource getDockingBackgroundToolBar() {
-        return dockingBackgroundToolBar;
-    }
-
-    public ColorUIResource getFloatingBackgroundToolBar() {
-        return floatingBackgroundToolBar;
-    }
-
-    public BorderUIResource getBorderToolBar() {
-        return borderToolBar;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JTextField and JPasswordField
-    public ColorUIResource getBackgroundTextField() {
-        return backgroundTextField;
-    }
-
-    public ColorUIResource getInactiveForegroundTextField() {
-        return inactiveForegroundTextField;
-    }
-
-    public ColorUIResource getInactiveBackgroundTextField() {
-        return inactiveBackgroundTextField;
-    }
-
-    public ColorUIResource getSelectionBackgroundTextField() {
-        return selectionBackgroundTextField;
-    }
-
-    public ColorUIResource getSelectionForegroundTextField() {
-        return selectionForegroundTextField;
-    }
-
-    public ColorUIResource getDisabledBackgroudnTextField() {
-        return disabledBackgroudnTextField;
-    }
-
-    public ColorUIResource getDisabledForegroundTextField() {
-        return disabledForegroundTextField;
-    }
-
-    public ColorUIResource getInactiveColorLineTextField() {
-        return inactiveColorLineTextField;
-    }
-
-    public ColorUIResource getActiveColorLineTextField() {
-        return activeColorLineTextField;
-    }
-
-    public BorderUIResource getBorderTextField() {
-        return borderTextField;
-    }
-
-    public char getEchoCharPasswordField() {
-        return '\u2022';
-    }
-
-    //---------------------------------------------------
-    //Proprieties JTree
-    public ColorUIResource getSelectionForegroundTree() {
-        return selectionForegroundTree;
-    }
-
-    public ColorUIResource getSelectionBackgroundTree() {
-        return selectionBackgroundTree;
-    }
-
-    public ColorUIResource getSelectionBorderColorTree() {
-        return selectionBorderColorTree;
-    }
-
-    public IconUIResource getClosedIconTree() {
-        return closedIconTree;
-    }
-
-    public IconUIResource getOpenIconTree() {
-        return openIconTree;
-    }
-
-    public IconUIResource getLeafIconTree() {
-        return leafIconTree;
-    }
-
-    public BorderUIResource getBorderTree() {
-        return borderTree;
-    }
-    //---------------------------------------------------
-    //Proprieties JToggleButton
-
-    public IconUIResource getUnselectedIconToggleButton() {
-        return unselectedIconToggleButton;
-    }
-
-    public IconUIResource getSelectedIconToggleButton() {
-        return selectedIconToggleButton;
-    }
-
-    public IconUIResource getDisabledUnselectedIconToggleButton() {
-        return disabledUnselectedIconToggleButton;
-    }
-
-    public IconUIResource getDisabledSelectedIconToggleButton() {
-        return disabledSelectedIconToggleButton;
-    }
-
-    public boolean isWithoutIconToggleButton() {
-        return withoutIconToggleButton;
-    }
-
-    public ColorUIResource getWithoutIconSelectedBackgroundToggleButton() {
-        return withoutIconSelectedBackgroundToggleButton;
-    }
-
-    public ColorUIResource getWithoutIconSelectedForegoundToggleButton() {
-        return withoutIconSelectedForegoundToggleButton;
-    }
-
-    public ColorUIResource getWithoutIconBackgroundToggleButton() {
-        return withoutIconBackgroundToggleButton;
-    }
-
-    public ColorUIResource getWithoutIconForegroundToggleButton() {
-        return withoutIconForegroundToggleButton;
-    }
-
-    public BorderUIResource getWithoutIconSelectedBorderToggleButton() {
-        return withoutIconSelectedBorderToggleButton;
-    }
-
-    public BorderUIResource getWithoutIconBorderToggleButton() {
-        return withoutIconBorderToggleButton;
-    }
-
-
-    //---------------------------------------------------
-    //Proprieties JXTaskPane
-    public ColorUIResource getTitleBackgroundGradientStartTaskPane() {
-        return titleBackgroundGradientStartTaskPane;
-    }
-
-    public ColorUIResource getTitleBackgroundGradientEndTaskPane() {
-        return titleBackgroundGradientEndTaskPane;
-    }
-
-    public ColorUIResource getTitleColorTaskPane() {
-        return titleColorTaskPane;
-    }
-
-    public ColorUIResource getTitleOverTaskPane() {
-        return titleOverTaskPane;
-    }
-
-    public ColorUIResource getSpecialTitleOverTaskPane() {
-        return specialTitleOverTaskPane;
-    }
-
-    public ColorUIResource getBackgroundTaskPane() {
-        return backgroundTaskPane;
-    }
-
-    public ColorUIResource getBorderColorTaskPane() {
-        return borderColorTaskPane;
-    }
-
-    public ColorUIResource getContentBackgroundTaskPane() {
-        return contentBackgroundTaskPane;
-    }
-
-    public BorderUIResource getBorderTaskPane() {
-        return borderTaskPane;
-    }
-
-    public IconUIResource getYesCollapsedTaskPane() {
-        return yesCollapsedTaskPane;
-    }
-
-    public IconUIResource getNoCollapsedTaskPane() {
-        return noCollapsedTaskPane;
-    }
-
-    public boolean getMouseHoverEnableTaskPane() {
-        return true;
-    }
-
-    @Override
-    public int getArchTaskPane() {
-        return archTaskPane;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JList
-    public ColorUIResource getSelectionBackgroundList() {
-        return selectionBackgroundList;
-    }
-
-    public ColorUIResource getSelectionForegroundList() {
-        return selectionForegroundList;
-    }
-
-    public BorderUIResource getFocusCellHighlightBorder() {
-        return focusCellHighlightBorder;
-    }
-
-    public BorderUIResource getBorderItemList() {
-        return borderItemList;
-    }
-
-    public BorderUIResource getBorderList() {
-        return borderList;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JRootPane
-    public BorderUIResource getBorderFrameRootPane() {
-        return borderFrameRootPane;
-    }
-
-    public BorderUIResource getBorderDialogRootPane() {
-        return borderDialogRootPane;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JFileChooser
-    public IconUIResource getIconComputerFileChooser() {
-        return iconComputerFileChooser;
-    }
-
-    public IconUIResource getIconDirectoryFileChooser() {
-        return iconDirectoryFileChooser;
-    }
-
-    public IconUIResource getIconFileFileChooser() {
-        return iconFileFileChooser;
-    }
-
-    public IconUIResource getIconFloppyDriveFileChooser() {
-        return iconFloppyDriveFileChooser;
-    }
-
-    public IconUIResource getIconHardDriveFileChooser() {
-        return iconHardDriveFileChooser;
-    }
-
-    public IconUIResource getIconHomeFileChooser() {
-        return iconHomeFileChooser;
-    }
-
-    public IconUIResource getIconListFileChooser() {
-        return iconListFileChooser;
-    }
-
-    public IconUIResource getIconDetailsFileChooser() {
-        return iconDetailsFileChooser;
-    }
-
-    public IconUIResource getIconNewFolderFileChooser() {
-        return iconNewFolderFileChooser;
-    }
-
-    public IconUIResource getIconUpFolderFileChooser() {
-        return iconUpFolderFileChooser;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JOptionPane
-    public ColorUIResource getBackgroundOptionPane() {
-        return backgroundOptionPane;
-    }
-
-    public IconUIResource getWarningIconOptionPane() {
-        return warningIconOptionPane;
-    }
-
-    public IconUIResource getErrorIconIconOptionPane() {
-        return errorIconIconOptionPane;
-    }
-
-    public IconUIResource getQuestionIconOptionPane() {
-        return questionIconOptionPane;
-    }
-
-    public IconUIResource getInformationIconOptionPane() {
-        return informationIconOptionPane;
-    }
-
-    @Override
-    public boolean getEnableIconOptionPane() {
-        return false;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JProgressBar
-    public ColorUIResource getBackgroundProgressBar() {
-        return backgroundProgressBar;
-    }
-
-    public ColorUIResource getForegroundProgressBar() {
-        return foregroundProgressBar;
-    }
-
-    public BorderUIResource getBorderProgressBar() {
-        return borderProgressBar;
-    }
-
-    //---------------------------------------------------
-    //Proprieties JSplitPane
-
-    public ColorUIResource getColorDividierSplitPane() {
-        return colorDividierSplitPane;
-    }
-
-    public ColorUIResource getColorDividierFocusSplitPane() {
-        return colorDividierFocusSplitPane;
-    }
-
-    public int getSizeDividierSplitPane() {
-        return sizeDividierSplitPane;
-    }
-
-    public BorderUIResource getDividierBorderSplitPane() {
-        return dividierBorderSplitPane;
-    }
-
-    //---------------------------------------------------
-    //Proprieties TitledBorder
-
-    public ColorUIResource getColorTextTitledBorder() {
-        return colorTextTitledBorder;
-    }
-
-    public BorderUIResource getBorderTitledBorder() {
-        return borderTitledBorder;
-    }
-
-    //---------------------------------------------------
-    //Proprieties TitledBorder
-    public IconUIResource getIconCloseTitlePane() {
-        return iconCloseTitlePane;
-    }
-
-    //get fonts
-    public FontUIResource getFontBold() {
-        return fontBold;
-    }
-
-    public FontUIResource getFontItalic() {
-        return fontItalic;
-    }
-
-    public FontUIResource getFontRegular() {
-        return fontRegular;
-    }
-
-    public FontUIResource getFontMedium() {
-        return fontMedium;
-    }
-
-    //Setter
-    public void setDisabledColorSlider(ColorUIResource disabledColorSlider) {
-        this.disabledColorSlider = disabledColorSlider;
-    }
-
-    public void setDisabledUnselectedIconToggleButton(IconUIResource disabledUnselectedIconToggleButton) {
-        this.disabledUnselectedIconToggleButton = disabledUnselectedIconToggleButton;
-    }
-
-    public void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton) {
-        this.disabledSelectedIconToggleButton = disabledSelectedIconToggleButton;
-    }
-
-    public void setDisabledUnselectedRadioButtonIcon(IconUIResource disabledUnselectedRadioButtonIcon) {
-        this.disabledUnselectedRadioButtonIcon = disabledUnselectedRadioButtonIcon;
-    }
-
-    public void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon) {
-        this.disabledSelectedRadioButtonIcon = disabledSelectedRadioButtonIcon;
-    }
-
-    public void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon) {
-        this.disabledUnselectedCheckBoxIcon = disabledUnselectedCheckBoxIcon;
-    }
-
-    public void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon) {
-        this.disabledSelectedCheckBoxIcon = disabledSelectedCheckBoxIcon;
-    }
-
-    public void setButtonIconComboBox(IconUIResource buttonIconComboBox) {
-        this.buttonIconComboBox = buttonIconComboBox;
-    }
-
-    public void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox) {
-        this.buttonSelectIconComboBox = buttonSelectIconComboBox;
-    }
-
-    public void setBackgroundToolTip(ColorUIResource backgroundToolTip) {
-        this.backgroundToolTip = backgroundToolTip;
-    }
-
-    public void setForegroundToolTip(ColorUIResource foregroundToolTip) {
-        this.foregroundToolTip = foregroundToolTip;
-    }
-
-    public void setBorderToolTip(BorderUIResource borderToolTip) {
-        this.borderToolTip = borderToolTip;
-    }
-
-    public void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane) {
-        this.disabledBottomIconTabbedPane = disabledBottomIconTabbedPane;
-    }
-
-    public void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane) {
-        this.disabledTopIconTabbedPane = disabledTopIconTabbedPane;
-    }
-
-    public void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane) {
-        this.disabledLeftIconTabbedPane = disabledLeftIconTabbedPane;
-    }
-
-    public void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane) {
-        this.disabledRightIconTabbedPane = disabledRightIconTabbedPane;
-    }
-
-    public void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane) {
-        this.bottomIconTabbedPane = bottomIconTabbedPane;
-    }
-
-    public void setTopIconTabbedPane(IconUIResource topIconTabbedPane) {
-        this.topIconTabbedPane = topIconTabbedPane;
-    }
-
-    public void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane) {
-        this.leftIconTabbedPane = leftIconTabbedPane;
-    }
-
-    public void setRightIconTabbedPane(IconUIResource rightIconTabbedPane) {
-        this.rightIconTabbedPane = rightIconTabbedPane;
-    }
-
-    public void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane) {
-        this.colorIconTabbedPane = colorIconTabbedPane;
-    }
-
-    public void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane) {
-        this.colorDisabledIconTabbedPane = colorDisabledIconTabbedPane;
-    }
-
-    public void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner) {
-        this.previousButtonIconSpinner = previousButtonIconSpinner;
-    }
-
-    public void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner) {
-        this.nextButtonIconSpinner = nextButtonIconSpinner;
-    }
-
-    public void setBorderItemComboBox(BorderUIResource borderItemComboBox) {
-        this.borderItemComboBox = borderItemComboBox;
-    }
-
-    public void setArchTaskPane(int archTaskPane) {
-        this.archTaskPane = archTaskPane;
-    }
-
-    public void setTitleColorTaskPane(ColorUIResource titleColorTaskPane) {
-        this.titleColorTaskPane = titleColorTaskPane;
-    }
-
-    public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
-        this.backgroundSeparator = backgroundSeparator;
-    }
-
-    public void setForegroundSeparator(ColorUIResource foregroundSeparator) {
-        this.foregroundSeparator = foregroundSeparator;
-    }
-
-    public void setLeafIconTree(IconUIResource leafIconTree) {
-        this.leafIconTree = leafIconTree;
-    }
-
-    public void setBorderTree(BorderUIResource borderTree) {
-        this.borderTree = borderTree;
-    }
-
-    public void setIconCloseTitlePane(IconUIResource iconCloseTitlePane) {
-        this.iconCloseTitlePane = iconCloseTitlePane;
-    }
-
-    public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {
-        this.disabledBackgroudnTextField = disabledBackgroudnTextField;
-    }
-
-    public void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField) {
-        this.disabledForegroundTextField = disabledForegroundTextField;
-    }
-
-    public void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder) {
-        this.colorTextTitledBorder = colorTextTitledBorder;
-    }
-
-    public void setBorderTitledBorder(BorderUIResource borderTitledBorder) {
-        this.borderTitledBorder = borderTitledBorder;
-    }
-
-    public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane) {
-        this.colorDividierSplitPane = colorDividierSplitPane;
-    }
-
-    public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane) {
-        this.colorDividierFocusSplitPane = colorDividierFocusSplitPane;
-    }
-
-    public void setSizeDividierSplitPane(int sizeDividierSplitPane) {
-        this.sizeDividierSplitPane = sizeDividierSplitPane;
-    }
-
-    public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane) {
-        this.dividierBorderSplitPane = dividierBorderSplitPane;
-    }
-
-    public void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton) {
-        this.unselectedIconToggleButton = unselectedIconToggleButton;
-    }
-
-    public void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton) {
-        this.selectedIconToggleButton = selectedIconToggleButton;
-    }
-
-    public void setWithoutIconToggleButton(boolean withoutIconToggleButton) {
-        this.withoutIconToggleButton = withoutIconToggleButton;
-    }
-
-    public void setWithoutIconSelectedBackgroundToggleButton(ColorUIResource withoutIconSelectedBackgroundToggleButton) {
-        this.withoutIconSelectedBackgroundToggleButton = withoutIconSelectedBackgroundToggleButton;
-    }
-
-    public void setWithoutIconSelectedForegoundToggleButton(ColorUIResource withoutIconSelectedForegoundToggleButton) {
-        this.withoutIconSelectedForegoundToggleButton = withoutIconSelectedForegoundToggleButton;
-    }
-
-    public void setWithoutIconBackgroundToggleButton(ColorUIResource withoutIconBackgroundToggleButton) {
-        this.withoutIconBackgroundToggleButton = withoutIconBackgroundToggleButton;
-    }
-
-    public void setWithoutIconForegroundToggleButton(ColorUIResource withoutIconForegroundToggleButton) {
-        this.withoutIconForegroundToggleButton = withoutIconForegroundToggleButton;
-    }
-
-    public void setWithoutIconSelectedBorderToggleButton(BorderUIResource withoutIconSelectedBorderToggleButton) {
-        this.withoutIconSelectedBorderToggleButton = withoutIconSelectedBorderToggleButton;
-    }
-
-    public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton) {
-        this.withoutIconBorderToggleButton = withoutIconBorderToggleButton;
-    }
-
-    public void setBackgroundPrimary(ColorUIResource backgroundPrimary) {
-        this.backgroundPrimary = backgroundPrimary;
-    }
-
-    public void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary) {
-        this.highlightBackgroundPrimary = highlightBackgroundPrimary;
-    }
-
-    public void setTextColor(ColorUIResource textColor) {
-        this.textColor = textColor;
-    }
-
-    public void setDisableTextColor(ColorUIResource disableTextColor) {
-        this.disableTextColor = disableTextColor;
-    }
-
-    public void setButtonBackgroundColor(ColorUIResource buttonBackgroundColor) {
-        this.buttonBackgroundColor = buttonBackgroundColor;
-    }
-
-    public void setButtonTextColor(ColorUIResource buttonTextColor) {
-        this.buttonTextColor = buttonTextColor;
-    }
-
-    public void setButtonBackgroundColorMouseHover(ColorUIResource buttonBackgroundColorMouseHover) {
-        this.buttonBackgroundColorMouseHover = buttonBackgroundColorMouseHover;
-    }
-
-    public void setButtonDefaultBackgroundColor(ColorUIResource buttonDefaultBackgroundColor) {
-        this.buttonDefaultBackgroundColor = buttonDefaultBackgroundColor;
-    }
-
-    public void setButtonDefaultTextColor(ColorUIResource buttonDefaultTextColor) {
-        this.buttonDefaultTextColor = buttonDefaultTextColor;
-    }
-
-    public void setButtonDefaultBackgroundColorMouseHover(ColorUIResource buttonDefaultBackgroundColorMouseHover) {
-        this.buttonDefaultBackgroundColorMouseHover = buttonDefaultBackgroundColorMouseHover;
-    }
-
-    public void setButtonDisabledBackground(ColorUIResource buttonDisabledBackground) {
-        this.buttonDisabledBackground = buttonDisabledBackground;
-    }
-
-    public void setButtonDisabledForeground(ColorUIResource buttonDisabledForeground) {
-        this.buttonDisabledForeground = buttonDisabledForeground;
-    }
-
-    public void setButtonFocusColor(ColorUIResource buttonFocusColor) {
-        this.buttonFocusColor = buttonFocusColor;
-    }
-
-    public void setButtonDefaultFocusColor(ColorUIResource buttonDefaultFocusColor) {
-        this.buttonDefaultFocusColor = buttonDefaultFocusColor;
-    }
-
-    public void setButtonBorderColor(ColorUIResource buttonBorderColor) {
-        this.buttonBorderColor = buttonBorderColor;
-    }
-
-    public void setButtonColorHighlight(ColorUIResource buttonColorHighlight) {
-        this.buttonColorHighlight = buttonColorHighlight;
-    }
-
-    public void setButtonBorder(BorderUIResource buttonBorder) {
-        this.buttonBorder = buttonBorder;
-    }
-
-    public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon) {
-        this.unselectedCheckBoxIcon = unselectedCheckBoxIcon;
-    }
-
-    public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon) {
-        this.selectedCheckBoxIcon = selectedCheckBoxIcon;
-    }
-
-    public void setSelectedInDropDownBackgroundComboBox(ColorUIResource selectedInDropDownBackgroundComboBox) {
-        this.selectedInDropDownBackgroundComboBox = selectedInDropDownBackgroundComboBox;
-    }
-
-    public void setSelectedForegroundComboBox(ColorUIResource selectedForegroundComboBox) {
-        this.selectedForegroundComboBox = selectedForegroundComboBox;
-    }
-
-    public void setBorderComboBox(BorderUIResource borderComboBox) {
-        this.borderComboBox = borderComboBox;
-    }
-
-    public void setMenuBackground(ColorUIResource menuBackground) {
-        this.menuBackground = menuBackground;
-    }
-
-    public void setMenuTextColor(ColorUIResource menuTextColor) {
-        this.menuTextColor = menuTextColor;
-    }
-
-    public void setMenuBackgroundMouseHover(ColorUIResource menuBackgroundMouseHover) {
-        this.menuBackgroundMouseHover = menuBackgroundMouseHover;
-    }
-
-    public void setMenuDisableBackground(ColorUIResource menuDisableBackground) {
-        this.menuDisableBackground = menuDisableBackground;
-    }
-
-    public void setBorderMenu(BorderUIResource borderMenu) {
-        this.borderMenu = borderMenu;
-    }
-
-    public void setBorderMenuBar(BorderUIResource borderMenuBar) {
-        this.borderMenuBar = borderMenuBar;
-    }
-
-    public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon) {
-        this.unselectedRadioButtonIcon = unselectedRadioButtonIcon;
-    }
-
-    public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon) {
-        this.selectedRadioButtonIcon = selectedRadioButtonIcon;
-    }
-
-    public void setBorderPopupMenu(BorderUIResource borderPopupMenu) {
-        this.borderPopupMenu = borderPopupMenu;
-    }
-
-    public void setArrowButtonBackgroundSpinner(ColorUIResource arrowButtonBackgroundSpinner) {
-        this.arrowButtonBackgroundSpinner = arrowButtonBackgroundSpinner;
-    }
-
-    public void setMouseHoverButtonColorSpinner(ColorUIResource mouseHoverButtonColorSpinner) {
-        this.mouseHoverButtonColorSpinner = mouseHoverButtonColorSpinner;
-    }
-
-    public void setBorderSpinner(BorderUIResource borderSpinner) {
-        this.borderSpinner = borderSpinner;
-    }
-
-    public void setArrowButtonBorderSpinner(BorderUIResource arrowButtonBorderSpinner) {
-        this.arrowButtonBorderSpinner = arrowButtonBorderSpinner;
-    }
-
-    public void setBorderPanel(BorderUIResource borderPanel) {
-        this.borderPanel = borderPanel;
-    }
-
-    public void setTrackColorScrollBar(ColorUIResource trackColorScrollBar) {
-        this.trackColorScrollBar = trackColorScrollBar;
-    }
-
-    public void setThumbColorScrollBar(ColorUIResource thumbColorScrollBar) {
-        this.thumbColorScrollBar = thumbColorScrollBar;
-    }
-
-    public void setThumbDarkShadowColorScrollBar(ColorUIResource thumbDarkShadowColorScrollBar) {
-        this.thumbDarkShadowColorScrollBar = thumbDarkShadowColorScrollBar;
-    }
-
-    public void setThumbHighlightColorScrollBar(ColorUIResource thumbHighlightColorScrollBar) {
-        this.thumbHighlightColorScrollBar = thumbHighlightColorScrollBar;
-    }
-
-    public void setThumbShadowColorScrollBar(ColorUIResource thumbShadowColorScrollBar) {
-        this.thumbShadowColorScrollBar = thumbShadowColorScrollBar;
-    }
-
-    public void setMouseHoverColorScrollBar(ColorUIResource mouseHoverColorScrollBar) {
-        this.mouseHoverColorScrollBar = mouseHoverColorScrollBar;
-    }
-
-    public void setArrowButtonColorScrollBar(ColorUIResource arrowButtonColorScrollBar) {
-        this.arrowButtonColorScrollBar = arrowButtonColorScrollBar;
-    }
-
-    public void setArrowButtonOnClickColorScrollBar(ColorUIResource arrowButtonOnClickColorScrollBar) {
-        this.arrowButtonOnClickColorScrollBar = arrowButtonOnClickColorScrollBar;
-    }
-
-    public void setArrowButtonBorderScrollBar(BorderUIResource arrowButtonBorderScrollBar) {
-        this.arrowButtonBorderScrollBar = arrowButtonBorderScrollBar;
-    }
-
-    public void setTrackColorSlider(ColorUIResource trackColorSlider) {
-        this.trackColorSlider = trackColorSlider;
-    }
-
-    public void setHaloColorSlider(ColorUIResource haloColorSlider) {
-        this.haloColorSlider = haloColorSlider;
-    }
-
-    public void setBorderSlider(BorderUIResource borderSlider) {
-        this.borderSlider = borderSlider;
-    }
-
-    public void setHighlightColorTabbedPane(ColorUIResource highlightColorTabbedPane) {
-        this.highlightColorTabbedPane = highlightColorTabbedPane;
-    }
-
-    public void setBorderHighlightColorTabbedPane(ColorUIResource borderHighlightColorTabbedPane) {
-        this.borderHighlightColorTabbedPane = borderHighlightColorTabbedPane;
-    }
-
-    public void setFocusColorLineTabbedPane(ColorUIResource focusColorLineTabbedPane) {
-        this.focusColorLineTabbedPane = focusColorLineTabbedPane;
-    }
-
-    public void setDisableColorTabTabbedPane(ColorUIResource disableColorTabTabbedPane) {
-        this.disableColorTabTabbedPane = disableColorTabTabbedPane;
-    }
-
-    public void setTabInsetsTabbedPane(InsetsUIResource tabInsetsTabbedPane) {
-        this.tabInsetsTabbedPane = tabInsetsTabbedPane;
-    }
-
-    public void setSelectedTabInsetsTabbedPane(InsetsUIResource selectedTabInsetsTabbedPane) {
-        this.selectedTabInsetsTabbedPane = selectedTabInsetsTabbedPane;
-    }
-
-    public void setBackgroundTable(ColorUIResource backgroundTable) {
-        this.backgroundTable = backgroundTable;
-    }
-
-    public void setBackgroundTableHeader(ColorUIResource backgroundTableHeader) {
-        this.backgroundTableHeader = backgroundTableHeader;
-    }
-
-    public void setForegroundTable(ColorUIResource foregroundTable) {
-        this.foregroundTable = foregroundTable;
-    }
-
-    public void setForegroundTableHeader(ColorUIResource foregroundTableHeader) {
-        this.foregroundTableHeader = foregroundTableHeader;
-    }
-
-    public void setSelectionBackgroundTable(ColorUIResource selectionBackgroundTable) {
-        this.selectionBackgroundTable = selectionBackgroundTable;
-    }
-
-    public void setSelectionForegroundTable(ColorUIResource selectionForegroundTable) {
-        this.selectionForegroundTable = selectionForegroundTable;
-    }
-
-    public void setGridColorTable(ColorUIResource gridColorTable) {
-        this.gridColorTable = gridColorTable;
-    }
-
-    public void setAlternateRowBackgroundTable(ColorUIResource alternateRowBackgroundTable) {
-        this.alternateRowBackgroundTable = alternateRowBackgroundTable;
-    }
-
-    public void setBorderTable(BorderUIResource borderTable) {
-        this.borderTable = borderTable;
-    }
-
-    public void setBorderTableHeader(BorderUIResource borderTableHeader) {
-        this.borderTableHeader = borderTableHeader;
-    }
-
-    public void setCellBorderTableHeader(BorderUIResource cellBorderTableHeader) {
-        this.cellBorderTableHeader = cellBorderTableHeader;
-    }
-
-    public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable) {
-        this.unselectedCheckBoxIconTable = unselectedCheckBoxIconTable;
-    }
-
-    public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable) {
-        this.selectedCheckBoxIconTable = selectedCheckBoxIconTable;
-    }
-
-    public void setUnselectedCheckBoxIconSelectionRowTable(IconUIResource unselectedCheckBoxIconSelectionRowTable) {
-        this.unselectedCheckBoxIconSelectionRowTable = unselectedCheckBoxIconSelectionRowTable;
-    }
-
-    public void setSelectedCheckBoxIconSelectionRowTable(IconUIResource selectedCheckBoxIconSelectionRowTable) {
-        this.selectedCheckBoxIconSelectionRowTable = selectedCheckBoxIconSelectionRowTable;
-    }
-
-    public void setDockingBackgroundToolBar(ColorUIResource dockingBackgroundToolBar) {
-        this.dockingBackgroundToolBar = dockingBackgroundToolBar;
-    }
-
-    public void setFloatingBackgroundToolBar(ColorUIResource floatingBackgroundToolBar) {
-        this.floatingBackgroundToolBar = floatingBackgroundToolBar;
-    }
-
-    public void setBorderToolBar(BorderUIResource borderToolBar) {
-        this.borderToolBar = borderToolBar;
-    }
-
-    public void setSelectionForegroundTree(ColorUIResource selectionForegroundTree) {
-        this.selectionForegroundTree = selectionForegroundTree;
-    }
-
-    public void setSelectionBackgroundTree(ColorUIResource selectionBackgroundTree) {
-        this.selectionBackgroundTree = selectionBackgroundTree;
-    }
-
-    public void setSelectionBorderColorTree(ColorUIResource selectionBorderColorTree) {
-        this.selectionBorderColorTree = selectionBorderColorTree;
-    }
-
-    public void setClosedIconTree(IconUIResource closedIconTree) {
-        this.closedIconTree = closedIconTree;
-    }
-
-    public void setOpenIconTree(IconUIResource openIconTree) {
-        this.openIconTree = openIconTree;
-    }
-
-    public void setBackgroundTextField(ColorUIResource backgroundTextField) {
-        this.backgroundTextField = backgroundTextField;
-    }
-
-    public void setInactiveForegroundTextField(ColorUIResource inactiveForegroundTextField) {
-        this.inactiveForegroundTextField = inactiveForegroundTextField;
-    }
-
-    public void setInactiveBackgroundTextField(ColorUIResource inactiveBackgroundTextField) {
-        this.inactiveBackgroundTextField = inactiveBackgroundTextField;
-    }
-
-    public void setSelectionBackgroundTextField(ColorUIResource selectionBackgroundTextField) {
-        this.selectionBackgroundTextField = selectionBackgroundTextField;
-    }
-
-    public void setSelectionForegroundTextField(ColorUIResource selectionForegroundTextField) {
-        this.selectionForegroundTextField = selectionForegroundTextField;
-    }
-
-    public void setInactiveColorLineTextField(ColorUIResource inactiveColorLineTextField) {
-        this.inactiveColorLineTextField = inactiveColorLineTextField;
-    }
-
-    public void setActiveColorLineTextField(ColorUIResource activeColorLineTextField) {
-        this.activeColorLineTextField = activeColorLineTextField;
-    }
-
-    public void setBorderTextField(BorderUIResource borderTextField) {
-        this.borderTextField = borderTextField;
-    }
-
-    public void setTitleBackgroundGradientStartTaskPane(ColorUIResource titleBackgroundGradientStartTaskPane) {
-        this.titleBackgroundGradientStartTaskPane = titleBackgroundGradientStartTaskPane;
-    }
-
-    public void setTitleBackgroundGradientEndTaskPane(ColorUIResource titleBackgroundGradientEndTaskPane) {
-        this.titleBackgroundGradientEndTaskPane = titleBackgroundGradientEndTaskPane;
-    }
-
-    public void setTitleOverTaskPane(ColorUIResource titleOverTaskPane) {
-        this.titleOverTaskPane = titleOverTaskPane;
-    }
-
-    public void setSpecialTitleOverTaskPane(ColorUIResource specialTitleOverTaskPane) {
-        this.specialTitleOverTaskPane = specialTitleOverTaskPane;
-    }
-
-    public void setBackgroundTaskPane(ColorUIResource backgroundTaskPane) {
-        this.backgroundTaskPane = backgroundTaskPane;
-    }
-
-    public void setBorderColorTaskPane(ColorUIResource borderColorTaskPane) {
-        this.borderColorTaskPane = borderColorTaskPane;
-    }
-
-    public void setContentBackgroundTaskPane(ColorUIResource contentBackgroundTaskPane) {
-        this.contentBackgroundTaskPane = contentBackgroundTaskPane;
-    }
-
-    public void setBorderTaskPane(BorderUIResource borderTaskPane) {
-        this.borderTaskPane = borderTaskPane;
-    }
-
-    public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane) {
-        this.yesCollapsedTaskPane = yesCollapsedTaskPane;
-    }
-
-    public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane) {
-        this.noCollapsedTaskPane = noCollapsedTaskPane;
-    }
-
-    public void setSelectionBackgroundList(ColorUIResource selectionBackgroundList) {
-        this.selectionBackgroundList = selectionBackgroundList;
-    }
-
-    public void setSelectionForegroundList(ColorUIResource selectionForegroundList) {
-        this.selectionForegroundList = selectionForegroundList;
-    }
-
-    public void setFocusCellHighlightBorder(BorderUIResource focusCellHighlightBorder) {
-        this.focusCellHighlightBorder = focusCellHighlightBorder;
-    }
-
-    public void setBorderItemList(BorderUIResource borderItemList) {
-        this.borderItemList = borderItemList;
-    }
-
-    public void setBorderList(BorderUIResource borderList) {
-        this.borderList = borderList;
-    }
-
-    public void setBorderFrameRootPane(BorderUIResource borderFrameRootPane) {
-        this.borderFrameRootPane = borderFrameRootPane;
-    }
-
-    public void setBorderDialogRootPane(BorderUIResource borderDialogRootPane) {
-        this.borderDialogRootPane = borderDialogRootPane;
-    }
-
-    public void setBackgroundOptionPane(ColorUIResource backgroundOptionPane) {
-        this.backgroundOptionPane = backgroundOptionPane;
-    }
-
-    public void setWarningIconOptionPane(IconUIResource warningIconOptionPane) {
-        this.warningIconOptionPane = warningIconOptionPane;
-    }
-
-    public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane) {
-        this.errorIconIconOptionPane = errorIconIconOptionPane;
-    }
-
-    public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane) {
-        this.questionIconOptionPane = questionIconOptionPane;
-    }
-
-    public void setInformationIconOptionPane(IconUIResource informationIconOptionPane) {
-        this.informationIconOptionPane = informationIconOptionPane;
-    }
-
-    public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser) {
-        this.iconComputerFileChooser = iconComputerFileChooser;
-    }
-
-    public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser) {
-        this.iconDirectoryFileChooser = iconDirectoryFileChooser;
-    }
-
-    public void setIconFileFileChooser(IconUIResource iconFileFileChooser) {
-        this.iconFileFileChooser = iconFileFileChooser;
-    }
-
-    public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser) {
-        this.iconFloppyDriveFileChooser = iconFloppyDriveFileChooser;
-    }
-
-    public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser) {
-        this.iconHardDriveFileChooser = iconHardDriveFileChooser;
-    }
-
-    public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser) {
-        this.iconHomeFileChooser = iconHomeFileChooser;
-    }
-
-    public void setIconListFileChooser(IconUIResource iconListFileChooser) {
-        this.iconListFileChooser = iconListFileChooser;
-    }
-
-    public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser) {
-        this.iconDetailsFileChooser = iconDetailsFileChooser;
-    }
-
-    public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser) {
-        this.iconNewFolderFileChooser = iconNewFolderFileChooser;
-    }
-
-    public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser) {
-        this.iconUpFolderFileChooser = iconUpFolderFileChooser;
-    }
-
-    public void setBackgroundProgressBar(ColorUIResource backgroundProgressBar) {
-        this.backgroundProgressBar = backgroundProgressBar;
-    }
-
-    public void setForegroundProgressBar(ColorUIResource foregroundProgressBar) {
-        this.foregroundProgressBar = foregroundProgressBar;
-    }
-
-    public void setBorderProgressBar(BorderUIResource borderProgressBar) {
-        this.borderProgressBar = borderProgressBar;
-    }
-
-    public void setFontBold(FontUIResource fontBold) {
-        this.fontBold = fontBold;
-    }
-
-    public void setFontItalic(FontUIResource fontItalic) {
-        this.fontItalic = fontItalic;
-    }
-
-    public void setFontRegular(FontUIResource fontRegular) {
-        this.fontRegular = fontRegular;
-    }
-
-    public void setFontMedium(FontUIResource fontMedium) {
-        this.fontMedium = fontMedium;
-    }
+  public ColorUIResource getHighlightBackgroundPrimary() {
+    return highlightBackgroundPrimary;
+  }
+
+  public ColorUIResource getTextColor() {
+    return textColor;
+  }
+
+  public ColorUIResource getDisableTextColor() {
+    return disableTextColor;
+  }
+
+  // Getter for button
+  public ColorUIResource getButtonBackgroundColor() {
+    return buttonBackgroundColor;
+  }
+
+  public ColorUIResource getButtonTextColor() {
+    return buttonTextColor;
+  }
+
+  public ColorUIResource getButtonBackgroundColorMouseHover() {
+    return buttonBackgroundColorMouseHover;
+  }
+
+  public ColorUIResource getButtonDefaultBackgroundColor() {
+    return buttonDefaultBackgroundColor;
+  }
+
+  public ColorUIResource getButtonDefaultTextColor() {
+    return buttonDefaultTextColor;
+  }
+
+  public ColorUIResource getButtonDefaultBackgroundColorMouseHover() {
+    return buttonDefaultBackgroundColorMouseHover;
+  }
+
+  public ColorUIResource getButtonDisabledBackground() {
+    return buttonDisabledBackground;
+  }
+
+  public ColorUIResource getButtonDisabledForeground() {
+    return buttonDisabledForeground;
+  }
+
+  public ColorUIResource getButtonDisableTextColor() {
+    return this.getDisableTextColor();
+  }
+
+  public ColorUIResource getButtonFocusColor() {
+    return buttonFocusColor;
+  }
+
+  public ColorUIResource getButtonDefaultFocusColor() {
+    return buttonDefaultFocusColor;
+  }
+
+  public ColorUIResource getButtonBorderColor() {
+    return buttonBorderColor;
+  }
+
+  public ColorUIResource getButtonColorHighlight() {
+    return buttonColorHighlight;
+  }
+
+  public BorderUIResource getButtonBorder() {
+    return buttonBorder;
+  }
+
+  public FontUIResource getButtonFont() {
+    return getFontBold();
+  }
+
+  public boolean getMouseHoverButtonEnable() {
+    return true;
+  }
+
+  public boolean getButtonFocusable() {
+    return true;
+  }
+
+  public boolean getButtonBorderEnable() {
+    return true;
+  }
+
+  public boolean getButtonBorderEnableToAll() {
+    return false;
+  }
+
+  @Override
+  public int getArcButton() {
+    return 0;
+  }
+
+  @Override
+  public boolean getOpaqueButton() {
+    return false;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JSeparator
+  public ColorUIResource getBackgroundSeparator() {
+    return backgroundSeparator;
+  }
+
+  public ColorUIResource getForegroundSeparator() {
+    return foregroundSeparator;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JToolTip
+  public ColorUIResource getBackgroundToolTip() {
+    return backgroundToolTip;
+  }
+
+  public ColorUIResource getForegroundToolTip() {
+    return foregroundToolTip;
+  }
+
+  public BorderUIResource getBorderToolTip() {
+    return borderToolTip;
+  }
+
+  // Proprieties JCheckBox
+  public IconUIResource getUnselectedCheckBoxIcon() {
+    return unselectedCheckBoxIcon;
+  }
+
+  public IconUIResource getSelectedCheckBoxIcon() {
+    return selectedCheckBoxIcon;
+  }
+
+  public IconUIResource getDisabledUnselectedCheckBoxIcon() {
+    return disabledUnselectedCheckBoxIcon;
+  }
+
+  public IconUIResource getDisabledSelectedCheckBoxIcon() {
+    return disabledSelectedCheckBoxIcon;
+  }
+
+  // Proprieties JComboBox
+  public ColorUIResource getSelectedInDropDownBackgroundComboBox() {
+    return selectedInDropDownBackgroundComboBox;
+  }
+
+  public ColorUIResource getSelectedForegroundComboBox() {
+    return selectedForegroundComboBox;
+  }
+
+  public BorderUIResource getBorderComboBox() {
+    return borderComboBox;
+  }
+
+  public BorderUIResource getBorderItemComboBox() {
+    return borderItemComboBox;
+  }
+
+  @Override
+  public IconUIResource getButtonIconComboBox() {
+    return buttonIconComboBox;
+  }
+
+  @Override
+  public IconUIResource getButtonSelectIconComboBox() {
+    return buttonSelectIconComboBox;
+  }
+
+  @Override
+  public IconUIResource getButtonDisabledIconComboBox() {
+    return buttonDisabledIconComboBox;
+  }
+
+  @Override
+  public void setButtonDisabledIconComboBox(IconUIResource buttonDisabledIconComboBox) {
+    this.buttonDisabledIconComboBox = buttonDisabledIconComboBox;
+  }
+
+  @Override
+  public boolean getMouseHoverEnableComboBox() {
+    return false;
+  }
+
+  @Override
+  public boolean getLightWeightPopupEnabledComboBox() {
+    return true;
+  }
+
+  @Override
+  public boolean getFocusableComboBox() {
+    return true;
+  }
+
+  @Override
+  public int getArchBorderComboBox() {
+    return 0;
+  }
+
+  // Getter for all component of the menu
+  public ColorUIResource getMenuBackground() {
+    return menuBackground;
+  }
+
+  public ColorUIResource getMenuTextColor() {
+    return menuTextColor;
+  }
+
+  public ColorUIResource getMenuBackgroundMouseHover() {
+    return menuBackgroundMouseHover;
+  }
+
+  public ColorUIResource getMenuDisableBackground() {
+    return menuDisableBackground;
+  }
+
+  public BorderUIResource getBorderMenu() {
+    return borderMenu;
+  }
+
+  public BorderUIResource getBorderMenuBar() {
+    return borderMenuBar;
+  }
+
+  @Override
+  public Icon getMenuArrowIcon() {
+    return new MaterialMenuArrowIcon();
+  }
+
+  @Override
+  public ColorUIResource getMenuArrowHoverColor() {
+    return textColor;
+  }
+
+  @Override
+  public int getMenuArrowHeight() {
+    return 8;
+  }
+
+  @Override
+  public int getMenuArrowWidth() {
+    return 4;
+  }
+
+  @Override
+  public boolean getMouseHoverEnableMenu() {
+    return true;
+  }
+
+  // get radiobutton
+  public IconUIResource getUnselectedRadioButtonIcon() {
+    return unselectedRadioButtonIcon;
+  }
+
+  public IconUIResource getSelectedRadioButtonIcon() {
+    return selectedRadioButtonIcon;
+  }
+
+  public IconUIResource getDisabledUnselectedRadioButtonIcon() {
+    return disabledUnselectedRadioButtonIcon;
+  }
+
+  public IconUIResource getDisabledSelectedRadioButtonIcon() {
+    return disabledSelectedRadioButtonIcon;
+  }
+
+  // get for JPopupMenu
+  public BorderUIResource getBorderPopupMenu() {
+    return borderPopupMenu;
+  }
+
+  // get for JSpinner
+  public ColorUIResource getArrowButtonBackgroundSpinner() {
+    return arrowButtonBackgroundSpinner;
+  }
+
+  public ColorUIResource getMouseHoverButtonColorSpinner() {
+    return mouseHoverButtonColorSpinner;
+  }
+
+  public BorderUIResource getBorderSpinner() {
+    return borderSpinner;
+  }
+
+  public BorderUIResource getArrowButtonBorderSpinner() {
+    return arrowButtonBorderSpinner;
+  }
+
+  public IconUIResource getPreviousButtonIconSpinner() {
+    return previousButtonIconSpinner;
+  }
+
+  public IconUIResource getNextButtonIconSpinner() {
+    return nextButtonIconSpinner;
+  }
+
+  @Override
+  public boolean getMouseHoverEnableSpinner() {
+    return true;
+  }
+
+  // get fro JPanel and JScrollPanel
+  public BorderUIResource getBorderPanel() {
+    return borderPanel;
+  }
+
+  // getter JScrollBar
+  public ColorUIResource getTrackColorScrollBar() {
+    return trackColorScrollBar;
+  }
+
+  public ColorUIResource getThumbColorScrollBar() {
+    return thumbColorScrollBar;
+  }
+
+  public ColorUIResource getThumbDarkShadowColorScrollBar() {
+    return thumbDarkShadowColorScrollBar;
+  }
+
+  public ColorUIResource getThumbHighlightColorScrollBar() {
+    return thumbHighlightColorScrollBar;
+  }
+
+  public ColorUIResource getThumbShadowColorScrollBar() {
+    return thumbShadowColorScrollBar;
+  }
+
+  public ColorUIResource getMouseHoverColorScrollBar() {
+    return mouseHoverColorScrollBar;
+  }
+
+  public ColorUIResource getArrowButtonColorScrollBar() {
+    return arrowButtonColorScrollBar;
+  }
+
+  public ColorUIResource getArrowButtonOnClickColorScrollBar() {
+    return arrowButtonOnClickColorScrollBar;
+  }
+
+  public BorderUIResource getArrowButtonBorderScrollBar() {
+    return arrowButtonBorderScrollBar;
+  }
+
+  @Override
+  public boolean getMouseHoverEnableScrollBar() {
+    return true;
+  }
+
+  @Override
+  public boolean getEnableArrowScrollBar() {
+    return false;
+  }
+
+  // get jslider
+  public ColorUIResource getTrackColorSlider() {
+    return trackColorSlider;
+  }
+
+  public ColorUIResource getHaloColorSlider() {
+    return haloColorSlider;
+  }
+
+  public ColorUIResource getDisabledColorSlider() {
+    return disabledColorSlider;
+  }
+
+  public BorderUIResource getBorderSlider() {
+    return borderSlider;
+  }
+
+  // get for JTabbedPane
+  public ColorUIResource getHighlightColorTabbedPane() {
+    return highlightColorTabbedPane;
+  }
+
+  public ColorUIResource getBorderHighlightColorTabbedPane() {
+    return borderHighlightColorTabbedPane;
+  }
+
+  public ColorUIResource getFocusColorLineTabbedPane() {
+    return focusColorLineTabbedPane;
+  }
+
+  public ColorUIResource getDisableColorTabTabbedPane() {
+    return disableColorTabTabbedPane;
+  }
+
+  public InsetsUIResource getTabInsetsTabbedPane() {
+    return tabInsetsTabbedPane;
+  }
+
+  public InsetsUIResource getSelectedTabInsetsTabbedPane() {
+    return selectedTabInsetsTabbedPane;
+  }
+
+  public IconUIResource getDisabledBottomIconTabbedPane() {
+    return disabledBottomIconTabbedPane;
+  }
+
+  public IconUIResource getDisabledTopIconTabbedPane() {
+    return disabledTopIconTabbedPane;
+  }
+
+  public IconUIResource getDisabledLeftIconTabbedPane() {
+    return disabledLeftIconTabbedPane;
+  }
+
+  public IconUIResource getDisabledRightIconTabbedPane() {
+    return disabledRightIconTabbedPane;
+  }
+
+  public IconUIResource getBottomIconTabbedPane() {
+    return bottomIconTabbedPane;
+  }
+
+  public IconUIResource getTopIconTabbedPane() {
+    return topIconTabbedPane;
+  }
+
+  public IconUIResource getLeftIconTabbedPane() {
+    return leftIconTabbedPane;
+  }
+
+  public IconUIResource getRightIconTabbedPane() {
+    return rightIconTabbedPane;
+  }
+
+  public ColorUIResource getColorIconTabbedPane() {
+    return colorIconTabbedPane;
+  }
+
+  public ColorUIResource getColorDisabledIconTabbedPane() {
+    return colorDisabledIconTabbedPane;
+  }
+
+  @Override
+  public int getLinePositionYTabbedPane() {
+    return 56;
+  }
+
+  @Override
+  public int getLinePositionXTabbedPane() {
+    return 0;
+  }
+
+  @Override
+  public int getLineWithTabbedPane() {
+    return 5;
+  }
+
+  @Override
+  public int getLineHeightTabbedPane() {
+    return 3;
+  }
+
+  @Override
+  public int getLineArchTabbedPane() {
+    return 0;
+  }
+
+  @Override
+  public int getIndentTabbedPane() {
+    return 4;
+  }
+
+  @Override
+  public int getSpacerTabbedPane() {
+    return 20;
+  }
+
+  @Override
+  public int getHeightTabTabbedPane() {
+    return 18;
+  }
+
+  @Override
+  public boolean getMouseHoverEnableTabbedPane() {
+    return true;
+  }
+
+  // Getter for JTable
+  public ColorUIResource getBackgroundTable() {
+    return backgroundTable;
+  }
+
+  public ColorUIResource getForegroundTable() {
+    return foregroundTable;
+  }
+
+  public ColorUIResource getSelectionBackgroundTable() {
+    return selectionBackgroundTable;
+  }
+
+  public ColorUIResource getSelectionForegroundTable() {
+    return selectionForegroundTable;
+  }
+
+  public ColorUIResource getGridColorTable() {
+    return gridColorTable;
+  }
+
+  public ColorUIResource getAlternateRowBackgroundTable() {
+    return alternateRowBackgroundTable;
+  }
+
+  public BorderUIResource getBorderTable() {
+    return borderTable;
+  }
+
+  public IconUIResource getUnselectedCheckBoxIconTable() {
+    return unselectedCheckBoxIconTable;
+  }
+
+  public IconUIResource getSelectedCheckBoxIconTable() {
+    return selectedCheckBoxIconTable;
+  }
+
+  public IconUIResource getUnselectedCheckBoxIconSelectionRowTable() {
+    return unselectedCheckBoxIconSelectionRowTable;
+  }
+
+  public IconUIResource getSelectedCheckBoxIconSelectionRowTable() {
+    return selectedCheckBoxIconSelectionRowTable;
+  }
+
+  @Override
+  public boolean getTableFocusable() {
+    return true;
+  }
+
+  @Override
+  public boolean getTableOpaque() {
+    return false;
+  }
+
+  @Override
+  public int getHeightRowTable() {
+    return 10;
+  }
+
+  public ColorUIResource getBackgroundTableHeader() {
+    return backgroundTableHeader;
+  }
+
+  public ColorUIResource getForegroundTableHeader() {
+    return foregroundTableHeader;
+  }
+
+  public BorderUIResource getBorderTableHeader() {
+    return borderTableHeader;
+  }
+
+  public BorderUIResource getCellBorderTableHeader() {
+    return cellBorderTableHeader;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JToolBar
+  public ColorUIResource getDockingBackgroundToolBar() {
+    return dockingBackgroundToolBar;
+  }
+
+  public ColorUIResource getFloatingBackgroundToolBar() {
+    return floatingBackgroundToolBar;
+  }
+
+  public BorderUIResource getBorderToolBar() {
+    return borderToolBar;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JTextField and JPasswordField
+  public ColorUIResource getBackgroundTextField() {
+    return backgroundTextField;
+  }
+
+  public ColorUIResource getInactiveForegroundTextField() {
+    return inactiveForegroundTextField;
+  }
+
+  public ColorUIResource getInactiveBackgroundTextField() {
+    return inactiveBackgroundTextField;
+  }
+
+  public ColorUIResource getSelectionBackgroundTextField() {
+    return selectionBackgroundTextField;
+  }
+
+  public ColorUIResource getSelectionForegroundTextField() {
+    return selectionForegroundTextField;
+  }
+
+  public ColorUIResource getDisabledBackgroudnTextField() {
+    return disabledBackgroudnTextField;
+  }
+
+  public ColorUIResource getDisabledForegroundTextField() {
+    return disabledForegroundTextField;
+  }
+
+  public ColorUIResource getInactiveColorLineTextField() {
+    return inactiveColorLineTextField;
+  }
+
+  public ColorUIResource getActiveColorLineTextField() {
+    return activeColorLineTextField;
+  }
+
+  public BorderUIResource getBorderTextField() {
+    return borderTextField;
+  }
+
+  public char getEchoCharPasswordField() {
+    return '\u2022';
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JTree
+  public ColorUIResource getSelectionForegroundTree() {
+    return selectionForegroundTree;
+  }
+
+  public ColorUIResource getSelectionBackgroundTree() {
+    return selectionBackgroundTree;
+  }
+
+  public ColorUIResource getSelectionBorderColorTree() {
+    return selectionBorderColorTree;
+  }
+
+  public IconUIResource getClosedIconTree() {
+    return closedIconTree;
+  }
+
+  public IconUIResource getOpenIconTree() {
+    return openIconTree;
+  }
+
+  public IconUIResource getLeafIconTree() {
+    return leafIconTree;
+  }
+
+  public BorderUIResource getBorderTree() {
+    return borderTree;
+  }
+  // ---------------------------------------------------
+  // Proprieties JToggleButton
+
+  public IconUIResource getUnselectedIconToggleButton() {
+    return unselectedIconToggleButton;
+  }
+
+  public IconUIResource getSelectedIconToggleButton() {
+    return selectedIconToggleButton;
+  }
+
+  public IconUIResource getDisabledUnselectedIconToggleButton() {
+    return disabledUnselectedIconToggleButton;
+  }
+
+  public IconUIResource getDisabledSelectedIconToggleButton() {
+    return disabledSelectedIconToggleButton;
+  }
+
+  public boolean isWithoutIconToggleButton() {
+    return withoutIconToggleButton;
+  }
+
+  public ColorUIResource getWithoutIconSelectedBackgroundToggleButton() {
+    return withoutIconSelectedBackgroundToggleButton;
+  }
+
+  public ColorUIResource getWithoutIconSelectedForegoundToggleButton() {
+    return withoutIconSelectedForegoundToggleButton;
+  }
+
+  public ColorUIResource getWithoutIconBackgroundToggleButton() {
+    return withoutIconBackgroundToggleButton;
+  }
+
+  public ColorUIResource getWithoutIconForegroundToggleButton() {
+    return withoutIconForegroundToggleButton;
+  }
+
+  public BorderUIResource getWithoutIconSelectedBorderToggleButton() {
+    return withoutIconSelectedBorderToggleButton;
+  }
+
+  public BorderUIResource getWithoutIconBorderToggleButton() {
+    return withoutIconBorderToggleButton;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JXTaskPane
+  public ColorUIResource getTitleBackgroundGradientStartTaskPane() {
+    return titleBackgroundGradientStartTaskPane;
+  }
+
+  public ColorUIResource getTitleBackgroundGradientEndTaskPane() {
+    return titleBackgroundGradientEndTaskPane;
+  }
+
+  public ColorUIResource getTitleColorTaskPane() {
+    return titleColorTaskPane;
+  }
+
+  public ColorUIResource getTitleOverTaskPane() {
+    return titleOverTaskPane;
+  }
+
+  public ColorUIResource getSpecialTitleOverTaskPane() {
+    return specialTitleOverTaskPane;
+  }
+
+  public ColorUIResource getBackgroundTaskPane() {
+    return backgroundTaskPane;
+  }
+
+  public ColorUIResource getBorderColorTaskPane() {
+    return borderColorTaskPane;
+  }
+
+  public ColorUIResource getContentBackgroundTaskPane() {
+    return contentBackgroundTaskPane;
+  }
+
+  public BorderUIResource getBorderTaskPane() {
+    return borderTaskPane;
+  }
+
+  public IconUIResource getYesCollapsedTaskPane() {
+    return yesCollapsedTaskPane;
+  }
+
+  public IconUIResource getNoCollapsedTaskPane() {
+    return noCollapsedTaskPane;
+  }
+
+  public boolean getMouseHoverEnableTaskPane() {
+    return true;
+  }
+
+  @Override
+  public int getArchTaskPane() {
+    return archTaskPane;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JList
+  public ColorUIResource getSelectionBackgroundList() {
+    return selectionBackgroundList;
+  }
+
+  public ColorUIResource getSelectionForegroundList() {
+    return selectionForegroundList;
+  }
+
+  public BorderUIResource getFocusCellHighlightBorder() {
+    return focusCellHighlightBorder;
+  }
+
+  public BorderUIResource getBorderItemList() {
+    return borderItemList;
+  }
+
+  public BorderUIResource getBorderList() {
+    return borderList;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JRootPane
+  public BorderUIResource getBorderFrameRootPane() {
+    return borderFrameRootPane;
+  }
+
+  public BorderUIResource getBorderDialogRootPane() {
+    return borderDialogRootPane;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JFileChooser
+  public IconUIResource getIconComputerFileChooser() {
+    return iconComputerFileChooser;
+  }
+
+  public IconUIResource getIconDirectoryFileChooser() {
+    return iconDirectoryFileChooser;
+  }
+
+  public IconUIResource getIconFileFileChooser() {
+    return iconFileFileChooser;
+  }
+
+  public IconUIResource getIconFloppyDriveFileChooser() {
+    return iconFloppyDriveFileChooser;
+  }
+
+  public IconUIResource getIconHardDriveFileChooser() {
+    return iconHardDriveFileChooser;
+  }
+
+  public IconUIResource getIconHomeFileChooser() {
+    return iconHomeFileChooser;
+  }
+
+  public IconUIResource getIconListFileChooser() {
+    return iconListFileChooser;
+  }
+
+  public IconUIResource getIconDetailsFileChooser() {
+    return iconDetailsFileChooser;
+  }
+
+  public IconUIResource getIconNewFolderFileChooser() {
+    return iconNewFolderFileChooser;
+  }
+
+  public IconUIResource getIconUpFolderFileChooser() {
+    return iconUpFolderFileChooser;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JOptionPane
+  public ColorUIResource getBackgroundOptionPane() {
+    return backgroundOptionPane;
+  }
+
+  public IconUIResource getWarningIconOptionPane() {
+    return warningIconOptionPane;
+  }
+
+  public IconUIResource getErrorIconIconOptionPane() {
+    return errorIconIconOptionPane;
+  }
+
+  public IconUIResource getQuestionIconOptionPane() {
+    return questionIconOptionPane;
+  }
+
+  public IconUIResource getInformationIconOptionPane() {
+    return informationIconOptionPane;
+  }
+
+  @Override
+  public boolean getEnableIconOptionPane() {
+    return false;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JProgressBar
+  public ColorUIResource getBackgroundProgressBar() {
+    return backgroundProgressBar;
+  }
+
+  public ColorUIResource getForegroundProgressBar() {
+    return foregroundProgressBar;
+  }
+
+  public BorderUIResource getBorderProgressBar() {
+    return borderProgressBar;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties JSplitPane
+
+  public ColorUIResource getColorDividierSplitPane() {
+    return colorDividierSplitPane;
+  }
+
+  public ColorUIResource getColorDividierFocusSplitPane() {
+    return colorDividierFocusSplitPane;
+  }
+
+  public int getSizeDividierSplitPane() {
+    return sizeDividierSplitPane;
+  }
+
+  public BorderUIResource getDividierBorderSplitPane() {
+    return dividierBorderSplitPane;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties TitledBorder
+
+  public ColorUIResource getColorTextTitledBorder() {
+    return colorTextTitledBorder;
+  }
+
+  public BorderUIResource getBorderTitledBorder() {
+    return borderTitledBorder;
+  }
+
+  // ---------------------------------------------------
+  // Proprieties TitledBorder
+  public IconUIResource getIconCloseTitlePane() {
+    return iconCloseTitlePane;
+  }
+
+  // get fonts
+  public FontUIResource getFontBold() {
+    return fontBold;
+  }
+
+  public FontUIResource getFontItalic() {
+    return fontItalic;
+  }
+
+  public FontUIResource getFontRegular() {
+    return fontRegular;
+  }
+
+  public FontUIResource getFontMedium() {
+    return fontMedium;
+  }
+
+  // Setter
+  public void setDisabledColorSlider(ColorUIResource disabledColorSlider) {
+    this.disabledColorSlider = disabledColorSlider;
+  }
+
+  public void setDisabledUnselectedIconToggleButton(
+      IconUIResource disabledUnselectedIconToggleButton) {
+    this.disabledUnselectedIconToggleButton = disabledUnselectedIconToggleButton;
+  }
+
+  public void setDisabledSelectedIconToggleButton(IconUIResource disabledSelectedIconToggleButton) {
+    this.disabledSelectedIconToggleButton = disabledSelectedIconToggleButton;
+  }
+
+  public void setDisabledUnselectedRadioButtonIcon(
+      IconUIResource disabledUnselectedRadioButtonIcon) {
+    this.disabledUnselectedRadioButtonIcon = disabledUnselectedRadioButtonIcon;
+  }
+
+  public void setDisabledSelectedRadioButtonIcon(IconUIResource disabledSelectedRadioButtonIcon) {
+    this.disabledSelectedRadioButtonIcon = disabledSelectedRadioButtonIcon;
+  }
+
+  public void setDisabledUnselectedCheckBoxIcon(IconUIResource disabledUnselectedCheckBoxIcon) {
+    this.disabledUnselectedCheckBoxIcon = disabledUnselectedCheckBoxIcon;
+  }
+
+  public void setDisabledSelectedCheckBoxIcon(IconUIResource disabledSelectedCheckBoxIcon) {
+    this.disabledSelectedCheckBoxIcon = disabledSelectedCheckBoxIcon;
+  }
+
+  public void setButtonIconComboBox(IconUIResource buttonIconComboBox) {
+    this.buttonIconComboBox = buttonIconComboBox;
+  }
+
+  public void setButtonSelectIconComboBox(IconUIResource buttonSelectIconComboBox) {
+    this.buttonSelectIconComboBox = buttonSelectIconComboBox;
+  }
+
+  public void setBackgroundToolTip(ColorUIResource backgroundToolTip) {
+    this.backgroundToolTip = backgroundToolTip;
+  }
+
+  public void setForegroundToolTip(ColorUIResource foregroundToolTip) {
+    this.foregroundToolTip = foregroundToolTip;
+  }
+
+  public void setBorderToolTip(BorderUIResource borderToolTip) {
+    this.borderToolTip = borderToolTip;
+  }
+
+  public void setDisabledBottomIconTabbedPane(IconUIResource disabledBottomIconTabbedPane) {
+    this.disabledBottomIconTabbedPane = disabledBottomIconTabbedPane;
+  }
+
+  public void setDisabledTopIconTabbedPane(IconUIResource disabledTopIconTabbedPane) {
+    this.disabledTopIconTabbedPane = disabledTopIconTabbedPane;
+  }
+
+  public void setDisabledLeftIconTabbedPane(IconUIResource disabledLeftIconTabbedPane) {
+    this.disabledLeftIconTabbedPane = disabledLeftIconTabbedPane;
+  }
+
+  public void setDisabledRightIconTabbedPane(IconUIResource disabledRightIconTabbedPane) {
+    this.disabledRightIconTabbedPane = disabledRightIconTabbedPane;
+  }
+
+  public void setBottomIconTabbedPane(IconUIResource bottomIconTabbedPane) {
+    this.bottomIconTabbedPane = bottomIconTabbedPane;
+  }
+
+  public void setTopIconTabbedPane(IconUIResource topIconTabbedPane) {
+    this.topIconTabbedPane = topIconTabbedPane;
+  }
+
+  public void setLeftIconTabbedPane(IconUIResource leftIconTabbedPane) {
+    this.leftIconTabbedPane = leftIconTabbedPane;
+  }
+
+  public void setRightIconTabbedPane(IconUIResource rightIconTabbedPane) {
+    this.rightIconTabbedPane = rightIconTabbedPane;
+  }
+
+  public void setColorIconTabbedPane(ColorUIResource colorIconTabbedPane) {
+    this.colorIconTabbedPane = colorIconTabbedPane;
+  }
+
+  public void setColorDisabledIconTabbedPane(ColorUIResource colorDisabledIconTabbedPane) {
+    this.colorDisabledIconTabbedPane = colorDisabledIconTabbedPane;
+  }
+
+  public void setPreviousButtonIconSpinner(IconUIResource previousButtonIconSpinner) {
+    this.previousButtonIconSpinner = previousButtonIconSpinner;
+  }
+
+  public void setNextButtonIconSpinner(IconUIResource nextButtonIconSpinner) {
+    this.nextButtonIconSpinner = nextButtonIconSpinner;
+  }
+
+  public void setBorderItemComboBox(BorderUIResource borderItemComboBox) {
+    this.borderItemComboBox = borderItemComboBox;
+  }
+
+  public void setArchTaskPane(int archTaskPane) {
+    this.archTaskPane = archTaskPane;
+  }
+
+  public void setTitleColorTaskPane(ColorUIResource titleColorTaskPane) {
+    this.titleColorTaskPane = titleColorTaskPane;
+  }
+
+  public void setBackgroundSeparator(ColorUIResource backgroundSeparator) {
+    this.backgroundSeparator = backgroundSeparator;
+  }
+
+  public void setForegroundSeparator(ColorUIResource foregroundSeparator) {
+    this.foregroundSeparator = foregroundSeparator;
+  }
+
+  public void setLeafIconTree(IconUIResource leafIconTree) {
+    this.leafIconTree = leafIconTree;
+  }
+
+  public void setBorderTree(BorderUIResource borderTree) {
+    this.borderTree = borderTree;
+  }
+
+  public void setIconCloseTitlePane(IconUIResource iconCloseTitlePane) {
+    this.iconCloseTitlePane = iconCloseTitlePane;
+  }
+
+  public void setDisabledBackgroudnTextField(ColorUIResource disabledBackgroudnTextField) {
+    this.disabledBackgroudnTextField = disabledBackgroudnTextField;
+  }
+
+  public void setDisabledForegroundTextField(ColorUIResource disabledForegroundTextField) {
+    this.disabledForegroundTextField = disabledForegroundTextField;
+  }
+
+  public void setColorTextTitledBorder(ColorUIResource colorTextTitledBorder) {
+    this.colorTextTitledBorder = colorTextTitledBorder;
+  }
+
+  public void setBorderTitledBorder(BorderUIResource borderTitledBorder) {
+    this.borderTitledBorder = borderTitledBorder;
+  }
+
+  public void setColorDividierSplitPane(ColorUIResource colorDividierSplitPane) {
+    this.colorDividierSplitPane = colorDividierSplitPane;
+  }
+
+  public void setColorDividierFocusSplitPane(ColorUIResource colorDividierFocusSplitPane) {
+    this.colorDividierFocusSplitPane = colorDividierFocusSplitPane;
+  }
+
+  public void setSizeDividierSplitPane(int sizeDividierSplitPane) {
+    this.sizeDividierSplitPane = sizeDividierSplitPane;
+  }
+
+  public void setDividierBorderSplitPane(BorderUIResource dividierBorderSplitPane) {
+    this.dividierBorderSplitPane = dividierBorderSplitPane;
+  }
+
+  public void setUnselectedIconToggleButton(IconUIResource unselectedIconToggleButton) {
+    this.unselectedIconToggleButton = unselectedIconToggleButton;
+  }
+
+  public void setSelectedIconToggleButton(IconUIResource selectedIconToggleButton) {
+    this.selectedIconToggleButton = selectedIconToggleButton;
+  }
+
+  public void setWithoutIconToggleButton(boolean withoutIconToggleButton) {
+    this.withoutIconToggleButton = withoutIconToggleButton;
+  }
+
+  public void setWithoutIconSelectedBackgroundToggleButton(
+      ColorUIResource withoutIconSelectedBackgroundToggleButton) {
+    this.withoutIconSelectedBackgroundToggleButton = withoutIconSelectedBackgroundToggleButton;
+  }
+
+  public void setWithoutIconSelectedForegoundToggleButton(
+      ColorUIResource withoutIconSelectedForegoundToggleButton) {
+    this.withoutIconSelectedForegoundToggleButton = withoutIconSelectedForegoundToggleButton;
+  }
+
+  public void setWithoutIconBackgroundToggleButton(
+      ColorUIResource withoutIconBackgroundToggleButton) {
+    this.withoutIconBackgroundToggleButton = withoutIconBackgroundToggleButton;
+  }
+
+  public void setWithoutIconForegroundToggleButton(
+      ColorUIResource withoutIconForegroundToggleButton) {
+    this.withoutIconForegroundToggleButton = withoutIconForegroundToggleButton;
+  }
+
+  public void setWithoutIconSelectedBorderToggleButton(
+      BorderUIResource withoutIconSelectedBorderToggleButton) {
+    this.withoutIconSelectedBorderToggleButton = withoutIconSelectedBorderToggleButton;
+  }
+
+  public void setWithoutIconBorderToggleButton(BorderUIResource withoutIconBorderToggleButton) {
+    this.withoutIconBorderToggleButton = withoutIconBorderToggleButton;
+  }
+
+  public void setBackgroundPrimary(ColorUIResource backgroundPrimary) {
+    this.backgroundPrimary = backgroundPrimary;
+  }
+
+  public void setHighlightBackgroundPrimary(ColorUIResource highlightBackgroundPrimary) {
+    this.highlightBackgroundPrimary = highlightBackgroundPrimary;
+  }
+
+  public void setTextColor(ColorUIResource textColor) {
+    this.textColor = textColor;
+  }
+
+  public void setDisableTextColor(ColorUIResource disableTextColor) {
+    this.disableTextColor = disableTextColor;
+  }
+
+  public void setButtonBackgroundColor(ColorUIResource buttonBackgroundColor) {
+    this.buttonBackgroundColor = buttonBackgroundColor;
+  }
+
+  public void setButtonTextColor(ColorUIResource buttonTextColor) {
+    this.buttonTextColor = buttonTextColor;
+  }
+
+  public void setButtonBackgroundColorMouseHover(ColorUIResource buttonBackgroundColorMouseHover) {
+    this.buttonBackgroundColorMouseHover = buttonBackgroundColorMouseHover;
+  }
+
+  public void setButtonDefaultBackgroundColor(ColorUIResource buttonDefaultBackgroundColor) {
+    this.buttonDefaultBackgroundColor = buttonDefaultBackgroundColor;
+  }
+
+  public void setButtonDefaultTextColor(ColorUIResource buttonDefaultTextColor) {
+    this.buttonDefaultTextColor = buttonDefaultTextColor;
+  }
+
+  public void setButtonDefaultBackgroundColorMouseHover(
+      ColorUIResource buttonDefaultBackgroundColorMouseHover) {
+    this.buttonDefaultBackgroundColorMouseHover = buttonDefaultBackgroundColorMouseHover;
+  }
+
+  public void setButtonDisabledBackground(ColorUIResource buttonDisabledBackground) {
+    this.buttonDisabledBackground = buttonDisabledBackground;
+  }
+
+  public void setButtonDisabledForeground(ColorUIResource buttonDisabledForeground) {
+    this.buttonDisabledForeground = buttonDisabledForeground;
+  }
+
+  public void setButtonFocusColor(ColorUIResource buttonFocusColor) {
+    this.buttonFocusColor = buttonFocusColor;
+  }
+
+  public void setButtonDefaultFocusColor(ColorUIResource buttonDefaultFocusColor) {
+    this.buttonDefaultFocusColor = buttonDefaultFocusColor;
+  }
+
+  public void setButtonBorderColor(ColorUIResource buttonBorderColor) {
+    this.buttonBorderColor = buttonBorderColor;
+  }
+
+  public void setButtonColorHighlight(ColorUIResource buttonColorHighlight) {
+    this.buttonColorHighlight = buttonColorHighlight;
+  }
+
+  public void setButtonBorder(BorderUIResource buttonBorder) {
+    this.buttonBorder = buttonBorder;
+  }
+
+  public void setUnselectedCheckBoxIcon(IconUIResource unselectedCheckBoxIcon) {
+    this.unselectedCheckBoxIcon = unselectedCheckBoxIcon;
+  }
+
+  public void setSelectedCheckBoxIcon(IconUIResource selectedCheckBoxIcon) {
+    this.selectedCheckBoxIcon = selectedCheckBoxIcon;
+  }
+
+  public void setSelectedInDropDownBackgroundComboBox(
+      ColorUIResource selectedInDropDownBackgroundComboBox) {
+    this.selectedInDropDownBackgroundComboBox = selectedInDropDownBackgroundComboBox;
+  }
+
+  public void setSelectedForegroundComboBox(ColorUIResource selectedForegroundComboBox) {
+    this.selectedForegroundComboBox = selectedForegroundComboBox;
+  }
+
+  public void setBorderComboBox(BorderUIResource borderComboBox) {
+    this.borderComboBox = borderComboBox;
+  }
+
+  public void setMenuBackground(ColorUIResource menuBackground) {
+    this.menuBackground = menuBackground;
+  }
+
+  public void setMenuTextColor(ColorUIResource menuTextColor) {
+    this.menuTextColor = menuTextColor;
+  }
+
+  public void setMenuBackgroundMouseHover(ColorUIResource menuBackgroundMouseHover) {
+    this.menuBackgroundMouseHover = menuBackgroundMouseHover;
+  }
+
+  public void setMenuDisableBackground(ColorUIResource menuDisableBackground) {
+    this.menuDisableBackground = menuDisableBackground;
+  }
+
+  public void setBorderMenu(BorderUIResource borderMenu) {
+    this.borderMenu = borderMenu;
+  }
+
+  public void setBorderMenuBar(BorderUIResource borderMenuBar) {
+    this.borderMenuBar = borderMenuBar;
+  }
+
+  public void setUnselectedRadioButtonIcon(IconUIResource unselectedRadioButtonIcon) {
+    this.unselectedRadioButtonIcon = unselectedRadioButtonIcon;
+  }
+
+  public void setSelectedRadioButtonIcon(IconUIResource selectedRadioButtonIcon) {
+    this.selectedRadioButtonIcon = selectedRadioButtonIcon;
+  }
+
+  public void setBorderPopupMenu(BorderUIResource borderPopupMenu) {
+    this.borderPopupMenu = borderPopupMenu;
+  }
+
+  public void setArrowButtonBackgroundSpinner(ColorUIResource arrowButtonBackgroundSpinner) {
+    this.arrowButtonBackgroundSpinner = arrowButtonBackgroundSpinner;
+  }
+
+  public void setMouseHoverButtonColorSpinner(ColorUIResource mouseHoverButtonColorSpinner) {
+    this.mouseHoverButtonColorSpinner = mouseHoverButtonColorSpinner;
+  }
+
+  public void setBorderSpinner(BorderUIResource borderSpinner) {
+    this.borderSpinner = borderSpinner;
+  }
+
+  public void setArrowButtonBorderSpinner(BorderUIResource arrowButtonBorderSpinner) {
+    this.arrowButtonBorderSpinner = arrowButtonBorderSpinner;
+  }
+
+  public void setBorderPanel(BorderUIResource borderPanel) {
+    this.borderPanel = borderPanel;
+  }
+
+  public void setTrackColorScrollBar(ColorUIResource trackColorScrollBar) {
+    this.trackColorScrollBar = trackColorScrollBar;
+  }
+
+  public void setThumbColorScrollBar(ColorUIResource thumbColorScrollBar) {
+    this.thumbColorScrollBar = thumbColorScrollBar;
+  }
+
+  public void setThumbDarkShadowColorScrollBar(ColorUIResource thumbDarkShadowColorScrollBar) {
+    this.thumbDarkShadowColorScrollBar = thumbDarkShadowColorScrollBar;
+  }
+
+  public void setThumbHighlightColorScrollBar(ColorUIResource thumbHighlightColorScrollBar) {
+    this.thumbHighlightColorScrollBar = thumbHighlightColorScrollBar;
+  }
+
+  public void setThumbShadowColorScrollBar(ColorUIResource thumbShadowColorScrollBar) {
+    this.thumbShadowColorScrollBar = thumbShadowColorScrollBar;
+  }
+
+  public void setMouseHoverColorScrollBar(ColorUIResource mouseHoverColorScrollBar) {
+    this.mouseHoverColorScrollBar = mouseHoverColorScrollBar;
+  }
+
+  public void setArrowButtonColorScrollBar(ColorUIResource arrowButtonColorScrollBar) {
+    this.arrowButtonColorScrollBar = arrowButtonColorScrollBar;
+  }
+
+  public void setArrowButtonOnClickColorScrollBar(
+      ColorUIResource arrowButtonOnClickColorScrollBar) {
+    this.arrowButtonOnClickColorScrollBar = arrowButtonOnClickColorScrollBar;
+  }
+
+  public void setArrowButtonBorderScrollBar(BorderUIResource arrowButtonBorderScrollBar) {
+    this.arrowButtonBorderScrollBar = arrowButtonBorderScrollBar;
+  }
+
+  public void setTrackColorSlider(ColorUIResource trackColorSlider) {
+    this.trackColorSlider = trackColorSlider;
+  }
+
+  public void setHaloColorSlider(ColorUIResource haloColorSlider) {
+    this.haloColorSlider = haloColorSlider;
+  }
+
+  public void setBorderSlider(BorderUIResource borderSlider) {
+    this.borderSlider = borderSlider;
+  }
+
+  public void setHighlightColorTabbedPane(ColorUIResource highlightColorTabbedPane) {
+    this.highlightColorTabbedPane = highlightColorTabbedPane;
+  }
+
+  public void setBorderHighlightColorTabbedPane(ColorUIResource borderHighlightColorTabbedPane) {
+    this.borderHighlightColorTabbedPane = borderHighlightColorTabbedPane;
+  }
+
+  public void setFocusColorLineTabbedPane(ColorUIResource focusColorLineTabbedPane) {
+    this.focusColorLineTabbedPane = focusColorLineTabbedPane;
+  }
+
+  public void setDisableColorTabTabbedPane(ColorUIResource disableColorTabTabbedPane) {
+    this.disableColorTabTabbedPane = disableColorTabTabbedPane;
+  }
+
+  public void setTabInsetsTabbedPane(InsetsUIResource tabInsetsTabbedPane) {
+    this.tabInsetsTabbedPane = tabInsetsTabbedPane;
+  }
+
+  public void setSelectedTabInsetsTabbedPane(InsetsUIResource selectedTabInsetsTabbedPane) {
+    this.selectedTabInsetsTabbedPane = selectedTabInsetsTabbedPane;
+  }
+
+  public void setBackgroundTable(ColorUIResource backgroundTable) {
+    this.backgroundTable = backgroundTable;
+  }
+
+  public void setBackgroundTableHeader(ColorUIResource backgroundTableHeader) {
+    this.backgroundTableHeader = backgroundTableHeader;
+  }
+
+  public void setForegroundTable(ColorUIResource foregroundTable) {
+    this.foregroundTable = foregroundTable;
+  }
+
+  public void setForegroundTableHeader(ColorUIResource foregroundTableHeader) {
+    this.foregroundTableHeader = foregroundTableHeader;
+  }
+
+  public void setSelectionBackgroundTable(ColorUIResource selectionBackgroundTable) {
+    this.selectionBackgroundTable = selectionBackgroundTable;
+  }
+
+  public void setSelectionForegroundTable(ColorUIResource selectionForegroundTable) {
+    this.selectionForegroundTable = selectionForegroundTable;
+  }
+
+  public void setGridColorTable(ColorUIResource gridColorTable) {
+    this.gridColorTable = gridColorTable;
+  }
+
+  public void setAlternateRowBackgroundTable(ColorUIResource alternateRowBackgroundTable) {
+    this.alternateRowBackgroundTable = alternateRowBackgroundTable;
+  }
+
+  public void setBorderTable(BorderUIResource borderTable) {
+    this.borderTable = borderTable;
+  }
+
+  public void setBorderTableHeader(BorderUIResource borderTableHeader) {
+    this.borderTableHeader = borderTableHeader;
+  }
+
+  public void setCellBorderTableHeader(BorderUIResource cellBorderTableHeader) {
+    this.cellBorderTableHeader = cellBorderTableHeader;
+  }
+
+  public void setUnselectedCheckBoxIconTable(IconUIResource unselectedCheckBoxIconTable) {
+    this.unselectedCheckBoxIconTable = unselectedCheckBoxIconTable;
+  }
+
+  public void setSelectedCheckBoxIconTable(IconUIResource selectedCheckBoxIconTable) {
+    this.selectedCheckBoxIconTable = selectedCheckBoxIconTable;
+  }
+
+  public void setUnselectedCheckBoxIconSelectionRowTable(
+      IconUIResource unselectedCheckBoxIconSelectionRowTable) {
+    this.unselectedCheckBoxIconSelectionRowTable = unselectedCheckBoxIconSelectionRowTable;
+  }
+
+  public void setSelectedCheckBoxIconSelectionRowTable(
+      IconUIResource selectedCheckBoxIconSelectionRowTable) {
+    this.selectedCheckBoxIconSelectionRowTable = selectedCheckBoxIconSelectionRowTable;
+  }
+
+  public void setDockingBackgroundToolBar(ColorUIResource dockingBackgroundToolBar) {
+    this.dockingBackgroundToolBar = dockingBackgroundToolBar;
+  }
+
+  public void setFloatingBackgroundToolBar(ColorUIResource floatingBackgroundToolBar) {
+    this.floatingBackgroundToolBar = floatingBackgroundToolBar;
+  }
+
+  public void setBorderToolBar(BorderUIResource borderToolBar) {
+    this.borderToolBar = borderToolBar;
+  }
+
+  public void setSelectionForegroundTree(ColorUIResource selectionForegroundTree) {
+    this.selectionForegroundTree = selectionForegroundTree;
+  }
+
+  public void setSelectionBackgroundTree(ColorUIResource selectionBackgroundTree) {
+    this.selectionBackgroundTree = selectionBackgroundTree;
+  }
+
+  public void setSelectionBorderColorTree(ColorUIResource selectionBorderColorTree) {
+    this.selectionBorderColorTree = selectionBorderColorTree;
+  }
+
+  public void setClosedIconTree(IconUIResource closedIconTree) {
+    this.closedIconTree = closedIconTree;
+  }
+
+  public void setOpenIconTree(IconUIResource openIconTree) {
+    this.openIconTree = openIconTree;
+  }
+
+  public void setBackgroundTextField(ColorUIResource backgroundTextField) {
+    this.backgroundTextField = backgroundTextField;
+  }
+
+  public void setInactiveForegroundTextField(ColorUIResource inactiveForegroundTextField) {
+    this.inactiveForegroundTextField = inactiveForegroundTextField;
+  }
+
+  public void setInactiveBackgroundTextField(ColorUIResource inactiveBackgroundTextField) {
+    this.inactiveBackgroundTextField = inactiveBackgroundTextField;
+  }
+
+  public void setSelectionBackgroundTextField(ColorUIResource selectionBackgroundTextField) {
+    this.selectionBackgroundTextField = selectionBackgroundTextField;
+  }
+
+  public void setSelectionForegroundTextField(ColorUIResource selectionForegroundTextField) {
+    this.selectionForegroundTextField = selectionForegroundTextField;
+  }
+
+  public void setInactiveColorLineTextField(ColorUIResource inactiveColorLineTextField) {
+    this.inactiveColorLineTextField = inactiveColorLineTextField;
+  }
+
+  public void setActiveColorLineTextField(ColorUIResource activeColorLineTextField) {
+    this.activeColorLineTextField = activeColorLineTextField;
+  }
+
+  public void setBorderTextField(BorderUIResource borderTextField) {
+    this.borderTextField = borderTextField;
+  }
+
+  public void setTitleBackgroundGradientStartTaskPane(
+      ColorUIResource titleBackgroundGradientStartTaskPane) {
+    this.titleBackgroundGradientStartTaskPane = titleBackgroundGradientStartTaskPane;
+  }
+
+  public void setTitleBackgroundGradientEndTaskPane(
+      ColorUIResource titleBackgroundGradientEndTaskPane) {
+    this.titleBackgroundGradientEndTaskPane = titleBackgroundGradientEndTaskPane;
+  }
+
+  public void setTitleOverTaskPane(ColorUIResource titleOverTaskPane) {
+    this.titleOverTaskPane = titleOverTaskPane;
+  }
+
+  public void setSpecialTitleOverTaskPane(ColorUIResource specialTitleOverTaskPane) {
+    this.specialTitleOverTaskPane = specialTitleOverTaskPane;
+  }
+
+  public void setBackgroundTaskPane(ColorUIResource backgroundTaskPane) {
+    this.backgroundTaskPane = backgroundTaskPane;
+  }
+
+  public void setBorderColorTaskPane(ColorUIResource borderColorTaskPane) {
+    this.borderColorTaskPane = borderColorTaskPane;
+  }
+
+  public void setContentBackgroundTaskPane(ColorUIResource contentBackgroundTaskPane) {
+    this.contentBackgroundTaskPane = contentBackgroundTaskPane;
+  }
+
+  public void setBorderTaskPane(BorderUIResource borderTaskPane) {
+    this.borderTaskPane = borderTaskPane;
+  }
+
+  public void setYesCollapsedTaskPane(IconUIResource yesCollapsedTaskPane) {
+    this.yesCollapsedTaskPane = yesCollapsedTaskPane;
+  }
+
+  public void setNoCollapsedTaskPane(IconUIResource noCollapsedTaskPane) {
+    this.noCollapsedTaskPane = noCollapsedTaskPane;
+  }
+
+  public void setSelectionBackgroundList(ColorUIResource selectionBackgroundList) {
+    this.selectionBackgroundList = selectionBackgroundList;
+  }
+
+  public void setSelectionForegroundList(ColorUIResource selectionForegroundList) {
+    this.selectionForegroundList = selectionForegroundList;
+  }
+
+  public void setFocusCellHighlightBorder(BorderUIResource focusCellHighlightBorder) {
+    this.focusCellHighlightBorder = focusCellHighlightBorder;
+  }
+
+  public void setBorderItemList(BorderUIResource borderItemList) {
+    this.borderItemList = borderItemList;
+  }
+
+  public void setBorderList(BorderUIResource borderList) {
+    this.borderList = borderList;
+  }
+
+  public void setBorderFrameRootPane(BorderUIResource borderFrameRootPane) {
+    this.borderFrameRootPane = borderFrameRootPane;
+  }
+
+  public void setBorderDialogRootPane(BorderUIResource borderDialogRootPane) {
+    this.borderDialogRootPane = borderDialogRootPane;
+  }
+
+  public void setBackgroundOptionPane(ColorUIResource backgroundOptionPane) {
+    this.backgroundOptionPane = backgroundOptionPane;
+  }
+
+  public void setWarningIconOptionPane(IconUIResource warningIconOptionPane) {
+    this.warningIconOptionPane = warningIconOptionPane;
+  }
+
+  public void setErrorIconIconOptionPane(IconUIResource errorIconIconOptionPane) {
+    this.errorIconIconOptionPane = errorIconIconOptionPane;
+  }
+
+  public void setQuestionIconOptionPane(IconUIResource questionIconOptionPane) {
+    this.questionIconOptionPane = questionIconOptionPane;
+  }
+
+  public void setInformationIconOptionPane(IconUIResource informationIconOptionPane) {
+    this.informationIconOptionPane = informationIconOptionPane;
+  }
+
+  public void setIconComputerFileChooser(IconUIResource iconComputerFileChooser) {
+    this.iconComputerFileChooser = iconComputerFileChooser;
+  }
+
+  public void setIconDirectoryFileChooser(IconUIResource iconDirectoryFileChooser) {
+    this.iconDirectoryFileChooser = iconDirectoryFileChooser;
+  }
+
+  public void setIconFileFileChooser(IconUIResource iconFileFileChooser) {
+    this.iconFileFileChooser = iconFileFileChooser;
+  }
+
+  public void setIconFloppyDriveFileChooser(IconUIResource iconFloppyDriveFileChooser) {
+    this.iconFloppyDriveFileChooser = iconFloppyDriveFileChooser;
+  }
+
+  public void setIconHardDriveFileChooser(IconUIResource iconHardDriveFileChooser) {
+    this.iconHardDriveFileChooser = iconHardDriveFileChooser;
+  }
+
+  public void setIconHomeFileChooser(IconUIResource iconHomeFileChooser) {
+    this.iconHomeFileChooser = iconHomeFileChooser;
+  }
+
+  public void setIconListFileChooser(IconUIResource iconListFileChooser) {
+    this.iconListFileChooser = iconListFileChooser;
+  }
+
+  public void setIconDetailsFileChooser(IconUIResource iconDetailsFileChooser) {
+    this.iconDetailsFileChooser = iconDetailsFileChooser;
+  }
+
+  public void setIconNewFolderFileChooser(IconUIResource iconNewFolderFileChooser) {
+    this.iconNewFolderFileChooser = iconNewFolderFileChooser;
+  }
+
+  public void setIconUpFolderFileChooser(IconUIResource iconUpFolderFileChooser) {
+    this.iconUpFolderFileChooser = iconUpFolderFileChooser;
+  }
+
+  public void setBackgroundProgressBar(ColorUIResource backgroundProgressBar) {
+    this.backgroundProgressBar = backgroundProgressBar;
+  }
+
+  public void setForegroundProgressBar(ColorUIResource foregroundProgressBar) {
+    this.foregroundProgressBar = foregroundProgressBar;
+  }
+
+  public void setBorderProgressBar(BorderUIResource borderProgressBar) {
+    this.borderProgressBar = borderProgressBar;
+  }
+
+  public void setFontBold(FontUIResource fontBold) {
+    this.fontBold = fontBold;
+  }
+
+  public void setFontItalic(FontUIResource fontItalic) {
+    this.fontItalic = fontItalic;
+  }
+
+  public void setFontRegular(FontUIResource fontRegular) {
+    this.fontRegular = fontRegular;
+  }
+
+  public void setFontMedium(FontUIResource fontMedium) {
+    this.fontMedium = fontMedium;
+  }
 }

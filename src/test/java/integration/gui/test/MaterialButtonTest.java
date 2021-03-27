@@ -27,33 +27,31 @@ import mdlaf.utils.MaterialColors;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.junit.Test;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class MaterialButtonTest extends AbstractTestGUI {
 
-    @Test
-    public void testButtonColorBackgroundDefaultWhenIsClicked() {
-        JButtonFixture buttonDefault = frame.button("buttonDefault");
-        buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
-    }
+  @Test
+  public void testButtonColorBackgroundDefaultWhenIsClicked() {
+    JButtonFixture buttonDefault = frame.button("buttonDefault");
+    buttonDefault.background().requireEqualTo(theme.getButtonDefaultBackgroundColor());
+  }
 
-    @Test
-    public void testButtonUndoColorBackgroundWhenIsClicked() {
-        JButtonFixture buttonUndo = frame.button("buttonUndo");
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-    }
+  @Test
+  public void testButtonUndoColorBackgroundWhenIsClicked() {
+    JButtonFixture buttonUndo = frame.button("buttonUndo");
+    buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
+  }
 
-    @Test
-    public void testButtonNormalColorBackgroundWhenIsClicked() {
-        JButtonFixture buttonUndo = frame.button("buttonNormal");
-        buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
-    }
+  @Test
+  public void testButtonNormalColorBackgroundWhenIsClicked() {
+    JButtonFixture buttonUndo = frame.button("buttonNormal");
+    buttonUndo.background().requireEqualTo(theme.getButtonBackgroundColor());
+  }
 
-    @Test
-    public void testButtonDisableColorBackgroundForegroundWithChangeStatus() {
-        JButtonFixture buttonDisabled = frame.button("buttonDisabled");
-        buttonDisabled.background().requireEqualTo(MaterialColors.COSMO_LIGHT_ORANGE);
-        buttonDisabled.foreground().requireEqualTo(theme.getButtonTextColor());
-    }
+  @Test
+  public void testButtonDisableColorBackgroundForegroundWithChangeStatus() {
+    JButtonFixture buttonDisabled = frame.button("buttonDisabled");
+    buttonDisabled.background().requireEqualTo(MaterialColors.COSMO_LIGHT_ORANGE);
+    buttonDisabled.foreground().requireEqualTo(theme.getButtonTextColor());
+  }
 }

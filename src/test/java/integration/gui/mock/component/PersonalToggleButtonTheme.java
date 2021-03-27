@@ -23,29 +23,26 @@
  */
 package integration.gui.mock.component;
 
+import javax.swing.*;
 import mdlaf.themes.MaterialLiteTheme;
 
-import javax.swing.*;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class PersonalToggleButtonTheme extends MaterialLiteTheme {
 
-    public PersonalToggleButtonTheme() {
-        this.withoutIconToggleButton = true;
-    }
+  public PersonalToggleButtonTheme() {
+    this.withoutIconToggleButton = true;
+  }
 
-    @Override
-    public void installUIDefault(UIDefaults table) {
-        super.installUIDefault(table);
-    }
+  @Override
+  public void installUIDefault(UIDefaults table) {
+    super.installUIDefault(table);
+  }
 
-    @Override
-    protected void installIcons() {
-        super.installIcons();
+  @Override
+  protected void installIcons() {
+    super.installIcons();
 
-        this.unselectedIconToggleButton = null;
-        this.selectedIconToggleButton = null;
-    }
+    this.unselectedIconToggleButton = null;
+    this.selectedIconToggleButton = null;
+  }
 }
