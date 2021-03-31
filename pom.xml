@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.2-rc1</version>
+  <version>1.1.2-rc2-SNAPSHOT</version>
   <inceptionYear>2020</inceptionYear>
   <licenses>
     <license>
