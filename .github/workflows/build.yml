@@ -14,4 +14,4 @@ jobs:
     - name: Veryfy Java Code Style
       run: ./gradlew verifyGoogleJavaFormat
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew compileJava

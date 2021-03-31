@@ -71,5 +71,5 @@ task jarWithDependencies(type: Jar) {
     with jar
 }
 
-uploadArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
-signArchives.onlyIf { property('RELEASE_ENABLE') == 'true' }
+uploadArchives.onlyIf { property('RELEASE_ENABLE') == 'true'}
+signArchives.onlyIf { property('RELEASE_ENABLE') == 'true'}
