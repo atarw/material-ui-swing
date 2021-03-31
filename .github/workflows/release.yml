@@ -27,6 +27,7 @@ jobs:
         run: ./gradlew compileJava
       - name: Make signature file
         run: |
+          bash -c "echo '$GPG_KEY_CONTENTS'
           echo "${{secrets.SIGNING_KEY}}" > ~/.gradle/secring.gpg.b64
           base64 -d ~/.gradle/secring.gpg.b64 > ~/.gradle/secring.gpg
       - name: Publish package
