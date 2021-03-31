@@ -43,12 +43,38 @@ A modern, Material Design UI for Java Swing
 implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1'
 ```
 
- _Gradle (Kotlin)_
+ _Gradle (Kotlin DSL)_
 ```kotlin
 implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
+
+An example of gradle configuration is reported below
+
+_Gradle (Kotlin DSL)_
+```kotlin
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor(0, "seconds")
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
+
+repositories {
+    ... other suff
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
+}
+
+dependencies {
+    ... other stuff
+    implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc2-SNAPSHOT")
+}
+
+```
+
+### Snapshot version
+
+Each master version has a SNAPSHOT version that is the official version `x.x.x + 1`, so for example for the version `v1.1.2-rc1`
+the version on if exist a new version of the master branch is `v1.1.2-rc2-SNAPSHOT`
 
 ## Code Style
 > We live in a world where robots can drive a car, so we shouldn't just write code, we should write elegant code.
