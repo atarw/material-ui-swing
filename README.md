@@ -34,21 +34,26 @@ A modern, Material Design UI for Java Swing
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.2-rc1</version>
+  <version>1.1.2-rc2</version>
 </dependency>
  ```
 
  _Gradle (Groovy)_
 ```groovy
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc2'
 ```
 
  _Gradle (Kotlin DSL)_
 ```kotlin
-implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1")
+implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc2")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
+
+### Snapshot version
+
+Each master version has a SNAPSHOT version that is the official version `x.x.x + 1`, so for example for the version `v1.1.2-rc1`
+the version on if exist a new version of the master branch is `v1.1.2-rc2-SNAPSHOT`
 
 An example of gradle configuration is reported below
 
@@ -70,11 +75,6 @@ dependencies {
 }
 
 ```
-
-### Snapshot version
-
-Each master version has a SNAPSHOT version that is the official version `x.x.x + 1`, so for example for the version `v1.1.2-rc1`
-the version on if exist a new version of the master branch is `v1.1.2-rc2-SNAPSHOT`
 
 ## Code Style
 > We live in a world where robots can drive a car, so we shouldn't just write code, we should write elegant code.
