@@ -139,7 +139,7 @@ public class MaterialButtonUI extends BasicButtonUI {
       }
     }
     if (borderEnabled != null && borderEnabled) {
-      if (buttonBorderToAll && !b.isDefaultButton()) {
+      if (buttonBorderToAll) {
         paintBorderButton(g, b);
       } else if (b.getIcon() == null && !b.isDefaultButton()) {
         paintBorderButton(g, b);
@@ -187,8 +187,10 @@ public class MaterialButtonUI extends BasicButtonUI {
     if (c.isEnabled()) {
       if (defaultButton != null && defaultButton) {
         graphics.setColor(defaultBackground);
+      } else {
+        // TODO:Test it
+        graphics.setColor(c.getBackground());
       }
-      graphics.setColor(c.getBackground());
     } else {
       graphics.setColor(disabledBackground);
     }
@@ -392,12 +394,16 @@ public class MaterialButtonUI extends BasicButtonUI {
         }
       } else if (evt.getPropertyName().equals(BACKGROUND_EVENT) && button.isEnabled()) {
         // When on the JButton call the method setBackground
-        if (mouseHover != null && !mouseHover.isRunning()) {
+        if (defaultButton != null && defaultButton) {
+          defaultBackground = (Color) evt.getNewValue();
+        } else if (mouseHover != null && !mouseHover.isRunning()) {
           background = (Color) evt.getNewValue();
         }
       } else if (evt.getPropertyName().equals(FOREGROUND_EVENT) && button.isEnabled()) {
         // When on the JButton call the method setForeground
-        if (mouseHover != null && !mouseHover.isRunning()) {
+        if (defaultButton != null && defaultButton) {
+          defaultForeground = (Color) evt.getNewValue();
+        } else if (mouseHover != null && !mouseHover.isRunning()) {
           foreground = (Color) evt.getNewValue();
         }
       }

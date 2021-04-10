@@ -123,7 +123,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 
   @Override
   public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
-    ListCellRenderer renderer = comboBox.getRenderer();
+    ListCellRenderer<Object> renderer = comboBox.getRenderer();
     Component c;
 
     if (hasFocus && !isPopupVisible(comboBox)) {

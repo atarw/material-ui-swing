@@ -83,7 +83,7 @@ public class MaterialLiteTheme extends AbstractMaterialTheme {
     this.buttonDefaultBackgroundColorMouseHover = this.buttonBackgroundColorMouseHover;
     this.buttonDefaultBackgroundColor = secondBackground;
     this.buttonDisabledBackground = disableBackground;
-    this.buttonFocusColor = this.buttonBackgroundColor;
+    this.buttonFocusColor = this.textColor;
     this.buttonDefaultFocusColor = this.buttonFocusColor;
     this.buttonBorderColor = new ColorUIResource(211, 225, 232);
     this.buttonColorHighlight = selectedBackground;
