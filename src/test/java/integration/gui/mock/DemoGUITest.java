@@ -137,13 +137,9 @@ public class DemoGUITest extends JFrame {
   public void initComponent() {
     tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
     tabbedPane.setTabPlacement(JTabbedPane.RIGHT);
-    // tabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
     buttonDefault.setName("buttonDefault");
     buttonUndo.setName("buttonUndo");
 
-    // new Style for write the code
-    // following this example of demo
-    // https://github.com/paul-hammant/swing_component_testing/blob/master/src/main/java/demo/Demo.java
     buttonUndo.addActionListener(event -> disableTextField());
 
     buttonDisabled.setName("buttonDisabled");
@@ -251,6 +247,7 @@ public class DemoGUITest extends JFrame {
     initLayoutButtonsPanel();
 
     this.getRootPane().setDefaultButton(buttonDefault);
+    //buttonDefault.setUI(new CustomIconButtonUI());
 
     tabbedPane.add(panelOne, "Panel One");
     tabbedPane.add(panelTwo, "Table Home Dir");
