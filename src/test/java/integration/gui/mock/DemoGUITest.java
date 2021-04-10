@@ -247,7 +247,7 @@ public class DemoGUITest extends JFrame {
     initLayoutButtonsPanel();
 
     this.getRootPane().setDefaultButton(buttonDefault);
-    //buttonDefault.setUI(new CustomIconButtonUI());
+    // buttonDefault.setUI(new CustomIconButtonUI());
 
     tabbedPane.add(panelOne, "Panel One");
     tabbedPane.add(panelTwo, "Table Home Dir");
