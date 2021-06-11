@@ -3,9 +3,9 @@ name: Publish package to the Maven Central Repository
 on:
   release:
     types: [created]
-  push:
-    branches:
-      - master
+  #push:
+  #  branches:
+  #    - master
 
 jobs:
   build:
@@ -40,3 +40,9 @@ jobs:
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+      - name: Build jar with dependencies
+        run: ./gradlew jarWithDependencies
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-jars
+          path: build/libs/
