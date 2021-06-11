@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019-2020 Vincent Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2021 Vincent Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,27 @@
  */
 package mdlaf.themes.exceptions;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
-public class MaterialChangeThemeException extends RuntimeException{
+/** @author https://github.com/vincenzopalazzo */
+public class MaterialChangeThemeException extends RuntimeException {
 
-    public MaterialChangeThemeException() {
-        super();
-    }
+  public MaterialChangeThemeException() {
+    super();
+  }
 
-    public MaterialChangeThemeException(String message) {
-        super(message);
-    }
+  public MaterialChangeThemeException(String message) {
+    super(message);
+  }
 
-    public MaterialChangeThemeException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  public MaterialChangeThemeException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    public MaterialChangeThemeException(Throwable cause) {
-        super(cause);
-    }
+  public MaterialChangeThemeException(Throwable cause) {
+    super(cause);
+  }
 
-    protected MaterialChangeThemeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+  protected MaterialChangeThemeException(
+      String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
+  }
 }

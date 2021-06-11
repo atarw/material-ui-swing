@@ -1,10 +1,11 @@
 # Material-UI-Swing
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)](https://search.maven.org/search?q=g:%22io.github.vincenzopalazzo%22%20AND%20a:%22material-ui-swing%22)
-![GitHub last commit](https://img.shields.io/github/last-commit/atarw/material-ui-swing?color=%237cc4f4&style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vincenzopalazzo/material-ui-swing/build?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/vincenzopalazzo/material-ui-swing?color=%237cc4f4&style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/atarw/material-ui-swing/total?color=%234caf50&style=for-the-badge)
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/vincenzopalazzo/material-ui-swing-donations/master/images/iconMaterialOfficial.png" />
+    <img src="https://raw.githubusercontent.com/material-ui-swing/material-ui-swing-icon/main/svg/java-red-icon.svg" />
 </div>
 
 ## Description
@@ -26,29 +27,77 @@ A modern, Material Design UI for Java Swing
 - [Community](https://gitter.im/material-ui-swing/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 - [License](https://github.com/vincenzopalazzo/material-ui-swing/tree/development#license)
 
-## Repository
+ ## Repository
 
-_Maven_
+ _Maven_
  ```xml
 <dependency>
   <groupId>io.github.vincenzopalazzo</groupId>
   <artifactId>material-ui-swing</artifactId>
-  <version>1.1.2-rc1</version>
+  <version>1.1.2</version>
 </dependency>
  ```
 
-_Gradle (Groovy)_
+ _Gradle (Groovy)_
 ```groovy
-implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1'
+implementation 'io.github.vincenzopalazzo:material-ui-swing:1.1.2'
 ```
 
-_Gradle (Kotlin)_
+ _Gradle (Kotlin DSL)_
 ```kotlin
-implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2-rc1")
+implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.2")
 ```
 
 Others version [here](https://search.maven.org/artifact/io.github.vincenzopalazzo/material-ui-swing)
 
+### Snapshot version
+
+Each master version has a SNAPSHOT version that is the official version `x.x.x + 1`, so for example for the version `v1.1.2-rc1`
+the version on if exist a new version of the master branch is `v1.1.2-rc2-SNAPSHOT`
+
+An example of gradle configuration is reported below
+
+_Gradle (Kotlin DSL)_
+```kotlin
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor(0, "seconds")
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
+
+repositories {
+    ... other suff
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
+}
+
+dependencies {
+    ... other stuff
+    implementation("io.github.vincenzopalazzo:material-ui-swing:1.1.3-rc1-SNAPSHOT")
+}
+
+```
+
+## Code Style
+> We live in a world where robots can drive a car, so we shouldn't just write code, we should write elegant code.
+
+This repository use [google-java-format](https://github.com/sherter/google-java-format-gradle-plugin) to maintains the code of the repository elegant, so
+before submit the code check the Java format with the following command on the root of the directory
+
+```bash
+./gradlew verifyGoogleJavaFormat
+```
+
+It any error are reported please run the following command to try to fix it
+
+```bash
+./gradlew googleJavaFormat
+```
+
+p.s: The gradle plugin work with all the JDK version >= 9 (or better with java byte code version compatible with the version  55.0)
+
+For more details about the JDK support see the [this issue](https://github.com/sherter/google-java-format-gradle-plugin/issues/58) 
+and to know more about the Google Java code Style see the [this reference](https://google.github.io/styleguide/javaguide.html)
+
+## Build with Material-UI-Swing
 _**List of projects with Material-UI-Swing theme**_
 - [Krayon for SBGN](https://github.com/wiese42/krayon4sbgn)
 - [JMars 5](https://JMars.mars.asu.edu): Used by NASA and United Arab Emirates (UAE) for the last Mars missions.
@@ -76,10 +125,10 @@ You can support the project on the [Material-UI-Swing donation site](https://mat
 The YourKit is used also by Google, Microsoft, PayPal, ecc.
 
 - **YourKit**: it supports open source projects with innovative and intelligent tools
-  for monitoring and profiling Java and .NET applications.
-  YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
-  <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
-  and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
+for monitoring and profiling Java and .NET applications.
+YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
+<a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
+and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
 
 ## License
 
@@ -93,13 +142,14 @@ Copyright (c) 2019-2020 atharva washimkar, Vincenzo Palazzo vincenzopalazzodev@g
 
 Copyright (c) 2021 Vincenzo Palazzo vincenzopalazzodev@gmail.com
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, 
 sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
 OR OTHER DEALINGS IN THE SOFTWARE.
+

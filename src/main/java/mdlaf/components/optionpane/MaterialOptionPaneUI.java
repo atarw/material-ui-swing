@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019-20202 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2021 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,26 @@
  */
 package mdlaf.components.optionpane;
 
-import mdlaf.utils.MaterialImageFactory;
-
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
-import java.awt.*;
+import mdlaf.utils.MaterialImageFactory;
 
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class MaterialOptionPaneUI extends BasicOptionPaneUI {
 
-    @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
-    public static ComponentUI createUI(JComponent c) {
-        return new MaterialOptionPaneUI();
-    }
+  @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
+  public static ComponentUI createUI(JComponent c) {
+    return new MaterialOptionPaneUI();
+  }
 
-    @Override
-    protected Icon getIconForType(int messageType) {
-        if(!UIManager.getBoolean("OptionPane.enableIcon")){
-            //Insert icon white because without icon icon the JOptionPane is paint wrong
-            return MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BLANK);
-        }
-        return super.getIconForType(messageType);
+  @Override
+  protected Icon getIconForType(int messageType) {
+    if (!UIManager.getBoolean("OptionPane.enableIcon")) {
+      // Insert icon white because without icon icon the JOptionPane is paint wrong
+      return MaterialImageFactory.getInstance().getImage(MaterialImageFactory.BLANK);
     }
+    return super.getIconForType(messageType);
+  }
 }

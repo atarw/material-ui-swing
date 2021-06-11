@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2021 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,27 +23,24 @@
  */
 package mdlaf.utils;
 
+import java.awt.event.MouseListener;
+import javax.swing.*;
 import mdlaf.animation.MaterialUITimer;
 
-import javax.swing.*;
-import java.awt.event.MouseListener;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public class MaterialManagerListener {
-    /*
-     * Look this if you would change this function
-     * https://bugs.java.com/bugdatabase/view_bug.do?bug_id=4380536
-     */
-    public synchronized static void removeAllMaterialMouseListener(JComponent component){
-        if(component == null){
-            throw new IllegalArgumentException("Argument is null");
-        }
-        for(MouseListener mouseListener : component.getListeners(MouseListener.class)){
-            if (mouseListener instanceof MaterialUITimer){
-                component.removeMouseListener(mouseListener);
-            }
-        }
+  /*
+   * Look this if you would change this function
+   * https://bugs.java.com/bugdatabase/view_bug.do?bug_id=4380536
+   */
+  public static synchronized void removeAllMaterialMouseListener(JComponent component) {
+    if (component == null) {
+      throw new IllegalArgumentException("Argument is null");
     }
+    for (MouseListener mouseListener : component.getListeners(MouseListener.class)) {
+      if (mouseListener instanceof MaterialUITimer) {
+        component.removeMouseListener(mouseListener);
+      }
+    }
+  }
 }

@@ -24,6 +24,8 @@
 package integration.gui.test;
 
 import integration.gui.mock.DemoGUITest;
+import java.awt.*;
+import javax.swing.*;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialTheme;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
@@ -36,69 +38,67 @@ import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import javax.swing.*;
-import java.awt.*;
-
-/**
- * @author https://github.com/vincenzopalazzo
- */
+/** @author https://github.com/vincenzopalazzo */
 public abstract class AbstractTestGUI extends AssertJSwingTestCaseTemplate {
 
-    protected FrameFixture frame;
-    protected MaterialTheme theme;
+  protected FrameFixture frame;
+  protected MaterialTheme theme;
 
-    @BeforeClass
-    public static final void setUpOnce() {
-        Assume.assumeFalse("Automated UI Test cannot be executed in headless environment", GraphicsEnvironment.isHeadless());
-        FailOnThreadViolationRepaintManager.install();
-    }
+  @BeforeClass
+  public static final void setUpOnce() {
+    Assume.assumeFalse(
+        "Automated UI Test cannot be executed in headless environment",
+        GraphicsEnvironment.isHeadless());
+    FailOnThreadViolationRepaintManager.install();
+  }
 
-    @Before
-    public final void setUp() {
-        this.setUpRobot();
-        onBeforeGuiSetUp();
-        // initialize the graphical user interface
-        DemoGUITest mainWindow = GuiActionRunner.execute(new GuiQuery<DemoGUITest>() {
+  @Before
+  public final void setUp() {
+    this.setUpRobot();
+    onBeforeGuiSetUp();
+    // initialize the graphical user interface
+    DemoGUITest mainWindow =
+        GuiActionRunner.execute(
+            new GuiQuery<DemoGUITest>() {
 
-            @Override
-            protected DemoGUITest executeInEDT() throws Exception {
+              @Override
+              protected DemoGUITest executeInEDT() throws Exception {
                 DemoGUITest demoGUITest = new DemoGUITest();
                 demoGUITest.initComponent();
                 return demoGUITest;
-            }
-        });
-        this.frame = new FrameFixture(this.robot(), mainWindow);
-        this.frame.show();
-        onSetUp();
-        LookAndFeel lookAndFeel = UIManager.getLookAndFeel();
-        if (lookAndFeel instanceof MaterialLookAndFeel) {
-            MaterialLookAndFeel materialLookAndFeel = (MaterialLookAndFeel) lookAndFeel;
-            theme = materialLookAndFeel.getTheme();
-        } else {
-            throw new Error("Material l&f didn't set");
-        }
-
+              }
+            });
+    this.frame = new FrameFixture(this.robot(), mainWindow);
+    this.frame.show();
+    onSetUp();
+    LookAndFeel lookAndFeel = UIManager.getLookAndFeel();
+    if (lookAndFeel instanceof MaterialLookAndFeel) {
+      MaterialLookAndFeel materialLookAndFeel = (MaterialLookAndFeel) lookAndFeel;
+      theme = materialLookAndFeel.getTheme();
+    } else {
+      throw new Error("Material l&f didn't set");
     }
+  }
 
-    protected void onBeforeGuiSetUp() {
-        // default: everything is already configured
-    }
+  protected void onBeforeGuiSetUp() {
+    // default: everything is already configured
+  }
 
-    protected void onSetUp() {
-        // default: everything is already set up
-    }
+  protected void onSetUp() {
+    // default: everything is already set up
+  }
 
-    @After
-    public final void tearDown() {
-        try {
-            onTearDown();
-            this.frame = null;
-        } finally {
-            cleanUp();
-        }
+  @After
+  public final void tearDown() {
+    try {
+      onTearDown();
+      this.frame = null;
+    } finally {
+      cleanUp();
     }
+  }
 
-    protected void onTearDown() {
-        // default: nothing more to tear down
-    }
+  protected void onTearDown() {
+    // default: nothing more to tear down
+  }
 }

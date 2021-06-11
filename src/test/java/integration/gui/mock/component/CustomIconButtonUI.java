@@ -19,27 +19,28 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package mdlaf.components.colorchooser;
+package integration.gui.mock.component;
 
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicColorChooserUI;
+import mdlaf.components.button.MaterialButtonUI;
+import mdlaf.utils.MaterialColors;
 
 /** @author https://github.com/vincenzopalazzo */
-public class MaterialColorChooser extends BasicColorChooserUI {
-
-  @SuppressWarnings({"MethodOverridesStaticMethodOfSuperclass", "UnusedDeclaration"})
-  public static ComponentUI createUI(JComponent c) {
-    return new MaterialColorChooser();
-  }
+public class CustomIconButtonUI extends MaterialButtonUI {
 
   @Override
   public void installUI(JComponent c) {
+    this.mouseHoverEnabled = false;
     super.installUI(c);
+    this.buttonBorderToAll = false;
+    this.borderEnabled = false;
+    this.background = MaterialColors.PINK_700;
+    this.button.setFocusable(false);
+    this.disabledBackground = this.background;
+    this.button.setBackground(this.background);
   }
 
-  @Override
-  public void uninstallUI(JComponent c) {
-    super.uninstallUI(c);
-  }
+  @Override // Make sure that you disable the focus paint from the button.
+  protected void paintFocusRing(Graphics g, JButton b) {}
 }

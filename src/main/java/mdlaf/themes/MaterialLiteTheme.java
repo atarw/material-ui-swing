@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2019-2020 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ * Copyright (c) 2019-2021 Vincenzo Palazzo vincenzopalazzodev@gmail.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,134 +23,149 @@
  */
 package mdlaf.themes;
 
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.ColorUIResource;
 import mdlaf.shadows.DropShadowBorder;
 import mdlaf.utils.MaterialBorders;
 import mdlaf.utils.MaterialColors;
 
-import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
-
 /**
+ * Reference: https://www.material-theme.com/docs/reference/color-palette
+ *
  * @author https://github.com/vincenzopalazzo
  */
 public class MaterialLiteTheme extends AbstractMaterialTheme {
 
-    @Override
-    protected void installBorders() {
-        super.installBorders();
+  @Override
+  protected void installBorders() {
+    super.installBorders();
 
-        //this.borderComboBox = MaterialBorders.roundedLineColorBorder(MaterialColors.COSMO_BLACK, this.getArchBorderComboBox());
-        this.borderTable = MaterialBorders.LIGHT_LINE_BORDER;
-        this.borderTableHeader = new BorderUIResource(
-                new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12,
-                        true, true, true, true));
+    this.borderTable = MaterialBorders.LIGHT_LINE_BORDER;
+    this.borderTableHeader =
+        new BorderUIResource(
+            new DropShadowBorder(this.backgroundPrimary, 5, 3, 0.4f, 12, true, true, true, true));
 
-        super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
-    }
+    super.borderTitledBorder = MaterialBorders.LIGHT_LINE_BORDER;
+  }
 
-    @Override
-    protected void installDefaultColor() {
-        super.installDefaultColor();
-        this.buttonDefaultTextColor = MaterialColors.WHITE;
+  @Override
+  protected void installDefaultColor() {
+    super.installDefaultColor();
+    this.buttonDisabledForeground = this.disableTextColor;
+    /* this.buttonDefaultTextColor = MaterialColors.WHITE;
+    this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
+    this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
+    this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
+    this.arrowButtonOnClickColorScrollBar = MaterialColors.GRAY_400;
+    this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
+    super.foregroundToolTip = MaterialColors.WHITE; */
+    super.titleColorTaskPane = this.textColor;
+    super.backgroundToolTip = this.disableTextColor;
+  }
 
-        this.thumbDarkShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbHighlightColorScrollBar = MaterialColors.GRAY_500;
-        this.thumbShadowColorScrollBar = MaterialColors.GRAY_500;
-        this.arrowButtonOnClickColorScrollBar = MaterialColors.GRAY_400;
-        this.mouseHoverColorScrollBar = MaterialColors.GRAY_300;
-        super.foregroundToolTip = MaterialColors.WHITE;
-    }
+  @Override
+  protected void installColor() {
+    ColorUIResource secondBackground = new ColorUIResource(238, 238, 238);
+    ColorUIResource disableBackground = new ColorUIResource(210, 212, 213);
+    ColorUIResource accentColor = new ColorUIResource(231, 231, 232);
+    ColorUIResource selectedForeground = new ColorUIResource(84, 110, 122);
+    ColorUIResource selectedBackground = new ColorUIResource(220, 239, 237);
+    this.backgroundPrimary = new ColorUIResource(240, 240, 240);
+    this.highlightBackgroundPrimary = new ColorUIResource(0, 188, 212);
 
-    @Override
-    protected void installColor() {
-        this.backgroundPrimary = MaterialColors.WHITE;
-        this.highlightBackgroundPrimary = MaterialColors.LIGHT_BLUE_300;
+    this.textColor = new ColorUIResource(84, 110, 122);
+    this.disableTextColor = new ColorUIResource(148, 167, 176);
 
-        this.textColor = MaterialColors.BLACK;
-        this.disableTextColor = MaterialColors.GRAY_500;
+    this.buttonBackgroundColor = new ColorUIResource(243, 244, 245);
+    this.buttonBackgroundColorMouseHover = new ColorUIResource(231, 231, 232);
+    this.buttonDefaultBackgroundColorMouseHover = this.buttonBackgroundColorMouseHover;
+    this.buttonDefaultBackgroundColor = secondBackground;
+    this.buttonDisabledBackground = disableBackground;
+    this.buttonFocusColor = this.textColor;
+    this.buttonDefaultFocusColor = this.buttonFocusColor;
+    this.buttonBorderColor = new ColorUIResource(211, 225, 232);
+    this.buttonColorHighlight = selectedBackground;
 
-        this.buttonBackgroundColor = MaterialColors.COSMO_LIGTH_GRAY;
-        this.buttonBackgroundColorMouseHover = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonDefaultBackgroundColorMouseHover = MaterialColors.LIGHT_BLUE_200;
-        this.buttonDefaultBackgroundColor = MaterialColors.LIGHT_BLUE_400;
-        this.buttonDisabledBackground = MaterialColors.COSMO_DARK_GRAY;
-        this.buttonFocusColor = MaterialColors.GRAY_900;
-        this.buttonDefaultFocusColor = MaterialColors.GRAY_200;
-        this.buttonBorderColor = MaterialColors.COSMO_MEDIUM_GRAY;
-        this.buttonColorHighlight = MaterialColors.GRAY_400;
+    this.selectedInDropDownBackgroundComboBox = this.buttonBackgroundColorMouseHover;
+    this.selectedForegroundComboBox = this.textColor;
 
-        this.selectedInDropDownBackgroundComboBox = MaterialColors.COSMO_LIGTH_BLUE;
-        this.selectedForegroundComboBox = MaterialColors.BLACK;
+    this.menuBackground = this.backgroundPrimary;
+    this.menuBackgroundMouseHover = this.buttonBackgroundColorMouseHover;
 
-        this.menuBackground = MaterialColors.WHITE;
-        this.menuBackgroundMouseHover = MaterialColors.GRAY_400;
+    this.arrowButtonColorScrollBar = this.buttonBackgroundColor;
+    this.trackColorScrollBar = accentColor;
+    this.thumbColorScrollBar = disableBackground;
 
-        this.arrowButtonColorScrollBar = MaterialColors.GRAY_200;
-        this.trackColorScrollBar = MaterialColors.GRAY_200;
-        this.thumbColorScrollBar = MaterialColors.GRAY_500;
+    this.trackColorSlider = this.textColor;
+    this.haloColorSlider = MaterialColors.bleach(this.highlightBackgroundPrimary, 0.5f);
 
-        this.trackColorSlider = MaterialColors.BLACK;
-        this.haloColorSlider = MaterialColors.bleach(MaterialColors.LIGHT_BLUE_400, 0.5f);
+    this.highlightColorTabbedPane = this.buttonColorHighlight;
+    this.borderHighlightColorTabbedPane = this.buttonColorHighlight;
+    this.focusColorLineTabbedPane = this.highlightBackgroundPrimary;
+    this.disableColorTabTabbedPane = disableBackground;
 
-        this.highlightColorTabbedPane = MaterialColors.GRAY_200;
-        this.borderHighlightColorTabbedPane = MaterialColors.GRAY_300;
-        this.focusColorLineTabbedPane = MaterialColors.COSMO_BLUE;
-        this.disableColorTabTabbedPane = MaterialColors.COSMO_STRONG_GRAY;
+    this.backgroundTable = this.backgroundPrimary;
+    this.backgroundTableHeader = this.backgroundPrimary;
+    this.selectionBackgroundTable = this.buttonBackgroundColorMouseHover;
+    this.gridColorTable = this.backgroundPrimary;
+    this.alternateRowBackgroundTable = this.backgroundPrimary;
 
-        this.backgroundTable = MaterialColors.WHITE;
-        this.backgroundTableHeader = MaterialColors.GRAY_200;
-        this.selectionBackgroundTable = MaterialColors.COSMO_LIGTH_BLUE;
-        this.gridColorTable = MaterialColors.GRAY_200;
-        this.alternateRowBackgroundTable = MaterialColors.GRAY_300;
+    this.backgroundTextField = accentColor;
+    this.inactiveForegroundTextField = this.textColor;
+    this.inactiveBackgroundTextField = accentColor;
+    this.selectionBackgroundTextField = selectedBackground;
+    this.selectionForegroundTextField = selectedForeground;
+    super.disabledBackgroudnTextField = disableBackground;
+    super.disabledForegroundTextField = this.disableTextColor;
+    this.inactiveColorLineTextField = this.textColor;
+    this.activeColorLineTextField = this.highlightBackgroundPrimary;
 
-        this.backgroundTextField = MaterialColors.GRAY_200;
-        this.inactiveForegroundTextField = MaterialColors.GRAY_800;
-        this.inactiveBackgroundTextField = MaterialColors.GRAY_200;
-        this.selectionBackgroundTextField = MaterialColors.LIGHT_BLUE_400;
-        this.selectionForegroundTextField = MaterialColors.BLACK;
-        super.disabledBackgroudnTextField = MaterialColors.GRAY_300;
-        super.disabledForegroundTextField = MaterialColors.GRAY_700;
-        this.inactiveColorLineTextField = MaterialColors.BLACK;
-        this.activeColorLineTextField = MaterialColors.LIGHT_BLUE_400;
+    this.mouseHoverButtonColorSpinner = this.buttonBackgroundColorMouseHover;
+    this.titleBackgroundGradientStartTaskPane = secondBackground;
+    this.titleBackgroundGradientEndTaskPane = secondBackground;
+    this.titleOverTaskPane = selectedForeground;
+    this.specialTitleOverTaskPane = selectedForeground;
+    this.backgroundTaskPane = this.backgroundPrimary;
+    this.borderColorTaskPane = new ColorUIResource(211, 225, 232);
+    this.contentBackgroundTaskPane = secondBackground;
 
-        this.mouseHoverButtonColorSpinner = MaterialColors.GRAY_400;
+    this.selectionBackgroundList = selectedBackground;
+    this.selectionForegroundList = selectedForeground;
 
-        this.titleBackgroundGradientStartTaskPane = MaterialColors.GRAY_300;
-        this.titleBackgroundGradientEndTaskPane = MaterialColors.GRAY_500;
-        this.titleOverTaskPane = MaterialColors.LIGHT_BLUE_500;
-        this.specialTitleOverTaskPane = MaterialColors.LIGHT_BLUE_500;
-        this.backgroundTaskPane = MaterialColors.WHITE;
-        this.borderColorTaskPane = MaterialColors.WHITE;
-        this.contentBackgroundTaskPane = MaterialColors.WHITE;
+    this.backgroundProgressBar = disableBackground;
+    this.foregroundProgressBar = this.highlightBackgroundPrimary;
 
-        this.selectionBackgroundList = MaterialColors.COSMO_LIGTH_BLUE;
-        this.selectionForegroundList = MaterialColors.BLACK;
+    this.withoutIconSelectedBackgroundToggleButton = MaterialColors.COSMO_DARK_GRAY;
+    this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
+    this.withoutIconBackgroundToggleButton = MaterialColors.GRAY_300;
+    this.withoutIconForegroundToggleButton = MaterialColors.BLACK;
 
-        this.backgroundProgressBar = MaterialColors.COSMO_LIGTH_BLUE;
-        this.foregroundProgressBar = MaterialColors.COSMO_BLUE;
+    this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
+    this.colorDividierFocusSplitPane = selectedBackground;
 
-        this.withoutIconSelectedBackgroundToggleButton = MaterialColors.COSMO_DARK_GRAY;
-        this.withoutIconSelectedForegoundToggleButton = MaterialColors.BLACK;
-        this.withoutIconBackgroundToggleButton = MaterialColors.GRAY_300;
-        this.withoutIconForegroundToggleButton = MaterialColors.BLACK;
+    super.backgroundSeparator = MaterialColors.GRAY_300;
+    super.foregroundSeparator = MaterialColors.GRAY_300;
+  }
 
-        this.colorDividierSplitPane = MaterialColors.COSMO_DARK_GRAY;
-        this.colorDividierFocusSplitPane = MaterialColors.COSMO_BLUE;
+  @Override
+  public void installUIDefault(UIDefaults table) {
+    super.installUIDefault(table);
+  }
 
-        super.backgroundSeparator = MaterialColors.GRAY_300;
-        super.foregroundSeparator = MaterialColors.GRAY_300;
+  @Override
+  public String getName() {
+    return "Material Lite";
+  }
 
-        super.titleColorTaskPane = MaterialColors.BLACK;
-        super.backgroundToolTip = MaterialColors.GRAY_500;
-    }
+  @Override
+  public boolean getButtonBorderEnableToAll() {
+    return true;
+  }
 
-    @Override
-    public void installUIDefault(UIDefaults table) {
-        super.installUIDefault(table);
-    }
-
-    @Override
-    public String getName() {
-        return "Material Lite";
-    }
+  @Override
+  public boolean getButtonBorderEnable() {
+    return true;
+  }
 }
