@@ -5,7 +5,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/vincenzopalazzo/material-ui-swing/total?color=%234caf50&style=for-the-badge)
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/vincenzopalazzo/material-ui-swing-donations/master/images/iconMaterialOfficial.png" />
+    <img src="https://raw.githubusercontent.com/material-ui-swing/material-ui-swing-icon/main/svg/java-red-icon.svg" />
 </div>
 
 ## Description
