@@ -84,7 +84,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
   protected MaterialTheme theme;
 
   private static final String buttonUI = MaterialButtonUI.class.getCanonicalName();
-  private static final String textfieldUI = MaterialTextFieldUI.class.getCanonicalName();
+  private static final String textFieldUI = MaterialTextFieldUI.class.getCanonicalName();
   private static final String passwordFieldUI = MaterialPasswordFieldUI.class.getCanonicalName();
   private static final String tableUI = MaterialTableUI.class.getCanonicalName();
   private static final String tableHeaderUI = MaterialTableHeaderUI.class.getCanonicalName();
@@ -198,7 +198,7 @@ public class MaterialLookAndFeel extends MetalLookAndFeel {
   protected void initClassDefaults(UIDefaults table) {
     super.initClassDefaults(table);
     table.put("ButtonUI", buttonUI);
-    table.put("TextFieldUI", textfieldUI);
+    table.put("TextFieldUI", textFieldUI);
     table.put("PasswordFieldUI", passwordFieldUI);
     table.put("TableUI", tableUI);
     table.put("TableHeaderUI", tableHeaderUI);

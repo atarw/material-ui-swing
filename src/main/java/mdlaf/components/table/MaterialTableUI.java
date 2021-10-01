@@ -85,7 +85,7 @@ public class MaterialTableUI extends BasicTableUI {
   }
 
   // This method setting a MaterialCellRender at the particular class
-  // With this class not working correctly the color alternate in the Jtable
+  // With this class not working correctly the color alternate in the JTable
   protected void setDefaultCellRenderWithType(JTable table) {
     if (table == null) {
       throw new IllegalArgumentException("Table is null");

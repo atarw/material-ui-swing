@@ -60,10 +60,10 @@ public class MaterialUIMovement {
 
   /**
    * This method create a new effect mouse hover static, not create a wake effect This method is
-   * util in all component for click, an example: The button for JSpinner, JCombobox, JScroolbar
+   * util in all component for click, an example: The button for JSpinner, JCombobox, JScrollbar
    * param c is the component param colorEffect is the color for effect, (For using color, look the
    * MaterialColors class) param colorOnClick is the color of the component on click on it return a
-   * new MaterialUIStaticMovement this class implement a only MouseListner for moment
+   * new MaterialUIStaticMovement this class implement a only MouseListener for moment
    *
    * @author https://github.com/vincenzopalazzo
    * @deprecated This method will be removed inside the version 1.2, because with the new

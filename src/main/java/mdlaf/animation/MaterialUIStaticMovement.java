@@ -27,7 +27,7 @@ import javax.swing.*;
 
 /**
  * This class recreate a effect mouse hover static, This component not implement a wake effect, and
- * is util in all component for click, an example: The button for JSpinner, JCombobox, JScroolBar
+ * is util in all component for click, an example: The button for JSpinner, JCombobox, JScrollBar
  *
  * @author https://github.com/vincenzopalazzo
  * @deprecated This method will be removed inside the version 1.2, because with the new

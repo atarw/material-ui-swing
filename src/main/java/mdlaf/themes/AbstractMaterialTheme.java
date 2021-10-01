@@ -254,16 +254,16 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
 
   protected BorderUIResource cellBorderTableHeader;
 
-  /** Whent the Table row is unselected but the checkbox is uncheck */
+  /** When the Table row is unselected but the checkbox is unchecked */
   protected IconUIResource unselectedCheckBoxIconTable;
 
-  /** Whent the Table row is unselected but the checkbox is check */
+  /** When the Table row is unselected but the checkbox is checked */
   protected IconUIResource selectedCheckBoxIconTable;
 
-  /** Whent the Table row is selected but the checkbox is check */
+  /** When the Table row is selected but the checkbox is checked */
   protected IconUIResource unselectedCheckBoxIconSelectionRowTable;
 
-  /** Whent the Table row is selected but the checkbox is check */
+  /** When the Table row is selected but the checkbox is checked */
   protected IconUIResource selectedCheckBoxIconSelectionRowTable;
 
   // ---------------------------------------------------
@@ -1090,7 +1090,7 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     return false;
   }
 
-  // get jslider
+  // get JSlider
   public ColorUIResource getTrackColorSlider() {
     return trackColorSlider;
   }

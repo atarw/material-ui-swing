@@ -57,7 +57,7 @@ public class MaterialImageFactory {
 
   private static MaterialImageFactory SINGLETON;
 
-  private static final String PATH_RESOUSES = "/imgs/";
+  private static final String PATH_RESOURCES = "/imgs/";
 
   // blank image
   public static final String BLANK = "blank";
@@ -103,7 +103,7 @@ public class MaterialImageFactory {
     if (key == null) {
       throw new IllegalArgumentException("Argument null");
     }
-    String path = PATH_RESOUSES.trim() + key.trim() + ".png".trim();
+    String path = PATH_RESOURCES.trim() + key.trim() + ".png".trim();
     if (cacheImage.containsKey(path)) {
       return cacheImage.get(path);
     }
