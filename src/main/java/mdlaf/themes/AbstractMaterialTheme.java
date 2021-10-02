@@ -1090,7 +1090,6 @@ public abstract class AbstractMaterialTheme implements MaterialTheme {
     return false;
   }
 
-  // get JSlider
   public ColorUIResource getTrackColorSlider() {
     return trackColorSlider;
   }
