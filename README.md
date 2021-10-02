@@ -86,7 +86,7 @@ before submit the code check the Java format with the following command on the r
 ./gradlew verifyGoogleJavaFormat
 ```
 
-If any error are reported please run the following command to try to fix them
+If any error are reported please run the following command to fix them
 
 ```bash
 ./gradlew googleJavaFormat
