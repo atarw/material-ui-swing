@@ -34,8 +34,8 @@ import javax.swing.plaf.FontUIResource;
 
 /**
  * This class managed the font inside the library and inside the Look and Feel, in fact this class
- * uses a flyweight pattern to minimized the font instance created from the library. In fact on a lot
- * of components you have only 4 instance of font in a normal use case.
+ * uses a flyweight pattern to minimized the font instance created from the library. In fact on a
+ * lot of components you have only 4 instance of font in a normal use case.
  *
  * @author https://github.com/vincenzopalazzo
  */
