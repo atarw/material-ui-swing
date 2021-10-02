@@ -46,7 +46,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
           table, value, isSelected, hasFocus, row, column);
     }
 
-    // OLD version code restored for JMars offical version
+    // OLD version code restored for JMars official version
     /*
     boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
     Color alternateRowColor = UIManager.getColor("Table.alternateRowBackground");
@@ -81,7 +81,7 @@ public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
   }
 
   // This method setting a MaterialCellRender at the particular class
-  // With this class not working correctly the color alternate in the Jtable
+  // With this class not working correctly the color alternate in the JTable
   // in particular the IconImage without this code the cell is painted not correctly or
   // in the cell did print the path of the image
   protected void setDefaultCellRenderWithAllType(

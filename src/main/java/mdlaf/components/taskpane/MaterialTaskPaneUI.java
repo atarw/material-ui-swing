@@ -110,7 +110,7 @@ public class MaterialTaskPaneUI extends BasicTaskPaneUI {
      * This set also the border to the component.
      *
      * <p>- is possible define with the propriety TaskPanel.arch if the TaskPane title should be a
-     * rettangle or an with an arch
+     * rectangle or with an arch
      */
     protected void paintTitleBackground(JXTaskPane group, Graphics g) {
       this.label.setBackground(background);

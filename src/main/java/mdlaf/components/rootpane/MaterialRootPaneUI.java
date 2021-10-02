@@ -85,15 +85,15 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
   public MaterialRootPaneUI() {
     super();
-    int devideWithd = 0;
+    int deviceWidth = 0;
     int deviceHeight = 0;
     GraphicsDevice graphicDevices[] =
         GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
     for (GraphicsDevice graphicsDevice : graphicDevices) {
-      devideWithd += graphicsDevice.getDisplayMode().getWidth();
+      deviceWidth += graphicsDevice.getDisplayMode().getWidth();
       deviceHeight += graphicsDevice.getDisplayMode().getHeight();
     }
-    this.dimensionDevices = new Dimension(devideWithd, deviceHeight);
+    this.dimensionDevices = new Dimension(deviceWidth, deviceHeight);
     this.parentBounds = this.dimensionDevices;
   }
 
@@ -527,7 +527,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     // are the mousePressed location in absolute coordinate system
     int absoluteX, absoluteY;
     // are the mousePressed location in source view's coordinate system
-    int windiwNowX, windowNowY;
+    int windowNowX, windowNowY;
     Rectangle startingBounds;
     int resizeDir;
     protected final int RESIZE_NONE = 0;
@@ -560,7 +560,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
       }
       absoluteX = 0;
       absoluteY = 0;
-      windiwNowX = 0;
+      windowNowX = 0;
       windowNowY = 0;
       startingBounds = null;
       resizeDir = RESIZE_NONE;
@@ -571,7 +571,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
     }
 
     public void mousePressed(MouseEvent ev) {
-      windiwNowX = ev.getX();
+      windowNowX = ev.getX();
       windowNowY = ev.getY();
       // fix
       Point mouseCurent = MouseInfo.getPointerInfo().getLocation();
@@ -593,7 +593,7 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
       }
       startingBounds = w.getBounds();
       Insets i = w.getInsets();
-      Point ep = new Point(windiwNowX, windowNowY);
+      Point ep = new Point(windowNowX, windowNowY);
       // Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset,
       // getTitlePane());
       boolean resizable = false;
@@ -799,11 +799,11 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
           // button was not used.
           return;
         }
-        // Dimension dimensioDevices = Toolkit.getDefaultToolkit().getScreenSize();
+        // Dimension dimensionDevices = Toolkit.getDefaultToolkit().getScreenSize();
         /* GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
-        Dimension dimensioDevices = new Dimension(width, height);*/
+        Dimension dimensionDevices = new Dimension(width, height);*/
 
         int parentWidth = dimensionDevices.width;
         int parentHeight = dimensionDevices.height;
@@ -813,15 +813,15 @@ public class MaterialRootPaneUI extends BasicRootPaneUI {
 
         // TODO see this point because with two display not worked well (Resolved -> testing)
         // Make sure we stay in-bounds
-        if (newX + windows.left <= -windiwNowX) {
+        if (newX + windows.left <= -windowNowX) {
           // What operation do this?
-          newX = -windiwNowX - windows.left + 1;
+          newX = -windowNowX - windows.left + 1;
         } else if (newY + windows.top <= -windowNowY) {
           // What operation do this?
           newY = -windowNowY - windows.top + 1;
-        } else if (newX + windiwNowX + windows.right >= parentWidth) {
+        } else if (newX + windowNowX + windows.right >= parentWidth) {
           // What operation do this?
-          newX = parentWidth - windiwNowX - windows.right - 1;
+          newX = parentWidth - windowNowX - windows.right - 1;
         } else if (newY + windowNowY + windows.bottom >= parentHeight) {
           // What operation do this?
           newY = parentHeight - windowNowY - windows.bottom - 1;

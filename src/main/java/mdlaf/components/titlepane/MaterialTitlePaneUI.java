@@ -693,7 +693,7 @@ public class MaterialTitlePaneUI extends JComponent {
       mySystemIcon = icons.get(0);
     } else {
       mySystemIcon = icons.get(0);
-      // TODO: find cross-platofrm replacement for this?
+      // TODO: find cross-platform replacement for this?
       // mySystemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
     }
   }
