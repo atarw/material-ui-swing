@@ -86,16 +86,16 @@ before submit the code check the Java format with the following command on the r
 ./gradlew verifyGoogleJavaFormat
 ```
 
-It any error are reported please run the following command to try to fix it
+If any error are reported please run the following command to fix them
 
 ```bash
 ./gradlew googleJavaFormat
 ```
 
-p.s: The gradle plugin work with all the JDK version >= 9 (or better with java byte code version compatible with the version  55.0)
+P.S.: The gradle plugin works with all the JDK versions >= 9 (or better with java byte code version compatible with the version  55.0)
 
-For more details about the JDK support see the [this issue](https://github.com/sherter/google-java-format-gradle-plugin/issues/58) 
-and to know more about the Google Java code Style see the [this reference](https://google.github.io/styleguide/javaguide.html)
+For more details about the JDK support see [this issue](https://github.com/sherter/google-java-format-gradle-plugin/issues/58) 
+and to know more about the Google Java code Style see [this reference](https://google.github.io/styleguide/javaguide.html)
 
 ## Build with Material-UI-Swing
 _**List of projects with Material-UI-Swing theme**_
